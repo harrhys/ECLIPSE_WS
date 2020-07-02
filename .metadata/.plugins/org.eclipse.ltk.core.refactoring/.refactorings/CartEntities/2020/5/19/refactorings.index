@@ -1,0 +1,33 @@
+1588689032363	Copy file
+1588692638789	Rename resource 'ds-jta-hibernate.cfg.xml'
+1588692657652	Rename resource 'ds-hibernate.cfg.xml'
+1588692814289	Rename enum constant 'HIBERNATE_DS'
+1588692836940	Rename enum constant 'HIBERNATE_JTA_DS'
+1588692944642	Rename type 'DBHandler'
+1588693061012	Rename resource 'jta-bmt-hibernate.cfg.xml'
+1588693079784	Rename resource 'jdbc-hibernate.cfg.xml'
+1588693108062	Rename resource 'jta-cmt-hibernate.cfg.xml'
+1588707627129	Copy compilation unit
+1588708720049	Move compilation units
+1588708774294	Move compilation units
+1588708793215	Move compilation units
+1588708805301	Move compilation unit
+1588708816129	Delete element
+1588708851968	Move compilation unit
+1588709054966	Rename type 'HibernateHandler'
+1588709076489	Copy compilation unit
+1588709796661	Copy compilation unit
+1588710527242	Infer generic type arguments
+1588711504063	Copy file
+1588719658348	Rename enum constant 'HIBERNATE_JTA_CMT'
+1588719672531	Rename enum constant 'HIBERNATE_JTA_BMT'
+1588719699980	Rename resource 'hibernate-jta-bmt.cfg.xml'
+1588719712760	Rename resource 'hibernate-jta-cmt.cfg.xml'
+1588719810887	Rename type 'HibernateJTABMTHandler'
+1588719824644	Rename type 'HibernateJTACMTHandler'
+1588719870862	Rename type 'HibernateInterceptor'
+1588719919544	Rename type 'HibernateHandlerAll'
+1588756256327	Copy compilation unit
+1588756462668	Delete element
+1588756478579	Copy compilation unit
+1588759616017	Copy compilation unit

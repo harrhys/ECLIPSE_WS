@@ -1,0 +1,86 @@
+<!--    @author Copyright (c) 2015, 2020, Oracle and/or its affiliates. All rights reserved. -->
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../template.xhtml">
+  <ui:define name="title">
+    <h:outputText value="JSF 2.2 File Upload Sample Application"></h:outputText>
+  </ui:define>
+
+  <ui:define name="body">
+    <script type="text/javascript">
+      var onload_cb = function () {
+      }
+      var statusUpdate = function statusUpdate(data) {
+        var statusArea = document.getElementById("statusArea");
+        var text = statusArea.value;
+        text = text + "Name: " + data.source.id;
+        if (data.type === "event") {
+          text = text + " Event: " + data.status + " ";
+        }
+        statusArea.value = text;
+      }
+    </script>
+
+    <p>
+      <h3>Testing This Page</h3>
+      <ul>
+        <li>Press the <i>Browse...</i> button</li>
+        <li>Navigate to <i>javaee7/jsf/fileupload</i> directory if not already
+          there.
+        </li>
+        <li>Select <i>inputFileSuccess.txt</i></li>
+        <li>Press the <i>Submit</i> button.</li>
+        <li>You should see the text: <i>This file contains the string JSR-344 and
+          will be successfully set into the model. </i></li>
+      </ul>
+    </p>
+    <p>
+      <ul>
+        <li>Press the <i>Browse...</i> button</li>
+        <li>Navigate to <i>basic</i> directory if not already there.</li>
+        <li>Select <i>inputFileFailure.txt</i></li>
+        <li>Press the <i>Submit</i> button.</li>
+        <li>You should see the text: <i>Invalid file. File must contain special
+          string .</i></li>
+      </ul>
+    </p>
+    <p>
+      In both cases, you should end up with a message in the Status box: <i>Name:
+      button Event: success</i>.
+      This inicates the Ajax request has gone through the JSF Ajax lifecycle and is
+      receiving the standard Ajax lifecycle events.
+    </p>
+
+    <h3>Using This Example</h3>
+    <br/>
+    <h:form id="myform" enctype="multipart/form-data" prependId="false">
+      <p>
+        <h:inputFile id="file" value="#{fileUploadBean.uploadedFile}">
+          <f:validator validatorId="FileValidator"/>
+        </h:inputFile>
+      </p>
+      <br/>
+
+      &nbsp;&nbsp;&nbsp;&nbsp; <h:commandButton id="button" value="submit">
+      <f:ajax execute="@all" render="@all" onevent="statusUpdate"/>
+    </h:commandButton>
+
+      #{fileUploadBean.fileText}
+
+      <p>
+        <h:messages id="messages"/>
+      </p>
+    </h:form>
+
+    <p>
+      <h3> Status:</h3>
+      <textarea id="statusArea" cols="40" rows="10" readonly="readonly"/>
+    </p>
+  </ui:define>
+</ui:composition>
+</html>

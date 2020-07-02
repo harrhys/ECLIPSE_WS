@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:Products xmlns:p="http://farbig.com/Product" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://farbig.com/Product ../Product.xsd ">
+  <p:Product id="100">
+    <p:Code>P1</p:Code>
+    <p:Name>Product 1</p:Name>
+    <p:Description>P1 Description</p:Description>
+    <p:Price>100</p:Price>
+  </p:Product>
+  <p:Product id="101">
+    <p:Code>P2</p:Code>
+    <p:Name>Product 2</p:Name>
+    <p:Description>P2 Description</p:Description>
+    <p:Price>25</p:Price>
+  </p:Product>
+</p:Products>

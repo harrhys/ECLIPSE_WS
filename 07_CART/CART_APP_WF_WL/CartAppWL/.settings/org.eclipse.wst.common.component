@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="MYCARTAPP">
+        <wb-resource deploy-path="/" source-path="/CartAppWL" tag="defaultRootSource"/>
+        <dependent-module archiveName="CartServicesClient.jar" deploy-path="/lib" handle="module:/resource/CartServicesClient/CartServicesClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartRS.war" deploy-path="/" handle="module:/resource/CartRS/CartRS">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartGatewayClient.jar" deploy-path="/lib" handle="module:/resource/CartGatewayClient/CartGatewayClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartGateway.jar" deploy-path="/" handle="module:/resource/CartGateway/CartGateway">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartWS.war" deploy-path="/" handle="module:/resource/CartWS/CartWS">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartUtil.jar" deploy-path="/lib" handle="module:/resource/CartUtil/CartUtil">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartWebApp.war" deploy-path="/" handle="module:/resource/CartWebApp/CartWebApp">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartServices.jar" deploy-path="/lib" handle="module:/resource/CartServices/CartServices">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartEntities.jar" deploy-path="/lib" handle="module:/resource/CartEntities/CartEntities">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="CartPersistenceWL.jar" deploy-path="/lib" handle="module:/resource/CartPersistenceWL/CartPersistenceWL">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

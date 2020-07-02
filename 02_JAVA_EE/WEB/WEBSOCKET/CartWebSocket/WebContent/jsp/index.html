@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	test
+	<span id="messageGoesHere"></span>
+	<script type="text/javascript">
+		var ws = new WebSocket("ws://localhost:7001/cartws/hello");
+
+		ws.onmessage = function(event) {
+			ver
+			myspan = document.getElementById("messageGoesHere");
+			myspan.innerHTML = event.data;
+		};
+	</script>
+</body>
+</html>

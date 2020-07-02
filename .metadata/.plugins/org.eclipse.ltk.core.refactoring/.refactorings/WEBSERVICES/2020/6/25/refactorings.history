@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 packages to &apos;JAX-WS/src&apos;&#x0D;&#x0A;- Original project: &apos;WEBSERVICES&apos;&#x0D;&#x0A;- Destination element: &apos;JAX-WS/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     WEBSERVICES/src/com.farbig.business.services&#x0D;&#x0A;     WEBSERVICES/src/com.farbig.soap.services" description="Copy packages" destination="=JAX-WS/src" element1="/src&lt;com.farbig.business.services" element2="/src&lt;com.farbig.soap.services" flags="589830" fragments="2" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1592297004868" version="1.0"/>
+</session>

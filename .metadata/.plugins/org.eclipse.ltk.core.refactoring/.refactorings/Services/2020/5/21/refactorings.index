@@ -1,0 +1,17 @@
+1589969487581	Copy compilation unit
+1589976123145	Copy compilation unit
+1589980682507	Delete element
+1589984673321	Rename type 'StoreServicesTest'
+1589990321526	Rename package 'com.farbig.ws.soap'
+1589990433778	Rename package 'com.farbig'
+1589990466272	Rename package 'com.farbig.ws.endpoint'
+1589990490547	Rename package 'com.farbig.ws'
+1589990509434	Rename package 'com.farbig.ws.ws'
+1589990524080	Rename package 'com.farbig.ws.ws.handlers'
+1589990538717	Rename package 'com.farbig.ws.ws.test'
+1589990585710	Rename package 'com.farbig.ws'
+1589990658876	Move compilation units
+1589990701281	Move compilation unit
+1589990774006	Move compilation unit
+1589990779442	Delete element
+1589992189184	Rename type 'ProductServiceInterface'

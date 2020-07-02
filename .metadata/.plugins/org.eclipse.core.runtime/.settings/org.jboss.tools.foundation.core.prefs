@@ -1,0 +1,17 @@
+eclipse.preferences.version=1
+org.jboss.tools.foundation.core.credentials.CredentialsModel/access.redhat.com/id=access.redhat.com
+org.jboss.tools.foundation.core.credentials.CredentialsModel/access.redhat.com/name=access.redhat.com
+org.jboss.tools.foundation.core.credentials.CredentialsModel/access.redhat.com/removable=false
+org.jboss.tools.foundation.core.credentials.CredentialsModel/access.redhat.com/user.list=
+org.jboss.tools.foundation.core.credentials.CredentialsModel/access.redhat.com/user.list.prompted=
+org.jboss.tools.foundation.core.credentials.CredentialsModel/cart_app/default.user=jboss
+org.jboss.tools.foundation.core.credentials.CredentialsModel/cart_app/id=cart_app
+org.jboss.tools.foundation.core.credentials.CredentialsModel/cart_app/name=cart_app
+org.jboss.tools.foundation.core.credentials.CredentialsModel/cart_app/removable=true
+org.jboss.tools.foundation.core.credentials.CredentialsModel/cart_app/user.list=jboss
+org.jboss.tools.foundation.core.credentials.CredentialsModel/cart_app/user.list.prompted=
+org.jboss.tools.foundation.core.credentials.CredentialsModel/jboss.org/id=jboss.org
+org.jboss.tools.foundation.core.credentials.CredentialsModel/jboss.org/name=jboss.org
+org.jboss.tools.foundation.core.credentials.CredentialsModel/jboss.org/removable=false
+org.jboss.tools.foundation.core.credentials.CredentialsModel/jboss.org/user.list=
+org.jboss.tools.foundation.core.credentials.CredentialsModel/jboss.org/user.list.prompted=

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 5 packages to &apos;WS1/src&apos;&#x0D;&#x0A;- Original project: &apos;WS&apos;&#x0D;&#x0A;- Destination element: &apos;WS1/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     WS/src/com.test.emp.dto&#x0D;&#x0A;     WS/src/com.test&#x0D;&#x0A;     WS/src/com.test.hi&#x0D;&#x0A;     WS/src/com.test.emp&#x0D;&#x0A;     WS/src/com.test.hello" description="Copy packages" destination="=WS1/src" element1="/src&lt;com.test.emp.dto" element2="/src&lt;com.test" element3="/src&lt;com.test.hi" element4="/src&lt;com.test.emp" element5="/src&lt;com.test.hello" flags="589830" fragments="5" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1588973221650" version="1.0"/>
+</session>

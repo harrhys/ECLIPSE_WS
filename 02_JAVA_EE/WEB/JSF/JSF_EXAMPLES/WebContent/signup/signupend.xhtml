@@ -1,0 +1,36 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="../template.xhtml">
+  <ui:define name="title">
+    <h:outputText value="The Faces Flows Sample Application"></h:outputText>
+  </ui:define>
+
+  <ui:define name="body">
+    <h3>Fill out the personal information</h3>
+    <h:form prependId="false">
+      <p>Name: </p>
+
+      <p><h:inputText id="name" value="#{signupController.user.name}" size="30" maxlength="30"
+                      p:autofocus="true" p:required="true" p:type="text"/></p>
+
+      <p>Age: </p>
+
+      <p><h:inputText id="age" value="#{signupController.user.age}" size="30" maxlength="3"
+                      p:autofocus="true" p:required="true" p:type="number" p:min="1" p:max="150"/></p>
+
+      <p><h:outputLabel for="company" value="Company: "/></p>
+
+      <p><h:inputText id="company" value="#{signupController.user.company}" size="30" maxlength="30"
+                      p:autofocus="true" p:required="true" p:type="text"/></p>
+
+      <p><h:commandButton id="back" value="Back" action="signupstart"/>
+        <h:commandButton id="next" value="Next" action="confirm"/></p>
+    </h:form>
+  </ui:define>
+</ui:composition>
+</html>

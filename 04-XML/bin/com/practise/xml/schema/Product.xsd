@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://farbig.com/Product"
+	xmlns:tns="http://farbig.com/Product" elementFormDefault="qualified">
+	
+	<element name="Products" type="tns:Products" />
+	<complexType name="Products">
+		<sequence>
+			<element name="Product" type="tns:Product" minOccurs="2"
+				maxOccurs="10" />
+		</sequence>
+	</complexType>
+	<complexType name="Product">
+		<sequence>
+			<element name="Code" type="tns:ProductCode" />
+			<element name="Name" type="string" />
+			<element name="Description" type="string" />
+			<element name="Price" type="tns:Price"  />
+		</sequence>
+		<attribute name="id" type="tns:ProductId" />
+	</complexType>
+	<simpleType name="ProductCode">
+		<restriction base="string">
+			<enumeration value="P1" />
+			<enumeration value="P2" />
+			<enumeration value="P3" />
+			<enumeration value="P4" />
+		</restriction>
+	</simpleType>
+	<simpleType name="ProductId">
+		<restriction base="integer">
+			<minInclusive value="100"></minInclusive>
+			<maxInclusive value="999"></maxInclusive>
+		</restriction>
+	</simpleType>
+	<simpleType name="Price">
+		<restriction base="integer">
+			<minInclusive value="1"></minInclusive>
+		</restriction>
+	</simpleType>
+</schema>

@@ -1,0 +1,109 @@
+<!--    @author Copyright (c) 2015, 2020, Oracle and/or its affiliates.
+All rights reserved. -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition template="../template.xhtml">
+  <ui:define name="title">
+    <h:outputText value="JSF 2.2 File Upload Sample Application"></h:outputText>
+  </ui:define>
+
+  <ui:define name="body">
+
+    <!--<h:outputStylesheet name="stylesheet.css" target="head"/>-->
+
+    <h:form p:oninput="calculateProgress()" prependId="false">
+
+      <p>
+        <label>Name (First Last):</label>
+        <br/>
+        <input type="text" jsf:id="full_name" name="full_name"
+               placeholder="John Doe"
+               value="#{bean.name}" required="required"/>
+      </p>
+
+      <p>
+        <label>Email:</label>
+        <br/>
+        <input type="email" jsf:id="email" name="email" value="#{bean.email}"
+               required="required"/>
+      </p>
+
+      <p>
+        <label>Enter Email Again:</label>
+        <br/>
+        <input type="email" jsf:id="emailAgain" name="emailAgain"
+               value="#{bean.emailAgain}"
+               required="required" oninput="check(this)"/>
+      </p>
+
+      <p>
+        <label>Date Of Arrival:</label>
+        <br/>
+        <input type="date" jsf:id="arrival" name="arrival" value="#{bean.arrival}"
+               required="required"/>
+      </p>
+
+      <p>
+        <label>Number Of Nights:</label>
+        <br/>
+        <h:inputText id="nights" p:type="number" value="#{bean.nights}" p:min="1"
+                     p:max="30" p:required="required"
+                     p:title="Enter a number between 1 and 30 inclusive.">
+          <f:ajax event="change" render="total" listener="#{bean.calculateTotal}"/>
+        </h:inputText>
+      </p>
+
+      <p>
+        <label>Number Of Guests:</label>
+        <br/>
+        <input jsf:id="guests" type="number" value="#{bean.guests}" min="1" max="4"
+               required="required"
+               title="Enter a number between 1 and 4 inclusive.">
+          <f:ajax event="change" render="total" listener="#{bean.calculateTotal}"/>
+        </input>
+      </p>
+
+      <p>
+        <label>Estimated Total:</label>
+        <br/>
+        <output jsf:id="total" name="total">#{bean.totalValue}</output>
+      </p>
+      <p>
+        <h:commandButton value="Make Reservation" action="confirmation"/>
+        <input jsf:id="clear" name="clear" value="Clear" type="submit">
+          <f:ajax render="@all" listener="#{bean.clear}"/>
+        </input>
+      </p>
+
+      <p>
+        <progress jsf:id="progressBar" max="100" value="0"/>
+      </p>
+
+    </h:form>
+
+    <script>
+      function check(input) {
+        if (input.value != document.getElementById('email').value) {
+          input.setCustomValidity('The two email addresses must match.');
+        } else {
+          // input is valid -- reset the error message
+          input.setCustomValidity('');
+        }
+      }
+
+      function calculateProgress() {
+        var bar = document.getElementById("progressBar");
+        bar.value += 5;
+      }
+    </script>
+
+  </ui:define>
+</ui:composition>
+</html>

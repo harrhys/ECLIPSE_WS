@@ -1,0 +1,15 @@
+<faces-config version="2.3"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_3.xsd">
+
+	<flow-definition id="signup">
+		<start-node>start</start-node>
+		<view id="start">
+			<vdl-document>/signup/signupstart</vdl-document>
+		</view>
+		<flow-return id="returnFromOrderFlow">
+			<from-outcome>/index</from-outcome>
+		</flow-return>
+	</flow-definition>
+</faces-config>

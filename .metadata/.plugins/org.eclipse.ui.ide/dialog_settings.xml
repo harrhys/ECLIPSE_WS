@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="ChooseWorkspaceDialogSettings">
+		<item key="DIALOG_Y_ORIGIN" value="185"/>
+		<item key="DIALOG_X_ORIGIN" value="381"/>
+	</section>
+	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
+		<item key="OUTSIDE_LOCATION" value="D:\WORKSPACE\PROJECTS\ECLIPSE WORKSPACE\PREP2020\CART_APP"/>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item key="ShowDerived" value="false"/>
+		<item key="ShowStatusLine" value="true"/>
+		<item key="WorkingSet" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;"/>
+		<item key="History" value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/HTML5/pages/Canvas.html&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/examples/src/examples/common/base/webapp/ExamplesFooter.jsp&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CartEntities/src/com/farbig/cart/entity/User.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CartEntities/src/com/farbig/cart/entity/Account.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/examples/src/examples/javaee6/cdi/src/main/java/examples/javaee6/cdi/entity/User.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/CartEntities/src/com/farbig/cart/persistence/jpa/JPAJDBCHandler.java&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;infoNode path=&quot;/examples/src/examples/javaee6/jsf/bookmarking/src/main/webapp/greet.xhtml&quot; type=&quot;1&quot;/&gt;&#x0D;&#x0A;&lt;/historyRootNode&gt;&#x0D;&#x0A;&lt;/History&gt;"/>
+		<item key="FilterByLocation" value="false"/>
+		<section name="DialogBoundsSettings">
+			<item key="DIALOG_WIDTH" value="600"/>
+			<item key="DIALOG_Y_ORIGIN" value="39"/>
+			<item key="DIALOG_X_ORIGIN" value="391"/>
+			<item key="DIALOG_HEIGHT" value="500"/>
+			<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		</section>
+	</section>
+	<section name="WORKBENCH_SETTINGS">
+		<list key="ENABLED_TRANSFERS">
+		</list>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\PPCN"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\CART_APP_WF_WL"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\CART_APP\"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\CART_APP_WF"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\CART_APP\CartApp"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\jPOS-2_1_4"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\STRUTS\struts-examples-master\wildcard-method-selection"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\CART_APP"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\CART_APP_WF\New folder"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\XML"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\REST"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\JAXB"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\SOAP\JAX-RPC"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\FUBAR"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\STRUTS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\PERSISTENCE"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\JMS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\SOAP"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WORKSPACE\PREP2020\CART_APP"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
+	<section name="ResourceNavigator">
+		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value="PREP2020"/>
+		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
+	</section>
+	<section name="SaveAsDialogSettings">
+		<item key="DIALOG_WIDTH" value="525"/>
+		<item key="DIALOG_Y_ORIGIN" value="8"/>
+		<item key="DIALOG_X_ORIGIN" value="429"/>
+		<item key="DIALOG_HEIGHT" value="580"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="CleanDialogSettings">
+		<item key="DIALOG_WIDTH" value="500"/>
+		<item key="BUILD_NOW" value="true"/>
+		<item key="BUILD_ALL" value="false"/>
+		<item key="DIALOG_Y_ORIGIN" value="70"/>
+		<item key="DIALOG_HEIGHT" value="441"/>
+		<item key="DIALOG_X_ORIGIN" value="433"/>
+		<item key="TOGGLE_SELECTED" value="true"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="NewWizardAction">
+		<item key="NewWizardSelectionPage.STORE_SELECTED_ID" value="org.eclipse.wst.common.project.facet.ui.BasicFacetedProjectWizard"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.ui.Basic"/>
+			<item value="org.eclipse.wst.web.ui"/>
+			<item value="org.eclipse.jst.ws.ui.new"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.internal.views.markers.FiltersConfigurationDialog">
+		<item key="SELECTED_FILTER_GROUP" value="Errors/Warnings on Selection"/>
+		<list key="PREV_SELECTED_ELEMENTS">
+		</list>
+	</section>
+	<section name="BasicNewProjectResourceWizard">
+	</section>
+	<section name="SmartImportWizard">
+		<item key="SmartImportRootWizardPage.STORE_HIDE_ALREADY_OPEN" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_CLOSE_IMPORTED" value="false"/>
+		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
+		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
+		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\shoppingcart"/>
+			<item value="D:\WORKSPACE\PROJECTS\WLS14_EXAMPLES\examples\src"/>
+			<item value="D:\WORKSPACE\PROJECTS\WLS14_EXAMPLES\examples\src\examples\common"/>
+			<item value="D:\WORKSPACE\PROJECTS\WLS14_EXAMPLES\examples\src\examples\javaee7"/>
+			<item value="D:\WORKSPACE\PROJECTS\WLS14_EXAMPLES\examples"/>
+			<item value="D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\SPRING\spring-framework-master\spring-web"/>
+			<item value="D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\SPRING\spring-framework-master"/>
+		</list>
+	</section>
+</section>

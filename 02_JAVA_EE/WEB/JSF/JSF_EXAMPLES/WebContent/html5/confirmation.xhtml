@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition template="../template.xhtml">
+  <ui:define name="title">
+    <h:outputText value="JSF 2.2 HTML5 Sample Application"></h:outputText>
+  </ui:define>
+
+  <ui:define name="body">
+    <!--<h:outputStylesheet name="stylesheet.css" target="head"/>-->
+
+    <h:form>
+
+      <p>
+        <output jsf:id="confirm" name="confirm">
+          Thanks for your reservation, #{bean.name}. #{bean.guests} guests are
+          confirmed for #{bean.arrival}. Your total amount is #{bean.totalValue}. A
+          fictitous email has been sent to #{bean.email}. Thanks.
+        </output>
+
+      </p>
+      <p>
+        <h:commandButton value="Back" action="reservation"/>
+      </p>
+
+    </h:form>
+  </ui:define>
+</ui:composition>
+</html>

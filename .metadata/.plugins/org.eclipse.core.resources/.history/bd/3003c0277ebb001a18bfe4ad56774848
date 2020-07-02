@@ -1,0 +1,130 @@
+package com.farbig.practice.jpos;
+
+import java.io.IOException;
+import java.net.Socket;
+
+import org.jpos.iso.ISOChannel;
+import org.jpos.iso.ISOClientSocketFactory;
+import org.jpos.iso.ISOException;
+import org.jpos.iso.ISOFilter;
+import org.jpos.iso.ISOMsg;
+import org.jpos.iso.ISOPackager;
+import org.jpos.iso.channel.LoopbackChannel;
+import org.jpos.util.LogEvent;
+
+public class Jpos_Channel implements ISOFilter, ISOChannel {
+	
+	public static void main(String[] args) {
+		try {
+			new Jpos_Channel().run();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void run() throws ISOException, IOException {
+		LoopbackChannel channel = new LoopbackChannel();
+		channel.addIncomingFilter(this);
+		ISOMsg request = createRequest();
+		request.dump(System.out, "request> ");
+		channel.send(request);
+		ISOMsg response = channel.receive();
+		response.dump(System.out, "response> ");
+	}
+
+	private ISOMsg createRequest() throws ISOException {
+		ISOMsg m = new ISOMsg("0800");
+		m.set(11, "000001");
+		m.set(41, "29110001");
+		m.set(70, "301");
+		return m;
+	}
+
+	public ISOMsg filter(ISOChannel channel, ISOMsg m, LogEvent evt) {
+		try {
+			m.setResponseMTI();
+			m.set(39, "00");
+		} catch (ISOException e) {
+			e.printStackTrace();
+		}
+		return m;
+	}
+
+	@Override
+	public Socket createSocket(String host, int port) throws IOException, ISOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void setPackager(ISOPackager p) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void connect() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void disconnect() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void reconnect() throws IOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean isConnected() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public ISOMsg receive() throws IOException, ISOException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void send(ISOMsg m) throws IOException, ISOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void send(byte[] b) throws IOException, ISOException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setUsable(boolean b) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void setName(String name) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ISOPackager getPackager() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

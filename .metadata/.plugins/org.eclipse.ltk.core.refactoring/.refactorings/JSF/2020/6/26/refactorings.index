@@ -1,0 +1,41 @@
+1592851325369	Copy file
+1593004825707	Copy package
+1593004851952	Copy files
+1593004866723	Copy file
+1593023911069	Copy file
+1593028204018	Move 'beans.xml' to 'WEB-INF'
+1593109988277	Copy file
+1593110057743	Copy package
+1593114945964	Rename package 'javaeetutorial.hello1'
+1593116667208	Copy compilation unit
+1593116927958	Move 'index.jsp' to 'jsps'
+1593116931661	Move 'response.jsp' to 'jsps'
+1593116934567	Move 'ExamplesFooter.jsp' to 'jsps'
+1593116937367	Move 'ExamplesHeader.jsp' to 'jsps'
+1593116951802	Move 'index.xhtml' to 'facelets'
+1593116957036	Move 'response.xhtml' to 'facelets'
+1593117018927	Copy file
+1593117221724	Move 2 resources to 'WebContent'
+1593117228040	Copy file
+1593117892679	Move 'faces-config.xml' to 'WebContent'
+1593117900495	Move 'faces-config.xml' to 'WEB-INF'
+1593118871637	Copy compilation unit
+1593119198444	Copy compilation unit
+1593119217181	Copy compilation unit
+1593119587641	Copy compilation unit
+1593189589298	Move 'index.xhtml' to 'jsps'
+1593189596920	Move 'index.xhtml' to 'WebContent'
+1593197483827	Copy file
+1593199601671	Delete element
+1593249126570	Move 2 resources to 'cdiexamples'
+1593249134746	Move 'index.xhtml' to 'WebContent'
+1593249148796	Move 'response.xhtml' to 'WebContent'
+1593277228662	Delete elements
+1593278423220	Move 'index.xhtml' to 'WEB-INF'
+1593278438572	Move 2 resources to 'WebContent'
+1593278443294	Move 'index.xhtml' to 'cdibasics'
+1593278460279	Move 'index.xhtml' to 'WebContent'
+1593278467146	Move 'index.xhtml' to 'cdibasics'
+1593278667237	Move compilation units
+1593279800622	Move 2 resources to 'WebContent'
+1593280545867	Move package

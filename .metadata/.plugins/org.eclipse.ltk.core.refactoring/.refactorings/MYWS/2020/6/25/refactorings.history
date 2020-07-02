@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;UserWS.java&apos; to &apos;JAX-WS/src/com.farbig.web.services&apos;&#x0D;&#x0A;- Original project: &apos;MYWS&apos;&#x0D;&#x0A;- Destination element: &apos;JAX-WS/src/com.farbig.web.services&apos;&#x0D;&#x0A;- Original element: &apos;com.farbig.web.services.UserWS.java&apos;" description="Copy compilation unit" destination="=JAX-WS/src&lt;com.farbig.web.services" element1="/src&lt;com.farbig.web.services{UserWS.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1592297066078" units="1" version="1.0"/>
+</session>

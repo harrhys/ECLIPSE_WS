@@ -1,0 +1,160 @@
+1592721543528	Delete element
+1592721758951	Move 'hibernate-jdbc.cfg.xml' to 'src'
+1592724609908	Rename type 'CartInterceptor'
+1592724617954	Delete element
+1592724633190	Delete element
+1592724813271	Rename package 'com.farbig.collections'
+1592724845134	Rename package 'com.farbig.cart.persistence'
+1592724868302	Rename package 'com.farbig.mapping.manytomany'
+1592724884363	Rename package 'com.farbig.mapping.onetomany'
+1592724900928	Rename package 'com.farbig.mapping.onetoone'
+1592724924792	Delete element
+1592724999553	Rename package 'com.farbig.entity.collections'
+1592725070003	Rename package 'com.practise.entity.collections'
+1592725207843	Delete element
+1592725273780	Delete element
+1592727462094	Rename package 'com.farbig'
+1592727717279	Rename package 'com.farbig.practice.entity.mapping'
+1592727744702	Rename package 'com.farbig.practice.entity'
+1592727765439	Rename package 'com.farbig.practice.entity.relations.collections'
+1592729592325	Move compilation unit
+1592729614999	Delete element
+1592730018550	Move compilation unit
+1592730042190	Rename type 'BasicInfo'
+1592730216099	Rename type 'Test'
+1592730242689	Rename type 'TestCompositeID'
+1592730274489	Move compilation units
+1592730376835	Move compilation unit
+1592730404266	Move compilation unit
+1592731034073	Move package
+1592732610049	Rename type 'CollectionTest'
+1592733239901	Delete element
+1592733299104	Rename package 'com.farbig.practice.persistence.test'
+1592733351110	Move compilation unit
+1592733362679	Move compilation unit
+1592733373900	Move compilation unit
+1592733749827	Move packages
+1592735023592	Rename type 'User_Interceptor'
+1592735139218	Rename type 'PersistenceHandler'
+1592735156963	Rename type 'PersistenceHandlerFactory'
+1592735379753	Move packages
+1592735447482	Move 'hibernate-configuration-3.0.dtd' to 'HIBERNATE_4.3'
+1592735616686	Copy file
+1592735796202	Rename type 'DataHandlerFactory'
+1592735846694	Rename method 'getDataHandler'
+1592735867042	Rename method 'getDataHandler'
+1592737247089	Delete element
+1592739174999	Rename type 'DataHandler'
+1592742767882	Rename type 'EntityCompositeId'
+1592742786932	Rename type 'EntityWithCompositeId'
+1592743262174	Copy compilation unit
+1592750323362	Rename type 'EntityInfo'
+1592750467346	Rename type 'Entity'
+1592758167347	Copy compilation unit
+1592758315462	Rename type 'SpecialUser'
+1592758362680	Rename type 'OrdinaryUser'
+1592759966291	Delete element
+1592760005829	Move compilation unit
+1592760022855	Move compilation unit
+1592760034787	Move compilation unit
+1592760181867	Rename type 'ManyToManyTest'
+1592761039291	Rename type 'VehicleFour'
+1592761082394	Rename type 'TripFour'
+1592761186244	Rename type 'OneToOneTest'
+1592761617425	Rename type 'O2OTrip'
+1592761632199	Rename type 'O2OVehicle'
+1592761682307	Rename type 'TripThree'
+1592761730487	Rename type 'O2OJT_TRIP'
+1592761759754	Rename type 'VehicleThree'
+1592767106023	Rename type 'O2OJCTrip'
+1592767131401	Rename type 'O2OJCVehicle'
+1592767607015	Rename type 'TripOne'
+1592767648507	Rename type 'M2OTrip'
+1592767675550	Rename type 'VehicleOne'
+1592767914267	Rename type 'OneToManyTest'
+1592768527800	Rename type 'TripTwo'
+1592768563370	Rename type 'VehicleTwo'
+1592769501624	Rename type 'M2OJTTrip'
+1592769605876	Rename type 'M2OTrip'
+1592769696542	Rename type 'TripOne'
+1592769814494	Rename type 'TripTwo'
+1592769857572	Rename type 'VehicleOne'
+1592769956444	Rename type 'VehicleTwo'
+1592806496558	Rename type 'CompositeEntity'
+1592806537451	Copy compilation unit
+1592806621608	Rename type 'CompositeId'
+1592806647334	Copy compilation unit
+1592806720919	Move 2 resources to 'config'
+1592836562107	Infer generic type arguments
+1592846850982	Rename package 'com.farbig.practice.entity.relations.manytomany'
+1592846881436	Rename package 'com.farbig.practice.entity.relations.onetomany'
+1592846900763	Rename package 'com.farbig.practice.entity.relations.onetoone'
+1592846987978	Copy package
+1592847011896	Copy package
+1592847033139	Copy package
+1592847086402	Delete elements
+1592847322150	Delete element
+1592847394730	Rename type 'M2MJTTrip'
+1592847425575	Rename package 'com.farbig.practice.entity.relations.manytomany.bidirectional'
+1592847437338	Move compilation unit
+1592847443523	Delete element
+1592847461781	Rename package 'com.farbig.practice.entity.relations.onetomany.bidirectional'
+1592847506228	Delete element
+1592847549160	Delete element
+1592847586850	Rename type 'O2MJTTrip'
+1592847607174	Rename type 'O2MTrip'
+1592847621420	Move compilation units
+1592847642555	Delete element
+1592847658425	Rename package 'com.farbig.practice.entity.relations.onetoone.bidirectional'
+1592847699300	Rename type 'O2OJTTrip'
+1592847726214	Delete element
+1592847756076	Delete element
+1592847781979	Rename type 'O2OTrip'
+1592847795644	Move compilation units
+1592847814640	Delete element
+1592890445395	Delete elements
+1592890567802	Rename type 'O2MUNITrip'
+1592890617101	Rename type 'O2MTrip'
+1592890634556	Rename type 'O2MVehicle'
+1592890680920	Rename type 'M2MJTTrip'
+1592890705567	Rename type 'M2MJTUNITrip'
+1592890722409	Rename type 'M2MJTVehicle'
+1592890743588	Rename type 'O2MJCTrip'
+1592890765748	Rename type 'O2MJCUNITrip'
+1592890784451	Rename type 'O2MJCVehicle'
+1592890802884	Rename type 'O2MJTTrip'
+1592890822214	Rename type 'O2MJTUNITrip'
+1592890841269	Rename type 'O2MJTVehicle'
+1592891347557	Rename type 'O2OJTUNITrip'
+1592894667349	Rename type 'O2OJTTrip'
+1592894680420	Rename type 'O2OJTVehicle'
+1592894693425	Rename type 'O2OTrip'
+1592894713133	Rename type 'O2OUNITrip'
+1592894726459	Rename type 'O2OVehicle'
+1592894807545	Rename type 'BIO2OTrip'
+1592894825068	Rename type 'BIO2OVehicle'
+1592894842471	Rename type 'UNIO2OTrip'
+1592898998417	Copy compilation unit
+1592899044178	Rename type 'Vehicle'
+1592899110793	Rename type 'Vehicle2'
+1592899258816	Rename type 'UniVehicle'
+1592900486956	Delete element
+1592900521394	Rename type 'UNIVehicle'
+1592901810855	Copy compilation unit
+1592901832674	Copy compilation unit
+1592902096235	Rename type 'BIM2MJTTrip'
+1592902149874	Rename type 'BIM2MJTVehicle'
+1592902405358	Rename type 'BIO2MJCTrip'
+1592902460792	Rename type 'BIO2MJCVehicle'
+1592902500710	Rename type 'BIO2MJTTrip'
+1592902556822	Rename type 'BIO2MJTVehicle'
+1592902594813	Rename type 'UNIO2MJCTrip'
+1592902630283	Rename type 'UNIO2MJTTrip'
+1592902687154	Rename type 'BIO2OJCTrip'
+1592902776889	Rename type 'BIO2OJCVehicle'
+1592902820517	Rename type 'BIO2OJTTrip'
+1592902881659	Rename type 'BIO2OJTVehicle'
+1592902957982	Rename type 'UNIO2OJTTrip'
+1592902992239	Rename type 'UNIO2OJCTrip'
+1592904100572	Rename type 'UNIM2MJTTrip'
+1592928191545	Copy packages

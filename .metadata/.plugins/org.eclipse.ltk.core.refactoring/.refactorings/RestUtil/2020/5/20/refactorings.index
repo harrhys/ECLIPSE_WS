@@ -1,0 +1,5 @@
+1589401838782	Rename method 'disConnect'
+1589429392895	Rename package 'com.farbig.services.rest.util'
+1589429432062	Rename type 'RestClientUtil'
+1589429536891	Move compilation unit
+1589429572157	Rename type 'RSClientUtil'

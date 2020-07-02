@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.farbig.ws.WSPublisher&apos; to &apos;MyWSPublisher&apos;&#x0D;&#x0A;- Original project: &apos;JAVASEWS&apos;&#x0D;&#x0A;- Original element: &apos;com.farbig.ws.WSPublisher&apos;&#x0D;&#x0A;- Renamed element: &apos;com.farbig.ws.MyWSPublisher&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;WSPublisher&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.farbig.ws{WSPublisher.java[WSPublisher" matchStrategy="1" name="MyWSPublisher" qualified="false" references="true" similarDeclarations="false" stamp="1589344039488" textual="false" version="1.0"/>
+</session>

@@ -1,0 +1,14 @@
+1590346286679	Rename method 'print'
+1590407755100	Delete elements
+1590441311755	Rename local variable 'arraySize'
+1590444407507	Rename type 'ArrayElementRemovals'
+1590469688517	Rename type 'PerfectSum'
+1590469735555	Rename method 'subArrayBinary'
+1590469759830	Rename type 'PerfectSumSubSet'
+1590513829320	Copy compilation unit
+1590514216315	Rename type 'DynamicProgramming'
+1590515560707	Move compilation unit
+1590515586568	Move compilation unit
+1590560394897	Rename method 'logAllThreads'
+1590567226516	Rename method 'logAllThreadsOnce'
+1590576837219	Rename type 'LogThreadsTask'

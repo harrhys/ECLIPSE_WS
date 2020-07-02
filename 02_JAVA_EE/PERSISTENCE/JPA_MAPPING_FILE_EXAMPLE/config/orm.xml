@@ -1,0 +1,237 @@
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
+	version="1.0">
+	<persistence-unit-metadata>
+    	<!-- ignore annotations in classes -->
+		<xml-mapping-metadata-complete />
+		<persistence-unit-defaults>
+			<cascade-persist />
+		</persistence-unit-defaults>
+	</persistence-unit-metadata>
+	<package>courses.hibernate.vo</package>
+	<entity class="EBiller" access="PROPERTY">
+		<table name="EBILLER" />
+		<attributes>
+			<id name="ebillerId">
+				<column name="EBILLER_ID" />
+				<generated-value strategy="AUTO" />
+			</id>
+			<basic name="name" optional="false">
+				<column name="NAME" />
+			</basic>
+			<basic name="billingAddress" optional="false">
+				<column name="BILLING_ADDRESS" />
+			</basic>
+			<basic name="phone" optional="false">
+				<column name="PHONE" />
+			</basic>
+			<one-to-many name="ebillerRegistrations" mapped-by="ebiller">
+				<join-column name="EBILLER_ID" />
+			</one-to-many>
+			<one-to-many name="ebills" mapped-by="ebiller">
+				<join-column name="EBILLER_ID" />
+			</one-to-many>
+		</attributes>
+	</entity>
+	<entity class="EBill" access="FIELD">
+		<table name="EBILL" />
+		<attributes>
+			<id name="ebillId">
+				<column name="EBILL_ID" />
+				<generated-value strategy="AUTO" />
+			</id>
+			<basic name="minimumAmountDue" optional="false">
+				<column name="MINIMUM_AMOUNT_DUE" />
+			</basic>
+			<basic name="balance" optional="false">
+				<column name="BALANCE" />
+			</basic>
+			<basic name="dueDate" optional="false">
+				<column name="DUE_DATE" />
+			</basic>
+			<basic name="amountPaid" optional="false">
+				<column name="AMOUNT_PAID" />
+			</basic>
+			<basic name="datePaid">
+				<column name="DATE_PAID" />
+			</basic>
+			<basic name="receivedDate" optional="false">
+				<column name="RECEIVED_DATE" />
+			</basic>
+			<many-to-one name="accountTransaction">
+				<join-column name="ACCOUNT_TRANSACTION_ID" />
+				<cascade>
+					<cascade-persist />
+				</cascade>
+			</many-to-one>
+			<many-to-one name="ebiller">
+				<join-column name="EBILLER_ID" />
+			</many-to-one>
+			<many-to-one name="account">
+				<join-column name="ACCOUNT_ID" />
+			</many-to-one>
+		</attributes>
+	</entity>
+	<entity class="Account" access="FIELD">
+		<table name="ACCOUNT" />
+		<inheritance strategy="SINGLE_TABLE" />
+		<discriminator-column name="ACCOUNT_TYPE"
+			discriminator-type="STRING" />
+		<attributes>
+			<id name="accountId">
+				<column name="ACCOUNT_ID" />
+				<generated-value strategy="AUTO" />
+			</id>
+			<basic name="creationDate" optional="false">
+				<column name="CREATION_DATE" updatable="false" />
+			</basic>
+			<basic name="balance" optional="false">
+				<column name="BALANCE" />
+			</basic>
+			<version name="version">
+				<column name="VERSION" />
+			</version>
+			<one-to-many name="ebills" mapped-by="account">
+				<join-column name="ACCOUNT_ID" />
+				<cascade>
+					<cascade-remove />
+				</cascade>
+			</one-to-many>
+			<one-to-many name="ebillerRegistrations" mapped-by="account">
+				<join-column name="ACCOUNT_ID" />
+				<cascade>
+					<cascade-remove />
+				</cascade>
+			</one-to-many>
+			<one-to-many name="accountTransactions" mapped-by="account">
+				<join-column name="ACCOUNT_ID" />
+				<cascade>
+					<cascade-remove />
+				</cascade>
+			</one-to-many>
+			<many-to-many name="accountOwners">
+				<join-table name="ACCOUNT_ACCOUNT_OWNER">
+					<join-column name="ACCOUNT_ID" />
+					<inverse-join-column name="ACCOUNT_OWNER_ID" />
+				</join-table>
+			</many-to-many>
+		</attributes>
+	</entity>
+	<entity class="SavingsAccount" access="PROPERTY">
+		<discriminator-value>SAVINGS</discriminator-value>
+		<attributes>
+			<basic name="interestRate" optional="false">
+				<column name="INTEREST_RATE" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="CheckingAccount" access="PROPERTY">
+		<discriminator-value>CHECKING</discriminator-value>
+		<attributes>
+			<basic name="checkStyle" optional="false">
+				<column name="CHECK_STYLE" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="CdAccount" access="PROPERTY">
+		<discriminator-value>CD</discriminator-value>
+		<attributes>
+			<basic name="interestRate" optional="false">
+				<column name="INTEREST_RATE" />
+			</basic>
+			<basic name="maturityDate" optional="false">
+				<column name="MATURITY_DATE" />
+			</basic>
+		</attributes>
+	</entity>
+	<entity class="AccountOwner" access="PROPERTY">
+		<table name="ACCOUNT_OWNER" />
+		<attributes>
+			<id name="accountOwnerId">
+				<column name="ACCOUNT_OWNER_ID" />
+				<generated-value strategy="AUTO" />
+			</id>
+			<basic name="lastName" optional="false">
+				<column name="LAST_NAME" />
+			</basic>
+			<basic name="firstName" optional="false">
+				<column name="FIRST_NAME" />
+			</basic>
+			<basic name="socialSecurityNumber" optional="false">
+				<column name="SOCIAL_SECURITY_NUMBER" />
+			</basic>
+			<basic name="streetAddress" optional="false">
+				<column name="STREET_ADDRESS" />
+			</basic>
+			<basic name="city" optional="false">
+				<column name="CITY" />
+			</basic>
+			<basic name="state" optional="false">
+				<column name="STATE" />
+			</basic>
+			<basic name="zipCode" optional="false">
+				<column name="ZIP_CODE" />
+			</basic>
+			<basic name="homePhone">
+				<column name="HOME_PHONE" />
+			</basic>
+			<basic name="cellPhone">
+				<column name="CELL_PHONE" />
+			</basic>
+			<many-to-many name="accounts" mapped-by="accountOwners">
+				<join-table name="ACCOUNT_ACCOUNT_OWNER">
+					<join-column name="ACCOUNT_OWNER_ID" />
+				</join-table>
+			</many-to-many>
+		</attributes>
+	</entity>
+	<entity class="EBillerRegistration" access="FIELD">
+		<table name="ACCOUNT_EBILLER" />
+		<attributes>
+			<id name="ebillerRegistrationId">
+				<column name="ACCOUNT_EBILLER_ID" />
+				<generated-value strategy="AUTO" />
+			</id>
+			<basic name="dateAdded" optional="false">
+				<column name="DATE_ADDED" updatable="false" />
+			</basic>
+			<basic name="accountNumber" optional="false">
+				<column name="ACCOUNT_NUMBER" updatable="false" />
+			</basic>
+			<many-to-one name="ebiller">
+				<join-column name="EBILLER_ID" updatable="false" />
+			</many-to-one>
+			<many-to-one name="account">
+				<join-column name="ACCOUNT_ID" updatable="false" />
+			</many-to-one>
+			<many-to-one name="registeredBy">
+				<join-column name="ACCOUNT_OWNER_ID" updatable="false" />
+			</many-to-one>
+		</attributes>
+	</entity>
+	<entity class="AccountTransaction" access="FIELD">
+		<table name="ACCOUNT_TRANSACTION" />
+		<attributes>
+			<id name="accountTransactionId">
+				<column name="ACCOUNT_TRANSACTION_ID" />
+				<generated-value strategy="AUTO" />
+			</id>
+			<basic name="transactionType" optional="false">
+				<column name="TRANSACTION_TYPE" />
+			</basic>
+			<basic name="transactionDate" optional="false">
+				<column name="TXDATE" />
+			</basic>
+			<basic name="amount" optional="false">
+				<column name="AMOUNT" />
+			</basic>
+			<many-to-one name="account">
+				<join-column name="ACCOUNT_ID" />
+			</many-to-one>
+			<one-to-one name="ebill" mapped-by="accountTransaction">
+				<join-column name="EBILL_ID" />
+			</one-to-one>
+		</attributes>
+	</entity>
+</entity-mappings>

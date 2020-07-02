@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN' 'http://java.sun.com/dtd/ejb-jar_2_0.dtd'>
+<ejb-jar>
+	<enterprise-beans>
+		<session>
+			<ejb-name>GetPriceBean20</ejb-name>
+			<home>com.oracle.enterprisetest.jsca.getprc.ejb20.IGetPriceHome</home>
+			<remote>com.oracle.enterprisetest.jsca.getprc.ejb20.IGetPriceRemote</remote>
+			<local-home>com.oracle.enterprisetest.jsca.getprc.ejb20.IGetPriceLocalHome</local-home>
+			<local>com.oracle.enterprisetest.jsca.getprc.ejb20.IGetPriceLocal</local>
+			<ejb-class>com.oracle.enterprisetest.jsca.getprc.ejb20.GetPriceBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Bean</transaction-type>
+		</session>
+		<session>
+			<ejb-name>GetQuantityBean20</ejb-name>
+			<home>com.oracle.enterprisetest.jsca.getqty.ejb20.IGetQuantityHome</home>
+			<remote>com.oracle.enterprisetest.jsca.getqty.ejb20.IGetQuantityRemote</remote>
+			<local-home>com.oracle.enterprisetest.jsca.getqty.ejb20.IGetQuantityLocalHome</local-home>
+			<local>com.oracle.enterprisetest.jsca.getqty.ejb20.IGetQuantityLocal</local>
+			<ejb-class>com.oracle.enterprisetest.jsca.getqty.ejb20.GetQuantityBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Bean</transaction-type>
+		</session>
+	</enterprise-beans>
+	<assembly-descriptor></assembly-descriptor>
+</ejb-jar>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MyRESTServiceService WSDL service -->
+
+  <service name="MyRESTService" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://rs.farbig.com"/>
+      <parameter name="wsdlServiceElement" value="MyRESTServiceService"/>
+      <parameter name="schemaQualified" value="http://rs.farbig.com"/>
+      <parameter name="wsdlServicePort" value="MyRESTService"/>
+      <parameter name="className" value="com.farbig.rs.MyRESTService"/>
+      <parameter name="wsdlPortType" value="MyRESTService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://rs.farbig.com" name="resourceMethodPUT" qname="operNS:resourceMethodPUT" soapAction="">
+        <parameter xmlns:pns="http://rs.farbig.com" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:content" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://rs.farbig.com" xmlns:retNS="http://rs.farbig.com" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="resourceMethodGET" qname="operNS:resourceMethodGET" returnQName="retNS:resourceMethodGETReturn" returnType="rtns:string" soapAction="">
+      </operation>
+      <parameter name="allowedMethods" value="resourceMethodGET resourceMethodPUT"/>
+
+  </service>
+</deployment>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.localJavaApplication">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/TESTWS/src/com/farbig/Test.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="WL_HOME" value="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\wlserver"/>
+</mapAttribute>
+<booleanAttribute key="org.eclipse.jdt.debug.ui.INCLUDE_EXTERNAL_JARS" value="true"/>
+<booleanAttribute key="org.eclipse.jdt.launching.ATTR_EXCLUDE_TEST_CODE" value="true"/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.farbig.Test"/>
+<stringAttribute key="org.eclipse.jdt.launching.MODULE_NAME" value="TESTWS"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="TESTWS"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Djava.naming.provider.url=t3://localhost:7001&#13;&#10;-Djava.naming.factory.initial=weblogic.jndi.WLInitialContextFactory"/>
+</launchConfiguration>

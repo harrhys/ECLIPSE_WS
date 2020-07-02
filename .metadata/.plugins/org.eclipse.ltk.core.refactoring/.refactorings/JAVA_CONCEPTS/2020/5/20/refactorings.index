@@ -1,0 +1,26 @@
+1589444093223	Rename type 'ActualImpl'
+1589444585169	Infer generic type arguments
+1589445204797	Copy compilation unit
+1589609555538	Rename package 'com.farbig.xml.jaxb'
+1589609583431	Rename package 'com.practise.xml'
+1589609609277	Rename package 'com.practise.xml.dom.jaxb'
+1589610573278	Delete elements
+1589611018833	Delete element
+1589611738877	Move 'Employee.xml' to 'objects'
+1589611804012	Move 'Employee.xml' to 'xml'
+1589611857519	Copy package
+1589611895278	Copy folders
+1589624658361	Copy file
+1589625082513	Copy file
+1589637041774	Move file
+1589637053192	Delete elements
+1589637063507	Delete element
+1589638358276	Copy file
+1589639708113	Copy file
+1589641395910	Move 2 resources to 'xmls'
+1589656067363	Rename resource 'Test.xsl'
+1589658429171	Rename resource 'Product1.xml'
+1589658984613	Move file
+1589658993102	Move file
+1589659880582	Move file
+1589660133736	Move file

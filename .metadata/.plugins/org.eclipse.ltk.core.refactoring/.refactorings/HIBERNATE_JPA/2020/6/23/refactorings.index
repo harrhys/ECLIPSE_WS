@@ -1,0 +1,14 @@
+1591269217419	Rename type 'TestCompositeID'
+1591269257629	Rename type 'Test'
+1591271056038	Rename type 'CompositeIdUser'
+1591291723124	Rename type 'ManyToManyTest'
+1591291762349	Rename package 'com.farbig.collections'
+1591291794211	Rename package 'com.farbig.mapping.manytomany'
+1591291809925	Rename package 'com.farbig.mapping.onetomany'
+1591291824965	Rename package 'com.farbig.mapping.onetoone'
+1591291892127	Move compilation unit
+1591291902531	Move compilation unit
+1591291910675	Move compilation unit
+1591291920465	Move compilation unit
+1591291940135	Delete element
+1591292172136	Copy compilation unit

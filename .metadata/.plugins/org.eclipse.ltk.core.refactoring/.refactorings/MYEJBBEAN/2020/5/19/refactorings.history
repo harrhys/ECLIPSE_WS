@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename method &apos;com.farbig.ejb.BeanHelper.getEJBContext()&apos; to &apos;getInitialContext&apos;&#x0D;&#x0A;- Original project: &apos;MYEJBBEAN&apos;&#x0D;&#x0A;- Original element: &apos;com.farbig.ejb.BeanHelper.getEJBContext()&apos;&#x0D;&#x0A;- Renamed element: &apos;com.farbig.ejb.BeanHelper.getInitialContext()&apos;&#x0D;&#x0A;- Update references to refactored element" delegate="false" deprecate="false" description="Rename method &apos;getEJBContext&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.method" input="/ejbModule&lt;com.farbig.ejb{BeanHelper.java[BeanHelper~getEJBContext" name="getInitialContext" references="true" stamp="1588783412740" version="1.0"/>
+</session>

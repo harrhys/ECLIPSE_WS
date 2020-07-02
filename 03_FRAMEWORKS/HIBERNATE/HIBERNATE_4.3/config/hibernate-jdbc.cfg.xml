@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	
+		<!-- basic JDBC connection configuration -->
+		
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5432/commondb</property>
+		<property name="connection.username">postgres</property>
+		<property name="connection.password">postgres</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hbm2ddl.auto">create</property>
+		
+		<!-- Transaction Management Configuration -->
+		
+		<property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+		
+		<!-- Second Level Cache Configuration -->
+
+		<property name="cache.use_second_level_cache">false</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<property name="cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property>
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</property>
+
+		<!-- Entities related to composite ids  -->
+		
+		<mapping class="com.farbig.practice.entity.composite.id.SimpleCompositeEntity" />
+		<mapping class="com.farbig.practice.entity.composite.id.EmbeddableCompositeEntity" />
+		
+		<!-- Inheritence -->
+		
+		<mapping class="com.farbig.practice.entity.collections.BusinessUser" />
+		<mapping class="com.farbig.practice.entity.collections.NormalUser" />
+		
+		<!-- Uni-Directional Mapping i.e. Trips will have Vehicle Details but Vehicle will not have any trip details -->
+		
+		<!-- <mapping class="com.farbig.practice.entity.relations.Vehicle" />
+		<mapping class="com.farbig.practice.entity.relations.JCTrip" />
+		<mapping class="com.farbig.practice.entity.relations.JTTrip" />
+		
+		<mapping class="com.farbig.practice.entity.relations.onetomany.UNIJCO2MTrip" />
+		<mapping class="com.farbig.practice.entity.relations.onetoone.UNIJCO2OTrip" />
+		
+		<mapping class="com.farbig.practice.entity.relations.manytomany.UNIJTM2MTrip" />
+		<mapping class="com.farbig.practice.entity.relations.onetomany.UNIJTO2MTrip" />
+		
+		UNIJTO2OTrip is throwing WalkingException on configuration load hence commented out for now
+		If we enable this we need to comment all other trip classes
+		<mapping class="com.farbig.practice.entity.relations.onetoone.UNIJTO2OTrip" />
+		
+		Bi-Directional Mapping i.e. Trips will have Vehicle Details and Vehicles will have Trip details
+		
+		<mapping class="com.farbig.practice.entity.relations.manytomany.BIJTM2MVehicle" />
+		<mapping class="com.farbig.practice.entity.relations.manytomany.BIJTM2MTrip" />
+		
+		<mapping class="com.farbig.practice.entity.relations.onetomany.BIJCO2MVehicle" />
+		<mapping class="com.farbig.practice.entity.relations.onetomany.BIJCO2MTrip" />
+		
+		<mapping class="com.farbig.practice.entity.relations.onetoone.BIJCO2OVehicle" />
+		<mapping class="com.farbig.practice.entity.relations.onetoone.BIJCO2OTrip" />
+		
+		<mapping class="com.farbig.practice.entity.relations.onetomany.BIJTO2MVehicle" />
+		<mapping class="com.farbig.practice.entity.relations.onetomany.BIJTO2MTrip" />
+		
+		<mapping class="com.farbig.practice.entity.relations.onetoone.BIJTO2OTrip" />
+		<mapping class="com.farbig.practice.entity.relations.onetoone.BIJTO2OVehicle" /> -->
+ 		
+	</session-factory>
+</hibernate-configuration>

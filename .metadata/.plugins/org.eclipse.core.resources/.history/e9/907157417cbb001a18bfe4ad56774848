@@ -1,0 +1,10 @@
+package com.farbig.practice.jpos;
+
+public class Jpos_Channel {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

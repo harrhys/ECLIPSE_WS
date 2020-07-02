@@ -1,0 +1,2 @@
+D\:/WORKSPACE/PROJECTS/ECLIPSE\ WS/PREP2020/WEB/JSF/WebContent = JSF.war
+D\:/WORKSPACE/PROJECTS/ECLIPSE\ WS/PREP2020/.metadata/.plugins/org.eclipse.core.resources/JSF/build/weboutput = JSF.war

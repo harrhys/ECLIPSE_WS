@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Facelets Hello Response</title>
+	<script type="text/javascript">
+	function draw() {
+
+		var canvas = document.getElementById("canvas1");
+		if (canvas.getContext) {
+			var ctx = canvas.getContext("2d");
+			ctx.fillRect(25, 25, 100, 100);
+			ctx.clearRect(45, 45, 60, 60);
+			ctx.strokeRect(55, 55, 40, 40);
+		}
+
+		var canvas = document.getElementById("canvas2");
+		if (canvas.getContext) {
+			var ctx = canvas.getContext("2d");
+
+			ctx.beginPath();
+			ctx.moveTo(50, 50);
+			ctx.lineTo(175, 50);
+			ctx.lineTo(50, 175);
+			ctx.fill();
+
+			ctx.beginPath();
+			ctx.moveTo(200, 200);
+			ctx.lineTo(75, 200);
+			ctx.lineTo(200, 75);
+			ctx.closePath();
+			ctx.stroke();
+		}
+	}
+</script>
+<style type="text/css">
+canvas {
+	border: 1px solid black
+}
+</style>
+</h:head>
+<h:body onload="draw();">
+	<h:form>
+		<h2>Hello, #{hello.name}!</h2>
+		<p></p>
+		<h:commandButton id="back" value="Back" action="index" />
+	</h:form>
+	<canvas id="canvas1" height="150" width="150">Your Browser doesn't support Canvas</canvas>
+
+	<canvas id="canvas2" height="250" width="250">Your Browser doesn't support Canvas</canvas>
+</h:body>
+</html>

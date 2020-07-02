@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<po:PurchaseOrders
+	xmlns:po="http://farbig.com/PurchaseOrder"
+	xmlns:p="http://farbig.com/Product"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://farbig.com/PurchaseOrder ../PurchaseOrder.xsd ">
+	<po:PurchaseOrder id="10000">
+		<po:OrderItem id="1">
+			<po:Product>P1</po:Product>
+			<po:Quantity>5</po:Quantity>
+			<po:Price>10</po:Price>
+			<po:OrderItemPrice>50</po:OrderItemPrice>
+		</po:OrderItem>
+		<po:OrderItem id="2">
+			<po:Product>P2</po:Product>
+			<po:Quantity>10</po:Quantity>
+			<po:Price>7</po:Price>
+			<po:OrderItemPrice>70</po:OrderItemPrice>
+		</po:OrderItem>
+		<po:OrderTotalPrice>120</po:OrderTotalPrice>
+	</po:PurchaseOrder>
+	
+</po:PurchaseOrders>

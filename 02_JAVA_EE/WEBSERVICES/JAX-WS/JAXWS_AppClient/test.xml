@@ -1,0 +1,11 @@
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"
+	xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+	<S:Header>
+		<PROPERTY xmlns="http://ws.enterprise.javacodegeeks.com/"
+			SOAP-ENV:actor="http://schemas.xmlsoap.org/soap/actor/next">RANDOM</PROPERTY>
+	</S:Header>
+	<S:Body>
+		<ns2:printMessage xmlns:ns2="http://ws.enterprise.javacodegeeks.com/" />
+	</S:Body>
+</S:Envelope>
+

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="J2EE_EXPORT_OVERWRITE" value="false"/>
+	<item key="J2EE_EXPORT_SOURCE" value="false"/>
+	<list key="MRU_RUNTIME_STORE">
+		<item value="WildFly 19.0 Runtime"/>
+		<item value="Oracle WebLogic Server 12c (12.1.3)"/>
+		<item value="BEA WebLogic Server v9.2"/>
+	</list>
+	<list key="J2EE_EXPORT_JST_WEB">
+		<item value="D:\WORKSPACE\debugging-struts.war"/>
+		<item value="D:\WORKSPACE\action-chaining.war"/>
+		<item value="D:\RESTSERVICES.war"/>
+		<item value="D:\WORKSPACE\RESTSERVICES.war"/>
+		<item value="D:\WORKSPACE\CartRS.war"/>
+	</list>
+</section>

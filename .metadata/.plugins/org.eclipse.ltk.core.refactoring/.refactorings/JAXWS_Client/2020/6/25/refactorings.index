@@ -1,0 +1,11 @@
+1592298282047	Rename type 'Test'
+1592298391567	Rename package 'com.farbig.web.services'
+1592300055748	Rename type 'WSImpl'
+1592300130044	Rename type 'WSImplImpl'
+1592335740592	Rename package 'com.farbig.services.ws.hello.test'
+1592336176982	Rename type 'MyWSTest'
+1592336451603	Move compilation units
+1592336563806	Copy compilation unit
+1592336598946	Delete element
+1592336614484	Rename type 'Emp'
+1592336812320	Rename package 'com.farbig.services.ws.user.client'

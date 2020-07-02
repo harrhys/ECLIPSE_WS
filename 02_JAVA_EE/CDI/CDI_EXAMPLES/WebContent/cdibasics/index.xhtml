@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Facelets Hello Greeting</title>
+</h:head>
+<h:body>
+<br/>
+            <h:form>
+                <h2>Please Enter Your ID and Password. Valid ID and Password are (merchant1,cart123)</h2>
+                <p></p>
+                <h:panelGrid columns="3">
+                    User ID:
+                    <h:inputText id="username" value="#{login.username}" required="true" requiredMessage="Please enter your Username!" size="20"/>
+                    <h:message for="username" errorStyle="color: red" infoStyle="color: green"></h:message>
+
+                    Password:
+                   <h:inputSecret id="password" value="#{login.password}" required="true" requiredMessage="Please enter your password!" size="22"/>
+                   <h:message for="password" errorStyle="color: red" infoStyle="color: green"></h:message>
+                </h:panelGrid>
+                <h4>
+                    <h:outputText value="#{userBean.msg}" escape="false"></h:outputText>
+                </h4>
+                <br/>
+                <h:commandButton value="Process" action="#{userBean.process}" ></h:commandButton>
+                <h:commandButton value="Reset" type="reset"></h:commandButton>
+            </h:form>
+</h:body>
+</html>

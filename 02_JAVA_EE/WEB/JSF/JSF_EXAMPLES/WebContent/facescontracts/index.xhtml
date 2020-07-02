@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<ui:composition template="../template.xhtml">
+  <ui:define name="title">
+    <h:outputText value="The Resource Library Contracts JSF Sample Application"></h:outputText>
+  </ui:define>
+
+  <ui:define name="body"><h3>Resource Library Contracts Introduction</h3>
+
+    <P>An enhancement to the JSF resource library has made it easier to include new and/or additional templates for use within an application. The new enhancement enables multiple templates to be utilized within an application, with the ability to dynamically or statically define which template is to be applied to specified views. </P>
+
+    <P>JSF allows templates to be created by adding a folder named /contracts to the root of an application’s web directory, or into the /META-INF directory. Once added, one or more template directories can be placed inside of the contracts folder, each containing an associated template file and any optional resource files (CSS, JavaScript, etc.) to be used along with the template. The template file must be named template.xhtml.</P>
+
+    <h3>Description of the Example</h3>
+
+    <P>This example demonstrates that a facelets template can come from a resource library contract. That means you can set different areas in your application to use a different resource library contract.</P>
+
+    <P>In this example, there are two templates, default contract and user contract, that are used in two areas, the default area and the user area. To see how a particular template is triggered, see the WEB-INF/faces-config.xml file.</P>
+
+    <h3>Use This Example</h3>
+
+    <p>You can click <a href="#{facesContext.externalContext.requestContextPath}/facescontracts/page2.xhtml">Default
+      Area</a> to go to the default area which uses the 'default' contract.
+
+    </p>
+
+    <p>
+      You can click <a
+        href="#{facesContext.externalContext.requestContextPath}/facescontracts/user/index.xhtml">User
+      Area</a> to go to the user area which uses the 'user' contract.
+    </p>
+    <br/>
+  </ui:define>
+</ui:composition>
+</html>

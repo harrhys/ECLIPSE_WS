@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!--    @author Copyright (c) 2015, 2020, Oracle and/or its affiliates.
+All rights reserved. -->
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<body>
+<ui:composition template="/template.xhtml">
+  <ui:define name="content">
+    <P>
+      Please note the URL of this page, it looks like '../jsf22-contracts/user/xxx.xhtml'. </P>
+
+    <P>Thus, the 'user' resource library contract will be used in this area according to the WEB-INF/faces-config.xml. </P>
+
+    <br/>
+
+    <p>
+      Click
+      <a href="#{facesContext.externalContext.requestContextPath}/facescontracts/index.xhtml">Here</a>
+      to go back.
+    </p>
+  </ui:define>
+</ui:composition>
+</body>
+</html>

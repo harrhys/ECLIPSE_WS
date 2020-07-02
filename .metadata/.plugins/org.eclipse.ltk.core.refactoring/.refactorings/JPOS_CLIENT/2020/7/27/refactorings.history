@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;com.farbig.practice.jpos.Jpos_Channel&apos; to &apos;PosChannel&apos;&#x0D;&#x0A;- Original project: &apos;JPOS_CONNECTOR&apos;&#x0D;&#x0A;- Original element: &apos;com.farbig.practice.jpos.Jpos_Channel&apos;&#x0D;&#x0A;- Renamed element: &apos;com.farbig.practice.jpos.PosChannel&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update fully qualified names in &apos;*&apos; files&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;Jpos_Channel&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;com.farbig.practice.jpos{Jpos_Channel.java[Jpos_Channel" matchStrategy="1" name="PosChannel" patterns="*" qualified="true" references="true" similarDeclarations="false" stamp="1593606100851" textual="true" version="1.0"/>
+</session>

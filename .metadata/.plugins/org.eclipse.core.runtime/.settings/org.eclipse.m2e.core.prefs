@@ -1,0 +1,10 @@
+eclipse.m2.WorkspacelifecycleMappingsLocation=D\:/WORKSPACE/PROJECTS/ECLIPSE WS/PREP2020/.metadata/.plugins/org.eclipse.m2e.core/lifecycle-mapping-metadata.xml
+eclipse.m2.defaultRuntime=MAVEN_3.6
+eclipse.m2.globalSettingsFile=D\:\\WORKSPACE\\INSTALLATIONS\\MAVEN_3.6\\conf\\settings.xml
+eclipse.m2.problem.notCoveredMojoExecution=ignore
+eclipse.m2.runtimes=MAVEN_3.6
+eclipse.m2.runtimesNodes/MAVEN_3.6/location=D\:\\WORKSPACE\\INSTALLATIONS\\MAVEN_3.6
+eclipse.m2.runtimesNodes/MAVEN_3.6/type=EXTERNAL
+eclipse.m2.userSettingsFile=D\:\\WORKSPACE\\INSTALLATIONS\\MAVEN_3.6\\conf\\settings.xml
+eclipse.m2.warn_incomplete_mapping=true
+eclipse.preferences.version=1

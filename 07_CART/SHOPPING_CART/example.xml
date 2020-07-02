@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+This file contains meta-data about the associated example.  
+This file and its contents are not required to build, deploy, 
+or execute the example.  The meta-data is intend for Oracle
+internal use only.
+
+Copyright (c) 2006,2020, Oracle and/or its affiliates. All rights reserved.
+-->
+<example
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="http://samples.beasys.com/example.xsd">
+  <name>WebLogic SCA Configuration</name>
+  <description>Demonstrates use of WebLogic SCA.</description>
+  <date>2008-09-1-08:00</date>
+  <author>Oracle</author>
+  <version>1.0</version>
+  <package>examples.sca.shoppingcart</package>
+  <zip>shoppingcart</zip>
+  <wlsCompatibility>10.3.1</wlsCompatibility>
+  <parentCategory>API</parentCategory>
+  <childCategory>SCA</childCategory>
+  <subCategory></subCategory>
+  <wlsConfiguration/>
+  <coconutTests/>
+  <build>
+    <deployable>true</deployable>
+  </build>
+  <execution>
+    <target>run</target>
+  </execution>
+
+</example>

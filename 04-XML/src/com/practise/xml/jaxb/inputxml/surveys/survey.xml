@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<survey>
+	<survey id="1">
+		<question>What is java?</question>
+		<answers>
+			<answer>java is a programming language</answer>
+			<id>101</id>
+			<postedby>ravi</postedby>
+		</answers>
+		<answers>
+			<answer>java is a platform</answer>
+			<id>102</id>
+			<postedby>john</postedby>
+		</answers>
+
+	</survey>
+	<survey id="2">
+		<question>What is python?</question>
+		<answers>
+			<answer>python is a programming language</answer>
+			<id>101</id>
+			<postedby>harry</postedby>
+		</answers>
+		<answers>
+			<answer>python is a platform</answer>
+			<id>102</id>
+			<postedby>jack</postedby>
+		</answers>
+
+	</survey>
+</survey>

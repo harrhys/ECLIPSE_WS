@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<menuItem>
+	<id>0</id>
+	<menuCode>rootmenu</menuCode>
+	<menuItem>
+		<id>1</id>
+		<menuCode>menu1</menuCode>
+	</menuItem>
+	<menuItem>
+		<id>2</id>
+		<menuCode>menu2</menuCode>
+	</menuItem>
+	<menuItem>
+		<id>3</id>
+		<menuCode>menu3</menuCode>
+	</menuItem>
+	<menuItem>
+		<id>4</id>
+		<menuCode>menu4</menuCode>
+	</menuItem>
+</menuItem>

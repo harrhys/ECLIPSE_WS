@@ -1,0 +1,8 @@
+package com.practise.reflection;
+
+public class MyClass {
+    static Object o = new Object() {
+        public void m() {} 
+    };
+    static Class<c> = o.getClass().getEnclosingClass();
+}

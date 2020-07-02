@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.buildship.core.launch.runconfiguration">
+<listAttribute key="arguments">
+<listEntry value="-P"/>
+<listEntry value="docustomtask"/>
+</listAttribute>
+<booleanAttribute key="build_scans_enabled" value="false"/>
+<stringAttribute key="gradle_distribution" value="GRADLE_DISTRIBUTION(LOCAL_INSTALLATION(D:\WORKSPACE\INSTALLATIONS\GRADLE\gradle-6.5))"/>
+<stringAttribute key="gradle_user_home" value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\GRADLE"/>
+<stringAttribute key="java_home" value="D:\WORKSPACE\INSTALLATIONS\JDK8"/>
+<listAttribute key="jvm_arguments"/>
+<booleanAttribute key="offline_mode" value="false"/>
+<booleanAttribute key="override_workspace_settings" value="true"/>
+<booleanAttribute key="show_console_view" value="true"/>
+<booleanAttribute key="show_execution_view" value="true"/>
+<listAttribute key="tasks">
+<listEntry value="customtask3"/>
+</listAttribute>
+<stringAttribute key="working_dir" value="${workspace_loc:/Gradle_Demo}"/>
+</launchConfiguration>

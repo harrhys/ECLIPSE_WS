@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Products xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<Product id="100">
+		<Code>P1</Code>
+		<Name>PRODUCT 1</Name>
+		<Description>DESC 1</Description>
+		<Price>20</Price>
+	</Product>
+	<Product id="101">
+		<Code>P2</Code>
+		<Name>PRODUCT 2</Name>
+		<Description>DESC 2</Description>
+		<Price>10</Price>
+	</Product>
+</Products>

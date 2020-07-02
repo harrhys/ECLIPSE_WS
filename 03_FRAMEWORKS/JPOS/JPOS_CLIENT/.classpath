@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/JPOS_SERVER"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/jpos/jpos/2.1.4/jpos-2.1.4.jar" sourcepath="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/jpos/jpos/2.1.4/jpos-2.1.4-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="org.eclipse.jst.component.archivename" value="jpos-2.1.4.jar"/>
+			<attribute name="maven.groupId" value="org.jpos"/>
+			<attribute name="maven.artifactId" value="jpos"/>
+			<attribute name="maven.version" value="2.1.4"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

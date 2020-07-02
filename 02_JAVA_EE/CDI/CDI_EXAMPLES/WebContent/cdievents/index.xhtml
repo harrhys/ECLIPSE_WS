@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<title>CDI Events</title>
+</h:head>
+<h:body>
+	<br />
+
+	<h:outputText value="Events in CDI"></h:outputText>
+
+	<h3>CDI Events Introduction</h3>
+	<p>This facility allows beans to interact in a decoupled fashion,
+		with no compile-time dependencies between the interacting beans. One
+		bean can define an event, another bean can fire the event, and yet
+		another bean can handle the event. The beans can be in separate
+		packages and even in separate tiers of the application.</p>
+
+	<h3>Description of the Example</h3>
+	<p>This example demonstrates the CDI Events APIs. When you click
+		the button, an event is fired according to the value specified in the
+		Age field. A "welcome" statement is displayed if you enter an age of
+		18 or older, and a "sorry" statement is displayed if you enter an age
+		under 18.</p>
+
+	<h3>Use This Example</h3>
+	<h:form id="main">
+		<p>
+			<h:panelGrid columns="2">
+				<h:outputLabel for="name" value="Name: " />
+				<h:inputText id="name" value="#{webController.user.name}" size="30" maxlength="60"/>
+				<h:outputLabel for="age" value="Age: " />
+				<h:inputText id="age" value="#{webController.user.age}" size="3" maxlength="3"/>
+			</h:panelGrid>
+			<h:commandButton id="check" value="check" action="#{webController.check}" />
+		</p>
+	</h:form>
+	<h:messages globalOnly="true" />
+
+</h:body>
+</html>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<modules>
+  <module moduleId="org.eclipse.jst.j2ee.server:wildcard-regex" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:EJB3APP"/>
+  <module moduleId="org.eclipse.jst.jee.server:BOTH" serverId="WL [cart_app:7001]"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:restful2actionmapper" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:json-customize" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:x-struts-master" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:form-processing" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:unit-testing" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:themes-override" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:crud" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:JSF_EXAMPLES"/>
+  <module moduleId="org.eclipse.jst.jee.server:action-chaining" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:shiro-basic" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:JAXWSWebAppClient" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:debugging-struts"/>
+  <module moduleId="org.eclipse.jst.jee.server:CartAppWL"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:using-tags" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:exception-handling" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:http-session" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:basic-struts" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:CartAppWF" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:spring-struts" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:Services" serverId="WL [cart_app:7001]"/>
+  <module moduleId="org.eclipse.jst.jee.server:JAX-WS" serverId="WL [cart_app:7001]"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:tiles" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:control-tags" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:rest-angular" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:CDI" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:JAXWS" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:MyCart" serverId="WildFly 19"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:themes" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:coding-actions" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:helloworld" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:TESTWS" serverId="WL [cart_app:7001]"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:message-store" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:JAXWSWebApp" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:exclude-parameters" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:validation-messages" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:blank" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:unknown-handler" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:preparable-interface" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:restfuljersey" serverId="WL [cart_app:7001]"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:mailreader2" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:basic-struts" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:form-tags" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:JAXWSWEB" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:file-upload" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:AxisWS"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:wildcard-method-selection" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:blank" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:coding-actions" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:interceptors" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:form-validation" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:CartRS" serverId="WildFly 19"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:type-conversion" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:bean-validation" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:CartWS" serverId="WL [cart_app:7001]"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:message-resource" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:annotations" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:text-provider" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:AXISWS_WebApp" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.jee.server:bean-validation" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:action-chaining"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:json" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:portlet" serverId="WildFly 19.1"/>
+  <module moduleId="org.eclipse.jst.j2ee.server:form-xml-validation" serverId="WildFly 19.1"/>
+</modules>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="../xsl/Products.xsl" type="text/xsl" ?>
+<Products category="electronics">
+	<!-- comment 1 -->
+	<Product id="100" type="1">
+		<Code>P1</Code>
+		<Name>Product 1</Name>
+		<Description>P1 Description</Description>
+		<Price>100</Price>
+	</Product>
+	<!-- comment 2 -->
+	<Product id="101" type="2">
+		<Code>P2</Code>
+		<Name>Product 2</Name>
+		<Description>P2 Description</Description>
+		<Price>25</Price>
+	</Product>
+</Products>
+

@@ -1,0 +1,29 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from MyWSService WSDL service -->
+
+  <service name="MyWS" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://ws.farbig.com"/>
+      <parameter name="wsdlServiceElement" value="MyWSService"/>
+      <parameter name="schemaQualified" value="http://ws.farbig.com"/>
+      <parameter name="wsdlServicePort" value="MyWS"/>
+      <parameter name="className" value="com.farbig.ws.MyWSSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="MyWS"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="sayHello" qname="operNS:sayHello" xmlns:operNS="http://ws.farbig.com" returnQName="retNS:sayHelloReturn" xmlns:retNS="http://ws.farbig.com" returnType="rtns:string" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:name" xmlns:pns="http://ws.farbig.com" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="sayHello"/>
+
+  </service>
+</deployment>

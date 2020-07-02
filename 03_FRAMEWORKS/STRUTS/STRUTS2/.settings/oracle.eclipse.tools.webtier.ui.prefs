@@ -1,0 +1,10 @@
+//_hiddenCategory_\:/struts-dojo-tags=false
+//_hiddenCategory_\:/struts-tags=false
+//_hiddenCategory_\:http\://tiles.apache.org/tags-tiles=false
+//_hiddenCategory_\:http\://www.opensymphony.com/sitemesh/decorator=false
+//_hiddenCategory_\:http\://www.opensymphony.com/sitemesh/page=false
+_hiddenCategory_\:HTML=false
+_hiddenCategory_\:ManagedBeans=false
+_hiddenCategory_\:PageVariables=false
+_hiddenCategory_\:jsp11=false
+eclipse.preferences.version=1

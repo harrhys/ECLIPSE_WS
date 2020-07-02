@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml-stylesheet href="PurchaseOrders.xsl" type="text/xsl" ?> -->
+<PurchaseOrders>
+	<Customer>Balaji, Tirumala</Customer>
+	<PurchaseOrder  po="asd" id="10000">
+		<OrderItem oi="asd" id="1">
+			<Product>P1</Product>
+			<Quantity>5</Quantity>
+			<Price>10</Price>
+			<OrderItemPrice>50</OrderItemPrice>
+		</OrderItem>
+		<OrderItem id="2">
+			<Product>P2</Product>
+			<Quantity>10</Quantity>
+			<Price>7</Price>
+			<OrderItemPrice>70</OrderItemPrice>
+		</OrderItem>
+		<OrderItem id="3">
+			<Product>P3</Product>
+			<Quantity>9</Quantity>
+			<Price>5</Price>
+			<OrderItemPrice>45</OrderItemPrice>
+		</OrderItem>
+		<OrderTotalPrice>165</OrderTotalPrice>
+	</PurchaseOrder>
+	<PurchaseOrder id="10001">
+		<OrderItem id="1">
+			<Product>P1</Product>
+			<Quantity>5</Quantity>
+			<Price>10</Price>
+			<OrderItemPrice>50</OrderItemPrice>
+		</OrderItem>
+		<OrderItem id="2">
+			<Product>P2</Product>
+			<Quantity>10</Quantity>
+			<Price>7</Price>
+			<OrderItemPrice>70</OrderItemPrice>
+		</OrderItem>
+		<OrderTotalPrice>120</OrderTotalPrice>
+	</PurchaseOrder>
+
+</PurchaseOrders>

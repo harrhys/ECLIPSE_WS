@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+
+<ui:composition template="../template.xhtml">
+  <ui:define name="title">
+    <h:outputText value="The Faces Flows Sample Application"></h:outputText>
+  </ui:define>
+
+  <ui:define name="body">
+    <h:form prependId="false">
+      <p><B>Sign up successfully</B></p>
+
+      <P><B>Please note</B> : If you return to the index page via the 'Return' button below, the flow will be ended, and
+        the FlowScoped Managed Bean will be destroyed simultaneously.</P>
+
+      <p><h:commandButton id="return" value="Return" action="return"/></p>
+    </h:form>
+  </ui:define>
+</ui:composition>
+</html>

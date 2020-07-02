@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CommitComments>	<CommitComment>Deleted all .class files and bin folders from CART_APP_WF projects</CommitComment>
+	<CommitComment>Initial import.</CommitComment>
+	<CommitComment>Added XML Project Contents and other minor updates in cartapp and Java_concepts</CommitComment>
+	<CommitComment>updated JPA Persistence classes</CommitComment>
+	<CommitComment>Deleted all .class files and bin folders</CommitComment>
+	<CommitComment>Refactored CartEntities Project and corresponding changes
+Fixed Build Path issues</CommitComment>
+	<CommitComment>Removed Jrockit Dumps</CommitComment>
+	<CommitComment>TEST</CommitComment>
+	<CommitComment>FIRST COMMIT WITHOUT ANY CHANGES AFTER PROJECT SETUP</CommitComment>
+</CommitComments>

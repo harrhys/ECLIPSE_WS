@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<ui:composition template="../template.xhtml">
+	<ui:define name="title">
+		<h:outputText value="Examples of Ajax in JSF 2.0"></h:outputText>
+	</ui:define>
+
+	<ui:define name="body">
+		<h:form>
+			<h:commandLink value="Refresh Time" action="#{ajaxBean.showTime}">
+				<f:ajax render="time"></f:ajax>
+			</h:commandLink>
+			<br />
+			<h2>
+				<h:outputText value="#{ajaxBean.time}" id="time" />
+			</h2>
+		</h:form>
+	</ui:define>
+</ui:composition>
+</html>

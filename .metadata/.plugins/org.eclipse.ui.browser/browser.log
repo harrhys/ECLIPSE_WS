@@ -1,0 +1,6 @@
+
+May 09, 2020 12:56:14.82 NEW SESSION
+May 09, 2020 12:56:14.82 [11216:12200:0509/125614.811:ERROR:cache_util_win.cc(21)] Unable to move the cache: Access is denied. (0x5)
+May 09, 2020 12:56:14.84 [11216:12200:0509/125614.815:ERROR:cache_util.cc(138)] Unable to move cache folder C:\Users\HARRHY\AppData\Local\Google\Chrome\User Data\ShaderCache\GPUCache to C:\Users\HARRHY\AppData\Local\Google\Chrome\User Data\ShaderCache\old_GPUCache_000
+May 09, 2020 12:56:14.95 [11216:12200:0509/125614.815:ERROR:disk_cache.cc(184)] Unable to create cache
+May 09, 2020 12:56:14.96 [11216:12200:0509/125614.815:ERROR:shader_disk_cache.cc(606)] Shader Cache Creation failed: -2

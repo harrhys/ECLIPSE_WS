@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="oracle.eclipse.tools.jaxrs.application.launchConfigurationType">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/CartRest/src/com/test/Reest.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.APPLET_NAME" value=""/>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="com.test.Reest"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="CartRest"/>
+</launchConfiguration>

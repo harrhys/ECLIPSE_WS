@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MasterDetailsEditorPageState>
+    <ContentOutlineState>
+        <Root>
+            <Children>
+                <MasterDetailsNodeState>
+                    <Label>General</Label>
+                    <Expanded>true</Expanded>
+                </MasterDetailsNodeState>
+                <MasterDetailsNodeState>
+                    <Label>JSP</Label>
+                    <Expanded>true</Expanded>
+                </MasterDetailsNodeState>
+                <MasterDetailsNodeState>
+                    <Label>References</Label>
+                    <Expanded>true</Expanded>
+                </MasterDetailsNodeState>
+                <MasterDetailsNodeState>
+                    <Label>Servlets</Label>
+                    <Expanded>true</Expanded>
+                    <Selected>true</Selected>
+                </MasterDetailsNodeState>
+            </Children>
+        </Root>
+        <Ratio>0.29927007299270075</Ratio>
+    </ContentOutlineState>
+</MasterDetailsEditorPageState>

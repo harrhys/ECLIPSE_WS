@@ -1,0 +1,12 @@
+1593249563256	Move 'META-INF' to 'config'
+1593250079678	Delete elements
+1593251324985	Copy compilation unit
+1593251516209	Delete element
+1593275429736	Delete elements
+1593275956576	Rename package 'examples.cdi.cdi11.events'
+1593276201684	Delete elements
+1593276588701	Rename package 'examples.cdi.cdi11.transactional'
+1593277093980	Move compilation unit
+1593278037072	Copy package
+1593278045169	Delete elements
+1593279567853	Move 4 resources to 'WebContent'

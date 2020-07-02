@@ -1,0 +1,42 @@
+<project>
+
+	<property name="wls.host" value="churchill" />
+	<property name="wls.port" value="7001" />
+	<property name="wls.user" value="defAdmin" />
+	<property name="wls.pass" value="defPwd00" />
+	<property name="wls.server" value="AdminServer" />
+
+	<property name="src.dir" value="java_src" />
+	<property name="clientclass.dir" value="${src.dir}" />
+
+	<path id="client.class.path">
+		<pathelement path="APP-INF/classes" />
+		<pathelement path="${java.class.path}" />
+	</path>
+
+
+	<taskdef name="jwsc" classname="weblogic.wsee.tools.anttasks.JwscTask" />
+	<taskdef name="clientgen" classname="weblogic.wsee.tools.anttasks.ClientGenTask" />
+	<taskdef name="wldeploy" classname="weblogic.ant.taskdefs.management.WLDeploy" />
+
+
+	<target name="clean-client">
+		<delete>
+			<fileset dir="${src.dir}/test/ws/client" />
+		</delete>
+	</target>
+	<target name="build-client">
+		<!--
+		<clientgen wsdl="http://${wls.host}:${wls.port}/JSca_GetTotQuantity_CTX/GetQuantitySvc_WS_URI?WSDL" destDir="${src.dir}" packageName="test.ws.client" type="JAXWS" />
+		-->
+		<clientgen wsdl="C:\Documents and Settings\manothom\Desktop\toDelete\GetPriceSvc_WS_URI.xml" destDir="${src.dir}" packageName="test.ws.client" type="JAXWS" />
+	</target>
+
+
+	<target name="run">
+		<java fork="true" classname="test.Test" failonerror="true">
+			<classpath refid="client.class.path" />
+		</java>
+	</target>
+
+</project>

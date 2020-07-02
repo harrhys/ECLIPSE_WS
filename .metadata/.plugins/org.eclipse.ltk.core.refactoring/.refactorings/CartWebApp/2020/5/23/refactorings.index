@@ -1,0 +1,26 @@
+1590921172662	Copy compilation unit
+1590921429056	Delete element
+1590921445656	Copy compilation unit
+1590938063421	Copy compilation unit
+1590938128779	Delete element
+1590939216696	Copy file
+1590939226290	Copy file
+1590939923478	Move 2 resources to 'includes'
+1590939968281	Move 'admin' to 'jsps'
+1590940011207	Move 'adminHome.jsp' to 'admin'
+1590940019058	Move 'merchantHome.jsp' to 'merchant'
+1590940050376	Move 4 resources to 'merchant'
+1590940055525	Move 'customerHome.jsp' to 'customer'
+1590940065656	Move 'searchproducts.jsp' to 'merchant'
+1590940074204	Delete element
+1590940122070	Move 'adminHome.jsp' to 'merchant'
+1590940129698	Move 'merchantHome.jsp' to 'admin'
+1590941230898	Copy file
+1590961845472	Rename type 'LoginNoutAction'
+1590962913936	Rename type 'ProductCreationAction'
+1590962937985	Rename type 'LoginAction'
+1590962957853	Rename type 'ProductSearchAction'
+1590962981427	Rename type 'StoreCreationAction'
+1590963160340	Delete element
+1590965292270	Rename field 'flag'
+1590969479913	Copy file

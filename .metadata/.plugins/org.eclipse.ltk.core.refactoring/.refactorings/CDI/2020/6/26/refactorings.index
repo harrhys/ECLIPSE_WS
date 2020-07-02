@@ -1,0 +1,74 @@
+1593024722844	Move 'beans.xml' to 'META-INF'
+1593061399090	Copy packages
+1593062796624	Rename type 'ExampleBean'
+1593063123364	Copy compilation unit
+1593063574385	Move 'web.xml' to 'META-INF'
+1593064060332	Copy file
+1593065545428	Rename field 'name'
+1593094754845	Copy compilation unit
+1593094831826	Rename package 'com.farbig.cdi.beans'
+1593106645625	Copy compilation unit
+1593106683908	Rename type 'AlternativeCalculator'
+1593115052374	Rename package 'com.farbig.cdi.qualifiers'
+1593115072849	Delete element
+1593119030691	Rename type 'UserNumberBean'
+1593119524554	Delete element
+1593119617100	Rename type 'Hello'
+1593119803777	Delete element
+1593119912404	Rename type 'Calculator'
+1593119948081	Rename type 'HelloTest'
+1593120212754	Rename type 'Test1'
+1593120542675	Rename type 'Calculator'
+1593120559945	Rename type 'MyCalculator'
+1593120771467	Delete element
+1593122112884	Copy compilation unit
+1593122463143	Delete elements
+1593122812327	Copy compilation unit
+1593122863746	Copy compilation unit
+1593123414456	Copy compilation units
+1593123435118	Rename type 'SimpleCalculator2'
+1593123854426	Copy compilation unit
+1593142469446	Copy compilation unit
+1593142864875	Copy compilation unit
+1593145210861	Delete elements
+1593145316695	Rename package 'examples.javaee6.cdi'
+1593145331305	Delete element
+1593145349195	Delete element
+1593145353915	Delete element
+1593145360962	Delete elements
+1593145368498	Delete elements
+1593145375430	Delete elements
+1593196596927	Rename method 'getId'
+1593196621434	Rename method 'setId'
+1593196899814	Rename method 'getUserName'
+1593196918282	Rename method 'setUserName'
+1593197821790	Rename type 'Producer'
+1593228968328	Copy file
+1593230009797	Move packages
+1593230038109	Copy folder
+1593230068440	Delete elements
+1593230510656	Rename type 'Simple'
+1593230590647	Rename type 'ReaderProducer'
+1593230955719	Delete element
+1593231070953	Delete element
+1593231093057	Rename type 'MockCalculator2'
+1593238770487	Delete element
+1593238888715	Rename type 'Choosen'
+1593239605089	Delete element
+1593239619120	Delete element
+1593239645265	Rename type 'CalculatorType'
+1593239687855	Rename enum constant 'FULL'
+1593240600471	Copy compilation unit
+1593241394540	Rename type 'FullCalculator'
+1593249010345	Move 'META-INF' to 'config'
+1593253091381	Rename type 'MockFullCalculator'
+1593253132051	Rename type 'MockFullCalculator1'
+1593253145007	Rename type 'MockFullCalculator2'
+1593254862532	Rename enum constant 'COMPLEX'
+1593254909116	Rename type 'BeanType'
+1593254929193	Rename type 'ComplexCalculator'
+1593254957772	Rename type 'MockFullCalculatorOne'
+1593254973703	Rename type 'MockFullCalculatorTwo'
+1593254989506	Rename type 'MockSimpleCalculator'
+1593259476009	Delete element
+1593278068159	Move compilation unit

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema targetNamespace="http://farbig.com/PurchaseOrder"
+	elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:po="http://farbig.com/PurchaseOrder"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://farbig.com/Product">
+
+	<import schemaLocation="Product.xsd"
+		namespace="http://farbig.com/Product"></import>
+
+	<element name="PurchaseOrders" type="po:PurchaseOrders"
+		nillable="false" />
+
+	<complexType name="PurchaseOrders">
+		<sequence>
+			<element name="PurchaseOrder" type="po:PurchaseOrder"
+				minOccurs="1" />
+		</sequence>
+	</complexType>
+
+	<complexType name="PurchaseOrder">
+		<sequence>
+			<element name="OrderItem" type="po:OrderItem"
+				minOccurs="2" maxOccurs="10" />
+			<element name="OrderTotalPrice" type="p:Price"
+				minOccurs="1" maxOccurs="1" />
+		</sequence>
+		<attribute name="id" type="po:OrderId" use="required" />
+	</complexType>
+
+	<complexType name="OrderItem">
+		<sequence>
+			<element name="Product" type="p:ProductCode" />
+			<element name="Quantity" type="po:Quantity"
+				nillable="false" />
+			<element name="Price" type="p:Price" />
+			<element name="OrderItemPrice" type="p:Price" />
+		</sequence>
+		<attribute name="id" type="po:OrderItemId"
+			use="required" />
+	</complexType>
+
+	<simpleType name="OrderId">
+		<restriction base="int">
+			<minInclusive value="10000" />
+			<maxInclusive value="99999" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="OrderItemId">
+		<restriction base="int">
+			<minInclusive value="1" />
+			<maxInclusive value="100" />
+		</restriction>
+	</simpleType>
+
+	<simpleType name="Quantity">
+		<restriction base="int">
+			<minInclusive value="1" />
+			<maxInclusive value="100" />
+		</restriction>
+	</simpleType>
+
+
+
+</schema>

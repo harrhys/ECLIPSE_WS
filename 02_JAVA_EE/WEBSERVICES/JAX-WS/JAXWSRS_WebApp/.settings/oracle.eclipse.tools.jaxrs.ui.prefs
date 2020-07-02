@@ -1,0 +1,3 @@
+APP_CLASS_NAME=ApplicationConfig
+APP_CLASS_PKG_NAME=rest.application.config
+eclipse.preferences.version=1

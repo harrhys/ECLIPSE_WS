@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="org.eclipse.wst.xsl.debug.ui.PROCESSOR_DETAILS_DIALOG.columnWidth0" value="180"/>
+	<item key="org.eclipse.wst.xsl.debug.ui.PROCESSOR_DETAILS_DIALOG.columnWidth1" value="90"/>
+	<item key="org.eclipse.wst.xsl.debug.ui.PROCESSOR_DETAILS_DIALOG.columnWidth2" value="180"/>
+	<item key="org.eclipse.wst.xsl.debug.ui.PROCESSOR_DETAILS_DIALOG.sortColumn" value="1"/>
+	<item key="org.eclipse.wst.xsl.debug.ui.MAIN_TRANSFORMS_BLOCK.sortColumn" value="0"/>
+	<item key="org.eclipse.wst.xsl.debug.ui.MAIN_PARAMATERS_BLOCK.columnWidth0" value="150"/>
+	<item key="org.eclipse.wst.xsl.debug.ui.MAIN_PARAMATERS_BLOCK.columnWidth1" value="250"/>
+	<item key="org.eclipse.wst.xsl.debug.ui.MAIN_PARAMATERS_BLOCK.sortColumn" value="1"/>
+	<item key="org.eclipse.wst.xsl.jaxp.debug.ui.org.eclipse.wst.xsl.jaxp.debug.ui.internal.tabs.processor.AttributesBlock.columnWidth0" value="350"/>
+	<item key="org.eclipse.wst.xsl.jaxp.debug.ui.org.eclipse.wst.xsl.jaxp.debug.ui.internal.tabs.processor.AttributesBlock.columnWidth1" value="50"/>
+	<item key="org.eclipse.wst.xsl.jaxp.debug.ui.org.eclipse.wst.xsl.jaxp.debug.ui.internal.tabs.processor.AttributesBlock.sortColumn" value="1"/>
+	<item key="org.eclipse.wst.xsl.jaxp.debug.ui.org.eclipse.wst.xsl.jaxp.debug.ui.internal.tabs.processor.OutputPropertiesBlock.columnWidth0" value="350"/>
+	<item key="org.eclipse.wst.xsl.jaxp.debug.ui.org.eclipse.wst.xsl.jaxp.debug.ui.internal.tabs.processor.OutputPropertiesBlock.columnWidth1" value="50"/>
+	<item key="org.eclipse.wst.xsl.jaxp.debug.ui.org.eclipse.wst.xsl.jaxp.debug.ui.internal.tabs.processor.OutputPropertiesBlock.sortColumn" value="1"/>
+	<item key="TransformsBlock.LAST_PATH_SETTING" value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\JAVA_CONCEPTS\src\com\practise\xml\xslt\xsl"/>
+	<section name="org.eclipse.wst.xsl.debug.ui.MULTIPLE_INPUT_DIALOG">
+		<item key="DIALOG_X_ORIGIN" value="253"/>
+		<item key="DIALOG_Y_ORIGIN" value="213"/>
+		<item key="DIALOG_WIDTH" value="390"/>
+		<item key="DIALOG_HEIGHT" value="161"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+</section>

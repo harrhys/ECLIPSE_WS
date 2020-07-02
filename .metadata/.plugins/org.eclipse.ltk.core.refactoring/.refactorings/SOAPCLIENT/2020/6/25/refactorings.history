@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 packages to &apos;JAX-WS/src&apos;&#x0D;&#x0A;- Original project: &apos;SOAPCLIENT&apos;&#x0D;&#x0A;- Destination element: &apos;JAX-WS/src&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     SOAPCLIENT/src/com.test.dii&#x0D;&#x0A;     SOAPCLIENT/src/com.test.dynamicproxy&#x0D;&#x0A;     SOAPCLIENT/src/com.test.stubs" description="Copy packages" destination="=JAX-WS/src" element1="/src&lt;com.test.dii" element2="/src&lt;com.test.dynamicproxy" element3="/src&lt;com.test.stubs" flags="589830" fragments="3" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1592297216902" version="1.0"/>
+</session>

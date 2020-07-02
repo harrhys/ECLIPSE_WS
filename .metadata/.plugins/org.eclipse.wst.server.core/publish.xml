@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<publish-info>
+  <server id="Oracle WebLogic Server 12c (12.1.3) [cart_app]" path="publish0.dat"/>
+  <server id="WildFly 19.1" path="publish0.dat"/>
+</publish-info>

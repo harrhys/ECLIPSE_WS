@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<server auto-publish-setting="1" hostname="localhost" id="Oracle WebLogic Server 12c (12.1.3) [cart_app]" name="WLS_12c_cart_app" runtime-id="Oracle WebLogic Server 12c" server-type="weblogic.server" server-type-id="weblogic.server" start-timeout="480" stop-timeout="240" timestamp="53" weblogic_domain_path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\user_projects\domains\cart_app" weblogic_host_name="localhost" weblogic_is_remote="false" weblogic_port="7001" weblogic_use_bootprop="true" weblogic_use_config_xml="true">
+  <list key="modules"/>
+</server>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/CDC-1.0%Foundation-1.0"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/jpos/jpos/2.1.4/jpos-2.1.4.jar"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/commons-cli/commons-cli/1.4/commons-cli-1.4.jar"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/osgi/org.osgi.core/6.0.0/org.osgi.core-6.0.0.jar"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/javassist/javassist/3.26.0-GA/javassist-3.26.0-GA.jar"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/slf4j/slf4j-api/1.7.30/slf4j-api-1.7.30.jar"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/yaml/snakeyaml/1.26/snakeyaml-1.26.jar"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/bouncycastle/bcprov-jdk15on/1.64/bcprov-jdk15on-1.64.jar"/>
+	<classpathentry kind="lib" path="D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/MAVEN/org/jdom/jdom2/2.0.6/jdom2-2.0.6.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

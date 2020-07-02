@@ -1,0 +1,15 @@
+1588666293603	Delete element
+1588666304899	Delete element
+1588666332142	Delete elements
+1588666642962	Copy file
+1588673032048	Copy compilation unit
+1588673067781	Rename type 'HibernateJDBCTransactionManagedHandler'
+1588673084018	Copy compilation unit
+1588673133833	Rename type 'CopyOfJDBCUserManagedHandler'
+1588673222201	Rename resource 'hibernate.jdbc.txn.cfg.xml'
+1588673316005	Rename resource 'jdbc.txn.cfg.xml'
+1588681213415	Rename package 'com.farbig.util'
+1588681382183	Move compilation units
+1588681416899	Move compilation units
+1588681447525	Move compilation unit
+1588841129122	Rename resource 'weblogic-hibernate.cfg.xml'

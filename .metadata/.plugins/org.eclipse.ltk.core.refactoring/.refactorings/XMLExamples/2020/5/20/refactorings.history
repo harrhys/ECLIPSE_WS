@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;XMLExamples/GolfCountryClub/Authors.xsl&apos; to &apos;Gold.xsl&apos;" description="Rename resource &apos;Authors.xsl&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="GolfCountryClub/Authors.xsl" name="Gold.xsl" stamp="1589660401611" updateReferences="true"/>
+</session>

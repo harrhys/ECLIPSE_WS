@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="workingset_selection_history">
+		<item value="JAVA"/>
+	</list>
+	<section name="org.eclipse.buildship.ui.wizard.project.import">
+		<item key="project_location" value="D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\SPRING\spring-framework-master"/>
+		<item key="apply_working_sets" value="true"/>
+		<item key="gradle_distribution" value="GRADLE_DISTRIBUTION(LOCAL_INSTALLATION(D:\WORKSPACE\INSTALLATIONS\GRADLE\gradle-6.5))"/>
+		<item key="gradle_user_home" value="D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\SPRING\spring-framework-master\spring-web"/>
+		<item key="java_home" value="D:\WORKSPACE\INSTALLATIONS\JDK8"/>
+		<list key="working_sets">
+			<item value="JAVA"/>
+		</list>
+	</section>
+	<section name="org.eclipse.buildship.ui.wizard.project.creation">
+		<item key="project_location" value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\GRADLE"/>
+		<item key="use_default_location" value="true"/>
+		<item key="apply_working_sets" value="true"/>
+		<item key="gradle_distribution" value="GRADLE_DISTRIBUTION(LOCAL_INSTALLATION(D:\WORKSPACE\INSTALLATIONS\GRADLE\gradle-6.5))"/>
+		<item key="gradle_user_home" value="D:\WORKSPACE\INSTALLATIONS\GRADLE\gradle-6.5"/>
+		<item key="java_home" value="D:\WORKSPACE\INSTALLATIONS\JDK8"/>
+		<list key="working_sets">
+		</list>
+	</section>
+</section>

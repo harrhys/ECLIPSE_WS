@@ -1,0 +1,29 @@
+1589196439667	Rename package 'com.farbig'
+1589196466495	Rename package 'com.farbig.test'
+1589196581302	Move compilation unit
+1589196644304	Rename type 'ProductCatalog'
+1589196733243	Rename field 'productCatalogs'
+1589196825141	Rename type 'ProductCatalogService'
+1589196848901	Rename type 'ProductCatalogServiceImpl'
+1589196880878	Rename type 'ProductCatalogWebService'
+1589196982169	Rename type 'ProductServiceImpl'
+1589196995317	Move compilation unit
+1589197130812	Copy compilation unit
+1589197931864	Move packages
+1589198221691	Delete element
+1589198368611	Rename package 'com.farbig.services'
+1589198410486	Delete element
+1589202440452	Copy compilation unit
+1589229731001	Copy packages
+1589234365502	Copy packages
+1589239754408	Delete element
+1589241665382	Rename type 'TestProduct'
+1589270719651	Copy compilation units
+1589271822987	Delete elements
+1589271830693	Delete element
+1589271869028	Rename package 'com.test'
+1589271881234	Delete element
+1589271963822	Rename package 'com.test'
+1589272133223	Rename type 'CalculatorMainImpl'
+1589272249271	Copy compilation unit
+1589272612727	Rename type 'ServicePublisher'

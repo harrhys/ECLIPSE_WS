@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+
+<ui:composition template="template.xhtml">
+  <ui:define name="title">
+    <h:outputText value="The Faces Flows Sample Application"></h:outputText>
+  </ui:define>
+
+  <ui:define name="body">
+    <h3>Faces Flow in JavaServer Faces 2.2</h3>
+
+    <P>In JSF 2.2, a solution has been adopted for binding multiple JSF views to each other, allowing them to share
+      information with each other. This solution is called faces flow, and it allows a group of interrelated views
+      to belong to a flow instance, and information can be shared across all of the views belonging to that flow
+      instance.</P>
+
+    <h3>Description of the Example</h3>
+
+    <P>This example demonstrates the use of the JavaServer Faces 2.2 faces flows feature.</P>
+
+    <P>In this example, a FlowScoped Managed Bean is used to set or get the value of the flow item in a sign-up process.
+      The configuration detail can be found in the signup-flow.xml file.</P>
+
+    <P>In this scenario, an account registration system is simulated. On the first page,
+      input your e-mail address and password to create a new WebLogic account. On the next page,
+      fill in all required personal information to complete the registration. After submitting the information,
+      all of the registration information is displayed on a confirmation page. After confirming your information, a 'Sign up successful' page is
+      displayed. </P>
+
+    <P>In the registration process above, if you go back to the previous page using the <b>Back</b> button, your information is retained.
+      However, if you return the index page from the 'Sign up successful' page, all of your registration information is lost.</P>
+
+    <P><B>Now you can start to register your own WebLogic account.</B></P>
+
+    <h3>Use This Example</h3>
+    <h:form prependId="false">
+      <p>
+        <!--<h:commandButton id="signup" value="Sign up" action="#{request.contextPath}/signup"/>-->
+        <!--<h:commandButton id="signup" value="Sign up" action="${pageContext.request.contextPath}/signup"/>-->
+        <h:commandButton id="signup" value="Sign up" action="signup"/>
+      </p>
+    </h:form>
+  </ui:define>
+</ui:composition>
+</html>

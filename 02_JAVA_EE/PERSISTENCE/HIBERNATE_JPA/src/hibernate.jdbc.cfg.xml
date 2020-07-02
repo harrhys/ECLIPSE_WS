@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "./hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+	
+		<property name="dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="connection.driver_class">org.postgresql.Driver</property>
+		<property name="connection.url">jdbc:postgresql://localhost:5432/commondb</property>
+		<property name="connection.username">postgres</property>
+		<property name="connection.password">postgres</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hbm2ddl.auto">update</property>
+		
+		<property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		<property name="hibernate.current_session_context_class">thread</property>
+
+		<property name="cache.use_second_level_cache">true</property>
+		<property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+		<!-- <property name="cache.provider_class">net.sf.ehcache.hibernate.EhCacheProvider</property> -->
+		<property name="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory</property>
+		
+		
+		<mapping class="com.farbig.collections.Test" />
+		
+		<mapping class="com.farbig.mapping.onetomany.VehicleOne" />
+		<mapping class="com.farbig.mapping.onetomany.TripOne" />
+		<mapping class="com.farbig.mapping.onetomany.VehicleTwo" />
+		<mapping class="com.farbig.mapping.onetomany.TripTwo" />
+		<mapping class="com.farbig.mapping.onetoone.VehicleThree" />
+		<mapping class="com.farbig.mapping.onetoone.TripThree" />
+		<mapping class="com.farbig.mapping.onetoone.VehicleFour" />
+		<mapping class="com.farbig.mapping.onetoone.TripFour" />
+		<mapping class="com.farbig.mapping.manytomany.VehicleOne" />
+		<mapping class="com.farbig.mapping.manytomany.TripOne" />
+		
+		<mapping class="com.farbig.collections.BaseUser" />
+		<mapping class="com.farbig.collections.SpecialUser" />
+		
+	</session-factory>
+</hibernate-configuration>
+
+
+
+
+

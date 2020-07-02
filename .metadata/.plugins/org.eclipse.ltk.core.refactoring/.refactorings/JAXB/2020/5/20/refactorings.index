@@ -1,0 +1,20 @@
+1589598356607	Copy compilation unit
+1589598774442	Rename type 'ConfigurationFileFilter'
+1589600526678	Rename type 'MenuToObject'
+1589601226211	Rename package 'com.test.menu'
+1589603727808	Move compilation unit
+1589603736077	Move compilation unit
+1589603747054	Move compilation unit
+1589603811325	Move 'menu.xml' to 'menus'
+1589604085190	Rename resource 'menu.xml'
+1589604170858	Rename resource 'People.xml'
+1589604971569	Rename type 'Question'
+1589605058710	Rename resource 'Question.xml'
+1589605623935	Move compilation unit
+1589606106440	Delete element
+1589606200721	Move 'menus' to 'inputxml'
+1589606263192	Move 'survey.xml' to 'surveys'
+1589606749096	Delete element
+1589609523138	Copy packages
+1589609654936	Copy folders
+1589610683253	Copy file

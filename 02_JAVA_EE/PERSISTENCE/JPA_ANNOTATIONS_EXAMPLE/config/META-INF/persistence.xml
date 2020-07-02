@@ -1,0 +1,43 @@
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence 
+        http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+	version="1.0">
+	<persistence-unit name="BankingApp">
+		<provider> org.hibernate.ejb.HibernatePersistence</provider>
+		<properties>
+    		<!-- VENDOR SPECIFIC TAGS -->
+
+			<!-- Derby Configuration -->
+			
+			<property name="hibernate.connection.driver_class" value="org.apache.derby.jdbc.ClientDriver"/>
+			<property name="hibernate.connection.url" value="jdbc:derby://localhost:1527/LECTURE10"/>
+			<property name="dialect" value="org.hibernate.dialect.DerbyDialect"/>
+			
+    		
+    		<!--  Oracle Configuration -->
+			<property name="hibernate.connection.driver_class" value="oracle.jdbc.driver.OracleDriver"/>
+			<property name="hibernate.connection.url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+			<property name="hibernate.connection.username" value="lecture10"/>
+			<property name="hibernate.connection.password" value="lecture10"/>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+			
+			<!--  Postgres Configuration -->
+			<property name="hibernate.connection.driver" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/jpahibernate" />
+			<property name="hibernate.connection.user" value="postgres" />
+			<property name="hibernate.connection.password" value="postgres" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			
+			<!--  create or update tables -->
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.search.autoregister_listeners" value="false" />
+			<property name="hibernate.jdbc.batch_size" value="200" />
+			<property name="hibernate.connection.autocommit" value="false" />
+			<property name="hibernate.generate_statistics" value="true" />
+
+        	<!-- Echo all executed SQL to stdout -->
+			<property name="hibernate.show_sql" value="true"/>
+		</properties>
+	</persistence-unit>
+</persistence>

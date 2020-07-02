@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="CommitDialog.location.x" value="0"/>
+	<item key="CommitDialog.location.y" value="0"/>
+	<item key="CommitDialog.size.x" value="1366"/>
+	<item key="CommitDialog.size.y" value="728"/>
+	<item key="CommitDialog.weights.0" value="500"/>
+	<item key="CommitDialog.weights.1" value="500"/>
+	<item key="HistoryDialog.location.x" value="483"/>
+	<item key="HistoryDialog.location.y" value="36"/>
+	<item key="HistoryDialog.size.x" value="747"/>
+	<item key="HistoryDialog.size.y" value="592"/>
+	<item key="HistoryDialog.weights.0" value="333"/>
+	<item key="HistoryDialog.weights.1" value="333"/>
+	<item key="HistoryDialog.weights.2" value="333"/>
+	<item key="HistoryTableProvider.HistoryDialog.Revision" value="37"/>
+	<item key="HistoryTableProvider.HistoryDialog.Date" value="92"/>
+	<item key="HistoryTableProvider.HistoryDialog.Author" value="73"/>
+	<item key="HistoryTableProvider.HistoryDialog.Comment" value="182"/>
+	<item key="HistoryTableProvider.SVNHistoryPage.Revision" value="306"/>
+	<item key="HistoryTableProvider.SVNHistoryPage.Date" value="234"/>
+	<item key="HistoryTableProvider.SVNHistoryPage.Author" value="187"/>
+	<item key="HistoryTableProvider.SVNHistoryPage.Comment" value="467"/>
+	<item key="ChooseUrlDialog.location.x" value="427"/>
+	<item key="ChooseUrlDialog.location.y" value="180"/>
+	<item key="ChooseUrlDialog.size.x" value="497"/>
+	<item key="ChooseUrlDialog.size.y" value="371"/>
+	<item key="SwitchDialogWithConflictHandling.multiple.location.x" value="381"/>
+	<item key="SwitchDialogWithConflictHandling.multiple.location.y" value="0"/>
+	<item key="SwitchDialogWithConflictHandling.multiple.size.x" value="604"/>
+	<item key="SwitchDialogWithConflictHandling.multiple.size.y" value="728"/>
+	<item key="UrlCombo.HIBERNATE_5.2.0" value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/PERSISTENCE"/>
+	<item key="UrlCombo.1-SIMPLESERVICE.0" value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/SOAP"/>
+	<item key="UrlCombo.1-SIMPLESERVICE.1" value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY%20PROJECTS/SOAP"/>
+	<item key="UrlCombo.JAX-RS.0" value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/REST"/>
+	<item key="UrlCombo.JMS.0" value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/JMS"/>
+	<item key="SwitchDialogWithConflictHandling.location.x" value="381"/>
+	<item key="SwitchDialogWithConflictHandling.location.y" value="0"/>
+	<item key="SwitchDialogWithConflictHandling.size.x" value="604"/>
+	<item key="SwitchDialogWithConflictHandling.size.y" value="728"/>
+	<item key="UrlCombo.JAVA_CONCEPTS.0" value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/JAVA_CONCEPTS"/>
+	<item key="UrlCombo.STRUTS.0" value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/STRUTS"/>
+	<item key="SetCommitPropertiesDialog.location.x" value="562"/>
+	<item key="SetCommitPropertiesDialog.location.y" value="198"/>
+	<item key="SetCommitPropertiesDialog.size.x" value="243"/>
+	<item key="SetCommitPropertiesDialog.size.y" value="250"/>
+	<item key="DifferencesDialog.location.x" value="303"/>
+	<item key="DifferencesDialog.location.y" value="103"/>
+	<item key="DifferencesDialog.size.x" value="760"/>
+	<item key="DifferencesDialog.size.y" value="392"/>
+	<item key="RepositorySelectionPage.lastRepository" value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/CART_APP"/>
+	<item key="DirectorySelectionPage.lastParent_file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP" value=""/>
+	<item key="DirectorySelectionPage.lastParent_file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/CART_APP" value=""/>
+	<item key="DirectorySelectionPage.lastParent_file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS" value="SOAP"/>
+	<item key="SetSvnPropertyDialog.location.x" value="421"/>
+	<item key="SetSvnPropertyDialog.location.y" value="50"/>
+	<item key="SetSvnPropertyDialog.size.x" value="525"/>
+	<item key="SetSvnPropertyDialog.size.y" value="472"/>
+	<item key="DirectorySelectionPage.lastParent_file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN%20REP/trunk/MY_PROJECTS/CART_APP_WF" value=""/>
+	<section name="CommitWizard">
+		<item key="VWeight1" value="500"/>
+		<item key="VWeight2" value="500"/>
+		<item key="ShowCompare" value="true"/>
+		<item key="HWeight1" value="350"/>
+		<item key="HWeight2" value="650"/>
+	</section>
+	<section name="NewLocationWizard">
+		<list key="ConfigurationWizardMainPage.STORE_URL_ID">
+			<item value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN REP/trunk/MY_PROJECTS/CART_APP_WF"/>
+			<item value="file:///D:/WORKSPACE/PROJECTS/REPOSITORIES/SVN REP/trunk/MY_PROJECTS"/>
+		</list>
+	</section>
+</section>

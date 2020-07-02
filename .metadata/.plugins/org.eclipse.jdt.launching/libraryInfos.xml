@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<libraryInfos>
+<libraryInfo home="C:\Program Files\Java\jre7" version="1.7.0_80">
+<bootpath>
+<entry path="C:\Program Files\Java\jre7\lib\resources.jar"/>
+<entry path="C:\Program Files\Java\jre7\lib\rt.jar"/>
+<entry path="C:\Program Files\Java\jre7\lib\sunrsasign.jar"/>
+<entry path="C:\Program Files\Java\jre7\lib\jsse.jar"/>
+<entry path="C:\Program Files\Java\jre7\lib\jce.jar"/>
+<entry path="C:\Program Files\Java\jre7\lib\charsets.jar"/>
+<entry path="C:\Program Files\Java\jre7\lib\jfr.jar"/>
+<entry path="C:\Program Files\Java\jre7\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="C:\Program Files\Java\jre7\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="C:\Program Files\Java\jre7\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk" version="1.7.0_51">
+<bootpath>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\resources.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\rt.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\sunrsasign.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\jsse.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\jce.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\charsets.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\jfr.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="D:\WORKSPACE\INSTALLATIONS\ORACLE_HOME\oracle_common\jdk\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="D:\WORKSPACE\INSTALLATIONS\JDK8" version="1.8.0_45">
+<bootpath>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\resources.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\rt.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\sunrsasign.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\jsse.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\jce.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\charsets.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\jfr.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\ext"/>
+<entry path="C:\WINDOWS\Sun\Java\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="D:\WORKSPACE\INSTALLATIONS\JDK8\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+<libraryInfo home="D:\WORKSPACE\INSTALLATIONS\JDK14" version="14.0.1"/>
+<libraryInfo home="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10" version="1.5.0_10">
+<bootpath>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\bin\jrockit\jrockit1.5.0.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\bin\jrockit\managementapi.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\bin\jrockit\jmxmapi.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\bin\jrockit\rmp.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\lib\rt.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\lib\i18n.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\lib\sunrsasign.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\lib\jsse.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\lib\jce.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\lib\charsets.jar"/>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\classes"/>
+</bootpath>
+<extensionDirs>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\lib\ext"/>
+</extensionDirs>
+<endorsedDirs>
+<entry path="D:\WORKSPACE\INSTALLATIONS\BEA\jrockit90_150_10\jre\lib\endorsed"/>
+</endorsedDirs>
+</libraryInfo>
+</libraryInfos>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<syncparticipants>
+<participant displayName="SVN (/CartApp, /CartEntities, /CartGateway, /CartGatewayClient, /CartRS, /CartServices, /CartServicesClient, /CartUtil, /CartWS, /CartWebApp, /CartWebSocket, /TestCartApp)" id="org.tigris.subversion.subclipse.participant" secondary_id="1590188797431">
+<data root="false">
+<org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS org.eclipse.team.ui.SCOPE_TYPE="ResourceScope">
+<org.eclipse.team.ui.TEAMSUBSRCIBER_REFRESHSCHEDULE org.eclipse.team.ui.CTX_REFRESHSCHEDULE_ENABLED="false" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_INTERVAL="3600" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_RUNONCE="false"/>
+<resource_scope_roots resource_scope_root_resource="/CartApp"/>
+<resource_scope_roots resource_scope_root_resource="/CartEntities"/>
+<resource_scope_roots resource_scope_root_resource="/CartGateway"/>
+<resource_scope_roots resource_scope_root_resource="/CartGatewayClient"/>
+<resource_scope_roots resource_scope_root_resource="/CartRS"/>
+<resource_scope_roots resource_scope_root_resource="/CartServices"/>
+<resource_scope_roots resource_scope_root_resource="/CartServicesClient"/>
+<resource_scope_roots resource_scope_root_resource="/CartUtil"/>
+<resource_scope_roots resource_scope_root_resource="/CartWS"/>
+<resource_scope_roots resource_scope_root_resource="/CartWebApp"/>
+<resource_scope_roots resource_scope_root_resource="/CartWebSocket"/>
+<resource_scope_roots resource_scope_root_resource="/TestCartApp"/>
+</org.eclipse.team.ui.TEAMSUBSRCIBERSETTINGS>
+</data>
+</participant>
+<participant displayName="Git (CartServices, CartServices)" id="org.eclipse.egit.ui.modelCompareParticipant" secondary_id="1588698747350">
+<data forceFetch="false" root="false">
+<org.eclipse.team.ui.MODEL_PARTICIPANT_SETTINGS org.eclipse.team.ui.MODEL_PARTICIPANT_DESCRIPTION="CartServices, CartServices" startupAction="none">
+<org.eclipse.team.ui.MODEL_PARTICIPANT_REFRESH_SCHEDULE org.eclipse.team.ui.CTX_REFRESHSCHEDULE_ENABLED="false" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_INTERVAL="3600" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_RUNONCE="false"/>
+<org.eclipse.team.ui.MODEL_PARTICIPANT_MAPPINGS modelProviderId="org.eclipse.core.resources.modelProvider">
+<mappings>
+<resources resourcePath="/CartServices" resourceType="4"/>
+</mappings>
+</org.eclipse.team.ui.MODEL_PARTICIPANT_MAPPINGS>
+</org.eclipse.team.ui.MODEL_PARTICIPANT_SETTINGS>
+</data>
+</participant>
+</syncparticipants>

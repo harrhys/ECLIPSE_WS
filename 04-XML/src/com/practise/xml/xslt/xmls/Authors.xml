@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="../xsl/Authors.xsl" type="text/xsl" ?>
+<Article>
+	<Title>My Article</Title>
+	<Authors>
+		<Author>
+			<Name>Balaji</Name>
+			<Age>70</Age>
+		</Author>
+		<Author>
+			<Name>Padmavathi</Name>
+			<Age>50</Age>
+		</Author>
+	</Authors>
+	<Body>This is my article text.</Body>
+</Article>

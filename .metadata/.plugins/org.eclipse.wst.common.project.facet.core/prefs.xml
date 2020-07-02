@@ -1,0 +1,77 @@
+<root>
+  <facet id="jpt.jpa">
+    <node name="libprov">
+      <node name="last-provider-used">
+        <attribute name="2.0" value="jpa-no-op-library-provider"/>
+        <attribute name="2.1" value="wls-system-library-provider-eclipselink-1213"/>
+        <attribute name="2.2" value="jpa-user-library-provider"/>
+      </node>
+    </node>
+    <node name="user.library.provider">
+      <node name="last.used.libraries">
+        <node name="2.1">
+          <node name="EhCache 2.4.3"/>
+          <node name="Hibernate 4.3"/>
+        </node>
+        <node name="2.2">
+          <node name="Hibernate 5.2"/>
+          <node name="Hibernate_JPA_2.2"/>
+          <node name="Hibernate_Spatial"/>
+        </node>
+      </node>
+    </node>
+  </facet>
+  <facet id="jst.jaxrs">
+    <node name="libprov">
+      <node name="last-provider-used">
+        <attribute name="1.1" value="jaxrs-no-op-library-provider"/>
+        <attribute name="2.0" value="jaxrs-user-library-provider"/>
+        <attribute name="2.1" value="jaxrs-no-op-library-provider"/>
+      </node>
+    </node>
+    <node name="user.library.provider">
+      <node name="last.used.libraries">
+        <node name="1.1">
+          <node name="Jersey 1.9"/>
+        </node>
+        <node name="2.0">
+          <node name="Jersey 1.9"/>
+        </node>
+        <node name="2.1">
+          <node name="Jersey 1.9"/>
+        </node>
+      </node>
+    </node>
+  </facet>
+  <facet id="jpt.jaxb">
+    <node name="libprov">
+      <node name="last-provider-used">
+        <attribute name="2.2" value="runtime-library-provider"/>
+      </node>
+    </node>
+  </facet>
+  <facet id="oracle.coherence">
+    <node name="libprov">
+      <node name="last-provider-used">
+        <attribute name="12.2.1" value="runtime-library-provider"/>
+      </node>
+    </node>
+  </facet>
+  <facet id="jst.jstl">
+    <node name="libprov">
+      <node name="last-provider-used">
+        <attribute name="1.1" value="runtime-library-provider"/>
+        <attribute name="1.2" value="jstl-no-op-library-provider"/>
+      </node>
+    </node>
+  </facet>
+  <facet id="jst.jsf">
+    <node name="libprov">
+      <node name="last-provider-used">
+        <attribute name="2.0" value="jsf-no-op-library-provider"/>
+        <attribute name="2.2" value="jsf-no-op-library-provider"/>
+        <attribute name="2.3" value="jsf-no-op-library-provider"/>
+      </node>
+    </node>
+  </facet>
+</root>

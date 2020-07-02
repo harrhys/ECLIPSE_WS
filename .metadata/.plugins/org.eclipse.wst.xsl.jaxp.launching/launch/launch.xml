@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<Pipeline source="" target="" useEmbedded="false">
+<Attributes/>
+<Transforms>
+<Transform uriResolver="" url="file:/D:/WORKSPACE/PROJECTS/ECLIPSE%20WS/PREP2020/JAVA_CONCEPTS/src/com/practise/xml/xslt/xsl/NodeTypeFinder.xsl">
+<OutputProperties/>
+<Parameters/>
+</Transform>
+</Transforms>
+</Pipeline>

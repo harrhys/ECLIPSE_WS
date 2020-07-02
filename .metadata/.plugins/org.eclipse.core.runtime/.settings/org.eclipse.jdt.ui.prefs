@@ -1,0 +1,32 @@
+content_assist_lru_history=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><history maxLHS\="100" maxRHS\="10"><lhs name\="java.lang.Readable"><rhs name\="java.io.InputStreamReader"/></lhs><lhs name\="java.io.Closeable"><rhs name\="java.io.InputStreamReader"/><rhs name\="java.io.ObjectOutputStream"/></lhs><lhs name\="java.lang.AutoCloseable"><rhs name\="java.io.InputStreamReader"/><rhs name\="java.io.ObjectOutputStream"/></lhs><lhs name\="java.io.Reader"><rhs name\="java.io.InputStreamReader"/></lhs><lhs name\="java.util.Vector"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.util.List"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.util.RandomAccess"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.lang.Cloneable"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.util.Collection"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.lang.Iterable"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.util.AbstractList"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.util.AbstractCollection"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.util.Stack"><rhs name\="java.util.Stack"/></lhs><lhs name\="java.lang.Enum"><rhs name\="com.farbig.cart.persistence.TxnMgmtType"/><rhs name\="com.farbig.cart.entity.AddressType"/></lhs><lhs name\="com.farbig.cart.persistence.TxnMgmtType"><rhs name\="com.farbig.cart.persistence.TxnMgmtType"/></lhs><lhs name\="java.lang.CharSequence"><rhs name\="java.lang.StringBuffer"/><rhs name\="java.lang.StringBuilder"/><rhs name\="java.lang.String"/></lhs><lhs name\="java.lang.AbstractStringBuilder"><rhs name\="java.lang.StringBuffer"/><rhs name\="java.lang.StringBuilder"/></lhs><lhs name\="java.lang.Appendable"><rhs name\="java.lang.StringBuffer"/><rhs name\="java.lang.StringBuilder"/></lhs><lhs name\="javax.ws.rs.core.Response$StatusType"><rhs name\="javax.ws.rs.core.Response$Status"/></lhs><lhs name\="com.farbig.services.rest.util.RestClientUtil"><rhs name\="com.farbig.services.rest.util.RestClientUtil"/></lhs><lhs name\="com.farbig.rs.services.transferobjects.Student"><rhs name\="com.farbig.rs.services.transferobjects.Student"/></lhs><lhs name\="com.practise.proxy.ServiceInteface"><rhs name\="com.practise.proxy.ServiceImpl"/></lhs><lhs name\="com.practise.proxy.ServiceImpl"><rhs name\="com.practise.proxy.ServiceImpl"/></lhs><lhs name\="com.test.menu.XMLProcessor"><rhs name\="com.test.menu.XMLProcessor"/></lhs><lhs name\="com.practise.xml.dom.DOMParser"><rhs name\="com.practise.xml.dom.DOMParser"/></lhs><lhs name\="com.practise.xml.schema.ObjectFactory"><rhs name\="com.practise.xml.schema.ObjectFactory"/></lhs><lhs name\="com.farbig.cart.entity.AddressType"><rhs name\="com.farbig.cart.entity.AddressType"/></lhs><lhs name\="java.util.Random"><rhs name\="java.util.Random"/></lhs><lhs name\="com.farbig.cart.entity.CartEntity"><rhs name\="com.farbig.cart.entity.ProductCategory"/></lhs><lhs name\="com.farbig.cart.entity.ProductCategory"><rhs name\="com.farbig.cart.entity.ProductCategory"/></lhs><lhs name\="com.practise.lambdas.AggregateOperations"><rhs name\="com.practise.lambdas.AggregateOperations"/></lhs><lhs name\="java.io.ObjectOutput"><rhs name\="java.io.ObjectOutputStream"/></lhs><lhs name\="java.io.DataOutput"><rhs name\="java.io.ObjectOutputStream"/></lhs><lhs name\="java.io.ObjectStreamConstants"><rhs name\="java.io.ObjectOutputStream"/></lhs><lhs name\="java.io.OutputStream"><rhs name\="java.io.ObjectOutputStream"/></lhs><lhs name\="java.io.Flushable"><rhs name\="java.io.ObjectOutputStream"/></lhs><lhs name\="java.io.ObjectOutputStream"><rhs name\="java.io.ObjectOutputStream"/></lhs><lhs name\="com.farbig.practice.dsa.algorithms.patternsearching.AhoCorasick"><rhs name\="com.farbig.practice.dsa.algorithms.patternsearching.AhoCorasick"/></lhs></history>
+content_assist_number_of_computers=21
+content_assist_proposals_background=255,255,255
+content_assist_proposals_foreground=0,0,0
+eclipse.preferences.version=1
+fontPropagated=true
+org.eclipse.jdt.internal.ui.navigator.layout=2
+org.eclipse.jdt.internal.ui.navigator.librariesnode=true
+org.eclipse.jdt.ui.editor.tab.width=
+org.eclipse.jdt.ui.formatterprofiles.version=19
+org.eclipse.jdt.ui.javadoclocations.migrated=true
+org.eclipse.jdt.ui.text.code_templates_migrated=true
+org.eclipse.jdt.ui.text.custom_code_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates/>
+org.eclipse.jdt.ui.text.custom_templates=<?xml version\="1.0" encoding\="UTF-8" standalone\="no"?><templates><template autoinsert\="true" context\="java-statements" deleted\="false" description\="print to standard out" enabled\="true" name\="sop">System.out.println(${word_selection}${});${cursor}</template></templates>
+org.eclipse.jdt.ui.text.templates_migrated=true
+org.eclipse.jface.textfont=1|Courier New|10.0|0|WINDOWS|1|0|0|0|0|0|0|0|0|1|0|0|0|0|Courier New;
+proposalOrderMigrated=true
+sourceHoverBackgroundColor=255,255,225
+spelling_ignore_ampersand_in_properties=true
+spelling_ignore_digits=true
+spelling_ignore_java_strings=true
+spelling_ignore_mixed=true
+spelling_ignore_non_letters=true
+spelling_ignore_sentence=true
+spelling_ignore_single_letters=true
+spelling_ignore_upper=true
+spelling_ignore_urls=true
+spelling_locale_initialized=true
+spelling_user_dictionary_encoding=
+tabWidthPropagated=true
+useAnnotationsPrefPage=true
+useQuickDiffPrefPage=true

@@ -1,0 +1,17 @@
+1589240325550	Move compilation unit
+1589240330249	Move compilation unit
+1589240335151	Delete element
+1589240376293	Rename type 'ProductServicesPublisher'
+1589258576305	Move compilation units
+1589258595869	Move compilation unit
+1589258732046	Rename package 'com.farbig.services'
+1589258750576	Rename package 'com.farbig.services.client'
+1589258758074	Delete element
+1589259528233	Rename type 'ProductDIIClient'
+1589259549946	Rename type 'DynamicPrxoyClient'
+1589271656397	Rename type 'Calculator'
+1589271684876	Rename type 'CalculatorImpl'
+1589271778091	Rename method 'add'
+1589272572731	Copy compilation unit
+1589272593195	Rename type 'ServicePublisher'
+1589281060213	Copy package
