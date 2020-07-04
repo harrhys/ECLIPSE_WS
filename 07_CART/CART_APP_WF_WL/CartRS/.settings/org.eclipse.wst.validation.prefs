@@ -2,6 +2,7 @@ DELEGATES_PREFERENCE=delegateValidatorList
 USER_BUILD_PREFERENCE=enabledBuildValidatorList
 USER_MANUAL_PREFERENCE=enabledManualValidatorList
 USER_PREFERENCE=overrideGlobalPreferencesfalse
+disabled=05build
 eclipse.preferences.version=1
 override=true
 suspend=false

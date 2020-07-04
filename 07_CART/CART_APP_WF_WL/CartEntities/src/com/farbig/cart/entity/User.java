@@ -42,9 +42,9 @@ public class User extends CartEntity implements Serializable {
 	@SequenceGenerator(name = "user_id", sequenceName = "user_id", allocationSize = 1)
 	private int id;
 	
-	@Column(name = "USER_TYPE")
-	private String userType;
-	
+	/*
+	 * @Column(name = "USER_TYPE") private String userType;
+	 */
 	@Column(name = "NAME")
 	private String name;
 
@@ -87,13 +87,11 @@ public class User extends CartEntity implements Serializable {
 		this.id = id;
 	}
 	
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
-	}
+	/*
+	 * public String getUserType() { return userType; }
+	 * 
+	 * public void setUserType(String userType) { this.userType = userType; }
+	 */
 
 	public String getName() {
 		return name;

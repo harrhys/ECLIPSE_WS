@@ -1,5 +1,6 @@
 package com.farbig.ws.handlers;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Set;
 
@@ -9,8 +10,6 @@ import javax.xml.soap.SOAPMessage;
 import javax.xml.ws.handler.MessageContext;
 import javax.xml.ws.handler.soap.SOAPHandler;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
-
-import org.apache.commons.io.output.ByteArrayOutputStream;
 
 public class LoggingHandler implements SOAPHandler<SOAPMessageContext> {
 

@@ -11,7 +11,7 @@ import com.farbig.ws.objects.Product;
 import com.farbig.ws.objects.Store;
 
 @WebService(portName = "StoreServicePort", serviceName = "StoreServices", targetNamespace = "http://localhost:7001/Services/StoreServices")
-@HandlerChain(file = "/com/farbig/ws/handlers/handler-chain.xml")
+//@HandlerChain(file = "com/farbig/ws/handlers/handler-chain.xml")
 @SOAPBinding(style = Style.DOCUMENT, use = Use.LITERAL, parameterStyle = ParameterStyle.BARE)
 public class StoreServiceImpl {
 
