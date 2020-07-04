@@ -1,0 +1,1 @@
+package com.farbig.examples.jsf.ee8;import javax.enterprise.context.RequestScoped;import javax.inject.Named;import java.time.ZonedDateTime;@Named("zonedDateTimeBean")@RequestScopedpublic class ZonedDateTimeBean {  public ZonedDateTime getZonedDateTime() {    return ZonedDateTime.now();  }}

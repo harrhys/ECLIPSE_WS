@@ -2,7 +2,7 @@
 <section name="Workbench">
 	<item key="filters_last_used" value="filter_imports;"/>
 	<item key="CallHierarchyViewPart.ratio3" value="500"/>
-	<item key="org.eclipse.jdt.ui.lastextjar" value="D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\JSF"/>
+	<item key="org.eclipse.jdt.ui.lastextjar" value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX-WS\JAXWS_WebClient\WebContent\WEB-INF\lib"/>
 	<item key="CallHierarchyViewPart.ratio1" value="500"/>
 	<item key="CallHierarchyViewPart.orientation" value="3"/>
 	<item key="SearchScopeActionGroup.search_scope_type" value="1"/>
@@ -34,7 +34,7 @@
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="BuildPathsPropertyPage">
-		<item key="pageIndex" value="2"/>
+		<item key="pageIndex" value="3"/>
 	</section>
 	<section name="RefactoringWizard.preview">
 		<item key="height" value="285"/>
@@ -48,7 +48,7 @@
 	<section name="quick_assist_proposal_size">
 	</section>
 	<section name="ClasspathContainerSelectionPage">
-		<item key="index" value="16"/>
+		<item key="index" value="8"/>
 	</section>
 	<section name="JavaBuildConfigurationBlock">
 		<item key="expanded2" value="false"/>

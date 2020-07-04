@@ -2,6 +2,8 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07_CART\CART_APP_WF_WL"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07_CART\CART_APP"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\WebLogicMavenPlugin"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\MAVEN\mavenproject"/>
 			<item value="D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\SPRING\spring-framework-master"/>
@@ -29,6 +31,7 @@
 	</section>
 	<section name="MavenProjectWizardLocationPage">
 		<list key="location">
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\05-BUILD\MAVEN"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\MAVEN\mavenWeb"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -41,7 +44,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
-		<item key="catalog" value="internal"/>
+		<item key="catalog" value="All Catalogs"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -53,13 +56,13 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
-			<item value="com.farbig.mavenWeb"/>
+			<item value="com.farbig.cart.CartApp"/>
 		</list>
 		<list key="groupId">
-			<item value="com.farbig"/>
+			<item value="com.farbig.cart"/>
 		</list>
 		<list key="artifactId">
-			<item value="mavenWeb"/>
+			<item value="CartApp"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -110,6 +113,39 @@
 		<item key="width" value="480"/>
 		<item key="height" value="450"/>
 		<item key="x" value="443"/>
+		<item key="y" value="64"/>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.preferences.LocalArchetypeCatalogDialog">
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.wizards.MavenProjectSelectionDialog">
+		<item key="width" value="480"/>
+		<item key="height" value="475"/>
+		<item key="x" value="443"/>
+		<item key="y" value="64"/>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
+		<item key="width" value="480"/>
+		<item key="height" value="531"/>
+		<item key="x" value="443"/>
+		<item key="y" value="12"/>
+	</section>
+	<section name="MavenModuleWizardParentPage">
+		<list key="moduleName">
+			<item value="CartEntities"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.editor.dialogs.ManageDependenciesDialog">
+		<item key="width" value="613"/>
+		<item key="height" value="450"/>
+		<item key="x" value="377"/>
 		<item key="y" value="64"/>
 	</section>
 </section>

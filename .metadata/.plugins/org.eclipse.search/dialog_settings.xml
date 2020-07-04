@@ -43,7 +43,7 @@
 		<item key="org.eclipse.search.resultpage.limit" value="1000"/>
 	</section>
 	<section name="SearchDialog">
-		<item key="PREVIOUS_PAGE" value="org.eclipse.jdt.ui.JavaSearchPage"/>
+		<item key="PREVIOUS_PAGE" value="org.eclipse.pde.internal.ui.search.SearchPage"/>
 	</section>
 	<section name="TextSearchPage">
 		<item key="CASE_SENSITIVE" value="false"/>

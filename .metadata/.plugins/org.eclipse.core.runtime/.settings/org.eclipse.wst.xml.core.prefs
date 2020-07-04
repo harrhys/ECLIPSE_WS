@@ -1,4 +1,6 @@
 attributeHasNoValue=2
+cleanupEOLCode=EOL_Windows
+convertEOLCodes=true
 eclipse.preferences.version=1
 endTagWithAttributes=2
 honourAllSchemaLocations=true

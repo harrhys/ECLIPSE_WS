@@ -9,9 +9,11 @@
 	<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	<item key="CommitDialog.showUntracked" value="true"/>
 	<list key="CommitDialog.authorValues">
+		<item value="Harrhy Saladagu &lt;harrhys@gmail.com&gt;"/>
 		<item value="harrhys &lt;harrhys@gmail.com&gt;"/>
 	</list>
 	<list key="CommitDialog.committerValues">
+		<item value="Harrhy Saladagu &lt;harrhys@gmail.com&gt;"/>
 		<item value="harrhys &lt;harrhys@gmail.com&gt;"/>
 	</list>
 	<list key="RepositorySelectionPage.UsedUris">
@@ -31,6 +33,15 @@
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
 	</section>
 	<section name="GitCommitMessageComponent">
+		<list key="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\.git">
+			<item value="false"/>
+			<item value="Harrhy Saladagu &lt;harrhys@gmail.com&gt;"/>
+			<item value="Converted to Maven Projects and created a Maven Root Project CartApp"/>
+			<item value="Harrhy Saladagu &lt;harrhys@gmail.com&gt;"/>
+			<item value="f4f39b9afd0088d3dc50fb72c773182da5bcc02d"/>
+			<item value="0"/>
+			<item value="false"/>
+		</list>
 	</section>
 	<section name="org.eclipse.egit.ui.COMMIT_DIALOG_SECTION">
 		<item key="DIALOG_WIDTH" value="642"/>
@@ -59,5 +70,21 @@
 		<item key="DIALOG_HEIGHT" value="484"/>
 		<item key="DIALOG_X_ORIGIN" value="422"/>
 		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.staging.StagingView">
+		<item key="HORIZONTAL_SASH_FORM_WEIGHT" value="763,233"/>
+		<item key="STAGING_SASH_FORM_WEIGHT" value="200,200"/>
+		<item key="sortItemState" value="false"/>
+	</section>
+	<section name="org.eclipse.egit.ui.internal.push.PushResultDialog.dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="358"/>
+		<item key="DIALOG_Y_ORIGIN" value="67"/>
+		<item key="DIALOG_WIDTH" value="666"/>
+		<item key="DIALOG_HEIGHT" value="458"/>
+		<item key="DIALOG_FONT_NAME" value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI"/>
+		<list key="sashWeights">
+			<item value="600"/>
+			<item value="400"/>
+		</list>
 	</section>
 </section>

@@ -3,16 +3,13 @@
     <node name="libprov">
       <node name="last-provider-used">
         <attribute name="2.0" value="jpa-no-op-library-provider"/>
-        <attribute name="2.1" value="wls-system-library-provider-eclipselink-1213"/>
+        <attribute name="2.1" value="jpa-user-library-provider"/>
         <attribute name="2.2" value="jpa-user-library-provider"/>
       </node>
     </node>
     <node name="user.library.provider">
       <node name="last.used.libraries">
-        <node name="2.1">
-          <node name="EhCache 2.4.3"/>
-          <node name="Hibernate 4.3"/>
-        </node>
+        <node name="2.1"/>
         <node name="2.2">
           <node name="Hibernate 5.2"/>
           <node name="Hibernate_JPA_2.2"/>

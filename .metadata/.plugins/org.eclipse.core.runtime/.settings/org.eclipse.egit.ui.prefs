@@ -1,4 +1,5 @@
-commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>CREATED REPOSITORY FOR CART APP ON 04TH MAY 2020 WITH END TO END&\#x0A;FUNCTIONALITY WORKING FOR USER CREATION</message>\r\n</messages>
+commit_dialog_history_messages=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<messages>\r\n<message>Converted to Maven Projects and created a Maven Root Project CartApp</message>\r\n<message>CREATED REPOSITORY FOR CART APP ON 04TH MAY 2020 WITH END TO END&\#x0A;FUNCTIONALITY WORKING FOR USER CREATION</message>\r\n</messages>
 eclipse.preferences.version=1
+repositories_view_filters=<?xml version\="1.0" encoding\="UTF-8"?>\r\n<FilterCache/>
 resourcehistory_graph_split=500,500
 resourcehistory_rev_split=700,300

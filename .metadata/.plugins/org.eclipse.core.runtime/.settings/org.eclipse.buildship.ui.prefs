@@ -1,13 +1,13 @@
 eclipse.preferences.version=1
 executionsView.headerDurationColumnWidth=193
 executionsView.headerNameColumnWidth=478
-tasksView.flattenProjectHierarchy=false
+tasksView.flattenProjectHierarchy=true
 tasksView.groupTasks=true
 tasksView.headerDescriptionColumnWidth=400
 tasksView.headerNameColumnWidth=200
-tasksView.linkToSelection=false
-tasksView.privateTasksVisible=false
-tasksView.projectTasksVisible=false
+tasksView.linkToSelection=true
+tasksView.privateTasksVisible=true
+tasksView.projectTasksVisible=true
 tasksView.sortByType=true
 tasksView.sortByVisibility=true
 tasksView.taskSelectorsVisible=true

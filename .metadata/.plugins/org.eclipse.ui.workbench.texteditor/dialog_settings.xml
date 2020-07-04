@@ -13,23 +13,23 @@
 		<item key="isRegEx" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="wholeword" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="gatewaycmt#com.farbig.cart.services.gateway.GatewayCMTRemote"/>
 		<list key="findhistory">
+			<item value="gatewaycmt#com.farbig.cart.services.gateway.GatewayCMTRemote"/>
+			<item value="ejb"/>
+			<item value="plex"/>
+			<item value="jdbc"/>
+			<item value="../"/>
+			<item value="ear"/>
+			<item value="war"/>
+			<item value="webapp"/>
+			<item value="compile"/>
 			<item value="HibernateCacheManager$"/>
 			<item value="$"/>
 			<item value="q"/>
 			<item value="memset"/>
 			<item value="front"/>
 			<item value="node"/>
-			<item value="LIBRARY_NAME_NONE"/>
-			<item value="LIBRARY_NONE"/>
-			<item value="initialize"/>
-			<item value="initialise"/>
-			<item value="OSGI framework not found"/>
-			<item value="E-&gt;B-&gt;D-&gt;A"/>
-			<item value="E-&gt;A :"/>
-			<item value=" E-&gt;A :"/>
-			<item value="E-&gt;B-&gt;D-&gt;A : 26"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>
