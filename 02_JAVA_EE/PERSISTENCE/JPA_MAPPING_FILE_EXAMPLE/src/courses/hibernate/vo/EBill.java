@@ -240,7 +240,6 @@ public class EBill implements Comparable<EBill> {
 	/**
 	 * @see java.util.Comparator#compare(Object)
 	 */
-	@Override
 	public int compareTo(EBill ebillToCompare) {
 		return (this.dueDate.compareTo(ebillToCompare.getDueDate()));
 	}

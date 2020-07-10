@@ -34,7 +34,7 @@
 			<property name="hibernate.connection.user" value="postgres" />
 			<property name="hibernate.connection.password" value="postgres" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
-			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.hbm2ddl.auto" value="drop-and-create" />
 			<property name="hibernate.search.autoregister_listeners"
 				value="false" />
 			<property name="hibernate.jdbc.batch_size" value="200" />

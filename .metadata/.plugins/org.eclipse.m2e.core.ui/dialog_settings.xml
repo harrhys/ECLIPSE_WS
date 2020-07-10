@@ -2,11 +2,21 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX_RS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX_WS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\AXIS_WS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX-WS\JAX_WS_APP"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEB\WEBSOCKET\WEBSOCKET_PRACTICE"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEB\SERVLETS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEB\WEBSOCKET"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JERSEY-RS\JERSEY_RS_IMPL"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX-RS\JAX_RS_TEST"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07-CART"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07_CART\CART_APP_WF_WL"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07_CART\CART_APP"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\WebLogicMavenPlugin"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\MAVEN\mavenproject"/>
-			<item value="D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\SPRING\spring-framework-master"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -119,9 +129,9 @@
 	</section>
 	<section name="org.eclipse.m2e.core.ui.internal.wizards.MavenProjectSelectionDialog">
 		<item key="width" value="480"/>
-		<item key="height" value="475"/>
-		<item key="x" value="443"/>
-		<item key="y" value="64"/>
+		<item key="height" value="728"/>
+		<item key="x" value="602"/>
+		<item key="y" value="0"/>
 	</section>
 	<section name="org.eclipse.m2e.core.ui.internal.dialogs.MavenRepositorySearchDialog">
 		<item key="width" value="480"/>
@@ -147,5 +157,22 @@
 		<item key="height" value="450"/>
 		<item key="x" value="377"/>
 		<item key="y" value="64"/>
+	</section>
+	<section name="wizardPage">
+		<list key="groupId">
+			<item value="S"/>
+			<item value="JAAS"/>
+			<item value="j"/>
+		</list>
+		<list key="name">
+			<item value="JAAS"/>
+		</list>
+		<list key="artifactId">
+			<item value="JAAS"/>
+			<item value="JAX_WS_APP"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
 	</section>
 </section>

@@ -1,1 +1,0 @@
-package com.farbig.examples.jsf.ee8;import javax.enterprise.context.RequestScoped;import javax.inject.Named;import java.time.LocalDate;@Named("localDateBean")@RequestScopedpublic class LocalDateBean {  public LocalDate getLocalDate() {    return LocalDate.now();  }}

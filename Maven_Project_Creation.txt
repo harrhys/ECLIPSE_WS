@@ -1,0 +1,5 @@
+mvn archetype:generate -DarchetypeCatalog=local -DarchetypeArtifactId=farbig-archetype-root -DarchetypeGroupId=com.farbig.archetype -DarchetypeVersion=1.0
+mvn archetype:generate -DarchetypeCatalog=local -DarchetypeArtifactId=farbig-archetype-java -DarchetypeGroupId=com.farbig.archetype -DarchetypeVersion=1.0
+mvn archetype:generate -DarchetypeCatalog=local -DarchetypeArtifactId=farbig-archetype-ejb-DarchetypeGroupId=com.farbig.archetype -DarchetypeVersion=1.0
+mvn archetype:generate -DarchetypeCatalog=local -DarchetypeArtifactId=farbig-archetype-web-DarchetypeGroupId=com.farbig.archetype -DarchetypeVersion=1.0
+mvn archetype:generate -DarchetypeCatalog=local -DarchetypeArtifactId=farbig-archetype-ear-DarchetypeGroupId=com.farbig.archetype -DarchetypeVersion=1.0

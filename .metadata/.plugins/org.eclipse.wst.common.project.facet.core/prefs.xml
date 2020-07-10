@@ -2,6 +2,7 @@
   <facet id="jpt.jpa">
     <node name="libprov">
       <node name="last-provider-used">
+        <attribute name="1.0" value="jpa-no-op-library-provider"/>
         <attribute name="2.0" value="jpa-no-op-library-provider"/>
         <attribute name="2.1" value="jpa-user-library-provider"/>
         <attribute name="2.2" value="jpa-user-library-provider"/>
@@ -66,6 +67,7 @@
     <node name="libprov">
       <node name="last-provider-used">
         <attribute name="2.0" value="jsf-no-op-library-provider"/>
+        <attribute name="2.1" value="jsf-no-op-library-provider"/>
         <attribute name="2.2" value="jsf-no-op-library-provider"/>
         <attribute name="2.3" value="jsf-no-op-library-provider"/>
       </node>

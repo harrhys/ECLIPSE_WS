@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>WEBLOGIC</artifactId>
+	<name>WEBLOGIC</name>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>com.farbig.servers</groupId>
+		<artifactId>SERVERS</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.oracle.weblogic</groupId>
+				<artifactId>weblogic-maven-plugin</artifactId>
+				<version>14.1.1-0-0</version>
+				<configuration>
+					<domainHome>D:\WORKSPACE\PROJECTS\WL_DOMAINS\cart_app_14_1.1</domainHome>
+					<adminurl>t3://localhost:7001</adminurl>
+					<user>weblogic</user>
+					<password>welcome1</password>
+				</configuration>
+				<executions>
+					<!-- Available goals for this plugin : goals stop, start, undeploy, 
+						appc, clientgen9, listapps, help, wsdlgen, redeploy, jws c, servicegen, deploy -->
+					<execution>
+						<id>start</id>
+						<phase>pre-integration-test</phase>
+						<goals>
+							<goal>start-server</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>stop-server</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+
+		</plugins>
+	</build>
+
+</project>

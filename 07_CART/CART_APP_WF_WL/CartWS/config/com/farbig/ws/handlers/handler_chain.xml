@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<handler-chains>
-	<handler-chain>
-		<handler>
-			<handler-class>com.farbig.ws.handlers.LoggingHandler</handler-class>
-		</handler>
-	</handler-chain>
-</handler-chains>

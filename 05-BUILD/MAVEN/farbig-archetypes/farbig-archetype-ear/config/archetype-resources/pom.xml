@@ -1,0 +1,76 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>${groupId}</groupId>
+	<artifactId>${artifactId}</artifactId>
+	<name>${artifactId}</name>
+	<version>${version}</version>
+	<packaging>ear</packaging>
+	
+	<build>
+		
+		<directory>build</directory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		
+		<plugins>
+			
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-ear-plugin</artifactId>
+				<version>${maven-ear-plugin-version}</version>
+				<configuration>
+					<version>6</version>
+					<defaultLibBundleDir>lib</defaultLibBundleDir>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+		
+			<!-- This plugin will deploy this ear file to the locally running wildfly server -->
+			<plugin>
+				<groupId>org.wildfly.plugins</groupId>
+				<artifactId>wildfly-maven-plugin</artifactId>
+				<version>2.0.1.Final</version>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+			<!-- This plugin will deploy this ear file to the locally running weblogic server -->
+			<plugin>
+				<groupId>com.oracle.weblogic</groupId>
+				<artifactId>weblogic-maven-plugin</artifactId>
+				<version>${weblogic-version}</version>
+				<configuration>
+					<adminurl>${weblogic-adminurl}</adminurl>
+					<user>${weblogic-user}</user>
+					<password>${weblogic-password}</password>
+					<upload>true</upload>
+					<remote>false</remote>
+					<verbose>true</verbose>
+					<source>${project.artifactId}/build/${project.artifactId}-${project.version}.ear</source>
+					<name>${project.build.finalName}</name>
+				</configuration>
+				<executions>
+					<execution>
+						<phase>install</phase>
+						<goals>
+							<goal>deploy</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			
+		</plugins>
+	</build>
+</project>

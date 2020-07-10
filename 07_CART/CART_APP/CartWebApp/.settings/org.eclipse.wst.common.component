@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="CartWebApp">
-        <wb-resource deploy-path="/" source-path="/cart" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/" source-path="/cart/WEB-INF/classes"/>
-        <property name="java-output-path" value="/CartWebApp/build/classes"/>
-        <property name="context-root" value="cart"/>
-    </wb-module>
-</project-modules>

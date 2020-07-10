@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>HIBERNATE</artifactId>
+	<name>HIBERNATE</name>
+	<packaging>pom</packaging>
+
+	<parent>
+		<groupId>com.farbig.practice</groupId>
+		<artifactId>03-FRAMEWORKS</artifactId>
+		<version>1.0</version>
+	</parent>
+
+	<modules>
+		<module>HIBERNATE_4.3</module>
+		<module>HIBERNATE_5.4</module>
+		<module>HIBERNATE_6.0</module>
+		<module>MY_HIBERNATE</module>
+	</modules>
+
+</project>

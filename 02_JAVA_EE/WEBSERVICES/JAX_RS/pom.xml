@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>JAX_RS</artifactId>
+	<name>JAX_RS</name>
+	<packaging>pom</packaging>
+
+	<parent>
+		<artifactId>WEBSERVICES</artifactId>
+		<groupId>com.farbig.practice</groupId>
+		<version>1.0</version>
+	</parent>
+
+	<modules>
+		<module>JAX_RS_DEMO</module>
+		<module>JAX_RS_UTIL</module>
+		<module>JAX_RS_PRACTICE</module>
+		<module>JAX_RS_SERVICES</module>
+		<module>JAX_RS_CLIENT</module>
+	</modules>
+</project>

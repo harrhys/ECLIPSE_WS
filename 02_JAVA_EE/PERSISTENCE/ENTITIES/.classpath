@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/WORKSPACE/INSTALLATIONS/ORACLE_HOME/oracle_common/modules/javax.persistence_2.1.jar"/>
-	<classpathentry kind="output" path="bin"/>
-</classpath>

@@ -1,0 +1,220 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.farbig.cart</groupId>
+	<artifactId>CartAppPOM</artifactId>
+	<name>07-CART</name>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>8.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.13</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.struts</groupId>
+				<artifactId>struts2-core</artifactId>
+				<version>2.3.24.1</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>4.3.11.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-entitymanager</artifactId>
+				<version>4.3.11.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.postgresql.jdbc</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>9.4-1204.jdbc4</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<directory>build</directory>
+		<finalName>${project.artifactId}</finalName>
+		<sourceDirectory>src</sourceDirectory>
+		<outputDirectory>build/classes</outputDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+		<testOutputDirectory>build/testclasses</testOutputDirectory>
+		<scriptSourceDirectory>scripts</scriptSourceDirectory>
+		<resources>
+			<resource>
+				<directory>config</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>testconfig</directory>
+			</testResource>
+		</testResources>
+
+		<pluginManagement>
+			<plugins>
+				<!-- This plugin will package the project into a jar -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.2.0</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<!-- This will add classpath in the manifest file -->
+								<addClasspath>true</addClasspath>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+				<!-- This plugin will package the project into a ejb jar file -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ejb-plugin</artifactId>
+					<version>2.3</version>
+					<configuration>
+						<ejbVersion>3.1</ejbVersion>
+					</configuration>
+				</plugin>
+				<!-- This plugin will package the project into a war file -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.3.0</version>
+					<executions>
+						<execution>
+							<id>default-war</id>
+							<phase>package</phase>
+							<goals>
+								<goal>war</goal>
+							</goals>
+							<configuration>
+								<webappDirectory>webapp</webappDirectory>
+								<failOnMissingWebXml>false</failOnMissingWebXml>
+								<warSourceDirectory>webapp</warSourceDirectory>
+								<!-- <warSourceIncludes>*.*</warSourceIncludes> -->
+								<resources>
+									<resource>
+										<directory>config</directory>
+									</resource>
+								</resources>
+								<archive>
+									<manifest>
+										<!-- This will add classpath in the manifest file -->
+										<addClasspath>true</addClasspath>
+									</manifest>
+								</archive>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- This plugin will package the project into a ear file -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-ear-plugin</artifactId>
+					<version>2.7</version>
+
+					<configuration>
+						<version>6</version>
+						<defaultLibBundleDir>lib</defaultLibBundleDir>
+						<archive>
+							<manifest>
+								<addClasspath>true</addClasspath>
+							</manifest>
+						</archive>
+
+					</configuration>
+				</plugin>
+				<!-- This plugin will deploy the war file in the wildfly server -->
+				<plugin>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-maven-plugin</artifactId>
+					<version>2.0.1.Final</version>
+					<configuration>
+						<server-config>standalone-full.xml</server-config>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- This plugin will deploy the war file in the weblogic server -->
+				<plugin>
+					<groupId>com.oracle.weblogic</groupId>
+					<artifactId>weblogic-maven-plugin</artifactId>
+					<version>14.1.1-0-0</version>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+							<configuration>
+								<adminurl>t3://localhost:7001</adminurl>
+								<user>weblogic</user>
+								<password>welcome1</password>
+								<upload>true</upload>
+								<remote>false</remote>
+								<verbose>true</verbose>
+								<source>${project.build.directory}\${project.artifactId}.ear</source>
+								<name>${project.build.finalName}</name>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<modules>
+		<module>CartEntities</module>
+		<module>CartGateway</module>
+		<module>CartGatewayClient</module>
+		<module>CartPersistenceWF</module>
+		<module>CartPersistenceWL</module>
+		<module>CartRS</module>
+		<module>CartServices</module>
+		<module>CartServicesClient</module>
+		<module>CartUtil</module>
+		<module>CartWS</module>
+		<module>CartWebApp</module>
+		<module>CartAppWF</module>
+		<module>CartAppWL</module>
+	</modules>
+
+</project>

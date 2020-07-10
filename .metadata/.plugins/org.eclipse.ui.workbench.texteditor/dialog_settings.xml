@@ -13,8 +13,9 @@
 		<item key="isRegEx" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="wholeword" value="false"/>
-		<item key="selection" value="gatewaycmt#com.farbig.cart.services.gateway.GatewayCMTRemote"/>
+		<item key="selection" value=""/>
 		<list key="findhistory">
+			<item value="javaee:"/>
 			<item value="gatewaycmt#com.farbig.cart.services.gateway.GatewayCMTRemote"/>
 			<item value="ejb"/>
 			<item value="plex"/>
@@ -29,7 +30,6 @@
 			<item value="q"/>
 			<item value="memset"/>
 			<item value="front"/>
-			<item value="node"/>
 		</list>
 		<list key="replacehistory">
 			<item value=""/>

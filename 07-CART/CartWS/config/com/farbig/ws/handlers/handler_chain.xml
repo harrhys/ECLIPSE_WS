@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<handler-chains
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<handler-chain>
+		<handler>
+			<handler-class>com.farbig.ws.handlers.LoggingHandler</handler-class>
+		</handler>
+	</handler-chain>
+</handler-chains>

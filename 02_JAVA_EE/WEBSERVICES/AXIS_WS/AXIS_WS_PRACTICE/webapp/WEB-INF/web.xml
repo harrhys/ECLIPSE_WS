@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	version="4.0">
+
+	<servlet>
+		<description>JAX-WS endpoint - EmpWS</description>
+		<display-name>EmpWS</display-name>
+		<servlet-name>EmpWS</servlet-name>
+		<servlet-class>com.sun.xml.ws.transport.http.servlet.WSServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/RPCEmpServices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/DocEmpServices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/ServiceImplPort</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/HelloServiceImplPort</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/DocHelloServices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/RPCHelloServices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/DocHelloPort</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/RPCEMPServices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/DocEMPServices</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/HelloServicePort</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>EmpWS</servlet-name>
+		<url-pattern>/EmpServices</url-pattern>
+	</servlet-mapping>
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	<listener>
+		<listener-class>com.sun.xml.ws.transport.http.servlet.WSServletContextListener</listener-class>
+	</listener>
+	<servlet>
+		<display-name>Apache-Axis Servlet</display-name>
+		<servlet-name>AxisServlet</servlet-name>
+		<servlet-class>org.apache.axis.transport.http.AxisServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>/servlet/AxisServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>*.jws</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>AxisServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<display-name>Axis Admin Servlet</display-name>
+		<servlet-name>AdminServlet</servlet-name>
+		<servlet-class>org.apache.axis.transport.http.AdminServlet</servlet-class>
+		<load-on-startup>100</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AdminServlet</servlet-name>
+		<url-pattern>/servlet/AdminServlet</url-pattern>
+	</servlet-mapping>
+
+</web-app>

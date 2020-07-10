@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="CartRS">
-        <wb-resource deploy-path="/" source-path="/cartrs" tag="defaultRootSource"/>
-        <wb-resource deploy-path="/WEB-INF/classes" source-path="/"/>
-        <property name="java-output-path" value="/CartRS/build/classes"/>
-        <property name="context-root" value="cartrs"/>
-    </wb-module>
-</project-modules>

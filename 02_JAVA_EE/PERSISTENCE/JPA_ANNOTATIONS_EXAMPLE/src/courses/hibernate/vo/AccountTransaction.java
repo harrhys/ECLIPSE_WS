@@ -233,7 +233,6 @@ public class AccountTransaction implements Comparable<AccountTransaction> {
 	/**
 	 * @see java.util.Comparator#compare(Object)
 	 */
-	@Override
 	public int compareTo(AccountTransaction accountTransactionToCompare) {
 		return (this.getTransactionDate().compareTo(accountTransactionToCompare
 				.getTransactionDate()));

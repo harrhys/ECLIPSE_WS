@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<artifactId>WEB</artifactId>
+		<groupId>com.farbig.practice</groupId>
+		<version>1.0</version>
+	</parent>
+
+	<artifactId>JSF</artifactId>
+	<name>JSF</name>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>JSF_EXAMPLES</module>
+		<module>JSF_PRACTICE</module>
+	</modules>
+</project>

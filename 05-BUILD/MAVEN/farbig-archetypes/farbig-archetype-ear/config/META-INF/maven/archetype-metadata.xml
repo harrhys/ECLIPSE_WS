@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+	name="farbig-archtype-ear"
+	xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <requiredProperties>
+    
+        <requiredProperty key="property-file-name">
+            <defaultValue>Resource-default</defaultValue>
+        </requiredProperty>
+        
+          <!--Java SE version to use in generated project -->
+        <requiredProperty key="maven-ear-plugin-version">
+            <defaultValue>2.7</defaultValue>
+        </requiredProperty>
+        
+ 		<!-- Weblogic Related Configuration for this project -->
+        <!--Weblogic version to use in generated project -->
+        <requiredProperty key="weblogic-version">
+            <defaultValue>14.1.1-0-0</defaultValue>
+        </requiredProperty>
+        <!--Weblogic admin url to use in generated project -->
+         <requiredProperty key="weblogic-adminurl">
+            <defaultValue>t3://localhost:7001</defaultValue>
+        </requiredProperty>
+        <!--Weblogic username to use in generated project -->
+         <requiredProperty key="weblogic-user">
+            <defaultValue>weblogic</defaultValue>
+        </requiredProperty>
+        <!--Weblogic password to use in generated project -->
+         <requiredProperty key="weblogic-password">
+            <defaultValue>welcome1</defaultValue>
+        </requiredProperty>
+        
+    </requiredProperties>
+ 
+</archetype-descriptor>

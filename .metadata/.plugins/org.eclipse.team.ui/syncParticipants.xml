@@ -1,29 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <syncparticipants>
-<participant displayName="Git (CartApp, Cart...WebApp, CartWS)" id="org.eclipse.egit.ui.modelCompareParticipant" secondary_id="1593892733810">
+<participant displayName="Git (PERSISTENCE)" id="org.eclipse.egit.ui.modelCompareParticipant" secondary_id="1593978858780">
 <data forceFetch="false" root="false">
-<org.eclipse.team.ui.MODEL_PARTICIPANT_SETTINGS org.eclipse.team.ui.MODEL_PARTICIPANT_DESCRIPTION="CartApp, Cart...WebApp, CartWS" startupAction="none">
+<org.eclipse.team.ui.MODEL_PARTICIPANT_SETTINGS org.eclipse.team.ui.MODEL_PARTICIPANT_DESCRIPTION="PERSISTENCE" startupAction="none">
 <org.eclipse.team.ui.MODEL_PARTICIPANT_REFRESH_SCHEDULE org.eclipse.team.ui.CTX_REFRESHSCHEDULE_ENABLED="false" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_INTERVAL="3600" org.eclipse.team.ui.CTX_REFRESHSCHEDULE_RUNONCE="false"/>
 <org.eclipse.team.ui.MODEL_PARTICIPANT_MAPPINGS modelProviderId="org.eclipse.core.resources.modelProvider">
 <mappings>
-<resources resourcePath="/CartWS" resourceType="4"/>
-<resources resourcePath="/CartGateway" resourceType="4"/>
-<resources resourcePath="/CartAppWF" resourceType="4"/>
-<resources resourcePath="/CartAppWL" resourceType="4"/>
-<resources resourcePath="/CartPersistenceWF" resourceType="4"/>
-<resources resourcePath="/CartPersistenceWL" resourceType="4"/>
-<resources resourcePath="/CartRS" resourceType="4"/>
-<resources resourcePath="/CartServices" resourceType="4"/>
-<resources resourcePath="/CartEntities" resourceType="4"/>
-<resources resourcePath="/CartGatewayClient" resourceType="4"/>
-<resources resourcePath="/CartServicesClient" resourceType="4"/>
-<resources resourcePath="/CartUtil" resourceType="4"/>
-<resources resourcePath="/CartApp" resourceType="4"/>
-<resources resourcePath="/CartWebApp" resourceType="4"/>
+<resources resourcePath="/PERSISTENCE" resourceType="4"/>
 </mappings>
 </org.eclipse.team.ui.MODEL_PARTICIPANT_MAPPINGS>
 </org.eclipse.team.ui.MODEL_PARTICIPANT_SETTINGS>
-<gitSynchronizeData container="D:/WORKSPACE/PROJECTS/ECLIPSE_WS/07_CART/CART_APP_WF_WL/CartWS" dstRev="refs/remotes/origin/master" inludeLocal="true" srcRev="HEAD"/>
+<gitSynchronizeData container="D:/WORKSPACE/PROJECTS/ECLIPSE_WS/02_JAVA_EE/CDI" dstRev="refs/remotes/origin/master" inludeLocal="true" srcRev="HEAD"/>
 </data>
 </participant>
 </syncparticipants>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd"
+	name="farbig-archtype-web"
+	xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+	<requiredProperties>
+	
+		<requiredProperty key="property-file-name">
+			<defaultValue>Resource-default</defaultValue>
+		</requiredProperty>
+
+		<!--Java SE version to use in generated project -->
+		<requiredProperty key="javase-version">
+			<defaultValue>1.8</defaultValue>
+		</requiredProperty>
+
+		<!--Java EE version to use in generated project -->
+		<requiredProperty key="javaee-version">
+			<defaultValue>8.0</defaultValue>
+		</requiredProperty>
+
+		<!-- Weblogic Related Configuration for this project -->
+		<!--Weblogic version to use in generated project -->
+		<requiredProperty key="weblogic-version">
+			<defaultValue>14.1.1-0-0</defaultValue>
+		</requiredProperty>
+		<!--Weblogic admin url to use in generated project -->
+		<requiredProperty key="weblogic-adminurl">
+			<defaultValue>t3://localhost:7001</defaultValue>
+		</requiredProperty>
+		<!--Weblogic username to use in generated project -->
+		<requiredProperty key="weblogic-user">
+			<defaultValue>weblogic</defaultValue>
+		</requiredProperty>
+		<!--Weblogic password to use in generated project -->
+		<requiredProperty key="weblogic-password">
+			<defaultValue>welcome1</defaultValue>
+		</requiredProperty>
+
+		<!--JUnit version to use in generated project -->
+		<requiredProperty key="junit-version">
+			<defaultValue>4.10</defaultValue>
+		</requiredProperty>
+		
+	</requiredProperties>
+
+	<!--Add new fileset for resources -->
+	<!--Set filtered="true" to process files in that directory as templates -->
+	<!--Set packaged="false" to remove package folder structure from resource 
+		directory -->
+	<fileSets>
+		<fileSet filtered="true">
+			<directory>config</directory>
+
+			<!--Filters example -->
+			<!-- <includes> <include>*.txt</include> <include>*.properties</include> 
+				</includes> <excludes> <exclude>**/*.xml</exclude> </excludes> -->
+		</fileSet>
+
+		<fileSet filtered="true" packaged="false">
+			<directory>src</directory>
+			<includes>
+				<include>**/*.java</include>
+			</includes>
+		</fileSet>
+		<fileSet filtered="true" packaged="false">
+			<directory>test</directory>
+		</fileSet>
+		<fileSet filtered="true" packaged="false">
+			<directory>webapp</directory>
+			<includes>
+				<include>**/*.jsp</include>
+				<include>**/*.xhtml</include>
+				<include>**/*.xml</include>
+			</includes>
+		</fileSet>
+		
+	</fileSets>
+
+</archetype-descriptor>

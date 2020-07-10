@@ -10,12 +10,7 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>.link2</name>
-			<type>2</type>
-			<location>D:/WORKSPACE/PROJECTS/REPOSITORIES/LIBRARIES/HIBERNATE/hibernate-release-5.2.17.Final/project/hibernate-core</location>
-		</link>
-		<link>
-			<name>.link3</name>
+			<name>.link4</name>
 			<type>2</type>
 			<location>D:/WORKSPACE/INSTALLATIONS/BEA/weblogic92/common/lib</location>
 		</link>

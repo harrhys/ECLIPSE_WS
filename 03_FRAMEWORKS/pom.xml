@@ -1,0 +1,186 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.farbig.practice</groupId>
+	<artifactId>03-FRAMEWORKS</artifactId>
+	<name>03-FRAMEWORKS</name>
+	<version>1.0</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>8.0.1</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+				<groupId>junit</groupId>
+				<artifactId>junit</artifactId>
+				<version>4.13</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.postgresql.jdbc</groupId>
+				<artifactId>postgresql</artifactId>
+				<version>9.4-1204.jdbc4</version>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-ehcache</artifactId>
+				<version>4.3.11.Final</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jpos</groupId>
+				<artifactId>jpos</artifactId>
+				<version>2.1.4</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<directory>build</directory>
+		<finalName>${project.artifactId}</finalName>
+		<sourceDirectory>src</sourceDirectory>
+		<outputDirectory>build/classes</outputDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+		<testOutputDirectory>build/testclasses</testOutputDirectory>
+		<scriptSourceDirectory>scripts</scriptSourceDirectory>
+		<resources>
+			<resource>
+				<directory>config</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>testconfig</directory>
+			</testResource>
+		</testResources>
+
+		<pluginManagement>
+			<plugins>
+				<!-- This plugin will package the project into a jar -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.2.0</version>
+					<configuration>
+						<archive>
+							<manifest>
+								<!-- This will add classpath in the manifest file -->
+								<addClasspath>true</addClasspath>
+							</manifest>
+						</archive>
+					</configuration>
+				</plugin>
+				<!-- This plugin will package the project into a war file -->
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-war-plugin</artifactId>
+					<version>3.3.0</version>
+					<executions>
+						<execution>
+							<id>default-war</id>
+							<phase>package</phase>
+							<goals>
+								<goal>war</goal>
+							</goals>
+							<configuration>
+								<webappDirectory>webapp</webappDirectory>
+								<failOnMissingWebXml>false</failOnMissingWebXml>
+								<warSourceDirectory>webapp</warSourceDirectory>
+								<!-- <warSourceIncludes>*.*</warSourceIncludes> -->
+								<resources>
+									<resource>
+										<directory>config</directory>
+									</resource>
+								</resources>
+								<archive>
+									<manifest>
+										<!-- This will add classpath in the manifest file -->
+										<addClasspath>true</addClasspath>
+									</manifest>
+								</archive>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- This plugin will deploy the war file in the wildfly server -->
+				<plugin>
+					<groupId>org.wildfly.plugins</groupId>
+					<artifactId>wildfly-maven-plugin</artifactId>
+					<version>2.0.1.Final</version>
+					<configuration>
+						<env>
+							<HOME>D:\WORKSPACE\INSTALLATIONS\WILDFLY\</HOME>
+						</env>
+						<jbossHome>D:\WORKSPACE\INSTALLATIONS\WILDFLY</jbossHome>
+						<modulesPath>D:\WORKSPACE\INSTALLATIONS\WILDFLYs\modules</modulesPath>
+					</configuration>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<!-- This plugin will deploy the war file in the weblogic server -->
+				<plugin>
+					<groupId>com.oracle.weblogic</groupId>
+					<artifactId>weblogic-maven-plugin</artifactId>
+					<version>14.1.1-0-0</version>
+					<executions>
+						<execution>
+							<phase>install</phase>
+							<goals>
+								<goal>deploy</goal>
+							</goals>
+							<configuration>
+								<adminurl>t3://localhost:7001</adminurl>
+								<user>weblogic</user>
+								<password>welcome1</password>
+								<upload>true</upload>
+								<remote>false</remote>
+								<verbose>true</verbose>
+								<source>${project.build.directory}\${project.artifactId}.war</source>
+								<name>${project.build.finalName}</name>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+	</build>
+
+	<modules>
+		<module>HIBERNATE</module>
+		<module>JPOS</module>
+		<module>SPRING</module>
+		<module>STRUTS</module>
+	</modules>
+
+</project>

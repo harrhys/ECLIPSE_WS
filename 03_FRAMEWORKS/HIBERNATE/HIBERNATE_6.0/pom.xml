@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>HIBERNATE_6.0</artifactId>
+	<name>HIBERNATE_6.0</name>
+	<packaging>jar</packaging>
+
+	<parent>
+		<artifactId>HIBERNATE</artifactId>
+		<groupId>com.farbig.practice</groupId>
+		<version>1.0</version>
+	</parent>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>6.0.0.Alpha5</version>
+			<type>pom</type>
+		</dependency>
+	</dependencies>
+
+
+
+</project>

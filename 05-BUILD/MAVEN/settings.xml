@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  
+  
+	<localRepository>D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\MAVEN</localRepository>
+
+	<pluginGroups></pluginGroups>
+	<proxies></proxies>
+
+	<servers>
+		<server>
+		<id>maven.oracle.com</id>
+		<username>harrhys@gmail.com</username>
+		<password>Janu1234$</password>
+		<configuration>
+		  <basicAuthScope>
+			<host>ANY</host>
+			<port>ANY</port>
+			<realm>OAM 11g</realm>
+		  </basicAuthScope>
+		  <httpConfiguration>
+			<all>
+			  <params>
+				<property>
+				  <name>http.protocol.allow-circular-redirects</name>
+				  <value>%b,true</value>
+				</property>
+			  </params>
+			</all>
+		  </httpConfiguration>
+		</configuration>
+		</server>
+	</servers>
+
+	<mirrors></mirrors>
+	
+	
+	<profiles>
+		<profile>
+		  <id>OracleMavenRepository</id>
+		  <activation>
+			<activeByDefault>true</activeByDefault>
+		  </activation>
+		  <repositories>
+			<repository>
+			  <id>maven.oracle.com</id>
+			  <url>https://maven.oracle.com</url>
+			  <layout>default</layout>
+			  <releases>
+				<enabled>true</enabled>
+			  </releases>
+			  <snapshots>
+				<enabled>false</enabled>
+			  </snapshots>
+			</repository>
+		  </repositories>
+		  <pluginRepositories>
+			<pluginRepository>
+				<id>maven.oracle.com</id>
+				<url>https://maven.oracle.com</url>
+			</pluginRepository>
+		  </pluginRepositories>
+		</profile>
+	</profiles>
+
+	<activeProfiles>
+		<activeProfile>OracleMavenRepository</activeProfile>
+	</activeProfiles>
+	
+
+ </settings>

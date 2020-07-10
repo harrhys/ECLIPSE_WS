@@ -3,3 +3,4 @@
 *.log
 *.index
 */classes
+/.metadata/

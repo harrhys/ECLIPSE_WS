@@ -1,106 +1,176 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <workingSetManager>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587546038554_0" label="JAVA_SE" name="JAVA_SE"/>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587546284135_3" label="PERSISTENCE" name="PERSISTENCE">
-<item elementID="=ENTITIES" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=HIBERNATE_JPA" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JPA_2.1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JPA_ANNOTATIONS_EXAMPLE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JPA_MAPPING_FILE_EXAMPLE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587546038554_0" label="01_JAVA_SE" name="01_JAVA_SE">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/01_JAVA_SE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAVA_PRACTICE" type="4"/>
+<item elementID="=JAVA_PRACTICE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587804043411_17" label="CART_APP" name="CART_APP">
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CartApp" type="4"/>
-<item elementID="=CartEntities" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587546284135_3" label="PERSISTENCE" name="PERSISTENCE">
+<item elementID="=JPA_EXAMPLE_ANNOTATIONS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=JPA_HIBERNATE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/PERSISTENCE" type="4"/>
+<item elementID="=JPA_ENTITIES" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=JPA_EXAMPLE_MAPPING_FILE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=JPA_2.1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587804043411_17" label="07_CART" name="07_CART">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/07-CART" type="4"/>
+<item elementID="=CartWS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=CartGateway" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=CartGatewayClient" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CartAppWF" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CartAppWL" type="4"/>
 <item elementID="=CartPersistenceWF" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=CartPersistenceWL" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=CartRS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=CartServices" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=CartEntities" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=CartGatewayClient" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=CartServicesClient" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=CartUtil" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=CartWS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=CartWebApp" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CartAppWL" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CartAppWF" type="4"/>
 </workingSet>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1588967529517_9" label="JAX-WS" name="JAX-WS">
-<item elementID="=AXISWS_WebApp" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JAX-RPC" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JAXWS_App" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JAXWS_Client" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JAXWS_Web" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JAXWS_WebApp" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JAXWS_WebClient" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JAXWSRS_WebApp" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=WSClient" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSet>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1588967543148_10" label="JAX-RS" name="JAX-RS">
-<item elementID="=JAX-RS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX-RSEAR" type="4"/>
-<item elementID="=REST" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=RESTCLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=restdemo" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=restfuljersey" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=restfuljerseyfiledownloadpdf" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=restfuljerseyfileupload" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=RESTSERVICES" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=RestUtil" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=TESTRS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=WSREST" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1588967529517_9" label="JAX-WS" name="JAX-WS"/>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1588967543148_10" label="JAX-RS" name="JAX-RS"/>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589017555308_11" label="JAVA_EE_EXAMPLES" name="JAVA_EE_EXAMPLES"/>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589018082087_12" label="STRUTS_EXAMPLE" name="STRUTS_EXAMPLE"/>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589207358962_16" label="WEB" name="WEB">
-<item elementID="=JSF" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=WebSocket" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/HTML5" type="4"/>
-<item elementID="=JSF_EXAMPLES" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589018082087_12" label="STRUTS_EXAMPLE" name="STRUTS_EXAMPLE">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/action-chaining" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/annotations" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/basic-struts" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/bean-validation" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/blank" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/coding-actions" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/control-tags" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/crud" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/debugging-struts" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/exception-handling" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/exclude-parameters" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/file-upload" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/form-processing" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/form-tags" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/form-validation" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/form-xml-validation" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/helloworld" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/http-session" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/interceptors" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/json" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/json-customize" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/mailreader2" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/message-resource" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/message-store" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/portlet" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/preparable-interface" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/rest-angular" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/restful2actionmapper" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/shiro-basic" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/spring-struts" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/text-provider" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/themes" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/themes-override" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/tiles" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/type-conversion" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/unit-testing" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/unknown-handler" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/using-tags" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/validation-messages" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wildcard-method-selection" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wildcard-regex" type="4"/>
 </workingSet>
-<workingSet editPageId="org.eclipse.mylyn.tasks.ui.workingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592233726852_32" label="BUILD" name="BUILD">
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/demo" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/Gradle_Demo" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JSF_MAVEN" type="4"/>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589207358962_16" label="WEB" name="WEB"/>
+<workingSet editPageId="org.eclipse.mylyn.tasks.ui.workingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592233726852_32" label="05_BUILD" name="05_BUILD">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/farbig-archetypes" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/farbig-archetype-java" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/farbig-archetype-ear" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/farbig-archetype-ejb" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/farbig-archetype-pom" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/farbig-archetype-web" type="4"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592664070379_35" label="STRUTS" name="STRUTS"/>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592986841491_42" label="JAVA_EE" name="JAVA_EE">
-<item elementID="=CDI_EXAMPLES" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=CDI" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=EJB" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JAAS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JMS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JMSCLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JMSS" type="4"/>
-<item elementID="=JMX" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSet>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593695717243_55" label="FRAMEWORKS" name="FRAMEWORKS">
-<item elementID="=GATEWAY_CONNECTOR" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=HIBERNATE_4.3" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=HIBERNATE_5.2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593695717243_55" label="03_FRAMEWORKS" name="03_FRAMEWORKS">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/STRUTS" type="4"/>
 <item elementID="=JPOS_CLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JPOS_SERVER" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=MY_HIBERNATE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=STRUTS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/HIBERNATE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/03_FRAMEWORKS" type="4"/>
 <item elementID="=STRUTS2" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-</workingSet>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593696471599_62" label="PREP" name="PREP">
-<item elementID="=CDI" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JSF" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=CDI_EXAMPLES" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JPOS_CLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=HIBERNATE_5.4" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=MY_HIBERNATE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=STRUTS1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPOS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SPRING" type="4"/>
+<item elementID="=HIBERNATE_4.3" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=JPOS_SERVER" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JSF_EXAMPLES" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/HIBERNATE_6.0" type="4"/>
+<item elementID="=DROOLS_EXAMPLE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/DROOLS" type="4"/>
+<item elementID="=HTTP_CLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
-<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593707648680_54" label="Java Main Sources" name="Java Main Sources"/>
-<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593707648914_55" label="Java Test Sources" name="Java Test Sources"/>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593696471599_62" label="PREP" name="PREP"/>
+<workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593973546052_61" label="02_JAVA_EE" name="02_JAVA_EE">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/02_JAVA_EE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CDI" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CDI_EXAMPLES" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/CDI_PRACTICE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/EJB" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JMS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JMSCLIENT" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JMX" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_ENTITIES" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_HIBERNATE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_EXAMPLE_ANNOTATIONS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_EXAMPLE_MAPPING_FILE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MESSAGING" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/PERSISTENCE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SECURITY" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WEB" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WEBSERVICES" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAAS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/HTML5" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JSF_EXAMPLES" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JSF" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JSF_PRACTICE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_EXAMPLE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_PRACTICE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SERVLETS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WEBSOCKET" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WEBSOCKET_PRACTICE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_WEB_CLIENT" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_CLIENT" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_APP_CLIENT" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS_DEMO" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS_IMPL" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS_FILE_DOWNLOAD" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS_FILE_UPLOAD" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_WS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_WS_APP" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_WS_WEB" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_WS_WEBAPP" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RPC" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS_CLIENT" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS_DEMO" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS_TEST" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS_UTIL" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS_SERVICES" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS_PRACTICE" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_2.1" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.mylyn.tasks.ui.workingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1594276266382_62" label="SERVERS" name="SERVERS">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/09-SERVERS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WEBLOGIC" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WILDFLY" type="4"/>
+</workingSet>
+<workingSet editPageId="org.eclipse.mylyn.tasks.ui.workingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1594310918107_64" label="04-XML" name="04-XML">
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/04-XML" type="4"/>
+</workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587546263470_2" label="Window Working Set" name="Aggregate for window 1446448558779"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1588616859183_14" label="Multiple Working Sets" name="Aggregate:CART_APP:EJB:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589148814444_14" label="Multiple Working Sets" name="Aggregate:CART_APP:EJB:Fubar:J2EE:JAVA:Java Main Sources:Java Test Sources:PERSISTENCE:REST:SOAP:STRUTS:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
 <workingSet IMemento.internal.id="JAX-RS"/>
 <workingSet IMemento.internal.id="JAX-WS"/>
@@ -110,7 +180,7 @@
 <workingSet IMemento.internal.id="JAX-WS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589443501952_18" label="Multiple Working Sets" name="Aggregate:JAVA:PREP2020:">
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="WEB"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589463911181_19" label="Multiple Working Sets" name="Aggregate:PREP2020:REST:">
@@ -118,7 +188,7 @@
 <workingSet IMemento.internal.id="JAX-RS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589509772239_20" label="Multiple Working Sets" name="Aggregate:JAVA:REST:">
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="JAX-RS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589688701790_21" label="Multiple Working Sets" name="Aggregate:PERSISTENCE:REST:SOAP:STRUTS:">
@@ -127,91 +197,88 @@
 <workingSet IMemento.internal.id="JAX-WS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589782737688_23" label="Multiple Working Sets" name="Aggregate:CART_APP:JAVA:">
-<workingSet IMemento.internal.id="CART_APP"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="07_CART"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1590190469888_24" label="Window Working Set" name="Aggregate for window 1590190469888"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1590198256833_25" label="Multiple Working Sets" name="Aggregate:CART_APP:REST:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="JAX-RS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1590932251415_27" label="Multiple Working Sets" name="Aggregate:CART_APP:PERSISTENCE:PREP2020:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
 <workingSet IMemento.internal.id="WEB"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1591020721323_28" label="Multiple Working Sets" name="Aggregate:CART_APP:STRUTS:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592071033774_29" label="Multiple Working Sets" name="Aggregate:J2EE:JAVA:">
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592073987865_30" label="Multiple Working Sets" name="Aggregate:CART_APP:J2EE:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592216627908_31" label="Multiple Working Sets" name="Aggregate:CART_APP:J2EE:JAVA:PREP2020:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="WEB"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592224317114_31" label="Multiple Working Sets" name="Aggregate:J2EE:JAVA:PREP2020:">
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="WEB"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592309395635_33" label="Multiple Working Sets" name="Aggregate:CART_APP:SOAP:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="JAX-WS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592312214425_38" label="Multiple Working Sets" name="Aggregate:CART_APP:JAX-WS:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="JAX-WS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592665912695_36" label="Multiple Working Sets" name="Aggregate:JAVA_EE:STRUTS_EXAMPLE:">
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592666013711_37" label="Multiple Working Sets" name="Aggregate:CART_APP:FUBAR:GRADLE:JAVA:">
-<workingSet IMemento.internal.id="CART_APP"/>
-<workingSet IMemento.internal.id="BUILD"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="07_CART"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592670567079_39" label="Multiple Working Sets" name="Aggregate:JAVA_EE:JAVA_SE:WEB:">
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592716589952_41" label="Multiple Working Sets" name="Aggregate:PERSISTENCE:WEB:">
 <workingSet IMemento.internal.id="PERSISTENCE"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592900250137_47" label="Multiple Working Sets" name="Aggregate:CART_APP:PERSISTENCE:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592946812268_40" label="Multiple Working Sets" name="Aggregate:JAVA_EE:JAVA_SE:PERSISTENCE:">
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592984107113_41" label="Window Working Set" name="Aggregate for window 1592984107113"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593006746348_47" label="Window Working Set" name="Aggregate for window 1593006746348"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593023387010_45" label="Multiple Working Sets" name="Aggregate:CART_APP:WEB:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 </workingSet>
-<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593026897950_48" label="Multiple Working Sets" name="Aggregate:JAVA_EE:WEB:">
-<workingSet IMemento.internal.id="JAVA_EE"/>
-</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593026897950_48" label="Multiple Working Sets" name="Aggregate:JAVA_EE:WEB:"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593059391872_46" label="Multiple Working Sets" name="Aggregate:CART_APP:STRUTS:STRUTS_EXAMPLE:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="STRUTS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593059740654_47" label="Multiple Working Sets" name="Aggregate:CART_APP:FUBAR:GRADLE:JAVA_EE:JAVA_EE_EXAMPLES:JAVA_SE:Java Main Sources:Java Test Sources:JAX-RS:JAX-WS:PERSISTENCE:PREP2020:STRUTS:STRUTS_EXAMPLE:">
-<workingSet IMemento.internal.id="CART_APP"/>
-<workingSet IMemento.internal.id="BUILD"/>
-<workingSet IMemento.internal.id="JAVA_EE"/>
+<workingSet IMemento.internal.id="07_CART"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="JAX-RS"/>
 <workingSet IMemento.internal.id="JAX-WS"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
@@ -219,10 +286,10 @@
 <workingSet IMemento.internal.id="STRUTS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593059751702_48" label="Multiple Working Sets" name="Aggregate:CART_APP:FUBAR:GRADLE:JAVA_EE_EXAMPLES:JAVA_SE:Java Main Sources:Java Test Sources:JAX-RS:JAX-WS:PERSISTENCE:PREP2020:STRUTS:STRUTS_EXAMPLE:WEB:">
-<workingSet IMemento.internal.id="CART_APP"/>
-<workingSet IMemento.internal.id="BUILD"/>
+<workingSet IMemento.internal.id="07_CART"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="JAX-RS"/>
 <workingSet IMemento.internal.id="JAX-WS"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
@@ -230,9 +297,9 @@
 <workingSet IMemento.internal.id="STRUTS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593059852628_49" label="Multiple Working Sets" name="Aggregate:CART_APP:FUBAR:GRADLE:JAVA_SE:Java Main Sources:Java Test Sources:JAX-RS:JAX-WS:PERSISTENCE:PREP2020:STRUTS:STRUTS_EXAMPLE:WEB:">
-<workingSet IMemento.internal.id="CART_APP"/>
-<workingSet IMemento.internal.id="BUILD"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="07_CART"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="JAX-RS"/>
 <workingSet IMemento.internal.id="JAX-WS"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
@@ -247,11 +314,10 @@
 <workingSet IMemento.internal.id="STRUTS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593060039253_52" label="Multiple Working Sets" name="Aggregate:CART_APP:FUBAR:GRADLE:JAVA_EE:JAVA_EE_EXAMPLES:JAVA_SE:JAX-RS:JAX-WS:PERSISTENCE:PREP2020:STRUTS:STRUTS_EXAMPLE:">
-<workingSet IMemento.internal.id="CART_APP"/>
-<workingSet IMemento.internal.id="BUILD"/>
-<workingSet IMemento.internal.id="JAVA_EE"/>
+<workingSet IMemento.internal.id="07_CART"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="JAX-RS"/>
 <workingSet IMemento.internal.id="JAX-WS"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
@@ -259,11 +325,11 @@
 <workingSet IMemento.internal.id="STRUTS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593194824600_55" label="Multiple Working Sets" name="Aggregate:CART_APP:PREP2020:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="WEB"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593195799023_57" label="Multiple Working Sets" name="Aggregate:CART_APP:JAVA_EE_EXAMPLES:PREP2020:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
 <workingSet IMemento.internal.id="WEB"/>
 </workingSet>
@@ -272,11 +338,10 @@
 <workingSet IMemento.internal.id="WEB"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593284479113_58" label="Multiple Working Sets" name="Aggregate:BUILD:CART_APP:FUBAR:JAVA_EE:JAVA_EE_EXAMPLES:JAVA_SE:Java Main Sources:Java Test Sources:JAX-RS:JAX-WS:PERSISTENCE:PREP2020:STRUTS:STRUTS_EXAMPLE:WEB:">
-<workingSet IMemento.internal.id="BUILD"/>
-<workingSet IMemento.internal.id="CART_APP"/>
-<workingSet IMemento.internal.id="JAVA_EE"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="JAVA_EE_EXAMPLES"/>
-<workingSet IMemento.internal.id="JAVA_SE"/>
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
 <workingSet IMemento.internal.id="JAX-RS"/>
 <workingSet IMemento.internal.id="JAX-WS"/>
 <workingSet IMemento.internal.id="PERSISTENCE"/>
@@ -284,24 +349,34 @@
 <workingSet IMemento.internal.id="STRUTS"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593698850301_63" label="Multiple Working Sets" name="Aggregate:BUILD:PREP:">
-<workingSet IMemento.internal.id="BUILD"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
 <workingSet IMemento.internal.id="PREP"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593711753468_58" label="Multiple Working Sets" name="Aggregate:BUILD:WEB:">
-<workingSet IMemento.internal.id="BUILD"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
 <workingSet IMemento.internal.id="WEB"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593791098329_57" label="Multiple Working Sets" name="Aggregate:CART_APP:PREP:">
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="PREP"/>
 </workingSet>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593800322872_59" label="Multiple Working Sets" name="Aggregate:BUILD:CART_APP:">
-<workingSet IMemento.internal.id="BUILD"/>
-<workingSet IMemento.internal.id="CART_APP"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
+<workingSet IMemento.internal.id="07_CART"/>
 </workingSet>
-<mruList name="CART_APP"/>
-<mruList name="BUILD"/>
-<mruList name="WEB"/>
-<mruList name="PREP"/>
-<mruList name="JAVA_EE"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593894297671_59" label="Multiple Working Sets" name="Aggregate:CART_APP:JAVA_EE:">
+<workingSet IMemento.internal.id="07_CART"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593894793421_60" label="Multiple Working Sets" name="Aggregate:JAVA_EE:JAVA_SE:">
+<workingSet IMemento.internal.id="01_JAVA_SE"/>
+</workingSet>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1594276277980_63" label="Multiple Working Sets" name="Aggregate:07_CART:SERVERS:">
+<workingSet IMemento.internal.id="07_CART"/>
+<workingSet IMemento.internal.id="SERVERS"/>
+</workingSet>
+<mruList name="03_FRAMEWORKS"/>
+<mruList name="02_JAVA_EE"/>
+<mruList name="SERVERS"/>
+<mruList name="04-XML"/>
+<mruList name="07_CART"/>
 </workingSetManager>

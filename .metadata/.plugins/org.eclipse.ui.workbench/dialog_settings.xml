@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
 	<list key="workingset_selection_history">
-		<item value="BUILD"/>
-		<item value="CART_APP"/>
-		<item value="JAVA_EE"/>
+		<item value="03_FRAMEWORKS"/>
+		<item value="04-XML"/>
+		<item value="02_JAVA_EE, JAX-WS"/>
 		<item value="PERSISTENCE"/>
 		<item value="JAX-RS"/>
 	</list>
@@ -55,7 +55,7 @@
 	<section name="org.eclipse.ui.preferences.keysPreferencePage">
 	</section>
 	<section name="ImportExportAction">
-		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.m2e.core.wizards.Maven2ImportWizard"/>
+		<item key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID" value="org.eclipse.ui.wizards.import.ExternalProject"/>
 		<item key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID" value="org.eclipse.jst.servlet.ui.internal.wizard.WebComponentExportWizard"/>
 		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
 			<item value="org.eclipse.ui.Basic"/>

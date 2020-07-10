@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="JAX-RSEAR">
-        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
-        <dependent-module archiveName="JAX-RS.war" deploy-path="/" handle="module:/resource/JAX-RS/JAX-RS">
-            <dependent-object/>
-            <dependency-type>uses</dependency-type>
-        </dependent-module>
-    </wb-module>
-</project-modules>

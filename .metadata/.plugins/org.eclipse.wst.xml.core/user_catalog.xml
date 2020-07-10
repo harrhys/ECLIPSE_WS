@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
   <uri name="http://farbig.com/PurchaseOrder" uri="platform:/resource/JAVA_CONCEPTS/src/com/practise/xml/schema/PurchaseOrder.xsd"/>
+  <uri name="http://maven.apache.org/POM/4.0.0" uri="file:///D:/WORKSPACE/PROJECTS/ECLIPSE_WS/05-BUILD/MAVEN/maven-4.0.0.xsd"/>
 </catalog>

@@ -5,7 +5,7 @@
 		<item key="DIALOG_X_ORIGIN" value="381"/>
 	</section>
 	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
-		<item key="OUTSIDE_LOCATION" value="D:\WORKSPACE\PROJECTS\ECLIPSE WORKSPACE\PREP2020\CART_APP"/>
+		<item key="OUTSIDE_LOCATION" value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\AXIS_WS"/>
 	</section>
 	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
 		<item key="ShowDerived" value="false"/>
@@ -32,13 +32,15 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\DROOLS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\04-XML"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX-WS"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07_CART\CART_APP_WF_WL\CartApp"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\05-BUILD"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07_CART\CART_APP_WF_WL"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\PERSISTENCE"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX-RS"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX-WS"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEB"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\STRUTS\STRUTS_EXAMPLES"/>
@@ -50,15 +52,13 @@
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\CART_APP\CartApp"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\jPOS-2_1_4"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\STRUTS\struts-examples-master\wildcard-method-selection"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\CART_APP"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 	</section>
 	<section name="ResourceNavigator">
-		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value="CART_APP"/>
+		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value="07_CART"/>
 		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
 	</section>
 	<section name="SaveAsDialogSettings">

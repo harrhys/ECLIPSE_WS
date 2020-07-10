@@ -1,9 +1,8 @@
-<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm orm_1_0.xsd"
-	version="1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings
+	xmlns="http://java.sun.com/xml/ns/persistence/orm" version="1.0">
 	<persistence-unit-metadata>
-    	<!-- ignore annotations in classes -->
+		<!-- ignore annotations in classes -->
 		<xml-mapping-metadata-complete />
 		<persistence-unit-defaults>
 			<cascade-persist />
@@ -26,7 +25,8 @@
 			<basic name="phone" optional="false">
 				<column name="PHONE" />
 			</basic>
-			<one-to-many name="ebillerRegistrations" mapped-by="ebiller">
+			<one-to-many name="ebillerRegistrations"
+				mapped-by="ebiller">
 				<join-column name="EBILLER_ID" />
 			</one-to-many>
 			<one-to-many name="ebills" mapped-by="ebiller">
@@ -98,13 +98,15 @@
 					<cascade-remove />
 				</cascade>
 			</one-to-many>
-			<one-to-many name="ebillerRegistrations" mapped-by="account">
+			<one-to-many name="ebillerRegistrations"
+				mapped-by="account">
 				<join-column name="ACCOUNT_ID" />
 				<cascade>
 					<cascade-remove />
 				</cascade>
 			</one-to-many>
-			<one-to-many name="accountTransactions" mapped-by="account">
+			<one-to-many name="accountTransactions"
+				mapped-by="account">
 				<join-column name="ACCOUNT_ID" />
 				<cascade>
 					<cascade-remove />

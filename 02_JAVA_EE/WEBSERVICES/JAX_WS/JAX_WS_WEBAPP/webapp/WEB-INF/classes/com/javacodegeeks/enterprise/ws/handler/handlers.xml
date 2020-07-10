@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<handler-chains>
+	<handler-chain>
+		<handler>
+			<handler-class>com.javacodegeeks.enterprise.ws.handler.SimpleValidator
+			</handler-class>
+		</handler>
+		<handler>
+			<handler-class>com.javacodegeeks.enterprise.ws.handler.PropertyValidator
+			</handler-class>
+		</handler>
+	</handler-chain>
+</handler-chains>

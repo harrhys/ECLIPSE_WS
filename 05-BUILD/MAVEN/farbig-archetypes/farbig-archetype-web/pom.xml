@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.farbig.archetype</groupId>
+	<artifactId>farbig-archetype-web</artifactId>
+	<version>1.0</version>
+	<name>farbig-archetype-web</name>
+	<packaging>maven-archetype</packaging>
+
+	<build>
+
+		<directory>build</directory>
+		<finalName>${project.artifactId}-${project.version}</finalName>
+		<sourceDirectory>src</sourceDirectory>
+		<outputDirectory>build/classes</outputDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+		<testOutputDirectory>build/testclasses</testOutputDirectory>
+		<scriptSourceDirectory>scripts</scriptSourceDirectory>
+		<resources>
+			<resource>
+				<directory>config</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>testconfig</directory>
+			</testResource>
+		</testResources>
+
+		<extensions>
+			<extension>
+				<groupId>org.apache.maven.archetype</groupId>
+				<artifactId>archetype-packaging</artifactId>
+				<version>3.0.1</version>
+			</extension>
+		</extensions>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<artifactId>maven-archetype-plugin</artifactId>
+					<version>3.0.1</version>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+		
+	</build>
+	
+</project>

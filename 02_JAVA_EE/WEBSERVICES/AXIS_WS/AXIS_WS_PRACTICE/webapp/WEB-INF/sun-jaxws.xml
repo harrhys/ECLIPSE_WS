@@ -1,0 +1,25 @@
+<?xml version = "1.0"?>
+<endpoints version="2.0"
+	xmlns="http://java.sun.com/xml/ns/jax-ws/ri/runtime">
+
+	<endpoint name="DocHelloServices"
+		implementation="com.farbig.services.ws.hello.DocHelloImpl"
+		url-pattern="/DocHelloServices">
+	</endpoint>
+	
+	<endpoint name="RPCHelloServices"
+		implementation="com.farbig.services.ws.hello.RPCHelloImpl"
+		url-pattern="/RPCHelloServices">
+	</endpoint>
+	
+	<endpoint name="DocEmpServices"
+		implementation="com.farbig.services.ws.emp.DocEmpImpl"
+		url-pattern="/DocEmpServices">
+	</endpoint>
+
+	<endpoint name="RPCEmpServices"
+		implementation="com.farbig.services.ws.emp.RPCEmpImpl"
+		url-pattern="/RPCEmpServices">
+	</endpoint>
+	
+</endpoints>
