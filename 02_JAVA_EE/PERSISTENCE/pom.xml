@@ -15,10 +15,11 @@
 	</parent>
 
 	<modules>
-		<module>JPA_ANNOTATIONS_EXAMPLE</module>
-		<module>JPA_MAPPING_FILE_EXAMPLE</module>
+		<module>JPA_EXAMPLE_ANNOTATIONS</module>
+		<module>JPA_EXAMPLE_MAPPING_FILE</module>
 		<module>JPA_HIBERNATE</module>
 		<module>JPA_ENTITIES</module>
 		<module>JPA_2.1</module>
 	</modules>
+	
 </project>

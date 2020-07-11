@@ -15,8 +15,6 @@
 	<packaging>pom</packaging>
 
 	<modules>
-		<module>JERSEY_RS</module>
-		<module>AXIS_WS</module>
 		<module>JAX_RS</module>
 		<module>JAX_WS</module>
 	</modules>

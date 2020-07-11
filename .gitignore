@@ -2,5 +2,7 @@
 *.class
 *.log
 *.index
+*.jar
+*.bak
 */classes
 /.metadata/

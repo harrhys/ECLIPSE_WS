@@ -48,4 +48,18 @@
 		</plugins>
 	</build>
 
+	<pluginRepositories>
+		<pluginRepository> 
+				<id>maven.oracle.com</id>
+				<url>https://maven.oracle.com</url>
+				<layout>default</layout>
+				<releases>
+					<enabled>true</enabled>
+				</releases>
+				<snapshots>
+					<enabled>false</enabled>
+				</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
 </project>

@@ -6,12 +6,12 @@
 <item elementID="=JAVA_PRACTICE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587546284135_3" label="PERSISTENCE" name="PERSISTENCE">
-<item elementID="=JPA_EXAMPLE_ANNOTATIONS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=JPA_HIBERNATE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/PERSISTENCE" type="4"/>
 <item elementID="=JPA_ENTITIES" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
-<item elementID="=JPA_EXAMPLE_MAPPING_FILE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item elementID="=JPA_2.1" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=JPA_EXAMPLE_ANNOTATIONS" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=JPA_EXAMPLE_MAPPING_FILE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587804043411_17" label="07_CART" name="07_CART">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/07-CART" type="4"/>
@@ -32,49 +32,7 @@
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1588967529517_9" label="JAX-WS" name="JAX-WS"/>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1588967543148_10" label="JAX-RS" name="JAX-RS"/>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589017555308_11" label="JAVA_EE_EXAMPLES" name="JAVA_EE_EXAMPLES"/>
-<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589018082087_12" label="STRUTS_EXAMPLE" name="STRUTS_EXAMPLE">
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/action-chaining" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/annotations" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/basic-struts" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/bean-validation" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/blank" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/coding-actions" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/control-tags" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/crud" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/debugging-struts" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/exception-handling" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/exclude-parameters" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/file-upload" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/form-processing" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/form-tags" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/form-validation" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/form-xml-validation" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/helloworld" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/http-session" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/interceptors" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/json" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/json-customize" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/mailreader2" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/message-resource" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/message-store" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/portlet" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/preparable-interface" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/rest-angular" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/restful2actionmapper" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/shiro-basic" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/spring-struts" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/text-provider" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/themes" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/themes-override" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/tiles" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/type-conversion" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/unit-testing" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/unknown-handler" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/using-tags" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/validation-messages" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wildcard-method-selection" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/wildcard-regex" type="4"/>
-</workingSet>
+<workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589018082087_12" label="STRUTS_EXAMPLE" name="STRUTS_EXAMPLE"/>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1589207358962_16" label="WEB" name="WEB"/>
 <workingSet editPageId="org.eclipse.mylyn.tasks.ui.workingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1592233726852_32" label="05_BUILD" name="05_BUILD">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/farbig-archetypes" type="4"/>
@@ -102,6 +60,17 @@
 <item elementID="=DROOLS_EXAMPLE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/DROOLS" type="4"/>
 <item elementID="=HTTP_CLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS" type="4"/>
+<item elementID="=AXIS_WS_APP_CLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=AXIS_WS_EXAMPLE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=AXIS_WS_PRACTICE" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=AXIS_WS_CLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=AXIS_WS_WEB_CLIENT" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS" type="4"/>
+<item elementID="=JERSEY_RS_DEMO" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=JERSEY_RS_IMPL" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=JERSEY_RS_FILE_DOWNLOAD" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
+<item elementID="=JERSEY_RS_FILE_UPLOAD" factoryID="org.eclipse.jdt.ui.PersistableJavaElementFactory"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.jdt.ui.JavaWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593696471599_62" label="PREP" name="PREP"/>
 <workingSet editPageId="org.eclipse.ui.resourceWorkingSetPage" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1593973546052_61" label="02_JAVA_EE" name="02_JAVA_EE">
@@ -115,8 +84,6 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JMX" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_ENTITIES" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_HIBERNATE" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_EXAMPLE_ANNOTATIONS" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_EXAMPLE_MAPPING_FILE" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/MESSAGING" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/PERSISTENCE" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SECURITY" type="4"/>
@@ -127,20 +94,9 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JSF_EXAMPLES" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JSF" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JSF_PRACTICE" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_EXAMPLE" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_PRACTICE" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/SERVLETS" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WEBSOCKET" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/WEBSOCKET_PRACTICE" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_WEB_CLIENT" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_CLIENT" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/AXIS_WS_APP_CLIENT" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS_DEMO" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS_IMPL" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS_FILE_DOWNLOAD" type="4"/>
-<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JERSEY_RS_FILE_UPLOAD" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_WS" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_WS_APP" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_WS_WEB" type="4"/>
@@ -154,6 +110,8 @@
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS_SERVICES" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JAX_RS_PRACTICE" type="4"/>
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_2.1" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_EXAMPLE_ANNOTATIONS" type="4"/>
+<item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/JPA_EXAMPLE_MAPPING_FILE" type="4"/>
 </workingSet>
 <workingSet editPageId="org.eclipse.mylyn.tasks.ui.workingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1594276266382_62" label="SERVERS" name="SERVERS">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/09-SERVERS" type="4"/>
@@ -163,6 +121,8 @@
 <workingSet editPageId="org.eclipse.mylyn.tasks.ui.workingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1594310918107_64" label="04-XML" name="04-XML">
 <item factoryID="org.eclipse.ui.internal.model.ResourceFactory" path="/04-XML" type="4"/>
 </workingSet>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1594396841630_62" label="Java Main Sources" name="Java Main Sources"/>
+<workingSet editPageId="org.eclipse.jdt.internal.ui.DynamicSourcesWorkingSet" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1594396841885_63" label="Java Test Sources" name="Java Test Sources"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1587546263470_2" label="Window Working Set" name="Aggregate for window 1446448558779"/>
 <workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1588616859183_14" label="Multiple Working Sets" name="Aggregate:CART_APP:EJB:">
 <workingSet IMemento.internal.id="07_CART"/>
@@ -374,9 +334,13 @@
 <workingSet IMemento.internal.id="07_CART"/>
 <workingSet IMemento.internal.id="SERVERS"/>
 </workingSet>
-<mruList name="03_FRAMEWORKS"/>
-<mruList name="02_JAVA_EE"/>
-<mruList name="SERVERS"/>
+<workingSet aggregate="true" factoryID="org.eclipse.ui.internal.WorkingSetFactory" id="1594408264915_64" label="Multiple Working Sets" name="Aggregate:03_FRAMEWORKS:05_BUILD:">
+<workingSet IMemento.internal.id="03_FRAMEWORKS"/>
+<workingSet IMemento.internal.id="05_BUILD"/>
+</workingSet>
 <mruList name="04-XML"/>
+<mruList name="SERVERS"/>
 <mruList name="07_CART"/>
+<mruList name="02_JAVA_EE"/>
+<mruList name="03_FRAMEWORKS"/>
 </workingSetManager>

@@ -14,13 +14,6 @@
 	<name>JAX_RS_SERVICES</name>
 	<packaging>war</packaging>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.sun.jersey.contribs</groupId>
-			<artifactId>jersey-multipart</artifactId>
-		</dependency>
-	</dependencies>
-
 	<build>
 		<plugins>
 			<plugin>

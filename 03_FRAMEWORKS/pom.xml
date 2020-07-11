@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.farbig.practice</groupId>
-	<artifactId>03-FRAMEWORKS</artifactId>
+	<artifactId>FRAMEWORKS</artifactId>
 	<name>03-FRAMEWORKS</name>
 	<version>1.0</version>
 	<packaging>pom</packaging>
@@ -28,6 +28,31 @@
 				<artifactId>junit</artifactId>
 				<version>4.13</version>
 				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>axis</groupId>
+				<artifactId>axis</artifactId>
+				<version>1.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-server</artifactId>
+				<version>1.19</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey.contribs</groupId>
+				<artifactId>jersey-multipart</artifactId>
+				<version>1.19</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-client</artifactId>
+				<version>1.19</version>
+			</dependency>
+			<dependency>
+				<groupId>com.sun.jersey</groupId>
+				<artifactId>jersey-servlet</artifactId>
+				<version>1.19</version>
 			</dependency>
 			<dependency>
 				<groupId>org.postgresql.jdbc</groupId>
@@ -181,6 +206,10 @@
 		<module>JPOS</module>
 		<module>SPRING</module>
 		<module>STRUTS</module>
+		<module>DROOLS</module>
+		<module>HTTP_CLIENT</module>
+		<module>AXIS_WS</module>
+		<module>JERSEY_RS</module>
 	</modules>
 
 </project>

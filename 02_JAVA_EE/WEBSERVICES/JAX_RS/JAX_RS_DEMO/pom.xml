@@ -14,13 +14,6 @@
 	<name>JAX_RS_DEMO</name>
 	<packaging>pom</packaging>
 
-	<dependencies>
-		<dependency>
-			<groupId>com.sun.jersey</groupId>
-			<artifactId>jersey-server</artifactId>
-		</dependency>
-	</dependencies>
-	
 	<build>
 		<plugins>
 			<plugin>

@@ -593,6 +593,8 @@ D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\.metadata\.plugins\org.eclipse.jst.jsp
 \examples
 D:\WORKSPACE\PROJECTS\ECLIPSE_WS\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1601311747.index
 \CartWebApp\src\main\java
+D:\WORKSPACE\PROJECTS\ECLIPSE_WS\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\2345194705.index
+\STRUTS1\src
 D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\494284877.index
 \Test\src
 D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\1580504586.index

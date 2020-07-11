@@ -9,7 +9,7 @@
 
 	<parent>
 		<groupId>com.farbig.practice</groupId>
-		<artifactId>03-FRAMEWORKS</artifactId>
+		<artifactId>FRAMEWORKS</artifactId>
 		<version>1.0</version>
 	</parent>
 	

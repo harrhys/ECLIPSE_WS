@@ -58,7 +58,7 @@
 		</list>
 	</section>
 	<section name="ResourceNavigator">
-		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value="07_CART"/>
+		<item key="ResourceWorkingSetFilter.STORE_WORKING_SET" value="03_FRAMEWORKS"/>
 		<item key="ResourceViewer.STORE_SORT_TYPE" value="1"/>
 	</section>
 	<section name="SaveAsDialogSettings">

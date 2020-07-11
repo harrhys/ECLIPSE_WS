@@ -1,14 +1,6 @@
 package com.farbig.practice.entity;
 
-import java.util.Date;
-
-import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-import javax.persistence.Version;
-
-import com.sun.istack.internal.NotNull;
 
 @MappedSuperclass
 public class BaseEntity {
