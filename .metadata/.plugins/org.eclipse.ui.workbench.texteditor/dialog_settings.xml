@@ -13,8 +13,10 @@
 		<item key="isRegEx" value="false"/>
 		<item key="incremental" value="false"/>
 		<item key="wholeword" value="false"/>
-		<item key="selection" value=""/>
+		<item key="selection" value="Card"/>
 		<list key="findhistory">
+			<item value="card"/>
+			<item value="class="/>
 			<item value="javaee:"/>
 			<item value="gatewaycmt#com.farbig.cart.services.gateway.GatewayCMTRemote"/>
 			<item value="ejb"/>
@@ -28,10 +30,9 @@
 			<item value="HibernateCacheManager$"/>
 			<item value="$"/>
 			<item value="q"/>
-			<item value="memset"/>
-			<item value="front"/>
 		</list>
 		<list key="replacehistory">
+			<item value="className="/>
 			<item value=""/>
 			<item value="."/>
 			<item value="System.out.print"/>
@@ -46,7 +47,6 @@
 			<item value="&lt;/h:td"/>
 			<item value="&lt;h:td"/>
 			<item value="&lt;h:tr"/>
-			<item value="&lt;/h:tr&gt;"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">

@@ -2,21 +2,21 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX_RS"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX_WS"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\08_MICROSERVICES\ReactiveJ-master"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\08_MICROSERVICES\reactive-crud-todo-app-master"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\08_MICROSERVICES"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\ACTIVEMQ\ACTIVEMQ5_CLASSIC\amq5-openwire-example"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\ACTIVEMQ\ACTIVEMQ5_CLASSIC\amq5-stomp-example"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\ACTIVEMQ\ACTIVEMQ5_CLASSIC\openwire-example"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\ACTIVEMQ\ACTIVEMQ5_CLASSIC\openwire-advanced-examples\pom.xml"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\ACTIVEMQ\ACTIVEMQ5_CLASSIC\MQTT_EXAMPLE"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\ACTIVEMQ\ACTIVEMQ5_CLASSIC\AMQP_EXAMPLE"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\ACTIVEMQ\ACTIVEMQ5_CLASSIC"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\ACTIVEMQ"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\JERSEY_RS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\AXIS_WS"/>
+			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS"/>
 			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\AXIS_WS"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX-WS\JAX_WS_APP"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEB\WEBSOCKET\WEBSOCKET_PRACTICE"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEB\SERVLETS"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEB\WEBSOCKET"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JERSEY-RS\JERSEY_RS_IMPL"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\02_JAVA_EE\WEBSERVICES\JAX-RS\JAX_RS_TEST"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07-CART"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07_CART\CART_APP_WF_WL"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE_WS\07_CART\CART_APP"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\WebLogicMavenPlugin"/>
-			<item value="D:\WORKSPACE\PROJECTS\ECLIPSE WS\PREP2020\MAVEN\mavenproject"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -54,7 +54,7 @@
 		</list>
 	</section>
 	<section name="MavenProjectWizardArchetypePage">
-		<item key="catalog" value="All Catalogs"/>
+		<item key="catalog" value="D:\WORKSPACE\PROJECTS\REPOSITORIES\LIBRARIES\MAVEN\archetype-catalog.xml"/>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
 			<item value="[artifactId]-TRUNK"/>
@@ -66,12 +66,17 @@
 	</section>
 	<section name="Maven2ProjectWizardArchifactPage">
 		<list key="package">
+			<item value="com.farbig.practice.designpatterns"/>
+			<item value="org.DESIGN_PATTERNS"/>
 			<item value="com.farbig.cart.CartApp"/>
 		</list>
 		<list key="groupId">
+			<item value="com.farbig.practice"/>
 			<item value="com.farbig.cart"/>
 		</list>
 		<list key="artifactId">
+			<item value="ACTIVEMQ"/>
+			<item value="DESIGN_PATTERNS"/>
 			<item value="CartApp"/>
 		</list>
 		<list key="projectNameTemplate">
@@ -83,15 +88,19 @@
 			<item value="[name]"/>
 		</list>
 		<list key="version">
+			<item value="1.0"/>
 			<item value="0.0.1-SNAPSHOT"/>
 		</list>
 	</section>
 	<section name="MavenProjectWizardArtifactPage">
 		<list key="groupId">
+			<item value="com.farbig.practice"/>
 		</list>
 		<list key="name">
 		</list>
 		<list key="artifactId">
+			<item value="ACTIVEMQ"/>
+			<item value="FRAMEWORKS"/>
 		</list>
 		<list key="projectNameTemplate">
 			<item value="[artifactId]"/>
@@ -102,7 +111,7 @@
 			<item value="[name]"/>
 		</list>
 		<list key="version">
-			<item value="0.0.1-SNAPSHOT"/>
+			<item value="1.0"/>
 		</list>
 	</section>
 	<section name="org.eclipse.m2e.core.pom.overview">
@@ -141,6 +150,8 @@
 	</section>
 	<section name="MavenModuleWizardParentPage">
 		<list key="moduleName">
+			<item value="ACTIVEMQ"/>
+			<item value="DESIGN_PATTERNS"/>
 			<item value="CartEntities"/>
 		</list>
 		<list key="projectNameTemplate">

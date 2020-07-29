@@ -1,9 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="javax.ws.rs.ApplicationPath"/>
-<fullyQualifiedTypeName name="com.farbig.cart.persistence.TxnMgmtType"/>
-<fullyQualifiedTypeName name="org.apache.struts2.ServletActionContext"/>
-<fullyQualifiedTypeName name="com.opensymphony.xwork2.ActionContext"/>
 <fullyQualifiedTypeName name="junit.framework.TestResult"/>
 <fullyQualifiedTypeName name="org.hamcrest.core.IsInstanceOf"/>
 <fullyQualifiedTypeName name="org.hibernate.exception.ConstraintViolationException"/>
@@ -60,4 +56,8 @@
 <fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.io.Serializable"/>
 <fullyQualifiedTypeName name="javax.enterprise.inject.Produces"/>
+<fullyQualifiedTypeName name="com.farbig.practice.designpatterns.state.IdleState"/>
+<fullyQualifiedTypeName name="com.farbig.practice.designpatterns.state.HasOneDollarState"/>
+<fullyQualifiedTypeName name="com.farbig.practice.designpatterns.state.OutOfStockState"/>
+<fullyQualifiedTypeName name="com.farbig.practice.designpatterns.state.VendingMachine"/>
 </qualifiedTypeNameHistroy>

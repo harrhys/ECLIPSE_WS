@@ -6,7 +6,7 @@
 	<artifactId>WILDFLY</artifactId>
 	<name>WILDFLY</name>
 	<packaging>pom</packaging>
-	
+
 	<parent>
 		<groupId>com.farbig.servers</groupId>
 		<artifactId>SERVERS</artifactId>
@@ -24,18 +24,26 @@
 					<server-config>standalone-full.xml</server-config>
 					<username>jboss</username>
 					<password>welcome1</password>
-					
+
 				</configuration>
 				<executions>
 					<execution>
+						<id>start</id>
 						<phase>pre-integration-test</phase>
 						<goals>
 							<goal>start</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>stop</id>
+						<phase>post-integration-test</phase>
+						<goals>
+							<goal>shutdown</goal>
 						</goals>
 					</execution>
 				</executions>
 			</plugin>
 		</plugins>
 	</build>
-	
+
 </project>

@@ -17,7 +17,13 @@
 		<item value="harrhys &lt;harrhys@gmail.com&gt;"/>
 	</list>
 	<list key="RepositorySelectionPage.UsedUris">
+		<item value="https://github.com/harrhys/ECLIPSE_WS.git"/>
 		<item value="file:///D:\WORKSPACE\PROJECTS\REPOSITORIES"/>
+	</list>
+	<list key="EGit.KnownHosts">
+		<item value="git.eclipse.org"/>
+		<item value="github.com"/>
+		<item value="bitbucket.org"/>
 	</list>
 	<section name="GitImportWizard">
 		<item key="GitProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>

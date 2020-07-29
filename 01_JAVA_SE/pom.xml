@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.farbig.practice</groupId>
@@ -7,9 +9,46 @@
 	<name>JAVA_SE</name>
 	<version>1.0</version>
 	<packaging>pom</packaging>
-	
-  <modules>
-    <module>JAVA_PRACTICE</module>
-    <module>JAVA_EXAMPLES</module>
-  </modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+	</properties>
+
+
+	<modules>
+		<module>JAVA_PRACTICE</module>
+		<module>JAVA_EXAMPLES</module>
+		<module>DESIGN_PATTERNS</module>
+	</modules>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.13</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<directory>build</directory>
+		<finalName>${project.artifactId}</finalName>
+		<sourceDirectory>src</sourceDirectory>
+		<outputDirectory>build/classes</outputDirectory>
+		<testSourceDirectory>test</testSourceDirectory>
+		<testOutputDirectory>build/testclasses</testOutputDirectory>
+		<scriptSourceDirectory>scripts</scriptSourceDirectory>
+		<resources>
+			<resource>
+				<directory>config</directory>
+			</resource>
+		</resources>
+		<testResources>
+			<testResource>
+				<directory>testconfig</directory>
+			</testResource>
+		</testResources>
+	</build>
 </project>

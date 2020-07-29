@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\..\\REACTIVE_NATIVE\\confusion"
+		},
+		{
+			"path": "..\\..\\REACTIVE_NATIVE\\react-native-elements-app-next"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}
