@@ -75,11 +75,14 @@ class Reservation extends Component {
         };
         
         const handleConfirm = (date) => {
-            let m =   date.getHours()>11?' PM':' AM';     
+            let d =   date.toDateString()+', ';   
+            let h =   date.getHours()+':'; 
+            let m =   (date.getMinutes()<1)?'00':date.getMinutes();   
+            let ap =   date.getHours()>11?' PM':' AM';     
             this.setState(
-                {
+                { 
                     isDatePickerVisible:false,
-                    date: date.toDateString()+', '+date.getHours()+':'+date.getMinutes()+ m
+                    date: d + h + m + ap
                 }
             )
         };
@@ -111,12 +114,18 @@ class Reservation extends Component {
                 </Switch>
                 </View>
                 <View style={styles.formRow}>
-                <Button  title="Select Date and Time " onPress={showDatePicker} />
+                <Button  
+                    title="Select Date and Time " 
+                    onPress={showDatePicker} 
+                    color="#512DA8"
+                    style={styles.formItem}
+                    />
                 <DateTimePickerModal
                     isVisible={this.state.isDatePickerVisible}
                     mode="datetime"
                     onConfirm={handleConfirm}
                     onCancel={hideDatePicker}
+                    
                 />
                 </View>
                 
@@ -174,7 +183,7 @@ const styles = StyleSheet.create({
     },
     formLabel: {
         fontSize: 18,
-        flex: 2
+        flex: 3
     },
     formItem: {
         flex: 1
