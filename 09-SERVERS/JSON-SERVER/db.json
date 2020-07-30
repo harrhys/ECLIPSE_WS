@@ -39,14 +39,6 @@
       "price": "2.99",
       "featured": false,
       "description": "A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms"
-    },
-    {
-      "dishId": 3,
-      "rating": "4",
-      "author": "Harrhy",
-      "comment": "asfasf",
-      "date": "2020-07-27T09:03:15.695Z",
-      "id": 4
     }
   ],
   "comments": [

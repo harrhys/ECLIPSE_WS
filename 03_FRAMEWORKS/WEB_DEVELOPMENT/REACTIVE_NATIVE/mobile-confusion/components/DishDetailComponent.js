@@ -1,15 +1,21 @@
 import React from 'react';
 import { Text, View, ScrollView, FlatList } from 'react-native';
-import { Card, Icon } from 'react-native-elements';
+import { Card, Icon, Rating, AirbnbRating } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { baseUrl } from '../shared/baseUrl';
+import { postFavorite } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
       dishes: state.dishes,
-      comments: state.comments
+      comments: state.comments,
+      favorites: state.favorites
     }
   }
+
+const mapDispatchToProps = dispatch => ({
+    postFavorite: (dishId) => dispatch(postFavorite(dishId))
+})
 
 function RenderDish(props) {
 
@@ -47,8 +53,15 @@ function RenderComments(props) {
         
         return (
             <View key={index} style={{margin: 10}}>
+                
+                <Rating 
+                    imageSize={14}
+                    readonly 
+                    type='heart' 
+                    startingValue={item.rating}
+                    style={{   align: 'left'}}
+                />
                 <Text style={{fontSize: 14}}>{item.comment}</Text>
-                <Text style={{fontSize: 12}}>{item.rating} Stars</Text>
                 <Text style={{fontSize: 12}}>{'-- ' + item.author + ', ' + item.date} </Text>
             </View>
         );
@@ -65,7 +78,7 @@ function RenderComments(props) {
     );
 }
 
-class Dishdetail extends React.Component {
+class DishDetail extends React.Component {
 
     constructor(props) {
         super(props);
@@ -75,7 +88,7 @@ class Dishdetail extends React.Component {
     }
 
     markFavorite(dishId) {
-        this.setState({favorites: this.state.favorites.concat(dishId)});
+        this.props.postFavorite(dishId);
     }
 
     static navigationOptions = {title: 'Dish Details'};
@@ -88,7 +101,7 @@ class Dishdetail extends React.Component {
                 
                 <RenderDish 
                     dish={this.props.dishes.dishes[+dishId]}
-                    favorite={this.state.favorites.some(el => el === dishId)}
+                    favorite={this.props.favorites.some(el => el === dishId)}
                     onPress={() => this.markFavorite(dishId)} 
                 />
                 <RenderComments 
@@ -100,4 +113,4 @@ class Dishdetail extends React.Component {
    
 }
 
-export default connect(mapStateToProps)(Dishdetail);
+export default connect(mapStateToProps, mapDispatchToProps)(DishDetail);

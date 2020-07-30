@@ -5,6 +5,7 @@ import {Dishes} from './dishes';
 import {Comments} from './comments';
 import {Promotions} from './promotions';
 import {Leaders} from './leaders';
+import { Favorites } from './favorites';
 
 
 export const ConfigureStore = () => {
@@ -13,11 +14,11 @@ export const ConfigureStore = () => {
        
         combineReducers(
             {
-
-            dishes: Dishes,
-            comments: Comments,
-            promotions: Promotions,
-            leaders: Leaders
+                dishes: Dishes,
+                comments: Comments,
+                promotions: Promotions,
+                leaders: Leaders,
+                favorites: Favorites
             }
         ),
         applyMiddleware(thunk, logger)

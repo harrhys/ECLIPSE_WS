@@ -9,8 +9,10 @@ import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/
 import Home from './HomeComponent';
 import AboutUs from './AboutUsComponent';
 import Menu from './MenuComponent';
-import Dishdetail from './DishDetailComponent';
+import DishDetail from './DishDetailComponent';
 import Contact from './ContactUsComponent';
+import Reservation from './ReservationComponent';
+import Favorites from './FavoriteComponent';
 import AppError from './ErrorComponent';
 
 const mapStateToProps = state => {
@@ -92,7 +94,7 @@ const MenuNavigator = createStackNavigator(
       )  
     },
     Dishdetail: { 
-      screen: Dishdetail 
+      screen: DishDetail 
     }
   },
   {
@@ -113,6 +115,56 @@ const MenuNavigator = createStackNavigator(
     }
   }
 );
+
+const ReservationNavigator = createStackNavigator(
+  {
+    Reservation: { screen: Reservation }
+  }, 
+  {
+    navigationOptions: ({ navigation }) => (
+      {
+        headerLeft: <Icon name="menu" size={24}
+          iconStyle={{ color: 'white' }} 
+          onPress={ () => navigation.toggleDrawer() } /> ,  
+
+        headerStyle: {
+            backgroundColor: "#512DA8"
+        },
+
+        headerTitleStyle: {
+            color: "#fff"            
+        },
+
+        headerTintColor: "#fff"
+      }
+    )
+  }
+)
+
+const FavoritesNavigator = createStackNavigator(
+  {
+    Favorites: { screen: Favorites }
+  }, 
+  {
+    navigationOptions: ({ navigation }) => (
+      {
+        headerLeft: <Icon name="menu" size={24}
+          iconStyle={{ color: 'white' }} 
+          onPress={ () => navigation.toggleDrawer() } /> ,  
+
+        headerStyle: {
+            backgroundColor: "#512DA8"
+        },
+
+        headerTitleStyle: {
+            color: "#fff"            
+        },
+
+        headerTintColor: "#fff"
+      }
+    )
+  }
+)
 
 const ContactUSNavigator = createStackNavigator(
   {
@@ -191,8 +243,37 @@ const MainNavigator = createDrawerNavigator(
             />
           ),
         }, 
-      }
-      ,
+      },
+    Reservation:
+      { screen: ReservationNavigator,
+        navigationOptions: {
+          title: 'Reserve Table',
+          drawerLabel: 'Reserve Table',
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name='cutlery'
+              type='font-awesome'            
+              size={24}
+              iconStyle={{ color: tintColor }}
+            />
+          ),
+        }
+      },
+      Favorites:
+      { screen: FavoritesNavigator,
+        navigationOptions: {
+          title: 'Favorites',
+          drawerLabel: 'Favorites',
+          drawerIcon: ({ tintColor, focused }) => (
+            <Icon
+              name='heart'
+              type='font-awesome'            
+              size={24}
+              iconStyle={{ color: tintColor }}
+            />
+          ),
+        }
+      },
     ContactUS: 
       { screen: ContactUSNavigator,
         navigationOptions: {
@@ -241,6 +322,10 @@ class Main extends Component {
       this.state = {
             selectedDish: null
     };
+  }
+
+  UNSAFE_componentWillUpdate(){
+
   }
 
   componentDidMount() {
