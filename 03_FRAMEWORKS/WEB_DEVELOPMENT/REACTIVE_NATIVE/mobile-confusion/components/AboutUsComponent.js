@@ -77,7 +77,7 @@ class AboutUs extends React.Component{
         else {
             return (
                 <ScrollView>
-                    <Animatable.View animation="fadeInDown" duration={2000} delay={1000}>
+                    <Animatable.View animation="fadeInDown" duration={500} delay={10}>
                     <RenderHistory />
                         <Card title='Corporate Leadership' >
                             <FlatList 

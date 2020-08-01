@@ -16,7 +16,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     };
     newComment.date = new Date().toISOString();
     
-    return fetch(baseUrl + 'comments', {
+    return fetch('https://mconfusion-9aeb.restdb.io/media/5f24ad119236d304001cbcf7', {
         method: "POST",
         body: JSON.stringify(newComment),
         headers: {
@@ -46,7 +46,7 @@ export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));
 
-    return fetch(baseUrl + 'dishes')
+    return fetch('https://mconfusion-9aeb.restdb.io/media/5f24a9aa9236d304001cbc9b')
     .then(response =>
         {
             if(response.ok)
@@ -70,7 +70,7 @@ export const fetchDishes = () => (dispatch) => {
 export const fetchPromos = () => (dispatch) => {
 
     dispatch(promosLoading(true));
-    return fetch(baseUrl + 'promotions')
+    return fetch('https://mconfusion-9aeb.restdb.io/media/5f24ac859236d304001cbce8')
     .then(response =>
         {
             if(response.ok)
@@ -94,7 +94,7 @@ export const fetchPromos = () => (dispatch) => {
 export const fetchLeaders = () => (dispatch) => {
 
     dispatch(leadersLoading());
-    return fetch(baseUrl + 'leaders')
+    return fetch('https://mconfusion-9aeb.restdb.io/media/5f24ab1a9236d304001cbcbb')
     .then(response =>
         {
             if(response.ok)
@@ -117,7 +117,7 @@ export const fetchLeaders = () => (dispatch) => {
 
 export const fetchComments = () => (dispatch) => {
 
-     return fetch(baseUrl + 'comments')
+     return fetch('https://mconfusion-9aeb.restdb.io/media/5f24ad119236d304001cbcf7')
      .then(response =>
         {
             if(response.ok)

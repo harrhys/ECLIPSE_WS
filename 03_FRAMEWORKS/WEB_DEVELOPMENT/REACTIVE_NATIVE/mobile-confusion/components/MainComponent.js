@@ -4,8 +4,12 @@ import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView 
 import Constants from 'expo-constants';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
+import * as SecureStore from 'expo-secure-store';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
+import Account from './AccountComponent';
+import LoginPage from './LoginPageComponent';
+import Logout from './LogoutComponent';
 import Home from './HomeComponent';
 import AboutUs from './AboutUsComponent';
 import Menu from './MenuComponent';
@@ -27,6 +31,59 @@ const mapDispatchToProps = dispatch => ({
   fetchLeaders: () => dispatch(fetchLeaders()),
 })
 
+const AccountNavigator = createStackNavigator(
+  {
+    Account: { 
+      screen: Account ,
+      navigationOptions: ({ navigation }) => (
+        {
+          headerLeft: <Icon name="menu" size={28} 
+          iconStyle={{ color: 'white', margin:15 }} 
+          onPress={ () => navigation.toggleDrawer() } />,
+
+          headerStyle: {
+            backgroundColor: "#512DA8"
+          },
+
+          headerTitleStyle: {
+          color: "#fff"            
+          },
+
+          headerTintColor: "#fff" 
+            
+        }
+      )
+    }
+  }
+);
+
+const loginuser = () => this.login();
+
+const LoginPageNavigator = createStackNavigator(
+  {
+    Login: { 
+      screen: LoginPage ,
+      navigationOptions: ({ navigation, loginuser }) => (
+        {
+          headerLeft: <Icon name="menu" size={28} 
+          iconStyle={{ color: 'white', margin:15 }} 
+          onPress={ () => navigation.toggleDrawer() } />,
+
+          headerStyle: {
+            backgroundColor: "#512DA8"
+          },
+
+          headerTitleStyle: {
+          color: "#fff"            
+          },
+
+          headerTintColor: "#fff" 
+            
+        }
+      )
+    }
+  }
+);
 
 const HomeNavigator = createStackNavigator(
   {
@@ -190,6 +247,30 @@ const ContactUSNavigator = createStackNavigator(
   }
 );
 
+const LogoutNavigator = createStackNavigator(
+  {
+    Logout: { screen: Logout,
+      navigationOptions: ({ navigation }) => ({
+
+        headerLeft: <Icon name="sign-out" size={28} 
+        iconStyle={{ color: 'white', margin:15 }} 
+        onPress={ () => navigation.toggleDrawer() } />,
+
+        headerStyle: {
+          backgroundColor: "#512DA8"
+        },
+
+        headerTitleStyle: {
+        color: "#fff"            
+        },
+
+        headerTintColor: "#fff"  
+
+      })   
+    }
+  }
+);
+
 const CustomDrawerContentComponent = (props) => (
   <ScrollView>
     <SafeAreaView style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
@@ -204,6 +285,40 @@ const CustomDrawerContentComponent = (props) => (
       <DrawerItems {...props} />
     </SafeAreaView>
   </ScrollView>
+);
+
+const LoginNavigator = createDrawerNavigator(
+
+  { 
+    Account: 
+      { screen: AccountNavigator,
+        navigationOptions: {
+          title: 'Create Account',
+          drawerLabel: 'Create Account',
+          drawerIcon: ({tintColor}) => (
+            <Icon name="sign-in" type="font-awesome" size={24} color={tintColor} />
+            ),
+          
+        }
+      
+      },
+
+      Login: 
+      { screen: LoginPageNavigator,
+        navigationOptions: ({login})=> ({
+          title: 'Login',
+          drawerLabel: 'Login',
+          drawerIcon: ({tintColor}) => (
+            <Icon name="sign-in" type="font-awesome" size={24} color={tintColor} />
+            ),
+        })
+      }
+  },
+  {
+    initialRouteName:'Login',
+    drawerBackgroundColor: '#D1C4E9',
+    contentComponent: CustomDrawerContentComponent
+  }
 );
 
 const MainNavigator = createDrawerNavigator(
@@ -259,7 +374,7 @@ const MainNavigator = createDrawerNavigator(
           ),
         }
       },
-      Favorites:
+    Favorites:
       { screen: FavoritesNavigator,
         navigationOptions: {
           title: 'Favorites',
@@ -283,13 +398,39 @@ const MainNavigator = createDrawerNavigator(
             <Icon name="address-card" type="font-awesome" size={22} color={tintColor} />
           )
         }, 
+      },
+    Logout: 
+      { screen: Logout,
+        navigationOptions: {
+          title: 'Logout',
+          drawerLabel: 'Logout',
+          drawerIcon: ({tintColor, focused}) => (
+            <Icon name="sign-out" type="font-awesome" size={22} color={tintColor} onPress={navigation=>navigation.push('LoggedOut')}/>
+          )
+         
+        }
       }
   }, 
   {
+    initialRouteName:'Home',
     drawerBackgroundColor: '#D1C4E9',
     contentComponent: CustomDrawerContentComponent
   }
 );
+
+const AppNavigator = createStackNavigator({
+
+    LoggedOut:{screen:LoginNavigator, navigationOptions:
+      {header:null}},
+    LoggedIn:{screen:MainNavigator, navigationOptions:
+    {header:null}}
+
+});
+
+
+
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -320,7 +461,8 @@ class Main extends Component {
     constructor(props) {
       super(props);
       this.state = {
-            selectedDish: null
+            selectedDish: null,
+            isUserLoggedIn: false
     };
   }
 
@@ -335,21 +477,52 @@ class Main extends Component {
     this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchLeaders();
-      
-    
-  
+    SecureStore.getItemAsync('userinfo')
+        .then((userdata) => {
+            let userinfo = JSON.parse(userdata);
+            if (userinfo) {
+              this.setState({isUserLoggedIn: true})
+            }
+        })
+        .catch((error) => console.log('Could not load user info', error));
+  }
+
+  login(){
+    this.setState({isUserLoggedIn:true})
+  }
+
+  logout(){
+    SecureStore.deleteItemAsync('userinfo')
+    .catch((error) => console.log('Could not delete user info', error));
+    this.setState({isUserLoggedIn:false});
   }
 
   render() {
- 
+
     return (
       <View style={{flex:1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
         <AppError>
-            <MainNavigator />
+          <AppNavigator />
         </AppError>
       </View>
- 
     );
+
+    /*  if(this.state.isUserLoggedIn)
+      return (
+        <View style={{flex:1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
+          <AppError>
+            <MainNavigator />
+          </AppError>
+        </View>
+      );
+    else
+      return (
+        <View style={{flex:1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
+          <AppError>
+            <LoginNavigator login={()=>this.login()} />
+          </AppError>
+        </View>
+      );  */
   }
 }
   

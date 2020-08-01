@@ -91,61 +91,57 @@ class Reservation extends Component {
         return(
             <ScrollView>
                 <View style={styles.formRow}>
-                <Text style={styles.formLabel}>Number of Guests</Text>
-                <Picker
-                    style={styles.formItem}
-                    selectedValue={this.state.guests}
-                    onValueChange={(itemValue, itemIndex) => this.setState({guests: itemValue})}>
-                    <Picker.Item label="1" value="1" />
-                    <Picker.Item label="2" value="2" />
-                    <Picker.Item label="3" value="3" />
-                    <Picker.Item label="4" value="4" />
-                    <Picker.Item label="5" value="5" />
-                    <Picker.Item label="6" value="6" />
-                </Picker>
+                    <Text style={styles.formLabel}>Number of Guests</Text>
+                    <Picker
+                        style={styles.formItem}
+                        selectedValue={this.state.guests}
+                        onValueChange={(itemValue, itemIndex) => this.setState({guests: itemValue})}>
+                        <Picker.Item label="1" value="1" />
+                        <Picker.Item label="2" value="2" />
+                        <Picker.Item label="3" value="3" />
+                        <Picker.Item label="4" value="4" />
+                        <Picker.Item label="5" value="5" />
+                        <Picker.Item label="6" value="6" />
+                    </Picker>
                 </View>
                 <View style={styles.formRow}>
                 <Text style={styles.formLabel}>Smoking/Non-Smoking?</Text>
-                <Switch
-                    style={styles.formItem}
-                    value={this.state.smoking}
-                    trackColor='#512DA8'
-                    onValueChange={(value) => this.setState({smoking: value})}>
-                </Switch>
+                    <Switch
+                        style={styles.formItem}
+                        value={this.state.smoking}
+                        trackColor='#512DA8'
+                        onValueChange={(value) => this.setState({smoking: value})}>
+                    </Switch>
                 </View>
                 <View style={styles.formRow}>
-                <Button  
-                    title="Select Date and Time " 
-                    onPress={showDatePicker} 
-                    color="#512DA8"
-                    style={styles.formItem}
+                    <Button  
+                        title="Select Date and Time " 
+                        onPress={showDatePicker} 
+                        color="#512DA8"
+                        style={styles.formItem}
+                        />
+                    <DateTimePickerModal
+                        isVisible={this.state.isDatePickerVisible}
+                        mode="datetime"
+                        onConfirm={handleConfirm}
+                        onCancel={hideDatePicker}
                     />
-                <DateTimePickerModal
-                    isVisible={this.state.isDatePickerVisible}
-                    mode="datetime"
-                    onConfirm={handleConfirm}
-                    onCancel={hideDatePicker}
-                    
-                />
                 </View>
-                
-                <View style={styles.formRow}>
-                           
-                <Text style={styles.formLabel}>Date and Time :  {this.state.date}</Text>
-               
+                <View style={styles.formRow}>    
+                    <Text style={styles.formLabel}>Date and Time :  {this.state.date}</Text>
                 </View>
                 <View style={styles.formRow}>
-                <Button
-                    onPress={() => this.handleReservation()}
-                    title="Reserve"
-                    color="#512DA8"
-                    accessibilityLabel="Learn more about this purple button"
-                    icon={<Icon
-                        name='cutlery'
-                        type='font-awesome'            
-                        size={24}
-                       
-                      />}
+                    <Button
+                        onPress={() => this.handleReservation()}
+                        title="Reserve"
+                        color="#512DA8"
+                        accessibilityLabel="Learn more about this purple button"
+                        icon={<Icon
+                            name='cutlery'
+                            type='font-awesome'            
+                            size={24}
+                        
+                        />}
                     />
                 </View>
                 <Modal animationType = {"slide"} transparent = {false}
@@ -162,15 +158,13 @@ class Reservation extends Component {
                             onPress = {() =>{this.toggleModal(); this.resetForm();}}
                             color="#512DA8"
                             title="Close" 
-                            />
+                        />
+                        
                     </View>
                 </Modal>
             </ScrollView>
-
-
-        );
+       );
     }
-
 };
 
 const styles = StyleSheet.create({

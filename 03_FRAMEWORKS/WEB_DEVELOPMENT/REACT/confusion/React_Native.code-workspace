@@ -2,6 +2,9 @@
     "folders": [
         {
             "path": "..\\..\\REACTIVE_NATIVE\\mobile-confusion"
+        },
+        {
+            "path": "..\\..\\REACTIVE_NATIVE\\webview"
         }
     ]
 }

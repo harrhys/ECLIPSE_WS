@@ -1,3 +1,16 @@
-json-server db.json --port 3002
+json-server --host 192.168.55.101 db.json --port 3001
+
 
 D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\WEB_DEVELOPMENT\REACTIVE_NATIVE\mobile-confusion
+
+D:\WORKSPACE\PROJECTS\ECLIPSE_WS\09-SERVERS\JSON-SERVER
+
+5f24659e6f8e4e3faf27c867
+
+https://api.jsonbin.io/
+
+/b/<BIN_ID>
+
+/b/<BIN_ID>/<BIN_VERSION>
+
+/b/<BIN_ID>/latest  
