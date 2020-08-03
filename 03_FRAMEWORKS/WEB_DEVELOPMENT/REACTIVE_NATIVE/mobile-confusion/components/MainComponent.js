@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import * as SecureStore from 'expo-secure-store';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
+import LoginTabPage from './LoginTabComponent';
 import Account from './AccountComponent';
 import LoginPage from './LoginPageComponent';
 import Logout from './LogoutComponent';
@@ -30,6 +31,24 @@ const mapDispatchToProps = dispatch => ({
   fetchPromos: () => dispatch(fetchPromos()),
   fetchLeaders: () => dispatch(fetchLeaders()),
 })
+
+const LoginTabNavigator = createStackNavigator({
+  LoginTabPage: LoginTabPage
+}, {
+navigationOptions: ({ navigation }) => ({
+  headerStyle: {
+      backgroundColor: "#512DA8"
+  },
+  headerTitleStyle: {
+      color: "#fff"            
+  },
+  title: 'Login',
+  headerTintColor: "#fff",
+  headerLeft: <Icon name="menu" size={24}
+    iconStyle={{ color: 'white' }} 
+    onPress={ () => navigation.toggleDrawer() } />    
+})
+});
 
 const AccountNavigator = createStackNavigator(
   {
@@ -323,6 +342,17 @@ const LoginNavigator = createDrawerNavigator(
 
 const MainNavigator = createDrawerNavigator(
   {
+    LoginTab: 
+      { screen: LoginTabNavigator,
+        navigationOptions: {
+          title: 'Login',
+          drawerLabel: 'Login',
+          drawerIcon: ({tintColor}) => (
+            <Icon name="sign-in" type="font-awesome" size={24} color={tintColor} />
+            ),
+        }
+      }
+      ,
     Home: 
       { screen: HomeNavigator,
         navigationOptions: {
@@ -502,7 +532,7 @@ class Main extends Component {
     return (
       <View style={{flex:1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
         <AppError>
-          <AppNavigator />
+          <MainNavigator />
         </AppError>
       </View>
     );

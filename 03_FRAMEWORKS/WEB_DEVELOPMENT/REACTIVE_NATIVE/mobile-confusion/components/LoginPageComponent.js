@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, Text, Button, Alert, StyleSheet} from 'react-native';
+import {View, ScrollView, Text, Button, Alert, StyleSheet, Image} from 'react-native';
 import  {Input, CheckBox} from 'react-native-elements';
 import * as SecureStore from 'expo-secure-store';
 import Main from './MainComponent';
+import { createBottomTabNavigator } from 'react-navigation';
+import { baseUrl } from '../shared/baseUrl';
 
 
 class LoginPage extends React.Component{

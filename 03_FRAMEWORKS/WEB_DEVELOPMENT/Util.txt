@@ -7,7 +7,7 @@ D:\WORKSPACE\PROJECTS\ECLIPSE_WS\09-SERVERS\JSON-SERVER
 
 5f24659e6f8e4e3faf27c867
 
-https://api.jsonbin.io/
+https://api.jsonbin.io/b/5f24659e6f8e4e3faf27c867/dishes
 
 /b/<BIN_ID>
 

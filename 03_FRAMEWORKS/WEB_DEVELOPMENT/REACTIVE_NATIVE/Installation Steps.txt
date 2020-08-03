@@ -1,0 +1,28 @@
+yarn global add create-react-native-app@1.0.0
+
+create-react-native-app --help
+
+create-react-native-app confusion
+
+yarn add react-native-elements@beta
+
+yarn add react-navigation@2.0.1
+
+npm install json-server -g
+
+json-server --watch db.json -p 3001 -d 2000
+
+yarn add redux@4.0.0
+yarn add react-redux@5.0.7
+yarn add redux-thunk@2.2.0
+yarn add redux-logger@3.0.6
+
+yarn global add react-devtools@3.2.3
+
+yarn add react-native-datepicker@1.7.2.
+
+yarn add react-native-swipeout@2.3.3
+
+yarn add react-native-animatable@1.2.4
+
+yarn add redux-persist@5.9.1

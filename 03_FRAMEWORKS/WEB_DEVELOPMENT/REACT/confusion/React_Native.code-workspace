@@ -1,10 +1,16 @@
 {
     "folders": [
         {
-            "path": "..\\..\\REACTIVE_NATIVE\\mobile-confusion"
+            "path": "..\\..\\NODEJS\\node-example"
         },
         {
-            "path": "..\\..\\REACTIVE_NATIVE\\webview"
+            "path": "..\\..\\NODEJS\\node-http"
+        },
+        {
+            "path": "..\\..\\NODEJS\\node-express"
+        },
+        {
+            "path": "..\\..\\NODEJS\\conFusionServer"
         }
     ]
 }

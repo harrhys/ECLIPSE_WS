@@ -48,18 +48,18 @@ class Menu extends React.Component{
         const { navigate } = this.props.navigation;
 
         const xpos1 = this.animatedValue.interpolate({
-            inputRange: [0, 2, 5, 10, 15, 20],
-            outputRange: [0, 0,-100, 0, 100, 0]
+            inputRange: [0, 2, 5, 10, 15, 18,20],
+            outputRange: [0, 0,-100, 0, 100, 0, 0]
         })
 
         const xpos2 = this.animatedValue.interpolate({
-            inputRange: [0, 5, 10, 15, 20],
-            outputRange: [0, 100, 0, -100, 0]
+            inputRange: [0, 2, 5, 10, 15, 18, 20],
+            outputRange: [0, 0, 100, 0, -100, 0, 0]
         })
 
         const ypos = this.animatedValue.interpolate({
-            inputRange: [0, 5, 10, 15, 20],
-            outputRange: [0, -150, -300, -150, 0]
+            inputRange: [0, 2, 5, 10, 15, 18, 20],
+            outputRange: [0, 0, -150, -300, -150, 0, 0]
         })
 
         const renderMenuItem = ({item, index}) => {
