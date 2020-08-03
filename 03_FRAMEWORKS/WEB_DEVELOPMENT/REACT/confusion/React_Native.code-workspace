@@ -1,16 +1,13 @@
 {
     "folders": [
         {
-            "path": "..\\..\\NODEJS\\node-example"
-        },
-        {
-            "path": "..\\..\\NODEJS\\node-http"
-        },
-        {
-            "path": "..\\..\\NODEJS\\node-express"
-        },
-        {
             "path": "..\\..\\NODEJS\\conFusionServer"
+        },
+        {
+            "path": "..\\..\\NODEJS\\node-mongo"
+        },
+        {
+            "path": "..\\..\\NODEJS\\node-mongoose"
         }
     ]
 }

@@ -9,8 +9,18 @@ D:\WORKSPACE\PROJECTS\ECLIPSE_WS\09-SERVERS\JSON-SERVER
 
 https://api.jsonbin.io/b/5f24659e6f8e4e3faf27c867/dishes
 
-/b/<BIN_ID>
+TO START THE DB SERVER :
 
-/b/<BIN_ID>/<BIN_VERSION>
+mongod --dbpath=data --bind_ip 127.0.01
 
-/b/<BIN_ID>/latest  
+TO START THE DB CLIENT:
+
+mongo
+db
+use conFusion
+db
+db.help()
+db.dishes.insert({ name: "Uthappizza", description: "Test" });
+db.dishes.find().pretty();
+var id = new ObjectId();
+id.getTimestamp();
