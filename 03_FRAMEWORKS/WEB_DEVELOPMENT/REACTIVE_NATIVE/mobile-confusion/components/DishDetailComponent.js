@@ -4,18 +4,18 @@ import { Card, Input, Icon, Rating, AirbnbRating } from 'react-native-elements';
 import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 import { baseUrl } from '../shared/baseUrl';
-import { postFavorite,postComment } from '../redux/ActionCreators';
+import { postFavorite, removeFavorite, postComment } from '../redux/ActionCreators';
 
 const mapStateToProps = state => {
     return {
       dishes: state.dishes,
-      comments: state.comments,
       favorites: state.favorites
     }
   }
 
 const mapDispatchToProps = dispatch => ({
     postFavorite: (dishId) => dispatch(postFavorite(dishId)),
+    removeFavorite: (dishId) => dispatch(removeFavorite(dishId)),
     postComment:  (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment))
 })
 
@@ -52,7 +52,7 @@ function RenderDish(props) {
                     'Are you sure you wish to add ' + dish.name + ' to favorite?',
                     [
                     {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
-                    {text: 'OK', onPress: () => {props.favorite ? console.log('Already favorite') : props.onPress()}},
+                    {text: 'OK', onPress: () => {props.favorite ? console.log('Already favorite') : props.markFavorite()}},
                     ],
                     { cancelable: false }
                 );
@@ -94,7 +94,7 @@ function RenderDish(props) {
                             name={ props.favorite ? 'heart' : 'heart-o'}
                             type='font-awesome'
                             color='#f50'
-                            onPress={() => props.favorite ? console.log('Already favorite') : props.onPress()}
+                            onPress={() => props.favorite ? props.removeFavorite() : props.markFavorite()}
                         />
                         <Icon
                             raised
@@ -123,7 +123,6 @@ function RenderDish(props) {
                                 <Rating 
                                     showRating 
                                     type='heart'
-                                    onStartRating={3}
                                     onFinishRating={rating=>props.setRating(rating)}
                                 />
                                 <Input
@@ -135,7 +134,8 @@ function RenderDish(props) {
                                     placeholder='Comment'
                                     leftIcon={{ type: 'font-awesome', name: 'comment-o' }} 
                                     onChangeText={text => props.setComment(text)}
-                                />  
+                                /> 
+                                <Text>{props.errMsg}</Text> 
                                 <View style={styles.formRow}>
                                     <Button 
                                         onPress = {()=>props.addComment()}
@@ -155,6 +155,7 @@ function RenderDish(props) {
                     </View>
                 </Card>
             </Animatable.View>
+           
         );
     }
     else {
@@ -165,21 +166,19 @@ function RenderDish(props) {
 function RenderComments(props) {
 
     const comments = props.comments;
-            
+
     const renderCommentItem = ({item, index}) => {
-        
+
         return (
             <View key={index} style={styles.comments}>
-                
                 <Rating 
                     imageSize={14}
                     readonly 
                     type='heart' 
                     startingValue={item.rating}
-                    
                 />
                 <Text style={{fontSize: 14}}>{item.comment}</Text>
-                <Text style={{fontSize: 12}}>{'-- ' + item.author + ', ' + item.date} </Text>
+                <Text style={{fontSize: 12}}>{'-- ' + item.author + ', ' + item.createdAt} </Text>
             </View>
         );
     };
@@ -190,7 +189,7 @@ function RenderComments(props) {
             <   FlatList 
                     data={comments}
                     renderItem={renderCommentItem}
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={item => item._id.toString()}
                 />
             </Card>
         </Animatable.View>
@@ -207,12 +206,18 @@ class DishDetail extends React.Component {
             isFormVisible: false,
             rating:0,
             author:'',
-            comment:''
+            comment:'',
+            errMsg:''
+           // comments:this.props.navigation.getParam('dish','').comments
         };
     }
 
     markFavorite(dishId) {
         this.props.postFavorite(dishId);
+    }
+
+    removeFavorite(dishId) {
+        this.props.removeFavorite(dishId);
     }
 
     setRating(rating){
@@ -233,20 +238,32 @@ class DishDetail extends React.Component {
             rating: 0,
             author:'',
             comment:'',
-            isFormVisible: false
+            isFormVisible: false,
+            errMsg:''
         });
     }
 
     addComment(dishId){
-
-        console.log('dishId:----------------'+dishId);
-        console.log(JSON.stringify(this.state));
-        this.props.postComment(dishId,this.state.rating,this.state.author,this.state.comment);
-        this.resetComment();
+        if(this.state.rating==0 || this.state.author=='' || this.state.comment=='')
+            this.setState({errMsg:'Rating, Author and Comments are mandatory'});
+        else{
+            this.props.postComment(dishId,this.state.rating,this.state.author,this.state.comment);
+            this.resetComment();
+        }
     }
 
     toggleForm(){
         this.setState({isFormVisible: !this.state.isFormVisible});
+    }
+
+   
+    getDishFromId(dishId){
+
+        var dishes = this.props.dishes.dishes;
+        for (var i = (dishes.length -1); i >= 0; i--) {
+            if(dishes[i]._id==dishId)
+                return dishes[i];
+        }
     }
 
     static navigationOptions = {title: 'Dish Details'};
@@ -254,12 +271,16 @@ class DishDetail extends React.Component {
     render(){
 
         const dishId = this.props.navigation.getParam('dishId','');
+        const dish = this.getDishFromId(dishId);
+        const comments = dish.comments;
+        
         return(
             <ScrollView>
                 <RenderDish 
-                    dish={this.props.dishes.dishes[+dishId]}
+                    dish={dish}
                     favorite={this.props.favorites.some(el => el === dishId)}
-                    onPress={() => this.markFavorite(dishId)} 
+                    markFavorite={() => this.markFavorite(dishId)} 
+                    removeFavorite={() => this.removeFavorite(dishId)} 
                     toggleForm={()=> this.toggleForm()}
                     isFormVisible={this.state.isFormVisible}
                     setRating={(rating)=>this.setRating(rating)}
@@ -267,16 +288,18 @@ class DishDetail extends React.Component {
                     setComment={(comment)=>this.setComment(comment)}
                     addComment={()=>this.addComment(dishId)}
                     resetComment={()=>this.resetComment()}
+                    errMsg={this.state.errMsg}
                 />
                 <RenderComments 
-                    comments={this.props.comments.comments.filter((comment) => comment.dishId === dishId)} 
+                    comments={comments} 
                 />
-            </ScrollView>
+             </ScrollView>
         );
     }
 }
 
 const styles = StyleSheet.create({
+    
     formRow: {
       alignItems: 'center',
       justifyContent: 'center',

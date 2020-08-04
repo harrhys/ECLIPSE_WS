@@ -4,10 +4,7 @@
             "path": "..\\..\\NODEJS\\conFusionServer"
         },
         {
-            "path": "..\\..\\NODEJS\\node-mongo"
-        },
-        {
-            "path": "..\\..\\NODEJS\\node-mongoose"
+            "path": "..\\..\\REACTIVE_NATIVE\\mobile-confusion"
         }
     ]
 }

@@ -6,6 +6,7 @@ export const addComment = (comment) => ({
     payload: comment
 });
 
+
 export const postComment = (dishId, rating, author, comment) => (dispatch) => {
 
     const newComment = {
@@ -16,7 +17,9 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
     };
     newComment.date = new Date().toISOString();
     
-    return fetch('https://mconfusion-9aeb.restdb.io/media/5f24ad119236d304001cbcf7', {
+    const fetchUrl = baseUrl+'dishes/'+dishId+'/comments';
+    
+    return fetch(fetchUrl, {
         method: "POST",
         body: JSON.stringify(newComment),
         headers: {
@@ -37,7 +40,8 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
             throw error;
       })
     .then(response => response.json())
-    .then(response => dispatch(addComment(response)))
+    //.then(response => dispatch(addComment(response)))
+    .then(response => dispatch(updateDishes(response)))
     .catch(error =>  { console.log('post comments', error.message); alert('Your comment could not be posted\nError: '+error.message); });
 };
 
@@ -46,7 +50,7 @@ export const fetchDishes = () => (dispatch) => {
 
     dispatch(dishesLoading(true));
 
-    return fetch('https://mconfusion-9aeb.restdb.io/media/5f24a9aa9236d304001cbc9b')
+    return fetch(baseUrl+'dishes')
     .then(response =>
         {
             if(response.ok)
@@ -115,7 +119,7 @@ export const fetchLeaders = () => (dispatch) => {
     .catch(error => dispatch(leadersFailed(error.message)));
 }
 
-export const fetchComments = () => (dispatch) => {
+export const fetchComments = (dish) => (dispatch) => {
 
      return fetch('https://mconfusion-9aeb.restdb.io/media/5f24ad119236d304001cbcf7')
      .then(response =>
@@ -135,7 +139,7 @@ export const fetchComments = () => (dispatch) => {
         })
     .then(response => response.json())
     .then(comments => dispatch(addComments(comments)))
-    .catch(error => dispatch(commentsFailed(error.message)));
+    .catch(error => dispatch(commentsFailed(error.message))); 
 }
 
 export const dishesLoading = () => ({
@@ -151,6 +155,11 @@ export const dishesFailed = (errMess) => ({
 export const addDishes = (dishes) => ({
     type: ActionTypes.LOAD_DISHES,
     payload: dishes
+});
+
+export const updateDishes = (dish) => ({
+    type: ActionTypes.UPDATE_DISHES,
+    payload: dish
 });
 
 export const promosLoading = () => ({
@@ -197,8 +206,15 @@ export const addComments = (comments) => ({
 export const postFavorite = (dishId)  => (dispatch) => {
     setTimeout(() => {
         dispatch(addFavorite(dishId));
-    }, 2000);
+    }, 100);
 };
+
+export const removeFavorite = (dishId) =>(dispatch) => {
+    setTimeout(() => {
+        dispatch(deleteFavorite(dishId));
+    }, 100);
+   
+};  
 
 export const addFavorite = (dishId) => ({
     type: ActionTypes.ADD_FAVORITE,
@@ -208,6 +224,8 @@ export const addFavorite = (dishId) => ({
 export const deleteFavorite = (dishId) => ({
     type: ActionTypes.DELETE_FAVORITE,
     payload: dishId
-});  
+});
+
+
 
 

@@ -63,6 +63,7 @@ class Menu extends React.Component{
         })
 
         const renderMenuItem = ({item, index}) => {
+            item.comments.reverse();
             if(index%2==0)
             return (
                 
@@ -71,7 +72,7 @@ class Menu extends React.Component{
                         <Button
                             icon={<Icon  name="hand-o-right" size={20} color="white" marginRight="10"/> }
                             color='#512DA8'
-                            onPress={() => navigate('Dishdetail', { dishId: item.id })}
+                            onPress={() => navigate('Dishdetail', { dishId: item._id })}
                             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, color: '#512DA8', marginBottom: 0}}
                             title={` Press for ${item.name}`}>
                         </Button>
@@ -93,7 +94,7 @@ class Menu extends React.Component{
                     <Card featuredTitle={item.name} featuredSubtitle={item.designation} image={{uri: baseUrl + item.image}}> 
                         <Button
                             icon={<Icon  name="hand-o-right" size={20} color="white" marginRight="10"/> }
-                            onPress={() => navigate('Dishdetail', { dishId: item.id })}
+                            onPress={() => navigate('Dishdetail', { dishId: item._id })}
                             buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, marginBottom: 0}}
                             title={` Press for ${item.name}`}>
                         </Button>
@@ -118,7 +119,7 @@ class Menu extends React.Component{
         else if (this.props.dishes.errMess) {
             return(
                 <View>            
-                    <Text>{props.dishes.errMess}</Text>
+                    <Text>{this.props.dishes.errMess}</Text>
                 </View>            
             );
         }
@@ -127,7 +128,7 @@ class Menu extends React.Component{
                 <FlatList 
                     data={this.props.dishes.dishes}
                     renderItem={renderMenuItem}
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={item => item._id.toString()}
                 />
             );
         }

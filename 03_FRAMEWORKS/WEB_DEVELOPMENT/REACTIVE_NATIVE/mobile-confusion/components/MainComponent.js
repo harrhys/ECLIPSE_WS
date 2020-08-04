@@ -27,7 +27,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   fetchDishes: () => dispatch(fetchDishes()),
-  fetchComments: () => dispatch(fetchComments()),
+  //fetchComments: () => dispatch(fetchComments()),
   fetchPromos: () => dispatch(fetchPromos()),
   fetchLeaders: () => dispatch(fetchLeaders()),
 })
@@ -504,7 +504,7 @@ class Main extends Component {
 
     console.disableYellowBox = true;
     this.props.fetchDishes();
-    this.props.fetchComments();
+   // this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchLeaders();
     SecureStore.getItemAsync('userinfo')

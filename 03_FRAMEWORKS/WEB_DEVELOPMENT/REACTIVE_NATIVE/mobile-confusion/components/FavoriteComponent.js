@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { FlatList, View, Text, Alert  } from 'react-native';
 import Swipeout from 'react-native-swipeout';
-import { ListItem } from 'react-native-elements';
+import { ListItem,Card, Button } from 'react-native-elements';
+import Icon  from 'react-native-vector-icons/FontAwesome';
 import { connect } from 'react-redux';
 import * as Animatable from 'react-native-animatable';
 import { Loading } from './LoadingComponent';
@@ -48,7 +49,7 @@ class Favorites extends Component {
                         },
                         {
                             text: 'OK',
-                            onPress: () => this.props.deleteFavorite(item.id)
+                            onPress: () => this.props.deleteFavorite(item._id)
                         }
                     ],
                     { cancelable: false }
@@ -60,16 +61,16 @@ class Favorites extends Component {
 
           return (
               <Swipeout right={rightButton} autoClose={true}>
-                <Animatable.View animation="fadeInRightBig" duration={2000}> 
+                
                   <ListItem
                       key={index}
                       title={item.name}
                       subtitle={item.description}
                       hideChevron={true}
-                      onPress={() => navigate('Dishdetail', { dishId: item.id })}
+                      onPress={() => navigate('Dishdetail', { dishId: item._id })}
                       leftAvatar={{ source: {uri: baseUrl + item.image}}}
                       />
-                </Animatable.View>
+                
               </Swipeout>
           );
         };
@@ -86,13 +87,30 @@ class Favorites extends Component {
                 </View>            
             );
         }
+        else if (this.props.favorites.length==0) {
+          return(
+              <View>            
+                  <Card title={'Favorites Not Added'} > 
+                        <Button
+                            icon={<Icon  name="hand-o-right" size={20} color="white" marginRight="10"/> }
+                            color='#512DA8'
+                            onPress={() => navigate('Menu')}
+                            buttonStyle={{borderRadius: 0, marginLeft: 0, marginRight: 0, color: '#512DA8', marginBottom: 0}}
+                            title={ 'Go to Menu'}>
+                        </Button>
+                    </Card>
+              </View>            
+          );
+      }
         else {
             return (
+              <Animatable.View animation="fadeInDown" duration={2000} delay={1000}> 
                 <FlatList 
-                    data={this.props.dishes.dishes.filter(dish => this.props.favorites.some(el => el === dish.id))}
+                    data={this.props.dishes.dishes.filter(dish => this.props.favorites.some(el => el === dish._id))}
                     renderItem={renderMenuItem}
-                    keyExtractor={item => item.id.toString()}
+                    keyExtractor={item => item._id.toString()}
                     />
+              </Animatable.View>
             );
         }
     }

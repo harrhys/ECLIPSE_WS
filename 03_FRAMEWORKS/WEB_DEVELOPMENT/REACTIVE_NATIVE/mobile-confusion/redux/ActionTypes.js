@@ -1,6 +1,7 @@
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DISHES_LOADING = 'DISHES_LOADING';
 export const LOAD_DISHES = 'LOAD_DISHES';
+export const UPDATE_DISHES = 'UPDATE_DISHES';
 export const DISHES_FAILED = 'DISHES_FAILED';
 export const PROMOS_LOADING = 'PROMOS_LOADING';
 export const LOAD_PROMOS = 'LOAD_PROMOS';
