@@ -122,6 +122,7 @@ class Reservation extends Component {
                         name="calendar" 
                         type="font-awesome"
                         size={40} 
+                        color="#512DA8"
                         iconStyle={styles.formDateIcon} 
                         onPress={showDatePicker } 
                     /> 

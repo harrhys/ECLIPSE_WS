@@ -2,7 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('./cors');
-const Dishes = require('../models/dishes');
+const Dishes = require('../models/dishModel');
+var authenticate = require('../authenticate');
 
 
 const dishRouter = express.Router();
@@ -23,7 +24,7 @@ dishRouter.route('/')
         )
         .catch((err) => next(err));
     })
-    .post(cors.corsWithOptions,(req, res, next) => {
+    .post(cors.corsWithOptions,authenticate.verifyUser, (req, res, next) => {
 
         Dishes.create(req.body)
         .then((dish) => {
@@ -36,12 +37,12 @@ dishRouter.route('/')
         )
         .catch((err) => next(err));
     })
-    .put(cors.corsWithOptions,(req, res, next) => {
+    .put(cors.corsWithOptions, authenticate.verifyUser,(req, res, next) => {
 
         res.statusCode = 403;
         res.end('PUT operation not supported on /dishes');
     })
-    .delete(cors.corsWithOptions,(req, res, next) => {
+    .delete(cors.corsWithOptions,authenticate.verifyUser,(req, res, next) => {
 
         Dishes.remove({})
         .then((resp) => {
@@ -68,12 +69,12 @@ dishRouter.route('/:dishId')
         )
         .catch((err) => next(err));
     })
-    .post(cors.corsWithOptions,(req, res, next) => {
+    .post(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
 
         res.statusCode = 403;
         res.end('POST operation not supported on /dishes/'+ req.params.dishId);
     })
-    .put(cors.corsWithOptions,(req, res, next) => {
+    .put(cors.corsWithOptions, authenticate.verifyUser,(req, res, next) => {
 
         Dishes.findByIdAndUpdate(
             req.params.dishId, 
@@ -89,7 +90,7 @@ dishRouter.route('/:dishId')
         )
         .catch((err) => next(err));
     })
-    .delete(cors.corsWithOptions,(req, res, next) => {
+    .delete(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
 
         Dishes.findByIdAndRemove(req.params.dishId)
         .then((resp) => {
@@ -122,7 +123,7 @@ dishRouter.route('/:dishId/comments')
         )
         .catch((err) => next(err));
     })
-    .post(cors.corsWithOptions,(req, res, next) => {
+    .post(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
         Dishes.findById(req.params.dishId)
         .then((dish) => {
                 if (dish != null) {
@@ -145,12 +146,12 @@ dishRouter.route('/:dishId/comments')
         )
         .catch((err) => next(err));
     })
-    .put(cors.corsWithOptions,(req, res, next) => {
+    .put(cors.corsWithOptions,authenticate.verifyUser, (req, res, next) => {
         res.statusCode = 403;
         res.end('PUT operation not supported on /dishes/'
             + req.params.dishId + '/comments');
     })
-    .delete(cors.corsWithOptions,(req, res, next) => {
+    .delete( cors.corsWithOptions, authenticate.verifyUser,(req, res, next) => {
         Dishes.findById(req.params.dishId)
         .then((dish) => {
                 if (dish != null) {
@@ -199,12 +200,12 @@ dishRouter.route('/:dishId/comments/:commentId')
         )
         .catch((err) => next(err));
     })
-    .post(cors.corsWithOptions,(req, res, next) => {
+    .post(cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
         res.statusCode = 403;
         res.end('POST operation not supported on /dishes/'+ req.params.dishId
             + '/comments/' + req.params.commentId);
     })
-    .put(cors.corsWithOptions,(req, res, next) => {
+    .put(authenticate.verifyUser, cors.corsWithOptions,(req, res, next) => {
         Dishes.findById(req.params.dishId)
         .then((dish) => {
                 if (dish != null && dish.comments.id(req.params.commentId) != null) {
@@ -236,7 +237,7 @@ dishRouter.route('/:dishId/comments/:commentId')
         )
         .catch((err) => next(err));
     })
-    .delete(cors.corsWithOptions,(req, res, next) => {
+    .delete (cors.corsWithOptions, authenticate.verifyUser, (req, res, next) => {
         Dishes.findById(req.params.dishId)
         .then((dish) => {
                 if (dish != null && dish.comments.id(req.params.commentId) != null) {

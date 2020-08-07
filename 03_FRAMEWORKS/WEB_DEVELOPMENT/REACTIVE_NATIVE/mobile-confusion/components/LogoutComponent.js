@@ -1,26 +1,35 @@
 import React from 'react';
-import {View, Text, Button, StyleSheet} from 'react-native';
-import  {Input, CheckBox} from 'react-native-elements';
+import {View, Text, Button, Alert,StyleSheet} from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import { connect } from 'react-redux';
+import {logout } from '../redux/ActionCreators';
+
+const mapStateToProps = state => {
+    return {
+    }
+}
+
+const mapDispatchToProps = dispatch => ({
+    logout: () => dispatch(logout())
+})
 
 class Logout extends React.Component{
 
    constructor(props){
+
        super(props);
-       SecureStore.deleteItemAsync('userinfo')
-            .catch(error => console.log('couldnt delete userinfo', error));
+       this.props.logout();
        props.navigation.navigate('LoggedOut');
    }
+   
 
     render(){
-
+        
         return(
-            <View>
-                <Text>Logout Page</Text>
-            </View>
+           <Text onPress={this.props.logout()}>Logout Page</Text>
         );
     }
 }
 
-export default Logout;
+export default connect(mapStateToProps, mapDispatchToProps)(Logout);
 

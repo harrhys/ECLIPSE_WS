@@ -22,7 +22,7 @@ class Contact extends Component {
     render() {
         
         return(
-            <Animatable.View animation="fadeInDown" duration={2000} delay={1000}> 
+            <Animatable.View animation="fadeInDown" duration={2000} delay={100}> 
                 <Card title={'Contact Information'}>
                     <Text style={{margin: 10}}> 
                         121, Clear Water Bay Road

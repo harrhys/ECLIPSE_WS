@@ -3,6 +3,7 @@ import thunk from 'redux-thunk';
 import logger from 'redux-logger';
 import { persistStore, persistCombineReducers } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
+import {User} from './user';
 import {Dishes} from './dishes';
 import {Comments} from './comments';
 import {Promotions} from './promotions';
@@ -21,7 +22,8 @@ export const ConfigureStore = () => {
        
         persistCombineReducers(
             config, 
-            {
+            {   
+                user:User,
                 dishes: Dishes,
                 comments: Comments,
                 promotions: Promotions,

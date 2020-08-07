@@ -24,3 +24,5 @@ db.dishes.insert({ name: "Uthappizza", description: "Test" });
 db.dishes.find().pretty();
 var id = new ObjectId();
 id.getTimestamp();
+
+bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjJiMWY1ZDcyMmQ1OTM0YjRjNTJhZjYiLCJpYXQiOjE1OTY3MDE2NjEsImV4cCI6MTU5NjcwNTI2MX0.izRSeG3iVA9JD_l01Q8TfQKVEhC0D622airQlxPt4fc

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 import * as SecureStore from 'expo-secure-store';
 import { fetchDishes, fetchComments, fetchPromos, fetchLeaders } from '../redux/ActionCreators';
 
-import LoginTabPage from './LoginTabComponent';
+import LoginTabPage from './LoginTabPageComponent';
 import Account from './AccountComponent';
 import LoginPage from './LoginPageComponent';
 import Logout from './LogoutComponent';
@@ -44,9 +44,10 @@ navigationOptions: ({ navigation }) => ({
   },
   title: 'Login',
   headerTintColor: "#fff",
-  headerLeft: <Icon name="menu" size={24}
+  //Uncomment this to enable drawer
+/*   headerLeft: <Icon name="menu" size={24}
     iconStyle={{ color: 'white' }} 
-    onPress={ () => navigation.toggleDrawer() } />    
+    onPress={ () => navigation.toggleDrawer() } />    */ 
 })
 });
 
@@ -273,7 +274,7 @@ const LogoutNavigator = createStackNavigator(
 
         headerLeft: <Icon name="sign-out" size={28} 
         iconStyle={{ color: 'white', margin:15 }} 
-        onPress={ () => navigation.toggleDrawer() } />,
+        onPress={ () => navigation.navigate('LoggedOut') } />,
 
         headerStyle: {
           backgroundColor: "#512DA8"
@@ -324,13 +325,13 @@ const LoginNavigator = createDrawerNavigator(
 
       Login: 
       { screen: LoginPageNavigator,
-        navigationOptions: ({login})=> ({
+        navigationOptions:{
           title: 'Login',
           drawerLabel: 'Login',
           drawerIcon: ({tintColor}) => (
             <Icon name="sign-in" type="font-awesome" size={24} color={tintColor} />
             ),
-        })
+        }
       }
   },
   {
@@ -342,17 +343,6 @@ const LoginNavigator = createDrawerNavigator(
 
 const MainNavigator = createDrawerNavigator(
   {
-    LoginTab: 
-      { screen: LoginTabNavigator,
-        navigationOptions: {
-          title: 'Login',
-          drawerLabel: 'Login',
-          drawerIcon: ({tintColor}) => (
-            <Icon name="sign-in" type="font-awesome" size={24} color={tintColor} />
-            ),
-        }
-      }
-      ,
     Home: 
       { screen: HomeNavigator,
         navigationOptions: {
@@ -435,7 +425,7 @@ const MainNavigator = createDrawerNavigator(
           title: 'Logout',
           drawerLabel: 'Logout',
           drawerIcon: ({tintColor, focused}) => (
-            <Icon name="sign-out" type="font-awesome" size={22} color={tintColor} onPress={navigation=>navigation.push('LoggedOut')}/>
+            <Icon name="sign-out" type="font-awesome" size={22} color={tintColor} />
           )
          
         }
@@ -444,23 +434,19 @@ const MainNavigator = createDrawerNavigator(
   {
     initialRouteName:'Home',
     drawerBackgroundColor: '#D1C4E9',
+    drawerPosition:'left',
     contentComponent: CustomDrawerContentComponent
   }
 );
 
 const AppNavigator = createStackNavigator({
 
-    LoggedOut:{screen:LoginNavigator, navigationOptions:
+    LoggedOut:{screen:LoginTabNavigator, navigationOptions:
       {header:null}},
     LoggedIn:{screen:MainNavigator, navigationOptions:
     {header:null}}
 
 });
-
-
-
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -503,15 +489,16 @@ class Main extends Component {
   componentDidMount() {
 
     console.disableYellowBox = true;
-    this.props.fetchDishes();
-   // this.props.fetchComments();
+     this.props.fetchDishes();
+   //this.props.fetchComments();
     this.props.fetchPromos();
     this.props.fetchLeaders();
+    console.log('Mounting the Main Component');
     SecureStore.getItemAsync('userinfo')
         .then((userdata) => {
             let userinfo = JSON.parse(userdata);
             if (userinfo) {
-              this.setState({isUserLoggedIn: true})
+              this.login();
             }
         })
         .catch((error) => console.log('Could not load user info', error));
@@ -529,15 +516,15 @@ class Main extends Component {
 
   render() {
 
-    return (
+      return (
       <View style={{flex:1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
         <AppError>
-          <MainNavigator />
+          <AppNavigator />
         </AppError>
       </View>
-    );
+    );  
 
-    /*  if(this.state.isUserLoggedIn)
+   /*  if(this.state.isUserLoggedIn)
       return (
         <View style={{flex:1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
           <AppError>
@@ -549,10 +536,10 @@ class Main extends Component {
       return (
         <View style={{flex:1, paddingTop: Platform.OS === 'ios' ? 0 : Constants.statusBarHeight }}>
           <AppError>
-            <LoginNavigator login={()=>this.login()} />
+            <AppNavigator />
           </AppError>
         </View>
-      );  */
+      );    */
   }
 }
   
