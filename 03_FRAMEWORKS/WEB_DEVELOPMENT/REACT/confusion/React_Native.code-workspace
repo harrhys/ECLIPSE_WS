@@ -1,7 +1,12 @@
 {
     "folders": [
         {
-            "path": "..\\..\\NODEJS\\conFusionServer"
+            "name": "confusion-server",
+            "path": "..\\..\\..\\..\\..\\WORKING FOLDER\\confusion\\confusion-server"
+        },
+        {
+            "name": "confusion-web",
+            "path": "..\\..\\..\\..\\..\\WORKING FOLDER\\confusion\\confusion-web"
         },
         {
             "path": "..\\..\\REACTIVE_NATIVE\\mobile-confusion"

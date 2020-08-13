@@ -104,7 +104,7 @@ class Favorites extends Component {
       }
         else {
             return (
-              <Animatable.View animation="fadeInDown" duration={2000} delay={1000}> 
+              <Animatable.View animation="fadeInDown" duration={2000} delay={100}> 
                 <FlatList 
                     data={this.props.dishes.dishes.filter(dish => this.props.favorites.some(el => el === dish._id))}
                     renderItem={renderMenuItem}

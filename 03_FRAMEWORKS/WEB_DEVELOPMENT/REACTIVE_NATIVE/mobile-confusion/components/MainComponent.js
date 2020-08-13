@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, Platform, Text, ScrollView, Image, StyleSheet } from 'react-native';
-import { createStackNavigator, createDrawerNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
+import { createStackNavigator, createDrawerNavigator, createSwitchNavigator, DrawerItems, SafeAreaView } from 'react-navigation';
 import Constants from 'expo-constants';
 import { Icon } from 'react-native-elements';
 import { connect } from 'react-redux';
@@ -439,12 +439,12 @@ const MainNavigator = createDrawerNavigator(
   }
 );
 
-const AppNavigator = createStackNavigator({
+const AppNavigator = createSwitchNavigator({
 
     LoggedOut:{screen:LoginTabNavigator, navigationOptions:
       {header:null}},
     LoggedIn:{screen:MainNavigator, navigationOptions:
-    {header:null}}
+      {header:null}}
 
 });
 

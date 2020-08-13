@@ -12,7 +12,7 @@ class Contact extends Component {
 
     sendMail() {
         MailComposer.composeAsync({
-            recipients: ['confusion@food.net'],
+            recipients: ['harrhys@gmail.com'],
             subject: 'Enquiry',
             body: 'To whom it may concern:'
         })
@@ -25,23 +25,24 @@ class Contact extends Component {
             <Animatable.View animation="fadeInDown" duration={2000} delay={100}> 
                 <Card title={'Contact Information'}>
                     <Text style={{margin: 10}}> 
-                        121, Clear Water Bay Road
+                        104, Saroj Residency
                     </Text>
                     <Text style={{margin: 10}}> 
-                        Clear Water Bay, Kowloon
+                        Silver Spring Road, Marathahalli
                     </Text>
                     <Text style={{margin: 10}}> 
-                        HONG KONG
+                        Bengaluru, Karnataka
                     </Text>
                     <Text style={{margin: 10}}> 
-                        Tel: +852 1234 5678
+                        Tel: +91 80 40960555
                     </Text>
                     <Text style={{margin: 10}}> 
-                        Fax: +852 8765 4321
+                        Mob: +91 98862247762
                     </Text>
                     <Text style={{margin: 10}}> 
-                        Email:confusion@food.net
+                        Email: harrhys@gmail.com
                     </Text>
+                    <Text></Text>
                     <Button
                         title="Send Email"
                         buttonStyle={{backgroundColor: "#512DA8"}}

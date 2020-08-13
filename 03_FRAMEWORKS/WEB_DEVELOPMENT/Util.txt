@@ -1,7 +1,15 @@
 json-server --host 192.168.55.101 db.json --port 3001
 
+http://ec2-3-7-46-211.ap-south-1.compute.amazonaws.com/home
+
 
 D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\WEB_DEVELOPMENT\REACTIVE_NATIVE\mobile-confusion
+
+D:\WORKSPACE\PROJECTS\WORKING FOLDER\confusion\confusion-web
+
+D:\WORKSPACE\PROJECTS\WORKING FOLDER\confusion\confusion-mobile
+
+D:\WORKSPACE\PROJECTS\WORKING FOLDER\confusion\confusion-server
 
 D:\WORKSPACE\PROJECTS\ECLIPSE_WS\09-SERVERS\JSON-SERVER
 
@@ -26,3 +34,51 @@ var id = new ObjectId();
 id.getTimestamp();
 
 bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjJiMWY1ZDcyMmQ1OTM0YjRjNTJhZjYiLCJpYXQiOjE1OTY3MDE2NjEsImV4cCI6MTU5NjcwNTI2MX0.izRSeG3iVA9JD_l01Q8TfQKVEhC0D622airQlxPt4fc
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjJlZTU1YjEwZjI4OTE4NmM3MzlmNTIiLCJpYXQiOjE1OTY5ODY2ODQsImV4cCI6MTU5Njk5MDI4NH0.fCICsm7CY9rQupwGxfNu_SYT0fF3ww88HWjmZm86XR8
+
+AWS
+User name
+harrhy.saladagu@gmail.com
+Password
+Janu1234$
+Access key ID
+AKIAZEOWOQRC67AEDTWR
+Secret access key
+zZ3bLXru9idD/ghtnBB1sOh5XKGXmLreBcfoZxh1
+Console login link
+https://628051838021.signin.aws.amazon.com/console
+
+nodejs
+cd D:\WORKSPACE\PROJECTS\ECLIPSE_WS\03_FRAMEWORKS\WEB_DEVELOPMENT\NODEJS\conFusionServer
+npm start
+
+mongo db
+cd D:\WORKSPACE\PROJECTS\WORKING FOLDER\MONGODB
+mongod --dbpath=data --bind_ip 127.0.01
+
+mongodb+srv://harrhys:Janu1234$@confusiondb.hlybn.mongodb.net/confusiondb?retryWrites=true&w=majority
+
+
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://harrhys:Janu1234$@confusiondb.hlybn.mongodb.net/confusiondb?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+AKIAZEOWOQRCS6LNEPXG
+42EUd8ZtyHeV3tvXXDiQLHbsP/HcZSuiP8zF6av1
+
+
+ec2
+Public DNS	ec2-3-7-46-211.ap-south-1.compute.amazonaws.com
+User name	Administrator
+Password	roPghf$?KuMdhsk6C%LwfkgxzPpe8CLG
+
+ { 
+									new Intl.DateTimeFormat('en-US', {year:'numeric', month:'short', day:'2-digit'})
+									.format(new Date(Date.parse(dishcomment.date)))
+									}
+

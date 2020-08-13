@@ -121,7 +121,7 @@ class LoginTab extends Component {
                 <View style={styles.formButton}>
                     <Button
                         onPress={() => this.handleLogin()}
-                        title="Login"
+                        title=" Login"
                         icon={
                             <Icon
                                 name='sign-in'
@@ -136,24 +136,27 @@ class LoginTab extends Component {
                         />
                 </View>
                 
-                {/* <View style={styles.formButton}>
+                 <View style={styles.formButton}>
                     <Button
                         onPress={() => this.props.navigation.navigate('Register')}
-                        title="Register"
+                        title=" Register"
                         clear
                         icon={
                             <Icon
                                 name='user-plus'
                                 type='font-awesome'            
                                 size={24}
-                                color= 'blue'
+                                color= 'white'
                             />
                         }
                         titleStyle={{
-                            color: "blue"
+                            color: "white"
+                        }}
+                        buttonStyle={{
+                            backgroundColor: "#512DA8"
                         }}
                         />
-                </View> */}
+                </View> 
             </View>
         );
     }
@@ -175,14 +178,14 @@ const styles = StyleSheet.create({
       height: 60
     },
     formInput: {
-        margin: 20
+        margin: 10
     },
     formCheckbox: {
         margin: 20,
         backgroundColor: null
     },
     formButton: {
-        margin: 60
+        margin: 20
     }
 });
 

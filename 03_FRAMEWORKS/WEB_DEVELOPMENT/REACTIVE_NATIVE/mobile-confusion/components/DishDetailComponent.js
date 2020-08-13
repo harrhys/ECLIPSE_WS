@@ -8,6 +8,7 @@ import { postFavorite, removeFavorite, postComment } from '../redux/ActionCreato
 
 const mapStateToProps = state => {
     return {
+      user:state.user,
       dishes: state.dishes,
       favorites: state.favorites
     }
@@ -16,9 +17,109 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
     postFavorite: (dishId) => dispatch(postFavorite(dishId)),
     removeFavorite: (dishId) => dispatch(removeFavorite(dishId)),
-    postComment:  (dishId, rating, author, comment) => dispatch(postComment(dishId, rating, author, comment))
+    postComment:  (dishId, rating, author, comment, user) => dispatch(postComment(dishId, rating, author, comment,user))
 })
 
+class DishDetail extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            favorites: [],
+            isFormVisible: false,
+            rating:0,
+            author:'',
+            comment:'',
+            errMsg:''
+           // comments:this.props.navigation.getParam('dish','').comments
+        };
+    }
+
+    markFavorite(dishId) {
+        this.props.postFavorite(dishId);
+    }
+
+    removeFavorite(dishId) {
+        this.props.removeFavorite(dishId);
+    }
+
+    setRating(rating){
+        this.setState({rating: rating});
+    }
+
+    setAuthor(author){
+        this.setState({author:author});
+    }
+
+    setComment(comment){
+        this.setState({ comment:comment,});
+    }
+
+    resetComment(){
+
+        this.setState({
+            rating: 0,
+            author:'',
+            comment:'',
+            isFormVisible: false,
+            errMsg:''
+        });
+    }
+
+    addComment(dishId){
+        if(this.state.rating==0 || this.state.author=='' || this.state.comment=='')
+            this.setState({errMsg:'Rating, Author and Comments are mandatory'});
+        else{
+            this.props.postComment(dishId,this.state.rating,this.state.author,this.state.comment, this.props.user.user);
+            this.resetComment();
+        }
+    }
+
+    toggleForm(){
+        this.setState({isFormVisible: !this.state.isFormVisible});
+    }
+
+   
+    getDishFromId(dishId){
+
+        var dishes = this.props.dishes.dishes;
+        for (var i = (dishes.length -1); i >= 0; i--) {
+            if(dishes[i]._id==dishId)
+                return dishes[i];
+        }
+    }
+
+    static navigationOptions = {title: 'Dish Details'};
+
+    render(){
+
+        const dishId = this.props.navigation.getParam('dishId','');
+        const dish = this.getDishFromId(dishId);
+        const comments = dish.comments;
+        
+        return(
+            <ScrollView>
+                <RenderDish 
+                    dish={dish}
+                    favorite={this.props.favorites.some(el => el === dishId)}
+                    markFavorite={() => this.markFavorite(dishId)} 
+                    removeFavorite={() => this.removeFavorite(dishId)} 
+                    toggleForm={()=> this.toggleForm()}
+                    isFormVisible={this.state.isFormVisible}
+                    setRating={(rating)=>this.setRating(rating)}
+                    setAuthor={(author)=>this.setAuthor(author)}
+                    setComment={(comment)=>this.setComment(comment)}
+                    addComment={()=>this.addComment(dishId)}
+                    resetComment={()=>this.resetComment()}
+                    errMsg={this.state.errMsg}
+                />
+                <RenderComments 
+                    comments={comments} 
+                />
+             </ScrollView>
+        );
+    }
+}
 
 function RenderDish(props) {
 
@@ -163,11 +264,31 @@ function RenderDish(props) {
     }
 }
 
+function getParsedDate(strDate){
+    var strSplitDate = String(strDate).split(' ');
+    var date = new Date(strSplitDate[0]);
+    // alert(date);
+    var dd = date.getDate();
+    var mm = date.getMonth() + 1; //January is 0!
+
+    var yyyy = date.getFullYear();
+    if (dd < 10) {
+        dd = '0' + dd;
+    }
+    if (mm < 10) {
+        mm = '0' + mm;
+    }
+    date =  dd + "-" + mm + "-" + yyyy;
+    return date.toString();
+}
+
 function RenderComments(props) {
 
     const comments = props.comments;
 
     const renderCommentItem = ({item, index}) => {
+
+        const pd = getParsedDate(item.createdAt);
 
         return (
             <View key={index} style={styles.comments}>
@@ -178,7 +299,7 @@ function RenderComments(props) {
                     startingValue={item.rating}
                 />
                 <Text style={{fontSize: 14}}>{item.comment}</Text>
-                <Text style={{fontSize: 12}}>{'-- ' + item.author + ', ' + item.createdAt} </Text>
+                <Text style={{fontSize: 12}}>{'-- ' + item.author + ', ' +  pd} </Text>
             </View>
         );
     };
@@ -195,107 +316,6 @@ function RenderComments(props) {
         </Animatable.View>
         
     );
-}
-
-class DishDetail extends React.Component {
-
-    constructor(props) {
-        super(props);
-        this.state = {
-            favorites: [],
-            isFormVisible: false,
-            rating:0,
-            author:'',
-            comment:'',
-            errMsg:''
-           // comments:this.props.navigation.getParam('dish','').comments
-        };
-    }
-
-    markFavorite(dishId) {
-        this.props.postFavorite(dishId);
-    }
-
-    removeFavorite(dishId) {
-        this.props.removeFavorite(dishId);
-    }
-
-    setRating(rating){
-        this.setState({rating: rating});
-    }
-
-    setAuthor(author){
-        this.setState({author:author});
-    }
-
-    setComment(comment){
-        this.setState({ comment:comment,});
-    }
-
-    resetComment(){
-
-        this.setState({
-            rating: 0,
-            author:'',
-            comment:'',
-            isFormVisible: false,
-            errMsg:''
-        });
-    }
-
-    addComment(dishId){
-        if(this.state.rating==0 || this.state.author=='' || this.state.comment=='')
-            this.setState({errMsg:'Rating, Author and Comments are mandatory'});
-        else{
-            this.props.postComment(dishId,this.state.rating,this.state.author,this.state.comment);
-            this.resetComment();
-        }
-    }
-
-    toggleForm(){
-        this.setState({isFormVisible: !this.state.isFormVisible});
-    }
-
-   
-    getDishFromId(dishId){
-
-        var dishes = this.props.dishes.dishes;
-        for (var i = (dishes.length -1); i >= 0; i--) {
-            if(dishes[i]._id==dishId)
-                return dishes[i];
-        }
-    }
-
-    static navigationOptions = {title: 'Dish Details'};
-
-    render(){
-
-        const dishId = this.props.navigation.getParam('dishId','');
-        const dish = this.getDishFromId(dishId);
-        const comments = dish.comments;
-        
-        return(
-            <ScrollView>
-                <RenderDish 
-                    dish={dish}
-                    favorite={this.props.favorites.some(el => el === dishId)}
-                    markFavorite={() => this.markFavorite(dishId)} 
-                    removeFavorite={() => this.removeFavorite(dishId)} 
-                    toggleForm={()=> this.toggleForm()}
-                    isFormVisible={this.state.isFormVisible}
-                    setRating={(rating)=>this.setRating(rating)}
-                    setAuthor={(author)=>this.setAuthor(author)}
-                    setComment={(comment)=>this.setComment(comment)}
-                    addComment={()=>this.addComment(dishId)}
-                    resetComment={()=>this.resetComment()}
-                    errMsg={this.state.errMsg}
-                />
-                <RenderComments 
-                    comments={comments} 
-                />
-             </ScrollView>
-        );
-    }
 }
 
 const styles = StyleSheet.create({

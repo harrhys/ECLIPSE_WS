@@ -13,8 +13,6 @@ export const registerUser = (username, password, firstname, lastname, email) => 
     
     const fetchUrl = baseUrl+'users/signup';
 
-    console.log('LOGIN URL:----------------'+fetchUrl);
-    
     return fetch(fetchUrl, {
         method: "POST",
         body: JSON.stringify(newuser),
@@ -150,7 +148,7 @@ export const updateDishes = (dish) => ({
     payload: dish
 });
 
-export const postComment = (dishId, rating, author, comment) => (dispatch) => {
+export const postComment = (dishId, rating, author, comment, user) => (dispatch) => {
 
     const newComment = {
         dishId: dishId,
@@ -166,8 +164,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
         body: JSON.stringify(newComment),
         headers: {
           "Content-Type": "application/json",
-          "Origin":"http://127.0.0.1:19006",
-          "Access-Control-Allow-Origin": "*"
+          "Authorization": "bearer "+ user.token
         }
         
     })
@@ -191,7 +188,7 @@ export const postComment = (dishId, rating, author, comment) => (dispatch) => {
 export const fetchPromos = () => (dispatch) => {
 
     dispatch(promosLoading(true));
-    return fetch('https://mconfusion-9aeb.restdb.io/media/5f24ac859236d304001cbce8')
+    return fetch(baseUrl+'promotions')
     .then(response =>
         {
             if(response.ok)
@@ -230,7 +227,7 @@ export const addPromos = (promos) => ({
 export const fetchLeaders = () => (dispatch) => {
 
     dispatch(leadersLoading());
-    return fetch('https://mconfusion-9aeb.restdb.io/media/5f24ab1a9236d304001cbcbb')
+    return fetch(baseUrl+'leaders')
     .then(response =>
         {
             if(response.ok)

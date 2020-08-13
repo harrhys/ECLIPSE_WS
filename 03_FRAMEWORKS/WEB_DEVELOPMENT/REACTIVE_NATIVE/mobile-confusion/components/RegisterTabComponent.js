@@ -73,7 +73,6 @@ class RegisterTab extends Component {
         console.log(JSON.stringify(this.state));
         this.props.registerUser(this.state.username,this.state.password,this.state.firstname,this.state.lastname,this.state.email)
         
-        console.log('Registration Response---------------------------------------------'+JSON.stringify(this.props.user));
         if(this.props.user.errMsg!=null){
             this.setState({msg:this.props.user.errMsg})
         }
@@ -98,17 +97,17 @@ class RegisterTab extends Component {
         return(
             <ScrollView>
             <View style={styles.container}>
-                <View style={styles.imageContainer}>
+                {/* <View style={styles.imageContainer}>
+                    <Button
+                        title="Click your photo"
+                        onPress={this.getImageFromCamera}
+                    />
                     <Image 
                         source={{uri: this.state.imageUrl}} 
-                        loadingIndicatorSource={require('./images/logo.png')}
+                        //loadingIndicatorSource={require('./images/logo.png')}
                         style={styles.image} 
-                        />
-                    <Button
-                        title="Camera"
-                        onPress={this.getImageFromCamera}
-                        />
-                </View>
+                    />
+                </View> */}
                 <Input
                     placeholder="Username"
                     leftIcon={{ type: 'font-awesome', name: 'user-o' }}
@@ -144,12 +143,6 @@ class RegisterTab extends Component {
                     value={this.state.email}
                     containerStyle={styles.formInput}
                     />
-                <CheckBox title="Remember Me"
-                    center
-                    checked={this.state.remember}
-                    onPress={() => this.setState({remember: !this.state.remember})}
-                    containerStyle={styles.formCheckbox}
-                    />
                 <Text>{this.state.msg}</Text>
                 <View style={styles.formButton}>
                     <Button
@@ -177,7 +170,7 @@ class RegisterTab extends Component {
 const styles = StyleSheet.create({
     container: {
         justifyContent: 'center',
-        margin: 20,
+        margin: 25,
     },
     imageContainer: {
         flex: 1,
@@ -186,18 +179,18 @@ const styles = StyleSheet.create({
     },
     image: {
       margin: 10,
-      width: 80,
-      height: 60
+      width: 60,
+      height: 80
     },
     formInput: {
-        margin: 20
+        margin: 5
     },
     formCheckbox: {
-        margin: 20,
+        margin: 5,
         backgroundColor: null
     },
     formButton: {
-        margin: 60
+        margin: 5
     }
 });
 
