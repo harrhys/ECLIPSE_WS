@@ -1,0 +1,46 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.7 [en] (X11; U; SunOS 5.6 sun4u) [Netscape]">
+   <title>Hello World</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#0000EE" vlink="#551A8B" alink="#FF0000" bgproperties="fixed">
+<form method="POST" action="/logging-helloworld/LoggingServlet">
+<center><b><font face="Arial"><font color="#000000"><font size=+2>HelloWorld Logging Sample Application</font></font></font></b></center>
+
+<table COLS=2 WIDTH="65%" >
+<tr align=center>
+  <td ALIGN=RIGHT><b><font face="Arial"><font color="#000000"><font size=+1>Enter Name:</font></font></font></b></td>
+  <td><input type="text" name="name" size="30" value="" style="font-family: sans-serif"></td>
+</tr>
+</table>
+<HR>
+<font color="#0000FF">
+Select one of the following logging options. Based on your selection,
+log statements with various levels can be found in <b>server.log</b> or the log file specified in <b>log.properties</b>.
+See sample documentation for details.
+</font>
+<HR>
+<table COLS=1 WIDTH="55%" align=center>
+<tr>
+  <td align=left><INPUT TYPE=RADIO NAME="log_type" VALUE="NULL">Print log messages with <b>System.err.println</b><BR></td>
+</tr>
+<tr>
+  <td align=left><INPUT TYPE=RADIO NAME="log_type" VALUE="INFO">Print <b>INFO log</b> using <b>java.util.logging.Logger</b><BR></td>
+</tr>
+<tr>
+  <td align=left><INPUT TYPE=RADIO NAME="log_type" VALUE="FINE">Bypass log-level and log using a lower log-level<BR></td>
+</tr>
+<tr>
+  <td align=left><INPUT TYPE=RADIO NAME="log_type" VALUE="HANDLER">Log to a file (Can be set in <b>log.properties</b>. Default is helloworld.log)<BR><P></td>
+</tr>
+<tr>
+  <td align=left><input type="submit" value="Process" name="Process"></td>
+</tr>
+</table>
+
+</form>
+
+</body>
+</html>

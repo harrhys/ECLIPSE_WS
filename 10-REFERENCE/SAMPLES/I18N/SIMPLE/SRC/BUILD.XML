@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+   Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  SunOne Application Server i18n Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="i18n-simple" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="i18n-simple"/>
+  <property name="sample.home" value="../../../"/>
+  <property name="sample.name" value="i18n-simple"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/i18n/simple"/>
+  <property name="war.pkg" value="samples/i18n/simple/"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="javadoc.pkgnames" value="samples.i18n.simple.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+  <property name="warDD" value="web.xml,sun-web.xml"/>
+  
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+	
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+    <target name="init" depends="init_common"/>
+    <target name="compile" depends="compile_common" />
+    <target name="javadocs" depends="javadocs_common" />
+    <target name="deploy" depends="deploy_common"/>
+    <target name="undeploy" depends="undeploy_common"/>
+    <target name="verify" depends="verify_common"/>
+  
+    <target name="war" depends="init,create_war_common"/>
+    <target name="ear" depends="init,war,create_ear_common"/>
+    <target name="core" depends="compile,war,ear" />
+    <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

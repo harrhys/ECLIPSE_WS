@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE application PUBLIC "-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN" "http://java.sun.com/dtd/application_1_3.dtd">
+
+<application>
+  <display-name>SecurityClientCertApp</display-name>
+  <description>Application description</description>
+  <module>
+    <web>
+      <web-uri>ClientCertApp.war</web-uri>
+      <context-root>cert</context-root>
+    </web>
+  </module>
+
+  <security-role>
+    <description>null</description>
+    <role-name>staffmember</role-name>
+  </security-role>
+
+
+</application>
+

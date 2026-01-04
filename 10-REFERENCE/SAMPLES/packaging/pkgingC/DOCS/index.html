@@ -1,0 +1,741 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/13/02 23:59:28">
+	<title>Packaging: Sample "C" Sample Application:  Packaging: Sample "C" Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Packaging: Sample "C" Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Packaging: Sample "C" Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Packaging: Sample "C" Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#25722"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="22833"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22497"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#28020"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#28032"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="28120"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><A HREF="index.html#27319"  >Figure&nbsp;1</A> illustrates how a remote client can access an EJB deployed as a stand-alone module on a Sun ONE application server. The EJB module contains a single EJB named <FONT FACE="courier, couriernew, monospaced size">ModuleEJB</FONT> and accesses few utility classes.
+</FONT>
+<P>
+
+<A NAME="27324"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="images/pkgingC.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="27319"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 1	&nbsp&nbsp Packaging Sample "C"
+</B>
+</FONT>
+<P>
+<A NAME="27350"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The essence of this packaging sample is to illustrate the following concepts: 
+</FONT>
+<P>
+<ul>
+<A NAME="28176"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Stand-alone module registration for the EJB JAR module
+</FONT>
+<P><A NAME="27446"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+RMI-IIOP (Non ACC) client access to an EJB. 
+</FONT>
+<P></ul>
+
+<A NAME="27447"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You may refer to <A HREF="index.html#28020"  >Running the Sample Application</A> for instructions on running the sample. To better understand sample application source code, you can generate javadocs using <FONT FACE="courier, couriernew, monospaced size">asant javadocs </FONT>and access them at <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/packaging/pkgingC/javadocs/index.html</FONT>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="25722"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<dl>  <dl>
+     <DT> <A NAME="27461"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Command Line Based procedure describes how to assemble and compile the sample using a Command Line Interface (CLI).
+</FONT>
+<P>     <DT> <A NAME="27463"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+To rebuild the entire application from scratch, follow these steps:
+</FONT>
+<P>  </dl>
+</dl><ol type="1">
+<A NAME="27465"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble Packaging Sample C
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27467"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/pkgingC/src/</FONT>.
+</FONT>
+<P>     <DT> <A NAME="27469"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target <FONT FACE="courier, couriernew, monospaced size">core</FONT> will be executed to rebuild the EJB JAR and client JAR files.
+</FONT>
+<P>  </dl>
+<A NAME="27471"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27472"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Once you have re-created the sample application from scratch, proceed to <A HREF="index.html#22497"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="27474"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the web application project area. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27475"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> to remove the sample application's assemble and build directories.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="27478"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You are now ready to use this ear file for deployment.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="22497"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="22856"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following methods of deploying the application:
+</FONT>
+<P>
+<ul>
+<A NAME="27005"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22929"  >Command Line Interface (CLI)-based Deployment</A> describes how to manually register the sample application using a Command Line Interface (CLI). This is the fastest means of deploying the application to the application server.
+</FONT>
+<P><A NAME="27022"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#23025"  >Web Interface (GUI)-based Deployment</A> describes how to use the Sun ONE Deployment Tool to import and deploy the sample application. Alternatively, you can also assemble the application from scratch and deploy it using the Deployment Tool.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="22929"> </A>
+<A NAME="Command Line Interface (CLI)-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line Interface (CLI)-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="28215"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since the essence of this sample is to illustrate a module based registration, we'll focus only on the EJB JAR module i.e. <FONT FACE="courier, couriernew, monospaced size">pkgingCAppEjb.jar</FONT>. Deploying this file is very similar to deploying an ear file, except that the deployer must be told that the type is an ejb. Deploy either <A HREF="index.html#22938"  >Using asant script</A> or <A HREF="index.html#22949"  >Using asadmin command</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="22938"> </A>
+<A NAME="Using asant script "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using asant script 
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="22940"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory of  the sample. For example: <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/pkgingC/src.</FONT>
+</FONT>
+<P><A NAME="22944"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23460"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+<BR>
+<P>
+<A NAME="22949"> </A>
+<A NAME="Using asadmin command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using asadmin command
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="25900"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">root</FONT> of the sample directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26755"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/pkgingC/</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22955"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to deploy the module to the local application server instance. For example, go to:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26766"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/transactions/ejb/cmt/bank</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="27070"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Execute the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="28240"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt; -type ejb pkgingCAppEjb.jar</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="23600"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="23601"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Authenticates against the local application server's administrative server.
+</FONT>
+<P><A NAME="22976"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The JAR file is transferred to the administrative server.
+</FONT>
+<P><A NAME="22977"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="22978"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the JAR file
+</FONT>
+<P><A NAME="23507"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into repository
+</FONT>
+<P><A NAME="22980"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the module <FONT FACE="courier, couriernew, monospaced size">pkgingCAppEJB</FONT> by updating <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT>.
+</FONT>
+<P>  </ul>
+</ul>
+
+<A NAME="22983"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, proceed to <A HREF="index.html#23008"  >Verifying Registration</A>. Otherwise, you are now ready to exercise the application by <A HREF="index.html#28020"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="23008"> </A>
+<A NAME="Verifying Registration"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Verifying Registration
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="23010"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. If you do not want to verify that the application has been registered, proceed directly to <A HREF="index.html#28020"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="23014"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, do one of the following:
+</FONT>
+<P>
+<ul>
+<A NAME="26360"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23614"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;admin-port&gt; &lt;server instance name&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="28551"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You will see the <FONT FACE="courier, couriernew, monospaced size">pkgingCAppEJB</FONT> as one of the listed modules.
+</FONT>
+<P>  </dl>
+<A NAME="27974"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Navigate the Admin tool GUI to <FONT FACE="courier, couriernew, monospaced size">App Server Instances&gt;server1&gt;Applications&gt;Enterprise Apps</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27985"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click on Enterprise Apps on the left frame menu to display a list of applications deployed on server.
+</FONT>
+<P>  </dl>
+</ul>
+<P>
+<BR>
+<A NAME="23025"> </A>
+<A NAME="Web Interface (GUI)-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Web Interface (GUI)-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="28280"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Open the EJB JAR file i.e. <FONT FACE="courier, couriernew, monospaced size">pkgingCAppEjb.jar</FONT>.
+</FONT>
+<P><A NAME="23028"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Start the admin server if it is not already started:
+</FONT>
+<P><A NAME="27735"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+UNIX:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27737"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Go to <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/domains/domain1/admin-server/bin</FONT>
+</FONT>
+<P>     <DT> <A NAME="27156"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">startserv</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="27784"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Windows: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27801"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Go to <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;\domains\domain1\admin-server\bin</FONT>
+</FONT>
+<P>     <DT> <A NAME="27796"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Run <FONT FACE="courier, couriernew, monospaced size">startserv</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="23033"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Open the JAR file:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27839"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Navigate to the browser based admin server page <FONT FACE="courier, couriernew, monospaced size">[http://&lt;server-host&gt;:&lt;admin-port&gt;/index.html]</FONT>. 
+</FONT>
+<P>  </dl>
+<A NAME="27937"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Enter your <font face="palatino, times, serif"><I>username</I></font> and <font face="palatino, times, serif"><I>password</I></font> to access the admin server
+</FONT>
+<P><A NAME="27938"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on <FONT FACE="courier, couriernew, monospaced size">App Server Instances &gt; server1&gt; Applications &gt; EJB Modules</FONT>
+</FONT>
+<P><A NAME="27939"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+In the right hand pane, click on Deploy to deploy an application. Choose the file (from disk) to be deployed <FONT FACE="courier, couriernew, monospaced size">pkgingCAppEjb.jar</FONT> and Click OK. 
+</FONT>
+<P><A NAME="27844"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Select Deploy.
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="28020"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="28331"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A pre-requisite for running the remote client is that, the EJB module must first be deployed in an application server. See the <A HREF="index.html#22497"  >Deploying the Sample Application</A> section for details. Also, make sure that the PATH and CLASSPATH variables are set for the remote host and they refer to appropriate JDK. Running the remote client can be achieved through these following simple steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="28355"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Setup a staging directory for the client.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="28544"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Create a staging directory on a remote system, from where the client can be run. For example:
+</FONT>
+<P>  </dl>
+  <ul>
+<A NAME="28357"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+on UNIX, use <FONT FACE="courier, couriernew, monospaced size">$HOME/rmi-client/</FONT>
+</FONT>
+<P><A NAME="28358"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+on Windows, use <FONT FACE="courier, couriernew, monospaced size">C:\rmi-client\</FONT> 
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="28615"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+or
+</FONT>
+<P>       <DT> <A NAME="28616"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">D:\rmi-client\</FONT>
+</FONT>
+<P>    </dl>
+  </ul>
+<A NAME="28360"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Copy the necessary JAR files to the remote host.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="28608"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Copy the following files from the server host and keep them in the staging directory. The files needed to run this client are:
+</FONT>
+<P>  </dl>
+  <ul>
+<A NAME="28362"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">pkgingCAppClient.jar</FONT>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="28363"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This archive contains the client class file(s) and can be found at <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/pkgingC/assemble/client</FONT>
+</FONT>
+<P>    </dl>
+<A NAME="28365"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">pkgingCAppEjbClient.jar</FONT>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="28367"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This contains the stubs, remote and home interface for the bean to be invoked remotely. Deployer generates this file while deploying the EJB module and copies it to this location. This can be found at <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/pkgingC/assemble/client</FONT>
+</FONT>
+<P>    </dl>
+<A NAME="28370"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">appserv-ext.jar</FONT>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="28730"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This archive contains, all java classes to create a runtime environment and can be found at <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/lib</FONT>.
+</FONT>
+<P>    </dl>
+  </ul>
+<A NAME="28374"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Set the CLASSPATH for running the client.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="28768"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Open a command prompt in windows or a terminal in an UNIX system. Go to the staging directory.
+</FONT>
+<P>  </dl>
+  <ul>
+<A NAME="28377"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+In windows: 
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="28378"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">set CLASSPATH=.;appserv-ext.jar;pkgingCAppEjbClient.jar;pkgingCAppClient.jar</FONT>
+</FONT>
+<P>    </dl>
+<A NAME="28380"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+In UNIX, depending on your shell, set the CLASSPATH to:
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="28381"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">.:appserv-ext.jar:pkgingCAppEjbClient.jar:pkgingCAppClient.jar</FONT>
+</FONT>
+<P>    </dl>
+  </ul>
+<A NAME="28384"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Execute the Java Application Client.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="28807"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+From the staging directory, execute the following command:
+</FONT>
+<P>     <DT> <A NAME="28386"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">java samples.packaging.pkgingC.client.ModuleClient &lt;hostname&gt; &lt;port&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="28388"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;hostname&gt;</FONT> is the host name of the application server and <FONT FACE="courier, couriernew, monospaced size">&lt;port&gt;</FONT> is the IIOP port number of the RMI-IIOP bridge. 
+You may have to use Java<sup>TM</sup> 1.4 to run this sample.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="28840"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The application should generate the following messages (these are the values returned from the ModuleLibraryEJB):
+</FONT>
+<P>
+
+<A NAME="28841"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">Doing a JNDI lookup on ejb/SunONE.pkging.pkgingCEJB.ModuleLibrary</FONT>
+</FONT>
+<P>
+
+<A NAME="28353"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">2 raised to the power of 3 is 8.0</FONT>
+</FONT>
+<P>
+
+<BR>
+    <P> <BR>
+      <A NAME="15039"> </A> <A NAME="Generating Javadocs"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+      Generating Javadocs </FONT> <BR>
+    <hr size="2" NOSHADE>
+  <DT>&nbsp;
+  <DT> <A NAME="15041"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To 
+    understand sample application source code better, you can refer to the related 
+    javadocs. </FONT> 
+    <P> <A NAME="15042"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To 
+      generate javadocs run the following command from the
+      <FONT FACE="courier, couriernew, monospaced size"><b>src</b></FONT> directory</FONT> 
+    <P> 
+    <dl> 
+      <dl> 
+        <DT> <A NAME="15043"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT> 
+          </FONT> 
+          <P> 
+        <DT> <A NAME="15044"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          or </FONT> 
+          <P> 
+        <DT> <A NAME="15045"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">asant all</FONT> </FONT> 
+          <P> 
+      </dl>
+    </dl>
+    <A NAME="15047"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After 
+    javadocs are generated, you can access them at </FONT> 
+    <P> <A NAME="15049"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/packaging/pkgingC/javadocs/index.html</FONT> 
+      </FONT> 
+<P>
+<BR>
+
+<A NAME="28032"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="28071"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;s1as-install-dir&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong.
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 13, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

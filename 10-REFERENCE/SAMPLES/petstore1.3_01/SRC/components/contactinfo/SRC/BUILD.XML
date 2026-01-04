@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+
+<!--
+ Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ 
+ - Redistribution in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in
+   the documentation and/or other materials provided with the
+   distribution.
+ 
+ Neither the name of Sun Microsystems, Inc. or the names of
+ contributors may be used to endorse or promote products derived
+ from this software without specific prior written permission.
+ 
+ This software is provided "AS IS," without a warranty of any
+ kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES
+ SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR
+ DISTRIBUTING THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN
+ OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR
+ PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF
+ LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE,
+ EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ 
+ You acknowledge that Software is not designed, licensed or intended
+ for use in the design, construction, operation or maintenance of
+ any nuclear facility.
+-->
+
+
+<!-- =================================================================== -->
+<!-- $Id: build.xml,v 1.1.2.5 2002/08/01 03:51:50 bhate Exp $                -->
+<!-- =================================================================== -->
+
+<project name="contactinfo" default="core" basedir=".">
+
+  <target name="init">
+    <!-- include top-level common properties -->
+    <property file="../../../build.properties"/>
+    
+    <property name="sunone.cpath" value="${com.sun.aas.installRoot}/lib/appserv-ext.jar"/>
+
+    <!-- The contactinfooot directory of the workspace -->
+    <property name="contactinfo.home" value=".."/>
+
+    <property name="component.address.home" value="../../address"/>
+
+    <!-- The destination directory for the build -->
+    <property name="contactinfo.build" value="${contactinfo.home}/build"/>
+    <property name="contactinfo.buildjardir" value="${contactinfo.build}/ejbjar"/>
+
+    <property name="contactinfo.src" value="${contactinfo.home}/src"/>
+
+    <!-- The destination directory for all the compiled classes. -->
+    <property name="contactinfo.classbindir" value="${contactinfo.build}/classes"/>
+
+    <!-- The destination directory for all the javadocs. -->
+    <property name="contactinfo.javadocs.dir" value="${contactinfo.build}/docs/api"/>
+
+    <!-- The classpath used for building the workspace. -->
+    <property name="contactinfo.classpath" value="${contactinfo.classbindir}:${sunone.cpath}"/>
+
+    <property name="contactinfo.ejbjar" value="${contactinfo.build}/contactinfo-ejb.jar"/>
+
+    <property name="contactinfo.ear" value="${contactinfo.build}/contactinfo.ear"/>
+
+    <property name="contactinfo.client.ejbjar" value="${contactinfo.build}/contactinfo-ejb-client.jar"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <mkdir dir="${contactinfo.classbindir}"/>
+    <copy todir="${contactinfo.classbindir}">
+      <fileset dir="${component.address.home}/build/classes"/>
+    </copy>
+    <javac srcdir="${contactinfo.src}"
+           destdir="${contactinfo.classbindir}"
+	   classpath="${contactinfo.classpath}"
+	   includes="com/**"/>
+  </target>
+
+  <target name="components" depends="init">
+    <ant dir="${component.address.home}/src" target="compile"/>
+  </target>
+
+  <target name="ejbjar" depends="compile">
+    <mkdir dir="${contactinfo.buildjardir}/META-INF"/>
+    <copy todir="${contactinfo.buildjardir}">
+      <fileset dir="${contactinfo.classbindir}"/>
+    </copy>
+    <copy file="ejb-jar.xml" tofile="${contactinfo.buildjardir}/META-INF/ejb-jar.xml"/>
+    <copy file="sun-ejb-jar.xml" tofile="${contactinfo.buildjardir}/META-INF/sun-ejb-jar.xml"/>
+    <delete file="${contactinfo.ejbjar}"/>
+    <jar jarfile="${contactinfo.ejbjar}" basedir="${contactinfo.buildjardir}"/>
+    <delete dir="${contactinfo.buildjardir}"/>
+  </target>
+
+  <target name="ejbclientjar" depends="init">
+    <mkdir dir="${contactinfo.buildjardir}"/>
+    <copy todir="${contactinfo.buildjardir}">
+      <fileset dir="${contactinfo.classbindir}"/>
+    </copy>
+    <!-- Get rid of the EJB Impl Class -->
+    <delete file="${contactinfo.buildjardir}/com/sun/j2ee/blueprints/contactinfo/account/ejb/AccountEJB.class"/>
+    <delete file="${contactinfo.buildjardir}/com/sun/j2ee/blueprints/contactinfo/profile/ejb/ProfileEJB.class"/>
+
+
+    <delete file="${contactinfo.client.ejbjar}"/>
+    <jar jarfile="${contactinfo.client.ejbjar}" basedir="${contactinfo.buildjardir}"/>
+    <delete dir="${contactinfo.buildjardir}"/>
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${contactinfo.build}"/>
+    <ant dir="${component.address.home}/src" target="clean"/>
+  </target>
+
+  <target name="javadocs" depends="init, core">
+    <mkdir dir="${contactinfo.javadocs.dir}"/>    
+    <javadoc packagenames="com.sun.j2ee.blueprints.*"
+             destdir="${contactinfo.javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="ContactInfo Component API"
+             doctitle="ContactInfo Component"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath path="${contactinfo.classpath}"/>
+      <sourcepath>
+        <pathelement path="${component.address.home}/src"/>
+        <pathelement path="${contactinfo.src}"/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="banner">
+      <echo>+---------------------------------------+</echo>
+      <echo>+    Building ContactInfo Component     +</echo>
+      <echo>+---------------------------------------+</echo>
+  </target>
+
+  <target name="core" depends="components, banner, compile" />
+  <target name="all" depends="core, ejbjar, ejbclientjar, javadocs" />
+
+</project>
+

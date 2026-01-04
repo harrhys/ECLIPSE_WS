@@ -1,0 +1,7 @@
+com.sun.j2ee.blueprints.smarticket.ejb.customer
+com.sun.j2ee.blueprints.smarticket.ejb.localeinfo
+com.sun.j2ee.blueprints.smarticket.ejb.movieinfo
+com.sun.j2ee.blueprints.smarticket.ejb.ticketsales
+com.sun.j2ee.blueprints.smarticket.web
+shared
+st

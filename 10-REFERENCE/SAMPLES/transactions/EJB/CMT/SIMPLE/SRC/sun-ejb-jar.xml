@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sun-ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN' 'http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd'>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<sun-ejb-jar>
+  <enterprise-beans>
+    <ejb>
+      <ejb-name>GlobalBankServiceEJB</ejb-name>
+      <jndi-name>GlobalBankServiceEJBcmt</jndi-name>
+      <resource-ref>
+        <res-ref-name>jdbc/transactions-globalcmt/ForeignBankDB</res-ref-name>
+        <jndi-name>jdbc/transactions-globalcmt/ForeignBankDB</jndi-name>
+      </resource-ref>
+      <resource-ref>
+        <res-ref-name>jdbc/transactions-globalcmt/LocalBankDB</res-ref-name>
+        <jndi-name>jdbc/transactions-globalcmt/LocalBankDB</jndi-name>
+      </resource-ref>
+   </ejb>
+  </enterprise-beans>
+</sun-ejb-jar>
+

@@ -1,0 +1,1472 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+
+<html>
+
+<head>
+
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+   <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+
+   <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+
+   <meta name="LastUpdated" content="07/09/02 15:07:51">
+
+   <meta name="GENERATOR" content="Mozilla/4.75 [en]C-AOLNSCP  (Windows NT 5.0; U) [Netscape]">
+
+   <title>Java[tm] Pet Store 1.3 Enterprise BluePrints Application</title>
+
+</head>
+
+<body text="#000000" bgcolor="#FFFFFF" link="#594FBF" vlink="#1005FB" alink="#333366">
+
+<MAINCONTENT><NAVIGATIONCONTENT>
+
+<table BORDER=0 CELLSPACING=4 WIDTH="100%" >
+
+<tr>
+
+<td VALIGN=TOP><a href="http://wwws.sun.com/software"><img SRC="../../docs/images/SunONE.jpg" ALT="Sun ONE logo" BORDER=0 valign="BOTTOM" height=40 width=120></a></td>
+
+</tr>
+
+
+
+<tr>
+
+<td ALIGN=RIGHT VALIGN=TOP BGCOLOR="#594FBF"><b><font face="Helvetica, Arial, sans-serif"><font color="#FFFFFF"><font size=-1>Java
+
+<sup>TM</sup>
+
+Pet Store 1.3 Sample Application</font></font></font></b></td>
+
+</tr>
+
+</table>
+
+
+
+<p></NAVIGATIONCONTENT><BOOKCONTENT>
+
+<blockquote>&nbsp;
+
+<p><a NAME="15913"></a><a NAME="Java <sup>TM</sup> Pet Store 1.3 Sample Application"></a><b><font face="Helvetica, Arial, Sans-Serif"><font color="#000000"><font size=+1>Java
+
+<sup>TM</sup>
+
+Pet Store 1.3 Sample Application</font></font></font></b>
+
+<br>&nbsp;
+
+<p><a NAME="15115"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+
+document describes how to utilize the Java <sup>TM</sup> Pet Store sample
+
+application in conjunction with Sun ONE Application Server version 7.</font></font>
+
+<p><a NAME="15119"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+
+sample application document contains the following sections:</font></font>
+
+<ul><a NAME="15123"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#40595">Overview</a></font></font></li>
+
+
+
+<br><a NAME="15153"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#14862">Compiling
+
+and Assembling the Application</a></font></font></li>
+
+
+
+<br><a NAME="15154"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#14900">Deploying
+
+the Sample Application</a></font></font></li>
+
+
+
+<br><a NAME="15158"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#14931">Running
+
+the Sample Application</a></font></font></li>
+
+
+
+<br><a NAME="15139a"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="#set_ora">Configuring
+
+for use with the Oracle Database</a></font></font></li>
+
+
+
+<br><a NAME="15139"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#15009">Troubleshooting</a></font></font></li>
+
+</ul>
+
+<a NAME="14805"></a><a NAME="Overview"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Overview</font></font>
+
+<hr SIZE="2" NOSHADE>
+
+<br><a NAME="14807"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>Java
+
+<sup>TM</sup>
+
+Pet Store 1.3 is the Sun J2EE sample application that demonstrates many
+
+facets of the J2EE specification. See the <a href="http://java.sun.com/blueprints/code/jps11/archoverview.html">Architectural
+
+Overview document</a> for more information regarding the design and implementation
+
+of this popular J2EE application. The <a href="http://java.sun.com/blueprints/">Blueprints
+
+area</a> of http://java.sun.com offers many resources on the design of
+
+J2EE applications.</font></font>
+
+<p><a NAME="15934"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>The
+
+Java Pet Store Demo consists of the following high level components:</font></font>
+
+<ul><a NAME="15935"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><i>The Storefront</i>
+
+presents the main user interface in a Web front-end. Customers use the
+
+Storefront to place orders for pets.</font></font></li>
+
+
+
+<br><a NAME="14817"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><i>The Order Processing
+
+Center (OPC)</i> receives orders from the Storefront. Any time the database
+
+is updated, the Supplier notifies the OPC about the changes to the inventory.
+
+The OPC examines these changes to see if it can fulfill any orders that
+
+it previously could not. If it can fullill an order, it will mark the order
+
+as completed.</font></font></li>
+
+
+
+<br><a NAME="14822"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><i>The Supplier
+
+</i>fulfills
+
+orders from the OPC from inventory and invoices the OPC. The supplier and
+
+its inventory are managed using a simple Web interface.</font></font></li>
+
+
+
+<br><a NAME="14825"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1><i>The Admin </i>presents
+
+the administrator interface in a <a href="http://developer.java.sun.com/developer/onlineTraining/GUI/Swing2/shortcourse.html">JFC/Swing</a>
+
+front-end. Administrators use the Admin to examine pending orders and approve
+
+or deny them. An order appears as pending if its total value is greater
+
+than $500.</font></font></li>
+
+</ul>
+
+
+
+<p><br><a NAME="14831"></a><a NAME="Setting up the environment"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Setting
+
+up the environment</font></font>
+
+<p><a NAME="14833"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>In
+
+order to successfully deploy and run the Pet Store 1.3 sample application,
+
+several resources need to be setup with the Application Server. These resources
+
+include:</font></font>
+
+<ul><a NAME="15942"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>JDBC resources</font></font></li>
+
+
+
+<br><a NAME="15944"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>JDBC connection
+
+pools</font></font></li>
+
+
+
+<br><a NAME="15945"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Persistence manager
+
+factories for the various components of Pet Store</font></font></li>
+
+
+
+<br><a NAME="15946"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>JMS resources for
+
+queue and topic connection factories</font></font></li>
+
+
+
+<br><a NAME="15948"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Java Mail resources
+
+to setup e-mail.</font></font></li>
+
+</ul>
+
+<a NAME="14838"></a><font size=-1><font face="Helvetica, Arial, sans-serif">The
+
+build scripts provided will automatically register all the above resources
+
+with Application Server. The default values for these resources are stored
+
+in </font><font face="courier, couriernew, monospaced size">src/build.properties</font><font face="Helvetica, Arial, sans-serif">.
+
+Edit this file if you would like to change the default values.</font></font>
+
+<p><a NAME="16962"></a>
+
+<br>
+
+<hr SIZE="1">
+
+<table BORDER=0 CELLPADDING=5 WIDTH="75%" >
+
+<tr>
+
+<td VALIGN=TOP><a NAME="15978"></a><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Note</font></font></b></td>
+
+
+
+<td VALIGN=TOP><a NAME="15980"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>The
+
+admin password needs to be changed based on your selection during Application
+
+Server installation.</font></font></td>
+
+</tr>
+
+</table>
+
+
+
+<hr SIZE="1">
+
+<p><a NAME="14847"></a><a NAME="Setting up the Database"></a><b><font face="Helvetica, Arial, sans-serif">Setting
+
+up the Database</font></b>
+
+<p><a NAME="15281"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>The
+
+PointBase database server is automatically populated with all the necessary
+
+data for the Pet Store sample application when it is started. Start the
+
+PointBase database server by running one of the following scripts, depending
+
+on your operating system:</font></font>
+
+<ul><a NAME="14849"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>For Solaris:</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="16023"></a><font face="courier, couriernew, monospaced size"><font size=-1>&lt;install_root>/pointbase/server/bin/StartServer.sh</font></font></dt>
+
+</dl>
+
+<a NAME="14850"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>For Windows 2000:</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="16031"></a><font face="courier, couriernew, monospaced size"><font size=-1>&lt;install_root>/pointbase/server/bin/StartServer.bat()</font></font></dt>
+
+</dl>
+
+</ul>
+
+<a NAME="14851"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>For
+
+more information on using PointBase please refer to the <a href="../../docs/pointbase.html">Using
+
+PointBase</a> document.</font></font>
+
+<p><a NAME="14853"></a><font size=-1><font face="Helvetica, Arial, sans-serif">If
+
+you prefer to re-create the database from scratch, you can use the sql
+
+files in </font><font face="courier, couriernew, monospaced size">src/sql</font><font face="Helvetica, Arial, sans-serif">
+
+to manually create schema and data in your PointBase server.</font></font>
+
+<p><a NAME="14856"></a><a NAME="Setting up Java Web Start"></a><b><font face="Helvetica, Arial, sans-serif">Setting
+
+up Java Web Start</font></b>
+
+<p><a NAME="16069"></a><font size=-1><font face="Helvetica, Arial, sans-serif">For
+
+the Pet Store Admin application, you need to install Java Web Start on
+
+your client machine You can download Java Web Start from </font><font face="courier, couriernew, monospaced size">http://java.sun.com/products/javawebstart</font></font>
+
+<p><a NAME="16964"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>.</font></font>
+
+<br>
+
+<hr SIZE="1">
+
+<table BORDER=0 CELLPADDING=5 WIDTH="75%" >
+
+<tr>
+
+<td VALIGN=TOP><a NAME="16097"></a><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Note</font></font></b></td>
+
+
+
+<td VALIGN=TOP><a NAME="16103"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>Java
+
+Web Start must be configured to use JRE 1.4 for the Pet Store Admin Application.
+
+<a href="http://java.sun.com/products/plugin/index-1.4.html">Download
+
+JRE 1.4</a> for Windows (or your platform) on your client machine.&nbsp;</font></font>
+
+<p><a NAME="16110"></a><font size=-1><font face="Helvetica, Arial, sans-serif">You
+
+can configure Java Web Start 1.0.1 to work with JRE 1.4 by either specifying
+
+the JRE (1.4) while installing Java Web Start or after installing WebStart,
+
+change the configuration in File->Preferences->Java and changing the path
+
+for </font><font face="courier, couriernew, monospaced size">javaw.exe</font></font></td>
+
+</tr>
+
+</table>
+
+
+
+<hr SIZE="1">
+
+<br><a NAME="14862"></a><a NAME="Compiling and Assembling the Application"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Compiling
+
+and Assembling the Application</font></font>
+
+<hr SIZE="2" NOSHADE>
+
+<br><a NAME="14865"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+
+section contains instructions to build and assemble the Pet Store Demo
+
+application.</font></font>
+
+<p><a NAME="16965"></a>
+
+<br>
+
+<hr SIZE="1">
+
+<table BORDER=0 CELLPADDING=5 WIDTH="75%" >
+
+<tr>
+
+<td VALIGN=TOP><a NAME="16127"></a><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Note</font></font></b></td>
+
+
+
+<td VALIGN=TOP><a NAME="16148"></a><font size=-1><font face="Helvetica, Arial, sans-serif">You
+
+may skip this step and go to <a href="index.html#14900">Deploying the Sample
+
+Application</a> using the pre-built EAR files located under
+
+</font><font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/</font></font></td>
+
+</tr>
+
+</table>
+
+
+
+<hr SIZE="1">
+
+<ol type="1">
+
+<li value="1">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Compile and assemble
+
+the application.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="14879"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+
+the command </font><font face="courier, couriernew, monospaced size">asant
+
+core</font><font face="Helvetica, Arial, sans-serif"> under </font><font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/src</font></font></dt>
+
+
+
+<dt>
+
+<a NAME="14882"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+
+will compile all sources and assemble the following four modules as EAR
+
+files:</font></font></dt>
+
+</dl>
+
+
+
+<ul><a NAME="16316"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>petstore</font></font></li>
+
+
+
+<br><a NAME="16306"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>admin</font></font></li>
+
+
+
+<br><a NAME="16320"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>opc</font></font></li>
+
+
+
+<br><a NAME="16321"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>supplier</font></font></li>
+
+</ul>
+
+<a NAME="14885"></a>
+
+<li value="2">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Deploy the application.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="16257"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>After
+
+compiling the sources and assembling the ear files, you may proceed to
+
+<a href="index.html#14900">Deploying
+
+the Sample Application</a>. Steps 4 and 5 are optional.</font></font></dt>
+
+</dl>
+
+<a NAME="14889"></a>
+
+<li value="3">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Clean the application
+
+project area (optional).</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="16276"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+
+the command </font><font face="courier, couriernew, monospaced size">asant
+
+clean</font><font face="Helvetica, Arial, sans-serif"> to remove all the
+
+files generated in <a href="index.html#14885">Step 3</a>.</font></font></dt>
+
+</dl>
+
+<a NAME="14893"></a>
+
+<li value="4">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Generate javadocs
+
+(optional).</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="16282"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+
+the command </font><font face="courier, couriernew, monospaced size">asant
+
+javadocs</font><font face="Helvetica, Arial, sans-serif"> under </font><font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/src</font></font></dt>
+
+
+
+<dt>
+
+<a NAME="15395"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Javadocs
+
+will be located under</font><font face="courier, couriernew, monospaced size">
+
+&lt;install_root>/samples/petstore1.3._01/javadocs</font></font></dt>
+
+</dl>
+
+</ol>
+
+<a NAME="14900"></a><a NAME="Deploying the Sample Application"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Deploying
+
+the Sample Application</font></font>
+
+<hr SIZE="2" NOSHADE>
+
+<br><a NAME="14902"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>To
+
+deploy the application, do the following:</font></font>
+
+<p><a NAME="14904"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+
+the command </font><font face="courier, couriernew, monospaced size">asant
+
+deploy</font><font face="Helvetica, Arial, sans-serif"> under </font><font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/src</font></font>
+
+<p><a NAME="14905"></a><font size=-1><font face="Helvetica, Arial, sans-serif">This
+
+will deploy the EAR files for the four modules of Pet Store (</font><font face="courier, couriernew, monospaced size">petstore.ear,
+
+opc.ear, supplier.ear, and petstoreadmin.ear</font><font face="Helvetica, Arial, sans-serif">).
+
+These file are located under </font><font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/.&nbsp;
+
+</font><font face="Helvetica, Arial, sans-serif">Restart the appserver
+
+instance after doing this.</font></font>
+
+<p><a NAME="14910"></a><a NAME="Verifying Deployment"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Verifying
+
+Deployment</font></font>
+
+<p><a NAME="14912"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>As
+
+an optional step, you can use the Sun ONE Application Server Administration
+
+Tool to verify that the application has been registered. Otherwise, proceed
+
+directly to <a href="index.html#14931">Running the Sample Application</a>.</font></font>
+
+<p><a NAME="14915"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>To
+
+verify the registration of the application, do the following:</font></font>
+
+<p><a NAME="15737"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+
+the command </font><font face="courier, couriernew, monospaced size">asadmin
+
+list-components</font><font face="Helvetica, Arial, sans-serif"> to look
+
+at applications deployed with a server instance. For example:</font></font>
+
+<p><a NAME="14918"></a><font face="courier, couriernew, monospaced size"><font size=-1>&lt;install_root>/bin/asadmin
+
+list-components -u &lt;username> -w &lt;password> -H &lt;host> -p &lt;port>
+
+&lt;server instance name></font></font>
+
+<p><a NAME="14920"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>You
+
+will see the four Pet Store applications listed:</font></font>
+
+<ul><a NAME="15753"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>admin</font></font></li>
+
+
+
+<br><a NAME="15754"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>petstore</font></font></li>
+
+
+
+<br><a NAME="15755"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>opc</font></font></li>
+
+
+
+<br><a NAME="15756"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>supplier</font></font></li>
+
+</ul>
+
+<a NAME="14922"></a><a NAME="Customizing Pet Store"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Customizing
+
+Pet Store</font></font>
+
+<p><a NAME="14924"></a><font size=-1><font face="Helvetica, Arial, sans-serif">You
+
+could deploy each of the modules separately if you made code changes in
+
+any of the modules. In order to do that, you need to recompile and re-assemble
+
+the EAR files first. This can be done using either of the following: </font><font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/src/build.xml
+
+</font><font face="Helvetica, Arial, sans-serif">or</font></font>
+
+<p><a NAME="16360"></a><font size=-1><font face="courier, couriernew, monospaced size">build.xml</font><font face="Helvetica, Arial, sans-serif">
+
+in individual module. lFor example, </font><font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/src/apps/admin/src/build.xml</font></font>
+
+<p><a NAME="16977"></a>
+
+<br>
+
+<hr SIZE="1">
+
+<table BORDER=0 CELLPADDING=5 WIDTH="75%" >
+
+<tr>
+
+<td VALIGN=TOP><a NAME="16350"></a><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Note</font></font></b></td>
+
+
+
+<td VALIGN=TOP><a NAME="16352"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Before
+
+redeploying, you must first execute the command </font><font face="courier, couriernew, monospaced size">asant
+
+clean</font><font face="Helvetica, Arial, sans-serif"> in order to clean
+
+up existing files resulting the intital deployment.</font></font></td>
+
+</tr>
+
+</table>
+
+
+
+<hr SIZE="1">
+
+<p><a NAME="14931"></a><a NAME="Running the Sample Application"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Running
+
+the Sample Application</font></font>
+
+<hr SIZE="2" NOSHADE>
+
+<br><a NAME="14934"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>In
+
+order to run the sample application, you must first do the following:</font></font>
+
+<ul><a NAME="15766"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Deploy the application</font></font></li>
+
+
+
+<br><a NAME="15769"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Start your PointBase
+
+database server</font></font></li>
+
+
+
+<br><a NAME="15770"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Append Pet Store
+
+related entries to the keyfile</font></font></li>
+
+
+
+<br><a NAME="15772"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Configure Java
+
+Web Start if you are planning to run the Pet Store Admin application.</font></font></li>
+
+</ul>
+
+<a NAME="14938"></a><a NAME="Accessing Pet Store Application"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Accessing
+
+Pet Store Application</font></font>
+
+<ol type="1"><a NAME="14940"></a>
+
+<li value="1">
+
+<font size=-1><font face="Helvetica, Arial, sans-serif">From your browser,
+
+access the application launch page at: </font><font face="courier, couriernew, monospaced size">http://&lt;server>:&lt;port>/petstore/index.jsp</font></font></li>
+
+
+
+<br><a NAME="16990"></a>
+
+<li value="2">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click Enter the
+
+Store to access the Pet Store end-user entry screen as seen in displayed
+
+in <a href="index.html#16997">Figure 1</a>.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="16997"></a></dt>
+
+
+
+<br><img SRC="images/image1.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="17025"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+1&nbsp;&nbsp;&nbsp; Launch page</font></font></b>
+
+<ol type="1"><a NAME="17046"></a>
+
+<li value="3">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click the Sign
+
+In first button to create your user account as seen in <a href="index.html#17050">Figure
+
+2</a>.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="17050"></a></dt>
+
+
+
+<br><img SRC="images/image2.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="17052"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+2&nbsp;&nbsp;&nbsp; Sign in prompt</font></font></b>
+
+<ol type="1"><a NAME="14952"></a>
+
+<li value="4">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click on Create
+
+New Account to edit your account information as seen in <a href="index.html#17083">Figure
+
+3</a>.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="17083"></a></dt>
+
+
+
+<br><img SRC="images/image3.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="16422"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+3&nbsp;&nbsp;&nbsp; Create user window</font></font></b>
+
+<ol type="1"><a NAME="14957"></a>
+
+<li value="5">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Once the account
+
+is created, you can browse the catalog and select items you want to buy
+
+as seen in <a href="index.html#17116">Figure 4</a>.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="17116"></a></dt>
+
+
+
+<br><img SRC="images/image5.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="16658"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+4&nbsp;&nbsp;&nbsp; Product identification screen</font></font></b>
+
+<ol type="1"><a NAME="14962"></a>
+
+<li value="6">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click on Add to
+
+Cart to add items to your cart. You can view and manage your shopping cart
+
+as seen in <a href="index.html#17132">Figure 5</a>.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="17132"></a></dt>
+
+
+
+<br><img SRC="images/image6.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="16684"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+5&nbsp;&nbsp;&nbsp; Shopping cart screen</font></font></b>
+
+<ol type="1"><a NAME="14963"></a>
+
+<li value="7">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click Proceed to
+
+Checkout.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="15709"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>The
+
+Account Page will de displayed once again. You will have another chance
+
+to edit the account information.</font></font></dt>
+
+
+
+<br>&nbsp;</dl>
+
+<a NAME="14969"></a>
+
+<li value="8">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click Submit to
+
+see the Order completion page as displayed in <a href="index.html#14971">Figure
+
+6</a>.</font></font></li>
+
+<dl>
+
+<dt>
+
+<a NAME="14971"></a></dt>
+
+<br><img SRC="images/image7.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="14973"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+6&nbsp;&nbsp;&nbsp; Order completion page</font></font></b>
+
+<p><a NAME="16770"></a>
+
+<br>
+
+<hr SIZE="1">
+
+<table BORDER=0 CELLPADDING=5 WIDTH="75%" >
+
+<tr>
+
+<td VALIGN=TOP><a NAME="16787"></a><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Note</font></font></b></td>
+
+
+
+<td VALIGN=TOP><a NAME="16789"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>You
+
+could browse the catalog without signing in. However, the application will
+
+request that you to sign in before you check out your order.</font></font></td>
+
+</tr>
+
+</table>
+
+
+
+<hr SIZE="1">
+
+<p><a NAME="14979"></a><a NAME="Running the Sample Application"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Running
+
+the Sample Application</font></font>
+
+<ol type="1"><a NAME="14981"></a>
+
+<li value="1">
+
+<font size=-1><font face="Helvetica, Arial, sans-serif">From your browser
+
+, access the application launch page at: </font><font face="courier, couriernew, monospaced size">http://&lt;server>:&lt;port>/rcvr</font></font></li>
+
+
+
+<br><a NAME="15463"></a>
+
+<li value="2">
+
+<font size=-1><font face="Helvetica, Arial, sans-serif">Login in as </font><font face="courier, couriernew, monospaced size">rcvr</font><font face="Helvetica, Arial, sans-serif">
+
+and you will see Receiver's home page as seen in <a href="index.html#17207">Figure
+
+7</a>.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="17207"></a></dt>
+
+
+
+<br><img SRC="images/image8.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="16819"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+7&nbsp;&nbsp;&nbsp; Receiver Sign in page</font></font></b>
+
+<ol type="1"><a NAME="14986"></a>
+
+<li value="3">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click on Display
+
+Inventory from the Receiver's home page to manage the inventory as seen
+
+in <a href="index.html#17209">Figure 8</a>.</font></font></li>
+
+<dl>
+
+<dt>
+
+<a NAME="17209"></a></dt>
+
+<br><img SRC="images/image11.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="16836"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+8&nbsp;&nbsp;&nbsp; Inventory update page</font></font></b>
+
+<br>&nbsp;
+
+<p><a NAME="14990"></a><a NAME="Running the Admin Application"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Running
+
+the Admin Application</font></font>
+
+<ol type="1"><a NAME="14992"></a>
+
+<li value="1">
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Java Web Start
+
+must be set up in order for the Admin application to run.</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="16859"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>In
+
+case you haven't installed Java Web Start yet, refer to the directions
+
+in <a href="index.html#14831">Setting up the environment</a>.</font></font></dt>
+
+
+
+<br>&nbsp;</dl>
+
+<a NAME="16877"></a>
+
+<li value="2">
+
+<font size=-1><font face="Helvetica, Arial, sans-serif">From your browser,
+
+access the the Admin application displayed in <a href="index.html#17235">Figure
+
+9</a> at: </font><font face="courier, couriernew, monospaced size">http://&lt;server>:&lt;port>/admin</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="17235"></a></dt>
+
+
+
+<br><img SRC="images/image12.JPG" >
+
+<br>&nbsp;</dl>
+
+</ol>
+
+<a NAME="16879"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+9&nbsp;&nbsp;&nbsp; Admin application</font></font></b>
+
+<ol type="1"><a NAME="14998"></a>
+
+<li value="3">
+
+<font size=-1><font face="Helvetica, Arial, sans-serif">Login in as </font><font face="courier, couriernew, monospaced size">jps_admin</font></font></li>
+
+
+
+<dl>
+
+<dt>
+
+<a NAME="16897"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>Click
+
+Launch Rich Client. This will bring up the admin client interface outside
+
+your browser as seen in <a href="index.html#17248">Figure 10</a>. The admin
+
+application is a Java client that uses JFC/Swing for UI.</font></font></dt>
+
+</dl>
+
+</ol>
+
+<a NAME="17248"></a>
+
+<br><img SRC="images/image13.JPG" >
+
+<p><a NAME="16900"></a><ALIGN="LEFT"><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Figure
+
+10&nbsp;&nbsp;&nbsp; Estore Admin page</font></font></b>
+
+<br>&nbsp;
+
+<p><a NAME="14956"></a><a NAME="set_ora"></a><font face="Arial, Helvetica, sans-serif"><font size=+1>Configuring
+
+for use with the Oracle Database</font></font>
+
+<hr noShade SIZE=2>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>The product
+
+application requires the following database setup prior to running:</font></font>
+
+<ol><b><font face="Arial, Helvetica, sans-serif"><font size=-1>Ensure Database
+
+Requirements are Met</font></font></b>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>See the Sun
+
+ONE Application Server Release Notes for database version requirements.
+
+The Product sample includes schema script for Oracle.</font></font>
+
+<p><b><font face="Arial, Helvetica, sans-serif"><font size=-1>Create an
+
+RDBMS User</font></font></b>
+
+<ul><font face="Arial"><font size=-1>cd &lt;install_root>/samples/petstore1.3._01/src/sql</font></font>
+
+<p><font face="Arial"><font size=-1>sqlplus to oracle as system user and
+
+create 3 users called petstore, opc, supplier.</font></font>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>SQL> @createUser.sql</font></font></ul>
+
+
+
+<p><br><b><font face="Arial, Helvetica, sans-serif"><font size=-1>Create
+
+and Populate the Product RDBMS Tables</font></font></b>
+
+<ul><font face="Arial, Helvetica, sans-serif"><font size=-1>cd &lt;install_root>/samples/petstore1.3._01/src/sql</font></font>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>sqlplus to oracle
+
+as "petstore" user</font></font>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>SQL> @petstoredb.sql;</font></font>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>sqlplus to oracle
+
+as "opc" user</font></font>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>SQL> @opcdb.sql;</font></font>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>sqlplus to oracle
+
+as "supplier" user</font></font>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>SQL> @supplierdb.sql;</font></font>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>exit sqlplus</font></font></ul>
+
+<b><font face="Arial, Helvetica, sans-serif"><font size=-1>Register JDBC
+
+Driver</font></font></b>
+
+<br><font face="Arial, Helvetica, sans-serif"><font size=-1>Please refer to <a href="../../docs/oracle.html">
+
+Using Oracle with samples</a> for registering Oracle Driver to Sun ONE Application Server.</font></font>
+
+<p><b><font face="Arial, Helvetica, sans-serif"><font size=-1>Create a
+
+new Oracle JDBC Connection Pool</font></font></b>
+
+<br><font face="Helvetica, Arial, sans-serif"><font size=-1>If you have
+
+followed the instructions for Compiling, Assembling and Deploying the Application
+
+against the PointBase server then:</font></font>
+
+<dl>&nbsp;</dl>
+
+<font face="courier, couriernew, monospaced size"><font size=-1>Change
+
+to the directory &lt;install_root>/samples/petstore1.3._01/src</font></font>
+
+<br><font face="courier, couriernew, monospaced size"><font size=-1>Execute
+
+the command asant undeploy</font></font>
+
+<br><font face="courier, couriernew, monospaced size"><font size=-1>Edit
+
+&lt;install_root>/samples/petstore1.3._01/src/build.properties file with
+
+correct oracle host(db.host), port(db.port)and sid (db.SID) values</font></font>
+
+<br><font size=-1><font face="courier, couriernew, monospaced size">Execute
+
+the command </font><font face="courier, couriernew,monospaced size">asant deploy-ora</font></font>
+
+<br><font face="courier, couriernew, monospaced size"><font size=-1>And
+
+then restart the server instance.</font></font>
+
+<p><font size=-1><font face="Helvetica, Arial, sans-serif">Change to the
+
+directory </font><font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/src</font></font>
+
+<P><font size=-1><font face="Helvetica, Arial, sans-serif">If you have already deployed application 
+
+for PointBase, do the following:</font></font>
+
+<UL><br><font size=-1><font face="Helvetica, Arial, sans-serif">Execute the
+
+command </font><font face="courier, couriernew, monospaced size">asant
+
+undeploy</font></font>
+
+<br><font size=-1><font face="Helvetica, Arial, sans-serif">Execute the
+
+command </font><font face="courier, couriernew, monospaced size">asant
+
+deploy-ora -Ddb.host=&lt;host&gt; -Ddb.port=&lt;port&gt; -Ddb.sid=&lt;sid&gt; </font></font>
+
+<br><font size=-1><font face="Helvetica, Arial, sans-serif">Apply changes and restart server.</font></UL>
+
+<br><font size=-1><font face="Helvetica, Arial, sans-serif">Otherwise, do the following:</font></font>
+
+<UL><br><font size=-1><font face="Helvetica, Arial, sans-serif">Execute the
+
+command </font><font face="courier, couriernew, monospaced size">asant
+
+deploy-ora -Ddb.host=&lt;host&gt; -Ddb.port=&lt;port&gt; -Ddb.sid=&lt;sid&gt; </font></font>
+
+<br><font size=-1><font face="Helvetica, Arial, sans-serif">Apply changes and restart server.</font></UL>
+
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>The 
+
+<font face="courier, couriernew, monospaced size">db.host, db.port, db.sid </FONT>
+
+can also be specified in <font face="courier, couriernew, monospaced size">&lt;install_root>/samples/petstore1.3._01/src/build.properties</font>.
+
+</font>
+
+<p><b><font face="Arial, Helvetica, sans-serif"><font size=-1>Rerun the
+
+Sample Application</font></font></b>
+
+<br><font face="Helvetica, Arial, sans-serif"><font size=-1>You may now
+
+run the application again using the steps under Running the Sample Application
+
+section.</font></font></ol>
+
+<a NAME="15009"></a><a NAME="Troubleshooting"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Troubleshooting</font></font>
+
+<hr SIZE="2" NOSHADE>
+
+<ul><a NAME="15011"></a>
+
+<li>
+
+<font size=-1><font face="Helvetica, Arial, sans-serif">If you encounter
+
+problems when running the application, review the log files at </font><font face="courier, couriernew, monospaced size">&lt;install-root>/domains/&lt;domain-name>/&lt;server-instance>/logs/server.log</font><font face="Helvetica, Arial, sans-serif">
+
+to learn what exactly went wrong.</font></font></li>
+
+
+
+<br><a NAME="15505"></a>
+
+<li>
+
+<font face="Helvetica, Arial, sans-serif"><font size=-1>If you encounter
+
+problems running the Admin application, make sure that the Java WebStart
+
+is configured correctly as described inthe section <a href="index.html#14931">Running
+
+the Sample Application</a>.</font></font></li>
+
+
+
+<br><a NAME="15531"></a>
+
+<li>
+
+<font size=-1><font face="Helvetica, Arial, sans-serif">If you encounter
+
+errors while deploying the application, make sure that your admin password
+
+is set correctly in </font><font face="courier, couriernew, monospaced size">&lt;install-root>/samples/common.properties</font><font face="Helvetica, Arial, sans-serif">.</font></font></li>
+
+
+
+<br><a NAME="15017"></a>
+
+<li>
+
+<font size=-1><font face="Helvetica, Arial, sans-serif">If you make changes
+
+to the application, you can use the </font><font face="courier, couriernew, monospaced size">build.xml</font><font face="Helvetica, Arial, sans-serif">
+
+in that specific module to rebuild the EAR files. Your changes will be
+
+effective after you redeploy the EAR files.</font></font></li>
+
+</ul>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+
+Some Known Issues:
+
+<ul>
+
+<li> From petstore administrator application,
+
+<FONT FACE="courier, couriernew, monospaced size"> approving </FONT>or
+
+<FONT FACE="courier, couriernew, monospaced size"> denying </FONT>an order,
+
+and clicking on<FONT FACE="courier, couriernew, monospaced size"> commit </FONT>
+
+causes the status to return to<FONT FACE="courier, couriernew, monospaced size"> pending</FONT>.
+
+User needs to click on<FONT FACE="courier, couriernew, monospaced size"> Refresh Data </FONT>
+
+button, to see the correct status.
+
+</li>
+
+<li> The repopulate link does not work for Oracle. Clicking on the link populates the inventory
+
+data but not the catalog data. User needs to populate it using petstoredb.sql. 
+
+</FONT>
+
+</ul>
+
+</blockquote>
+
+</BOOKCONTENT><FOOTERCONTENT>
+
+<blockquote>&nbsp;
+
+<br>
+
+<hr NOSHADE SIZE="1"><!-- start copyright --><font face="Helvetica, Arial, sans-serif"><font size=-2>Copyright
+
+&copy; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> All rights
+
+reserved.</font></font><!--  end copyright  --></blockquote>
+
+
+
+<div align=right><font face="Helvetica, Arial, sans-serif"><font size=-2>Last
+
+Updated <b>July 09, 2002</b></font></font>
+
+<br></FOOTERCONTENT></MAINCONTENT></div>
+
+
+
+</body>
+
+</html>
+

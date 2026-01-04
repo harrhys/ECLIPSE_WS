@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<j2ee:java-wsdl-mapping xmlns:j2ee="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.1">
+  <j2ee:package-mapping>
+    <j2ee:package-type>com.weblogic.sample.clientapp</j2ee:package-type>
+    <j2ee:namespaceURI>http://www.obopay.com</j2ee:namespaceURI>
+  </j2ee:package-mapping>
+  <j2ee:package-mapping>
+    <j2ee:package-type>com.weblogic.sample.common</j2ee:package-type>
+    <j2ee:namespaceURI>java:com.weblogic.sample.common</j2ee:namespaceURI>
+  </j2ee:package-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>com.weblogic.sample.common.FubarResponseData</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:com.weblogic.sample.common">java:FubarResponseData</j2ee:root-type-qname>
+    <j2ee:qname-scope>complexType</j2ee:qname-scope>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>Result</j2ee:java-variable-name>
+      <j2ee:xml-element-name>result</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:java-xml-type-mapping>
+    <j2ee:java-type>com.weblogic.sample.common.FubarRequestData</j2ee:java-type>
+    <j2ee:root-type-qname xmlns:java="java:com.weblogic.sample.common">java:FubarRequestData</j2ee:root-type-qname>
+    <j2ee:qname-scope>complexType</j2ee:qname-scope>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>ClientID</j2ee:java-variable-name>
+      <j2ee:xml-element-name>clientID</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>AsyncFlag</j2ee:java-variable-name>
+      <j2ee:xml-element-name>asyncFlag</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>PublishFlag</j2ee:java-variable-name>
+      <j2ee:xml-element-name>publishFlag</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>SleepTime</j2ee:java-variable-name>
+      <j2ee:xml-element-name>sleepTime</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+    <j2ee:variable-mapping>
+      <j2ee:java-variable-name>ReqNumber</j2ee:java-variable-name>
+      <j2ee:xml-element-name>reqNumber</j2ee:xml-element-name>
+    </j2ee:variable-mapping>
+  </j2ee:java-xml-type-mapping>
+  <j2ee:service-interface-mapping>
+    <j2ee:service-interface>com.weblogic.sample.clientapp.FubarWSApp</j2ee:service-interface>
+    <j2ee:wsdl-service-name xmlns:obop="http://www.obopay.com">obop:FubarWSApp</j2ee:wsdl-service-name>
+    <j2ee:port-mapping>
+      <j2ee:port-name>FubarWSAppPortTypeSoapPort</j2ee:port-name>
+      <j2ee:java-port-name>FubarWSAppPortTypeSoapPort</j2ee:java-port-name>
+    </j2ee:port-mapping>
+  </j2ee:service-interface-mapping>
+  <j2ee:service-endpoint-interface-mapping>
+    <j2ee:service-endpoint-interface>com.weblogic.sample.clientapp.FubarWSAppPortType</j2ee:service-endpoint-interface>
+    <j2ee:wsdl-port-type xmlns:obop="http://www.obopay.com">obop:FubarWSAppPortType</j2ee:wsdl-port-type>
+    <j2ee:wsdl-binding xmlns:obop="http://www.obopay.com">obop:FubarWSAppSoapBinding</j2ee:wsdl-binding>
+    <j2ee:service-endpoint-method-mapping>
+      <j2ee:java-method-name>sampleMethod</j2ee:java-method-name>
+      <j2ee:wsdl-operation>sampleMethod</j2ee:wsdl-operation>
+      <j2ee:wrapped-element></j2ee:wrapped-element>
+      <j2ee:method-param-parts-mapping>
+        <j2ee:param-position>0</j2ee:param-position>
+        <j2ee:param-type>com.weblogic.sample.common.FubarRequestData</j2ee:param-type>
+        <j2ee:wsdl-message-mapping>
+          <j2ee:wsdl-message xmlns:obop="http://www.obopay.com">obop:sampleMethod</j2ee:wsdl-message>
+          <j2ee:wsdl-message-part-name>inputData</j2ee:wsdl-message-part-name>
+          <j2ee:parameter-mode>IN</j2ee:parameter-mode>
+        </j2ee:wsdl-message-mapping>
+      </j2ee:method-param-parts-mapping>
+      <j2ee:wsdl-return-value-mapping>
+        <j2ee:method-return-value>com.weblogic.sample.common.FubarResponseData</j2ee:method-return-value>
+        <j2ee:wsdl-message xmlns:obop="http://www.obopay.com">obop:sampleMethodResponse</j2ee:wsdl-message>
+        <j2ee:wsdl-message-part-name>sampleMethodResponse</j2ee:wsdl-message-part-name>
+      </j2ee:wsdl-return-value-mapping>
+    </j2ee:service-endpoint-method-mapping>
+  </j2ee:service-endpoint-interface-mapping>
+</j2ee:java-wsdl-mapping>

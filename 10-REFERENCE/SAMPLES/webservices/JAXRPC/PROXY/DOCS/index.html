@@ -1,0 +1,460 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+   <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+   <meta name="LastUpdated" content="07/23/02 17:48:48">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en]C-AOLNSCP  (WinNT; U) [Netscape]">
+   <title>JAX-RPC Dynamic Proxy Sample Application:  JAX-RPC Proxy Sample Application</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#594FBF" vlink="#1005FB" alink="#333366">
+<MAINCONTENT><NAVIGATIONCONTENT>
+<table BORDER=0 CELLSPACING=4 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP><a href="http://wwws.sun.com/software"><img SRC="../../../../docs/images/SunONE.jpg" ALT="Sun ONE logo" BORDER=0 valign="BOTTOM" height=40 width=120></a></td>
+</tr>
+
+<tr>
+<td ALIGN=RIGHT VALIGN=TOP BGCOLOR="#594FBF"><b><font face="Helvetica, Arial, sans-serif"><font color="#FFFFFF"><font size=-1>JAX-RPC
+Dynamic Proxy Sample Application</font></font></font></b></td>
+</tr>
+</table>
+
+<p></NAVIGATIONCONTENT><BOOKCONTENT>
+<blockquote>&nbsp;
+<p><a NAME="15913"></a><a NAME="JAX-RPC Dynamic Proxy Sample Application"></a><b><font face="Helvetica, Arial, Sans-Serif"><font color="#000000"><font size=+1>JAX-RPC
+Dynamic Proxy Sample Application</font></font></font></b>
+<br>&nbsp;
+<p><a NAME="15115"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+document describes how to utilize the JAX-RPC sample application in conjunction
+with Sun ONE Application Server version 7.</font></font>
+<p><a NAME="15119"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+sample application document contains the following sections:</font></font>
+<ul><a NAME="15408"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="#overview">Overview</a></font></font></li>
+
+<br><a NAME="15153"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="#compiling">Compiling
+and Assembling the Application</a></font></font></li>
+
+<br><a NAME="15154"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="#deploying">Deploying
+the Sample Application</a></font></font></li>
+
+<br><a NAME="15158"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="#Running-sample">Running
+the Sample Application</a></font></font></li>
+
+<br><a NAME="15139"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="#Trouble-shooting">Troubleshooting</a></font></font></li>
+
+<br>&nbsp;</ul>
+<a NAME="overview"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Overview</font></font>
+<hr SIZE="2" NOSHADE>
+<br><a NAME="19034"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+examples shows you how to call a remote procedure through a dynamic proxy,
+a class that is created during runtime. Before creating the proxy class,
+the client gets information about the service by looking up its WSDL document.</font></font>
+<p><a NAME="19038"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>If
+you want to experiment with a simple JAX-RPC application, see the <a href="../../simple/docs/index.html">JAX-RPC
+simple application</a>.</font></font>
+<p><a NAME="19040"></a><font size=-1><font face="Helvetica, Arial, sans-serif">For
+more information on the JAX-RPC and JAX-RPC dynamic proxy application,
+go to </font><font face="courier, couriernew, monospaced size"><a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXRPC5.html">java.sun.com/webservices/docs/1.0/tutorial/doc/JAXRPC5.html</a></font><font face="Helvetica, Arial, sans-serif">.</font></font>
+<p><a NAME="19043"></a><font size=-1><font face="Helvetica, Arial, sans-serif">You
+can find the source code for the sample application under </font><font face="courier, couriernew, monospaced size">&lt;install_dir>/samples/webservices/jaxrpc/dynamic/src/samples/webservices/jaxrpc/proxy</font><font face="Helvetica, Arial, sans-serif">
+.</font></font>
+<br>&nbsp;
+<br>&nbsp;
+<p><a NAME="compiling"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Compiling
+and Assembling the Application</font></font>
+<hr SIZE="2" NOSHADE>
+<br><a NAME="19122"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>To
+recompile, assemble, and deploy the application, see the <a href="../../../../docs/ant.html">Sample
+Application Build Facility document</a> for details on using a build facility
+to quickly perform these tasks.</font></font>
+<p><a NAME="19125"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>For
+example, to rebuild the entire application from scratch, perform the following
+steps:</font></font>
+<ol type="1"><a NAME="19150"></a>
+<li value="1">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Compile and Assemble
+the J2EE Application.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19176"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+the </font><font face="courier, couriernew, monospaced size">asant</font><font face="Helvetica, Arial, sans-serif">
+command under </font><font face="courier, couriernew, monospaced size">&lt;install_dir>/samples/webservices/jaxrpc/proxy/src</font></font></dt>
+
+<dt>
+<a NAME="19119"></a><font size=-1><font face="Helvetica, Arial, sans-serif">The
+default target core is executed to rebuild the </font><font face="courier, couriernew, monospaced size">.jar</font><font face="Helvetica, Arial, sans-serif">
+and </font><font face="courier, couriernew, monospaced size">.war</font><font face="Helvetica, Arial, sans-serif">
+files.</font></font></dt>
+</dl>
+<a NAME="19217"></a>
+<li value="2">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Deploy the Application.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19370"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>After
+you have re-created the sample application from scratch, proceed to <a href="#deploying">Deploying
+the Sample Application</a>.</font></font></dt>
+</dl>
+<a NAME="19219"></a>
+<li value="3">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Clean the application
+project area.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19386"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+the </font><font face="courier, couriernew, monospaced size">asant clean</font><font face="Helvetica, Arial, sans-serif">
+command to clean the application area.</font></font></dt>
+</dl>
+<a NAME="19226"></a>
+<li value="4">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Undeploy the Application.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19403"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+the </font><font face="courier, couriernew, monospaced size">asant undeploy</font><font face="Helvetica, Arial, sans-serif">
+command to undeploy the application.</font></font></dt>
+</dl>
+<a NAME="19233"></a>
+<li value="5">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Build Javadocs.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19418"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+the </font><font face="courier, couriernew, monospaced size">asant javadocs</font><font face="Helvetica, Arial, sans-serif">
+command to create javadocs.</font></font></dt>
+
+<dt>
+<a NAME="19240"></a><font size=-1><font face="Helvetica, Arial, sans-serif">The
+Javadocs are created under </font><font face="courier, couriernew, monospaced size">&lt;install_dir>/samples/webservices/jaxrpc/proxy/javadocs</font><font face="Helvetica, Arial, sans-serif">.</font></font></dt>
+</dl>
+</ol>
+<a NAME="deploying"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Deploying
+the Sample Application</font></font>
+<hr SIZE="2" NOSHADE>
+<br><a NAME="18251"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>In
+this section, you will learn how to deploy the JAX-RPC sample application.</font></font>
+<p><a NAME="19468"></a><font size=-1><font face="Helvetica, Arial, sans-serif">A
+pre-built </font><font face="courier, couriernew, monospaced size">jaxrpc-proxy.war</font><font face="Helvetica, Arial, sans-serif">
+file is supplied with the application server installation. The pre-built
+</font><font face="courier, couriernew, monospaced size">jaxrpc-proxy.war</font><font face="Helvetica, Arial, sans-serif">
+file is the Web Archive (</font><font face="courier, couriernew, monospaced size">.war</font><font face="Helvetica, Arial, sans-serif">)
+file of the application.</font></font>
+<p><a NAME="19488"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Within
+the </font><font face="courier, couriernew, monospaced size">.war</font><font face="Helvetica, Arial, sans-serif">
+file resides the XML deployment descriptor files, application class files,
+and other content required by the application. You can use the pre-built</font><font face="courier, couriernew, monospaced size">
+.war</font><font face="Helvetica, Arial, sans-serif"> file to deploy the
+application. If you want to experience compiling and assembling the application
+from scratch, follow instructions under <a href="#compiling">Compiling
+and Assembling the Application</a>.</font></font>
+<p><a NAME="19438"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>To
+deploy the application, do the following</font></font>
+<ol type="1"><a NAME="19513"></a>
+<li value="1">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Ensure that the
+application administrative server is running.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19519"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>To
+start the administrative server, select one of the following commands,
+depending on your operating system:</font></font></dt>
+</dl>
+
+<ul><a NAME="19587"></a>
+<li>
+<font size=-1><font face="Helvetica, Arial, sans-serif">For UNIX, execute
+</font><font face="courier, couriernew, monospaced size">&lt;install_dir>/domains/domain1/admin-server/startserv</font></font></li>
+
+<br><a NAME="19588"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1>For Windows, run</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19589"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>Start->Programs->Sun
+ONE Application Server 7->Start Application Server</font></font></dt>
+</dl>
+</ul>
+<a NAME="18252"></a>
+<li value="2">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Select one of the
+following approaches to deploying the application:</font></font></li>
+
+<br><a NAME="18256"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="#Commandline">Command
+Line-based Deployment</a> describes how to manually register the application
+in Sun ONE Application Server using a Command Line Interface (CLI). This
+is the fastest means of deploying the sample application.</font></font></li>
+
+<br><a NAME="18260"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="#web-based-deploy">Web-based
+Deployment</a> describes how to use the web-based Sun ONE Application Server
+Deployment Tool to import and deploy the sample application.</font></font></li>
+</ol>
+<a NAME="Commandline"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Command
+Line-based Deployment</font></font>
+<p><a NAME="19658"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>While
+Command Line Interface is the quickest means of deploying the application,
+if you want to experience deploying through a GUI tool, follow the instructions
+under the <a href="#web-based-deploy">Web-based Deployment</a> section.</font></font>
+<p><a NAME="19669"></a><font size=-1><font face="Helvetica, Arial, sans-serif">CLI
+deployment of the application can be performed using either <a href="#using-asant">Using
+the asant script</a> or <a href="#using-asadmin">Using the asadmin script</a>.
+The deployment process includes deploying the application
+</font><font face="courier, couriernew, monospaced size">.war</font><font face="Helvetica, Arial, sans-serif">
+file to the Sun ONE application server.</font></font>
+<br>&nbsp;
+<p><a NAME="using-asant"></a><b><font face="Helvetica, Arial, sans-serif">Using
+the asant script</font></b>
+<br><a NAME="18309"></a>
+<ol type="1">
+<li value="1">
+<font size=-1><font face="Helvetica, Arial, sans-serif">Go to the </font><font face="courier, couriernew, monospaced size">src</font><font face="Helvetica, Arial, sans-serif">
+directory of the sample. For example:</font></font></li>
+
+<dl>
+<dt>
+<a NAME="18310"></a><font face="courier, couriernew, monospaced size"><font size=-1>cd
+&lt;install_dir>/samples/webservices/jaxrpc/proxy/src</font></font></dt>
+</dl>
+<a NAME="18311"></a>
+<li value="2">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Run asant using
+deploy task. For example:</font></font></li>
+
+<dl>
+<dt>
+<a NAME="18312"></a><font face="courier, couriernew, monospaced size"><font size=-1>asant
+deploy</font></font></dt>
+
+<dt>
+<a NAME="19693"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+is an an interactive command that may prompt you to provide the admin-server
+host, admin-server port, admin user name, admin password, and appserv instance.</font></font></dt>
+
+<br>&nbsp;</dl>
+</ol>
+<a NAME="using-asadmin"></a><b><font face="Helvetica, Arial, sans-serif">Using
+the asadmin script</font></b>
+<ol type="1"><a NAME="19714"></a>
+<li value="1">
+<font size=-1><font face="Helvetica, Arial, sans-serif">Go to the </font><font face="courier, couriernew, monospaced size">proxy
+</font><font face="Helvetica, Arial, sans-serif">directory
+of the sample. For example:</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19715"></a><font face="courier, couriernew, monospaced size"><font size=-1>cd
+&lt;install_dir>/samples/webservices/jaxrpc/proxy</font></font></dt>
+
+<br>&nbsp;</dl>
+<a NAME="19746"></a>
+<li value="2">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Execute the following
+command:</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19771"></a><font size=-1><font face="courier, couriernew, monospaced size">asadmin
+deploy -u &lt;user-name> -w &lt;password> -H &lt;hostname> -p &lt;admin
+server port> --instance &lt;instance name> jaxrpc-proxy.war</font><font face="Helvetica, Arial, sans-serif">
+.</font></font></dt>
+
+<br>&nbsp;</dl>
+<a NAME="19776"></a>
+<li value="3">
+<font size=-1><font face="Helvetica, Arial, sans-serif">Copy the </font><font face="courier, couriernew, monospaced size">ProxyHelloWorld.wsdl</font><font face="Helvetica, Arial, sans-serif">
+from </font><font face="courier, couriernew, monospaced size">&lt;install_dir>/samples/webservices/jaxrpc/proxy/src</font><font face="Helvetica, Arial, sans-serif">
+directory to your instance's </font><font face="courier, couriernew, monospaced size">docroot</font><font face="Helvetica, Arial, sans-serif">
+directory, for example: </font><font face="courier, couriernew, monospaced size">&lt;install_dir>/domains/domain1/server1/docroot</font></font></li>
+
+<br>&nbsp;</ol>
+<a NAME="18339"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>The
+deployment process involves the following operations:</font></font>
+<ul><a NAME="18340"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Copies the ProxyHelloWorld.wsdl
+from src directory to your instances docroot directory</font></font></li>
+
+<br><a NAME="19816"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Authenticates against
+the local application server's administrative server</font></font></li>
+
+<br><a NAME="18341"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1>The .war file is
+transferred to the administrative server</font></font></li>
+
+<br><a NAME="18342"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1>The administrative
+server begins the registration process:</font></font></li>
+
+<ul><a NAME="18343"></a>
+<li>
+<font size=-1><font face="Helvetica, Arial, sans-serif">Parses the </font><font face="courier, couriernew, monospaced size">.war
+</font><font face="Helvetica, Arial, sans-serif">file</font></font></li>
+
+<br><a NAME="18344"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Explodes the bits
+into repository</font></font></li>
+
+<br><a NAME="18345"></a>
+<li>
+<font size=-1><font face="Helvetica, Arial, sans-serif">Registers the J2EE
+application "jaxrpc-proxy" by updating </font><font face="courier, couriernew, monospaced size">server.xml</font></font></li>
+</ul>
+</ul>
+<a NAME="18348"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>You
+may now proceed to <a href="#Running-sample">Running the Sample Application</a>.</font></font>
+<br>&nbsp;
+<p><a NAME="web-based-deploy"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Web-based
+Deployment</font></font>
+<p><a NAME="19857"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>The
+following steps explain the web-based deployment process.</font></font>
+<ol type="1"><a NAME="19858"></a>
+<li value="1">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Log in to the web-based
+administration tool from the browser</font></font></li>
+
+<br><a NAME="19868"></a>
+<li value="2">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Navigate as follows:</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19889"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>Application
+Server Instances --> &lt;server instance> --> Applications --> Web Apps</font></font></dt>
+</dl>
+<a NAME="18659"></a>
+<li value="3">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click Deploy.</font></font></li>
+
+<br><a NAME="19915"></a>
+<li value="4">
+<font size=-1><font face="Helvetica, Arial, sans-serif">Click Browse to
+locate the </font><font face="courier, couriernew, monospaced size">jaxrpc-dynamic.war</font><font face="Helvetica, Arial, sans-serif">
+file.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19925"></a><font size=-1><font face="Helvetica, Arial, sans-serif">The
+file is located under </font><font face="courier, couriernew, monospaced size">&lt;install_dir>/samples/webservices/jaxrpc/proxy/</font><font face="Helvetica, Arial, sans-serif">.</font></font></dt>
+</dl>
+<a NAME="18525"></a>
+<li value="5">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click OK.</font></font></li>
+
+<br><a NAME="19952"></a>
+<li value="6">
+<font size=-1><font face="Helvetica, Arial, sans-serif">Enter </font><b><font face="courier, couriernew, monospaced size">jaxrpc-proxy</font></b><font face="Helvetica, Arial, sans-serif">
+in the App Name field.</font></font></li>
+
+<br><a NAME="19963"></a>
+<li value="7">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click OK.</font></font></li>
+
+<li value="7">
+<a NAME="19977"></a></li>
+
+<li value="8">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Click the jaxrpc-proxy
+link to verify that the application is deployed.</font></font></li>
+
+<li value="8">
+<a NAME="19979"></a></li>
+
+<li value="9">
+<font size=-1><font face="Helvetica, Arial, sans-serif">Copy the </font><font face="courier, couriernew, monospaced size">ProxyHelloWorld.wsdl</font><font face="Helvetica, Arial, sans-serif">
+from </font><font face="courier, couriernew, monospaced size">&lt;install_dir>/samples/webservices/jaxrpc/proxy/src</font><font face="Helvetica, Arial, sans-serif">
+directory to your instance's docroot directory, for example: </font><font face="courier, couriernew, monospaced size">&lt;install_dir>/domains/domain1/server1/docroot.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="20051"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>Now
+you are ready to run the application. You may proceed to <a href="#Running-sample">Running
+the Sample Application</a>.</font></font></dt>
+
+<br>&nbsp;</dl>
+</ol>
+<a NAME="Running-sample"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Running
+the Sample Application</font></font>
+<hr SIZE="2" NOSHADE>
+<br><a NAME="18803"></a><font size=-1><font face="Helvetica, Arial, sans-serif">The
+URL connection factories do not require any resources to be created in
+</font><font face="courier, couriernew, monospaced size">server.xml</font><font face="Helvetica, Arial, sans-serif">.
+The application is run by running the client class, which invokes the Ejb.</font></font>
+<p><a NAME="18812"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>To
+run the JAX-RPC sample application, do the following:</font></font>
+<ol type="1"><a NAME="18791"></a>
+<li value="1">
+<font face="courier, couriernew, monospaced size"><font size=-1>cd &lt;install_dir>/samples/webservices/jaxrpc/proxy/src</font></font></li>
+
+<br><a NAME="20080"></a>
+<li value="2">
+<font size=-1><font face="Helvetica, Arial, sans-serif">Execute the </font><font face="courier, couriernew, monospaced size">asant
+run</font><font face="Helvetica, Arial, sans-serif"> command.</font></font></li>
+
+<dl>
+<dt>
+<a NAME="20100"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>The
+program should display the following line:</font></font></dt>
+
+<dt>
+<a NAME="18794"></a><font face="courier, couriernew, monospaced size"><font size=-1>A
+dynamic proxy hello to Buzz!</font></font></dt>
+</dl>
+</ol>
+
+
+<a NAME="Trouble-shooting"></a>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+
+<A NAME="14963"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you see a Connection refused error, when you do asant run, make certain that <I>admin.host and sunone.instance.port</I> in &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/common.properties</FONT> are correct.
+</FONT>
+<P>
+
+
+<br>&nbsp;</blockquote>
+</BOOKCONTENT><FOOTERCONTENT>
+<blockquote>&nbsp;
+<br>
+<hr NOSHADE SIZE="1"><!-- start copyright --><font face="Helvetica, Arial, sans-serif"><font size=-2>Copyright
+&copy; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> All rights
+reserved.</font></font><!--  end copyright  --></blockquote>
+
+<div align=right><font face="Helvetica, Arial, sans-serif"><font size=-2>Last
+Updated <b>July 23, 2002</b></font></font>
+<br></FOOTERCONTENT></MAINCONTENT></div>
+
+</body>
+</html>

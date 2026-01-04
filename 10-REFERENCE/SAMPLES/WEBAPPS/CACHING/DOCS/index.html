@@ -1,0 +1,512 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/18/02 14:29:21">
+	<title>Caching Web Sample Application:  Caching Web Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Caching Web Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Caching Web Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Caching Web Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the Caching </A> Web sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="15154"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#19434"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20121"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15009"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19899"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Caching Web sample application demonstrates how to utilize servlet/JSP caching on the Sun ONE application server.  Sun One Application Server provides value-added services that enable results caching at both the JSP and Servlet level. Using results caching enables you to increase server performance by allowing subsequent calls to JSPs and Servlets to be returned using cached results instead of reinvoking Java code to generate the resulting content from scratch. </A>
+</FONT>
+<P>
+
+<A > </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The servlet caching sample demonstrates how servlet caching can be controlled using deployment descriptors(sun-web.xml). The cache on/off, time-outs can be adjusted at deployment time without any coding changes content from scratch. </A>
+</FONT>
+<P>
+
+<A > </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The JSP caching sample shows how JSP caching can be achieved by utilizing JSP tags. The cache on/off, cache time-out can be controlled by the aattribute value of the JSP tag.
+</A>
+</FONT>
+<P>
+
+<A > </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+
+ </A>
+</FONT>
+<P>
+
+<A NAME="19904"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To better understand sample application source code, you may refer to the related javadocs which can be accessed at <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/webapps/caching/javadocs/index.html</FONT>  after it is generated.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14865"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to compile and assemble the Caching Web sample application.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="19415"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/webapps/caching/src/ </FONT>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19371"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant</FONT>
+</FONT>
+<P>     <DT> <A NAME="19369"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+     
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="19384"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="19386"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You must add <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/bin</FONT> to your path.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>     <DT> <A NAME="19398"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core will be executed to build the WAR file.
+</FONT>
+<P>  </dl>
+<A NAME="14885"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16257"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+After you have re-created the sample application from scratch, you may proceed to <A HREF="index.html#19434"  >Deploying the Sample Application</A>. <A HREF="index.html#14889"  >Step 3</A> is optional.
+</FONT>
+<P>  </dl>
+<A NAME="14889"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the web application project area (optional).
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19426"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> to clean the web application.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="19434"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="18251"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, you will learn how to deploy the Caching Web sample application.
+</FONT>
+<P>
+
+<A NAME="18274"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploying the pre-built <FONT FACE="courier, couriernew, monospaced size">webapps-caching.war</FONT> file is simple. you may deploy by either <A HREF="index.html#18308"  >Using the asant script</A> or by <A HREF="index.html#19456"  >Using the asadmin command</A>.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="18308"> </A>
+<A NAME="Using the asant script"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Using the asant script
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="18309"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory of  the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18310"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/webapps/caching/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="18311"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Run asant using deploy task. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18312"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">%asant deploy</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+<P>
+<BR>
+<A NAME="19456"> </A>
+<A NAME="Using the asadmin command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Using the asadmin command
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="19482"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/webapps/caching/</FONT>
+</FONT>
+<P><A NAME="19500"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19506"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt; --type web  webapps-caching.war</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="19520"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations: 
+</FONT>
+<P>
+<ul>
+<A NAME="19521"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Authenticates against the local application server's administrative server
+</FONT>
+<P><A NAME="19522"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The WAR file is transferred to the administrative server
+</FONT>
+<P><A NAME="19523"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="19524"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the WAR file 
+</FONT>
+<P><A NAME="19525"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into repository
+</FONT>
+<P><A NAME="19526"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE module "webapps-caching" by updating <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT>
+</FONT>
+<P>  </ul>
+</ul>
+
+<A NAME="19529"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, you may proceed to <A HREF="index.html#19560"  >Verifying Deployment</A>.  Otherwise, proceed to <A HREF="index.html#20121"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="19560"> </A>
+<A NAME="Verifying Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. Otherwise, proceed directly to <A HREF="index.html#20121"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="14915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, do the following:
+</FONT>
+<P>
+
+<A NAME="15737"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute the command <FONT FACE="courier, couriernew, monospaced size">asadmin </FONT>to look at applications deployed with a server instance. For example:
+</FONT>
+<P>
+
+<A NAME="20063"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;admin-port&gt;  --type web &lt;server instance name&gt;</FONT>
+</FONT>
+<P>
+
+<A NAME="20064"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You will see the <FONT FACE="courier, couriernew, monospaced size">webapps-caching</FONT> module displayed as one of the listed components.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="20065"> </A>
+<A NAME="Undeploy the application "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Undeploy the application 
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="19588"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you wish to undeploy the application after successful deployment, you may do so by either <A HREF="index.html#19590"  >Using the asant script</A> or by <A HREF="index.html#19594"  >Using the asadmin command</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="19590"> </A>
+<A NAME="Using the asant script "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asant script 
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="19591"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/webapps/caching/src</FONT>
+</FONT>
+<P><A NAME="19592"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19696"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant undeploy</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+<BR>
+<P>
+<A NAME="19594"> </A>
+<A NAME="Using the asadmin command "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asadmin command 
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="19596"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/webapps/caching/src</FONT>
+</FONT>
+<P><A NAME="20118"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20127"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin undeploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt;  --type web webapps-caching</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="20121"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19766"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You may run the appliction through the following URL: 
+</FONT>
+<P>
+
+<A NAME="19752"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">http://&lt;AppServer hostname&gt;:&lt;port&gt;/webapps-caching/index.html</FONT>
+</FONT>
+<P>
+
+<A > </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"> Servlet Caching: Based on the sun-web.xml, the results are cache'ed if the <B>Input String</B> is either "one" or "two" no matter the <B>Delivery Mechanism</B> is "Servlet Only" or "Via JSP". If you like to turn the cache off or change the cache time-out value , you can achieve it  by modifying the attributes of the cache element in sun-web.xml. 
+</FONT>
+<P>
+
+<BR>
+
+<A NAME="15009"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="20155"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/domains/&lt;domain-instance&gt; /&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong. 
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 18, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+<project name="j2ee-tutorial-app" default="about" basedir=".">
+    <property name="build" value="build" />
+    <property name="dukes.src"  value="src" />
+    <property name="dukesbank.application.name" value="DukesBankApp"/>
+    <property name="appname" value="DukesBankApp"/>
+    <property name="sample.home" value="../../"/>
+    <property name="conpool.name"       value="dukesbankPool" />
+    <property name="jdbc.resource.name" value="jdbc/Cloudscape" />
+
+  &include;
+
+  <target name="init" depends="init_common">
+    <tstamp/>
+
+    <!-- include top-level common properties -->
+    <property file="build.properties"/>
+
+    <property name="javadocs.dir" value="../javadocs"/>
+
+    <property name="dist"  value="dist" />
+    <property name="sql"  value="sql" />
+    <property environment="myenv" />
+
+
+    <property name="cpath"  value=".:./${dukes.src}:jar/tx-ejb.jar:jar/account-ejb.jar:jar/customer-ejb.jar:${sunone.cpath}" />
+    <property name="pack-jvmargs"  value="-Xmx128m" />
+    <property name="app-jars"  value="jar/account-ejb.jar:jar/customer-ejb.jar:jar/tx-ejb.jar:jar/web-client.war:jar/app-client.jar" />
+
+    <property name="javadocs.dir" value="../javadocs"/>
+
+    <property name="dist"  value="dist" />
+    <property name="sql"  value="sql" />
+    <property environment="myenv" />
+    <property name="cpath"  value=".:./${dukes.src}:jar/tx-ejb.jar:jar/account-ejb.jar:jar/customer-ejb.jar" />
+    <property name="pack-jvmargs"  value="-Xmx128m" />
+    <property name="app-jars"  value="jar/account-ejb.jar:jar/customer-ejb.jar:jar/tx-ejb.jar:jar/web-client.war:jar/app-client.jar" />
+
+    <property name="util-files" value="com/sun/ebank/util" />
+    <property name="ejb-exception-files" value="com/sun/ebank/ejb/exception" />
+
+    <property name="account-ejb-files" value="com/sun/ebank/ejb/account:com/sun/ebank/ejb/customer/Customer.class:com/sun/ebank/ejb/customer/CustomerHome.class" />
+    <property name="customer-ejb-files" value="com/sun/ebank/ejb/customer" />
+    <property name="tx-ejb-files" value="com/sun/ebank/ejb/tx:com/sun/ebank/ejb/account/Account.class:com/sun/ebank/ejb/account/AccountHome.class" />
+    <property name="ac-files"  value="com/sun/ebank/appclient:AdminMessages.properties:AdminMessages_es.properties" />
+
+    <property name="cloud-lib" value="${myenv.J2EE_HOME}/lib/cloudscape" />
+    <property name="system-lib" value="${myenv.J2EE_HOME}/lib/system" />
+    <property name="cloud-path" value=".:${cloud-lib}/cloudclient.jar:${cloud-lib}/RmiJdbc.jar:${system-lib}/cloudutil.jar:${system-lib}/cloudscape.jar" />
+    <property name="cloud-jvmargs" value="-ms16m -mx32m -Dij.connection.CloudscapeDB=jdbc:rmi://localhost:1099/jdbc:cloudscape:CloudscapeDB;create=true -Dcloudscape.system.home=${myenv.J2EE_HOME}\cloudscape" /> 
+  </target>
+
+  <target name="prepare" depends="init">
+    <mkdir dir="${build}" />
+  </target>
+
+  <target name="all"
+        depends="package-ejb,package-ac,package-web,assemble-app,deploy" />
+
+  <target name="core"
+        depends="package-ejb,package-ac,package-web,assemble-app" />
+
+  <target name="compile-exception" 
+          depends="prepare">
+    <javac srcdir="${dukes.src}" 
+           destdir="${build}" 
+           includes="**/exception/*"
+           classpath="${cpath}" />
+  </target>
+
+  <target name="compile-detail" 
+          depends="prepare">
+    <javac srcdir="${dukes.src}" 
+           destdir="${build}" 
+           includes="**/util/*Details.java"
+           classpath="${cpath}" />
+  </target>
+
+  <target name="compile-interface" 
+          depends="compile-detail,compile-exception">
+    <javac srcdir="${dukes.src}" 
+           destdir="${build}" 
+           includes="**/ejb/**/**"
+           excludes="**/ejb/**/*Bean*,**/ejb/exception/***,**/ejb/test/**"
+           classpath="${cpath}" />
+  </target>
+
+  <target name="compile-util" 
+          depends="compile-interface">
+    <javac srcdir="${dukes.src}" 
+           destdir="${build}" 
+           includes="**/ebank/util/**"
+           classpath="${cpath}" />
+  </target>
+
+  <target name="compile-ejb" 
+          depends="compile-util">
+    <javac srcdir="${dukes.src}" 
+           destdir="${build}" 
+           includes="**/ebank/ejb/**/*Bean*"
+           classpath="${cpath}" />
+  </target>
+
+  <target name="package-account"
+          depends="compile-ejb">
+    <delete file="jar/account-ejb.jar"/>
+    <copy file="dd/account-ejb.xml" tofile="jar/account-ejb/META-INF/ejb-jar.xml" />
+    <copy file="dd/account-sun-ejb.xml" tofile="jar/account-ejb/META-INF/sun-ejb-jar.xml" />
+    <copy todir="jar/account-ejb" >
+     <fileset dir= "${build}">
+      <include name="**/com/sun/ebank/ejb/account/**"/>
+      <include name="**/com/sun/ebank/ejb/customer/Customer.class"/>
+      <include name="**/com/sun/ebank/ejb/customer/CustomerHome.class"/>
+      <include name="**/com/sun/ebank/ejb/exception/**"/>
+      <include name="**/com/sun/ebank/util/**"/>
+     </fileset>
+    </copy>
+    <jar jarfile="jar/account-ejb.jar" basedir="jar/account-ejb"/>
+    <delete dir="jar/account-ejb"/>
+  </target>
+
+  <target name="package-customer"
+          depends="compile-ejb">
+    <delete file="jar/customer-ejb.jar"/>
+    <copy file="dd/customer-ejb.xml" tofile="jar/customer-ejb/META-INF/ejb-jar.xml" />
+    <copy file="dd/customer-sun-ejb.xml" tofile="jar/customer-ejb/META-INF/sun-ejb-jar.xml" />
+    <copy todir="jar/customer-ejb" >
+     <fileset dir= "${build}">
+      <include name="**/com/sun/ebank/ejb/customer/**"/>
+      <include name="**/com/sun/ebank/ejb/exception/**"/>
+      <include name="**/com/sun/ebank/util/**"/>
+     </fileset>
+    </copy>
+    <jar jarfile="jar/customer-ejb.jar" basedir="jar/customer-ejb"/>
+    <delete dir="jar/customer-ejb"/>
+  </target>
+
+  <target name="package-tx"
+          depends="compile-ejb">
+    <delete file="jar/tx-ejb.jar"/>
+    <copy file="dd/tx-ejb.xml" tofile="jar/tx-ejb/META-INF/ejb-jar.xml" />
+    <copy file="dd/tx-sun-ejb.xml" tofile="jar/tx-ejb/META-INF/sun-ejb-jar.xml" />
+    <copy todir="jar/tx-ejb" >
+     <fileset dir= "${build}">
+      <include name="**/com/sun/ebank/ejb/tx/**"/>
+      <include name="**/com/sun/ebank/ejb/account/Account.class"/>
+      <include name="**/com/sun/ebank/ejb/account/AccountHome.class"/>
+      <include name="**/com/sun/ebank/ejb/exception/**"/>
+      <include name="**/com/sun/ebank/util/**"/>
+     </fileset>
+    </copy>
+    <jar jarfile="jar/tx-ejb.jar" basedir="jar/tx-ejb"/>
+    <delete dir="jar/tx-ejb"/>
+  </target>
+
+  <target name="package-ejb"
+        depends="package-account,package-customer,package-tx" />
+
+  <target name="compile-web"
+          depends="prepare">
+     <javac srcdir="${dukes.src}"
+           destdir="${build}"
+           includes="com/**/web/**"
+           classpath="${cpath}" />
+  </target>
+
+  <target name="package-web" depends="compile-web">
+     <delete file="jar/web-client.war"/>
+     <war warfile="jar/web-client.war" webxml="dd/web.xml">
+       <fileset dir="${dukes.src}/web" >
+          <include name="*.jsp" />
+          <include name="images/*.gif" />
+       </fileset>
+       <webinf dir="${dukes.src}/web" >
+           <include name="*.tld" />
+           <exclude name="*.jsp" />
+           <exclude name="*.txt" />
+           <exclude name="images/**" />
+        </webinf>
+       <webinf dir="jar" >
+           <include name="*.tld" />
+        </webinf>
+       <webinf dir="dd" >
+           <include name="sun-web.xml" />
+        </webinf>
+       <lib dir="${dukes.src}/web" >
+           <include name="struts.jar" />
+        </lib>
+       <classes dir="${build}" >
+           <include name="**/*.class" />
+           <exclude name="com/sun/ebank/appclient/**" />
+           <exclude name="com/sun/ebank/ejb/**" />
+           <exclude name="com/sun/ebank/util/**" />
+        </classes>
+        <classes dir="${dukes.src}/web" >
+           <include name="*.properties" />
+        </classes>
+     </war> 
+  </target>
+
+  <target name="compile-ac"
+          depends="compile-util">
+    <javac srcdir="${dukes.src}"
+           destdir="${build}"
+           includes="**/appclient/**"
+           classpath="${cpath}" />
+  </target>
+
+  <target name="package-ac"
+          depends="compile-ac">
+        <copy todir="${build}" >
+           <fileset dir="${dukes.src}"   >
+              <include name="**/appclient/*.properties" />
+           </fileset>
+              <mapper type="flatten" />
+        </copy>
+    <delete file="jar/app-client.jar"/>
+    <copy file="dd/application-client.xml" tofile="jar/app-client/META-INF/application-client.xml" />
+    <copy file="dd/sun-application-client.xml" tofile="jar/app-client/META-INF/sun-application-client.xml" />
+    <copy todir="jar/app-client" >
+     <fileset dir= "${build}">
+      <include name="**/com/sun/ebank/appclient/**"/>
+      <include name="**/AdminMessages*.properties"/>
+     </fileset>
+    </copy>
+    <jar jarfile="jar/app-client.jar" basedir="jar/app-client" manifest="dd/MANIFEST.MF"/>
+    <delete dir="jar/app-client"/>
+  </target>
+
+  <target name="assemble-app"
+          depends="init">
+    <delete file="../DukesBankApp.ear"/>
+    <copy file="dd/application.xml" tofile="jar/DukesBank/META-INF/application.xml" />
+    <copy file="dd/sun-application.xml" tofile="jar/DukesBank/META-INF/sun-application.xml" />
+    <copy file="jar/account-ejb.jar" todir="jar/DukesBank" />
+    <copy file="jar/customer-ejb.jar" todir="jar/DukesBank" />
+    <copy file="jar/tx-ejb.jar" todir="jar/DukesBank" />
+    <copy file="jar/app-client.jar" todir="jar/DukesBank" />
+    <copy file="jar/web-client.war" todir="jar/DukesBank" />
+    <jar jarfile="../DukesBankApp.ear" basedir="jar/DukesBank"/>
+    <delete dir="jar/DukesBank"/>
+  </target>
+
+  <target name="deploy" depends=" deploy_jdbc_resource, keygen, deploy_common"/>
+
+  <target name="verify" depends="verify_common"/>
+  <target name="undeploy" depends="undeploy_common, undeploy_jdbc_resource, keydel"/>
+
+
+  <target name="db-create-table" depends="init">
+  <java classname="COM.cloudscape.tools.ij" fork="yes" >
+     <jvmarg line="${cloud-jvmargs}" />
+     <arg value="${sql}/create-table.sql" />
+     <classpath path="${cloud-path}" />
+  </java>
+  </target>
+
+  <target name="db-insert" depends="init">
+  <java classname="COM.cloudscape.tools.ij" fork="yes" >
+     <jvmarg line="${cloud-jvmargs}" />
+     <arg value="${sql}/insert.sql" />
+     <classpath path="${cloud-path}" />
+  </java>
+  </target>
+     
+  <target name="db-list" depends="init">
+  <java classname="COM.cloudscape.tools.ij" fork="yes" >
+     <jvmarg line="${cloud-jvmargs}" />
+     <arg value="${sql}/listAccount.sql" />
+     <classpath path="${cloud-path}" />
+  </java>
+  </target>
+
+  <target name="db-delete" depends="init">
+  <java classname="COM.cloudscape.tools.ij" fork="yes" >
+     <jvmarg line="${cloud-jvmargs}" />
+     <arg value="${sql}/delete.sql" />
+     <classpath path="${cloud-path}" />
+  </java>
+  </target>
+
+  <target name="db-reset-key" depends="init">
+  <java classname="COM.cloudscape.tools.ij" fork="yes" >
+     <jvmarg line="${cloud-jvmargs}" />
+     <arg value="${sql}/reset-key.sql" />
+     <classpath path="${cloud-path}" />
+  </java>
+  </target>
+
+  <target name="about">
+     <echo message="Main targets for the Duke's Bank application:" />
+     <echo message=" " />
+     <echo message="EJB" />
+     <echo message="    compile-ejb" />
+     <echo message="    package-ejb" />
+     <echo message=" " />
+     <echo message="Web" />
+     <echo message="    compile-web" />
+     <echo message="    package-web" />
+     <echo message=" " />
+     <echo message="App Client" />
+     <echo message="    compile-ac" />
+     <echo message="    package-ac" />
+     <echo message=" " />
+     <echo message="J2EE Application" />
+     <echo message="    assemble-app" />
+     <echo message=" " />
+     <echo message="Database" />
+     <echo message="    db-create-table" />
+     <echo message="    db-insert" />
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${build}" />
+    <delete dir="${javadocs.dir}"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Javadocs tragets.                                       -->
+  <!-- ======================================================= -->
+
+  <target name="javadocs" depends="package-ejb,package-ac,package-web">
+    <echo message="Generating API Javadocs...."/>
+    <mkdir dir="${javadocs.dir}"/>
+    <javadoc packagenames="com.sun.ebank.*"
+             destdir="${javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="Java Duke's Bank Demo API"
+             doctitle="Java Duke's Bank Demo"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath>
+        <pathelement path="${com.sun.aas.installRoot}/lib/appserv-ext.jar"/>
+        <pathelement path="build"/>
+      </classpath>
+      <sourcepath>
+        <pathelement path="src"/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <!-- ======================================================= -->
+  <!--                  Pointbase properties .                 -->
+  <!-- ======================================================= -->
+
+  <property name="db.user" value="dukesbank"/>
+  <property name="db.pwd" value="dukesbank"/>
+  <property name="db.file" value="sql/dukesbank.sql"/>
+
+  <!-- ======================================================= -->
+  <!-- JDBC PointBase tragets.                                 -->
+  <!-- ======================================================= -->
+
+  <target name="create-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-connection-pool
+       --datasourceclassname com.pointbase.jdbc.jdbcDataSource
+       dukesbankPool --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-connection-pool
+      dukesbankPool --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+ <target name="set-DatabaseName">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.dukesbankPool.property.DatabaseName=jdbc:pointbase:server://localhost/sun-appserv-samples" />
+    </antcall>
+  </target>
+
+  <target name="set-User">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.dukesbankPool.property.User=dukesbank" />
+    </antcall>
+  </target>
+
+  <target name="set-Password">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.dukesbankPool.property.Password=dukesbank" />
+    </antcall>
+  </target>
+
+  <target name="create-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-resource
+       --connectionpoolid dukesbankPool
+       jdbc/Cloudscape --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-resource
+       jdbc/Cloudscape --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- JDBC Oracle targets.                                    -->
+  <!-- ======================================================= -->
+
+  <target name="create-ora-jdbc-connection-pool">
+    <property name="db.host"  value="localhost"/>
+    <property name="db.port"  value="1521"/>
+    <property name="db.sid"   value="sun-appserv-samples"/>
+    <property name="db.url"   value="jdbc:pointbase://${db.host}:${db.port}\/${db.sid}" />
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="create-jdbc-connection-pool ${conpool.name}
+          --datasourceclassname ${ds.class}
+          --instance ${sunone.instance}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.${url.prop}=${db.url}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.User=${db.user}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.Password=${db.pwd}" />
+    </antcall>
+  </target>
+
+  <target name="setup-ora" depends="setup_env">
+    <property name="db.host"  value="localhost"/>
+    <property name="db.port"  value="1521"/>
+    <property name="db.sid"   value="sun-appserv-samples"/>
+    <antcall target="create-ora-jdbc-connection-pool">
+      <param name="ds.class" value="oracle.jdbc.pool.OracleDataSource" />
+      <param name="db.url"   value="jdbc:oracle:thin:@${db.host}:${db.port}:${db.sid}" />
+      <param name="url.prop" value="url" />
+    </antcall>
+    <antcall target="create-jdbc-resource"/>
+    <antcall target="reconfig"/>
+  </target>
+
+  <target name="deploy-ora" depends="setup-ora, keygen,  deploy_common" />
+
+  <target name="reconfig" depends="reconfig_common"/>
+
+  <!-- ======================================================= -->
+  <!-- FileRealm key generaion targets.                        -->
+  <!-- ======================================================= -->
+
+  <target name="keygen-user200"> 
+    <property name="app.user"  value="200" />
+    <property name="app.userpassword"  value="j2ee" />
+    <property name="app.groups"  value="Customer" />
+    <antcall target="keygen_common"/>
+  </target>
+
+  <target name="keydel-user200"> 
+    <property name="app.user"  value="200" />
+    <antcall target="keydel_common"/>
+  </target>
+
+  <target name="keydel-admin"> 
+    <property name="app.user"  value="admin" />
+    <antcall target="keydel_common"/>
+  </target>
+
+  <target name="keygen-admin"> 
+    <property name="app.user"  value="admin" />
+    <property name="app.userpassword"  value="j2ee" />
+    <property name="app.groups"  value="Admin" />
+    <antcall target="keygen_common"/>
+  </target>
+
+  <target name="keydel"> 
+    <antcall target="keydel-user200"/>
+    <antcall target="keydel-admin"/>
+    <antcall target="reconfig"/>
+  </target>
+
+  <target name="keygen"> 
+    <antcall target="keygen-user200"/>
+    <antcall target="keygen-admin"/>
+    <antcall target="reconfig"/>
+  </target>
+
+  <target name= "deploy_jdbc_resource" depends = "create-jdbc-connection-pool, set-DatabaseName
+, set-User, set-Password, create-jdbc-resource, reconfig"/>
+
+  <target name= "undeploy_jdbc_resource" depends = "delete-jdbc-resource, delete-jdbc-connection-pool, reconfig" />
+
+  <target name="freshdb" depends="sql_common"/>
+
+</project>

@@ -1,0 +1,61 @@
+/*
+ * Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+ */
+
+a:link { text-decoration: none; color:#666699; }
+a:active { text-decoration: none; }
+a:visited { text-decoration: none; color:#666699; }
+a:hover { text-decoration: none; }
+BODY, TH, TD, P, DIV, SPAN, INPUT, SELECT, TEXTAREA, FORM, B, STRONG, I, U, H1, H2, H3, UL, LI, option { 
+	font-family: verdana, geneva, helvetica, arial, sans-serif;}
+.default-body { background-color: #FFFFFF; color: black; }
+th { text-align: left; }
+
+/* NAVIGATION TREE AREA - LOWER LEFT FRAME */
+
+.tree-body { background-color: #FFFFFF; color: black; } 
+.top-tree-node-text  { font-weight: bold; color: black;}
+.tree-node-text  {  color: black; }
+
+/* Styles for the accessible tree version - non-javascript tree */
+.tree-level0 { font-weight: bold; margin: 3px 5px 3px 0px;}
+.tree-level1 { font-weight: bold; margin: 6px 5px 1px 0px;}
+.tree-level2 { text-indent: .8em; margin: 2px 5px 1px 0px;}
+.tree-level3 { text-indent: 1.6em; margin: 1px 5px 1px 0px;}
+.tree-level4 { text-indent: 2.4em; margin: 1px 5px 1px 0px;}
+
+
+/* ACTION BAR AREA - TOP OF LOWER RIGHT FRAME */
+
+.action-bar-table  { background-color: #FFFFFF; }
+.breadcrumb-text  { color: black; font-weight: bold; margin: 3px 5px; }
+a.breadcrumb-link-text:visited, a.breadcrumb-link-text:link, a.breadcrumb-link-text:active  { color: #000000; font-weight: bold; text-decoration: underline; }
+.breadcrumb-row  { background-color: #CCCCCC; }
+.breadcrumb-line-row  { background-color: #CCCCCC; }
+.action-bar-menu-label-text { font-weight: bold;  text-indent: .5em; color:#666666; }
+.action-bar-link-text  {  color: #666699; font-weight: bold;}
+
+/* NEEDED FOR All SCREENS */
+
+.page-title-text { color: #FFFFFF;  margin: 3px 5px 5px 3px;  ; font-size: large; font-family: Verdana, Arial, Helvetica, sans-serif}
+.table-title-text { color: #000000; font-weight: bold; margin: 3px 5px 5px 4px; font-family: Verdana, Arial, Helvetica, sans-serif }
+.table-header-text { color: #FFFFFF; font-weight: bold; margin: 3px 5px 1px 15px;font-family: Verdana, Arial, Helvetica, sans-serif } 
+.table-label-text { margin: 3px 5px 3px 15px; color: #000000; font-family: Verdana, Arial, Helvetica, sans-serif} 
+.table-normal-text { color: #000000; margin: 3px 5px 3px 15px; ; font-family: "Times New Roman", Times, serif} 
+.back-table { background-color: #9999CC; margin: 0px 5px 3px 5px;font-family: Verdana, Arial, Helvetica, sans-serif } 
+.front-table { background-color: #FFFFFF; font-family: Verdana, Arial, Helvetica, sans-serif} 
+.header-row { background-color: #9999CC; ; text-align: center; font-family: Verdana, Arial, Helvetica, sans-serif} 
+.line-row { background-color:#CCCCCC;font-family: Verdana, Arial, Helvetica, sans-serif } 
+
+.button-frame-enabled { background-color: #000000; }
+.button-content-enabled { background-color: #CCCCCC; }
+.button-link-enabled-text { color: #000000; margin: 2px 0px; font-weight: bold; text-decoration: none; font-family: Verdana, Arial, Helvetica, sans-serif }
+a.button-link:link, a.button-link:visited { color: #000000; font-weight: bold; background-color: #CCCCCC; text-decoration: none; }
+a.button-link:active { color: #000000; font-weight: bold; background-color: #999999; text-decoration: none;} 
+
+/* ACTION BAR AREA - TOP OF THE RIGHT FRAME */
+.table-main-text  { color: white; font-weight: bold; margin: 3px 5px; font-family: arial, sans-serif; font-size: 20px;  }
+.table-main-row  { background-color: #7171A5; margin: 3px 5px 3px 5px; font-size: .5em; }
+.action-table  { background-color: #7171A5; }
+

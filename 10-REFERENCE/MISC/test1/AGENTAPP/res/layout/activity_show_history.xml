@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ShowHistoryActivity" >
+
+    <TextView
+        style="@style/TitleLabel"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_size"
+        android:layout_marginBottom="20dp"
+        android:text="@string/history" />
+
+    <RelativeLayout
+        android:id="@+id/history_paging_panel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <Button
+            android:id="@+id/previous_button"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_alignParentLeft="true"
+            android:text="@string/prev" />
+
+        <TextView
+            android:id="@+id/paging_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:paddingRight="@dimen/padding_right"
+            android:textSize="15sp"
+            android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/next_button"
+            android:layout_width="75dp"
+            android:layout_height="40dp"
+            android:visibility="gone"
+            android:layout_alignParentRight="true"
+            android:text="@string/next" />
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/history_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:choiceMode="singleChoice" />
+
+</LinearLayout>

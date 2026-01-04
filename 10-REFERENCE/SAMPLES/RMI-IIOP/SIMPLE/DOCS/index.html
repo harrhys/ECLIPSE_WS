@@ -1,0 +1,438 @@
+<!DOCTYPE doctype PUBLIC "-//w3c//dtd html 4.0 transitional//en"><html><head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+
+   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<meta name="templatebase" manual="" wdt="" 1.7.0="" oak="" rebranded="" for="" sun="" one=""><title>RMI/IIOP Access to EJBs</title></head>
+
+<body text="#000000" link="#594fbf" vlink="#1005fb" alink="#333366" bgcolor="#ffffff">
+
+<maincontent>
+
+<navigationcontent>
+   </navigationcontent></maincontent><table width="100%" border="0" cellspacing="4">
+      <tbody><tr>
+         <td valign="top">
+            <a href="http://wwws.sun.com/software">
+              <img src="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" valign="BOTTOM" height="40" width="120" border="0"></a>
+                 
+         </td>
+     </tr>
+
+      <tr>
+         <td valign="top" align="right" bgcolor="#594fbf">
+            <font face="Helvetica, Arial, sans-serif" color="#ffffff" size="-1"><b>
+ RMI/IIOP Access to EJBs</b></font>
+         </td>
+      </tr>
+
+   </tbody></table>
+   <br>
+
+<font face="Verdana, Arial, Helvetica, sans-serif" size="2">
+<center>
+<h1>
+ RMI/IIOP Access to EJBs</h1></center>
+<br>
+<hr>
+<h2>
+Table of Contents</h2>
+<ul>
+<li>
+<b><a href="#over">Overview</a></b></li>
+
+<li>
+<b><a href="#compile">Compiling and Assembling the Sample Application</a></b></li>
+
+<li>
+<b><a href="#deploy_app">Deploying the Sample Application</a></b></li>
+
+<li>
+<b><a href="#run">Running the Sample Application</a></b></li>
+
+<li>
+<b><a href="#trouble">Troubleshooting</a></b></li>
+</ul>
+
+<hr>
+<h2>
+<a name="over"></a>Overview</h2>
+This sample is based on the Currency Converter EJB sample
+included in Sun's J2EE Developer's Guide. 
+It demonstrates RMI/IIOP-based access to a simple stateless 
+session bean.  This sample will help you to understand
+how to enable concurrent access to the EJBs via
+both RMI/IIOP-based Java clients and web-based servlets/JSPs 
+clients.   RMI/IIOP-based Java clients are executed inside Application
+Client Container (ACC) or outside ACC, while the web-based servlets/JSPs clients are
+executed in Web Container as shown in Figure 1.  The section 
+<a href="#run">Running the Sample Application</a>
+demonstrates how to run application 
+client without ACC or with ACC.
+
+<center>
+<figure>
+<img src="images/container.gif" height="275" width="490">
+<br><b>Figure 1	   Access to EJBs via Java and Web Clients</b>
+</figure>
+</center>
+<p>
+</p><hr>
+<h2>
+<a name="compile"></a>Compiling and Assembling the Sample Application</h2>
+
+
+This procedure describes how to
+compile and assemble the sample using a Command Line Interface (CLI).
+<ul>
+<li> Set Environment
+<br> Add
+<FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/bin</FONT> to your path.
+<p>
+</p></li><li> Compile and Assemble 
+<br>Execute "<b><FONT FACE="courier, couriernew, monospaced size">asant</FONT></b>"  under the source directory, e.g.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/samples/rmi-iiop/simple/src/</FONT>
+</ul>
+<br>It compiles and assembles the sample in a EAR file, e.g.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/samples/rmi-iiop/simple/rmi-simple.ear</FONT>
+</ul>
+</li></ul>
+<hr>
+<h2>
+<a name="deploy_app"></a>Deploying the Sample Application</h2>
+Select CLI or GUI to deploy the application using the EAR file
+assembled in previous section.
+<h4>Command Line based Deployment</h4>
+<ul>
+<li> Set Environment
+<br> Add
+<FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/bin</FONT> to your path.
+<p>
+</p></li><li> Deploy 
+<br>Execute "<b><FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT></b>"  under the source directory, e.g.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/samples/rmi-iiop/simple/src/</FONT>.
+</ul>
+<br>It deploys the application in a server instance, e.g. 
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/domains/domain1/applications/j2ee-apps/rmi-simple_1</FONT>.
+</ul>
+</li></ul>
+An alternative way to deploy is to use Application Server Administration Tool.
+<ul><FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;username&gt; -w &lt;password&gt; -H &lt;hostname&gt; 
+-p &lt;admin server port&gt; 
+--instance &lt;server instance name&gt;  rmi-simple.ear</FONT></ul>
+It can also be used to verify the registration, i.e.
+<ul><FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H
+&lt;hostname&gt; -p &lt;admin server port&gt; &lt;server instance name&gt;
+</FONT></ul>
+
+
+<h4>GUI Based Deployment</h4>
+<ul>
+<li>
+Navigate to the browser to administration server page, e.g.
+<ul>
+<br> <FONT FACE="courier, couriernew, monospaced size">http://&lt;server-host&gt;:&lt;admin-port&gt;/index.html.</FONT>
+</ul>
+<br>
+</li><li>Enter your username and password to login
+<p>
+</p></li><li>Surf down the tree on the left pane, e.g.
+<ul>
+<br> <FONT FACE="courier, couriernew, monospaced size">App Server Instances--&gt;server1--&gt;Applications--&gt;Enterprise Apps</FONT>
+</ul>
+<br>
+</li><li>Click on "Deploy" in the right pane.
+<p>
+</p></li><li>Choose the EAR file, e.g.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/samples/rmi-iiop/simple/rmi-simple.ear</FONT>.
+</ul>
+<br>
+</li><li>Click OK.
+<p>
+</p></li><li>You will be asked for the application name.
+<p>
+</p></li><li>Enter <FONT FACE="courier, couriernew, monospaced size">rmi-simple</FONT> and Click OK.
+<p>
+</p></li><li>To verify the registration, you will see
+the pane with <FONT FACE="courier, couriernew, monospaced size">rmi-simple</FONT> application as deployed.
+</li></ul>
+
+
+<hr>
+<h2>
+<a name="run"></a>Running the Sample Application</h2>
+<h4>1.    Web-based client.</h4>
+The Servlets/JSPs client will be run via a browser.
+<ul>
+<li>
+From a browser, go to the following URL:
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">http://&lt;hostname&gt;:&lt;port&gt;/rmi-iiop-simple/index.jsp</FONT>
+</ul>
+<br>
+</li><li>Enter a numeric figure, e.g. 100,  and press the Submit button.
+<p>
+</p></li><li>It invokes the ConverterBean with a request to convert 100 units of 
+USD to Yen and 100 Yen to Euro. 
+<p>
+</p></li><li>The stateless session bean returns the results to the caller and the 
+JSP displays the result in the same page. 
+</li></ul>
+<h4>2.    Local RMI/IIOP-based client with ACC.</h4>
+The Java client will be run on the same machine where the Application Server
+is running.
+<ul>
+<li>Get client file, i.e.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/domains/domain1/server1/applications/j2ee-apps/rmi-simple_1/rmi-simpleClient.jar</FONT>
+</ul>
+<br>
+</li><li>Go to the directory,
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/bin</FONT>
+</ul>
+<br>
+</li><li>Run client application, e.g.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">appclient -client  &lt;path&gt;/rmi-simpleClient.jar</FONT>
+</ul>
+<br>
+</li><li>You should see the last two lines from screen as the result of converting
+100 units of USD to Yen, and 100 Yen to Euro. 
+</li></ul>
+<p>
+</p><h4>3.    Remote RMI/IIOP-based client with ACC.</h4>
+The Java client will be run on the different machine where the Application Server
+is running.
+<ul>
+<li>Package Application Client Container.
+<br>Application Client Container (ACC) is a set of java classes, libraries
+and other files used to execute a first tier application client
+program in it own JVM.  It communicates with the Application Server 
+using RMI-IIOP. 
+<p>
+On the first machine where application server is running, 
+package ACC.  Go to the directory of
+</p><ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/bin</FONT>
+</ul>
+<br>execute the script as following,
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">package-appclient</FONT>
+</ul>
+<br>It creates the package as
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/lib/appclient/appclient.jar</FONT>
+</ul>
+<br>
+</li><li>Transfer the container and client files.
+<br>Copy <FONT FACE="courier, couriernew, monospaced size">appclient.jar</FONT> and <FONT FACE="courier, couriernew, monospaced size">rmi-simpleClient.jar</FONT>
+from the first machine to the second machine.
+<p>Note that the appclient.jar is intended to be used on a
+remote machine with same type of operating system.   For example,
+appclient.jar created on a Solaris system will not function on
+a Win32 system.
+</p><p>
+</p></li><li>Install the container.
+<br>On the second machine, unpack ACC, i.e. <FONT FACE="courier, couriernew, monospaced size">applicient.jar</FONT>, 
+under a directory of your choice, e.g. 
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;acc_install_dir&gt;</FONT>
+</ul>
+<br>This installs ACC in
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;acc_install_dir&gt;/appclient</FONT>
+</ul>
+<br>
+</li><li>Configure the container.
+<br>On the second machine:
+<ul>
+<li>Modify environment in the file of
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;acc_install_dir&gt;/appclient/config/asenv.conf</FONT>
+</ul>
+<br>For example,
+<ul>
+<br>AS_INSTALL=&lt;acc_install_dir&gt;/appclient
+<br>AS_WEBSERVICES_LIB=&lt;acc_install_dir&gt;/appclient/lib
+<br>AS_IMQ_LIB=&lt;acc_install_dir&gt;/appclient/imq/lib
+<br>AS_ACC_CONFIG=&lt;acc_install_dir&gt;/appclient/config/sun-acc.xml
+<br>AS_JAVA=&lt;Location of JDK Installed&gt;
+</ul>
+<br>
+</li><li>Modify client script in the file of
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;acc_install_dir&gt;/appclient/bin/appclient</FONT>
+</ul>
+<br>Change the path to the environment file, <FONT FACE="courier, couriernew, monospaced size">asenv.conf</FONT> from
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">.    ${IAS_CONFIG}/asenv.conf</FONT>
+</ul>
+<br>to
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">.    &lt;acc_install_dir&gt;/appclient/config/asenv.conf</FONT>
+</ul>
+<br>
+</li><li>Modify XML configuration file of
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;acc_install_dir&gt;/appclient/config/sun-acc.xml</FONT>
+</ul>
+<br> for ORB host and port.  For example,
+<ul>
+<FONT FACE="courier, couriernew, monospaced size">
+<br>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+<br>&lt;!DOCTYPE client-container SYSTEM "file:<b>&lt;acc_install_dir&gt;</b>/appclient/lib/dtds/sun-application-client-container_1_0.dtd "&gt;
+<br>&lt;client-container&gt;
+<br>  &lt;target-server name="<b>acchost</b>" 
+address="<b>ashost</b>" port="<b>3700</b>"/&gt;
+<br>  &lt;client-credential user-name="j2ee" password="j2ee"/&gt;
+<br>  &lt;log-service file="" level="WARNING"/&gt;
+<br>&lt;/client-container&gt;
+</FONT>
+</ul>
+<br>In this example, Application Server is running on the
+ machine with hostname <b><FONT FACE="courier, couriernew, monospaced size">ashost</FONT></b> and with 
+default ORB-port <b><FONT FACE="courier, couriernew, monospaced size">3700</FONT></b>,
+and Application Client Container is on the machine with 
+hostname <b><FONT FACE="courier, couriernew, monospaced size">acchost</FONT></b>. 
+</li></ul>
+</li><li>Run client application
+<br>On the second machine, e.g. (<b><FONT FACE="courier, couriernew, monospaced size">acchost</FONT></b>),
+<ul>
+<li>Go to the directory,
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;acc_install_dir&gt;/appclient/bin</FONT>
+</ul>
+<br>
+</li><li>Run client application, e.g.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">appclient -client  &lt;path&gt;/rmi-simpleClient.jar</FONT>
+</ul>
+<br>
+</li><li>You will see the host and port of the first machine from screen,
+<ul>
+<br>......
+<br>INFO: ACC014: ORB host name: [<b><FONT FACE="courier, couriernew, monospaced size">ashost</FONT></b>]
+<br>......
+<br>INFO: ACC013: ORB port number: [<b><FONT FACE="courier, couriernew, monospaced size">3700</FONT></b>]
+<br>......
+</ul>
+<br>
+</li><li>After that, you should see the last two lines from screen as the
+result of converting 100 units of USD to Yen, and 100 Yen to Euro. 
+
+</li></ul>
+</li></ul>
+<h4>4.    Local or remote RMI/IIOP-based client without ACC.</h4> The java
+client is executed without using the interface of Application Client Container.
+ It can be executed on the local machine (ashost) or a remote machine. The
+client application runs from the command line, i.e. <ul>
+<br><FONT FACE="courier, couriernew, monospaced size">java -classpath <b>&lt;CP&gt; &lt;ClientApp&gt; &lt;URL&gt; &lt;JNDIName&gt;</b>
+</FONT>
+</ul>
+where 
+<ul>
+<li><b>CP</b> includes two jar files for CLASSPATH which are
+ rmi-simpleClient.jar and appserv-ext.jar.
+<br>The file of rmi-simpleClient.jar  is copied to the current directory
+ from the deployment directory, e.g.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/domains/domain1/server1/applications/j2ee-apps/rmi-simple_1</FONT>
+</ul>
+<br>
+The file of appserv-ext.jar is copied to the current directory
+from AS installation, e.g.
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/lib</FONT>
+</ul>
+<p>
+If you intend to run the client application on a remote machine, 
+you need to transfer the rmi-simpleClient.jar and appserv-ext.jar 
+files to the client machine.  Although the rmi-simpleClient.jar file 
+is used in this example to run application client with or without an ACC,
+it contains more files than absolutely necessary for the situation in
+which an ACC is not used.  The minimal files required to run the 
+example on a remote machine without an ACC are the appserv-ext.jar 
+file and the following files as extracted from the rmi-simpleClient.jar file:
+</p><p>
+</p><ul>
+<FONT FACE="courier, couriernew, monospaced size">
+samples/rmi/simple/ejb/Converter.class  - Remote Interface
+<br>samples/rmi/simple/ejb/ConverterHome.class  - Home Interface
+<br>samples/rmi/simple/ejb/_Converter_Stub.class  - Remote Stub
+<br>samples/rmi/simple/ejb/_ConverterHome_Stub.class  - Home Stub
+<br>samples/rmi/simple/client/ConverterClient.class - Client Application Main Class
+</FONT>
+</ul>
+<br>
+The appserv-ext.jar file is required on the client machine because
+it contains the javax.ejb package that the client needs, 
+and also contains the implementation and interface for J2EE APIs 
+that the client may need.
+<p>
+</p></li><li><b>ClientApp</b> refers to the client program. In this
+example, it is,
+<br>
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">samples.rmi.simple.client.ConverterClient</FONT>
+</ul>
+<br>
+</li><li><b>URL</b> refers to the application server running
+on a machine with hostname (e.g. ashost) and 
+with an ORB-port (e.g. 3700 as default port). For example, 
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">iiop://ashost:3700</FONT>
+</ul>
+<br>
+</li><li><b>JNDIName</b> matches in the deployment file.  In the example,
+it is rmiconverter which can be found as
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;jndi-name&gt;rmiconverter&lt;/jndi-name&gt;</FONT>
+</ul>
+<br>
+in the file, 
+<ul>
+<br><FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/samples/rmi-iiop/simple/src/sun-ejb-jar.xml</FONT>.
+</ul>
+<br>
+</li></ul>
+As a complete example for the command, it looks like the following for this 
+sample,
+<p>
+On Solaris:
+</p><ul>
+<FONT FACE="courier, couriernew, monospaced size">java  -classpath rmi-simpleClient.jar:appserv-ext.jar  samples.rmi.simple.client.ConverterClient iiop://ashost:3700 rmiconverter</FONT>
+</ul>
+<p>
+On Windows:
+</p><ul>
+<FONT FACE="courier, couriernew, monospaced size">java  -classpath rmi-simpleClient.jar;appserv-ext.jar  samples.rmi.simple.client.ConverterClient iiop://ashost:3700 rmiconverter</FONT>
+</ul>
+After that, you should see the last two lines from screen as the result 
+of converting 100 units of USD to Yen, and 100 Yen  to Euro. 
+
+<p>
+</p><hr>
+<h2>
+<a name="trouble"></a>Troubleshooting</h2>
+<ul>
+<li>
+If you encounter problems when running the application,
+review the server log file, e.g.
+<ul>
+<FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir&gt;/domains/domain1/server1/logs/server.log</FONT>
+</ul>
+ to learn what went wrong. 
+</li></ul></FONT>
+<p>
+<font face="Verdana, Arial, Helvetica, sans-serif"><font color="#000000"><font size="-2">Copyright
+(c) 2002 Sun Microsystems, Inc. All rights reserved.</font></font></font>
+<br>
+</p><hr>
+</body></html>

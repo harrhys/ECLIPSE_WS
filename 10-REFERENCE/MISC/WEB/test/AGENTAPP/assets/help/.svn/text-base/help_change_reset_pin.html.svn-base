@@ -1,0 +1,19 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="wrapper">
+<h1>Change or Reset PIN</h1>
+<h3>Change PIN</h3>
+<p>
+To change your PIN, enter your current PIN and set a new PIN. 
+Re-enter the new PIN to confirm. Click on 'Back' to go back to the previous page.</p>
+<h3>Reset PIN</h3>
+<p>To set your PIN, enter 4 digit temporary PIN that you received in the 
+SMS and set a new PIN. Re-enter the new PIN to confirm. 
+Click on 'Back' to go back to the previous page.</p>
+<p>
+Contact <%CUSTOMER_CARE%> if you need help.
+</p>
+</body>
+</html>

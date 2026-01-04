@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DepositMoneyActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/TitleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_size"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:text="@string/cash_in" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:layout_marginRight="@dimen/padding_right"
+                android:text="@string/mobile_number" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/padding_bottom"
+                android:layout_marginLeft="@dimen/padding_left"
+                android:layout_marginRight="@dimen/padding_right"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/mobile_code" />
+
+                <EditText
+                    android:id="@+id/mobile_number_edit_text_deposit_money"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/enter_mobile_number"
+                    android:inputType="string" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TitleLabel"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_size"
+                android:layout_gravity="center"
+                android:layout_marginBottom="20"
+                android:text="@string/amount_to_deposit_text" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    style="@style/TitleLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/title_size"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="20"
+                    android:text="@string/cashin" />
+
+                <EditText
+                    android:id="@+id/amount_to_deposit_edit_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_height=".9"
+                    android:hint="@string/enter_amount_to_deposit"
+                    android:inputType="string" />
+            </LinearLayout>
+
+            <Button
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginLeft="@dimen/padding_left" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

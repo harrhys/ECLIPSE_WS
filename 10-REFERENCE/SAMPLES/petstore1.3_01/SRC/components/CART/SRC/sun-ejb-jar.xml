@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd">
+<sun-ejb-jar>
+<enterprise-beans>
+    <name>cart-ejb.jar</name>
+    <unique-id>20</unique-id>
+    <ejb>
+    <ejb-name>ShoppingCartEJB</ejb-name>
+    <jndi-name>ejb/ShoppingCartEJB</jndi-name>
+    <ejb-ref>
+    <ejb-ref-name>ejb/local/Catalog</ejb-ref-name>
+    <jndi-name>ejb/local/petstore/catalog/Catalog</jndi-name>
+    </ejb-ref>
+    <gen-classes/>
+    </ejb>
+    </enterprise-beans>
+</sun-ejb-jar>

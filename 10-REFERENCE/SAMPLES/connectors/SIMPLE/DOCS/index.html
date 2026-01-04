@@ -1,0 +1,815 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/09/02 15:07:51">
+	<title>Simple JCA Sample Application:  Java <sup>TM</sup> Connector Architecture Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Java <sup>TM</sup> Connector Architecture Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Java <sup>TM</sup> Connector Architecture Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Simple Connector Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the Java <sup>TM</sup> Connector Architecture sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#overview"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#compile"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="15154"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#deploy_app"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#run"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#trouble"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Comet Sample Connector can be used to illustrate how a J2EE CA compliant connector can be deployed and then operate with a J2EE CA compliant application server. The sample
+contains the following components:
+</FONT>
+<P>
+<ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A href="#22115"> <I>The Sample J2EE Connector</I></A> 
+</FONT>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<P><A href="#14870"> <I>The Sample Application</I></A> 
+</FONT>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<P><A href="#backend"> <I>Sample Backend</I></A> 
+</FONT>
+<P></ul>
+
+<A NAME="22115"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+The Sample J2EE Connector
+</B>
+</FONT>
+<BR>
+<BR>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The comet.rar file contains the sample connector files that are archived into a .rar file according to the connector architecture specification. The file is located in [appserver installation directory]/samples/connectors/simple/comet.rar.
+</FONT>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following describes the files in the Comet Connector Sample:
+</FONT>
+
+<P>
+<ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A href="#22228"> comet.jar</A> - contains JAVA classes and error messages file
+</FONT>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<P><A href="#22132"> META-INF/ra.xml</A>- contains standard deployment information. 
+</FONT>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<P><A href="#22231"> META-INF/sun-ra.xml</A> - contains additional deployment information beyond the standard deployment descriptor.
+</FONT>
+<P></ul>
+
+<A NAME="22228"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" size=2>
+<B>
+comet.jar
+</B>
+</FONT>
+<BR>
+<BR>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The comet.jar file contains the Java interfaces, implemetation and utility classes, required by the resource adapter and the error messages file.  The filename is samples.connectors.simple.Messages.properties. The messages file may be modified to comply with the internationalization standards (I18N).
+</FONT>
+
+	<P>
+	<A NAME="22132"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" size=2>
+<B>
+META-INF/ra.xml
+</B>
+</FONT>
+<BR>
+<BR>
+
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Comet Sample
+ra.xml file contains the Host and Port configuration properties.
+<br>Their values are set to:
+<br>Host: localhost
+<br>Port: 8020
+<br>These values may be modified before deployment.
+</FONT>
+
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Code Example 4-1 displays the sample ra.xml file.
+
+<center><a NAME="ra.xml file"></a><a NAME="22145"></a>
+<br><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Code Example 4-1&nbsp;&nbsp;&nbsp; ra.xml file</font></font></b></center>
+
+<blockquote>&lt;?xml version="1.0" encoding="UTF-8"?>
+<p>&lt;!--
+<br>&nbsp;&nbsp; Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+<br>&nbsp;-->
+<p>&lt;!DOCTYPE connector PUBLIC '-//Sun Microsystems, Inc.//DTD Connector
+1.0//EN'
+<br>'http://java.sun.com/dtd/connector_1_0.dtd'>
+<p>&lt;connector>
+<br>&nbsp;&nbsp;&nbsp; &lt;display-name>CometResourceAdapter&lt;/display-name>
+<br>&nbsp;&nbsp;&nbsp; &lt;vendor-name>iPlanet&lt;/vendor-name>
+<br>&nbsp;&nbsp;&nbsp; &lt;spec-version>1.0&lt;/spec-version>
+<br>&nbsp;&nbsp;&nbsp; &lt;eis-type>Comet&lt;/eis-type>
+<br>&nbsp;&nbsp;&nbsp; &lt;version>1.0&lt;/version>
+<br>&nbsp;&nbsp;&nbsp; &lt;resourceadapter>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;managedconnectionfactory-class>samples.connectors.simple.CometManagedConnectionFactory&lt;/managedconnectionfactory-class>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;connectionfactory-interface>javax.resource.cci.ConnectionFactory&lt;/connectionfactory-interface>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;connectionfactory-impl-class>
+samples.connectors.simple.CometConnectionFactory&lt;/connectionfactory-impl-class>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;connection-interface>javax.resource.cci.Connection&lt;/connection-interface>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;connection-impl-class>samples
+.connectors.simple.CometConnection&lt;/connection-impl-class>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;transaction-support>NoTransaction&lt;/transaction-support>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;config-property>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;config-property-name>Host&lt;/config-property-name>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;config-property-type>java.lang.String&lt;/config-property-type>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;config-property-value>localhost&lt;/config-property-value>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/config-property>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;config-property>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;config-property-name>Port&lt;/config-property-name>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;config-property-type>java.lang.String&lt;/config-property-type>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;config-property-value>8020&lt;/config-property-value>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/config-property>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;authentication-mechanism>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;authentication-mechanism-type>BasicPassword&lt;/authentication-mechanism-type>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;credential-interface>javax.resource.security.PasswordCredential&lt;/credential-interface>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/authentication-mechanism>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;reauthentication-support>false&lt;/reauthentication-support>
+<br>&nbsp;&nbsp;&nbsp; &lt;/resourceadapter>
+<br>&lt;/connector>
+<br>&nbsp;</blockquote>
+
+<P>
+<A NAME="22231"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" size=2>
+<B>
+META-INF/sun-ra.xml
+</B>
+</FONT>
+<BR>
+<BR>
+
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The sun-ra.xml contains additional deployment information as follows:
+</FONT>
+
+<P>
+<ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A href="#22246"> Pooling Configuration</A> 
+</FONT>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<P><A href="#22253">Security Role Map </A>
+</FONT>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<P><A href="#22258"> JNDI Name</A> 
+</FONT>
+<P></ul>
+
+<P>
+<A NAME="22246"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" size=2>
+<B>
+Pooling Configuration
+</B>
+</FONT>
+<BR>
+<BR>
+
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Pool sizing consists of the following pool configuration attributes:
+<P>
+max-pool-size: maximum size of connections to EIS.
+<P>
+steady-pool-size: initial and minimum number of connections to be maintained.
+<P>
+max-wait-in-millis: if a connection is not readily found, the caller will have to wait this long, before a connection is created. A value of 0 implies, immediately request another connection without waiting. If the pool is completely utilized and the timer expires, an exception will be delivered to the application.
+<P>
+idle-timeout-in-seconds: The maximum time that a connection is in the pool until it is destroyed.  There is a timer thread that periodically removed unused connections.
+</FONT>
+
+
+<P>
+<A NAME="22253"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" size=2>
+<B>
+Security Role Map
+</B>
+</FONT>
+<BR>
+<BR>
+
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The security role map attributes are used to perform mapping from the principal received during Servlet/EJB authentication, to credentials accepted by the EIS.
+<P>
+It is possible to map multiple principals to the same backend principal.
+<P>
+The role-map element consists of the map-id and the map-element. The map-id attribute is the name of the mapping. The map-element element consists of the principal and the backend-principal. The principal element consists of the user-name attribute. The backend-principal element consists of user-name, password and credential attributes.
+</FONT>
+
+
+<P>
+<A NAME="22258"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" size=2>
+<B>
+JNDI Name
+</B>
+</FONT>
+<BR>
+<BR>
+
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In addition to the pooling configuration attributes, the jndi-name attribute is included in the resource adapter element . The jndi-name is the name by which, this resource adapter will appear in JNDI namespace.
+<P>
+</FONT>
+<BR>
+<BR>
+
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Code Example 4-2 displays the sample sun-ra.xml file.
+</FONT>
+
+<center><a NAME="Sample sun-ra.xml file"></a><a NAME="22267"></a>
+<br><b><font face="Helvetica, Arial, sans-serif"><font size=-1>Code Example
+4-2&nbsp;&nbsp;&nbsp; Sample sun_ra.xml file</font></font></b></center>
+
+<dl>
+<dl>&lt;?xml version="1.0" encoding="UTF-8"?>
+<p>&lt;!--
+<br>&nbsp;&nbsp; Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+<br>&nbsp;-->
+<p>&lt;!DOCTYPE sun-connector PUBLIC "-//Sun Microsystems, Inc.//DTD Sun
+ONE Application Server 7.0 Connector 1.0//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-connector_1_0-0.dtd">
+<br>&lt;sun-connector>
+<br>&nbsp;&nbsp;&nbsp; &lt;resource-adapter jndi-name="Comet" max-pool-size="20"
+steady-pool-size="10"
+<br>&nbsp;max-wait-time-in-millis="300000" idle-timeout-in-seconds="5000">
+<br>&nbsp;&nbsp;&nbsp; &lt;/resource-adapter>
+<br>&nbsp;&nbsp;&nbsp; &lt;role-map map-id="mainframe">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;map-element>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;principal
+user-name="keren">&lt;/principal>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;backend-principal user-name="pazit" password="tulip" credential="credential">
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/backend-principal>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/map-element>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;/role-map>
+<br>&nbsp; &lt;/sun-connector></dl>
+</dl>
+
+</font>
+<BR>
+<BR>
+
+
+<P>
+<A NAME="14870"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+The Sample Application 
+</B>
+</FONT>
+<BR>
+<BR>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Comet Sample application operates the Comet connector that sends and recieves messages from a backend system. You need to deploy the sample applicaton and connector before you can use/operate it.
+
+<P>
+Directory Structure of the Sample Application
+<P>
+<blockquote>src
+- contains all the source code for sample application
+<blockquote>the source code of
+sample application to be used with connector is under [appserver-install-dir]/samples/connectors
+/simple/src/comet,
+it contains deployment descriptor files and java source code with package
+name samples/comet/ejb
+<br>&nbsp;</blockquote>
+assemble - samples/connectors/
+simple/assemble</blockquote>
+</blockquote>
+
+<ul>
+<blockquote>
+<blockquote>it contains the comet.ear
+and comet.war and cometEjb.jar files that need to be deployed to the application
+server
+<br>&nbsp;</blockquote>
+</blockquote>
+
+</FONT>
+
+
+<P>
+<A NAME="backend"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+The Backend Server
+</B>
+</FONT>
+<BR>
+<BR>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This backend receives and sends data using socket connection at port 8020.
+</FONT>
+
+
+<P>
+
+<BR>
+<BR>
+<BR>
+
+<A NAME="compile"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14865"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the application.
+</FONT>
+<P>
+
+<A NAME="16965"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="16127"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME=""> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You may skip this step and go to <A HREF="#deploy_app"  >Deploying the Sample Application</A> using  the pre-built EAR/RAR files located under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/connectors/simple/</FONT>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+ 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="16158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Set the <FONT FACE="courier, couriernew, monospaced size">AS_HOME</FONT> environment variable.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16169"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For Solaris, do the following: 
+</FONT>
+<P>     <DT> <A NAME="16238"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">setenv AS_HOME &lt;install_root&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="15318"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For Windows 2000, do the following: 
+</FONT>
+<P>     <DT> <A NAME="16239"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">set AS_HOME=&lt;install_root&gt;</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="16966"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="16212"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="16214"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Make sure you set this variable from the shell where you plan to compile the application.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+</FONT>
+</FONT>
+<P>
+<ol type="1">
+<A NAME=""> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Compile and assemble the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14879"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant core</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/connectors/simple/src</FONT>
+</FONT>
+<P>     <DT> <A NAME="14882"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This will compile all sources and assemble the following three modules as JAR/EAR/RAR files:
+</FONT>
+<P>  </dl>
+  <ul>
+<A NAME="16316"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+backend server
+</FONT>
+<P><A NAME="16306"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+test ejb
+</FONT>
+<P><A NAME="16320"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+comet connector
+</FONT>
+<P>  </ul>
+<A NAME="14885"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16257"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+After compiling the sources and assembling the ear/rar files, you may proceed to <A HREF="#deploy_app"  >Deploying the Sample Application</A>. Steps 4 and 5 are optional.
+</FONT>
+<P>  </dl>
+<A NAME="14889"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Clean the application project area (optional).
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16276"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> to remove all the files generated in <A HREF="#14885"  >Step 3</A>. 
+</FONT>
+<P>  </dl>
+<A NAME="14893"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Generate javadocs (optional).
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16282"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/connectors/simple/src</FONT> 
+</FONT>
+<P>     <DT> <A NAME="15395"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Javadocs will be located under<FONT FACE="courier, couriernew, monospaced size"> &lt;install_root&gt;/samples/connectors/simple/javadocs</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<P>
+<BR>
+<BR>
+<BR>
+
+<A NAME="deploy_app"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14902"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, do the following: 
+</FONT>
+<P>
+
+<A NAME="14904"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute the command <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/connectors/simple/src</FONT>
+</FONT>
+<P>
+
+<A NAME="14905"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This will deploy the EAR files for the two modules of Simple Connector (<FONT FACE="courier, couriernew, monospaced size">comet.ear, comet.rar</FONT>).  These file are located  under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/connectors/simple/</FONT>
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14910"> </A>
+<A NAME="Verifying Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. Otherwise, proceed directly to <A HREF="#run"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="14915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, do the following:
+</FONT>
+<P>
+
+<A NAME="15737"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute the command <FONT FACE="courier, couriernew, monospaced size">asadmin list-components</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<HP>
+
+<A NAME="14918"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/bin/asadmin list-components --user &lt;username&gt; --password &lt;password&gt; --host &lt;host&gt; --port &lt;port&gt; --type connector; &lt;server instance name&gt;</FONT>
+</FONT>
+<P>
+
+<A NAME="14920"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You will see the sample comet connector listed:
+</FONT>
+<P>
+<ul>
+<A NAME="15753"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Comet &lt;connector &gt;
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14922"> </A>
+<A NAME="Customizing Simple Connector Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Customizing Simple Connector Application 
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14924"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You could deploy each of the modules separately if you made code changes in any of the modules. In order to do that, you need to recompile and re-assemble the EAR/RAR files first. This can be done using the following: <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/connectors/simple/src/build.xml </FONT> 
+<P>
+
+<A NAME="16977"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="16350"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="16352"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Before redeploying, you must first execute the command <FONT FACE="courier, couriernew, monospaced size">asant undeploy clean</FONT> in order to undeploy and clean up existing files resulting the intital deployment.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+</FONT>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="run"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14934"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following process describes how to operate the Comet sample connector.
+</FONT>
+<P>
+<ul>
+<A NAME="15766"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Load the sample backend
+<P>
+This backend receives and sends data from sample connector using http port 8020. From the [appserver installation directory]/samples/connectors/simple
+<BR>
+Run the command: java -classpath ./backend.jar Server 8020
+
+</FONT>
+<P><A NAME="15769"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Load the application server
+</FONT>
+<P><A NAME="15770"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Open the browser and insert the sample url:
+<BR>
+http://[hostname]:[server-port]/CometEJB/startForm.jsp
+</FONT>
+<P>
+<P>
+<BR>
+
+<P>
+Figure 4-9 is displayed.
+<P><b><font size=-1>Figure 4-9</font></b>
+<b><font size=-1>Comet Welcome Sample Start Form</font></b></font>
+<blockquote><img SRC="images/sample1.jpg" NOSAVE height=380 width=709></blockquote>
+
+<P><A NAME="15769"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Enter your name and click EXECUTE.
+
+<P>
+<font color="#000000">The Hello message apears. See Figure 4-10.</font><font
+ color="#000000"></font>
+<p><b><font color="#000000"><font size=-1>Figure 4-10&nbsp;&nbsp;&nbsp;
+Comet Welcome Sample Message Form</font></font></b>
+<br><img SRC="images/sample2.jpg" NOSAVE height=380 width=709></ul>
+</FONT>
+
+<BR>
+<BR>
+<BR>
+
+<A NAME="trouble"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="15011"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-root&gt;/instances/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong.
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>Aug 05, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

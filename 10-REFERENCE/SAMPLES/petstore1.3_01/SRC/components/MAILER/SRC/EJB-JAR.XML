@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN" "http://java.sun.com/dtd/ejb-jar_2_0.dtd">
+
+<ejb-jar>
+  <display-name>MailerJAR</display-name>
+  <enterprise-beans>
+    <message-driven>
+      <description>opc node to process PurchaseOrders from the Java Pet Store</description>
+      <display-name>MailerMDB</display-name>
+      <ejb-name>MailerMDB</ejb-name>
+      <ejb-class>com.sun.j2ee.blueprints.mailer.ejb.MailerMDB</ejb-class>
+      <transaction-type>Container</transaction-type>
+      <message-driven-destination>
+        <destination-type>javax.jms.Queue</destination-type>
+      </message-driven-destination>
+      <resource-ref>
+        <res-ref-name>mail/MailSession</res-ref-name>
+        <res-type>javax.mail.Session</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+      <resource-env-ref>
+        <resource-env-ref-name>jms/queue/MailQueue</resource-env-ref-name>
+        <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+      </resource-env-ref>
+    </message-driven>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <container-transaction>
+      <description>This value was set as a default by Forte For Java.</description>
+      <method>
+        <ejb-name>MailerMDB</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+  <!-- ======================================================= -->
+  <!--  SunOne Application Server pkgingE Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="pkgingE-sample" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="pkgingEApp"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/packaging/pkgingE"/>
+  <property name="jar.pkg" value="samples/packaging/pkging/ejb"/>
+  <property name="war.pkg" value="samples/packaging/pkgingE/servlet"/>
+  <property name="lib.pkg" value="samples/packaging/pkgingE/lib"/>
+
+  <property name="app.pkgprefix" value="samples/packaging/pkgingE"/>
+  <property name="components.pkgprefix" value="samples/packaging/pkging"/>
+  <property name="build.components" value="../../components/build/classes"/>
+  <property name="classpath.suffix" value="../../components/build/classes"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="pkgingE"/>
+  <property name="javadoc.pkgnames" value="samples.packaging.pkgingE.*" />
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+
+  <target name="componentsclean">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="clean" />
+  </target>
+
+  <target name="componentscompile" depends="componentsclean">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="compile" />
+  </target>
+
+  <target name="componentsjavadocs">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="javadocs" inheritAll="false"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Assemble library for WAR module.                        -->
+  <!-- ======================================================= -->
+  <target name="war_library" >
+    <mkdir dir="${assemble.war}"/>
+    <copy todir="${assemble.war}/tmp/${components.pkgprefix}">
+    	<fileset dir="${build.components}/${components.pkgprefix}/">
+    		<include name="**/lib/DateLibrary.class"/>
+    	</fileset>
+    </copy>
+    <mkdir dir="${assemble.war}/WEB-INF/lib"/>
+    <jar jarfile="${assemble.war}/WEB-INF/lib/library.jar"
+       basedir="${assemble.war}/tmp"/>
+    <delete dir="${assemble.war}/tmp"/>       
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Assemble WAR module.                                    -->
+  <!-- ======================================================= -->
+  <target name="war_local" depends="war_library">
+    <mkdir dir="${assemble.war}"/>
+    <copy todir="${assemble.war}">
+      <fileset dir="${src.docroot}"/>
+    </copy>
+    <copy todir="${assemble.war}/WEB-INF/classes/${app.pkgprefix}">
+    	<fileset dir="${build.classesdir}/${app.pkgprefix}/">
+    		<include name="**/servlet/*.class"/>
+    		<include name="**/lib/Props.class"/>
+    	</fileset>
+    </copy>
+    <copy file="${src}/${app.pkgprefix}/lib/interest.properties" todir="${assemble.war}/WEB-INF"/>
+    <copy file="web.xml"     tofile="${assemble.war}/WEB-INF/web.xml"/>
+    <copy file="sun-web.xml" tofile="${assemble.war}/WEB-INF/sun-web.xml"/>
+    <jar jarfile="${assemble}/${war}"
+       basedir="${assemble.war}"/>
+    <move file="${assemble}/${war}"
+       todir="${assemble.war}"/>
+    <property name="war.done" value="true"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Assemble EJB JAR module.                                -->
+  <!-- ======================================================= -->
+  <target name="ejbjar_local">
+    <mkdir dir="${assemble.ejbjar}"/>
+    <copy todir="${assemble.ejbjar}/${components.pkgprefix}">
+        <fileset dir="${build.components}/${components.pkgprefix}/">
+                <include name="**/ejb/*.class"/>
+                <include name="**/lib/Calculator.class"/>
+                <exclude name="**/ejb/*Module*.class"/>
+        </fileset>
+    </copy>
+
+    <mkdir dir="${assemble.ejbjar}/META-INF"/>
+    <copy file="ejb-jar.xml"     tofile="${assemble.ejbjar}/META-INF/ejb-jar.xml"/>
+    <copy file="sun-ejb-jar.xml" tofile="${assemble.ejbjar}/META-INF/sun-ejb-jar.xml"/>
+    <jar jarfile="${assemble}/jar/${ejbjar}"
+       basedir="${assemble.ejbjar}" excludes ="**/*.jar"/>
+       <property name="ejbjar.done" value="false" />
+  </target>
+  
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+  <target name="clean" depends="componentsclean,clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="componentscompile,compile_common"/>
+  <target name="javadocs" depends="componentsjavadocs, javadocs_common"/>
+  <target name="war" depends="init,war_local"/>
+  <target name="jar" depends="init,ejbjar_local"/>
+  <target name="ear" depends="init,jar,war,create_ear_common"/>
+  <target name="core" depends="compile,ear"/>
+  <target name="deploy" depends="deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="all" depends="core,componentsjavadocs,javadocs,verify,deploy"/>
+</project>

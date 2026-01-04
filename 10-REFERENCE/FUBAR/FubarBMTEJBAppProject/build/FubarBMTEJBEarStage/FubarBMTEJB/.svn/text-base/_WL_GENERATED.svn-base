@@ -1,0 +1,7 @@
+#Thu Apr 08 12:56:59 PDT 2010
+META-INF/ejb-jar.xml=3934333344
+com.weblogic.sample.ejbapp.FubarBMTEJB=3257594076
+META-INF/weblogic-ejb-jar.xml=2536635035
+com.weblogic.sample.ejbapp.FubarBMTEJBHome=3126779148
+com.weblogic.sample.ejbapp.FubarBMTEJBInterface=3728813093
+WLS_RELEASE_BUILD_VERSION_21=9.2.3.0

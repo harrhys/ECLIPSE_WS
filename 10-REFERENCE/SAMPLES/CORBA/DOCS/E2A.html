@@ -1,0 +1,561 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="TEMPLATEBASE" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/09/02 13:15:22">
+	<title>CORBA Interoperability Sample Application:  E2A Application Server Platform 5.1  Configuration</title>
+</head>
+
+<body text="#000000" link="10% #594fbf" vlink="#594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <table width="100%" border="0" cellspacing="4">
+      <tr>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="index.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Contents
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="../ejbsample/docs/index.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Next
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </tr>
+
+      <tr>
+         <td valign="TOP" align="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            CORBA Interoperability Sample Application</B></FONT>
+         </td>
+      </tr>
+
+   </table>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <blockquote>
+<BR>
+<BR>
+
+      <A NAME="8063"> </A>
+<A NAME="E2A Application Server Platform 5.1  Configuration"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+E2A Application Server Platform 5.1  Configuration
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15188"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to configure the CORBA Interoperability in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15192"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15196"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="E2A.html#15019"  >Overview</A>
+</FONT>
+<P><A NAME="15016"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="E2A.html#15023"  >Installing E2A Application Server Platform 5.1</A>
+</FONT>
+<P><A NAME="15017"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="E2A.html#15053"  >Running the Orbix Simple Example</A> 
+</FONT>
+<P><A NAME="15018"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="E2A.html#15105"  >Configuring Sun ONE Application Server to Use E2A orb</A> 
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="15019"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15020"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following instructions describe how to install and configure IONA's Orbix 1.2.1 ORB as well as how to configure Sun ONE Application Server to use this ORB to access backend CORBA objects from the application server. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15023"> </A>
+<A NAME="Installing E2A Application Server Platform 5.1"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Installing E2A Application Server Platform 5.1
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15025"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can purchase E2A Application Server Platform 5.1  from <A HREF="http://www.iona.com">IONA</A>. If you already have Orbix installed, then proceed to the next section, <A HREF="E2A.html#15053"  >Running the Orbix Simple Example</A>. Read through the <A HREF="http://www2.iona.com/support/docs/e2a/asp/5.1/install/asp/index.html">Orbix Installation Guide</A> before attempting to install Orbix. The basic installation steps are as follows: 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15030"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Run the installation executable. For example:
+</FONT>
+<P>  <ul>
+<A NAME="15410"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+On  Windows, you will need to update some dlls. Refer to the <A HREF="http://www2.iona.com/support/docs/e2a/asp/5.1/install/asp/index.html">Orbix Installation Guide</A> for more details 
+</FONT>
+<P><A NAME="15035"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+On UNIX, you must also ensure that your <FONT FACE="courier, couriernew, monospaced size">JAVA_HOME</FONT> environment variable specifies the location of a Java 2 1 installation.
+</FONT>
+<P>  </ul>
+  <dl>
+     <DT> <A NAME="15038"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Assuming that you have Sun ONE Application Server installed, you can set <FONT FACE="courier, couriernew, monospaced size">JAVA_HOME</FONT> in the following manner: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15040"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAVA_HOME=&lt;jdk-installation-dir&gt;;PATH=$JAVA_HOME/bin:$PATH
+</FONT>
+<P>       <DT> <A NAME="15041"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+export JAVA_HOME PATH
+</FONT>
+<P>    </dl>
+</dl>     <DT> <A NAME="15043"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Now install Orbix by executing the following:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15477"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+./asp.bin -i gui
+</FONT>
+<P>    </dl>
+</dl>  </dl>
+<A NAME="15048"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Select Java Development Kit to support development of Java-based CORBA applications.
+</FONT>
+<P><A NAME="15050"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+If you are installing on Windows, restart your computer.
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="15053"> </A>
+<A NAME="Running the Orbix Simple Example "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Orbix Simple Example 
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15055"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To ensure that the CORBA environment is configured correctly, run the Simple example provided in the Orbix distribution. After you've successfully run this application, the next step will be to deploy and run either a servlet or EJB-based client against the same server side CORBA object. The <A HREF="http://www2.iona.com/support/docs/e2a/asp/5.1/install/asp/index.html">Orbix Installation Guide</A> provides detailed instructions of how to configure and run the Simple example. The following are the main steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15059"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Ensure that <FONT FACE="courier, couriernew, monospaced size">JAVA_HOME</FONT> specifies the location of a Java 2 1. installation.
+</FONT>
+<P><A NAME="15061"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Create the domains using <FONT FACE="courier, couriernew, monospaced size">itConfigure</FONT>.
+</FONT>
+<P><A NAME="15062"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Copy licence file&nbsp; under&nbsp; &lt;orbix_install_path>/asp/5.1/etc/ and&nbsp; provide it when&nbsp; asked in itConfigure.
+</FONT>
+<P><A NAME="15063"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Setup the enivironment by sourcing the  <FONT FACE="courier, couriernew, monospaced size">&lt;domainname_env&gt;</FONT>  file.
+</FONT>
+<P><A NAME="15065"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Start the domain services.
+</FONT>
+<P><A NAME="15067"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Compile the  Samples using the <FONT FACE="courier, couriernew, monospaced size">itant</FONT> utility provided by Orbix. For example:
+</FONT>
+
+<P>    </dl>
+<dl>
+     <DT> <A NAME="150695"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Change directory to &nbsp; &lt;orbix_install_path>/asp/5.1/demos/corba/orb/simple/
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="150696"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+PATH=&lt;orbix_install_path>/asp/5.1/bin::$PATH
+</FONT>
+<P>       <DT> <A NAME="150697"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+export JAVA_HOME PATH
+</FONT>
+<P>       <DT> <A NAME="150698"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+itant all
+</FONT>
+
+<P>    </dl>
+</dl><A NAME="15071"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Start the Server Component. For example:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15690"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+itant runServer
+</FONT>
+<P>    </dl>
+</dl>  <dl>
+     <DT> <A NAME="15075"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You should see the following messages:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15723"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Initializing the ORB
+</FONT>
+<P>       <DT> <A NAME="15078"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Creating objects
+</FONT>
+<P>       <DT> <A NAME="15079"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Activating the POA Manager
+</FONT>
+<P>       <DT> <A NAME="15080"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Giving control to the ORB to process request
+</FONT>
+<P>    </dl>
+</dl>  </dl>
+<A NAME="15082"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Run the Client Application by doing the following:
+</FONT>
+<P>  <ul>
+<A NAME="15084"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Start a new DOS or UNIX terminal window, set the environment variables and run the client application. For example:
+</FONT>
+<P>    </dl>
+<dl>
+     <DT> <A NAME="150695"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Change directory to &nbsp; &lt;orbix_install_path>/asp/5.1/demos/corba/orb/simple/
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="150696"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+PATH=&lt;orbix_install_path>/asp/5.1/bin::$PATH
+</FONT>
+<P>       <DT> <A NAME="150697"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+export JAVA_HOME PATH
+</FONT>
+<P>       <DT> <A NAME="150698"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+itant runClient
+</FONT>
+<P>    </dl>
+</dl><A NAME="15088"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+As the client runs, you should see the following messages on the server side DOS/terminal window: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15090"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Calling SimpleInheritanceImpl::call_me()
+</FONT>
+<P>       <DT> <A NAME="15091"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Calling SimpleDelegate::call_me()
+</FONT>
+<P>    </dl>
+</dl><A NAME="15093"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+In the client window, you should see the following: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15095"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Initializing ORB
+</FONT>
+<P>       <DT> <A NAME="15096"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Invoking method on first object
+</FONT>
+<P>       <DT> <A NAME="15097"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Reading object reference from ../simple1.ior
+</FONT>
+<P>       <DT> <A NAME="15098"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Invoking method on second object
+</FONT>
+<P>       <DT> <A NAME="15099"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Reading object reference from ../simple2.ior
+</FONT>
+<P>       <DT> <A NAME="15100"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Done
+</FONT>
+<P>    </dl>
+</dl>  </ul>
+</ol>
+
+<A NAME="15102"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The client has successfully accessed the server side CORBA component.  Now that you've verified that the sample works properly, the next step is to configure the application server to use the Orbix ORB classes. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15105"> </A>
+<A NAME="Configuring Sun ONE Application Server to Use E2A orb"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Configuring Sun ONE Application Server to Use E2A orb
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15108"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Before using servlet and EJB clients to access backend CORBA objects, the Sun ONE Application Server runtime environment must be configured to enable the application server to load the Orbix ORB classes. The procedure is as follows:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15900"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+The following additions must be made to the <FONT FACE="courier, couriernew, monospaced size">CLASSPATH</FONT>:
+</FONT>
+<P>  <ul>
+<A NAME="15111"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Orbix classes (<FONT FACE="courier, couriernew, monospaced size">orbix2000.jar</FONT>)
+</FONT>
+<P><A NAME="15112"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+OMG classes (<FONT FACE="courier, couriernew, monospaced size">j2ee13-product.jar</FONT>)
+</FONT>
+<P><A NAME="15113"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Directory containing Orbix license file
+</FONT>
+<P><A NAME="15114"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Directory of your domains.
+</FONT>
+<P>  </ul>
+<A NAME="15117"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Modify the <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT> to set the classpath:
+</FONT>
+<P>  <ul>
+<A NAME="15119"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">Application Server Instances -&gt; server1</FONT> (or any other instance) 
+</FONT>
+<P><A NAME="15930"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on Jvm Settings
+</FONT>
+<P><A NAME="15932"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on Path Settings
+</FONT>
+<P><A NAME="15933"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Append the following classpath to Class Path Suffix text field:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15122"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+/&lt;orbix_installpath&gt;/asp/5.1/lib/orbix2000.jar:/&lt;orbix_installpath&gt;/asp/5.1/lib/j2ee13-product.jar:/&lt;orbix_installpath&gt;/asp/5.1/etc:&lt;domain_path&gt;
+</FONT>
+<P>    </dl>
+</dl>  </ul>
+  <dl>
+     <DT> <A NAME="15126"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This classpath should be available in the window where you source <FONT FACE="courier, couriernew, monospaced size">&lt;domain_name&gt;_env</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="15128"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+After modifying Class Path Suffix, do the following:
+</FONT>
+<P>  <ul>
+<A NAME="15968"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click Save
+</FONT>
+<P><A NAME="15917"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on server1 (server instance)
+</FONT>
+<P><A NAME="15918"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on  Apply Changes tab
+</FONT>
+<P><A NAME="15920"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Restart the application server instance to pickup the changes. 
+</FONT>
+<P>  </ul>
+</ol>
+
+<A NAME="15959"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The application server is now configured for Orbix. Proceed to <A HREF="index.html#15041"  >Deploying and Running the Sample Applications</A>. 
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+            <a href="index.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Contents
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="../ejbsample/docs/index.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Next
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 09, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</body>
+
+
+</html>

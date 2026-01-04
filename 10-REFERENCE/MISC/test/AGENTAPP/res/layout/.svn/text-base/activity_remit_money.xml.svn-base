@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".RemitMoneyActivity" >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_size"
+        android:text="@string/cash_out" 
+        style="@style/TitleLabel"/>
+    
+    <Button
+		        android:id="@+id/button_verify_transaction_remit_money"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:text="@string/verify_transaction" 
+		        android:layout_marginLeft="@dimen/button_padding_left" 
+		        android:layout_marginRight="@dimen/button_padding_right"
+		        android:layout_marginTop="@dimen/padding_top" 
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        style="@style/DefaultButtons"/>
+</LinearLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+
+<!DOCTYPE struts-config PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN"
+        "http://jakarta.apache.org/struts/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+
+    <form-beans>
+        <form-bean name="postForm" type="com.myeclipseide.examples.myblog.struts.action.PostForm"/>
+    </form-beans>
+
+    <action-mappings>
+
+        <action
+                path="/postSetUp"
+                name="postForm"
+                type="com.myeclipseide.examples.myblog.struts.action.PostAction"
+                scope="request"
+                parameter="dispatch">
+            <forward name="success" path="/postForm.jsp"/>
+        </action>
+
+        <action
+                path="/postProcess"
+                name="postForm"
+                type="com.myeclipseide.examples.myblog.struts.action.PostAction"
+                scope="request"
+                parameter="dispatch">
+            <forward name="failure" path="/postForm.jsp"/>
+            <forward name="success" path="/posts.jsp"/>
+        </action>
+
+    </action-mappings>
+
+    <message-resources parameter="MessageResources" null="false"/>
+
+</struts-config>
+

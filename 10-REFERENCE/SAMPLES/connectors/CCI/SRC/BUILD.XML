@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+  <!-- +======================================================= -->
+  <!--  Sun One Application Server Sample Application build xml -->
+  <!-- +======================================================= -->
+
+  <project name="cci-connector-sample" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--          App name-dependent settings.                   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="cci"/>
+  <property name="sample.home" value="../../../"/>
+  <property name="cci.dir" value="${sample.home}/connectors/cci"/>
+  <property name="resource.rar" value="${cci.dir}/cciblackbox-tx.rar"/>
+  <property name="cci.assemble"    value="${cci.dir}/assemble"/>
+  <property name="assemble.rar"    value="${cci.assemble}/rar"/>
+
+  <property name="resource.jar" value="${cci.assemble}/rar/cciblackbox-tx.jar"/>
+  <property name="pointbase.jar" value="${com.sun.aas.pointbaseRoot}/server/lib/pbserver42RE.jar"/>
+  <property name="classpath.prefix" value=".:${pointbase.jar}"/>
+  <property name="classpath.suffix" value="${cci.dir}/build/classes:${resource.jar}"/>
+
+  <!-- ======================================================= -->
+  <!--          Package directory structures of interest.      -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/connectors/cci/client"/>
+  <property name="jar.pkg" value="samples/connectors/cci"/>
+ 
+  <!-- ======================================================= -->
+  <!--                  Java Doc properties.                   -->
+  <!-- ======================================================= -->
+  <property name="sample.name" value="CCISample"/>
+  <property name="javadoc.pkgnames" value="samples.connectors.cci.*" />
+
+
+  <!-- ======================================================= -->
+  <!--                     Include common.xml                  -->
+  <!-- ======================================================= -->
+
+ 
+  &include;
+
+  <!-- ======================================================= -->
+  <!--              PointBase files properties.                -->
+  <!-- ======================================================= -->
+
+  <property name="db.user"  value="CCI"/>
+  <property name="db.pwd"   value="CCI"/>
+  <property name="db.file"  value="sql/cci-pb.sql"/>
+  <property name="jdbc.drivers" value="com.pointbase.jdbc.jdbcUniversalDriver" />
+  <property name="url.prop" value="DatabaseName" />
+
+  <!-- ======================================================= -->
+  <!--                  JVM options                            -->
+  <!-- ======================================================= -->
+
+   <target name="create-JVM-options">
+      <antcall target="admin_command_common">
+        <param name="admin.command" value="create-jvm-options 
+         :-Djdbc.drivers=${jdbc.drivers}" />
+      </antcall>
+      <antcall target="reconfig" />
+   </target>
+
+   <target name="delete-JVM-options">
+      <antcall target="admin_command_common">
+        <param name="admin.command" value="delete-jvm-options
+         :-Djdbc.drivers=${jdbc.drivers}" />
+      </antcall>
+      <antcall target="reconfig" />
+   </target>
+        
+    
+  <!-- ======================================================= -->
+  <!--      Targets to build and deploy sample application     -->
+  <!-- ======================================================= -->
+  
+  <target name="sql" depends="compile_sql, sql_common"/> 
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="rar, compile_cci" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="create-JVM-options, deploy_connector, deploy_common"/>
+  <target name="undeploy" depends="delete-JVM-options, undeploy_connector, undeploy_common"/>
+
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="clientjar" depends="init,clientjar_common"/>
+  <target name="ear" depends="init,jar,clientjar,create_ear_common"/>
+  <target name="core" depends="compile,jar,ear,clientjar" />
+  <target name="all" depends="core,javadocs, verify, deploy"/>
+  <target name="reconfig"   depends="reconfig_common"/>
+
+  <target name="compile_cci" depends="init">
+    <mkdir dir="${build.classesdir}"/>
+    <echo message="Compiling source files" />
+    <javac srcdir="${src}/samples"
+           destdir="${build.classesdir}"
+           classpath="${build.classpath}"/>
+  </target>
+
+  <target name="compile_sql" depends="init">
+    <echo message="Compiling procedure body " />
+    <javac srcdir="${src}/sql"
+           destdir="${src}/sql"
+           classpath="${build.classpath}"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!--              Targets to package rar                     -->
+  <!-- ======================================================= -->
+  
+  <target name="init_rar" depends="">
+    <mkdir dir="${assemble.rar}" />
+    <unjar src="${resource.rar}" dest="${assemble.rar}" />
+    <copy file="sun-ra.xml" todir="${assemble.rar}/META-INF" />
+    <copy file="ra.xml" todir="${assemble.rar}/META-INF" />
+    <delete file="${assemble.rar}/META-INF/MANIFEST.MF" />
+  </target>
+
+  <target name="rar" depends="init_rar">
+    <mkdir dir="${assemble.ear}"/>
+    <jar jarfile="${cci.assemble}/cciblackbox-tx.rar" basedir="${assemble.rar}" />
+    <copy file="${cci.assemble}/cciblackbox-tx.rar" tofile="${resource.rar}" />
+    <move file="${cci.assemble}/cciblackbox-tx.rar" todir="${assemble.ear}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!--              Targets to deploy rar                      -->
+  <!-- ======================================================= -->
+  
+  <target name="deploy_connector">
+    <antcall target="deploy_common">
+      <param name="deploy.file" value="${resource.rar}"/>
+      <param name="appname" value="CciBlackBoxTx"/>
+      <param name="apptype" value="connector"/>
+    </antcall>
+  </target>
+ 
+  <target name="undeploy_connector">
+    <antcall target="undeploy_common">
+      <param name="appname" value="CciBlackBoxTx"/>
+      <param name="apptype" value="connector"/>
+    </antcall>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Verify connector rar.                                         -->
+  <!-- ======================================================= -->
+  <property name="rar.file" value="${resource.rar}"/>
+ 
+  <target name="verify-rar" depends="init, rar">
+    <echo message="Verifying Process for ${rar.file}" />
+    <java classname="com.sun.enterprise.tools.verifier.Verifier" fork="yes" dir=".">
+      <sysproperty key="com.sun.aas.installRoot" value="${com.sun.aas.installRoot}"/>
+      <sysproperty key="com.sun.aas.verifier.xsl" value="${com.sun.aas.installRoot}/lib/verifier/" />
+      <!-- uncomment the following for verbose output -->
+      <!--<arg value="-v"/>-->
+      <arg value="${rar.file}"/>
+      <classpath path="${build.classpath}"/>
+    </java>
+  </target>
+
+  <target name="verify" depends="verify-rar" />
+</project>

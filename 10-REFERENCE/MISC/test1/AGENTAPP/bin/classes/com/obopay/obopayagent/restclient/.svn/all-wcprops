@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient
+END
+MetadataException.java
+K 25
+svn:wc:ra_dav:version-url
+V 133
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient/MetadataException.java
+END
+Metadata.java
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient/Metadata.java
+END
+OboServicesConstants.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient/OboServicesConstants.java
+END
+OboServicesException.java
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient/OboServicesException.java
+END
+OboServices.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient/OboServices.java
+END
+AdditionalKeyStoresSSLSocketFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 151
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient/AdditionalKeyStoresSSLSocketFactory.java
+END
+AllAcceptingSSLSocketFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 144
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient/AllAcceptingSSLSocketFactory.java
+END
+OboServicesListener.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/restclient/OboServicesListener.java
+END

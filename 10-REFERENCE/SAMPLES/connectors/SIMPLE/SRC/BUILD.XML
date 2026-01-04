@@ -1,0 +1,339 @@
+<?xml version="1.0"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+<!-- ============================================================== -->
+<!-- Ant XML Comet sample application as deployed to                -->
+<!-- Sun ONE Application Server.                                    -->
+<!--                                                                -->
+<!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+<!-- ============================================================== -->
+
+<project name="comet-connector-sample" default="core" basedir=".">
+  <property name="sample.home" value="../../.."/>
+  <property name="samples.dir"  value="../../.."/> 
+
+  <property name="connector.dir"  value="${samples.dir}/connectors/simple"/>
+  <property name="connector.build"  value="${connector.dir}/build"/>
+  <property name="connector.src"  value="${connector.dir}/src"/>
+  <property name="connector.classes"    value="${connector.build}/classes"/>
+  <property name="connector.assemble"    value="${connector.dir}/assemble"/>
+    
+  <property name="connector.backend"    value="${connector.src}/backend"/>
+  <property name="backend.build"    value="${connector.build}"/>
+  <property name="backend.classes"    value="${connector.classes}"/>
+  <property name="backend.assemble"    value="${connector.assemble}"/>
+
+  <property name="comet.dir"    value="${connector.src}/comet"/>
+  <property name="comet.src"    value="${comet.dir}/src"/>
+  <property name="comet.assemble"    value="${connector.assemble}"/>
+  <property name="comet.build"    value="${connector.build}"/>
+  
+  <!-- App name-dependent settings. -->
+  <property name="comet.appname" value="comet"/>
+  <property name="ear" value="${comet.appname}.ear"/>
+  <property name="war" value="${comet.appname}.war"/>
+  <property name="ejbjar" value="${comet.appname}Ejb.jar"/>
+  <property name="appname" value="comet"/>
+
+  <!-- Package directory structures of interest. -->
+  <property name="app.pkgprefix" value="samples/comet/ejb"/>
+  <property name="ias.bin" value="${icom.sun.aas.installRoot}/bin"/>
+
+
+  <!-- change this property to use a compiler other than javac. -->
+  <property name="build.compiler" value="classic"/>
+  
+  <!-- Source file location. -->
+  <property name="src" value="."/>
+  <property name="src.docroot" value="${src}/docroot"/>
+
+  <!-- Destination directory for the build -->
+  <property name="build" value="../build"/>
+  <property name="build.classesdir" value="${comet.build}/classes"/>
+  <property name="javax.cpath" value="${samples.dir}/../lib/appserv-ext.jar"/>
+  <!-- <property name="build.classpath" value="${build.classesdir}:${javax.cpath}:${connector.classes}"/> -->
+
+  <!-- Destination directory for the assembly targets -->
+  <property name="assemble" value="${comet.assemble}"/>
+  <property name="assemble.ejbjar" value="${assemble}/jar"/>
+  <property name="assemble.war" value="${assemble}/war"/>
+  <property name="assemble.ear" value="${assemble}/ear"/>
+   
+  <!--  javadocs -->
+  <property name="javadoc.pkgnames" value="samples.connectors.simple.*"/>
+  <property name="sample.name" value="Simple Connector"/>
+
+  <!-- ======================================================= -->
+  <!--                          Include common.xml             -->
+  <!-- ======================================================= -->
+
+  &include;
+
+  
+
+  <!-- =================== INIT: COMETCONNECTOR =============================== -->
+  <target name="init-comet" depends="init_common"
+          description="Init comet connector">
+    <mkdir dir="${connector.build}"/>
+    <mkdir dir="${connector.classes}"/>
+    <mkdir dir="${connector.assemble}"/>
+    <mkdir dir="${comet.assemble}"/>
+    <mkdir dir="${comet.build}"/>
+    <mkdir dir="${backend.build}"/>
+    <mkdir dir="${backend.classes}"/>
+    <mkdir dir="${backend.assemble}"/>
+
+  </target>
+
+
+<!-- =================== COMPILE: COMET BACKEND =============================== -->
+  <target name="compile-comet-backend" 
+          description="Compile comet connector">
+  <javac srcdir="${connector.backend}/src" destdir="${backend.classes}" source="${source}"
+           failonerror="true"
+           deprecation="${deprecation}"
+           debug="${debug}" optimize="${optimize}">
+    </javac>
+
+
+  </target>
+
+
+<!-- =================== COMPILE: COMETCONNECTOR =============================== -->
+  <target name="compile-comet" depends="init-comet, compile-comet-backend"
+          description="Compile comet connector">
+  <javac srcdir="${connector.src}" destdir="${connector.classes}" source="${source}"
+           failonerror="true"
+           deprecation="${deprecation}"
+	   classpath="${build.classpath}"
+           debug="${debug}" optimize="${optimize}">
+      <include name="samples/connectors/simple/**"/>
+    </javac>
+
+
+  </target>
+
+  
+  <!-- =================== ASSEMBLE: Create Comet Backend JAR ========= -->
+  <target name="assemble-comet-backend-jar" 
+          description="Create Comet Backend Jar"> 
+    <echo message="Creating backend.jar "/>
+    <jar jarfile="${backend.assemble}/backend.jar" basedir="${backend.classes}">
+    </jar>
+
+    <copy file="${backend.assemble}/backend.jar" tofile="../backend.jar"/>
+	
+  </target>
+  <!-- =================== ASSEMBLE: Create Comet Connector RAR ========= -->
+  <target name="assemble-comet-rar"  
+          description="Create Comet Rar"> 
+    <echo message="Creating connector rar "/>
+    <copy todir="${connector.classes}"> <fileset dir="${connector.src}"><include name="**/*.properties"/> </fileset> </copy> 
+
+    <jar jarfile="${connector.assemble}/comet.jar" basedir="${connector.classes}">
+        <include name="samples/connectors/simple/**/*.class"/>
+	  <include name="samples/connectors/simple/**/*.properties"/>
+    </jar>
+    <zip zipfile="${connector.assemble}/comet.rar">
+      <zipfileset dir="${connector.assemble}" includes="comet.jar"/>
+	  <zipfileset dir="${connector.src}" includes="META-INF/sun-ra.xml"/>
+	  <zipfileset dir="${connector.src}" includes="META-INF/ra.xml"/>
+      
+    </zip>
+  <copy file="${connector.assemble}/comet.rar" tofile="../comet.rar"/>
+	
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Compile comet testing ejb classes.                      -->
+  <!-- ======================================================= -->
+  <target name="compile-comet-ejb">
+    <mkdir dir="${build.classesdir}"/>
+    
+<javac srcdir="${comet.src}"
+           destdir="${build.classesdir}"
+	   classpath="${build.classpath}:${classes.dir}"/>
+  </target> 
+
+  <!-- ======================================================= -->
+  <!-- Clean up various files and directories.                 -->
+  <!-- ======================================================= -->
+  <target name="clean_ear">
+    <delete dir="${assemble.ear}"/>
+  </target>
+  <target name="clean_war">
+    <delete dir="${assemble.war}"/>
+  </target>
+  <target name="clean_ejbjar">
+    <delete dir="${assemble.ejbjar}"/>
+  </target>
+  <target name="clean_assemble">
+    <delete dir="${assemble}"/>
+  </target>
+  <target name="clean" depends="clean_assemble">
+    <delete dir="${build}"/>
+    <delete dir="${build.docdir}"/>
+  </target>
+
+  <target name="fixforunix">
+    <fixcrlf srcdir="${src}"
+       cr="remove" eof="remove"
+       includes="**/*.jsp,**/*.html,**/*.tld,**/*.xml,**/*.java,**/*.sh,**/*.sql"
+    />
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Assemble EJB JAR module.                                -->
+  <!-- ======================================================= -->
+  <target name="ejbjar" depends="clean_ejbjar">
+    <mkdir dir="${assemble.ejbjar}"/>
+    <copy todir="${assemble.ejbjar}/${app.pkgprefix}">
+      <fileset dir="${build.classesdir}/${app.pkgprefix}/" includes="**/*.class" excludes="**/servlet/"/>
+    </copy>
+    <mkdir dir="${assemble.ejbjar}/META-INF"/>
+    <copy file="${comet.src}/ejb-jar.xml"     tofile="${assemble.ejbjar}/META-INF/ejb-jar.xml"/>
+    <copy file="${comet.src}/sun-ejb-jar.xml" tofile="${assemble.ejbjar}/META-INF/sun-ejb-jar.xml"/>
+    <jar jarfile="${assemble}/${ejbjar}"
+       basedir="${assemble.ejbjar}"/>
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Assemble WAR module.                                    -->
+  <!-- ======================================================= -->
+  <target name="war" depends="clean_war">
+    <mkdir dir="${assemble.war}"/>
+    <copy todir="${assemble.war}">
+      <fileset dir="${src.docroot}" excludes="cvs,annontation"/>
+    </copy>
+    <copy file="${comet.src}/web.xml"     tofile="${assemble.war}/WEB-INF/web.xml"/>
+    <copy file="${comet.src}/sun-web.xml" tofile="${assemble.war}/WEB-INF/sun-web.xml"/>
+    <jar jarfile="${assemble}/${war}"
+       basedir="${assemble.war}"/>
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Assemble EAR module.                                    -->
+  <!-- ======================================================= -->
+  <target name="ear" depends="ejbjar, war, clean_ear">
+    <mkdir dir="${assemble.ear}"/>
+    <copy file="${assemble}/${ejbjar}" tofile="${assemble.ear}/${ejbjar}"/>
+    <copy file="${assemble}/${war}"    tofile="${assemble.ear}/${war}"/>
+    <copy file="${comet.src}/application.xml" tofile="${assemble.ear}/META-INF/application.xml"/>
+    <jar jarfile="${assemble}/${ear}"
+       basedir="${assemble.ear}"/>
+    <delete file="${assemble.ear}/${ejbjar}" />
+    <delete file="${assemble.ear}/${war}" />
+    <copy file="${assemble}/${ear}" tofile="../${ear}"/>
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Deploy/Undeploy comet ejb module.                       -->
+  <!-- ======================================================= -->
+
+  <target name="deploy-comet-ejb" depends="setup_env">
+    <echo message="Deploying ${comet.assemble}/${ear}."/>
+    <sun-appserv-deploy
+      file="${assemble}/${ear}"
+      name="CometEJB"
+      type="application"
+      force="true"
+      upload="true"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${sunone.instance}"
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <target name="undeploy-comet-ejb" depends="setup_env"> 
+    <echo message="Undeploying ${comet.assemble}/${ear}."/>
+    <sun-appserv-undeploy
+      name="CometEJB"
+      type="application"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${sunone.instance}"
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target> 
+
+
+  <!-- ======================================================= -->
+  <!-- Deploy/Undeploy connector module.                       -->
+  <!-- ======================================================= -->
+
+  <target name="deploy-connector" depends="verify-rar, setup_env">
+    <echo message="Deploying ${connector.assemble}/comet.rar."/>
+    <sun-appserv-deploy
+      file="${connector.assemble}/comet.rar"
+      name="Comet"
+      type="connector"
+      force="true"
+      upload="true"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${sunone.instance}"
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <target name="undeploy-connector" depends="setup_env"> 
+    <echo message="Undeploying ${connector.assemble}/comet.rar."/>
+    <sun-appserv-undeploy
+      name="Comet"
+      type="connector"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${sunone.instance}"
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+
+  <!-- ======================================================= -->
+  <!-- Verify comet ear                                        -->
+  <!-- ======================================================= -->
+  <target name="verify-ear" depends="init_common">
+    <echo message="verify comet.ear"/>
+   <java classname="com.sun.enterprise.tools.verifier.Verifier" fork="yes" dir=
+".">
+      <sysproperty key="com.sun.aas.installRoot" value="${com.sun.aas.installRoot}"/>
+      <sysproperty key="com.sun.aas.verifier.xsl" value="${com.sun.aas.installRoot}/lib/verifier/" />
+      <!-- uncomment the following for verbose output -->
+      <!--<arg value="-v"/>-->
+      <arg value="${assemble}/${ejbjar}"/>
+      <classpath path="${build.classpath}:${javax.cpath}"/>
+    </java>
+ </target>
+
+
+  <!-- ======================================================= -->
+  <!-- Verify connector rar.                                         -->
+  <!-- ======================================================= -->
+  <property name="rar.file" value="${connector.assemble}/comet.rar"/>
+
+  <target name="verify-rar" depends="init_common, assemble-comet-rar">
+    <echo message="Verifying Process for ${rar.file}" />
+    <java classname="com.sun.enterprise.tools.verifier.Verifier" fork="yes" dir=".">
+      <sysproperty key="com.sun.aas.installRoot" value="${com.sun.aas.installRoot}"/>
+      <sysproperty key="com.sun.aas.verifier.xsl" value="${com.sun.aas.installRoot}/lib/verifier/" />
+      <!-- uncomment the following for verbose output -->
+      <!--<arg value="-v"/>-->
+      <arg value="${rar.file}"/>
+      <classpath path="${build.classpath}"/>
+    </java>
+  </target>
+
+
+  <target name="core" depends="compile-comet, assemble-comet-rar, assemble-comet-backend-jar, compile-comet-ejb, ejbjar, war, ear" />
+  <target name="deploy" depends="deploy-comet-ejb, deploy-connector" />
+  <target name="undeploy" depends="undeploy-comet-ejb, undeploy-connector" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="verify" depends="verify-ear, verify-rar" />
+  <target name="all" depends="core, javadocs, deploy" />
+
+</project>

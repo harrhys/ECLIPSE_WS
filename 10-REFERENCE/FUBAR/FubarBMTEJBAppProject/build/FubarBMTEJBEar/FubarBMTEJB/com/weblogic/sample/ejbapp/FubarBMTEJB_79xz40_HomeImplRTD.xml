@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE rmi PUBLIC "-//BEA Systems, Inc.//RMI Runtime DTD 1.0//EN" "rmi.dtd">
+<rmi
+    name="com.weblogic.sample.ejbapp.FubarBMTEJB_79xz40_HomeImpl"
+>
+<cluster
+    clusterable="true"
+    load-algorithm="round-robin"
+    propagate-environment="true"
+>
+</cluster>
+
+<lifecycle
+    dgc-policy="managed"
+>
+</lifecycle>
+
+<method
+     name="*"
+    idempotent="true"
+>
+</method>
+<method
+    name="getEJBMetaData()"
+    idempotent="true"
+>
+</method>
+<method
+    name="remove(java.lang.Object)"
+    idempotent="true"
+>
+</method>
+<method
+    name="getHomeHandle()"
+    idempotent="true"
+>
+</method>
+<method
+    name="remove(javax.ejb.Handle)"
+    idempotent="true"
+>
+</method>
+<method
+    name="create()"
+    idempotent="true"
+>
+</method>
+
+<security
+    client-authentication="supported"
+    client-cert-authentication="supported"
+    identity-assertion="supported"
+    confidentiality="supported"
+    integrity="supported"
+>
+</security>
+
+</rmi>

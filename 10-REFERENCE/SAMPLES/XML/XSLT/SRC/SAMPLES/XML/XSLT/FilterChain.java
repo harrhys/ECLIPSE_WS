@@ -1,0 +1,163 @@
+
+/*
+ * @(#)FilterChain.java 1.9 98/11/10
+ *
+ * Copyright 2002 Sun Microsystems, Inc. All Rights Reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following
+ * conditions are met:
+ * 
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ * 
+ * - Redistribution in binary form must reproduce the above
+ *   copyright notice, this list of conditions and the following
+ *   disclaimer in the documentation and/or other materials
+ *   provided with the distribution.
+ * 
+ * Neither the name of Sun Microsystems, Inc. or the names of
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * 
+ * This software is provided "AS IS," without a warranty of any
+ * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ * EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY
+ * DAMAGES OR LIABILITIES SUFFERED BY LICENSEE AS A RESULT OF OR
+ * RELATING TO USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE OR
+ * ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE
+ * FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT,
+ * SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+ * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF
+ * THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ * 
+ * You acknowledge that this software is not designed, licensed or
+ * intended for use in the design, construction, operation or
+ * maintenance of any nuclear facility.
+ * 
+ */
+
+package samples.xml.xslt;
+
+import javax.xml.parsers.FactoryConfigurationError;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
+ 
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
+import org.xml.sax.InputSource;
+import org.xml.sax.XMLReader;
+import org.xml.sax.XMLFilter;
+
+import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerException;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.TransformerConfigurationException;
+
+import javax.xml.transform.sax.SAXTransformerFactory;
+import javax.xml.transform.sax.SAXSource;
+import javax.xml.transform.sax.SAXResult;
+
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.transform.stream.StreamResult;
+
+import java.io.*;
+
+public class FilterChain
+{
+  public static void main (String argv [])
+  {
+    if (argv.length != 3) {
+      System.err.println ("Usage: java FilterChain stylesheet1 stylesheet2 xmlfile");
+      System.exit (1);
+    }
+  
+    try {
+      // Read the arguments
+      File stylesheet1 = new File(argv[0]);
+      File stylesheet2 = new File(argv[1]);
+      File datafile    = new File(argv[2]);
+      
+      // Set up the input stream
+      BufferedInputStream bis = new BufferedInputStream(new FileInputStream(datafile));
+      InputSource input = new InputSource(bis);
+        
+      // Set up to read the input file
+      SAXParserFactory spf = SAXParserFactory.newInstance();
+      SAXParser parser = spf.newSAXParser();
+      XMLReader reader = parser.getXMLReader();
+    
+      // Create the filters
+      // --SAXTransformerFactory is an interface
+      // --TransformerFactory is a concrete class
+      // --TransformerFactory actually returns a SAXTransformerFactory instance
+      // --We didn't care about that before, because we didn't use the
+      // --SAXTransformerFactory extensions. But now we do, so we cast the result.
+      SAXTransformerFactory stf =
+        (SAXTransformerFactory) TransformerFactory.newInstance();
+      XMLFilter filter1 = stf.newXMLFilter(new StreamSource(stylesheet1));
+      XMLFilter filter2 = stf.newXMLFilter(new StreamSource(stylesheet2));
+
+      // Wire the output of the reader to filter1
+      // and the output of filter1 to filter2
+      // --A filter is a kind of reader
+      // --Setting the parent sets the input reader
+      // --Since a filter is a reader, the "parent" could be another filter
+      filter1.setParent(reader);
+      filter2.setParent(filter1);
+
+      // Set up the output stream
+      StreamResult result = new StreamResult(System.out);
+      
+      // Set up the transformer to process the SAX events generated
+      // by the last filter in the chain
+      Transformer transformer = stf.newTransformer();
+      SAXSource transformSource = new SAXSource(filter2, input);
+      transformer.transform(transformSource, result);
+    }
+    catch (TransformerConfigurationException tce) {
+      // Error generated by the parser
+      System.out.println ("\n** Transformer Factory error");
+      System.out.println("   " + tce.getMessage() );
+      
+      // Use the contained exception, if any
+      Throwable x = tce;
+      if (tce.getException() != null)
+         x = tce.getException();
+      x.printStackTrace();
+    }
+    catch (TransformerException te) {
+      // Error generated by the parser
+      System.out.println ("\n** Transformation error");
+      System.out.println("   " + te.getMessage() );
+      
+      // Use the contained exception, if any
+      Throwable x = te;
+      if (te.getException() != null)
+         x = te.getException();
+      x.printStackTrace();
+    }
+    catch (SAXException sxe) {
+      // Error generated by this application
+      // (or a parser-initialization error)
+      Exception  x = sxe;
+      if (sxe.getException() != null)
+         x = sxe.getException();
+      x.printStackTrace();
+    }
+    catch (ParserConfigurationException pce) {
+      // Parser with specified options can't be built
+      pce.printStackTrace();
+    }
+    catch (IOException ioe) {
+      // I/O error
+      ioe.printStackTrace();
+    }
+
+  } // main
+
+}

@@ -1,0 +1,812 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/13/02 15:51:19">
+	<title>NSAPI Sample Application:  NSAPI Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            NSAPI Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="NSAPI Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+NSAPI Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the NSAPI sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#26624"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#25722"  >Compiling the Sample Applications</A>
+</FONT>
+<P><A NAME="22833"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22497"  >Deploying the Sample Applications</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22343"  >Running the Sample Applications</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20774"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="26624"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="26635"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following instructions describe how to use NSAPI samples. 
+</FONT>
+<P>
+
+<A NAME="26637"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For more details on NSAPI and the samples demonstrated here, please refer to the Developer's Guide to NSAPI. Besides the source code of Custom SAFs provided, we also provide the samples to utilize these SAFs. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="25722"> </A>
+<A NAME="Compiling the Sample Applications"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling the Sample Applications
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="25768"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Depending on your operating system, choose one of the following two methods to compile the samples.
+</FONT>
+<P>
+<ul>
+<A NAME="26655"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Solaris
+</FONT>
+<P>  <ul>
+<A NAME="26657"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">gmake</FONT> under <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/nsapi/src/</FONT>
+</FONT>
+<P>  </ul>
+  <dl>
+     <DT> <A NAME="26650"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Make sure <FONT FACE="courier, couriernew, monospaced size">gmake</FONT> and  <FONT FACE="courier, couriernew, monospaced size">cc</FONT> are in your path
+</FONT>
+<P>  </dl>
+<A NAME="26709"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Windows 2000
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26711"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You need to install Visual C++ to compile the samples. Please add <FONT FACE="courier, couriernew, monospaced size">nmake</FONT> under <FONT FACE="courier, couriernew, monospaced size">$VC_INSTALL_DIR/bin</FONT> into your path.
+</FONT>
+<P>  </dl>
+  <ul>
+<A NAME="26704"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/nsapi/src/</FONT>
+</FONT>
+<P><A NAME="26755"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+execute <FONT FACE="courier, couriernew, monospaced size">nmake -f Makefile.w2k</FONT>
+</FONT>
+<P>  </ul>
+</ul>
+
+<A NAME="26771"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Once you have created the sample application from scratch, you may proceed to <A HREF="index.html#22497"  >Deploying the Sample Applications</A>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="22497"> </A>
+<A NAME="Deploying the Sample Applications"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Applications
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="26787"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Instructions to deploy the individual sample reside inside the source code.  Illustrated here are the steps to deploy all NSAPI samples and run them from a single URL.
+</FONT>
+<P>
+
+<A NAME="26790"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">Init.conf</FONT>, <FONT FACE="courier, couriernew, monospaced size"><i>&lt;server-instance&gt;</i>-obj.conf</FONT> and <FONT FACE="courier, couriernew, monospaced size">mime.types</FONT> under <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/domains/{domain_instance}/{server_instance}/config</FONT> should be modified.
+</FONT>
+<P>
+
+<A NAME="22978"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><I>The server has to be restarted after the config files modification</I>.   If you deploy on W2K, you need to replace <FONT FACE="courier, couriernew, monospaced size">.so</FONT> with <FONT FACE="courier, couriernew, monospaced size">.dll</FONT>.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="26843"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Modify <FONT FACE="courier, couriernew, monospaced size">init.conf</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26866"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Add the following lines at the end of the file: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="27015"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Init fn="load-modules" funcs="hardcoded_auth,explicit_pathinfo,acf_init,restrict_by_acf,html2shtml,send_images,brief_init,brief_log" &nbsp; shlib="s1as_install_dir/samples/nsapi/example.so"
+</FONT>
+<P>       <DT> <A NAME="27017"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Init fn=brief_init file="s1as_install_dir/samples/nsapi/src/test/addlogtest"
+</FONT>
+<P>       <DT> <A NAME="26886"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Init fn=acf_init file="s1as_install_dir/samples/nsapi/src/test/pathcheck/checkfile"
+</FONT>
+<P>       <DT> <A NAME="26888"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Init fn="load-modules" funcs="cgiwatch_init,cgiwatch_service" shlib="s1as_install_dir/samples/nsapi/cgiwatch.so"
+</FONT>
+<P>       <DT> <A NAME="26890"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Init fn=cgiwatch_init
+</FONT>
+<P>       <DT> <A NAME="26864"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Init fn="load-modules" funcs="qos_error_sample,qos_handler_sample" shlib="s1as_install_dir/samples/nsapi/qos.so" shlib_flags="(global|now)"
+</FONT>
+<P>    </dl>
+</dl>  </dl>
+<A NAME="26903"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Modify <FONT FACE="courier, couriernew, monospaced size"><i>&lt;server-instance&gt;</i>-obj.conf</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26910"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Add the following lines inside the default object <I>just before</I> <FONT FACE="courier, couriernew, monospaced size">NameTrans fn=document-root root="$docroot"</FONT>:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="26925"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=pfx2dir from=/nsapi dir="s1as_install_dir/samples/nsapi/src/test" 
+</FONT>
+<P>       <DT> <A NAME="26927"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=pfx2dir from=/authtrans dir="s1as_install_dir/samples/nsapi/src/test/authtrans" name="authtrans" 
+</FONT>
+<P>       <DT> <A NAME="26929"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=pfx2dir from=/nametrans dir="s1as_install_dir/samples/nsapi/src/test/nametrans" name="nametrans" 
+</FONT>
+<P>       <DT> <A NAME="26931"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=pfx2dir from=/pathcheck dir="s1as_install_dir/samples/nsapi/src/test/pathcheck" name="pathcheck" 
+</FONT>
+<P>       <DT> <A NAME="26933"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=pfx2dir from=/objecttype dir="s1as_install_dir/samples/nsapi/src/test/objecttype" name="objecttype" 
+</FONT>
+<P>       <DT> <A NAME="26935"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=pfx2dir from=/service dir="s1as_install_dir/samples/nsapi/src/test/service" name="service" 
+</FONT>
+<P>       <DT> <A NAME="26937"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=pfx2dir from=/addlog dir="s1as_install_dir/samples/nsapi/src/test" 
+</FONT>
+<P>       <DT> <A NAME="26939"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=pfx2dir from=/qos dir="s1as_install_dir/samples/nsapi/src/test" name="qos" 
+</FONT>
+<P>       <DT> <A NAME="26834"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+NameTrans fn=assign-name from=/cgiwatch name=cgiwatch stop=true 
+</FONT>
+<P>    </dl>
+</dl>  </dl>
+<A NAME="26835"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Add the following line <I>after</I> <FONT FACE="courier, couriernew, monospaced size">AddLog fn=flex-log name="access"</FONT>:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="27037"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Addlog fn=brief_log
+</FONT>
+<P>    </dl>
+</dl><A NAME="27049"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+At the end of the file, add the following lines: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="27066"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;Object name="authtrans"&gt; 
+</FONT>
+<P>       <DT> <A NAME="27067"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         AuthTrans fn=basic-auth auth-type="basic" userdb=garbage userfn=hardcoded_auth 
+</FONT>
+<P>       <DT> <A NAME="27068"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         PathCheck fn=require-auth realm="test realm" auth-type="basic" 
+</FONT>
+<P>       <DT> <A NAME="27069"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+    &lt;/Object&gt; 
+</FONT>
+<P>       <DT> <A NAME="27071"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;Object name="nametrans"&gt; 
+</FONT>
+<P>       <DT> <A NAME="27072"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         NameTrans fn=explicit_pathinfo separator="," 
+</FONT>
+<P>       <DT> <A NAME="27073"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         ObjectType fn=force-type type=magnus-internal/cgi 
+</FONT>
+<P>       <DT> <A NAME="27074"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         Service fn=send-cgi user="$user" group="$group" chroot="$chroot" dir="$dir" nice="$nice" 
+</FONT>
+<P>       <DT> <A NAME="27075"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         [In W2K, the send-cgi in the previous line should be replaced by send-shellcgi] 
+</FONT>
+<P>       <DT> <A NAME="27076"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+    &lt;/Object&gt; 
+</FONT>
+<P>       <DT> <A NAME="27078"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;Object name="pathcheck"&gt; 
+</FONT>
+<P>       <DT> <A NAME="27079"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         PathCheck fn=restrict_by_acf 
+</FONT>
+<P>       <DT> <A NAME="27080"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+    &lt;/Object&gt; 
+</FONT>
+<P>       <DT> <A NAME="27082"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;Object name="objecttype"&gt; 
+</FONT>
+<P>       <DT> <A NAME="27083"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+        ObjectType fn=html2shtml 
+</FONT>
+<P>       <DT> <A NAME="27084"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+        ObjectType fn="shtml-hacktype" 
+</FONT>
+<P>       <DT> <A NAME="27085"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+        Service fn="parse-html" method="(GET|HEAD)" type="magnus-internal/parsed-html" 
+</FONT>
+<P>       <DT> <A NAME="27086"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+   &lt;/Object&gt; 
+</FONT>
+<P>       <DT> <A NAME="27088"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;Object name="service"&gt; 
+</FONT>
+<P>       <DT> <A NAME="27089"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+        Service method=(GET|HEAD) fn=send_images type=magnus-internal/picgroup 
+</FONT>
+<P>       <DT> <A NAME="27090"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+   &lt;/Object&gt; 
+</FONT>
+<P>       <DT> <A NAME="27092"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;Object name="cgiwatch"&gt; 
+</FONT>
+<P>       <DT> <A NAME="27093"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+        Service method=(GET|HEAD) fn=cgiwatch_service 
+</FONT>
+<P>       <DT> <A NAME="27094"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+   &lt;/Object&gt; 
+</FONT>
+<P>       <DT> <A NAME="27096"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;Object name="qos"&gt; 
+</FONT>
+<P>       <DT> <A NAME="27097"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+        AuthTrans fn="qos_handler_sample" 
+</FONT>
+<P>       <DT> <A NAME="27098"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+        Error fn="qos_error_sample" code="503" 
+</FONT>
+<P>       <DT> <A NAME="27061"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+   &lt;/Object&gt; 
+</FONT>
+<P>    </dl>
+</dl><A NAME="26836"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Modify <FONT FACE="courier, couriernew, monospaced size">mime.type</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27163"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Add the following line at the end of the file: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="27168"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+type=magnus-internal/picgroup exts=picgroup
+</FONT>
+<P>    </dl>
+</dl>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="22343"> </A>
+<A NAME="Running the Sample Applications"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Applications
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="26454"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following steps should be performed in order to run the samples: 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="27186"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Before you run the <FONT FACE="courier, couriernew, monospaced size">qos</FONT> sample, you have to enable the qos from Admin server:
+</FONT>
+<P>  <ul>
+<A NAME="27205"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on HTTP Server from the left pane.
+</FONT>
+<P><A NAME="27206"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on QOS from the right pane.
+</FONT>
+<P><A NAME="27207"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Enable the QOS.
+</FONT>
+<P><A NAME="27208"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Set Bandswidth Limit to 50 and enable the "Enforce Bandwidth Limit" .
+</FONT>
+<P><A NAME="27197"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Apply the Change.
+</FONT>
+
+<P>  </ul>
+<A NAME="27233"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+In order to run Service, do the following:
+</FONT>
+<P>  <ul>
+<A NAME="27256"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+copy  <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/docs/images/SunONE.jpg</FONT> to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/nsapi/src/test/service</FONT>
+
+</FONT>
+<P><A NAME="27257"> </A>
+
+<P>  </ul>
+<A NAME="27233"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+In order to run NameTrans on Solaris, do the following:
+</FONT>
+<P>  <ul>
+<A NAME="27256"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Run  <FONT FACE="courier, couriernew, monospaced size">chmod 755 nametrans.cgi</FONT> inside <FONT FACE="courier, couriernew, monospaced size">s1_as_install_dir/samples/nsapi/src/test/nametrans</FONT>
+</FONT>
+<P><A NAME="27257"> </A>
+
+<P>  </ul>
+<A NAME="27233"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+In order to run NameTrans on Windows 2000, do the following:
+</FONT>
+<P>  <ul>
+<A NAME="27256"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Modify <FONT FACE="courier, couriernew, monospaced size">nametrans.cgi</FONT> inside <FONT FACE="courier, couriernew, monospaced size">s1_as_install_dir/samples/nsapi/src/test/nametrans</FONT>, replace <FONT FACE="courier, couriernew, monospaced size">env</FONT> with <FONT FACE="courier, couriernew, monospaced size">set</FONT>.
+</FONT>
+<P><A NAME="27257"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">My Computer -&gt; Tools -&gt; Folder Options -&gt; File Types</FONT>, add the new file type <FONT FACE="courier, couriernew, monospaced size">cgi</FONT>,  add the perl interpretor.
+</FONT>
+<P><A NAME="27258"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The user who performed the previous step should be the same user who started the app server. 
+</FONT>
+<P>  </ul>
+</ol>
+
+<A NAME="27294"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+</FONT>
+<P>
+
+<A NAME="27383"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The URL to access all the samples is: <FONT FACE="courier, couriernew, monospaced size">http://&lt;AppServer hostname&gt;:&lt;port&gt;/nsapi</FONT>
+</FONT>
+<P>
+
+<A NAME="27317"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><A HREF="index.html#27320"  >Table&nbsp;1</A> explains the functionality of each.<BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="27320"> </A>
+<A NAME="Functionality"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 1	&nbsp&nbsp Functionality
+</B>
+</FONT>
+
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="27326"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Name
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="27328"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Do This
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="27330"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Results
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27332"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+AuthTrans
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27334"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click AuthTrans.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27396"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+A pop will be displayes.   Type <FONT FACE="courier, couriernew, monospaced size"><B>joe/shmoe</B></FONT> or <FONT FACE="courier, couriernew, monospaced size"><B>suzy/creamcheese</B></FONT> in order to pass the authorization. 
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27338"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+NameTrans 
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27340"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click NameTrans.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27342"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+A cgi script is executed and the explicit path info nametrans should appear (<FONT FACE="courier, couriernew, monospaced size">PATH_INFO=nametrans</FONT>).
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27344"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+PathCheck
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27346"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click PathCheck.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27445"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If the IP address from which your browser runs is in <FONT FACE="courier, couriernew, monospaced size">s1_as_install_dir/samples/nsapi/src/test/pathcheck/checkfile</FONT>, you will be able to access this link. Otherwise, you will be denied access to this page.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27350"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+ObjectType
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27352"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click ObjectType
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27354"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+What this page demonstrates is that <FONT FACE="courier, couriernew, monospaced size">objecttype.shtml</FONT> is rendered instead of <FONT FACE="courier, couriernew, monospaced size">objecttype.html</FONT> 
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27356"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Service
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27501"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click Service.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27360"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You should see a jpeg image which is listed in <FONT FACE="courier, couriernew, monospaced size">s1_as_install_dir/samples/nsapi/src/test/service/service.picgroup</FONT>.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27362"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+AddLog
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27364"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click AddLog.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27366"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You should see an access log file.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27368"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+cgiwatch
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27370"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click cgiwatch.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27372"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You should see the cgi statistics for your machine.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27374"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+qos
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27376"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click qos.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27573"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You will see a directory. Keep Clicking Reload/Refresh very fast to make the bandwidth of the net traffic is over the limit we set up in the admin server. You should eventually see something like "<FONT FACE="courier, couriernew, monospaced size">Global bandwidth limit of 50 . Current bandwidth : 53</FONT>".
+</FONT>&nbsp;</TD>
+  </TR>
+</TABLE>
+
+
+
+<P>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="20774"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="27592"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/domains/&lt;domain-instance&gt; /&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong.
+</FONT>
+<P><A NAME="27594"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you use Internet Explorer, the Service link does not work since the file with the content type multipart/x-mixed-replace is not supported in Internet Explorer. 
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 13, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

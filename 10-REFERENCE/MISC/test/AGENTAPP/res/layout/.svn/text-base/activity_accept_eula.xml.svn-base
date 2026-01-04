@@ -1,0 +1,24 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ScrollView01"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AcceptEULAActivity" >
+    <LinearLayout 
+        android:orientation="vertical"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+	<TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_size"
+        android:text="@string/eula"
+        android:layout_marginBottom="20dp" 
+        style="@style/TitleLabel"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:layout_margin="@dimen/button_padding_left"
+        android:text="@string/eula_text" />
+	</LinearLayout>
+</ScrollView>

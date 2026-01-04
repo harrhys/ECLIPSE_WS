@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2002 Sun Microsystems, Inc. All rights reserved. -->
+<!DOCTYPE application-client PUBLIC "-//Sun Microsystems, Inc.//DTD J2EE Application Client 1.3//EN" "http://java.sun.com/dtd/application-client_1_3.dtd">
+
+<application-client>
+  <display-name>ProductClient</display-name>
+  <ejb-ref>
+    <ejb-ref-name>ejb/MyProduct</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>samples.ejb.cmp.simple.ejb.Product</home>
+    <remote>samples.ejb.cmp.simple.ejb.ProductHome</remote>
+  </ejb-ref>
+</application-client>

@@ -1,0 +1,108 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ViralRemitMoneyBeneficiaryActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/TitleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_size"
+            android:layout_marginBottom="20dp"
+            android:text="@string/cash_out" />
+        
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="5dp"
+            android:text="@string/beneficiary_ids"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginRight="@dimen/padding_right"
+            android:text="@string/beneficiary_id_type_1" />
+
+        <Spinner
+            android:id="@+id/beneficiary_id_type_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="@dimen/padding_bottom"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginRight="@dimen/padding_right"
+            android:entries="@array/idtypes"
+            android:inputType="text"
+            android:selectAllOnFocus="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginRight="@dimen/padding_right"
+            android:text="@string/beneficiary_id_value_1" />
+
+        <EditText
+            android:id="@+id/beneficiary_id_value_1"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="@dimen/padding_bottom"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginRight="@dimen/padding_right"
+            android:inputType="text"
+            android:selectAllOnFocus="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginRight="@dimen/padding_right"
+            android:text="@string/beneficiary_id_type_2" />
+
+        <Spinner
+            android:id="@+id/beneficiary_id_type_2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="@dimen/padding_bottom"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginRight="@dimen/padding_right"
+            android:entries="@array/idtypes"
+            android:inputType="text"
+            android:selectAllOnFocus="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginRight="@dimen/padding_right"
+            android:text="@string/beneficiary_id_value_2" />
+
+        <EditText
+            android:id="@+id/beneficiary_id_value_2"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="@dimen/padding_bottom"
+            android:layout_marginLeft="@dimen/padding_left"
+            android:layout_marginRight="@dimen/padding_right"
+            android:inputType="text"
+            android:selectAllOnFocus="true" />
+
+        <Button
+            android:id="@+id/submit_button"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/submit_buttons"
+            android:text="@string/submit" />
+    </LinearLayout>
+
+</ScrollView>

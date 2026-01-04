@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../common.xml"> ]>
+
+<project name="smarticket" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--   	Smarticket Sample properties.		       -->
+  <!-- ======================================================= -->
+  <property file="smarticket.properties"/>
+  <property name="stsrc.dir" value="src" />
+  <property name="build.dir" value="build" />
+  <property name="dist.dir" value="bin" />
+  <property name="midp.build.dir" value="build/client" />
+  <property name="midp.build.unverified.dir" 
+            value="build/client/unverified" />
+  <property name="midp.build.verified.dir" 
+            value="build/client/verified" />
+  <property name="midp.dist.dir" value="${dist.dir}" />
+  <property name="midp.message.dir" value="messages" />
+  <property name="j2ee.build.dir" value="build/server" />
+  <property name="j2ee.build.ejb.dir" value="build/server/ejb" />
+  <property name="j2ee.build.web.dir" value="build/server/web" />
+  <property name="j2ee.dist.ejb.dir" value="${dist.dir}" />
+  <property name="j2ee.dist.web.dir" value="${dist.dir}" />
+  <property name="j2ee.dist.dir" value="${dist.dir}" />
+  <property name="tools.dir" value="tools" />
+  <property name="sample.home" value="../" />
+
+  <!-- ======================================================= -->
+  <!--   	Depolyment properties.			       -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="smarticket"/>
+  <property name="deploy.file" value="${j2ee.dist.dir}/smarticket.ear"/>
+
+  <!-- ======================================================= -->
+  <!--		Include common.xml			       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+
+  <!-- ======================================================= -->
+  <!-- 		Compile traget.                                -->
+  <!-- ======================================================= -->
+
+  <target name="all" depends="regdb, core, deploy" />
+
+  <target name="core" depends="etc,midp,j2ee" />
+
+  <target name="etc">
+    <javac srcdir="tools/ant/classes" 
+           excludes="**/CVS/**" />
+  </target>
+
+  <target name="midp" depends="etc,midp.compile,midp.preverify,midp.copyres,midp.package" />
+  <target name="j2ee" depends="j2ee.compile.ejb,j2ee.compile.web,j2ee.package.ejb,j2ee.package.web,j2ee.package" />
+
+
+  <!-- ======================================================= -->
+  <!-- Compile MIDP  tragets.                                  -->
+  <!-- ======================================================= -->
+
+  <target name="midp.compile">
+    <mkdir dir="${midp.build.unverified.dir}" />
+    <javac destdir="${midp.build.unverified.dir}"
+           bootclasspath="${j2mewtk.home}/lib/midpapi.zip"
+           debug="off"
+           srcdir="${stsrc.dir}"
+           includes="**/st/**/*.java,**/shared/**/*.java"
+           excludes="**/CVS/**" />
+  </target>
+
+  <target name="midp.preverify" depends="midp.compile">
+    <mkdir dir="${midp.build.verified.dir}" />
+    <exec executable="${j2mewtk.home}/bin/preverify">
+      <arg line="-classpath" />
+      <arg path="${midp.build.unverified.dir}:${j2mewtk.home}/lib/midpapi.zip" />
+      <arg line="-d ${midp.build.verified.dir}" /> 
+      <arg value="${midp.build.unverified.dir}" />
+    </exec>
+  </target>
+
+  <target name="midp.copyres" depends="midp.preverify">
+    <copy todir="${midp.build.verified.dir}/">
+      <fileset dir="res" excludes="**/CVS/**" />
+    </copy>
+    <copy file="${midp.message.dir}/${midp.locale}.properties"
+      tofile="${midp.build.verified.dir}/default.properties" />
+  </target>
+
+  <target name="midp.package" depends="midp.copyres">
+    <taskdef name="filesize" 
+             classname="ant.FileSizeTask"
+             classpath="tools/ant/classes" />
+    <mkdir dir="${midp.dist.dir}" />
+    <zip zipfile="${midp.dist.dir}/smarticket.jar">
+      <zipfileset dir="." 
+                  includes="${stsrc.dir}/MANIFEST.MF" 
+                  fullpath="META-INF/MANIFEST.MF" />
+      <zipfileset dir="${midp.build.verified.dir}" 
+                  excludes="**/shared/**"  />
+    </zip>
+
+    <filesize file="${midp.dist.dir}/smarticket.jar" property="jarsize"/>
+    <filter token="jarsize" value="${jarsize}" />
+    <filter token="locale" value="${midp.locale}" />
+    <copy todir="${midp.dist.dir}" filtering="true" overwrite="true">
+      <fileset dir="${stsrc.dir}" includes="smarticket.jad" />
+    </copy>
+  </target>
+
+
+  <target name="emulate">
+    <exec executable="${j2mewtk.home}/bin/emulator" dir="${midp.dist.dir}">
+      <arg value="-Xdescriptor:smarticket.jad" />
+    </exec>
+  </target>
+
+
+  <!-- ======================================================= -->
+  <!-- Compile J2EE  tragets.                                  -->
+  <!-- ======================================================= -->
+
+  <target name="j2ee.compile.ejb" depends="init_common">
+    <mkdir dir="${j2ee.build.ejb.dir}" />
+    <javac destdir="${j2ee.build.ejb.dir}"
+           srcdir="${stsrc.dir}"
+           classpath="${sunone.cpath}"
+           includes="**/ejb/**/*.java"
+           excludes="**/CVS/**" />
+  </target>
+
+  <target name="j2ee.compile.web" depends="j2ee.compile.ejb">
+    <mkdir dir="${j2ee.build.web.dir}" />
+    <mkdir dir="${j2ee.build.web.dir}/WEB-INF/classes" />
+    <javac destdir="${j2ee.build.web.dir}/WEB-INF/classes"
+           srcdir="${stsrc.dir}"
+           classpath="${sunone.cpath}:${j2ee.build.ejb.dir}"
+           includes="**/web/**/*.java,**/shared/**/*.java"
+           excludes="**/CVS/**" />
+  </target>
+
+  <target name="j2ee.package.ejb" depends="j2ee.compile.ejb">
+    <mkdir dir="${j2ee.dist.ejb.dir}" />
+
+    <mkdir dir="${j2ee.build.ejb.dir}/META-INF" />
+    <copy todir="${j2ee.build.ejb.dir}/META-INF" 
+          file="${stsrc.dir}/ejb-jar.xml" 
+          overwrite="true" />
+    <copy todir="${j2ee.build.ejb.dir}/META-INF" 
+          file="${stsrc.dir}/sun-ejb-jar.xml" 
+          overwrite="true" />
+
+    <jar basedir="${j2ee.build.ejb.dir}" jarfile="${j2ee.dist.ejb.dir}/ejb_st.jar" />
+    <jar basedir="${j2ee.build.ejb.dir}" 
+         jarfile="${j2ee.dist.ejb.dir}/ejb_client.jar"
+         excludes="META-INF/ejb-jar.xml,**/ejb/**/*EJB*.class,**/ejb/**/*DB*.class" />
+  </target>
+
+  <target name="j2ee.package.web" depends="j2ee.compile.web">
+    <mkdir dir="${j2ee.dist.web.dir}" />
+
+    <mkdir dir="${j2ee.build.web.dir}/posters" />
+    <copy todir="${j2ee.build.web.dir}">
+      <fileset dir="posters" excludes="**/CVS/**" />
+    </copy>
+
+    <copy todir="${j2ee.build.web.dir}/WEB-INF"
+          file="${stsrc.dir}/web.xml"
+          overwrite="true" />
+
+    <copy todir="${j2ee.build.web.dir}/WEB-INF"
+          file="${stsrc.dir}/sun-web.xml"
+          overwrite="true" />
+
+    <jar basedir="${j2ee.build.web.dir}" 
+         jarfile="${j2ee.dist.web.dir}/web_st.war" />
+  </target>
+
+  <target name="j2ee.package" depends="j2ee.package.ejb,j2ee.package.web">
+    <delete file="${j2ee.dist.dir}/smarticket.ear" />
+    <ear earfile="${j2ee.dist.dir}/smarticket.ear"
+         appxml="${stsrc.dir}/application.xml">
+      <fileset dir="${j2ee.dist.dir}" includes="ejb_st.jar,web_st.war"/>
+    </ear>
+  </target>
+
+
+  <!-- ======================================================= -->
+  <!--  	Clean traget.                                  -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="midp.clean,j2ee.clean">
+    <delete dir="${build.dir}" />
+    <delete dir="${dist.dir}" />
+  </target>
+
+  <target name="midp.clean">
+    <delete dir="${midp.build.dir}" />
+    <delete dir="${midp.dist.dir}" />
+  </target>
+
+  <target name="j2ee.clean">
+    <delete dir="${j2ee.build.dir}" />
+    <delete dir="${j2ee.dist.dir}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Package tragets.                                        -->
+  <!-- ======================================================= -->
+
+  <target name="package">
+    <delete file="smarticket.zip" />
+    <mkdir dir="smarticket" />
+    <copy todir="smarticket">
+      <fileset dir=".">
+        <include name="build.xml" />
+        <include name="smarticket.properties" />
+        <include name="build/**" />
+        <include name="bin/**" />
+        <include name="docs/**" />
+        <include name="posters/**" />
+        <include name="messages/**" />
+        <include name="res/**" />
+        <include name="src/**" />
+        <include name="tools/**" />
+        <exclude name="**/CVS/**" />
+      </fileset>
+    </copy>
+    <exec executable="zip">
+      <arg value="-r" />
+      <arg value="smarticket.zip" />
+      <arg value="smarticket" />
+    </exec>
+    <delete dir="smarticket" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!--                          Read/Set properties.           -->
+  <!-- ======================================================= -->
+
+  <target name="check_earfile">
+     <available file="${j2ee.dist.dir}/smarticket.ear" type="file" property="earfile.present"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!--           Deploy J2EE                       .           -->
+  <!-- ======================================================= -->
+
+  <target name="deploy" depends="check_earfile,deploy_common" if="earfile.present"/>
+  <target name="undeploy" depends="undeploy_common" />
+
+
+  <!-- ======================================================= -->
+  <!--		Database properties 			       -->
+  <!-- ======================================================= -->
+  <property name="db.user" value="smarticket"/> 
+  <property name="db.pwd" value="smarticket"/> 
+  <property name="db.file" value="src/sql/smarticket.sql"/> 
+  <property name="conpool.name"       value="smarticketPool" />
+  <property name="jdbc.resource.name" value="jdbc/smarticket" />
+ 
+
+  <!-- ======================================================= -->
+  <!--          Database realted tragets.                      -->
+  <!-- ======================================================= -->
+
+  <target name= "regdb" depends = "setup_env,
+        create-jdbc-connection-pool_common, 
+        create-jdbc-resource_common, reconfig"/>
+
+  <target name="regdb_ora" depends="setup_env, 
+	deploy_jdbc_resource_ora_common, reconfig"/>
+
+  <target name= "unregdb" depends = "delete-jdbc-resource_common,
+        delete-jdbc-connection-pool_common, reconfig" />
+
+  <target name="reconfig" depends="reconfig_common"/>
+
+  <target name="freshdb" depends="sql_common"/>
+
+</project>

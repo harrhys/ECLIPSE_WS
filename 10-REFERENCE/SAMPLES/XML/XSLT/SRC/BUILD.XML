@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="iso-8859-1"?> 
+
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+ <!-- ============================================================== -->
+  <!-- Sun ONE Application Server Sample Application build xml         -->
+  <!--                                                                -->
+  <!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+  <!-- ============================================================== -->
+
+
+<project name="xslt" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../" />
+  <!-- ======================================================= -->
+  <!--                  Java Doc properties .                  -->
+  <!-- ======================================================= -->
+
+  <property name="javadoc.pkgnames" value="samples.xml.xslt.*" />
+  <property name="app.pkg" value="samples/xml/xslt" />
+  <property name="appname" value="xslt-samples" />
+  <property name="jar.file" value="../${appname}.jar"/>
+
+
+<!-- ======================================================= -->
+  <!--                          Include common.xml
+               -->
+  <!-- ======================================================= -->
+
+  &include;
+
+  <path id="project-classpath">
+    <pathelement location="."/>
+    <pathelement location="${jar.file}"/>
+<!--
+    <pathelement location="${build.classesdir}"/>
+-->
+  </path>
+ 
+  <target name="build_xsltpath">
+    <fileset dir="${com.sun.aas.webServicesLib}" includes="*.jar" id="xslt_jars"/>
+    <pathconvert pathsep=":" property="xslt.cpath" refid="xslt_jars"/>
+  </target>
+
+
+  
+  <target name="run-TransformationApp02">
+    <echo>java samples.xml.xslt.TransformationApp02 data/slideSample01.xml</echo>
+    <java classname="samples.xml.xslt.TransformationApp02" fork="yes">
+      <arg value="data/slideSample01.xml"/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+  <target name="run-TransformationApp03">
+    <echo>java samples.xml.xslt.TransformationApp03 data/slideSample01.xml</echo>
+    <java classname="samples.xml.xslt.TransformationApp03" fork="yes">
+      <arg value="data/slideSample01.xml"/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+  <target name="run-AddressBookReader01">
+    <echo>java samples.xml.xslt.AddressBookReader01 data/PersonalAddressBook.ldif</echo>
+    <java classname="samples.xml.xslt.AddressBookReader01" fork="yes">
+      <arg value="data/PersonalAddressBook.ldif"/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+  <target name="run-TransformationApp04">
+    <echo>java samples.xml.xslt.TransformationApp04 data/PersonalAddressBook.xml</echo>
+    <java classname="samples.xml.xslt.TransformationApp04" fork="yes">
+      <arg value="data/PersonalAddressBook.ldif"/>
+      <classpath refid="project-classpath"/>
+    </java>
+
+  </target>
+
+  <target name="run-Stylizer-a">
+    <echo>java samples.xml.xslt.Stylizer data/article1a.xsl data/article1.xml</echo>
+    <java classname="samples.xml.xslt.Stylizer" fork="yes">
+      <arg value="data/article1a.xsl"/>
+      <arg value="data/article1.xml "/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+ <target name="run-Stylizer-b">
+    <echo>java samples.xml.xslt.Stylizer data/article1b.xsl data/article1.xml</echo>
+    <java classname="samples.xml.xslt.Stylizer" fork="yes">
+      <arg value="data/article1b.xsl"/>
+      <arg value="data/article1.xml "/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+ <target name="run-Stylizer-c">
+    <echo>java samples.xml.xslt.Stylizer data/article1c.xsl data/article1.xml</echo>
+    <java classname="samples.xml.xslt.Stylizer" fork="yes">
+      <arg value="data/article1c.xsl"/>
+      <arg value="data/article1.xml "/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+ <target name="run-Stylizer-2">
+    <echo>java samples.xml.xslt.Stylizer data/article2.xsl data/article2.xml</echo>
+    <java classname="samples.xml.xslt.Stylizer" fork="yes">
+      <arg value="data/article2.xsl"/>
+      <arg value="data/article2.xml "/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+ <target name="run-Stylizer-3">
+    <echo>java samples.xml.xslt.Stylizer data/article3.xsl data/article3.xml</echo>
+    <java classname="samples.xml.xslt.Stylizer" fork="yes">
+      <arg value="data/article3.xsl"/>
+      <arg value="data/article3.xml "/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+ <target name="compile-translet" depends ="build_xsltpath" >
+    <echo>java org.apache.xalan.xsltc.cmdline.Compile data/article3.xsl </echo>
+    <java classname="org.apache.xalan.xsltc.cmdline.Compile" fork="yes">
+      <arg value="-d"/>
+      <arg value="${build.classesdir}"/>
+      <arg value="-p"/>
+      <arg value="samples.xml.xslt"/>
+      <arg value="data/article3.xsl"/>
+      <classpath>
+           <pathelement path="${xslt.cpath}"/>
+<!--
+           <pathelement path="${${build.classpath}"/>
+-->
+      </classpath>
+    </java>
+  </target>
+
+ <target name="run-translet" depends ="build_xsltpath" >
+    <echo>java org.apache.xalan.xsltc.cmdline.Transform data/article3.xsl samples.xml.xslt.article3 </echo>
+    <java classname="org.apache.xalan.xsltc.cmdline.Transform" fork="yes">
+      <arg value="data/article3.xml"/>
+      <arg value="samples.xml.xslt.article3"/>
+      <classpath>
+           <pathelement path="${xslt.cpath}"/>
+           <pathelement location="${build.classesdir}"/>
+      </classpath>
+    </java>
+  </target>
+
+
+ <target name="run-FilterChain">
+    <echo>java samples.xml.xslt.FilterChain data/docbookToArticle.xsl data/article1c.xsl small-docbook-article.xml</echo>
+    <java classname="samples.xml.xslt.FilterChain" fork="yes">
+      <arg value="data/docbookToArticle.xsl "/>
+      <arg value="data/article1c.xsl"/>
+      <arg value="data/small-docbook-article.xml"/>
+      <classpath refid="project-classpath"/>
+    </java>
+  </target>
+
+  <target name="clean"      depends="clean_common"/>
+  <target name="init"       depends="init_common"/>
+  <target name="compile"    depends="compile_common" />
+  <target name="jar"    depends="create_jar_common" />
+  <target name="javadocs"   depends="javadocs_common" />
+
+  <target name="core" depends="init,compile, jar"/>
+  <target name="all" depends="core,javadocs"/>
+  
+
+</project>

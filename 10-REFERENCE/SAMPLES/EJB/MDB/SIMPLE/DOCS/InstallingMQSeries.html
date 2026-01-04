@@ -1,0 +1,567 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="TEMPLATEBASE" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/10/02 18:51:39">
+	<title>MDB Simple Sample Application: Chapter&#32;1 Installing IBM WebSphere Messaging Queue (MQ)</title>
+</head>
+
+<body text="#000000" link="10% #594fbf" vlink="#594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <table width="100%" border="0" cellspacing="4">
+      <tr>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+&nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </tr>
+
+      <tr>
+         <td valign="TOP" align="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            MDB  Simple Sample Application</B></FONT>
+         </td>
+      </tr>
+
+   </table>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <blockquote>
+<BR>
+<BR>
+
+      <A NAME="13832"> </A><A NAME=""> </A><FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#666666"><B>
+Chapter&#32;1 
+&nbsp;
+</B>
+</FONT>
+
+
+<A NAME="13833"> </A>
+<A NAME="Installing IBM  WebSphere Messaging Queue (MQ)"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Installing IBM  WebSphere Messaging Queue (MQ)
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="14281"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to install IBM  WebSphere Messaging Queue (MQ) (formerly MQSeries)  V 5.3 on Solaris and Windows 2000.
+</FONT>
+<P>
+
+<A NAME="14282"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14286"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="InstallingMQSeries.html#14296"  >Downloading WebSphere MQ</A>
+</FONT>
+<P><A NAME="14290"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="InstallingMQSeries.html#14306"  >Installing WebSphere MQ on Solaris</A>
+</FONT>
+<P><A NAME="14294"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="InstallingMQSeries.html#14372"  >Installing WebSphere MQ on Windows 2000</A> 
+</FONT>
+<P><A NAME="14295"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="InstallingMQSeries.html#14342"  >Verifying the Installation</A> 
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14296"> </A>
+<A NAME="Downloading WebSphere MQ"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Downloading WebSphere MQ
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14297"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For the purpose of testing the JMS sample applications with WebSphere MQ, you need to to have WebSphere MQ product installed for your platform.  If you don't already have a copy of the product, you can <A HREF="http://www14.software.ibm.com/webapp/download/product.jsp?s=p&id=TDUN-49EVER">download a Beta/Trial copy of WebSphere MQ </A> from IBM web site.  It is suggested that you download the WebSphere MQ v5.3, since this version has JMS support integrated into the product.
+</FONT>
+<P>
+
+<A NAME="14304"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">It is also suggested that you download the document
+"WebSphere MQ for Solaris Quick Beginnings" if you work on Solaris or "WebSphere MQ for Windows Quick Beginnings" if you
+work on Windows 2000.  This document contains intructions of how to install WebSphere MQ and  verify the installation. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14306"> </A>
+<A NAME="Installing WebSphere MQ"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Installing WebSphere MQ on Solaris
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14307"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following instructions are basic steps to install WebSphere MQ on Solaris.  For detailed instructions, please refer to the document "WebSphere MQ for Solaris V5.3 Quick Beginnings".
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14308"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Login as <FONT FACE="courier, couriernew, monospaced size">root</FONT>.
+</FONT>
+<P><A NAME="14309"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Create a new unix group named <FONT FACE="courier, couriernew, monospaced size">mqm</FONT> and create a new unix user named <FONT FACE="courier, couriernew, monospaced size">mqm</FONT> who is part of this group.  In addition, make <FONT FACE="courier, couriernew, monospaced size">the unix user who installs the Sun ONE Applicatoin Server </FONT> a member of the <FONT FACE="courier, couriernew, monospaced size">mqm</FONT> group.
+</FONT>
+<P><A NAME="14310"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+You must update some of the default system settings in order for WebSphere MQ to function correctly.  
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14311"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+To do this, make a backup copy of the <FONT FACE="courier, couriernew, monospaced size">/etc/system</FONT> file, then edit the<FONT FACE="courier, couriernew, monospaced size"> /etc/system</FONT> file to add/modify the following lines: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="14312"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set shmsys:shminfo_shmmax=536870912
+</FONT>
+<P>       <DT> <A NAME="14313"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set shmsys:shminfo_shmmin=11
+</FONT>
+<P>       <DT> <A NAME="14314"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set shmsys:shminfo_shmmni=1024
+</FONT>
+<P>       <DT> <A NAME="14315"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set shmsys:shminfo_shmseg=1024
+</FONT>
+<P>       <DT> <A NAME="14316"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semaem=16384
+</FONT>
+<P>       <DT> <A NAME="14317"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semmni=1024
+</FONT>
+<P>       <DT> <A NAME="14318"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semmap=1026
+</FONT>
+<P>       <DT> <A NAME="14319"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semmsl=100
+</FONT>
+<P>       <DT> <A NAME="14320"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semmns=16384
+</FONT>
+<P>       <DT> <A NAME="14321"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semopm=100
+</FONT>
+<P>       <DT> <A NAME="14322"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semvmx=32767
+</FONT>
+<P>       <DT> <A NAME="14323"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semmnu=2048
+</FONT>
+<P>       <DT> <A NAME="14324"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set semsys:seminfo_semume=256
+</FONT>
+<P>       <DT> <A NAME="14325"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set msgsys:msginfo_msgmap=1026
+</FONT>
+<P>       <DT> <A NAME="14326"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set msgsys:msginfo_msgmax=4096
+</FONT>
+<P>       <DT> <A NAME="14327"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set msgsys:msginfo_msgmnb =65535
+</FONT>
+<P>       <DT> <A NAME="14328"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+set rlim_fd_cur=1024
+</FONT>
+<P>    </dl>
+</dl>  </dl>
+<A NAME="14329"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Reboot the machine for the changes to take effect.
+</FONT>
+<P><A NAME="14330"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Unzip and untar the WebSphere MQ installation package.
+</FONT>
+<P><A NAME="14331"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Go to the directory when you untarred the package.
+</FONT>
+<P><A NAME="14332"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+To accept the license, run the following script:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14333"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">./mqlicense.sh</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14334"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+To start the installation process, enter the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14335"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">% pkgadd -d .</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14336"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+By default, WebSphere MQ will be installed in the <FONT FACE="courier, couriernew, monospaced size">/opt/mqm</FONT> and <FONT FACE="courier, couriernew, monospaced size">/var/mqm</FONT> directories.
+</FONT>
+<P><A NAME="14337"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+When asked which packages should be installed, select <FONT FACE="courier, couriernew, monospaced size">all</FONT>.
+</FONT>
+<P><A NAME="14338"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you haven't mounted a filesystem at <FONT FACE="courier, couriernew, monospaced size">/var/mqm</FONT>, the installer will complain and ask if you want to continue.  As long as you have sufficient disk space, you may safely continue with the installation.
+</FONT>
+<P><A NAME="14339"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+When asked which options should be installed, select <FONT FACE="courier, couriernew, monospaced size">WebSphere MQ Server</FONT>, <FONT FACE="courier, couriernew, monospaced size">Man pages</FONT>, <FONT FACE="courier, couriernew, monospaced size">WebSphere MQ Client libraries</FONT>.
+</FONT>
+<P><A NAME="14340"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+It is not necessary to install the DCE option.  When asked if you want to install DCE, you may answer <FONT FACE="courier, couriernew, monospaced size">no</FONT>.
+</FONT>
+<P><A NAME="14341"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+When asked to install files as <FONT FACE="courier, couriernew, monospaced size">setuid/setgid</FONT> files, select <FONT FACE="courier, couriernew, monospaced size">yes.</FONT>
+</FONT>
+<P></ol>
+<BR>
+<P>
+<A NAME="14410"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After you have completed Installing WebSphere
+MQ on Solaris, you may proceed to <A HREF="InstallingMQSeries.html#14342">Verifying the Installation </A>
+ or <A HREF="ConfigMQSeries.html#13833">Configuring IBM  WebSphere Messaging Queue (MQ) for JMS</A>.
+</FONT>
+<P>
+
+<P>
+<BR>
+<BR>
+
+<A NAME="14372"> </A>
+<A NAME="Installing WebSphere MQ on Windows 2000"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Installing WebSphere MQ on Windows 2000 
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<A NAME="14373"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+Please refer to the "WebSphere MQ for Windows Quick Beginnings" document for detailed intructions of how to install
+WebSphere MQ on Windows 2000. The following instructions provide only basic installation steps.
+</FONT>
+<P>
+<ol type="1">
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Log on your system as a user who belongs to the <FONT FACE="courier, couriernew, monospaced size">Administrator</FONT> group.
+</FONT>
+
+<P><A NAME="14374"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+After downloading the executable file to a staging directory, double click on the file to start the installation process.
+</FONT>
+
+<P><A NAME="14376"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Follow the instructions in the WebSphere MQ Setup windows which are displayed to you.
+</FONT>
+
+<P><A NAME="14378"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+When the Setup Type Panel is displayed, select <FONT FACE="courier, couriernew, monospaced size">Custom Installation</FONT>.
+</FONT>
+<P><A NAME="14379"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+When the Features panel is displayed, make sure you also select <FONT FACE="courier, couriernew, monospaced size"> Java Messaging</A> and <FONT FACE="courier, couriernew, monospaced size">Window Client features.
+</FONT>
+
+<P><A NAME="14381"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+When asked if you have purchased sufficient capacity units for the number of processors you have on your computer, click No if you are installing the trial copy of the product. Then click yes to proceed the installation.
+</FONT>
+<P></ol>
+
+<BR>
+<P>
+<A NAME="14410"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After you have completed Installing WebSphere
+MQ on Windows 2000, you may proceed to <A HREF="InstallingMQSeries.html#14342">Verifying the Installation </A>
+ or <A HREF="ConfigMQSeries.html#13833">Configuring IBM  WebSphere Messaging Queue (MQ) for JMS</A>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14342"> </A>
+<A NAME="Verifying the Installation"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying the Installation
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<A NAME="14343"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+To verify that WebSphere MQ has been installed correctly and is functioning normally,
+it is suggested that you run a provided sample program to enter and retrieve a message from a queue.
+  In order for the sample program to operate properly, you have to create a queue manager and a local queue.
+  The procedure is as follows:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14344"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Log on your system as the <FONT FACE="courier, couriernew, monospaced size">mqm</FONT> user or as a user who 
+is a member of the <FONT FACE="courier, couriernew, monospaced size">mqm</FONT> group.
+<br>On Windows 2000, you can also log on as a user who is a member of the the <FONT FACE="courier, couriernew, monospaced size">administrator</FONT> group.
+</FONT>
+<P><A NAME="14345"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Create a default queue manager named <FONT FACE="courier, couriernew, monospaced size">mqseries.queue.manager</FONT> 
+by typing the following command at a command window:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14346"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">crtmqm -q mqseries.queue.manager</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14347"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Start the queue manager.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14348"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">strmqm</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14349"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Start MQSC command session.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14350"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">runmqsc</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14356"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14353"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14355"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The MQSC command session does not have an input prompt.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14358"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Once you are in MQSC command session, define a local queue named TESTQUEUE.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14359"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">define qlocal (TESTQUEUE)</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14360"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Stop and exit MQSC command session by typing <FONT FACE="courier, couriernew, monospaced size">end</FONT>.
+</FONT>
+<P><A NAME="14361"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Change to the directory which contains the sample programs 
+<FONT FACE="courier, couriernew, monospaced size"> amqsput</FONT> and <FONT FACE="courier, couriernew, monospaced siz
+e">amqsget</FONT>.
+</FONT>
+<P>  <dl>
+     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+On solaris:
+<FONT FACE="courier, couriernew, monospaced size"> cd /opt/mqm/samp/bin</FONT>
+</FONT>
+     <DT>
+<P><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+On Windows 2000:
+<FONT FACE="courier, couriernew, monospaced size"> cd &lt;MQ_HOME&gt;\bin </FONT>
+     <DT>
+<P><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size"> &lt;MQ_HOME&gt;</FONT> is the WebSphere MQ installation home.
+</FONT>
+<P>  </dl>
+<P><A NAME="14365"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Put a text message on the <FONT FACE="courier, couriernew, monospaced size">TESTQUEUE,</FONT> which you created
+ in <A HREF="InstallingMQSeries.html#14358"  >Step 5</A>, by typing the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14366"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">amqsput TESTQUEUE</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14367"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+Type any message text, then press Enter twice to complete the message.
+</FONT>
+<P><A NAME="14368"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+Retrieve the message from the <FONT FACE="courier, couriernew, monospaced size">TESTQUEUE</FONT> by typing the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14369"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">amqsget TESTQUEUE</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14370"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If everything is working correctly, the message that you just put on the queue in Step 9 will be displayed.
+</FONT>
+<P>
+
+<BR>
+<P>
+<A NAME="14410"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After you have completed Installing IBM  WebSphere Messaging Queue (MQ), you may proceed to <A HREF="ConfigMQSeries.html#13833"  >Configuring IBM  WebSphere Messaging Queue (MQ) for JMS</A>.
+</FONT>
+<P>
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 10, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</body>
+
+
+</html>

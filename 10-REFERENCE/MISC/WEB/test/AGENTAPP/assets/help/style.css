@@ -1,0 +1,17 @@
+.wrapper {
+	padding:5px;
+}
+h1 {
+	font-size: 4m;
+	font-weight: bold;
+}
+h3 {
+	font-size: 3m;
+	color: #0C61A4;
+	font-weight: bold;
+	text-decoration: underline;
+}
+p, ol,ul {
+	font-size:1em;
+	color: #0C61A4;
+}

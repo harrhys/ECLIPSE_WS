@@ -1,0 +1,72 @@
+/*
+ * Copyright © 2002 Sun Microsystems, Inc. All rights reserved.
+ */
+
+package samples.rmi.simple.ejb;
+
+import java.rmi.RemoteException;
+import javax.ejb.SessionBean;
+import javax.ejb.SessionContext;
+import java.math.*;
+
+/**
+ * A simple stateless bean for the Converter application. 
+ * This bean implements all business method as declared 
+ * by the remote interface.
+ */
+public class ConverterBean implements SessionBean {
+
+    BigDecimal yenRate = new BigDecimal("121.6000");
+    BigDecimal euroRate = new BigDecimal("0.0077");
+
+    /**
+     * Returns the yen value for given dollar amount.
+     * @param dollars Dollar amount tobe converted to yen.
+     */
+    public BigDecimal dollarToYen(BigDecimal dollars) {
+        BigDecimal result = dollars.multiply(yenRate);
+        return result.setScale(2,BigDecimal.ROUND_UP);
+    }
+
+    /**
+     * Returns the euro value for given yen amount.
+     * @param yen Yen amount tobe converted to euro.
+     */
+    public BigDecimal yenToEuro(BigDecimal yen) {
+        BigDecimal result = yen.multiply(euroRate);
+        return result.setScale(2,BigDecimal.ROUND_UP);
+    }
+
+    /**
+     * Required by EJB spec.
+     */
+    public ConverterBean() {}
+
+    /**
+     * Creates a bean. Required by EJB spec.
+     * @exception throws CreateException.
+     */
+    public void ejbCreate() {}
+
+    /**
+     * Removes the bean. Required by EJB spec.
+     */
+    public void ejbRemove() {}
+
+    /**
+     * Loads the state of the bean from secondary storage. Required by EJB spec.
+     */
+    public void ejbActivate() {}
+    
+    /**
+     * Keeps the state of the bean to secondary storage. Required by EJB spec.
+     */
+    public void ejbPassivate() {}
+
+    /**
+     * Sets the session context. Required by EJB spec.
+     * @param ctx A SessionContext object.
+     */
+   public void setSessionContext(SessionContext sc) {}
+
+} // ConverterBean

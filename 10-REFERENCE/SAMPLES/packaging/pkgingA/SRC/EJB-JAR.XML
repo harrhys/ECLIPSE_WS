@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 1.1//EN' 'http://java.sun.com/j2ee/dtds/ejb-jar_1_1.dtd'>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<ejb-jar>
+  <display-name>pkgingEJB</display-name>
+  <enterprise-beans>
+    <session>
+      <ejb-name>SunONE.pkgingA.pkgingAEJB.CompoundInterest</ejb-name>
+      <home>samples.packaging.pkging.ejb.CompoundInterestHome</home>
+      <remote>samples.packaging.pkging.ejb.CompoundInterest</remote>
+      <ejb-class>samples.packaging.pkging.ejb.CompoundInterestEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+	    <description>Specifies that the library classes will be loaded frm a classfile</description>
+	    <env-entry-name>library</env-entry-name>
+	    <env-entry-type>java.lang.String</env-entry-type>
+	    <env-entry-value>file</env-entry-value>
+      </env-entry>
+      <ejb-ref>
+	    <ejb-ref-name>ejb/SunONE.pkging.pkgingEJB.SimpleInterest</ejb-ref-name>
+	    <ejb-ref-type>Session</ejb-ref-type>
+	    <home>samples.packaging.pkging.ejb.SimpleInterestHome</home>
+	    <remote>samples.packaging.pkging.ejb.SimpleInterest</remote>
+	    <ejb-link>SunONE.pkgingA.pkgingAEJB.SimpleInterest</ejb-link>
+      </ejb-ref>
+    </session>
+    <session>
+      <ejb-name>SunONE.pkgingA.pkgingAEJB.SimpleInterest</ejb-name>
+      <home>samples.packaging.pkging.ejb.SimpleInterestHome</home>
+      <remote>samples.packaging.pkging.ejb.SimpleInterest</remote>
+      <ejb-class>samples.packaging.pkging.ejb.SimpleInterestEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+	    <description>Specifies that the library classes will be loaded frm a classfile</description>
+	    <env-entry-name>library</env-entry-name>
+	    <env-entry-type>java.lang.String</env-entry-type>
+	    <env-entry-value>file</env-entry-value>
+      </env-entry>
+      <ejb-ref>
+	    <ejb-ref-name>ejb/SunONE.pkging.pkgingEJB.CompoundInterest</ejb-ref-name>
+	    <ejb-ref-type>Session</ejb-ref-type>
+	    <home>samples.packaging.pkging.ejb.CompoundInterestHome</home>
+	    <remote>samples.packaging.pkging.ejb.CompoundInterest</remote>
+	    <ejb-link>SunONE.pkgingA.pkgingAEJB.CompoundInterest</ejb-link>
+      </ejb-ref>
+    </session>
+  </enterprise-beans>
+</ejb-jar>
+

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webServices
+    xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/dd"
+    version="1.0"
+    targetNamespaceBase="http://proxy.org/wsdl"
+    typeNamespaceBase="http://proxy.org/types"
+    urlPatternBase="/ws">
+
+    <endpoint
+        name="HelloWorld"
+        displayName="Hello Service"
+        description="A simple web service"
+        interface="samples.webservices.jaxrpc.proxy.HelloIF"
+        implementation="samples.webservices.jaxrpc.proxy.HelloImpl"/>
+
+    <endpointMapping
+        endpointName="HelloWorld"
+        urlPattern="/proxy"/>
+
+</webServices>
+

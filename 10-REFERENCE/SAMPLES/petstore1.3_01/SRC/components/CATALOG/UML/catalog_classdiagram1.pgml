@@ -1,0 +1,745 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE pgml SYSTEM "pgml.dtd">
+<pgml description="uci.uml.visual.UMLClassDiagram|127-0-0-1-779885:e741df9a48:-8000"
+      name="class diagram 1"
+>
+  <group name="Fig0"
+       description="uci.uml.visual.FigClass[152, 224, 129, 61]"
+       href="127-0-0-1-779885:e741df9a48:-7fff"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig0.0"
+      x="153"
+      y="225"
+      width="127"
+      height="59"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig0.1"
+      x="152"
+      y="224"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >CatalogEJB</text>
+    <text name="Fig0.2"
+      x="152"
+      y="238"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >protected CatalogDAO dao</text>
+    <text name="Fig0.3"
+      x="152"
+      y="261"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig1"
+       description="uci.uml.visual.FigClass[32, 136, 96, 57]"
+       href="127-0-0-1-779885:e741df9a48:-7ffd"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig1.0"
+      x="33"
+      y="137"
+      width="94"
+      height="55"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig1.1"
+      x="32"
+      y="136"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >CatalogWebImpl</text>
+    <text name="Fig1.2"
+      x="32"
+      y="150"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+    <text name="Fig1.3"
+      x="32"
+      y="171"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig2"
+       description="uci.uml.visual.FigClass[240, 336, 97, 61]"
+       href="127-0-0-1-779885:e741df9a48:-7ffc"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig2.0"
+      x="241"
+      y="337"
+      width="95"
+      height="59"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig2.1"
+      x="240"
+      y="336"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >CatalogDAO</text>
+    <text name="Fig2.2"
+      x="240"
+      y="350"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+    <text name="Fig2.3"
+      x="240"
+      y="373"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig3"
+       description="uci.uml.visual.FigClass[160, 128, 97, 69]"
+       href="127-0-0-1-779885:e741df9a48:-7ffb"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig3.0"
+      x="161"
+      y="129"
+      width="95"
+      height="67"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig3.1"
+      x="160"
+      y="128"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >&lt;&lt;interface&gt;&gt;
+Catalog</text>
+    <text name="Fig3.2"
+      x="160"
+      y="152"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+    <text name="Fig3.3"
+      x="160"
+      y="174"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig4"
+       description="uci.uml.visual.FigClass[160, 40, 97, 69]"
+       href="127-0-0-1-779885:e741df9a48:-7ffa"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig4.0"
+      x="161"
+      y="41"
+      width="95"
+      height="67"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig4.1"
+      x="160"
+      y="40"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >&lt;&lt;interface&gt;&gt;
+CatalogHome</text>
+    <text name="Fig4.2"
+      x="160"
+      y="64"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+    <text name="Fig4.3"
+      x="160"
+      y="86"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig5"
+       description="uci.uml.visual.FigClass[496, 352, 123, 79]"
+       href="127-0-0-1-779885:e741df9a48:-7ff9"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig5.0"
+      x="497"
+      y="353"
+      width="121"
+      height="77"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig5.1"
+      x="496"
+      y="352"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >Product</text>
+    <text name="Fig5.2"
+      x="496"
+      y="366"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >private String id
+private String name
+private String description</text>
+    <text name="Fig5.3"
+      x="496"
+      y="408"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig6"
+       description="uci.uml.visual.FigClass[496, 232, 123, 79]"
+       href="127-0-0-1-779885:e741df9a48:-7ff8"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig6.0"
+      x="497"
+      y="233"
+      width="121"
+      height="77"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig6.1"
+      x="496"
+      y="232"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >Category</text>
+    <text name="Fig6.2"
+      x="496"
+      y="246"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >private String id
+private String name
+private String description</text>
+    <text name="Fig6.3"
+      x="496"
+      y="288"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig7"
+       description="uci.uml.visual.FigClass[496, 480, 115, 95]"
+       href="127-0-0-1-779885:e741df9a48:-7ff7"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig7.0"
+      x="497"
+      y="481"
+      width="113"
+      height="93"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig7.1"
+      x="496"
+      y="480"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >Item</text>
+    <text name="Fig7.2"
+      x="496"
+      y="494"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >private String productId
+private String itemId
+private double listPrice
+private double unitCost</text>
+    <text name="Fig7.3"
+      x="496"
+      y="549"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig8"
+       description="uci.uml.visual.FigClass[632, 336, 181, 131]"
+       href="127-0-0-1-779885:e741df9a48:-7ff6"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig8.0"
+      x="633"
+      y="337"
+      width="179"
+      height="129"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig8.1"
+      x="632"
+      y="336"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >ListChunk</text>
+    <text name="Fig8.2"
+      x="632"
+      y="350"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >private int totalElements
+private Collection elementsInThisList
+private int firstElementOfThisList
+private int countOfElementsInthisList</text>
+    <text name="Fig8.3"
+      x="632"
+      y="408"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >public int getTotalCount()
+public Collection getCollection()
+public int getCurrentCount()
+public int getFirstElementIndex()</text>
+  </group>
+  <group name="Fig9"
+       description="uci.uml.visual.FigClass[80, 336, 97, 61]"
+       href="127-0-0-1-779885:e741df9a48:-7ff5"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig9.0"
+      x="81"
+      y="337"
+      width="95"
+      height="59"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig9.1"
+      x="80"
+      y="336"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >CatalogDAOFactory</text>
+    <text name="Fig9.2"
+      x="80"
+      y="350"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+    <text name="Fig9.3"
+      x="80"
+      y="373"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig10"
+       description="uci.uml.visual.FigClass[240, 440, 97, 61]"
+       href="127-0-0-1-779885:e741df9a48:-7ff4"
+       fill="1"
+       fillcolor="-1"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+    </private>
+    
+    <rectangle name="Fig10.0"
+      x="241"
+      y="441"
+      width="95"
+      height="59"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    />
+    <text name="Fig10.1"
+      x="240"
+      y="440"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    >CatalogDAOImpl</text>
+    <text name="Fig10.2"
+      x="240"
+      y="454"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+    <text name="Fig10.3"
+      x="240"
+      y="477"
+      fill="1"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+      font="dialog"
+      textsize="9"
+    ></text>
+  </group>
+  <group name="Fig11"
+       description="uci.uml.visual.FigAssociation"
+       href="127-0-0-1-779885:e741df9a48:-7ff3"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+      sourcePortFig="Fig0.0"
+      destPortFig="Fig2.0"
+      sourceFigNode="Fig0"
+      destFigNode="Fig2"
+    </private>
+    <path name="Fig11.1"
+      description="uci.gef.FigPoly"
+      fill="0"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    >
+      <moveto x="216"
+              y="284" />
+      <lineto x="216"
+              y="288" />
+      <lineto x="241"
+              y="337" />
+    </path>
+  </group>
+  <group name="Fig12"
+       description="uci.uml.visual.FigAssociation"
+       href="127-0-0-1-779885:e741df9a48:-7ff2"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+      sourcePortFig="Fig2.0"
+      destPortFig="Fig9.0"
+      sourceFigNode="Fig2"
+      destFigNode="Fig9"
+    </private>
+    <path name="Fig12.1"
+      description="uci.gef.FigPoly"
+      fill="0"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    >
+      <moveto x="241"
+              y="368" />
+      <lineto x="176"
+              y="368" />
+    </path>
+  </group>
+  <group name="Fig13"
+       description="uci.uml.visual.FigAssociation"
+       href="127-0-0-1-682406:e741f7122c:-7ffe"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+      sourcePortFig="Fig5.0"
+      destPortFig="Fig7.0"
+      sourceFigNode="Fig5"
+      destFigNode="Fig7"
+    </private>
+    <path name="Fig13.1"
+      description="uci.gef.FigPoly"
+      fill="0"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    >
+      <moveto x="544"
+              y="430" />
+      <lineto x="544"
+              y="481" />
+    </path>
+  </group>
+  <group name="Fig14"
+       description="uci.uml.visual.FigAssociation"
+       href="127-0-0-1-682406:e741f7122c:-7ffd"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+      sourcePortFig="Fig6.0"
+      destPortFig="Fig5.0"
+      sourceFigNode="Fig6"
+      destFigNode="Fig5"
+    </private>
+    <path name="Fig14.1"
+      description="uci.gef.FigPoly"
+      fill="0"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    >
+      <moveto x="544"
+              y="310" />
+      <lineto x="544"
+              y="353" />
+    </path>
+  </group>
+  <group name="Fig15"
+       description="uci.uml.visual.FigAssociation"
+       href="127-0-0-1-682406:e741f7122c:-7ffc"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+      sourcePortFig="Fig10.0"
+      destPortFig="Fig2.0"
+      sourceFigNode="Fig10"
+      destFigNode="Fig2"
+    </private>
+    <path name="Fig15.1"
+      description="uci.gef.FigPoly"
+      fill="0"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    >
+      <moveto x="288"
+              y="441" />
+      <lineto x="288"
+              y="396" />
+    </path>
+  </group>
+  <group name="Fig16"
+       description="uci.uml.visual.FigAssociation"
+       href="127-0-0-1-682406:e741f7122c:-7ffa"
+       stroke="1"
+       strokecolor="-16777216"
+  >
+    <private>
+      sourcePortFig="Fig1.0"
+      destPortFig="Fig0.0"
+      sourceFigNode="Fig1"
+      destFigNode="Fig0"
+    </private>
+    <path name="Fig16.1"
+      description="uci.gef.FigPoly"
+      fill="0"
+      fillcolor="-1"
+      stroke="1"
+      strokecolor="-16777216"
+    >
+      <moveto x="127"
+              y="192" />
+      <lineto x="153"
+              y="225" />
+    </path>
+  </group>
+</pgml>

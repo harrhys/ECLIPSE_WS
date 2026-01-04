@@ -1,0 +1,777 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/10/02 11:51:05">
+	<title> SavingsAccount (bmp) Application:  SavingsAccount (bmp) Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+             SavingsAccount (bmp) Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15798"> </A>
+<A NAME="SavingsAccount (bmp) Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+SavingsAccount (bmp) Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="16755"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the SavingsAccount (bmp) sample application in conjunction with the Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="16756"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14787"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#14797"  >Overview</A>
+</FONT>
+<P><A NAME="14788"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#14807"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="14789"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#14833"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="14790"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#14937"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="14792"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#14979"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14797"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14799"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample is based on the SavingsAccount sample included in Sun's J2EE Developer's Guide, version 1.2.1 and illustrates the functionality with Bean-Managed Persistence. The EJB that represents a savings account keeps its state in a table of relational database.
+</FONT>
+<P>
+
+<A NAME="14801"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following instructions describe how to assemble, deploy on the Application Server, and how to access the EJB. Although the client application and EJB offer minimal functionality, this sample should provide you with a basic understanding of EJBs in the Sun One Application Server.
+</FONT>
+<P>
+
+<A NAME="14805"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The EJB uses relational database and the following instructions describe how to register the JDBC resources.
+</FONT>
+
+<P>
+<P>
+<BR>
+<A NAME="19288"> </A>
+<A NAME="Setting up the environment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Setting up the environment
+</FONT>
+<BR>
+<BR>
+
+<A NAME="19336"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In order to successfully deploy and run the bmp (savingsaccount) sample application, Database resources (<A HREF="../../../../docs/pointbase.html">PointBase</A>) needs to be setup with the Application Server.
+</FONT>
+<P>
+<A NAME="19336"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you want to run the bmp (savingsaccount) sample application with the Oracle database, please refer to (<A HREF="../../../../docs/oracle.html">How to run samples with Oracle database server</A>) for configuration steps.
+</FONT>
+
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14807"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14809"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The <A HREF="#14813"  >Command Line Based Compilation and Assembly</A> procedure describes how to assemble and compile the sample using a Command Line Interface (CLI).
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14813"> </A>
+<A NAME="Command Line Based Compilation and Assembly"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line Based Compilation and Assembly
+</FONT>
+<BR>
+<BR>
+
+
+<BR>
+<P>
+<A NAME="14815"> </A>
+<A NAME="To rebuild the entire application from scratch:"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+To rebuild the entire application from scratch:
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="14817"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14819"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>command under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/bmp/savingsaccount/src/</FONT>.
+</FONT>
+<P>     <DT> <A NAME="14821"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core is executed to rebuild the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P>  </dl>
+<A NAME="14823"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15163"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+When you have re-created the sample application from scratch, proceed to deploying the application.
+</FONT>
+<P>  </dl>
+<A NAME="15164"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the web application project area.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14827"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant clean </FONT>command to remove the sample application's assemble and build directories.
+</FONT>
+<P>     <DT> <A NAME="15145"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Now you are ready to use this<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file for deployment.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14833"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14835"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploy the application:
+</FONT>
+<P>
+<ul>
+<A NAME="14837"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#14843"  >Command Line Based Deployment</A> describes how to manually register the application in a Sun ONE Application Server using a Command Line Interface (CLI). This is the fastest means of deploying the application.
+</FONT>
+<P><A NAME="14840"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="#14888"  >GUI Based Deployment</A> describes how to use the Sun ONE Deployment Tool to import and deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14843"> </A>
+<A NAME="Command Line Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14845"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a complete<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file is supplied, the fastest means of setting up the application is to use the command line utilities as described in this section.
+</FONT>
+<P>
+
+<A NAME="15914"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you want to deploy through a GUI tool, follow the instructions for <A HREF="#14888"  >GUI Based Deployment</A>.
+</FONT>
+<P>
+
+<A NAME="15207"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The pre-built<FONT FACE="courier, couriernew, monospaced size"> bmp-savingsaccount.ear </FONT>file is an Enterprise Archive file that contains the Java Archive (JAR) files of the application.
+</FONT>
+<P>
+
+<A NAME="15924"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since this application consists of EJB and client, it has two jars - one for each. Individual JAR files have the XML deployment descriptor files, application class files and other content as required by the application.
+</FONT>
+<P>
+
+<A NAME="15932"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploy using either the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>script or the<FONT FACE="courier, couriernew, monospaced size"> asadmin </FONT>command.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="15243"> </A>
+<A NAME="Using the asant Script"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asant Script
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="14857"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the<FONT FACE="courier, couriernew, monospaced size"> src </FONT>directory of the sample:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14859"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/bmp/savingsaccount/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14861"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant deploy </FONT>command.
+</FONT>
+<P></ol>
+<BR>
+<P>
+<A NAME="14865"> </A>
+<A NAME="Using the asadmin Command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asadmin Command
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="14867"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the root of the sample directory:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14869"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/bmp/savingsaccount/</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14871"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asadmin </FONT>command to deploy the application to the local application server instance:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14873"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u </FONT>&lt;<I>user-name</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -w </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -H </FONT>&lt;hostname&gt;<FONT FACE="courier, couriernew, monospaced size"> -p </FONT>&lt;<I>admin server port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --instance </FONT>&lt;<I>instance name</I>&gt;<FONT FACE="courier, couriernew, monospaced size">bmp-savingsaccount.ear</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14876"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="14877"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+It authenticates against the local application server's administrative server.
+</FONT>
+<P><A NAME="14878"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The<FONT FACE="courier, couriernew, monospaced size"> .ear</FONT> file is transferred to the administrative server.
+</FONT>
+<P><A NAME="14879"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="14880"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P><A NAME="14881"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into the repository.
+</FONT>
+<P><A NAME="14882"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application<FONT FACE="courier, couriernew, monospaced size"> bmp-savingsaccount </FONT>by updating the <FONT FACE="courier, couriernew, monospaced size">server.xml </FONT>file.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14883"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If you want to verify the registration of the application, proceed to <A HREF="#14919"  >Verifying Registration</A> section.
+</FONT>
+<P>       <DT> <A NAME="14885"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Otherwise, you are ready to exercise the application by <A HREF="#14937"  >Running the Sample Application</A>.
+</FONT>
+<P>    </dl>
+  </ul>
+</ul>
+<P>
+<BR>
+<A NAME="14888"> </A>
+<A NAME="GUI Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+GUI Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14890"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a pre-built Enterprise Archive (<FONT FACE="courier, couriernew, monospaced size">.ear</FONT>) file for the sample application is included with the application server, you can use the Admin Tool to quickly read in the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file and deploy it to the application server.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14893"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Open the pre-existing sample<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P><A NAME="14895"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Start the admin server if it is not already started.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14897"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+UNIX
+</FONT>
+<P>  </dl>
+  <ol type="a">
+<A NAME="14899"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Goto &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/admin-server/</FONT>.
+</FONT>
+<P><A NAME="16152"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> startserv </FONT>command.
+</FONT>
+<P>  </ol>
+  <dl>
+     <DT> <A NAME="14902"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Windows
+</FONT>
+<P>  </dl>
+  <ol type="a">
+<A NAME="14904"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Goto &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">\domain\domain1\admin-server\</FONT>.
+</FONT>
+<P><A NAME="16179"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Run<FONT FACE="courier, couriernew, monospaced size"> startserv</FONT>.
+</FONT>
+<P>  </ol>
+<A NAME="14907"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Open the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P>  <ol type="a">
+<A NAME="14909"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Navigate to the browser based admin server page [<FONT FACE="courier, couriernew, monospaced size">http://</FONT>&lt;<I>server-host</I>&gt;<FONT FACE="courier, couriernew, monospaced size">:</FONT>&lt;<I>admin-port</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/index.html</FONT>].
+</FONT>
+<P><A NAME="14910"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Enter your username and password to access the admin server.
+</FONT>
+<P><A NAME="14911"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click App Server Instances&gt;server1&gt;Applications&gt;Enterprise Apps.
+</FONT>
+<P><A NAME="14912"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+In the right hand pane, click Deploy to deploy an application.
+</FONT>
+<P><A NAME="16223"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Choose the file (from disk) to be deployed (<FONT FACE="courier, couriernew, monospaced size">bmp-savingsaccount.ear</FONT>).
+</FONT>
+<P><A NAME="16230"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click OK.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14914"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You are prompted to supply the application name.
+</FONT>
+<P>    </dl>
+<A NAME="16247"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Enter<FONT FACE="courier, couriernew, monospaced size"> bmp-savingsaccount</FONT>.
+</FONT>
+<P><A NAME="16260"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click OK.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14915"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If the deployment goes through properly, you see the original pane with <FONT FACE="courier, couriernew, monospaced size">bmp-savingsaccount </FONT>application as deployed.
+</FONT>
+<P>    </dl>
+  </ol>
+</ol>
+<P>
+<BR>
+<A NAME="14919"> </A>
+<A NAME="Verifying Registration"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Registration
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14921"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered.
+</FONT>
+<P>
+
+<A NAME="16273"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you do not want to verify that the application has been registered, proceed directly to <A HREF="#14937"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14924"> </A>
+<A NAME="To verify the registration of the application:"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+To verify the registration of the application:
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="16291"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> command to look at applications deployed with a server instance. You see the<FONT FACE="courier, couriernew, monospaced size"> bmp-savingsaccount app </FONT>as one of the listed applications.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14929"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u </FONT>&lt;username&gt;<FONT FACE="courier, couriernew, monospaced size"> -w </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -H </FONT>&lt;<I>host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -p </FONT>&lt;<I>admin-port</I>&gt;&lt;<I>server instance name</I>&gt;.
+</FONT>
+<P>  </dl>
+<A NAME="14932"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Or navigate the Admin tool GUI to App Server Instances&gt;server1&gt;Applications&gt;Enterprise Apps.
+</FONT>
+<P><A NAME="16332"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Click Enterprise Apps on the left frame menu to display a list of applications deployed on the server.
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="14937"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14939"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Running the sample is a two step process.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14940"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Goto the directory where the sample has been deployed.
+</FONT>
+<P><A NAME="14941"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Run<FONT FACE="courier, couriernew, monospaced size"> appclient </FONT>using the following instructions.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14943"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&gt; cd </FONT>&lt; <I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/server1/applications/j2ee-apps/bmp-savingsaccount_1</FONT>
+</FONT>
+<P>     <DT> <A NAME="14944"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&gt; </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/bin/appclient -client bmp-savingsaccountClient.jar -name SimpleSavingsAccount -textauth</FONT>
+</FONT>
+<P>     <DT> <A NAME="14947"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You see the following output:
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14948"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">... </FONT>
+</FONT>
+<P>       <DT> <A NAME="14950"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">balance = 68.25</FONT>
+</FONT>
+<P>       <DT> <A NAME="14951"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">balance = 32.55</FONT>
+</FONT>
+<P>       <DT> <A NAME="14952"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">456: 44.77</FONT>
+</FONT>
+<P>       <DT> <A NAME="14953"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">730: 19.54</FONT>
+</FONT>
+<P>       <DT> <A NAME="14954"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">268: 100.07</FONT>
+</FONT>
+<P>       <DT> <A NAME="14955"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">836: 32.55</FONT>
+</FONT>
+<P>       <DT> <A NAME="14956"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">456: 44.77</FONT>
+</FONT>
+<P>       <DT> <A NAME="14957"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">4</FONT>
+</FONT>
+<P>       <DT> <A NAME="14958"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">7</FONT>
+</FONT>
+<P>    </dl> </ol>
+<A NAME="15015"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17191"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+    <A NAME="14957"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Before running the application client again, ensure that you reset the database table by removing all rows from the table. The application does not work correctly unless you clean up.
+</FONT>
+<P>
+<A NAME="17208"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can do the following to clean the database.
+</FONT>
+<P>
+<ul>
+<A NAME="17198"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced si
+ze">/samples/ejb/bmp/savingsaccount/src/</FONT>
+</FONT>
+<P><A NAME="17199"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">asant sql</FONT>
+</FONT>
+<P></ul>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+<BR>
+<A NAME="14964"> </A>
+<A NAME="Generating Javadocs"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Generating Javadocs
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14966"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To understand sample application source code better, you can refer to the related javadocs. To generate javadocs run command
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="14969"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT>
+</FONT>
+<P>     <DT> <A NAME="14970"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+or
+</FONT>
+<P>     <DT> <A NAME="14971"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant all</FONT>
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="14973"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After javadocs are generated, you can access them at
+</FONT>
+<P>
+
+<A NAME="14975"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/bmp/savingsaccount/javadocs/index.html</FONT>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14979"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15777"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you encounter problems when running the application, review the log files at &lt;<I>install-dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/</FONT>&lt;<I>server-instance</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/logs/server.log </FONT>to see what went wrong.
+</FONT>
+<P>
+
+<A NAME="16734"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Make certain that you run<FONT FACE="courier, couriernew, monospaced size"> asant undeploy </FONT>before redeploying this sample to make sure that all modules are undeployed and the resources are disabled.
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 10, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

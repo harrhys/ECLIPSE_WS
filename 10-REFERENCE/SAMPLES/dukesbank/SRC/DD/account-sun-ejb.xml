@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sun-ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN' 'http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd'>
+
+<sun-ejb-jar>
+  <security-role-mapping>
+    <role-name>BankCustomer</role-name>
+    <group-name>Customer</group-name>
+  </security-role-mapping>
+  <security-role-mapping>
+    <role-name>BankAdmin</role-name>
+    <group-name>Admin</group-name>
+  </security-role-mapping>
+  <enterprise-beans>
+    <name>account-ejb.jar</name>
+    <unique-id>2059221018</unique-id>
+    <ejb>
+      <ejb-name>AccountEJB</ejb-name>
+      <jndi-name>ejb/account</jndi-name>
+      <resource-ref>
+        <res-ref-name>jdbc/BankDB</res-ref-name>
+        <jndi-name>jdbc/Cloudscape</jndi-name>
+      </resource-ref>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>0</refresh-period-in-seconds>
+      <commit-option>B</commit-option>
+      <gen-classes>
+        <remote-impl>com.sun.ebank.ejb.account.AccountBean_EJBObjectImpl</remote-impl>
+        <remote-home-impl>com.sun.ebank.ejb.account.AccountBean_RemoteHomeImpl</remote-home-impl>
+      </gen-classes>
+    </ejb>
+    <ejb>
+      <ejb-name>AccountControllerEJB</ejb-name>
+      <jndi-name>ejb/accountController</jndi-name>
+      <ejb-ref>
+        <ejb-ref-name>ejb/account</ejb-ref-name>
+        <jndi-name>ejb/account</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/customer</ejb-ref-name>
+        <jndi-name>ejb/customer</jndi-name>
+      </ejb-ref>
+      <resource-ref>
+        <res-ref-name>jdbc/BankDB</res-ref-name>
+        <jndi-name>jdbc/Cloudscape</jndi-name>
+      </resource-ref>
+      <is-read-only-bean>false</is-read-only-bean>
+      <refresh-period-in-seconds>0</refresh-period-in-seconds>
+      <commit-option>B</commit-option>
+      <gen-classes>
+        <remote-impl>com.sun.ebank.ejb.account.AccountControllerBean_EJBObjectImpl</remote-impl>
+        <remote-home-impl>com.sun.ebank.ejb.account.AccountControllerBean_RemoteHomeImpl</remote-home-impl>
+      </gen-classes>
+    </ejb>
+  </enterprise-beans>
+</sun-ejb-jar>
+

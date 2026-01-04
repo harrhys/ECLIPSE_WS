@@ -1,0 +1,1821 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<OBJECT CLASS="com.sun.forte4j.modules.dbmodel.SchemaElement" ID="com.sun.forte4j.modules.dbmodel.SchemaElement75408000">
+  <versionNo>2</versionNo>
+  <impl>
+    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.SchemaElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.SchemaElementImpl14728572">
+      <element>
+        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.SchemaElement75408000"/>
+      </element>
+      <_catalog>
+        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier12081530">
+          <name></name>
+        </OBJECT>
+      </_catalog>
+      <_username>OPC</_username>
+      <_driverName>Oracle JDBC driver</_driverName>
+      <_driverVersion>9.0.1.0.0</_driverVersion>
+      <_url>jdbc:oracle:thin:@seneca99:1521:ORA</_url>
+      <_name>
+        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier16422923">
+          <name>OPCDB</name>
+        </OBJECT>
+      </_name>
+      <_driver>oracle.jdbc.driver.OracleDriver</_driver>
+      <tables>
+        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection10898139">
+          <_elms>
+            <ARRAY SIZE="4" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.TableElement">
+              <ROW ROW="0">
+                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.TableElement" ID="com.sun.forte4j.modules.dbmodel.TableElement1823730167">
+                  <impl>
+                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl1309751">
+                      <table>ADDRESSEJBTABLE</table>
+                      <columns>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection9565250">
+                          <_elms>
+                            <ARRAY SIZE="10" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                              <ROW ROW="0">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-1267629711">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl1285159">
+                                      <_precision>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer22">
+                                          <value>22</value>
+                                        </OBJECT>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1267629711"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer0">
+                                          <value>0</value>
+                                        </OBJECT>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier7400704">
+                                          <name>PMPRIMARYKEY</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>false</_isNullable>
+                                      <_type>3</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer22"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="1">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement536665817">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl2801406">
+                                      <_precision>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer255">
+                                          <value>255</value>
+                                        </OBJECT>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement536665817"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier6368870">
+                                          <name>REVERSE_ADDRESS_POID</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="2">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-879691292">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl2969251">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-879691292"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier8764084">
+                                          <name>FIRSTNAME</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="3">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement863965240">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl10796349">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement863965240"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier8649182">
+                                          <name>LASTNAME</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="4">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-975679593">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl9007244">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-975679593"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier3941040">
+                                          <name>STREET1</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="5">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-975679592">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl611987">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-975679592"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier1235388">
+                                          <name>STREET2</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="6">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-864386302">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl9756761">
+                                      <_precision>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer80">
+                                          <value>80</value>
+                                        </OBJECT>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-864386302"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier1381554">
+                                          <name>CITY</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="7">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-1011085894">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl113902">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1011085894"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier1751836">
+                                          <name>STATE</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="8">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-1136239990">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl15872771">
+                                      <_precision>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer25">
+                                          <value>25</value>
+                                        </OBJECT>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1136239990"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier15932516">
+                                          <name>ZIP</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer25"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="9">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1864038015">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl13444014">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1864038015"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier14777500">
+                                          <name>COUNTRY</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl1309751"/>
+                          </owner>
+                        </OBJECT>
+                      </columns>
+                      <element>
+                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                      </element>
+                      <_name>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier12327298">
+                          <name>ADDRESSEJBTABLE</name>
+                        </OBJECT>
+                      </_name>
+                      <isTable>true</isTable>
+                      <keys>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection3243964">
+                          <_elms>
+                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                              <ROW ROW="0">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.UniqueKeyElement" ID="com.sun.forte4j.modules.dbmodel.UniqueKeyElement175005037">
+                                  <_associatedIndex>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.IndexElement" ID="com.sun.forte4j.modules.dbmodel.IndexElement175005037">
+                                      <declaringTable>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                      </declaringTable>
+                                      <impl>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl3059168">
+                                          <columns>
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection6953798">
+                                              <_elms>
+                                                <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                  <ROW ROW="0">
+                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1267629711"/>
+                                                  </ROW>
+                                                </ARRAY>
+                                              </_elms>
+                                              <_template>
+                                                <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                </ARRAY>
+                                              </_template>
+                                              <owner>
+                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl1309751"/>
+                                              </owner>
+                                            </OBJECT>
+                                          </columns>
+                                          <element>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.IndexElement175005037"/>
+                                          </element>
+                                          <_name>
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier10047563">
+                                              <name>PK_ADDRESSEJBTABL</name>
+                                            </OBJECT>
+                                          </_name>
+                                          <tei>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl1309751"/>
+                                          </tei>
+                                          <_unique>true</_unique>
+                                        </OBJECT>
+                                      </impl>
+                                    </OBJECT>
+                                  </_associatedIndex>
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement1823730167"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl6725247">
+                                      <columns>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection4864502">
+                                          <_elms>
+                                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                              <ROW ROW="0">
+                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1267629711"/>
+                                              </ROW>
+                                            </ARRAY>
+                                          </_elms>
+                                          <_template>
+                                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                            </ARRAY>
+                                          </_template>
+                                          <owner>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl6725247"/>
+                                          </owner>
+                                        </OBJECT>
+                                      </columns>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.UniqueKeyElement175005037"/>
+                                      </element>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier3130461">
+                                          <name>PK_ADDRESSEJBTABL</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_primary>true</_primary>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl1309751"/>
+                          </owner>
+                        </OBJECT>
+                      </keys>
+                      <indexes>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection5022219">
+                          <_elms>
+                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                              <ROW ROW="0">
+                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.IndexElement175005037"/>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl1309751"/>
+                          </owner>
+                        </OBJECT>
+                      </indexes>
+                    </OBJECT>
+                  </impl>
+                </OBJECT>
+              </ROW>
+              <ROW ROW="1">
+                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.TableElement" ID="com.sun.forte4j.modules.dbmodel.TableElement254300495">
+                  <impl>
+                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl322593">
+                      <table>CARDEJBTABLE</table>
+                      <columns>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection2401374">
+                          <_elms>
+                            <ARRAY SIZE="5" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                              <ROW ROW="0">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-1898329831">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement254300495"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl2793178">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer22"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1898329831"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT REFERENCE="java.lang.Integer0"/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier2302410">
+                                          <name>PMPRIMARYKEY</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>false</_isNullable>
+                                      <_type>3</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer22"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="1">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1103883021">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement254300495"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl8350175">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1103883021"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier16765201">
+                                          <name>REVERSE_CARD_POID</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="2">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement803335256">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement254300495"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl16170328">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement803335256"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier597514">
+                                          <name>CARDNUMBER</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="3">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-271606775">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement254300495"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl9646836">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer25"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-271606775"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier16141609">
+                                          <name>CARDTYPE</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer25"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="4">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-1436598944">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement254300495"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl4455757">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer25"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1436598944"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier11196208">
+                                          <name>EXPIRYDATE</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer25"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl322593"/>
+                          </owner>
+                        </OBJECT>
+                      </columns>
+                      <element>
+                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement254300495"/>
+                      </element>
+                      <_name>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier1421428">
+                          <name>CARDEJBTABLE</name>
+                        </OBJECT>
+                      </_name>
+                      <isTable>true</isTable>
+                      <keys>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection5560925">
+                          <_elms>
+                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                              <ROW ROW="0">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.UniqueKeyElement" ID="com.sun.forte4j.modules.dbmodel.UniqueKeyElement-848022945">
+                                  <_associatedIndex>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.IndexElement" ID="com.sun.forte4j.modules.dbmodel.IndexElement-848022945">
+                                      <declaringTable>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement254300495"/>
+                                      </declaringTable>
+                                      <impl>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl15970705">
+                                          <columns>
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection15633563">
+                                              <_elms>
+                                                <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                  <ROW ROW="0">
+                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1898329831"/>
+                                                  </ROW>
+                                                </ARRAY>
+                                              </_elms>
+                                              <_template>
+                                                <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                </ARRAY>
+                                              </_template>
+                                              <owner>
+                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl322593"/>
+                                              </owner>
+                                            </OBJECT>
+                                          </columns>
+                                          <element>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.IndexElement-848022945"/>
+                                          </element>
+                                          <_name>
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier964083">
+                                              <name>PK_CARDEJBTABL</name>
+                                            </OBJECT>
+                                          </_name>
+                                          <tei>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl322593"/>
+                                          </tei>
+                                          <_unique>true</_unique>
+                                        </OBJECT>
+                                      </impl>
+                                    </OBJECT>
+                                  </_associatedIndex>
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement254300495"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl13343466">
+                                      <columns>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection9447717">
+                                          <_elms>
+                                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                              <ROW ROW="0">
+                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1898329831"/>
+                                              </ROW>
+                                            </ARRAY>
+                                          </_elms>
+                                          <_template>
+                                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                            </ARRAY>
+                                          </_template>
+                                          <owner>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl13343466"/>
+                                          </owner>
+                                        </OBJECT>
+                                      </columns>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.UniqueKeyElement-848022945"/>
+                                      </element>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier2600944">
+                                          <name>PK_CARDEJBTABL</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_primary>true</_primary>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl322593"/>
+                          </owner>
+                        </OBJECT>
+                      </keys>
+                      <indexes>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection10688356">
+                          <_elms>
+                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                              <ROW ROW="0">
+                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.IndexElement-848022945"/>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl322593"/>
+                          </owner>
+                        </OBJECT>
+                      </indexes>
+                    </OBJECT>
+                  </impl>
+                </OBJECT>
+              </ROW>
+              <ROW ROW="2">
+                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.TableElement" ID="com.sun.forte4j.modules.dbmodel.TableElement-834408122">
+                  <impl>
+                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9418673">
+                      <table>LINEITEMEJBTABLE</table>
+                      <columns>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection5325636">
+                          <_elms>
+                            <ARRAY SIZE="9" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                              <ROW ROW="0">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement550900354">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl6613809">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer22"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement550900354"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT REFERENCE="java.lang.Integer0"/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier9247933">
+                                          <name>PMPRIMARYKEY</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>false</_isNullable>
+                                      <_type>3</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer22"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="1">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1760588097">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl5896604">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1760588097"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier1219197">
+                                          <name>PURCHASEORDEREJB_POID</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer255"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="2">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1013462081">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl6077170">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1013462081"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier16096495">
+                                          <name>CATEGORYID</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="3">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-1780622058">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl1186217">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1780622058"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier5417702">
+                                          <name>ITEMID</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="4">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-29600415">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl5366718">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer25"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-29600415"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier4121504">
+                                          <name>LINEITEMSTATUS</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer25"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="5">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement303920613">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl13773263">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement303920613"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier11991650">
+                                          <name>LINENUMBER</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="6">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1709985666">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl15755263">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1709985666"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier3908256">
+                                          <name>PRODUCTID</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>true</_isNullable>
+                                      <_type>12</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer80"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="7">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement51012659">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl3263234">
+                                      <_precision>
+                                        <OBJECT REFERENCE="java.lang.Integer22"/>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement51012659"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT REFERENCE="java.lang.Integer0"/>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier467758">
+                                          <name>QUANTITY</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>false</_isNullable>
+                                      <_type>3</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer22"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="8">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-1989795971">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl9883439">
+                                      <_precision>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer10">
+                                          <value>10</value>
+                                        </OBJECT>
+                                      </_precision>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1989795971"/>
+                                      </element>
+                                      <_scale>
+                                        <OBJECT CLASS="java.lang.Integer" ID="java.lang.Integer2">
+                                          <value>2</value>
+                                        </OBJECT>
+                                      </_scale>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier16522263">
+                                          <name>UNITPRICE</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_isNullable>false</_isNullable>
+                                      <_type>3</_type>
+                                      <_length>
+                                        <OBJECT REFERENCE="java.lang.Integer10"/>
+                                      </_length>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9418673"/>
+                          </owner>
+                        </OBJECT>
+                      </columns>
+                      <element>
+                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                      </element>
+                      <_name>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier9978919">
+                          <name>LINEITEMEJBTABLE</name>
+                        </OBJECT>
+                      </_name>
+                      <isTable>true</isTable>
+                      <keys>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection15804425">
+                          <_elms>
+                            <ARRAY SIZE="2" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                              <ROW ROW="0">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ForeignKeyElement" ID="com.sun.forte4j.modules.dbmodel.ForeignKeyElement-1547072601">
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl10649635">
+                                      <columns>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection4393311">
+                                          <_elms>
+                                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement">
+                                              <ROW ROW="0">
+                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement" ID="com.sun.forte4j.modules.dbmodel.ColumnPairElement-394655950">
+                                                  <_referencedColumn>
+                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-401655784">
+                                                      <declaringTable>
+                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.TableElement" ID="com.sun.forte4j.modules.dbmodel.TableElement-247785872">
+                                                          <impl>
+                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9077209">
+                                                              <table>PURCHASEORDEREJBTABLE</table>
+                                                              <columns>
+                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection13840602">
+                                                                  <_elms>
+                                                                    <ARRAY SIZE="9" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                                      <ROW ROW="0">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1856875459">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl5442008">
+                                                                              <_precision>
+                                                                                <OBJECT REFERENCE="java.lang.Integer22"/>
+                                                                              </_precision>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1856875459"/>
+                                                                              </element>
+                                                                              <_scale>
+                                                                                <OBJECT REFERENCE="java.lang.Integer0"/>
+                                                                              </_scale>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier11235637">
+                                                                                  <name>ADDRESS___PMPRIMARYKEY</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_isNullable>true</_isNullable>
+                                                                              <_type>3</_type>
+                                                                              <_length>
+                                                                                <OBJECT REFERENCE="java.lang.Integer22"/>
+                                                                              </_length>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="1">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement2016530251">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl9791763">
+                                                                              <_precision>
+                                                                                <OBJECT REFERENCE="java.lang.Integer22"/>
+                                                                              </_precision>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement2016530251"/>
+                                                                              </element>
+                                                                              <_scale>
+                                                                                <OBJECT REFERENCE="java.lang.Integer0"/>
+                                                                              </_scale>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier2456951">
+                                                                                  <name>CARD___PMPRIMARYKEY</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_isNullable>true</_isNullable>
+                                                                              <_type>3</_type>
+                                                                              <_length>
+                                                                                <OBJECT REFERENCE="java.lang.Integer22"/>
+                                                                              </_length>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="2">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement555699051">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl5262262">
+                                                                              <_precision>
+                                                                                <OBJECT REFERENCE="java.lang.Integer22"/>
+                                                                              </_precision>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement555699051"/>
+                                                                              </element>
+                                                                              <_scale>
+                                                                                <OBJECT REFERENCE="java.lang.Integer0"/>
+                                                                              </_scale>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier10146645">
+                                                                                  <name>PODATE</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_isNullable>false</_isNullable>
+                                                                              <_type>3</_type>
+                                                                              <_length>
+                                                                                <OBJECT REFERENCE="java.lang.Integer22"/>
+                                                                              </_length>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="3">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement-1054796614">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl11044291">
+                                                                              <_precision>
+                                                                                <OBJECT REFERENCE="java.lang.Integer255"/>
+                                                                              </_precision>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1054796614"/>
+                                                                              </element>
+                                                                              <_scale>
+                                                                                <OBJECT/>
+                                                                              </_scale>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier15063173">
+                                                                                  <name>POEMAILID</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_isNullable>true</_isNullable>
+                                                                              <_type>12</_type>
+                                                                              <_length>
+                                                                                <OBJECT REFERENCE="java.lang.Integer255"/>
+                                                                              </_length>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="4">
+                                                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-401655784"/>
+                                                                      </ROW>
+                                                                      <ROW ROW="5">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1692297943">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl15348322">
+                                                                              <_precision>
+                                                                                <OBJECT REFERENCE="java.lang.Integer25"/>
+                                                                              </_precision>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1692297943"/>
+                                                                              </element>
+                                                                              <_scale>
+                                                                                <OBJECT/>
+                                                                              </_scale>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier9557095">
+                                                                                  <name>POLOCALE</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_isNullable>true</_isNullable>
+                                                                              <_type>12</_type>
+                                                                              <_length>
+                                                                                <OBJECT REFERENCE="java.lang.Integer25"/>
+                                                                              </_length>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="6">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1897278575">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl1029755">
+                                                                              <_precision>
+                                                                                <OBJECT REFERENCE="java.lang.Integer25"/>
+                                                                              </_precision>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1897278575"/>
+                                                                              </element>
+                                                                              <_scale>
+                                                                                <OBJECT/>
+                                                                              </_scale>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier9795990">
+                                                                                  <name>POSTATUS</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_isNullable>true</_isNullable>
+                                                                              <_type>12</_type>
+                                                                              <_length>
+                                                                                <OBJECT REFERENCE="java.lang.Integer25"/>
+                                                                              </_length>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="7">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement1953730211">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl6385630">
+                                                                              <_precision>
+                                                                                <OBJECT REFERENCE="java.lang.Integer255"/>
+                                                                              </_precision>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1953730211"/>
+                                                                              </element>
+                                                                              <_scale>
+                                                                                <OBJECT/>
+                                                                              </_scale>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier16224104">
+                                                                                  <name>POUSERID</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_isNullable>true</_isNullable>
+                                                                              <_type>12</_type>
+                                                                              <_length>
+                                                                                <OBJECT REFERENCE="java.lang.Integer255"/>
+                                                                              </_length>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="8">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnElement" ID="com.sun.forte4j.modules.dbmodel.ColumnElement63417652">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl15216329">
+                                                                              <_precision>
+                                                                                <OBJECT REFERENCE="java.lang.Integer10"/>
+                                                                              </_precision>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement63417652"/>
+                                                                              </element>
+                                                                              <_scale>
+                                                                                <OBJECT REFERENCE="java.lang.Integer2"/>
+                                                                              </_scale>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier5739709">
+                                                                                  <name>POVALUE</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_isNullable>false</_isNullable>
+                                                                              <_type>3</_type>
+                                                                              <_length>
+                                                                                <OBJECT REFERENCE="java.lang.Integer10"/>
+                                                                              </_length>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                    </ARRAY>
+                                                                  </_elms>
+                                                                  <_template>
+                                                                    <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                                    </ARRAY>
+                                                                  </_template>
+                                                                  <owner>
+                                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9077209"/>
+                                                                  </owner>
+                                                                </OBJECT>
+                                                              </columns>
+                                                              <element>
+                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                              </element>
+                                                              <_name>
+                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier15086897">
+                                                                  <name>PURCHASEORDEREJBTABLE</name>
+                                                                </OBJECT>
+                                                              </_name>
+                                                              <isTable>true</isTable>
+                                                              <keys>
+                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection11735156">
+                                                                  <_elms>
+                                                                    <ARRAY SIZE="3" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                                                                      <ROW ROW="0">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ForeignKeyElement" ID="com.sun.forte4j.modules.dbmodel.ForeignKeyElement-870692965">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl11427032">
+                                                                              <columns>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection1918310">
+                                                                                  <_elms>
+                                                                                    <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement">
+                                                                                      <ROW ROW="0">
+                                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement" ID="com.sun.forte4j.modules.dbmodel.ColumnPairElement426252361">
+                                                                                          <_referencedColumn>
+                                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1267629711"/>
+                                                                                          </_referencedColumn>
+                                                                                          <declaringTable>
+                                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                                          </declaringTable>
+                                                                                          <_localColumn>
+                                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1856875459"/>
+                                                                                          </_localColumn>
+                                                                                          <impl>
+                                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnPairElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnPairElementImpl5345209">
+                                                                                              <element>
+                                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnPairElement426252361"/>
+                                                                                              </element>
+                                                                                              <_name>
+                                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier11717967">
+                                                                                                  <name>ADDRESS___PMPRIMARYKEY;PMPRIMARYKEY</name>
+                                                                                                </OBJECT>
+                                                                                              </_name>
+                                                                                            </OBJECT>
+                                                                                          </impl>
+                                                                                        </OBJECT>
+                                                                                      </ROW>
+                                                                                    </ARRAY>
+                                                                                  </_elms>
+                                                                                  <_template>
+                                                                                    <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement">
+                                                                                    </ARRAY>
+                                                                                  </_template>
+                                                                                  <owner>
+                                                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl11427032"/>
+                                                                                  </owner>
+                                                                                </OBJECT>
+                                                                              </columns>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ForeignKeyElement-870692965"/>
+                                                                              </element>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier12923445">
+                                                                                  <name>FK_ADDRESSEJBTABLE_1</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <tei>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9077209"/>
+                                                                              </tei>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="1">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ForeignKeyElement" ID="com.sun.forte4j.modules.dbmodel.ForeignKeyElement-1609417009">
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl6515010">
+                                                                              <columns>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection12011208">
+                                                                                  <_elms>
+                                                                                    <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement">
+                                                                                      <ROW ROW="0">
+                                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement" ID="com.sun.forte4j.modules.dbmodel.ColumnPairElement-1251842871">
+                                                                                          <_referencedColumn>
+                                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-1898329831"/>
+                                                                                          </_referencedColumn>
+                                                                                          <declaringTable>
+                                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                                          </declaringTable>
+                                                                                          <_localColumn>
+                                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement2016530251"/>
+                                                                                          </_localColumn>
+                                                                                          <impl>
+                                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnPairElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnPairElementImpl15379094">
+                                                                                              <element>
+                                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnPairElement-1251842871"/>
+                                                                                              </element>
+                                                                                              <_name>
+                                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier6659038">
+                                                                                                  <name>CARD___PMPRIMARYKEY;PMPRIMARYKEY</name>
+                                                                                                </OBJECT>
+                                                                                              </_name>
+                                                                                            </OBJECT>
+                                                                                          </impl>
+                                                                                        </OBJECT>
+                                                                                      </ROW>
+                                                                                    </ARRAY>
+                                                                                  </_elms>
+                                                                                  <_template>
+                                                                                    <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement">
+                                                                                    </ARRAY>
+                                                                                  </_template>
+                                                                                  <owner>
+                                                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl6515010"/>
+                                                                                  </owner>
+                                                                                </OBJECT>
+                                                                              </columns>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ForeignKeyElement-1609417009"/>
+                                                                              </element>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier14436492">
+                                                                                  <name>FK_CARDEJBTABLE_1</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <tei>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9077209"/>
+                                                                              </tei>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                      <ROW ROW="2">
+                                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.UniqueKeyElement" ID="com.sun.forte4j.modules.dbmodel.UniqueKeyElement-1270674419">
+                                                                          <_associatedIndex>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.IndexElement" ID="com.sun.forte4j.modules.dbmodel.IndexElement-1270674419">
+                                                                              <declaringTable>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                              </declaringTable>
+                                                                              <impl>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl2024415">
+                                                                                  <columns>
+                                                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection4260499">
+                                                                                      <_elms>
+                                                                                        <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                                                          <ROW ROW="0">
+                                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-401655784"/>
+                                                                                          </ROW>
+                                                                                        </ARRAY>
+                                                                                      </_elms>
+                                                                                      <_template>
+                                                                                        <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                                                        </ARRAY>
+                                                                                      </_template>
+                                                                                      <owner>
+                                                                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9077209"/>
+                                                                                      </owner>
+                                                                                    </OBJECT>
+                                                                                  </columns>
+                                                                                  <element>
+                                                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.IndexElement-1270674419"/>
+                                                                                  </element>
+                                                                                  <_name>
+                                                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier155963">
+                                                                                      <name>PK_PURCHASEORDEREJBTABL</name>
+                                                                                    </OBJECT>
+                                                                                  </_name>
+                                                                                  <tei>
+                                                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9077209"/>
+                                                                                  </tei>
+                                                                                  <_unique>true</_unique>
+                                                                                </OBJECT>
+                                                                              </impl>
+                                                                            </OBJECT>
+                                                                          </_associatedIndex>
+                                                                          <declaringTable>
+                                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+                                                                          </declaringTable>
+                                                                          <impl>
+                                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl4029435">
+                                                                              <columns>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection8912664">
+                                                                                  <_elms>
+                                                                                    <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                                                      <ROW ROW="0">
+                                                                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-401655784"/>
+                                                                                      </ROW>
+                                                                                    </ARRAY>
+                                                                                  </_elms>
+                                                                                  <_template>
+                                                                                    <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                                                    </ARRAY>
+                                                                                  </_template>
+                                                                                  <owner>
+                                                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl4029435"/>
+                                                                                  </owner>
+                                                                                </OBJECT>
+                                                                              </columns>
+                                                                              <element>
+                                                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.UniqueKeyElement-1270674419"/>
+                                                                              </element>
+                                                                              <_name>
+                                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier9883693">
+                                                                                  <name>PK_PURCHASEORDEREJBTABL</name>
+                                                                                </OBJECT>
+                                                                              </_name>
+                                                                              <_primary>true</_primary>
+                                                                            </OBJECT>
+                                                                          </impl>
+                                                                        </OBJECT>
+                                                                      </ROW>
+                                                                    </ARRAY>
+                                                                  </_elms>
+                                                                  <_template>
+                                                                    <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                                                                    </ARRAY>
+                                                                  </_template>
+                                                                  <owner>
+                                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9077209"/>
+                                                                  </owner>
+                                                                </OBJECT>
+                                                              </keys>
+                                                              <indexes>
+                                                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection2902546">
+                                                                  <_elms>
+                                                                    <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                                                                      <ROW ROW="0">
+                                                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.IndexElement-1270674419"/>
+                                                                      </ROW>
+                                                                    </ARRAY>
+                                                                  </_elms>
+                                                                  <_template>
+                                                                    <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                                                                    </ARRAY>
+                                                                  </_template>
+                                                                  <owner>
+                                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9077209"/>
+                                                                  </owner>
+                                                                </OBJECT>
+                                                              </indexes>
+                                                            </OBJECT>
+                                                          </impl>
+                                                        </OBJECT>
+                                                      </declaringTable>
+                                                      <impl>
+                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnElementImpl4022954">
+                                                          <_precision>
+                                                            <OBJECT REFERENCE="java.lang.Integer255"/>
+                                                          </_precision>
+                                                          <element>
+                                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement-401655784"/>
+                                                          </element>
+                                                          <_scale>
+                                                            <OBJECT/>
+                                                          </_scale>
+                                                          <_name>
+                                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier1609399">
+                                                              <name>POID</name>
+                                                            </OBJECT>
+                                                          </_name>
+                                                          <_isNullable>false</_isNullable>
+                                                          <_type>12</_type>
+                                                          <_length>
+                                                            <OBJECT REFERENCE="java.lang.Integer255"/>
+                                                          </_length>
+                                                        </OBJECT>
+                                                      </impl>
+                                                    </OBJECT>
+                                                  </_referencedColumn>
+                                                  <declaringTable>
+                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                                  </declaringTable>
+                                                  <_localColumn>
+                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement1760588097"/>
+                                                  </_localColumn>
+                                                  <impl>
+                                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnPairElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.ColumnPairElementImpl4297732">
+                                                      <element>
+                                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnPairElement-394655950"/>
+                                                      </element>
+                                                      <_name>
+                                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier6079088">
+                                                          <name>PURCHASEORDEREJB_POID;POID</name>
+                                                        </OBJECT>
+                                                      </_name>
+                                                    </OBJECT>
+                                                  </impl>
+                                                </OBJECT>
+                                              </ROW>
+                                            </ARRAY>
+                                          </_elms>
+                                          <_template>
+                                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnPairElement">
+                                            </ARRAY>
+                                          </_template>
+                                          <owner>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.ForeignKeyElementImpl10649635"/>
+                                          </owner>
+                                        </OBJECT>
+                                      </columns>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ForeignKeyElement-1547072601"/>
+                                      </element>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier14780121">
+                                          <name>FK_LINEITEM_PURCHASEORDER</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <tei>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9418673"/>
+                                      </tei>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                              <ROW ROW="1">
+                                <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.UniqueKeyElement" ID="com.sun.forte4j.modules.dbmodel.UniqueKeyElement1641058737">
+                                  <_associatedIndex>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.IndexElement" ID="com.sun.forte4j.modules.dbmodel.IndexElement1641058737">
+                                      <declaringTable>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                      </declaringTable>
+                                      <impl>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.IndexElementImpl6039575">
+                                          <columns>
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection11582263">
+                                              <_elms>
+                                                <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                  <ROW ROW="0">
+                                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement550900354"/>
+                                                  </ROW>
+                                                </ARRAY>
+                                              </_elms>
+                                              <_template>
+                                                <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                                </ARRAY>
+                                              </_template>
+                                              <owner>
+                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9418673"/>
+                                              </owner>
+                                            </OBJECT>
+                                          </columns>
+                                          <element>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.IndexElement1641058737"/>
+                                          </element>
+                                          <_name>
+                                            <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier4986706">
+                                              <name>PK_LINEITEMEJBTABL</name>
+                                            </OBJECT>
+                                          </_name>
+                                          <tei>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9418673"/>
+                                          </tei>
+                                          <_unique>true</_unique>
+                                        </OBJECT>
+                                      </impl>
+                                    </OBJECT>
+                                  </_associatedIndex>
+                                  <declaringTable>
+                                    <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-834408122"/>
+                                  </declaringTable>
+                                  <impl>
+                                    <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl9377143">
+                                      <columns>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection6085929">
+                                          <_elms>
+                                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                              <ROW ROW="0">
+                                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.ColumnElement550900354"/>
+                                              </ROW>
+                                            </ARRAY>
+                                          </_elms>
+                                          <_template>
+                                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.ColumnElement">
+                                            </ARRAY>
+                                          </_template>
+                                          <owner>
+                                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.UniqueKeyElementImpl9377143"/>
+                                          </owner>
+                                        </OBJECT>
+                                      </columns>
+                                      <element>
+                                        <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.UniqueKeyElement1641058737"/>
+                                      </element>
+                                      <_name>
+                                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier13263353">
+                                          <name>PK_LINEITEMEJBTABL</name>
+                                        </OBJECT>
+                                      </_name>
+                                      <_primary>true</_primary>
+                                    </OBJECT>
+                                  </impl>
+                                </OBJECT>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.KeyElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9418673"/>
+                          </owner>
+                        </OBJECT>
+                      </keys>
+                      <indexes>
+                        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection" ID="com.sun.forte4j.modules.dbmodel.jdbcimpl.DBElementsCollection1518246">
+                          <_elms>
+                            <ARRAY SIZE="1" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                              <ROW ROW="0">
+                                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.IndexElement1641058737"/>
+                              </ROW>
+                            </ARRAY>
+                          </_elms>
+                          <_template>
+                            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.IndexElement">
+                            </ARRAY>
+                          </_template>
+                          <owner>
+                            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.TableElementImpl9418673"/>
+                          </owner>
+                        </OBJECT>
+                      </indexes>
+                    </OBJECT>
+                  </impl>
+                </OBJECT>
+              </ROW>
+              <ROW ROW="3">
+                <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.TableElement-247785872"/>
+              </ROW>
+            </ARRAY>
+          </_elms>
+          <_template>
+            <ARRAY SIZE="0" CLASS="PRIMITIVE" ROWCLASS="com.sun.forte4j.modules.dbmodel.TableElement">
+            </ARRAY>
+          </_template>
+          <owner>
+            <OBJECT REFERENCE="com.sun.forte4j.modules.dbmodel.jdbcimpl.SchemaElementImpl14728572"/>
+          </owner>
+        </OBJECT>
+      </tables>
+      <_databaseProductVersion>Oracle9i Enterprise Edition Release 9.0.1.0.0 - Production
+With the Partitioning option
+JServer Release 9.0.1.0.0 - Production</_databaseProductVersion>
+      <_schema>
+        <OBJECT CLASS="com.sun.forte4j.modules.dbmodel.DBIdentifier" ID="com.sun.forte4j.modules.dbmodel.DBIdentifier15088370">
+          <name>OPC</name>
+        </OBJECT>
+      </_schema>
+      <_databaseProductName>Oracle</_databaseProductName>
+    </OBJECT>
+  </impl>
+</OBJECT>

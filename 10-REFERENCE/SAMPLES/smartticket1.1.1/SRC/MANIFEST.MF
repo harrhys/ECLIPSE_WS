@@ -1,0 +1,9 @@
+Manifest-Version: 1.0
+MIDlet-1: SmartTicket,,st.SmartTicket
+MIDlet-Data-Size: 256
+MIDlet-Description: A Movie Ticket service
+MIDlet-Name: Smart Ticket
+MIDlet-Vendor: Java Software, Sun Microsystems
+MIDlet-Version: 0.0.1
+MicroEdition-Configuration: CLDC-1.0
+MicroEdition-Profile: MIDP-1.0

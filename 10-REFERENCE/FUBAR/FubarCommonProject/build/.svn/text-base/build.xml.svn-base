@@ -1,0 +1,45 @@
+<project name="FubarCommon" default="all" basedir=".">
+
+	<!-- set global properties for this build file -->
+	<property name="ear.version" value="1.0"/>
+	<property name="beahomedir" value="C:/bea/weblogic92"/>
+	<property name="buildrootdir" value="${basedir}/../.."/>
+	<property name="approotdir" value="${buildrootdir}/FubarCommonProject"/>
+	<property name="approotname" value="fubar"/>
+	<property name="jar_mod_file" value="${approotname}common.jar"/>
+
+	<target name="all" depends="clean, classmodstage, jarmod"/>
+
+	<target name="clean">
+		<delete file="${approotdir}/build/${jar_mod_file}"/>
+		<delete dir="${approotdir}/build/tmpjavamodstage"/>
+		<delete dir="${approotdir}/build/tmpclassmodstage"/>
+	</target>
+
+	<target name="classmodstage">
+		<delete dir="${approotdir}/build/tmpclassmodstage"/>
+		<mkdir dir="${approotdir}/build/tmpclassmodstage"/>
+		<copy todir="${approotdir}/build/tmpjavamodstage">
+			<fileset dir="${approotdir}/src"/>
+		</copy>
+		<replace dir="${approotdir}/build/tmpjavamodstage"
+			value="${ear.version}">
+			<include name="**/*.java"/>
+			<replacetoken>#.#</replacetoken>
+		</replace>
+		<javac srcdir="${approotdir}/build/tmpjavamodstage"
+			destdir="${approotdir}/build/tmpclassmodstage">
+			<classpath>
+				<pathelement path="${classpath}"/>
+				<pathelement location="${buildrootdir}/FubarCoreProject/build/fubarcore.jar"/>
+				<pathelement location="${beahomedir}/server/lib/weblogic.jar"/>
+    		</classpath>
+		</javac>
+	</target>
+
+	<target name="jarmod" depends="classmodstage">
+		<jar jarfile="${approotdir}/build/${jar_mod_file}"
+			basedir="${approotdir}/build/tmpclassmodstage"/>
+	</target>
+	
+</project>

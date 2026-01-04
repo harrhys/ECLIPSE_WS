@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/obo/!svn/ver/55256/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build
+END
+FubarWSApp.ear
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/obo/!svn/ver/55256/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSApp.ear
+END
+FubarWSAppClient.jar
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/obo/!svn/ver/55256/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClient.jar
+END
+build.xml
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/repos/obo/!svn/ver/55256/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/build.xml
+END

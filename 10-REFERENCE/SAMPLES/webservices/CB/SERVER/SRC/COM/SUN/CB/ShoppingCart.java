@@ -1,0 +1,94 @@
+/*
+ *
+ * Copyright 2002 Sun Microsystems, Inc. All Rights Reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following
+ * conditions are met:
+ * 
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ * 
+ * - Redistribution in binary form must reproduce the above
+ *   copyright notice, this list of conditions and the following
+ *   disclaimer in the documentation and/or other materials
+ *   provided with the distribution.
+ * 
+ * Neither the name of Sun Microsystems, Inc. or the names of
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * 
+ * This software is provided "AS IS," without a warranty of any
+ * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ * EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY
+ * DAMAGES OR LIABILITIES SUFFERED BY LICENSEE AS A RESULT OF OR
+ * RELATING TO USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE OR
+ * ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE
+ * FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT,
+ * SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+ * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF
+ * THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ * 
+ * You acknowledge that this software is not designed, licensed or
+ * intended for use in the design, construction, operation or
+ * maintenance of any nuclear facility.
+ * 
+ */
+
+
+package com.sun.cb;
+
+import java.util.*;
+import java.math.BigDecimal;
+import com.sun.cb.RetailPriceList;
+import com.sun.cb.RetailPriceItem;
+ 
+public class ShoppingCart {
+  ArrayList items = null;
+  BigDecimal total = new BigDecimal("0.00");
+  int numberOfItems = 0;
+  
+  public ShoppingCart(RetailPriceList rpl) {
+      items = new ArrayList();
+      
+      for(Iterator i = rpl.getItems().iterator(); i.hasNext(); ) {
+        RetailPriceItem item = (RetailPriceItem) i.next();
+        ShoppingCartItem sci = new ShoppingCartItem(item, new BigDecimal("0.0"), new BigDecimal("0.00"));
+        items.add(sci);
+        numberOfItems++;
+      }
+  }
+  
+  public synchronized void add (ShoppingCartItem item) {
+    items.add(item);
+    total = total.add(item.getPrice()).setScale(2);
+    numberOfItems++;
+  }
+
+  public synchronized int getNumberOfItems() {
+    return numberOfItems;
+  }
+
+  public synchronized ArrayList getItems() {
+      return items;
+  }
+
+  protected void finalize() throws Throwable {
+      items.clear();
+  }
+
+  public synchronized BigDecimal getTotal() {
+    return total;
+  }
+
+
+  public synchronized void clear() {
+      numberOfItems = 0;
+      total = new BigDecimal("0.00");
+      items.clear();
+  }
+}
+

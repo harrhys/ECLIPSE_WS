@@ -1,0 +1,3 @@
+GENERATED       = ** This build is currently using DEVELOPMENT properties **
+CONFIG.LIVE     = false
+CONFIG.URL       = http://14.102.227.132/AgentMobileWebServicesApp/TestService

@@ -1,0 +1,380 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/12/02 17:56:07">
+	<title>
+ JAXM Translator Sample Application:  JAXM Translator Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            
+ JAXM Translator Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="14938"> </A>
+<A NAME="JAXM Translator Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+JAXM Translator Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="14953"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the JAXM Translator sample application in conjunction with the Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="14785"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14787"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+<A HREF="#14795"  >Overview</A>
+</font>
+<P><A NAME="14789"> </A>
+
+  <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="#14838"  >Compiling and Assembling the Application</A>
+</font>
+<P><A NAME="14790"> </A>
+
+
+  <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="#14900"  >Deploying the Sample Application</A>
+</font>
+<P>
+
+
+  <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="#14931"  >Running the Sample Application</A>
+</font>
+
+<P><A NAME="15139"> </A>
+
+  <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="#15009"  >Troubleshooting</A>
+</font>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14795"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14797"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The purpose of this document is to demonstrate the support for the Java API for XML Messaging in the Sun ONE application server.
+</FONT>
+<P>
+
+  <P> <A NAME="Overview of the Java API for XML Messaging"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+    <B> The Java API for XML Messaging </B> </FONT> <BR>
+    <A NAME="15035"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The 
+    Java&#153; API for XML Messaging (JAXM) Optional Package enables applications 
+    to send and receive document oriented XML messages using a pure Java API. 
+    JAXM implements Simple Object Access Protocol (SOAP) 1.1 with Attachments 
+    messaging so that developers can focus on building, sending, receiving, and 
+    decomposing messages for their applications instead of programming low level 
+    XML communications routines. </FONT> 
+  <P> <A NAME="14817"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+   In this sample application, the sending servlet (SendingServlet.java) sends the form input
+    values in a SOAP message that is received by the receiving servlet (ReceivingServlet.java).
+    The receiving servlet will the forward these values to the translation service
+   (TranslationService.java).
+   </FONT>
+  <P> <A NAME="14817"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+    The TranslationService talks to babelfish.altavista.com making an HTTP connection 
+    and extracts the translations of the input text string from the response.  The 
+    text is translated to German, Italian and French languages.</FONT> 
+  <P> <A NAME="14817"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+    The translations can be returned either as attachments to a JAXM message or within the SOAPBody 
+    depending on which option is chosen in the radio button from the application's index.html.
+    If using a proxy, the proxy settings (both host and port) need to be entered.</FONT> 
+
+  <P>
+
+<A NAME="14832"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For more information on JAXM, go to <A HREF="http://java.sun.com/xml/jaxm/index.html"><FONT FACE="courier, couriernew, monospaced size">http://java.sun.com/xml/jaxm/index.html</font></A>.
+</FONT>
+<P>
+
+<A NAME="14833"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The source code is located at
+</FONT>
+  <P> <A NAME="14834"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">&lt;<I>install_root</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxm/translator/src/</FONT> 
+    .</FONT> 
+  <P>
+
+<BR>
+<BR>
+
+<A NAME="14838"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+  <A NAME="14840"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+  section describes how to compile and assemble the application using a Command 
+  Line Interface. </FONT> 
+  <P>
+
+<A NAME="15176"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">See the <A HREF="../../../../docs/ant.html">Sample Application Build Facility</A> document for details on using a build facility.
+</FONT>
+<P>
+
+<A NAME="14843"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To rebuild the entire application from scratch, perform the following steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14845"> </A>
+<li value="1">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Compile and assemble the application.
+</font>
+<P>  <dl>
+        <DT> <A NAME="14847"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Execute the<FONT FACE="courier, couriernew, monospaced size"> asant 
+          </FONT>command under &lt;<I>install_root</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxm/translator/src</FONT> 
+          .</FONT> 
+          <P>     <DT> <A NAME="15435"> </A>
+<P>  </dl>
+<A NAME="15436"> </A>
+<li value="2">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Create Javadocs for the application.
+</font>
+<P>  <dl>
+     <DT> <A NAME="15329"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT> command under &lt;<I>install_root</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxm/translator/src/</FONT> to create javadocs.
+</FONT>
+<P>     <DT> <A NAME="15268"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Javadocs are created under &lt;<I>install_root</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxm/translator/javadocs.</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14858"> </A>
+<li value="3">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Clean the web application project area (optional).
+</font>
+<P>  <dl>
+     <DT> <A NAME="14860"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant clean </FONT>command under &lt;<I>install_root</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxm/translator/src/</FONT> to clean the application build and assemble area.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14900"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14902"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, do the following:
+</FONT>
+<P>
+
+<A NAME="14904"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute the command <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/webservices/jaxm/translator/src</FONT>
+</FONT>
+<P>
+
+<A NAME="14905"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This will deploy the <FONT FACE="courier, couriernew, monospaced size">jaxm-translator.war</FONT> file located under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/webservices/jaxm/translator/
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17911"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You must run <FONT FACE="courier, couriernew, monospaced size">asant undeploy</FONT> before redeploying this sample. This will ensure that all modules are undeployed and the resources are disabled.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+</FONT>
+</FONT>
+<P>
+<P>
+<BR>
+
+
+<A NAME="14910"> </A>
+<A NAME="Verifying Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. Otherwise, proceed directly to <A HREF="#14931"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="14915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, do the following:
+</FONT>
+<P>
+
+<A NAME="15737"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute the command <FONT FACE="courier, couriernew, monospaced size">asadmin list-components</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<P>
+
+<A NAME="14920"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/bin/asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;port&gt; &lt;server instance name&gt;</FONT>
+</FONT>
+<P>
+
+<A NAME="17411"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You will see <FONT FACE="courier, couriernew, monospaced size">jaxm-translator</FONT> listed.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14931"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19766"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can run the application through the following URL:
+</FONT>
+<P>
+
+<A NAME="19752"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">http://&lt;hostname&gt;:&lt;port&gt;/jaxm-translator</FONT>
+</FONT>
+<P>
+
+<A NAME="19752"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+Enter a word or phrase to be tranlated in the corresponding textfield. Check one of the items, "In SOAP Body", or "As Attachments", in the radio buttons.  Leave the Proxy Host and Proxy Port fields empty.  Click on "Translate" button.
+</FONT>
+<P>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The files created by the sample, request.msg and reply.msg, are located under <FONT FACE="courier, couriernew, monospaced size"><I>&lt;install_root&gt;</I>/domains/domain1/&lt;server-instance&gt;/config/</FONT></FONT>
+
+<BR>
+<BR>
+
+<A NAME="15009"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+There is a known issue with the translation web site, this sample is trying to connect to, which translates the input text.  You will notice in the request.msg and reply.msg files
+that the SOAP messages were sent and received successfully.  However in the reply.msg file,
+the translation web site returned the same text you inputed and did not do any translation.
+</font>
+<P>
+<A NAME="15011"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-root&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong.
+</font>
+<P>
+</ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <P ALIGN="RIGHT">
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">Last Updated <B>July 12, 2002</B>
+   </font>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

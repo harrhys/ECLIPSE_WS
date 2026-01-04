@@ -1,0 +1,195 @@
+<?xml version="1.0"?>
+
+<!--
+ Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ 
+ - Redistribution in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in
+   the documentation and/or other materials provided with the
+   distribution.
+ 
+ Neither the name of Sun Microsystems, Inc. or the names of
+ contributors may be used to endorse or promote products derived
+ from this software without specific prior written permission.
+ 
+ This software is provided "AS IS," without a warranty of any
+ kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES
+ SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR
+ DISTRIBUTING THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN
+ OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR
+ PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF
+ LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE,
+ EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ 
+ You acknowledge that Software is not designed, licensed or intended
+ for use in the design, construction, operation or maintenance of
+ any nuclear facility.
+-->
+
+
+<!-- =================================================================== -->
+<!-- $Id: build.xml,v 1.1.2.12 2002/08/01 03:51:44 bhate Exp $           -->
+<!-- =================================================================== -->
+
+<project name="petstoreadmin" default="core" basedir=".">
+
+  <target name="init">
+    <!-- include top-level common properties -->
+    <property file="../../../build.properties"/>
+    <property name="sunone.cpath" value="${com.sun.aas.installRoot}/lib/appserv-ext.jar"/>
+    <!-- The root directory of the workspace -->
+    <property name="admin.home" value=".."/>
+
+    <!-- The destination directory for the build -->
+    <property name="admin.build" value="${admin.home}/build"/>
+    <property name="admin.buildjardir" value="${admin.build}/ejbjar"/>
+    <property name="admin.src" value="${admin.home}/src"/>
+
+    <!-- The destination directory for all the compiled classes. -->
+    <property name="admin.classbindir" value="${admin.build}/classes"/>
+
+    <property name="admin.javadocs.dir" value="${admin.build}/docs/api"/>
+
+    <!-- OPC Component -->
+    <property name="admin.opc.home" value="../../opc"/>
+    <property name="admin.opc.ejbjar" value="${admin.opc.home}/build/OrderProcessingCenterJAR.jar"/>
+    <property name="admin.opc.ejbjar.client" value="${admin.src}/OrderProcessingCenterEARClient.jar"/>
+
+    <!-- Async Sender Component -->
+    <property name="admin.async.home" value="../../../components/asyncsender"/>
+    <property name="admin.async.ejbjar" value="${admin.async.home}/build/AsyncSenderJAR.jar"/>
+    <property name="admin.async.ejbjar.client" value="${admin.async.home}/build/asyncsender-ejb-client.jar"/>
+
+    <!-- XML Documents Component - this contains the PO/Invoice classes -->
+    <property name="admin.xmldocuments.home" value="../../../components/xmldocuments"/>
+    <property name="admin.xmldocuments.client" value="${admin.xmldocuments.home}/build/xmldocuments.jar"/>
+
+    <!-- Rich Client Component -->
+    <property name="client.src" value="${admin.src}/client"/>
+    <property name="client.classbindir" value="${admin.build}/client"/>
+    <property name="client.jar" value="docroot/AdminApp.jar"/>
+
+    <!-- The classpath used for building the workspace. -->
+    <property name="admin.classpath" value="${admin.classbindir}:${admin.opc.ejbjar.client}:${admin.async.ejbjar.client}:${admin.xmldocuments.client}:${sunone.cpath}"/>
+    <property name="admin.war" value="${admin.build}/AdminWAR.war"/>
+    <property name="admin.ear" value="petstoreadmin.ear"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <mkdir dir="${admin.classbindir}"/>
+    <mkdir dir="${client.classbindir}"/>
+    <javac srcdir="${admin.src}"
+           destdir="${admin.classbindir}"
+           classpath="${admin.classpath}"
+           includes="admin/com/**"/>
+    <javac srcdir="${client.src}"
+           destdir="${client.classbindir}"
+	   includes="**"/>
+    <mkdir dir="${client.classbindir}/resources"/>
+    <copy todir="${client.classbindir}/resources">
+          <fileset dir="${client.src}/resources" excludes="cvs"/>
+    </copy>
+    <unjar src="${client.src}/jaxp.jar" dest="${client.classbindir}" />
+    <unjar src="${client.src}/crimson.jar" dest="${client.classbindir}" />
+  </target> 
+
+  <target name="war" depends="init">
+    <jar jarfile="${client.jar}" basedir="${client.classbindir}" excludes="cvs,META-INF" />
+    <copy todir="docroot/WEB-INF/classes">
+          <fileset dir="${admin.classbindir}" excludes="cvs"/>
+    </copy>
+    <copy file="${admin.opc.ejbjar.client}" todir="docroot/WEB-INF/lib" />
+    <copy file="${admin.async.ejbjar.client}" todir="docroot/WEB-INF/lib" />
+    <copy file="${admin.xmldocuments.client}" todir="docroot/WEB-INF/lib" />
+    <delete file="${admin.war}"/>
+    <jar jarfile="${admin.war}" basedir="docroot" excludes="cvs" />
+    <delete dir="docroot/WEB-INF/classes"/>
+    <delete dir="docroot/WEB-INF/lib"/>
+    <delete file="${client.jar}"/>
+  </target>
+
+  <target name="ear" depends="init">
+      <mkdir dir="${admin.buildjardir}"/>
+      <mkdir dir="${admin.buildjardir}/META-INF"/>
+      <copy file="${admin.src}/application.xml" todir="${admin.buildjardir}/META-INF" />
+      <copy file="${admin.src}/sun-application.xml" todir="${admin.buildjardir}/META-INF" />
+      <copy file="${admin.war}" todir="${admin.buildjardir}" />
+      <copy file="${admin.opc.ejbjar}" todir="${admin.buildjardir}" />
+      <copy file="${admin.async.ejbjar}" todir="${admin.buildjardir}" />
+      <copy file="${admin.opc.ejbjar.client}" todir="${admin.buildjardir}" />
+      <copy file="${admin.async.ejbjar.client}" todir="${admin.buildjardir}" />
+      <copy file="${admin.xmldocuments.client}" todir="${admin.buildjardir}" />
+      <delete file="${admin.build}/${admin.ear}"/>
+      <delete file="../../../../${admin.ear}"/>
+      <jar jarfile="${admin.build}/${admin.ear}" basedir="${admin.buildjardir}" manifest="MANIFEST.MF"/>
+      <delete dir="${admin.buildjardir}"/>
+  </target>
+
+  <target name="copy_ear" depends="init">
+      <copy file="${admin.build}/${admin.ear}" todir="../../../.." />
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${admin.build}"/>
+    <delete dir="${admin.dstdocdir}"/>
+    <ant dir="${admin.opc.home}/src" target="clean" />
+    <ant dir="${admin.async.home}/src" target="clean"/>
+    <ant dir="${admin.xmldocuments.home}/src" target="clean"/>
+  </target>
+
+  <target name="verify">
+    <ant dir="../../../" target="verify-admin" inheritall="false"/>
+  </target>
+
+  <target name="deploy">
+    <ant dir="../../../" target="deploy-admin" inheritall="false"/>
+  </target>
+
+  <target name="undeploy">
+    <ant dir="../../../" target="undeploy-admin" inheritall="false"/>
+  </target>
+
+  <target name="components" depends="init">
+      <ant dir="${admin.opc.home}/src" target="core"/>
+      <ant dir="${admin.async.home}/src" target="coreadmin"/>
+      <ant dir="${admin.xmldocuments.home}/src" target="core"/>
+  </target>
+
+  <target name="javadocs" depends="init, core">
+    <mkdir dir="${admin.javadocs.dir}"/>    
+    <javadoc packagenames="com.sun.j2ee.blueprints.*"
+             destdir="${admin.javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="Java Pet Store Admin API"
+             doctitle="Java Pet Store Admin"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath path="${admin.classpath}"/>
+      <sourcepath>
+        <pathelement path="${admin.opc.home}/src"/>
+        <pathelement path="${admin.xmldocuments.home}/src"/>
+        <pathelement path="."/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="banner">
+      <echo>+---------------------------------------+</echo>
+      <echo>+    Building PetstoreAdmin Application +</echo>
+      <echo>+---------------------------------------+</echo>
+  </target>
+
+  <target name="core" depends="components, banner, compile, war, ear, copy_ear" />
+  <target name="all" depends="core, javadocs" />
+</project>
+

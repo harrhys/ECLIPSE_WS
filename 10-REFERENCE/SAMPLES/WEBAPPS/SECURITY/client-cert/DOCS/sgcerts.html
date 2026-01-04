@@ -1,0 +1,1685 @@
+<HTML>
+
+<HEAD>
+        <META NAME="keywords" CONTENT="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Netscape, Sun Microsystems, Sun-Netscape Alliance, iPlanet, internet software">
+        <META NAME="description" CONTENT="The Sun-Netscape Alliance, a strategic alliance formed by America Online and Sun Microsystems, Inc., is delivering iPlanet e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy">
+	<META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO-8859-1">
+	<META NAME="TEMPLATEBASE" CONTENT="Authored in FrameMaker. Converted to HTML in WebWorks Publisher 2000. manual wdt 1.5">
+	<META NAME="LASTUPDATED" CONTENT="07/12/02 11:37:34">
+	<TITLE>Sun ONE Application Server Administrator's Guide to Security:  Administering Certificates</TITLE>
+</HEAD>
+
+
+
+
+<BODY TEXT="#000000" LINK="#666699" VLINK="#666699" ALINK="#333366" BGCOLOR="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <TD VALIGN="TOP">
+            <A HREF="http://www.iplanet.com">
+            <IMG SRC="../../../../docs/images/SunONE.jpg" VALIGN="BOTTOM" HEIGHT="40" WIDTH="120" BORDER="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <b><a href="sggenl.htm">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Previous</a></FONT>&nbsp;&nbsp;&nbsp;&nbsp;</b>
+<a href="contents.htm">
+<b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Contents</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="ix.htm"><b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Index</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../index.htm">
+<b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="black">DocHome</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="sgencryp.htm">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">
+Next
+</a>
+</FONT>
+</b>&nbsp;&nbsp;&nbsp;&nbsp;
+         </TD>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#CCCCCC">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#000000" SIZE="-1"><B>
+            Sun ONE Application Server Administrator's Guide to Security</B></FONT>
+         </TD>
+      </TR>
+      <TR>
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <blockquote>
+<BR>
+<BR>
+
+      <A NAME="13833"> </A>
+<A NAME="Administering Certificates"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+<zchaptitle>Administering Certificates</zchaptitle>
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="14281"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>This section describes how to set up and administer the trust database, certificates, and certificate-related lists for your Sun ONE Application Server 7 environment. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="14287"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>This section contains the following topics:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="14291"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14339"  >About Certificates and Authentication</A></zsmartlist1>
+</FONT>
+<P><A NAME="14295"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14366"  >Implementing the Trust Database</A></zsmartlist1>
+</FONT>
+<P><A NAME="14299"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#17140"  >Requesting a Certificate</A></zsmartlist1>
+</FONT>
+<P><A NAME="14307"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14539"  >Migrating Certificates When You Upgrade</A></zsmartlist1>
+</FONT>
+<P><A NAME="14311"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14577"  >Managing Certificates</A></zsmartlist1>
+</FONT>
+<P><A NAME="14315"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14600"  >Managing CRLs and CKLs</A></zsmartlist1>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14339"> </A>
+<A NAME="About Certificates and Authentication"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>About Certificates and Authentication</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15878"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph><I>Authentication</I> is the process of confirming an identity. In the context of network interactions, authentication is the confident identification of one party by another party. Certificates are one way of supporting authentication. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="14341"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>A <I>certificate</I> consists of digital data that specifies the name of an individual, company, or other entity, and certifies that the public key, included in the certificate, belongs to that entity. Both clients and servers can have certificates.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14344"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>A certificate is issued and digitally signed by a Certificate Authority (CA). The CA can be a company that sells certificates over the Internet, or it can be a department responsible for issuing certificates for your company's intranet or extranet. You decide which CAs you trust enough to serve as verifiers of other people's identities. </zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="18329"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+</A>
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="18326"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="18328"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>A server certificate must be installed before encryption can be activated.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<A NAME="14346"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>In addition to a public key and the name of the entity identified by the certificate, a certificate also includes an expiration date, the name of the CA that issued the certificate, and the digital signature of the issuing CA. For more information regarding the content and format of a certificate, see<A HREF="http://docs.iplanet.com/docs/manuals/security/sslin/index.htm"> <I>Introduction to SSL.</I></zparagraph>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14366"> </A>
+<A NAME="Implementing the Trust Database"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Implementing the Trust Database</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="17587"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>In the Sun ONE Application Server, the Administration Server and each server instance has its own certificate and key-pair file, referred to as a <I>trust database</I>. Before requesting a server certificate, you must create a trust database for identifying your trusted entities. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="17633"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>In the trust database you create and store the public and private keys, referred to as your <I>key-pair file</I>. The key-pair file is used for SSL encryption. You will use the key-pair file when you request and install your server certificate, which is stored in the trust database after installation. The key-pair file is stored encrypted in the <FONT FACE="courier, couriernew, monospaced size">config</FONT> directory of the instance.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="17616"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Administration Server has only one trust database, while each server instance can have its own trust database. The certificate and key-pair database files are named after the server instance that uses them. Virtual servers are covered by the trust database created for their server instance.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="17260"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>As the administrator, you manage the trust database and its constituent certificates, including the server certificate and all the included CAs. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="18619"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>This section addresses the following:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="18620"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#18575"  >Creating a Trust Database</A></zsmartlist1>
+</FONT>
+<P><A NAME="18628"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#18579"  >Changing a Trust Database Password</A></zsmartlist1>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="18575"> </A>
+<A NAME="Creating a Trust Database"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Creating a Trust Database</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14381"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>When you create the trust database, you specify a password that will be used for a key-pair file. You will also need this password to start a server using encrypted communications.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="18642"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To create a trust database on your local machine, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14382"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18895"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18568"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Click Manage Database.</zsmartlist1>
+</FONT>
+<P><A NAME="14384"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Create Database link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18670"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Initialize Trust Database page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14385"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Enter a password for the database.</zsmartlist1>
+</FONT>
+<P><A NAME="14386"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Repeat the password.</zsmartlist1>
+</FONT>
+<P><A NAME="14387"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Click OK.</zsmartlist1>
+</FONT>
+<P></ol>
+<P>
+<BR>
+<A NAME="18579"> </A>
+<A NAME="Changing a Trust Database Password"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Changing a Trust Database Password</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="18592"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To change an existing trust database password, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18918"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18919"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18594"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Click Manage Database.</zsmartlist1>
+</FONT>
+<P><A NAME="18595"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Change Password link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18677"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Change the Key Pair File Password page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="18647"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Select the cryptographic module from the dropdown list.</zsmartlist1>
+</FONT>
+<P><A NAME="18596"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Enter the old password.</zsmartlist1>
+</FONT>
+<P><A NAME="18654"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Enter the new password.</zsmartlist1>
+</FONT>
+<P><A NAME="18597"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Repeat the new password.</zsmartlist1>
+</FONT>
+<P><A NAME="18598"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+<zsmartlist1>Click OK.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="17140"> </A>
+<A NAME="Requesting a Certificate"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Requesting a Certificate</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="17146"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>After creating a trust database for your server, you can request a certificate and submit it to a CA. If your company has its own internal CA, request your certificate from them. If you plan to purchase your certificate from a commercial CA, choose a CA and ask for the specific format of the information they require. A list of available certificate authorities, including links to their sites, is available on the Request a Certificate page. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="18361"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Administration Server can have only one server certificate, while a server instance can have its own server certificate. You can select a server instance certificate for each virtual server.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="17227"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The following topics address guidelines for requesting certificates:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="17228"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#17219"  >Required CA Information</A></zsmartlist1>
+</FONT>
+<P><A NAME="17229"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14412"  >Implementing a VeriSign Certificate</A></zsmartlist1>
+</FONT>
+<P><A NAME="17239"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14439"  >Implementing a Non-VeriSign Certificate</A></zsmartlist1>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="17219"> </A>
+<A NAME="Required CA Information"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Required CA Information</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="17190"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Before you begin the request process, make sure you know what information your CA requires. Whether you are requesting a server certificate from a commercial CA or an internal CA, you need to provide the following information:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="17192"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>Common Name&#151;The fully qualified hostname used in DNS lookups (for example, www.sun.com). This is the hostname in the URL that a browser uses to connect to your site. If these two names don't match, a client is notified that the certificate name doesn't match the site name, creating doubt about the authenticity of your certificate. Some CAs might have different requirements, so it's important to check with them. </zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17193"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>You can also enter wildcard and regular expressions in this field if you are requesting a certificate from an internal CA. However, most vendors will not approve a certificate request with a wildcard or regular expression entered for common name.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="17194"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>email Address&#151;Your business email address. This is used for correspondence between you and the CA.</zsmartlist1>
+</FONT>
+<P><A NAME="17195"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>Organization&#151;The official, legal name of your company, educational institution, partnership, and so on. Most CAs require that you verify this information with legal documents (such as a copy of your business license). </zsmartlist1>
+</FONT>
+<P><A NAME="17196"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>Organizational Unit&#151;An optional field that describes an organization within your company. This can also be used to specify a less formal company name (without the Inc., Corp., and so on).</zsmartlist1>
+</FONT>
+<P><A NAME="17197"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>Locality&#151;An optional field that usually describes the city, principality, or country for the organization. </zsmartlist1>
+</FONT>
+<P><A NAME="17198"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>State or Province&#151;Usually a required field, but can be optional for some CAs. Most CAs won't accept abbreviations, but check with them to be sure.</zsmartlist1>
+</FONT>
+<P><A NAME="17199"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>Country&#151;A required field that contains the two-character abbreviation of your country name, in ISO format. The country code for the United States is US. </zsmartlist1>
+</FONT>
+<P></ul>
+
+<A NAME="17200"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>All this information is combined as a series of attribute-value pairs called the distinguished name (DN), which uniquely identifies the subject of the certificate.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="17209"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you are purchasing your certificate from a commercial CA, you must contact the CA to find out what additional information they require before they issue a certificate. Most CAs require that you prove your identity. For example, they want to verify your company name and who is authorized by the company to administer the server. They might also ask whether you have the legal right to use the information you provide.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="17210"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Some commercial CAs offer certificates with greater detail and veracity to organizations or individuals who provide more thorough identification. For example, you might be able to purchase a certificate stating that the CA has not only verified that you are the rightful administrator of the <FONT FACE="courier, couriernew, monospaced size">www.your_company.com</FONT> computer, but that you are a company that has been in business for three years, and have no outstanding customer litigation.</zparagraph>
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14412"> </A>
+<A NAME="Implementing a VeriSign Certificate"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Implementing a VeriSign Certificate</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14414"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>VeriSign is the preferred certificate authority (CA) of the Sun ONE Application Server. VeriSign's VICE protocol simplifies the certificate request process, plus VeriSign has the advantage of being able to return their certificates directly to your server.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14416"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Administration Server can have only one server certificate, while a server instance can have its own server certificate. You can select a server instance certificate for each virtual server.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16863"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The following topics address implementing a Verisign Certificate:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="16864"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#16118"  >Requesting a VeriSign Certificate</A></zsmartlist1>
+</FONT>
+<P><A NAME="16872"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14426"  >Installing a VeriSign Certificate</A></zsmartlist1>
+</FONT>
+<P></ul>
+<BR>
+<P>
+<A NAME="16118"> </A>
+<A NAME="Requesting a VeriSign Certificate"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>Requesting a VeriSign Certificate</zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14419"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To request a VeriSign certificate, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18923"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18924"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18689"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select Certificate Management.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18716"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Request a Server Certificate page is displayed. Click the list of available certificate authorities link to display all CAs.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14422"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Request VeriSign link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18719"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Request a Verisign Certificate page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14423"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Review the steps required.</zsmartlist1>
+</FONT>
+<P><A NAME="14424"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Click Get Certificate.</zsmartlist1>
+</FONT>
+<P><A NAME="14425"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Follow the VeriSign procedure.</zsmartlist1>
+</FONT>
+<P></ol>
+<BR>
+<P>
+<A NAME="14426"> </A>
+<A NAME="Installing a VeriSign Certificate "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>Installing a VeriSign Certificate </zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14427"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you request and receive approval for a VeriSign certificate, it should appear in the drop-down list of the Install VeriSign Certificate page in one to three days. To install a VeriSign certificate, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18928"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18929"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18793"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select Certificate Management.</zsmartlist1>
+</FONT>
+<P><A NAME="14431"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Install VeriSign Certificate link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18730"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Retrieve a Verisign Certificate page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14432"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Choose internal (software) from the drop-down list for the cryptographic module, unless you will use an external encryption module.</zsmartlist1>
+</FONT>
+<P><A NAME="14433"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Enter your Key Pair File Password or PIN.</zsmartlist1>
+</FONT>
+<P><A NAME="14434"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Select the Transaction ID to Retrieve from the drop-down list.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14435"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>You will usually want the last one.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14436"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Click OK.</zsmartlist1>
+</FONT>
+<P></ol>
+<P>
+<BR>
+<A NAME="14439"> </A>
+<A NAME="Implementing a Non-VeriSign Certificate "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Implementing a Non-VeriSign Certificate </zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14440"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You can request and install certificates from other CAs other than VeriSign. Your company or organization may provide its own internal certificates. This section describes how you would request and install these other types of server certificates.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="18354"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Administration Server can have only one server certificate, while a server instance can have its own server certificate. You can select a server instance certificate for each virtual server.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16885"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The following topics address implementing server certificates other than VeriSign:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="16893"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14459"  >Requesting a Non-VeriSign Certificate</A></zsmartlist1>
+</FONT>
+<P><A NAME="16906"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14492"  >Installing a Non-VeriSign Certificate</A></zsmartlist1>
+</FONT>
+<P></ul>
+<BR>
+<P>
+<A NAME="14459"> </A>
+<A NAME="Requesting a Non-VeriSign Certificate "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>Requesting a Non-VeriSign Certificate </zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14461"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To request a certificate from CAs other than VeriSign, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18933"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18934"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18749"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select Certificate Management.</zsmartlist1>
+</FONT>
+<P><A NAME="18750"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Request link.</zsmartlist1>
+</FONT>
+<P><A NAME="14465"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Select if this is a new certificate or a certificate renewal. </zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14466"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>Many certificates expire after a set period of time, such as six months or a year. Some CAs will automatically send you a renewal.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14467"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Perform the following steps to specify how you want to submit the request for the certificate:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14468"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>If the CA expects to receive the request in an email message, check CA Email and enter the email address of the CA. For a list of CAs, click List of available certificate authorities.</zsmartlist2>
+</FONT>
+<P><A NAME="14469"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>If you are requesting the certificate from an internal CA that is using the Sun ONE Certificate Server, click CA URL and enter the URL for the Certificate Server. This URL should point to the certificate server's program that handles certificate requests. </zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="14470"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Select the cryptographic module for the key-pair file you want to use when requesting the certificate from the drop-down list. </zsmartlist1>
+</FONT>
+<P><A NAME="14471"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Enter the password for your key-pair file. </zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14472"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>This is the password you specified when you created the trust database, unless you selected a cryptographic module other than the internal module. The server uses the password to get your private key and encrypt a message to the CA. The server then sends both your <I>public</I> key and the encrypted message to the CA. The CA uses the public key to decrypt your message.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14474"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+<zsmartlist1>Enter your identification information. </zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14475"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The format of this information varies by CA. For a general description of these fields, a list of CAs is available through both Server Administrator, and through the Server Manager Security pages under Request a Certificate. Most of this information usually isn't required for a certificate renewal.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14476"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+<zsmartlist1>Verify your work to ensure accuracy. </zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14477"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The more accurate the information, the faster your certificate is likely to be approved. If your request is going to a certificate server, you'll be prompted to verify the form information before the request is submitted. </zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14478"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="11"></B>
+<zsmartlist1>Click OK. </zsmartlist1>
+</FONT>
+<P></ol>
+
+<A NAME="14480"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The server generates a certificate request that contains your information. The request has a digital signature created with your private key. The CA uses a digital signature to verify that the request wasn't tampered with during routing from your server machine to the CA. In the rare event that the request is tampered with, the CA will usually contact you by phone.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14481"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you choose to email the request, the server composes an email message containing the request and sends the message to the CA. Typically, the certificate is then returned to you using email. If instead you specified a URL to a certificate server, your server uses the URL to submit the request to the certificate server. You might get a response using email or other means, depending on the CA.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14482"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The CA will notify you if it agrees to issue you a certificate. In most cases, the CA will send your certificate using email. If your organization is using a certificate server, you may be able to search for the certificate by using the certificate server's forms.</zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="14489"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14485"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14487"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Not everyone who requests a certificate from a commercial CA is given one. Many CAs require you to prove your identity before issuing you a certificate. Also, it can take anywhere from one day to two months to get approval. You are responsible for promptly providing all the necessary information to the CA.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<A NAME="14490"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Once you receive the certificate, you can install it. In the meantime, you can still use your server without SSL.</zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14492"> </A>
+<A NAME="Installing a Non-VeriSign Certificate "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>Installing a Non-VeriSign Certificate </zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14493"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>When you receive your certificate back from the CA, it will be encrypted with your public key so that only you can decrypt it. After you enter the correct password for your trust database, you will be able to decrypt and install your certificate. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="14495"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>There are three types of certificates:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="14496"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>Your own server's certificate to present to clients</zsmartlist1>
+</FONT>
+<P><A NAME="14497"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>A CA's own certificate for use in a certificate chain</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17745"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>A certificate chain is a hierarchical series of certificates signed by successive certificate authorities. A CA certificate identifies a CA and is used to sign certificates issued by that authority. A CA certificate can in turn be signed by the CA certificate of a parent CA, and so on, up to a root CA. </zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14498"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>A trusted CA's certificate</zsmartlist1>
+</FONT>
+<P>
+<P>
+<A NAME="14506"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14503"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14505"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If your CA doesn't automatically send you their certificate, you should request it. Many CAs include their certificate in the email with your certificate, and your server installs both certificates at the same time. </zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+</ul>
+
+<A NAME="14507"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>When you receive a certificate from the CA, it will be encrypted with your public key so that only you can decrypt it. The server will use the key-pair file password you specify to decrypt the certificate when you install it. You can either save the email somewhere accessible to the server, or copy the text of the email and be ready to paste the text into the Install Certificate form, as described here.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14510"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To install a certificate from CAs other than VeriSign, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18938"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18939"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18762"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select Certificate Management.</zsmartlist1>
+</FONT>
+<P><A NAME="17778"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Install link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18768"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Install a Server Certificate is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14514"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Select the type of certificate you are installing:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14515"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>This Server&#151;for a single certificate associated only with your server</zsmartlist2>
+</FONT>
+<P><A NAME="14516"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Server Certificate Chain&#151;for a CA's certificate to include in a certificate chain</zsmartlist2>
+</FONT>
+<P><A NAME="14518"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Trusted Certificate Authority (CA)&#151;for a certificate of a CA that you want to accept as a trusted CA for client authentication</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="14519"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Select the cryptographic module from the drop-down list.</zsmartlist1>
+</FONT>
+<P><A NAME="18772"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Enter the password for your key-pair file. </zsmartlist1>
+</FONT>
+<P><A NAME="14521"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Leave the name for the certificate field blank if it will be the only one used for this server instance, unless:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14522"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Multiple certificates will be used for virtual servers. In this case, enter a certificate name unique within the server instance.</zsmartlist2>
+</FONT>
+<P><A NAME="14524"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Cryptographic modules other than internal are used. In this case, enter a certificate name unique across all server instances within a single cryptographic module.</zsmartlist2>
+</FONT>
+<P>  </ul>
+  <dl>
+     <DT> <A NAME="14526"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>If a name is entered, it will be displayed in the Manage Certificates list, and should be descriptive. For example, "United States Postal Service CA" is the name of a CA, while "VeriSign Class 2 Primary CA" describes both a CA and the type of certificate. </zparaindent1>
+</FONT>
+<P>
+<P>
+<A NAME="16204"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="16214"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="16223"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>When no certificate name is entered, the default value is applied.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+  </dl>
+<A NAME="16205"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+<zsmartlist1>Select either:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14528"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Message is in this file. In this case, enter the full pathname to the saved email</zsmartlist2>
+</FONT>
+<P><A NAME="14529"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Message text (with headers). In this case, paste the email text.</zsmartlist2>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14530"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2>If you copy and paste the text, be sure to include the headers "Begin Certificate" and "End Certificate," including the beginning and ending hyphens. </zparaindent2>
+</FONT>
+<P>    </dl>
+  </ul>
+<A NAME="14531"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+<zsmartlist1>Click OK. </zsmartlist1>
+</FONT>
+<P><A NAME="14532"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="11"></B>
+<zsmartlist1>Select one:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14533"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Add Certificate&#151;to install a new certificate.</zsmartlist2>
+</FONT>
+<P><A NAME="14534"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Replace Certificate&#151;to install a certificate renewal.</zsmartlist2>
+</FONT>
+<P>  </ul>
+</ol>
+
+<A NAME="14536"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The certificate is stored in the server's certificate database. The file name will be <FONT FACE="courier, couriernew, monospaced size">&lt;</FONT><I>alias</I>&gt;-cert7.db. For example:</zparagraph>
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="14537"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">https-</FONT>serverid-hostname-cert7.db</zparaindent1>
+</FONT>
+<P>  </dl>
+</dl>
+<BR>
+<BR>
+
+<A NAME="14539"> </A>
+<A NAME="Migrating Certificates When You Upgrade"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Migrating Certificates When You Upgrade</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="18521"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you are upgrading from an Enterprise Server 3.x, you will need to migrate your trust and certificate databases. Make sure that Sun ONE Application Server 7 Administration Server user has read and write permissions on the old 3.x database files. The files are <FONT FACE="courier, couriernew, monospaced size">&lt;</FONT><I>alias</I>&gt;-cert.db and <FONT FACE="courier, couriernew, monospaced size">&lt;alias&gt;-key.db</FONT>, located in the <FONT FACE="courier, couriernew, monospaced size">&lt;3.</FONT><font face="palatino, times, serif"><I>x</I></font>_<I>instance_dir</I>&gt;/config directory.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="18471"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Sun ONE Web Server certificate files should work without change if you move them to the config directory for the instance.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14545"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Key-pair files and certificates are migrated only if your server has security enabled. You can also migrate keys and certificates by themselves using the Security tabs in the Administration Server. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="14548"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The entire trust database associated with the server instance is migrated. All the CAs listed in your previous database are migrated to the new Sun ONE Application Server database. </zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="17276"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17280"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17289"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If duplicate CAs occur, use the previous CA until it expires. Do not attempt to delete duplicate CAs.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<A NAME="16924"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The following topics address certificate migration:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="16925"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14549"  >Migrating a Certificate</A></zsmartlist1>
+</FONT>
+<P><A NAME="16933"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14563"  >Using the Built-in Root Certificate Module</A></zsmartlist1>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14549"> </A>
+<A NAME="Migrating a Certificate"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Migrating a Certificate</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14551"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To migrate a certificate, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18943"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18944"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18777"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select Certificate Management.</zsmartlist1>
+</FONT>
+<P><A NAME="18778"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Migrate link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18779"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Migrate a 3X Cert page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14557"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Enter the 3.x Server Root.</zsmartlist1>
+</FONT>
+<P><A NAME="14558"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Enter the Alias.</zsmartlist1>
+</FONT>
+<P><A NAME="14559"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Enter the Password.</zsmartlist1>
+</FONT>
+<P><A NAME="14560"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Click OK.</zsmartlist1>
+</FONT>
+<P></ol>
+<P>
+<BR>
+<A NAME="14563"> </A>
+<A NAME="Using the Built-in Root Certificate Module"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Using the Built-in Root Certificate Module</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14564"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The dynamically loadable root certificate module included with the Sun ONE Application Server contains the root certificates for many CAs, including VeriSign. The root certificate module simplifies upgrading your root certificates. To install well-known CA certificates, you can update the root certificate module file to a newer version as it becomes available through future versions of the Sun ONE Application Server, or in service packs.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14565"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Because the root certificate is implemented as a PKCS11 cryptographic module, you can never delete the root certificates it contains; the option to delete will not be offered when managing these certificates. To remove the root certificates from your server instances, you can disable the root certificate module by deleting the following in the server's <FONT FACE="courier, couriernew, monospaced size">alias</FONT> file:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="14568"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><FONT FACE="courier, couriernew, monospaced size">libnssckbi.so</FONT> (on most Unix platforms)</zsmartlist1>
+</FONT>
+<P><A NAME="14570"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><FONT FACE="courier, couriernew, monospaced size">libnssckbi.sl</FONT> (on HP-UX) </zsmartlist1>
+</FONT>
+<P><A NAME="14572"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><FONT FACE="courier, couriernew, monospaced size">nssckbi.dll</FONT> (on Windows) </zsmartlist1>
+</FONT>
+<P></ul>
+
+<A NAME="14574"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you later want to restore the root certificate module, you can copy the extension from <FONT FACE="courier, couriernew, monospaced size">bin/https/lib </FONT>(Unix and HP) or <FONT FACE="courier, couriernew, monospaced size">bin\https\bin</FONT> (Windows) back into the <FONT FACE="courier, couriernew, monospaced size">alias</FONT> subdirectory.</zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="17832"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17835"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17844"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You can modify the trust information of the root certificates. The trust information is written to the certificate database for the server instance being edited, not back to the root certificate module itself.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<BR>
+<BR>
+
+<A NAME="14577"> </A>
+<A NAME="Managing Certificates"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Managing Certificates</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="16334"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You can view, delete, or edit the trust settings of the various certificates installed on your server. This includes your own certificate and certificates from CAs. Certificate information includes the owner and who issued it.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16335"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Trust settings allow you to set client trust or unset server trust. For LDAP server certificates, the server must be trusted. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="14580"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To manage certificates, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18948"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18949"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18800"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select Certificate Management.</zsmartlist1>
+</FONT>
+<P><A NAME="14583"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Manage link. </zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14584"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>If you are managing a certificate for a default configuration using the internal cryptographic module, a list of all installed certificates with their type and expiration date is displayed. All certificates are stored in the instance_dir/config directory</zsmartlist2>
+</FONT>
+<P><A NAME="14585"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>If you are using an external cryptographic module, such as a hardware accelerator, you will first need to enter your password for each specific module and click OK. The certificate list will update to include certificates in the module.</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="14586"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Click the Certificate Name you want to manage.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14587"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>An Edit Server Certificate page is displayed with management options for that type of certificate. </zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14592"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>In the Edit Server Certificate window you may select:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14593"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>For certificates obtained internally&#151;Delete Certificate or Quit </zsmartlist2>
+</FONT>
+<P><A NAME="14594"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>For CA certificates&#151;Set client trust, Unset server trust, or Quit </zsmartlist2>
+</FONT>
+<P>
+<P>
+<A NAME="17883"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17887"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17889"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Only CA certificates will allow you to set or unset client trust. Some external cryptographic modules will not allow certificates to be deleted.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+  </ul>
+<A NAME="14595"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>You are prompted to confirm your edits; select OK or Cancel.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="14600"> </A>
+<A NAME="Managing CRLs and CKLs"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Managing CRLs and CKLs</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="17499"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>A <I>certificate revocation list</I> (CRL) and <I>compromised key list</I> (CKL) publishes any certificates and keys that either client users or server users should no longer trust. Typical situations include:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="17531"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>If data in a certificate changes, for example, a user changes offices or leaves the organization before the certificate expires, the certificate is revoked, and its data appears in a CRL. </zsmartlist1>
+</FONT>
+<P><A NAME="17532"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1>If a key is tampered with or otherwise compromised, the key and its data appear in a CKL. </zsmartlist1>
+</FONT>
+<P></ul>
+
+<A NAME="17508"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Both CRLs and CKLs are produced and periodically updated by a CA. As the administrator, you can install new CRLs or CKLs that you obtain from the CA, or delete existing CRLs or CKLs from your system.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16943"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The following topics address managing CRLs and CKLs:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="17515"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#17521"  >Installing a CRL or CKL</A></zsmartlist1>
+</FONT>
+<P><A NAME="17519"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgcerts.htm#14627"  >Deleting a CRL or CKL</A></zsmartlist1>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="17521"> </A>
+<A NAME="Installing a CRL or CKL"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Installing a CRL or CKL</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14605"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To obtain a CRL or CKL from a CA, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14606"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Obtain the CA's URL for downloading CRLs or CKLs.</zsmartlist1>
+</FONT>
+<P><A NAME="14607"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Enter the URL in your browser to access the site.</zsmartlist1>
+</FONT>
+<P><A NAME="14608"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Follow the CA's instructions for downloading the CRL or CKL to a local directory. </zsmartlist1>
+</FONT>
+<P><A NAME="18953"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>In the Admin interface, access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18954"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="14611"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Select CRL/CKL. </zsmartlist1>
+</FONT>
+<P><A NAME="18831"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Click the Install link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18835"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Install a Certificate Revocation List/Compromised Key List page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14612"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Select one:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14613"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Certificate Revocation List </zsmartlist2>
+</FONT>
+<P><A NAME="14614"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Compromised Key List</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="14615"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+<zsmartlist1>Enter the full pathname to the associated file. </zsmartlist1>
+</FONT>
+<P><A NAME="14616"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+<zsmartlist1>Click OK. </zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14617"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>If you selected Certificate Revocation List, the Add Certificate Revocation List page appears listing CRL information.</zsmartlist2>
+</FONT>
+<P><A NAME="14618"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>If you selected Compromised Key List, the Add Compromised Key List page appears listing CKL information.
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14621"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14623"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If a CRL or CKL list already exists in the database, a Replace Certificate Revocation List or Replace Compromised Key List page appears. In this case, click Replace.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="14624"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="11"></B>
+<zsmartlist1>Click Add. </zsmartlist1>
+</FONT>
+<P><A NAME="14625"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="12"></B>
+<zsmartlist1>Click OK.</zsmartlist1>
+</FONT>
+<P></ol>
+<P>
+<BR>
+<A NAME="14627"> </A>
+<A NAME="Deleting a CRL or CKL"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Deleting a CRL or CKL</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14628"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To delete a CRL or CKL, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18961"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance.</zsmartlist1>
+</FONT>
+<P><A NAME="18962"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security.</zsmartlist1>
+</FONT>
+<P><A NAME="18841"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select CRL/CKL. </zsmartlist1>
+</FONT>
+<P><A NAME="18842"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Manage link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18843"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Manage a Certificate Revocation List/Compromised Key List page is displayed with all installed Server CRLs and CKLs listed along with their expiration dates. </zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14633"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Select a Certificate Name from either the Server CRLs or Server CKLs list.</zsmartlist1>
+</FONT>
+<P><A NAME="14634"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Select one:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14635"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Delete CRL</zsmartlist2>
+</FONT>
+<P><A NAME="14636"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Delete CKL</zsmartlist2>
+</FONT>
+<P>  </ul>
+</ol>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+            <b><a href="sggenl.htm">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Previous</a></FONT>&nbsp;&nbsp;&nbsp;&nbsp;</b>
+<a href="contents.htm">
+<b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Contents</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="ix.htm"><b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Index</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../index.htm">
+<b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="black">DocHome</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="sgencryp.htm">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">
+Next
+</a>
+</FONT>
+</b>&nbsp;&nbsp;&nbsp;&nbsp;
+        <HR NOSHADE SIZE="1">
+
+
+   <font face="Helvetica, Arial, sans-serif" size="-2">
+
+Copyright &#169; 2001 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+Some preexisting portions Copyright &#169; 2001 Netscape Communications Corp. All rights reserved.</FONT>
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 12, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

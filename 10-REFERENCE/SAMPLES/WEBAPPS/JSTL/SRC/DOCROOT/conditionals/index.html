@@ -1,0 +1,60 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+   <title>JSTL: Conditional Tags Examples</title>
+<!-- #BeginTemplate "/examples/web/Templates/ExamplesTemplate.dwt" -->
+<!-- #BeginEditable "doctitle" -->
+<!-- #EndEditable -->
+<link rel="stylesheet" href="../global.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+&nbsp;
+<table BORDER=0 CELLPADDING=5 WIDTH="100%" >
+<tr>
+<td HEIGHT="0"><b><font color="#000099">standard taglib * implementation
+of the JSP Standard Tag Library *&nbsp;</font></b></td>
+</tr>
+
+<tr>
+<td BGCOLOR="#CCCCFF"><font size=-1>Examples&nbsp;&nbsp;&nbsp;&nbsp; <a href="../index.html">Introduction</a>
+* <a href="../elsupport/index.html">General Purpose</a> * <a href="index.html">Conditionals</a>
+* <a href="../iterators/index.html">Iterators</a> * <a href="../import/index.jsp">Import</a>
+* I18N &amp; Formatting * XML * SQL * <a href="../misc/index.html">Misc.</a></font></td>
+</tr>
+</table>
+<!-- #BeginEditable "body" -->
+<h2>
+Conditional Tags Examples</h2>
+
+<h3>
+&lt;if> Simple Conditional Execution&nbsp;<a href="../ShowSource.jsp?filename=/conditionals/If.jsp"><img SRC="../images/code.gif" BORDER=0 height=24 width=24></a>&nbsp;<a href="If.jsp"><img SRC="../images/execute.gif" BORDER=0 height=24 width=24></a></h3>
+Only shows a customer from the customer list if they are living in the
+"USA".
+<h3>
+&lt;choose> Mutually Exclusive Conditional Execution&nbsp;<a href="../ShowSource.jsp?filename=/conditionals/Choose.jsp"><img SRC="../images/code.gif" BORDER=0 height=24 width=24></a>&nbsp;<a href="Choose.jsp"><img SRC="../images/execute.gif" BORDER=0 height=24 width=24></a></h3>
+Customers from the USA will be printed in blue, those from Canada in red,
+and others in green.
+<h3>
+Custom Logic Tag&nbsp;<a href="../ShowSource.jsp?filename=/conditionals/CustomLogicTag.jsp"><img SRC="../images/code.gif" BORDER=0 height=24 width=24></a>&nbsp;<a href="CustomLogicTag.jsp"><img SRC="../images/execute.gif" BORDER=0 height=24 width=24></a></h3>
+JSTL exposes in its API the abstract class ConditionalTagSupport to facilitate
+the implementation of custom conditional tags that leverage the standard
+conditional behavior defined in JSTL. This example shows custom tag &lt;usCustomer>
+that returns true if its customer attribute value points to a US customer.
+It can be used both in the context of a simple conditional execution, as
+well as in the context of a mutually conditional execution by exposing
+the result of the conditional execution in a JSP page attribute via the
+tag attribute 'var'.
+<br><!-- #EndEditable -->
+<hr noshade color="#000099">
+<table BORDER=0 CELLPADDING=5 WIDTH="100%" >
+<tr>
+<td HEIGHT="24"><b><font color="#000099">standard taglib * implementation
+of the JSP Standard Tag Library *&nbsp;</font></b></td>
+</tr>
+</table>
+
+</body>
+<!-- #EndTemplate -->
+</html>

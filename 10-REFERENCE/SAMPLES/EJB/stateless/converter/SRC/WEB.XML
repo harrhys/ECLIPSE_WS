@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN' 'http://java.sun.com/j2ee/dtds/web-app_2_2.dtd'>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<web-app>
+  <display-name>ConverterApp</display-name>
+  <distributable></distributable>
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <display-name>index</display-name>
+    <jsp-file>index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>index.jsp</url-pattern>
+  </servlet-mapping>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name></realm-name>
+    <form-login-config>
+      <form-login-page></form-login-page>
+      <form-error-page></form-error-page>
+    </form-login-config>
+  </login-config>
+  <ejb-ref>
+    <ejb-ref-name>ejb/TheConverter</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>samples.ejb.stateless.converter.ejb.ConverterHome</home>
+    <remote>samples.ejb.stateless.converter.ejb.Converter</remote>
+    <ejb-link>TheConverter</ejb-link>
+  </ejb-ref>
+</web-app>
+

@@ -1,0 +1,608 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/22/02 13:20:34">
+	<title>Internationalization (i18N) Sample Application:  Internationalization (i18N) Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Internationalization (i18N) Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Internationalization (i18N) Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Internationalization (i18N) Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the Internationalization (i18N) sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Sample Application</A>
+</FONT>
+<P><A NAME="15154"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#19434"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#19746"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15009"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19897"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Internationalization (i18N) sample application is a collection of simple applications that demonstrate the i18N features and covers specific features of Java Servlet and Java Server Pages specifications that are implemented in the Sun ONE Application Server.
+</FONT>
+<P>
+
+<A NAME="21697"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Assembling this application and deploying it to the Sun ONE Application Server introduces you to the Sun ONE Application Server Administration Tool.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14865"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the Internationalization (i18N) sample application using a Command Line Interface (CLI).
+</FONT>
+<P>
+
+<A NAME="19962"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To rebuild the entire application from scratch, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20591"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble the EAR file. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20676"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant core </FONT>under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/i18n/simple/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="20597"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20673"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Once you have re-created the sample application from scratch proceed to <A HREF="index.html#19434"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="20601"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the web application project area. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20603"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT>
+</FONT>
+<P>     <DT> <A NAME="20690"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This will remove the sample application assemble and build directories.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="19432"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You are now ready to use this ear file for deployment. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="19434"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="18251"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, you will learn how to deploy the Internationalization (i18N) sample application.
+</FONT>
+<P>
+
+<A NAME="21741"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, the administrative server needs to be running. To start the admin server, if not already started, perform one of the following procedures, depending on your operating system:
+</FONT>
+<P>
+<ul>
+<A NAME="21743"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+UNIX:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21765"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/domains/domain1/admin-server/bin/startserv</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="21736"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Windows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21769"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Start --&gt; Programs --&gt; Sun ONE Application Server 7 --&gt; Start Application Server</FONT>
+</FONT>
+<P>  </dl>
+</ul>
+
+<A NAME="18252"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploying the application:
+</FONT>
+<P>
+<ul>
+<A NAME="20137"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20114"  >Command Line-based Deployment</A> describes how to manually register the application in Sun ONE Application Server using a Command Line Interface (CLI). This is the fastest means of deploying the sample application.
+</FONT>
+<P><A NAME="20141"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20118"  >GUI-based Deployment</A> describes how to use the Sun ONE Application Server Deployment Tool to import and deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="20114"> </A>
+<A NAME="Command Line-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="20115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a complete EAR file is supplied, the fastest means of setting up the application is to use the command line utilities as described in this section.
+</FONT>
+<P>
+
+<A NAME="18273"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The pre-built <FONT FACE="courier, couriernew, monospaced size">i18n-simple.ear</FONT> file is an Enterprise Archive file that contains the XML deployment descriptor files, application class files,  JSPs, and other content required by the application.
+</FONT>
+<P>
+
+<A NAME="18274"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploying the pre-built <FONT FACE="courier, couriernew, monospaced size">i18n-simple.ear</FONT> file is simple. Deploy either by <A HREF="index.html#18308"  >Using the asant script</A> or by <A HREF="index.html#19456"  >Using the asadmin command</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="18308"> </A>
+<A NAME="Using the asant script"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asant script
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="18309"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory of  the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18310"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/i18n/simple/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="18311"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Run <FONT FACE="courier, couriernew, monospaced size">asant</FONT> using deploy task. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18312"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">%asant deploy</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+<BR>
+<P>
+<A NAME="19456"> </A>
+<A NAME="Using the asadmin command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asadmin command
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="19482"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">root</FONT> of the sample directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20058"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/i18n/simple</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="19500"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to deploy application to the local application server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21801"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/bin/asadmin deploy -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;port&gt; --instance &lt;server instance name&gt; i18n-simple.ear</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="20750"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations: 
+</FONT>
+<P>
+<ul>
+<A NAME="19521"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Authenticates against the local application server's administrative server
+</FONT>
+<P><A NAME="19522"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The EAR file is transferred to the administrative server
+</FONT>
+<P><A NAME="19523"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="19524"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the EAR file and embedded WAR file
+</FONT>
+<P><A NAME="19525"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into repository
+</FONT>
+<P><A NAME="19526"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application "i18n-simple" by updating <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT>
+</FONT>
+<P>  </ul>
+</ul>
+
+<A NAME="19529"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, you may proceed to <A HREF="index.html#19560"  >Verifying Deployment</A>.  Otherwise, proceed to <A HREF="index.html#19746"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="20118"> </A>
+<A NAME="GUI-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+GUI-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="20145"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a pre-built Enterprise Archive (EAR) file for the sample application is included with the application server, you can use the Sun ONE Application Server Administration Tool to quickly read in the <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> file and deploy it to the application server.
+</FONT>
+<P>
+
+<A NAME="20159"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the EAR file, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20773"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Open the pre-existing sample EAR file.
+</FONT>
+<P><A NAME="20775"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Start the admin server if not already started. For example, in UNIX, execute the following: <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/domains/domain1/admin-server/startserv</FONT>
+</FONT>
+<P><A NAME="20781"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Open the EAR file.
+</FONT>
+<P>  <ol type="a">
+<A NAME="20783"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Navigate to the browser based admin server page <FONT FACE="courier, couriernew, monospaced size">[http://&lt;server-host&gt;:&lt;admin-port&gt;/index.html].</FONT>
+</FONT>
+<P><A NAME="20885"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Enter your &lt;username&gt; and &lt;password&gt; to access the admin server.
+</FONT>
+<P><A NAME="20785"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on <FONT FACE="courier, couriernew, monospaced size">App Server Instances&gt;server1&gt;Applications&gt;Enterprise Apps</FONT>
+</FONT>
+<P><A NAME="20786"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+In the right hand pane, click on Deploy to deploy an application.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="20928"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Choose the file (from disk) to be deployed (<FONT FACE="courier, couriernew, monospaced size">i18n-simple.ear</FONT>) and Click OK.
+</FONT>
+<P>    </dl>
+<A NAME="20787"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+You will be asked for the application name. Enter <FONT FACE="courier, couriernew, monospaced size"><B>i18n-simple</B></FONT> and Click OK.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="20974"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If the deployment goes through fine, you will see the original pane with WebFormauth application as deployed. In the startup dialog, select Browse for more applications to find the <FONT FACE="courier, couriernew, monospaced size">i18n-simple.ear</FONT> file.
+</FONT>
+<P>    </dl>
+  </ol>
+</ol>
+
+<A NAME="21846"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="21852"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="21854"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Before redeploying, you must first execute the command <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> in order to clean up existing files resulting the initial deployment.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="19560"> </A>
+<A NAME="Verifying Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. Otherwise, proceed directly to <A HREF="index.html#19746"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="14915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15737"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asadmin list-components</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20328"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;admin-port&gt; &lt;server instance name&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="20342"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You will see <FONT FACE="courier, couriernew, monospaced size">i18n-simple</FONT> listed.
+</FONT>
+<P>  </dl>
+<A NAME="20348"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Alternately, you may navigate the Admin tool GUI to the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20354"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">App Server Instances --&gt; server1 --&gt; Applications --&gt; Enterprise Apps</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="20355"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+On the left frame, Click on Enterprise Apps to display list of applications deployed on server.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20378"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You will see <FONT FACE="courier, couriernew, monospaced size">i18n-simple</FONT> listed.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="19746"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="21607"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can run the application through the following URL: <FONT FACE="courier, couriernew, monospaced size">http://&lt;hostname&gt;:&lt;port&gt;/i18n-simple</FONT>
+</FONT>
+<P>
+
+<A NAME="21912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Traverse individual links to execute the i18n sample application.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15009"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="21927"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-root&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong.
+</FONT>
+<P><A NAME="21929"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Although the war, ear context-root and servlet alias names in this sample are all "i18n-simple", it is not necessary that it be so. The application will work as expected if the names of each of these attributes is unique. Rebuild the app after changing the context-root (in <FONT FACE="courier, couriernew, monospaced size">application.xml</FONT>), the servlet alias (in <FONT FACE="courier, couriernew, monospaced size">web.xml</FONT>) and the war and ear names (in the asant <FONT FACE="courier, couriernew, monospaced size">build.xml</FONT>), redeploy and test the sample to confirm this.
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 22, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

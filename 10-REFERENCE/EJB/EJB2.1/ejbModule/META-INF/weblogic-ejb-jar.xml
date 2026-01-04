@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<weblogic-ejb-jar xmlns="http://www.bea.com/ns/weblogic/90"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd 
+	http://www.bea.com/ns/weblogic/90 http://www.bea.com/ns/weblogic/920/weblogic-ejb-jar.xsd">
+	<!--weblogic-version:9.2 -->
+	<weblogic-enterprise-bean>
+		<ejb-name>MyFirstEJB</ejb-name>
+		<stateless-session-descriptor>
+			<pool>
+				<max-beans-in-free-pool>250</max-beans-in-free-pool>
+				<initial-beans-in-free-pool>250</initial-beans-in-free-pool>
+			</pool>
+			<stateless-clustering>
+				<home-load-algorithm>RoundRobin</home-load-algorithm>
+				<stateless-bean-is-clusterable>true</stateless-bean-is-clusterable>
+			</stateless-clustering>
+		</stateless-session-descriptor>
+		<transaction-descriptor>
+			<trans-timeout-seconds>120</trans-timeout-seconds>
+		</transaction-descriptor>
+		<enable-call-by-reference>true</enable-call-by-reference>
+		<jndi-name>com.farbig.ejb.MyFirstEJB</jndi-name>
+	</weblogic-enterprise-bean>
+	<transaction-isolation>
+		<isolation-level>TransactionReadCommitted</isolation-level>
+		<method>
+			<ejb-name>MyFirstEJB</ejb-name>
+			<method-intf>Remote</method-intf>
+			<method-name>process</method-name>
+			<method-params>
+				<method-param>java.lang.String</method-param>
+			</method-params>
+		</method>
+	</transaction-isolation>
+</weblogic-ejb-jar>

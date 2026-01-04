@@ -1,0 +1,219 @@
+<!--
+ 
+ * Copyright 2002 Sun Microsystems, Inc. All Rights Reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following
+ * conditions are met:
+ * 
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ * 
+ * - Redistribution in binary form must reproduce the above
+ *   copyright notice, this list of conditions and the following
+ *   disclaimer in the documentation and/or other materials
+ *   provided with the distribution.
+ * 
+ * Neither the name of Sun Microsystems, Inc. or the names of
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * 
+ * This software is provided "AS IS," without a warranty of any
+ * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ * EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY
+ * DAMAGES OR LIABILITIES SUFFERED BY LICENSEE AS A RESULT OF OR
+ * RELATING TO USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE OR
+ * ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE
+ * FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT,
+ * SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+ * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF
+ * THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ * 
+ * You acknowledge that this software is not designed, licensed or
+ * intended for use in the design, construction, operation or
+ * maintenance of any nuclear facility.
+  
+-->
+
+<project name="JAXM, Coffee Break" default="core" basedir=".">
+
+  <property file="../../../common.properties"/>
+  <property file="${user.home}/build.properties"/>
+  <property file="../build.properties"/>
+  <property name="build" value="build"/>
+  <property name="build-path" value="${build}"/>
+  <property name="srcdir" value="src/com/sun/cb"/>
+  <property name="common" value="../common/build"/>
+  <property name="client-jar" value="jaxm-client.jar"/>
+  <property name="war-file" value="jaxm-coffee-supplier.war"/>
+  <property name="jaxm.javadocs.dir" value="build/docs/api"/>
+  <property name="build.compiler" value="modern" />
+  <target name="build_cbpath" unless="sunone.cpath">
+    <path id="cb_classpath">
+        <fileset dir="${com.sun.aas.installRoot}/lib" includes="*.jar" />
+        <fileset dir="${com.sun.aas.webServicesLib}" includes="*.jar"/>
+        <fileset dir="${com.sun.aas.javaRoot}/lib" includes="tools.jar" />
+      </path>
+    <property name="sunone.cpath" refid="cb_classpath"/>
+  </target>
+
+  <target name="prepare" depends="build_cbpath" 
+     description="Creates the build and dist directories" >
+     <echo message="Creating the required directories...." />
+     <mkdir dir="${build}/client" />
+     <mkdir dir="${build}/server" />
+  </target>
+
+  <target name="compile-server" depends="prepare"
+      description="Compiles the server-side source code">
+      <echo message="Compiling the server-side source code...."/>
+      <javac
+         srcdir="${srcdir}"
+         destdir="${build}/server"
+         includes="PriceListServlet.java, ConfirmationServlet.java"
+      >
+      <classpath path="${sunone.cpath}" />
+      </javac>
+  </target>
+
+  <target name="compile-client"
+      description="Compiles the client source code"  >
+      <echo message="Compiling the client source code...."/>
+      <javac
+         srcdir="${srcdir}"
+         destdir="${build}/client"
+         includes="OrderRequest.java, PriceListRequest.java, Test*.java"
+      >
+      <classpath path="${sunone.cpath}:${common}" />
+      </javac>
+  </target>
+
+  <target name="jar-client" depends="compile-client" 
+      description="Builds the JAR file that contains the JAX-M client routines">
+      <echo message="Building the ${client-jar} file...."/>
+      <delete file="../${client-jar}" />
+      <copy file="${srcdir}/JAXMService.properties" todir="${build}/client/com/sun/cb"/>
+      <jar jarfile="../${client-jar}" >
+        <fileset dir="${build}/client" >
+             <exclude name="**/*Test*" />
+        </fileset>
+      </jar>
+  </target>
+
+  <target name="setup-web-inf"
+     description="Copies files to build/WEB-INF">
+     <echo message="Setting up ${build}/WEB-INF...."/>
+     <delete dir="${build}/WEB-INF" />
+     <mkdir dir="${build}/WEB-INF/classes" />
+     <copy todir="${build}/WEB-INF/classes">
+     	<fileset dir="${build}/server" />
+     </copy>
+     <copy file="web/web.xml" todir="${build}/WEB-INF" />
+     <echo message="${build}/WEB-INF/classes/com/sun/cb"/>
+     <copy file="${srcdir}/JAXMService.properties" todir="${build}/WEB-INF/classes/com/sun/cb"/>
+  </target>
+
+  <target name="package" depends="core"
+      description="Packages the WAR file">
+      <echo message="Packaging the WAR...."/>
+      <delete file="../${war-file}" />
+      <jar jarfile="../${war-file}" >
+        <fileset dir="${build-path}" includes="WEB-INF/**" />
+      </jar>
+  </target>
+
+  <target name="javadocs" depends="core">
+    <mkdir dir="${jaxm.javadocs.dir}"/>
+    <javadoc packagenames="com.sun.cb.*"
+             destdir="${jaxm.javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="JAX-M, Coffee Break API"
+             doctitle="JAX-M, Coffee Break"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath path="${sunone.cpath}:${common}" />
+      <sourcepath>
+        <pathelement path="../common/src"/>
+        <pathelement path="src"/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="run-test-order"> 
+     <antcall target="run-test-client">
+       <param name="client-class" value="com.sun.cb.TestOrderRequest"/>
+     </antcall>
+  </target>
+
+  <target name="run-test-price"> 
+     <antcall target="run-test-client">
+       <param name="client-class" value="com.sun.cb.TestPriceListRequest"/>
+     </antcall>
+  </target>
+
+  <target name="run-test-client" 
+     description="Runs a test client" depends="build_cbpath">
+     <echo message="Running the ${client-class} program:" />
+     <echo message=" " />
+      <java 
+            fork="on" 
+            classname="${client-class}" 
+      >
+      <classpath path="${sunone.cpath}:${build}/client" />
+      </java>
+  </target>
+
+  <target name="clean" 
+     description="Removes the build and dist directories">
+    <delete dir="${build}" />
+  </target>
+
+  <target name="debug" >
+     <echo message="**Debug**" />
+     <echo message="  ${user.home}" />
+     <echo message="  ${username}" />
+     <echo message="  ${password}" />
+     <echo message="  ${url}" />
+     <echo message="  ${context-path}" />
+     <echo message="  ${build-path}" />
+     <echo message="  ${build}" />
+     <echo message="  ${srcdir}" />
+     <echo message="  ${common}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!--          property need to build war deployment.         -->
+  <!-- ======================================================= -->
+
+  <property name="apptype"     value="web"/>
+  <property name="appname"     value="jaxm-coffee-supplier"/>
+  <property name="verify.file"  value="${war-file}"/>
+  <property name="deploy.file" value="${war-file}"/>
+
+  <target name="deploy" depends="">
+    <ant dir="../" target="deploy_common" inheritall="true"/>
+  </target>
+
+  <target name="undeploy" depends="">
+    <ant dir="../" target="undeploy_common" inheritall="true"/>
+  </target>
+
+  <target name="verify" depends="">
+    <ant dir="../" target="verify_common" inheritall="true"/>
+  </target>
+
+  <target name="banner">
+      <echo>+---------------------------------------+</echo>
+      <echo>+    Building JAXM, Coffee Break Application +</echo>
+      <echo>+---------------------------------------+</echo>
+  </target>
+
+<target name="core" depends="banner, compile-server, jar-client, setup-web-inf"
+     description="Executes the targets needed to build this example.">
+  </target>
+
+  <target name="all" depends="core, javadocs" />
+
+</project>

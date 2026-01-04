@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+	version="3.1">
+
+	<enterprise-beans>
+		<session>
+			<ejb-name>MyEJB</ejb-name>
+			<business-remote>com.farbig.ejb.MyEJBRemote</business-remote>
+			<ejb-class>com.farbig.ejb.MyEJB</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Bean</transaction-type>
+		</session>
+	</enterprise-beans>
+	<ejb-client-jar>EJB3Client.jar</ejb-client-jar>
+</ejb-jar>

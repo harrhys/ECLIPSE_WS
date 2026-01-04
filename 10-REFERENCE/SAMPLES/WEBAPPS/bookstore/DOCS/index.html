@@ -1,0 +1,555 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/12/02 14:31:43">
+	<title>Duke's Bookstore Sample Application:  Duke's Bookstore Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Duke's Bookstore Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Duke's Bookstore Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Duke's Bookstore Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the Duke's Bookstore sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="15154"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#19618"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14931"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15009"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample is part of J2EE Reference Implementation, and is explained in the J2EE Tutorial. To reference the J2EE Tutorial, go to <A HREF="http://java.sun.com/j2ee/tutorial">http://java.sun.com/j2ee/tutorial</A> (under Web Technology).
+</FONT>
+<P>
+
+<A NAME="19113"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Duke's Bookstore sample application illustrates the tasks involved in programming using web Technologies. Dukesbank application allows users to retrieve available books from a database table, displays details of the book, add and remove books to a shopping cart and check out the books. The Duke's Bookstore example showcases different web technologies in the following two applications:
+</FONT>
+<P>
+<ul>
+<A NAME="19042"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+BookStore1: This sample implements the Duke's Bookstore sample using servlets. The database connection is made from servlets, monitors servlet lifecycle events, and showcases the use of filters. For more detailed information on this sample, go to <A HREF="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets3.html">http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Servlets3.html</A>.
+</FONT>
+<P><A NAME="19045"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+BookStore2: This sample implements the Duke's Bookstore sample using Java Server Pages (JSPs). EJBs are used to make connection to the database. For more detailed information on this sample, go to <A HREF="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPIntro3.html">http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/JSPIntro3.html</A>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="19169"> </A>
+<A NAME="Directory Structure"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Directory Structure
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="19183"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The two bookstore samples and their associated files are kept under the <FONT FACE="courier, couriernew, monospaced size">samples/webapps/bookstore</FONT> directory<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="4">
+  <TR>
+    <TH VALIGN=TOP>
+<A NAME="20071"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">File
+</FONT>
+<P>
+</TH>
+    <TH VALIGN=TOP>
+<A NAME="20073"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Description
+</FONT>
+<P>
+</TH>
+</TR>
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="20091"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">bookstore1</FONT>
+</FONT>
+<P>
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="20103"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">All files relating to bookstore1 sample.
+</FONT>
+<P>
+</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="20093"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">bookstore2</FONT>
+</FONT>
+<P>
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="20105"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">All files relating to bookstore2 sample.
+</FONT>
+<P>
+</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="20095"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">docs</FONT>
+</FONT>
+<P>
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="20107"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">docs for bookstore1 and bookstore2.
+</FONT>
+<P>
+</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="20097"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">common</FONT>
+</FONT>
+<P>
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="20109"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">common files, like sql.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+
+</FONT>
+<P>
+
+<A NAME="19181"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Each bookstore sample has <FONT FACE="courier, couriernew, monospaced size">build.xml</FONT> and deployment descriptors under the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory. (e.g. <FONT FACE="courier, couriernew, monospaced size">bookstore1/src</FONT> or <FONT FACE="courier, couriernew, monospaced size">bookstore2/src</FONT>).
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14865"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the Duke's Bookstore sample application.
+</FONT>
+<P>
+
+<A NAME="19350"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To compile, assemble and deploy the application, see the <A HREF="../../../docs/ant.html"><I>Sample Application Build Facility</A></I> document for details on using <FONT FACE="courier, couriernew, monospaced size">asant</FONT> facility to quickly perform these tasks.
+</FONT>
+<P>
+<ul>
+<A NAME="19353"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+To rebuild the entire application from scratch, do the following:
+</FONT>
+<P>  <ul>
+<A NAME="19355"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">bookstore/bookstore1 </FONT>(or <FONT FACE="courier, couriernew, monospaced size">bookstore2)/src</FONT> directory
+</FONT>
+<P><A NAME="19356"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant core</FONT>
+</FONT>
+<P>  </ul>
+<A NAME="19358"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+To clean up the sample application project area, do the following:
+</FONT>
+<P>  <ul>
+<A NAME="19360"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">bookstore/bookstore1</FONT> (or <FONT FACE="courier, couriernew, monospaced size">bookstore2)/src</FONT> directory
+</FONT>
+<P><A NAME="19361"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT>.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="19348"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This will will delete the assemble and build directories.
+</FONT>
+<P>    </dl>
+  </ul>
+</ul>
+
+<BR>
+<BR>
+
+<A NAME="19618"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19622"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, you will learn how to deploy the Duke's Bookstore sample application.
+</FONT>
+<P>
+
+<A NAME="19623"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, do the following:
+</FONT>
+<P>
+<ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Start your database server (PointBase).
+</FONT>
+<A NAME="19523"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<p><B>  <li></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">bookstore/bookstore1</FONT> (or <FONT FACE="courier, couriernew, monospaced size">bookstore2</FONT>)<FONT FACE="courier, couriernew, monospaced size">/src</FONT> directory
+</FONT>
+<P><A NAME="19524"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Deploy the sql datasource. 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19679"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<I>Please note that all two bookstore applications share the same jdbc-DataSource</I>. To create the datasource type <FONT FACE="courier, couriernew, monospaced size">asant setup_pb</FONT>. This creates the datasource for pointbase database. To run the sample on Oracle please refer to Deploying in Oracle section below. Do not create this datasource for each bookstore application. For this reason, <FONT FACE="courier, couriernew, monospaced size">asant all</FONT> does not create sql datasource.
+</FONT>
+<P>  </dl>
+<A NAME="19526"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT>. This deploys the bookstore application.
+</FONT>
+<P></ul>
+
+<A NAME="19528"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To undeploy the application, do the following:
+</FONT>
+<P>
+<ul>
+<A NAME="19530"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">bookstore/bookstore1</FONT> (or <FONT FACE="courier, couriernew, monospaced size">bookstore2</FONT>)<FONT FACE="courier, couriernew, monospaced size">/src</FONT> directory
+</FONT>
+<P><A NAME="19531"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant undeploy</FONT>
+</FONT>
+<P><A NAME="18534"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+To undeploy the jdbc datasource, execute the command <FONT FACE="courier, couriernew, monospaced size">asant undeploy-sql</FONT>
+</FONT>
+<P></ul>
+
+<BR>
+<A NAME="ora"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying in Oracle
+</FONT>
+<BR>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<p>
+To deploy the sample in Oracle, please follow the steps outlined below. Note that the steps 
+to Deploy Bookstore application is a special case of what is outlined in the document
+<a href="../../../docs/oracle.html#special_case"> (How to run samples with Oracle database server) </a>document. 
+
+<ul>
+  <li> Set up the database, create bookstore user and tables. Please refer to 
+   <a href="../../../docs/oracle.html#general_setting"> General settings </a> of the oracle document.
+  <li> Add the following target to build.xml. <br>
+&lt;target name="setup_ora" depends="setup_env, deploy_jdbc_resource_ora_common,
+reconfig"/>
+
+  <li> Create jdbc connection pool and Data source. To do so, run<br>
+        asant setup_ora  -Ddb.host=[db_hostname] -Ddb.port=[db_port] -Ddb.sid=[sid]
+  <li> Deploy the application. Use asant deploy.
+</ul>
+</FONT>
+<P>
+<BR>
+<A NAME="14931"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19700"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In order to run the sample application, you must first do the following: 
+</FONT>
+<P>
+<ul>
+<A NAME="19702"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Start your database server (PointBase).
+</FONT>
+<P><A NAME="19704"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Compile, Assemble and Deploy the application as described in the previous sections <A HREF="index.html#14862"  >Compiling and Assembling the Application</A>, and <A HREF="index.html#19618"  >Deploying the Sample Application</A>.
+</FONT>
+<P></ul>
+
+<A NAME="19707"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You are now ready to run the sample application by doing the following.
+</FONT>
+<P>
+<ul>
+<A NAME="19709"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+bookstore1: On your browser go to the url : <FONT FACE="courier, couriernew, monospaced size">http://&lt;host&gt;:&lt;port&gt;/bookstore1/enter</FONT>
+</FONT>
+<P><A NAME="19710"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+bookstore2: On your browser go to the url : <FONT FACE="courier, couriernew, monospaced size">http://&lt;host&gt;:&lt;port&gt;/bookstore2/enter</FONT>
+</FONT>
+<P></ul>
+
+<A NAME="19712"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Each bookstore sample has <FONT FACE="courier, couriernew, monospaced size">build.xml</FONT> and deployment descriptors under <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory. (e.g. <FONT FACE="courier, couriernew, monospaced size">bookstore1/src</FONT> or <FONT FACE="courier, couriernew, monospaced size">bookstore2/src</FONT>)
+</FONT>
+<P>
+
+<A NAME="19698"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following images are from running the <FONT FACE="courier, couriernew, monospaced size">bookstore1</FONT> sample.
+</FONT>
+<P>
+
+<A NAME="19849"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="bookstore1_1.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="19850"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 1	&nbsp&nbsp Duke's Bookstore: "Start Shopping" link
+</B>
+</FONT>
+<P>
+<A NAME="19851"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="bookstore1_2.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="19852"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 2	&nbsp&nbsp Duke's Bookstore: Shopping Cart
+</B>
+</FONT>
+<P>
+<A NAME="19853"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="bookstore1_3.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="19854"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 3	&nbsp&nbsp Duke's Bookstore: Cashier
+</B>
+</FONT>
+<P><P>
+<BR>
+<A NAME="18868"> </A>
+<A NAME="Generating javadocs"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Generating javadocs
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="18871"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To better understand sample application source code, you may refer to the related javadocs.
+</FONT>
+<P>
+
+<A NAME="18872"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To generate javadocs, run one of the following commands:
+</FONT>
+<P>
+
+<A NAME="18917"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT>
+</FONT>
+<P>
+
+<A NAME="18874"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">or
+</FONT>
+<P>
+
+<A NAME="18875"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">asant all</FONT>
+</FONT>
+<P>
+
+<A NAME="18877"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After javadocs are generated, you may access them at <FONT FACE="courier, couriernew, monospaced size">samples/webapps/bookstore/bookstore1/javadocs/index.html</FONT>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15009"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="18940"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-dir&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong. 
+</FONT>
+<P><A NAME="20024"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Check to see if the database is running.
+</FONT>
+<P><A NAME="20035"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+To reset your database, run the command <FONT FACE="courier, couriernew, monospaced size">asant sql</FONT>. 
+</FONT>
+<P><A NAME="20043"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+To redeploy the sample, please undeploy the sample first. Use the commands <FONT FACE="courier, couriernew, monospaced size">asant undeploy</FONT>, <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> and then <FONT FACE="courier, couriernew, monospaced size">asant all</FONT>. 
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 12, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

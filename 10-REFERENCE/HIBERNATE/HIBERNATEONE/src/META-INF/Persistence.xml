@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="persistence_2_0.xsd" version="2.0">
+
+	<persistence-unit name="test" >
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.farbig.collections.Test</class>
+		 <exclude-unlisted-classes/>
+		<properties>
+			<property name="hibernate.connection.url"
+				value="jdbc:postgresql://localhost:5432/hibernatedb" />
+			<property name="hibernate.connection.driver" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.user" value="postgres" />
+			<property name="hibernate.connection.password" value="password" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.search.autoregister_listeners"
+				value="false" />
+			<property name="hibernate.jdbc.batch_size" value="200" />
+			<property name="hibernate.connection.autocommit" value="false" />
+			<property name="hibernate.generate_statistics" value="true" />
+			<property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+
+			<property name="hibernate.cache.region.factory_class"
+				value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />
+		</properties>
+	</persistence-unit>
+	
+	<persistence-unit name="vehicle" >
+
+		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<class>com.farbig.mapping.VehicleOne</class>
+		<class>com.farbig.mapping.TripOne</class>
+		 <exclude-unlisted-classes/>
+		<properties>
+			<property name="hibernate.connection.url"
+				value="jdbc:postgresql://localhost:5432/hibernatedb" />
+			<property name="hibernate.connection.driver" value="org.postgresql.Driver" />
+			<property name="hibernate.connection.user" value="postgres" />
+			<property name="hibernate.connection.password" value="password" />
+			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.search.autoregister_listeners"
+				value="false" />
+			<property name="hibernate.jdbc.batch_size" value="200" />
+			<property name="hibernate.connection.autocommit" value="false" />
+			<property name="hibernate.generate_statistics" value="true" />
+			<property name="hibernate.cache.use_second_level_cache"
+				value="true" />
+			<property name="hibernate.cache.use_query_cache" value="true" />
+
+			<property name="hibernate.cache.region.factory_class"
+				value="org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory" />
+		</properties>
+	</persistence-unit>
+	
+</persistence>

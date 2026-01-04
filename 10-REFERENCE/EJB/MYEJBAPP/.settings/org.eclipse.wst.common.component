@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="MYEJBAPP">
+        <wb-resource deploy-path="/" source-path="/EarContent" tag="defaultRootSource"/>
+        <dependent-module archiveName="MYEJBClient.jar" deploy-path="/" handle="module:/resource/MYEJBClient/MYEJBClient">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MYHDB.jar" deploy-path="/lib" handle="module:/resource/MYHDB/MYHDB">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MYEJBBEAN.jar" deploy-path="/" handle="module:/resource/MYEJBBEAN/MYEJBBEAN">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MYWS.war" deploy-path="/" handle="module:/resource/MYWS/MYWS">
+            <dependent-object/>
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="MYJPA.jar" deploy-path="/lib" handle="module:/resource/MYJPA/MYJPA">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+    </wb-module>
+</project-modules>

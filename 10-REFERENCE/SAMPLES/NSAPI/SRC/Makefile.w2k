@@ -1,0 +1,97 @@
+CPP=cl.exe
+RSC=rc.exe
+LINK32=link.exe
+
+INTDIR=.\obj
+
+ALL : example.dll cgiwatch.dll qos.dll
+
+$(INTDIR):
+    if not exist $(INTDIR)/nul mkdir $(INTDIR)
+
+CPP_PROJ=/nologo /MT /W3 /GX /YX /O2 /I "../../../include" /I "../../../include/base"\
+ /I "../../../include/frame" /D "NDEBUG" /D "WIN32" /D "_WINDOWS" /D "XP_WIN32" /D\
+ "MCC_HTTPD" /D "SPAPI20" /Fo$(INTDIR)/ /c 
+CPP_OBJS=.\obj/
+
+LINK32_FLAGS=kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib\
+ advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib \
+ ../../../lib/ns-httpd40.lib /NOLOGO /SUBSYSTEM:windows /DLL /INCREMENTAL:no\
+ /MACHINE:I386
+
+EXAMPLE_OBJS= \
+	$(INTDIR)/service.obj \
+	$(INTDIR)/pcheck.obj \
+	$(INTDIR)/addlog.obj \
+	$(INTDIR)/auth.obj \
+	$(INTDIR)/ntrans.obj \
+	$(INTDIR)/otype.obj
+
+QOS_OBJS= \
+	$(INTDIR)/qos.obj
+
+CGIWATCH_OBJS= \
+	$(INTDIR)/cookie.obj \
+	$(INTDIR)/cgiwatch.obj
+
+example.dll : $(EXAMPLE_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) /PDB:"example.pdb" /OUT:"../example.dll" /IMPLIB:"example.lib" $(EXAMPLE_OBJS)
+<<
+
+qos.dll : $(QOS_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) /PDB:"qos.pdb" /OUT:"../qos.dll" /IMPLIB:"qos.lib" $(QOS_OBJS)
+<<
+
+cgiwatch.dll : $(CGIWATCH_OBJS)
+    $(LINK32) @<<
+  $(LINK32_FLAGS) /PDB:"cgiwatch.pdb" /OUT:"../cgiwatch.dll" /IMPLIB:"cgiwatch.lib" $(CGIWATCH_OBJS)
+<<
+
+.c{$(CPP_OBJS)}.obj:
+   $(CPP) $(CPP_PROJ) $<  
+
+.cpp{$(CPP_OBJS)}.obj:
+   $(CPP) $(CPP_PROJ) $<  
+
+.cxx{$(CPP_OBJS)}.obj:
+   $(CPP) $(CPP_PROJ) $<  
+
+
+SOURCE=.\service.c
+
+$(INTDIR)/service.obj :  $(SOURCE)  $(INTDIR)
+
+SOURCE=.\pcheck.c
+
+$(INTDIR)/pcheck.obj :  $(SOURCE)  $(INTDIR)
+
+SOURCE=.\addlog.c
+
+$(INTDIR)/addlog.obj :  $(SOURCE)  $(INTDIR)
+
+SOURCE=.\auth.c
+
+$(INTDIR)/auth.obj :  $(SOURCE)  $(INTDIR)
+
+SOURCE=.\ntrans.c
+
+$(INTDIR)/ntrans.obj :  $(SOURCE)  $(INTDIR)
+
+SOURCE=.\otype.c
+
+$(INTDIR)/otype.obj :  $(SOURCE)  $(INTDIR)
+
+SOURCE=.\qos.c
+
+$(INTDIR)/qos.obj :  $(SOURCE)  $(INTDIR)
+
+SOURCE=.\cgiwatch.c
+
+$(INTDIR)/cgiwatch.obj :  $(SOURCE)  $(INTDIR)
+
+SOURCE=.\cookie.c
+
+$(INTDIR)/cookie.obj :  $(SOURCE)  $(INTDIR)
+

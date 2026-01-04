@@ -1,0 +1,768 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+<meta name="LastUpdated" content="07/10/02 18:51:40">
+<title>JMS Sample Application: Chapter&#32;1 Configuring IBM [TM] WebSphere MQ for JMS</title>
+</head>
+
+<body text="#000000" link="10% #594fbf" vlink="#594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+
+     <tr>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="2_InstallMQSeries.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+         </td>
+     </tr>
+
+      <tr>
+         <td valign="TOP" align="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            JMS Sample Application</B></FONT>
+         </td>
+      </tr>
+
+   </TABLE>
+   <BR><BR>
+
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+
+      <A NAME="13832"> </A><A NAME=""> </A><FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#666666"><B>
+Chapter&#32;1 
+&nbsp;
+</B>
+</FONT>
+
+
+<A NAME="13833"> </A>
+<A NAME="Configuring IBM TM WebSphere MQ for JMS"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Configuring IBM <sup>TM</sup> WebSphere MQ for JMS
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="14281"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to configure IBM <sup>TM</sup> WebSphere MQ (formerly MQSeries)  V 5.3 for Java Messaging Services (JMS) on Solaris and Windows 2000.
+</FONT>
+<P>
+
+<A NAME="14282"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14286"> </A>
+<li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+<A HREF="3_ConfigMQSeries.html#14296"  >Configuring WebSphere MQ for JMS</A>
+</FONT>
+
+<P><A NAME="14286"> </A>
+<li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+<A HREF="3_ConfigMQSeries.html#14299"  >Setting up the Broker to run the WebSphere MQ JMS</A>
+</FONT>
+
+<P><A NAME="14290"> </A>
+<li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="3_ConfigMQSeries.html#14386"  >Configuring Sun ONE Application Server</A>
+</FONT>
+
+<P><A NAME="14294"> </A>
+<li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="3_ConfigMQSeries.html#14402"  >Registering JMS Resources with Sun ONE Application Server</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14296"> </A>
+<A NAME="Configuring WebSphere MQ for JMS"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Configuring WebSphere MQ for JMS
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14297"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section describes the steps to configure the JMS resources using the MQ command line utilities and the WebSphere MQ JMS Administration Tool. 
+</FONT>
+<P>
+
+<A NAME="14298"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For more information about the WebSphere MQ JMS administration tool,  please read <I>Chapter 5: Using the WebSphere MQ JMS Administration Tool</I> from the document titled  "Using Java". The document can be found online at: <A HREF="http://publibfp.boulder.ibm.com/epubs/html/csqzaw09/csqzaw09tfrm.htm"><FONT FACE="courier, couriernew, monospaced size">http://publibfp.boulder.ibm.com/epubs/html/csqzaw09/csqzaw09tfrm.htm</FONT></A>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14301"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  
+<b><li value="1"> </b>
+Setting environment variables
+</FONT>
+<P><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  
+On Solaris, before the administrative interface can be used, it's necessary to set the following environment variables as described below:
+</font>
+<P><dl>    <dl>
+       <DT> <A NAME="14302"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+setenv MQ_HOME  /opt/mqm/ 
+</FONT>
+<P>       <DT> <A NAME="14303"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+setenv MQ_JAVA_INSTALL_PATH  /opt/mqm/java 
+</FONT>
+<P>       <DT> <A NAME="14304"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+setenv MQ_JAVA_DATA_PATH  /var/mqm 
+</FONT>
+<P>       <DT> <A NAME="14305"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+setenv LD_LIBRARY_PATH /opt/mqm/java/lib 
+</FONT>
+<P>       <DT> <A NAME="14306"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+setenv PATH  ${PATH}:$MQ_JAVA_INSTALL_PATH/bin 
+</FONT>
+<P>       <DT> <A NAME="14307"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+setenv CLASSPATH  /opt/mqm/java/lib/com.ibm.mq.jar: 
+/opt/mqm/java/lib/com.ibm.mqjms.jar: 
+/opt/mqm/java/lib/connector.jar: 
+/opt/mqm/java/lib/jms.jar: 
+/opt/mqm/java/lib/fscontext.jar: 
+/opt/mqm/java/lib/providerutil.jar: 
+/opt/mqm/java/lib/jndi.jar: 
+/opt/mqm/java/lib/jta.jar: 
+/opt/mqm/java 
+</FONT>
+<P>    </dl>
+</dl>
+
+<P><dl>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<DT>On Windows 2000, the environment variables are automatically set when WebSphere MQ is installed.
+</font>
+</dl> </ol>
+
+<P>
+<ol type="1">
+<A NAME="14322"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+<b><li value="2"></b>
+If you have not yet created a queue manager named <FONT FACE="courier, couriernew, monospaced size">mqseries.queue.manager</FONT>, create and start the queue manager as follows:
+</font>
+<P>  <ol type="a">
+<A NAME="14323"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+<b><li></b>
+Log on your system as the <FONT FACE="courier, couriernew, monospaced size">mqm</FONT> user or as a user who is a member of <FONT FACE="courier, couriernew, monospaced size">mqm</FONT> group.
+<P>On Windows 2000, you can also log on you system as user who belongs to the administrator group.
+
+</font>
+<P><A NAME="14324"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+ <b><li></b>
+Create a queue manager named <FONT FACE="courier, couriernew, monospaced size">mqseries.queue.manager</FONT>.
+</font>
+<P>    <dl>
+       <DT> <A NAME="14325"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">crtmqm -q mqseries.queue.manager</FONT>
+</FONT>
+<P>    </dl>
+<A NAME="14326"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  
+<b><li></b>
+Start the queue manager.
+</font>
+<P>    <dl>
+       <DT> <A NAME="14327"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">strmqm</FONT>
+</FONT>
+<P>    </dl>
+  </ol>
+
+<A NAME="14344"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+<b><li value="3"></b>
+Create a configuration file.
+</font>
+<P>  <dl>
+     <DT> <A NAME="14345"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The sample applications use the JNDI file system to store and lookup the administered objects.  The configuration parameters should be set as follows:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="14346"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+INITIAL_CONTEXT_FACTORY=com.sun.jndi.fscontext.RefFSContextFactory
+</FONT>
+<P>       <DT> <A NAME="14347"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+PROVIDER_URL=file:///[drive]:&lt;directory_path&gt;
+</FONT>
+
+<P>       <DT> <A NAME="14348"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+SECURITY_AUTHENTICATION=none
+</FONT>
+<P>    </dl>
+</dl>     <DT> <A NAME="14349"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;directory_path&gt;</FONT> must be an existing path to a directory. The directoy will be used as a storage and it could be any directory accessible by users who are in <FONT FACE="courier, couriernew, monospaced size">mqm</FONT> group.
+<P>An example of the configuration file is as follows:
+</FONT>
+<P><dl>    <dl>
+<DT> <A NAME="14350"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+INITIAL_CONTEXT_FACTORY=com.sun.jndi.fscontext.RefFSContextFactory
+</FONT>
+<P>       <DT> <A NAME="14351"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Solaris:</FONT>
+<BR><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+PROVIDER_URL=file:///export/JMSRes
+</FONT>
+<P>       <DT> 
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Windows 2000:</FONT>
+<BR><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+PROVIDER_URL=file:///D:/JMSRes
+</FONT>
+<P>       <DT> <A NAME="14352"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+SECURITY_AUTHENTICATION=none
+</FONT>
+<P>    </dl>
+</dl></dl>
+<A NAME="14353"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+<b><li value="4"></b>
+Create the JMS administered objects which will be used by the Sun ONE sample applications. 
+</font>
+<P>  <ol type="a">
+<A NAME="14354"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+<b><li></b>
+Execute the MQSeries JMS administrative tool as follows:
+</font>
+<P>  <dl>
+     <DT> <A NAME="14355"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+On Solaris:
+<P><FONT FACE="courier, couriernew, monospaced size">$MQ_JAVA_INSTALL_PATH/bin/JMSAdmin -v -cfg  &lt;configuration_file&gt;</FONT>
+<P>
+On Windows 2000:
+<P><FONT FACE="courier, couriernew, monospaced size">%MQ_JAVA_INSTALL_PATH%\bin\JMSAdmin -v -cfg  &lt;configuration_file&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="14364"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where<FONT FACE="courier, couriernew, monospaced size"> &lt;configuration_file&gt;</FONT> is the name of the file created in <A HREF="3_ConfigMQSeries.html#14344">Step 3</A>.  If the file is not in the current directoy, the whole path must be specified.
+
+<P>    </font></dl>
+  </ol>
+</ol><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14361"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14363"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+On Solaris, if an error occurs, it ispossible that the current user cannot access the <FONT FACE="courier, couriernew, monospaced size">/opt/mqm</FONT> directory. If this is the case, enable user access by executing <FONT FACE="courier, couriernew, monospaced size">chmod +rx /opt/mqm</FONT>.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>  
+<ol type="a"> 
+    <ol type="a" start="2">
+      <A NAME="14365"> </A>
+      <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+      <b><li></b> On Solaris, create 
+        a subcontext named <FONT FACE="courier, couriernew, monospaced size">jms</FONT> 
+        at the command prompt <FONT FACE="courier, couriernew, monospaced size">InitCtx&gt;</FONT>. 
+        For example: </FONT> 
+        <P> 
+        <dl> 
+          <DT> <A NAME="14366"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+            <FONT FACE="courier, couriernew, monospaced size">InitCtx&gt; define 
+            ctx(jms)</FONT> </FONT> 
+            <P>
+        </dl>
+        <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Windows 2000, do not create the jms subcontext.</FONT>
+      <P>  <A NAME="14367"> </A> 
+      <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+      <b><li></b>Create administered objects.</FONT> 
+        <P> 
+        <dl> 
+          <DT> <A NAME="14371"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+            For the JMS Topic Simple Sample application, enter the following commands: 
+            </FONT> 
+            <P> 
+          <DT> <A NAME="14372"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+            <FONT FACE="courier, couriernew, monospaced size">InitCtx&gt; define 
+            tcf(jms/sampleTCF) qmgr(mqseries.queue.manager)</FONT> </FONT> 
+            <P> 
+          <DT> <A NAME="14376"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+            <FONT FACE="courier, couriernew, monospaced size">InitCtx&gt; define 
+            t(jms/sampleTopic) topic(ASTOPIC)</FONT> 
+            </FONT> 
+            <P> 
+        </dl>
+       
+      <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+      <b><li></b>
+        On Solaris, verify the defined objects using the following commands:</FONT> 
+        <P> 
+        <dl> 
+          <P> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+              <FONT FACE="courier, couriernew, monospaced size">InitCtx&gt; change ctx(jms)</FONT>
+          <P> <FONT FACE="courier, couriernew, monospaced size">InitCtx&gt; display ctx</FONT> </FONT> 
+          <P> 
+          <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> You should get 
+          an output similar to the one shown below:
+          <FONT FACE="courier, couriernew, monospaced size"> 
+          <P> Contents of InitCtx 
+          <P> 
+          <P> .bindings&nbsp;&nbsp;&nbsp;java.io.File <br>
+            a sampleTCF1&nbsp;&nbsp;&nbsp;com.ibm.mq.jms.MQTopicConnectionFactory 
+            <br>
+            a sampleTopic&nbsp;&nbsp;&nbsp;com.ibm.mq.jms.MQTopic <br>
+          <P> 3 Object(s) <br>
+            0 Context(s) <br>
+            3 Binding(s), 2 Administered 
+          </FONT></FONT>
+          <P> 
+        </dl>
+        <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Windows 2000, verify the defined objects
+         using the following commands:</FONT>
+        <P>
+        <dl>
+          <P> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+          <FONT FACE="courier, couriernew, monospaced size">InitCtx&gt;display ctx</FONT></FONT>
+          <P>
+          <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> You should get
+          an output similar to the one shown below:
+          <FONT FACE="courier, couriernew, monospaced size">
+          <P> Contents of InitCtx
+          <P>
+          <P> .bindings&nbsp;&nbsp;&nbsp;java.io.File <br>
+          <P> 1 Object(s) <br>
+            0 Context(s) <br>
+            1 Binding(s), 0 Administered
+          </FONT></FONT>
+          <P>
+        </dl>
+
+
+        <A NAME="14380"> </A> 
+      <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+      <b><li></b> Exit the the WebSphere MQ JMS Administration Tool using the command 
+      <FONT FACE="courier, couriernew, monospaced size">end</FONT>. 
+        For example: </font> 
+        <P> 
+        <dl> 
+          <DT> <A NAME="14381"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+            <FONT FACE="courier, couriernew, monospaced size">InitCtx&gt; end</FONT> 
+            </FONT> 
+            <P> 
+        </dl>
+    </ol>
+</ol>
+
+<A NAME="14382"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For more information about the WebSphere MQ JMS administration tool,  please read <I>Chapter 5: Using the WebSphere MQ JMS Administration Tool</I> from the document titled  "Using Java". The document can be found online at: <A HREF="http://publibfp.boulder.ibm.com/epubs/html/csqzaw09/csqzaw09tfrm.htm"><FONT FACE="courier, couriernew, monospaced size">http://publibfp.boulder.ibm.com/epubs/html/csqzaw09/csqzaw09tfrm.htm</font></A>
+</FONT>
+<P>
+
+<A NAME="14299"> </A>
+<A NAME="Setting up the Broker to run the WebSphere MQ JMS"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Setting up the Broker to run the WebSphere MQ JMS
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+<A NAME="14387"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+If you haven't installed the SuportPac MA0C to use WebSphere MQ JMS implementation of JMS publish/subcribe,
+please refer to <A HREF="2_InstallMQSeries.html">Installing IBM <sup>TM</sup> WebSphere MQ</A> document for
+ where to download and how to install the SupportPac MA0C.
+If you have already installed the SupportPact, do the following steps to set up the the broker to run the
+ WebSphere MQ JMS:
+</FONT>
+<P>
+<ol type="1">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="1"></b>
+Create the WebSphere MQ JMS system queues by executing the command:
+</font>
+<P>  <dl>
+     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Solraris:
+<FONT FACE="courier, couriernew, monospaced size">
+<P>cd $MQ_JAVA_INSTALL_PATH/bin
+<P>runmqsc mqseries.queue.manager < MQJMS_PSQ.mqsc
+</FONT></FONT>
+<P><DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Windows 2000:
+<FONT FACE="courier, couriernew, monospaced size">
+<P>cd %MQ_JAVA_INSTALL_PATH%\bin
+<P>runmqsc mqseries.queue.manager < MQJMS_PSQ.mqsc
+</FONT></FONT>
+</dl>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="2"></b>
+Verify that the broker is running 
+</font>
+<P>  <dl>
+     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">
+dspmqbrk -m mqseries.queue.manager</FONT>
+</FONT></FONT>
+
+<P><DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If a message reports that the broker is not running, start the broker using the command:
+<P><FONT FACE="courier, couriernew, monospaced size">
+strmqbrk -m mqseries.queue.manager 
+</FONT></FONT>
+</dl>
+</ol>
+<P><A NAME="14382"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+For more information about setting up the broker to run the WebSphere MQ JMS,  please read <I>Chapter 11: Programming publish/subscribe applications</I> from the document titled  "Using Java". The document can be found online at: <A HREF="http://publibfp.boulder.ibm.com/epubs/html/csqzaw09/csqzaw09tfrm.htm"><FONT FACE="courier, couriernew, monospaced size">http://publibfp.boulder.ibm.com/epubs/html/csqzaw09/csqzaw09tfrm.htm</font></A>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14386"> </A>
+<A NAME="Configuring Sun ONE Application Server"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Configuring Sun ONE Application Server
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14387"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, you will add MQ jar and MQ java libraries to the Sun ONE Application Server using the web-based Administration Tool.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14388"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="1"></b>
+From your web browser, access the Sun ONE Administration Tool at <FONT FACE="courier, couriernew, monospaced size">http://&lt;host&gt;:&lt;admin_port&gt;</FONT>
+</font>
+<P>  <dl>
+     <DT> <A NAME="14389"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;host&gt;</FONT> is the machine on which the application server is installed, and <FONT FACE="courier, couriernew, monospaced size">&lt;admin_port&gt;</FONT> is the server administration port.
+</FONT>
+<P>  </dl>
+<A NAME="14390"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="2"></b>
+On the left frame, navigate the tree by clicking on the following folders:
+</font>
+<P>  <dl>
+     <DT> <A NAME="14391"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+AppServer Instances-&gt;server1
+</FONT>
+<P>  </dl>
+<A NAME="14392"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="3"></b>
+On the right frame, click on the JVM Settings tab and then the Path Settings link
+</font>
+<P><A NAME="14393"> </A>
+
+  <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+  <b><li value="4"></b>
+Enter the following files in the Classpath Suffix text box:
+</font>
+<P>  <dl>
+     <DT> <A NAME="14394"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Solaris:
+<P><FONT FACE="courier, couriernew, monospaced size">/opt/mqm/java/lib/com.ibm.mq.jar</FONT>
+</FONT>
+<P>     <DT> <A NAME="14395"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">/opt/mqm/java/lib/com.ibm.mqjms.jar</FONT>
+</FONT>
+<P>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">/opt/mqm/java/lib</FONT>
+</FONT>
+<P><DT> 
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Windows 2000:
+<P><FONT FACE="courier, couriernew, monospaced size">&lt;MQ_HOME&gt;/java/lib/com.ibm.mq.jar</FONT>
+</FONT>
+<P>     <DT> <A NAME="14395"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;MQ_HOME&gt;/java/lib/com.ibm.mqjms.jar</FONT>
+</FONT>
+<P>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;MQ_HOME&gt;/java/lib</FONT>
+</FONT>
+<P> </dl>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;MQ_HOME&gt;</FONT> is WebSphere MQ installation home on Windows 2000.  
+</FONT>
+<P><A NAME="14396"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="5"></b>
+In the Native Library Path Suffix text box, type the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14397"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Solaris:
+<P><FONT FACE="courier, couriernew, monospaced size">
+/opt/mqm/java/lib
+</FONT> </FONT>
+<P>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Windows 2000:
+<P><FONT FACE="courier, couriernew, monospaced size">
+&lt;MQ_HOME&gt;/java/lib
+</FONT> </FONT>
+<P>  </dl>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;MQ_HOME&gt;</FONT> is WebSphere MQ installation home.
+</FONT>
+<P><A NAME="14398"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="6"></b>
+Click the Save button.
+</font>
+<P><A NAME="14399"> </A>
+
+  <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+  <b><li value="7"></b>
+To propagate these modifications to the server, do the following:
+</font>
+<P>  <dl>
+     <DT> <A NAME="14400"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click the General tab and click on Apply Changes button.
+</FONT>
+<P>  </dl>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="8"></b>
+Stop and start the server instance
+</FONT>
+
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14402"> </A>
+<A NAME="Registering JMS Resources with Sun ONE Application Server"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Registering JMS Resources with Sun ONE Application Server
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14403"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Now that you have created the JMS resources in <A HREF="3_ConfigMQSeries.html#14353"> Step 5 of Configuring WebSphere MQ</A>,  you must register these resources with Sun ONE Application Server via the use of external-jndi resources. The procedure is as follows:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14404"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="1"></b>
+Run the <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> utility in multimode. For example:
+</font>
+<P>  <dl>
+     <DT> <A NAME="14405"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/bin/asadmin multimode  asadmin utility in multimode</FONT>
+</FONT>
+<P>     <DT> <A NAME="14406"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;</FONT> is Sun ONE application server installation home.
+</FONT>
+<P>  </dl>
+<A NAME="14407"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="2"></b>
+Set global parameters so that you will not have to enter them for every sub command. For example:
+</font>
+<P>  <dl>
+     <DT> <A NAME="14408"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+asadmin&gt;export AS_ADMIN_USER=&lt;admin_username&gt; AS_ADMIN_PASSWORD=&lt;admin_password&gt; AS_ADMIN_HOST=&lt;host&gt; AS_ADMIN_PORT=&lt;adminserver_port&gt; AS_ADMIN_INSTANCE=&lt;instance_name&gt;
+</FONT>
+<P>     <DT> <A NAME="14409"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where<FONT FACE="courier, couriernew, monospaced size"> &lt;admin_username&gt;</FONT> is application server admin user name, <FONT FACE="courier, couriernew, monospaced size">&lt;admin_password&gt;</FONT> is the admin password, <FONT FACE="courier, couriernew, monospaced size">&lt;host&gt;</FONT> is the machine on which the application server is installed, <FONT FACE="courier, couriernew, monospaced size">&lt;adminserver_port&gt;</FONT> is admin server port of the application server, and <FONT FACE="courier, couriernew, monospaced size">&lt;instance_name&gt;</FONT> is the application server instance name (e.g. server1).
+</FONT>
+<P>  </dl>
+<A NAME="14410"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="3"></b>
+Create external jndi external resources.
+</font>
+<P>  <dl>
+     <DT> <A NAME="14414"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For the JMS Topic Simple sample application, create one external jndi resources with the resource type of  <FONT FACE="courier, couriernew, monospaced size">javax.jms.TopicConnectionFactory,</FONT> and one with the resource type of <FONT FACE="courier, couriernew, monospaced size">javax.jms.Topic</FONT> as follows:
+</FONT>
+<P>     <DT> <A NAME="14415"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt;create-jndi-resource  --jndilookupname jms/sampleTCF --resourcetype javax.jms.TopicConnectionFactory --factoryclass com.sun.jndi.fscontext.RefFSContextFactory --enabled=true --property java.naming.provider.url=&lt;directory_path&gt;:java.naming.security.authentication=none jms/sampleTCF 
+</FONT></FONT>
+<P>     <DT> <A NAME="14418"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt;create-jndi-resource  --jndilookupname  jms/sampleTopic --resourcetype javax.jms.Topic --factoryclass com.sun.jndi.fscontext.RefFSContextFactory --enabled=true --property java.naming.provider.url=&lt;directory_path&gt; jms/sampleTopic 
+</FONT></FONT>
+<P>     <DT> <A NAME="14420"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where 
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;directory_path&gt;</FONT> is the file system set to the <FONT FACE="courier, couriernew, monospaced size">PROVIDER_URL</FONT> parameter in <A HREF="3_ConfigMQSeries.html#14344">Create a configuration file</A>.  You must use an <I>escape character</I> in front of the colon (:) in the directory path.
+</FONT>
+<P>     <DT> <A NAME="14423"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Below are examples of how to create jndi resources on Solaris and Windows 2000.
+</FONT>
+<P>     <DT> <A NAME="14424"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Solaris: 
+<P><FONT FACE="courier, couriernew, monospaced size">asadmin>create-jndi-resource  --jndilookupname   jms/sampleTCF --resourcetype javax.jms.TopicConnectionFactory --factoryclass com.sun.jndi.fscontext.RefFSContextFactory --enabled=true --property java.naming.provider.url=file\:///export/JMSRes:java.naming.security.authentication=none  jms/sampleTCF</FONT>
+</FONT>
+<P>     <DT> 
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin>create-jndi-resource  --jndilookupname   jms/sampleTopic --resourcetype javax.jms.Topic --factoryclass com.sun.jndi.fscontext.RefFSContextFactory --enabled=true --property java.naming.provider.url=file\:///export/JMSRes  jms/sampleTopic</FONT>
+</FONT>
+
+<P>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Windows 2000: 
+<P><FONT FACE="courier, couriernew, monospaced size">asadmin>create-jndi-resource  --jndilookupname   jms/sampleTCF --resourc
+etype javax.jms.TopicConnectionFactory --factoryclass com.sun.jndi.fscontext.RefFSContextFactory --enabled=true --property ja
+va.naming.provider.url=file\:///D\:/JMSRes:java.naming.security.authentication=none  jms/sampleTCF</FONT>
+</FONT>
+<P>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin>create-jndi-resource  --jndilookupname   jms/sampleTopic --resourcetype
+ javax.jms.Topic --factoryclass com.sun.jndi.fscontext.RefFSContextFactory --enabled=true --property java.naming.provider.url
+=file\:///D\:/JMSRes  jms/sampleTopic</FONT>
+</FONT>
+
+<P>  </dl>
+<A NAME="14427"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="4"></b>
+List the external jndi resources to verify the resources you have created. For example:
+</font>
+<P>  <dl>
+     <DT> <A NAME="14428"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt;list-jndi-resources server_instance</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14429"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<b><li value="5"></b>
+Reconfigure the server instance to make sure the changes you made have been propagated to server. For example: 
+</font>
+<P>  <dl>
+     <DT> <A NAME="14430"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt;reconfig instance_name</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14504"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After you have finished installing and configuring WebSphere MQ, you may proceed to <A HREF="index.html#14499"  >Compiling and Assembling the Sample Application</A> or <A HREF="index.html#14530"  >Deploying the Sample Application</A>.
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+            <a href="2_InstallMQSeries.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+       <HR NOSHADE SIZE="1">
+
+  
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <P ALIGN="RIGHT">
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">Last Updated <B>July 10, 2002</B>
+   </font>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+
+</BODY>
+
+
+</HTML>

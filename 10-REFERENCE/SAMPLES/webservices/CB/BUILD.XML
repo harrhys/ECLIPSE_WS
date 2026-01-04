@@ -1,0 +1,207 @@
+
+<!--
+ 
+ * Copyright 2002 Sun Microsystems, Inc. All Rights Reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following
+ * conditions are met:
+ * 
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ * 
+ * - Redistribution in binary form must reproduce the above
+ *   copyright notice, this list of conditions and the following
+ *   disclaimer in the documentation and/or other materials
+ *   provided with the distribution.
+ * 
+ * Neither the name of Sun Microsystems, Inc. or the names of
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * 
+ * This software is provided "AS IS," without a warranty of any
+ * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ * EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY
+ * DAMAGES OR LIABILITIES SUFFERED BY LICENSEE AS A RESULT OF OR
+ * RELATING TO USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE OR
+ * ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE
+ * FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT,
+ * SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+ * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF
+ * THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ * 
+ * You acknowledge that this software is not designed, licensed or
+ * intended for use in the design, construction, operation or
+ * maintenance of any nuclear facility.
+  
+-->
+
+<project name="Coffee Break Application" default="core" basedir=".">
+
+  <property file="../../common.properties"/>
+  <property file="${user.home}/build.properties"/>
+  <property file="build.properties"/>
+  <property environment="as.env"/>
+
+  <path id="classpath">
+    <fileset dir="${com.sun.aas.installRoot}/lib">
+      <include name="*.jar"/>
+    </fileset>
+  </path>
+
+  <target name="init">
+    <!-- include top-level common properties -->
+    <property file="build.properties"/>
+    <property name="javadocs.dir" value="javadocs"/>
+  </target>
+
+  <target name="build_cbpath" unless="sunone.cpath">
+    <path id="cb_classpath">
+        <fileset dir="${com.sun.aas.installRoot}/lib" includes="*.jar" />
+        <fileset dir="${com.sun.aas.webServicesLib}" includes="*.jar"/>
+        <fileset dir="${com.sun.aas.javaRoot}/lib" includes="tools.jar" />
+      </path>
+    <property name="sunone.cpath" refid="cb_classpath"/>
+  </target>
+
+  <target name="setpassword" depends="envpassword, readpassword"/>
+
+  <target name="envpassword" if="as.env.AS_ADMIN_PASSWORD" >
+    <property name="admin.password" value="${as.env.AS_ADMIN_PASSWORD}"/>
+  </target>
+
+  <target name="readpassword"  unless="admin.password" >
+    <sun-appserv-input message="Please Enter SunONE app-server Admin User Password : " addproperty="admin.password" />
+  </target>
+
+  <target name="deploy_common" depends="init,setpassword">
+    <echo message="Deploying ${deploy.file}." />
+    <sun-appserv-deploy
+      file="${deploy.file}"
+      name="${appname}"
+      type="${apptype}"
+      force="true"
+      upload="true"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${as.instance}"
+      sunonehome="${com.sun.aas.installRoot}"/>
+  </target>
+
+  <target name="undeploy_common" depends="init,setpassword">
+    <echo message="Undeploying ${appname}." />
+    <sun-appserv-undeploy
+      name="${appname}"
+      type="${apptype}"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${as.instance}"
+      sunonehome="${com.sun.aas.installRoot}"/>
+  </target>
+
+  <target name="verify_common" depends="init, build_cbpath">
+    <echo message="Verifying Process for ${verify.file}" />
+    <java classname="com.sun.enterprise.tools.verifier.Verifier" fork="yes" dir=".">
+      <classpath path="${sunone.cpath}" />
+      <sysproperty key="com.sun.aas.verifier.xsl" value="${com.sun.aas.installRoot}/lib/verifier/" />
+      <sysproperty key="com.sun.aas.installRoot" value="${com.sun.aas.installRoot}"/>
+      <!-- uncomment the following for verbose output -->
+      <!--<arg value="-v"/>-->
+      <arg value="${verify.file}"/>
+    </java>
+  </target>
+
+ <!-- ======================================================= -->
+ <!-- Clean target.                                           -->
+ <!-- ======================================================= -->
+
+ <target name="clean" depends="init" >
+   <ant dir="common" target="clean"/>
+   <ant dir="jaxm" target="clean"/>
+   <ant dir="jaxrpc" target="clean"/>
+   <ant dir="server" target="clean"/>
+   <delete dir="${javadocs.dir}"/>
+ </target>
+
+  <!-- ======================================================= -->
+  <!-- Core target.                                            -->
+  <!-- ======================================================= -->
+
+  <target name="core" depends="init">
+    <ant dir="common" target="core"/>
+    <ant dir="jaxm" target="package"/>
+    <ant dir="jaxrpc" target="core"/>
+    <ant dir="server" target="package"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Deploy targets.                                         -->
+  <!-- ======================================================= -->
+
+  <target name="deploy" depends="init,setpassword">
+    <ant dir="jaxm" target="deploy"/>
+    <ant dir="jaxrpc" target="deploy"/>
+    <ant dir="server" target="deploy"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- UnDeploy targets.                                       -->
+  <!-- ======================================================= -->
+
+  <target name="undeploy" depends="init,setpassword">
+    <ant dir="jaxm" target="undeploy"/>
+    <ant dir="jaxrpc" target="undeploy"/>
+    <ant dir="server" target="undeploy"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Verify targets.                                       -->
+  <!-- ======================================================= -->
+
+  <target name="verify" depends="init">
+    <ant dir="jaxm" target="verify"/>
+    <ant dir="jaxrpc" target="verify"/>
+    <ant dir="server" target="verify"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Javadocs tragets.                                       -->
+  <!-- ======================================================= -->
+
+  <target name="javadocs" depends="init,core,build_cbpath">
+    <echo message="Generating API Javadocs...."/>
+    <mkdir dir="${javadocs.dir}"/>
+    <javadoc packagenames="com.sun.cb.*"
+             destdir="${javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="Coffee Break Application API"
+             doctitle="Coffee Break Application Demo"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath>
+        <pathelement path="${sunone.cpath}"/>
+        <pathelement path="common/build/classes"/>
+        <pathelement path="jaxm/build/classes"/>
+        <pathelement path="jaxrpc/build/classes"/>
+        <pathelement path="jaxrpc/build/classes"/>
+        <pathelement path="jaxrpc/build/client"/>
+        <pathelement path="server/build/classes"/>
+      </classpath>
+      <sourcepath>
+        <pathelement path="common/src"/>
+        <pathelement path="jaxm/src"/>
+        <pathelement path="jaxrpc/src"/>
+        <pathelement path="server/src"/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="all" depends="clean,core,javadocs,verify,deploy"/>
+
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webServices
+    xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/dd"
+    version="1.0"
+    targetNamespaceBase="http://supplier.org/wsdl"
+    typeNamespaceBase="http://supplier.org/types"
+    urlPatternBase="/ws">
+    <endpoint
+        name="Supplier"
+        displayName="SupplierApplication"
+        description="Coffee Supplier Application"
+        interface="com.sun.cb.SupplierIF"
+        implementation="com.sun.cb.SupplierImpl"
+        model="/WEB-INF/Supplier_model.xml.gz"/>
+    <endpointMapping
+        endpointName="Supplier"
+        urlPattern="/jaxrpc"/>
+</webServices>

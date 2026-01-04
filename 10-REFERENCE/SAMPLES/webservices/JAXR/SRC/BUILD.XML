@@ -1,0 +1,233 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ============================================================== -->
+  <!-- Sun One Application Server Sample Application build xml        -->
+  <!--                                                                -->
+  <!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+  <!-- ============================================================== -->
+
+  <project name="jaxr-sample"  default="core" basedir=".">
+
+  <!-- ============================================================== -->
+  <!--           App name-dependent settings.                         -->
+  <!-- ============================================================== -->
+
+  <property name="appname"        value="jaxrClient"/>
+  <property name="sample.name"    value="JAXR"/>
+  <property name="sample.home"    value="../../../"/>
+
+  <!-- ============================================================== -->
+  <!--           Package directory structures of interest.            -->
+  <!-- ============================================================== -->
+
+  <property name="app.pkg"        value="samples/webservices/jaxr/"/>
+  <property name="war.pkg"        value="samples/webservices/jaxr/"/>
+  <property name="jar.pkg"        value="samples/webservices/jaxr/"/>
+
+  <!-- ============================================================== -->
+  <!--           Java Doc properties.                                 -->
+  <!-- ============================================================== -->
+  <property name="javadoc.pkgnames" value="samples.webservices.jaxr.*" />
+ 
+  <property name="run.classpath" value=".:../${appname}.jar" />
+
+  <!-- ============================================================== -->
+  <!--           App specific properties.                             -->
+  <!-- ============================================================== -->
+  <property file="jaxr.properties"/>
+  <property name="query-url" value=""/>
+  <property name="publish-url" value=""/>
+  <property name="username" value=""/>
+  <property name="password" value=""/>
+  <property name="query-string" value=""/>
+  <property name="key-string" value=""/>
+  <property name="uuid-string" value=""/>
+
+  <!-- ============================================================== -->
+  <!--           Include common.xml.                                  -->
+  <!-- ============================================================== -->
+
+  &include;
+
+  <!-- ============================================================== -->
+  <!--           Run Client targets.                                  -->
+  <!-- ============================================================== -->
+
+  <target name="run-query" depends="init" 
+    description="Run JAXRQuery.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-query" />
+      <arg line="${query-url}"/>
+      <arg line="${query-string}" />
+    </java>
+  </target>
+
+  <target name="run-query-wsdl" depends="init" 
+    description="Run JAXRQueryByWSDLClassification.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-query-wsdl" />
+      <arg line="${query-url}" />
+      <arg line="${publish-url}" />
+    </java>
+  </target>
+
+  <target name="run-query-naics" depends="init" 
+    description="Run JAXRQueryByNAICSClassification.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-query-naics" />
+      <arg line="${query-url}" />
+      <arg line="${publish-url}" />
+    </java>
+  </target>
+
+  <target name="run-publish" depends="init"
+     description="Run JAXRPublish.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-publish" />
+      <arg line="${query-url}" />
+      <arg line="${publish-url}" />
+      <arg line="${username}" />
+      <arg line="${password}" />
+    </java>
+  </target>
+
+  <target name="run-delete" depends="init"
+     description="Run JAXRDelete.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-delete" />
+      <arg line="${query-url}" />
+      <arg line="${publish-url}" />
+      <arg line="${username}" />
+      <arg line="${password}" />
+      <arg line="${key-string}" /> 
+    </java>
+  </target>
+
+  <target name="run-save-scheme" depends="init"
+     description="Run JAXRSaveClassificationScheme.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-save-scheme" />
+      <arg line="${query-url}" />
+      <arg line="${publish-url}" />
+      <arg line="${username}" />
+      <arg line="${password}" />
+    </java>
+  </target>
+
+  <target name="run-delete-scheme" depends="init"
+     description="Run JAXRDeleteScheme.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-delete-scheme" />
+      <arg line="${query-url}" />
+      <arg line="${publish-url}" />
+      <arg line="${username}" />
+      <arg line="${password}" />
+      <arg line="${key-string}" /> 
+    </java>
+  </target>
+
+  <target name="run-publish-postal" depends="init"
+     description="Run JAXRPublishPostal.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-publish-postal" />
+      <arg line="${query-url}" />
+      <arg line="${publish-url}" />
+      <arg line="${uuid-string}"/>
+      <arg line="${username}" />
+      <arg line="${password}" />
+    </java>
+  </target>
+
+  <target name="run-query-postal" depends="init" 
+    description="Run JAXRQueryPostal.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-query-postal" />
+      <arg line="${query-url}"/>
+      <arg line="${uuid-string}"/>
+      <arg line="${query-string}" />
+    </java>
+  </target>
+
+  <target name="run-query-objects" depends="init"
+     description="Run JAXRDelete.">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath>
+        <pathelement path="${run.classpath}" />
+        <pathelement path="${build.classpath}" />
+      </classpath>
+      <arg line="run-query-objects" />
+      <arg line="${query-url}" />
+      <arg line="${publish-url}" />
+      <arg line="${username}" />
+      <arg line="${password}" />
+    </java>
+  </target>
+
+  <target name="help" description="Display help">
+    <java classname="samples.webservices.jaxr.client.JAXRClient" fork="yes">
+      <classpath>
+        <pathelement path="${run.classpath}" />
+      </classpath>
+    </java>
+  </target>
+
+  <!-- ============================================================== -->
+  <!--           Common targets.                                      -->
+  <!-- ============================================================== -->
+
+  <target name="clean"     depends="clean_common"/>
+  <target name="init"      depends="init_common"/>
+  <target name="compile"   depends="compile_common" />
+  <target name="javadocs"  depends="javadocs_common" />
+  <target name="jar"       depends="create_jar_common"/>
+  <target name="core"      depends="compile,jar" />
+  <target name="all"       depends="core,javadocs"/>
+</project>

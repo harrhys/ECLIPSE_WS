@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN" "http://java.sun.com/dtd/ejb-jar_2_0.dtd">
+
+<ejb-jar>
+  <display-name>SupplierPurchaseOrderJAR</display-name>
+  <enterprise-beans>
+    <entity>
+      <display-name>AddressEB</display-name>
+      <ejb-name>AddressEJB</ejb-name>
+      <local-home>com.sun.j2ee.blueprints.address.ejb.AddressLocalHome</local-home>
+      <local>com.sun.j2ee.blueprints.address.ejb.AddressLocal</local>
+      <ejb-class>com.sun.j2ee.blueprints.address.ejb.AddressEJB</ejb-class>
+      <persistence-type>Container</persistence-type>
+      <prim-key-class>java.lang.Object</prim-key-class>
+      <reentrant>False</reentrant>
+      <cmp-version>2.x</cmp-version>
+      <abstract-schema-name>Address</abstract-schema-name>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>zipCode</field-name>
+      </cmp-field>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>streetName2</field-name>
+      </cmp-field>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>state</field-name>
+      </cmp-field>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>streetName1</field-name>
+      </cmp-field>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>city</field-name>
+      </cmp-field>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>country</field-name>
+      </cmp-field>
+      <security-identity>
+        <description>Description set to workaround RI bug 4634924</description>
+        <use-caller-identity/>
+      </security-identity>
+    </entity>
+    <entity>
+      <display-name>ContactInfoEB</display-name>
+      <ejb-name>ContactInfoEJB</ejb-name>
+      <local-home>com.sun.j2ee.blueprints.contactinfo.ejb.ContactInfoLocalHome</local-home>
+      <local>com.sun.j2ee.blueprints.contactinfo.ejb.ContactInfoLocal</local>
+      <ejb-class>com.sun.j2ee.blueprints.contactinfo.ejb.ContactInfoEJB</ejb-class>
+      <persistence-type>Container</persistence-type>
+      <prim-key-class>java.lang.Object</prim-key-class>
+      <reentrant>False</reentrant>
+      <cmp-version>2.x</cmp-version>
+      <abstract-schema-name>ContactInfo</abstract-schema-name>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>telephone</field-name>
+      </cmp-field>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>familyName</field-name>
+      </cmp-field>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>email</field-name>
+      </cmp-field>
+      <cmp-field>
+        <description>no description</description>
+        <field-name>givenName</field-name>
+      </cmp-field>
+      <ejb-local-ref>
+        <ejb-ref-name>ejb/local/Address</ejb-ref-name>
+        <ejb-ref-type>Entity</ejb-ref-type>
+        <local-home>com.sun.j2ee.blueprints.address.ejb.AddressLocalHome</local-home>
+        <local>com.sun.j2ee.blueprints.address.ejb.AddressLocal</local>
+        <ejb-link>AddressEJB</ejb-link>
+      </ejb-local-ref>
+      <security-identity>
+        <description>Description set to workaround RI bug 4634924</description>
+        <use-caller-identity/>
+      </security-identity>
+    </entity>
+    <entity>
+      <description>LineItem CMP EJB</description>
+      <display-name>LineItemEB</display-name>
+      <ejb-name>LineItemEJB</ejb-name>
+      <local-home>com.sun.j2ee.blueprints.lineitem.ejb.LineItemLocalHome</local-home>
+      <local>com.sun.j2ee.blueprints.lineitem.ejb.LineItemLocal</local>
+      <ejb-class>com.sun.j2ee.blueprints.lineitem.ejb.LineItemEJB</ejb-class>
+      <persistence-type>Container</persistence-type>
+      <prim-key-class>java.lang.Object</prim-key-class>
+      <reentrant>False</reentrant>
+      <cmp-version>2.x</cmp-version>
+      <abstract-schema-name>LineItem</abstract-schema-name>
+      <cmp-field>
+        <field-name>categoryId</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>productId</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>itemId</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>lineNumber</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>quantity</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>unitPrice</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>lineItemStatus</field-name>
+      </cmp-field>
+      <security-identity>
+        <description>Description set to workaround RI bug 4634924</description>
+        <use-caller-identity/>
+      </security-identity>
+    </entity>
+    <entity>
+      <description>SupplierOrder CMP EJB</description>
+      <display-name>SupplierOrderEB</display-name>
+      <ejb-name>SupplierOrderEJB</ejb-name>
+      <local-home>com.sun.j2ee.blueprints.supplierpo.order.ejb.SupplierOrderLocalHome</local-home>
+      <local>com.sun.j2ee.blueprints.supplierpo.order.ejb.SupplierOrderLocal</local>
+      <ejb-class>com.sun.j2ee.blueprints.supplierpo.order.ejb.SupplierOrderEJB</ejb-class>
+      <persistence-type>Container</persistence-type>
+      <prim-key-class>java.lang.String</prim-key-class>
+      <reentrant>False</reentrant>
+      <cmp-version>2.x</cmp-version>
+      <abstract-schema-name>SupplierOrder</abstract-schema-name>
+      <cmp-field>
+        <field-name>poId</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>poDate</field-name>
+      </cmp-field>
+      <cmp-field>
+        <field-name>poStatus</field-name>
+      </cmp-field>
+      <primkey-field>poId</primkey-field>
+      <ejb-local-ref>
+        <ejb-ref-name>ejb/local/ContactInfo</ejb-ref-name>
+        <ejb-ref-type>Entity</ejb-ref-type>
+        <local-home>com.sun.j2ee.blueprints.contactinfo.ejb.ContactInfoLocalHome</local-home>
+        <local>com.sun.j2ee.blueprints.contactinfo.ejb.ContactInfoLocal</local>
+        <ejb-link>ContactInfoEJB</ejb-link>
+      </ejb-local-ref>
+      <ejb-local-ref>
+        <ejb-ref-name>ejb/local/LineItem</ejb-ref-name>
+        <ejb-ref-type>Entity</ejb-ref-type>
+        <local-home>com.sun.j2ee.blueprints.lineitem.ejb.LineItemLocalHome</local-home>
+        <local>com.sun.j2ee.blueprints.lineitem.ejb.LineItemLocal</local>
+        <ejb-link>LineItemEJB</ejb-link>
+      </ejb-local-ref>
+      <security-identity>
+        <description>Description set to workaround RI bug 4634924</description>
+        <use-caller-identity/>
+      </security-identity>
+      <query>
+        <query-method>
+          <method-name>findOrdersByStatus</method-name>
+          <method-params>
+            <method-param>java.lang.String</method-param>
+          </method-params>
+        </query-method>
+        <ejb-ql>SELECT DISTINCT OBJECT(a) FROM SupplierOrder a WHERE a.poStatus = ?1</ejb-ql>
+      </query>
+    </entity>
+  </enterprise-beans>
+  <relationships>
+    <ejb-relation>
+      <ejb-relation-name>SupplierOrderEJB-ContactInfoEJB</ejb-relation-name>
+      <ejb-relationship-role>
+        <ejb-relationship-role-name>SupplierOrderEJB</ejb-relationship-role-name>
+        <multiplicity>One</multiplicity>
+        <relationship-role-source>
+          <ejb-name>SupplierOrderEJB</ejb-name>
+        </relationship-role-source>
+        <cmr-field>
+          <cmr-field-name>contactInfo</cmr-field-name>
+        </cmr-field>
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+        <ejb-relationship-role-name>ContactInfoEJB</ejb-relationship-role-name>
+        <multiplicity>One</multiplicity>
+        <cascade-delete/>
+        <relationship-role-source>
+          <ejb-name>ContactInfoEJB</ejb-name>
+        </relationship-role-source>
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>AddressEJB-ContactInfoEJB</ejb-relation-name>
+      <ejb-relationship-role>
+        <ejb-relationship-role-name>ContactInfoEJB</ejb-relationship-role-name>
+        <multiplicity>One</multiplicity>
+        <relationship-role-source>
+          <ejb-name>ContactInfoEJB</ejb-name>
+        </relationship-role-source>
+        <cmr-field>
+          <cmr-field-name>address</cmr-field-name>
+        </cmr-field>
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+        <ejb-relationship-role-name>AddressEJB</ejb-relationship-role-name>
+        <multiplicity>One</multiplicity>
+        <cascade-delete/>
+        <relationship-role-source>
+          <ejb-name>AddressEJB</ejb-name>
+        </relationship-role-source>
+      </ejb-relationship-role>
+    </ejb-relation>
+    <ejb-relation>
+      <ejb-relation-name>LineItemEJB-SupplierOrderEJB</ejb-relation-name>
+      <ejb-relationship-role>
+        <ejb-relationship-role-name>SupplierOrderEJB</ejb-relationship-role-name>
+        <multiplicity>One</multiplicity>
+        <relationship-role-source>
+          <ejb-name>SupplierOrderEJB</ejb-name>
+        </relationship-role-source>
+        <cmr-field>
+          <cmr-field-name>lineItems</cmr-field-name>
+          <cmr-field-type>java.util.Collection</cmr-field-type>
+        </cmr-field>
+      </ejb-relationship-role>
+      <ejb-relationship-role>
+        <ejb-relationship-role-name>LineItemEJB</ejb-relationship-role-name>
+        <multiplicity>Many</multiplicity>
+        <cascade-delete/>
+        <relationship-role-source>
+          <ejb-name>LineItemEJB</ejb-name>
+        </relationship-role-source>
+      </ejb-relationship-role>
+    </ejb-relation>
+  </relationships>
+  <assembly-descriptor>
+    <container-transaction>
+      <description>This value was set as a default by Forte For Java.</description>
+      <method>
+        <ejb-name>AddressEJB</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <description>This value was set as a default by Forte For Java.</description>
+      <method>
+        <ejb-name>ContactInfoEJB</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <description>This value was set as a default by Forte For Java.</description>
+      <method>
+        <ejb-name>LineItemEJB</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+    <container-transaction>
+      <description>This value was set as a default by Forte For Java.</description>
+      <method>
+        <ejb-name>SupplierOrderEJB</ejb-name>
+        <method-name>*</method-name>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>

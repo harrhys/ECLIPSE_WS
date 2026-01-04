@@ -1,0 +1,109 @@
+<project name="FubarMaster" default="all" basedir=".">
+
+	<!-- set global properties for this build file -->
+	<property name="ear.version" value="1.0"/>
+	<property name="beahomedir" value="c:/bea/weblogic92"/>
+	<property name="buildrootdir" value="${basedir}/../.."/>
+	<property name="thisapprootdir" value="${buildrootdir}/FubarAReadme"/>
+
+	<target name="all" depends="clean, core, common, qmdb, tmdb, bejb, wsapp, webapp, clusterwebapp, wsappclient, webappclient, ejbappclient, packandgo"/>
+
+	<target name="clean">
+		<delete dir="${thisapprootdir}/build/fubar"/>
+	</target>
+
+	<target name="core">
+	    <echo>"***Building core"</echo>
+	    <ant dir="${buildrootdir}/FubarCoreProject/build" />
+	</target>
+	
+	<target name="common" depends="core">
+	    <echo>"***Building common"</echo>
+	    <ant dir="${buildrootdir}/FubarCommonProject/build" />
+	</target>
+	
+	<target name="qmdb" depends="common">
+	    <echo>"***Building qmdb"</echo>
+	    <ant dir="${buildrootdir}/FubarQueueMDBAppProject/build" />
+	</target>
+	
+	<target name="tmdb" depends="common">
+	    <echo>"***Building tmdb"</echo>
+	    <ant dir="${buildrootdir}/FubarTopicMDBAppProject/build" />
+	</target>
+	
+	<target name="bejb" depends="common">
+	    <echo>"***Building bejb"</echo>
+	    <ant dir="${buildrootdir}/FubarBMTEJBAppProject/build" />
+		<!-- The following sucks, but I do it here because for       -->
+		<!-- some reason when wlappc creates the client J2SE jar     -->
+		<!-- it wont put it in the basedir of the called ant file    -->
+		<!-- and instead puts it in THIS ant file's basdir...so I    -->
+		<!-- gotta move it around to get it back in the right place. -->
+		<copy todir="${buildrootdir}/FubarBMTEJBAppProject/build">
+			<fileset file="${thisapprootdir}/build/*.jar"/>
+		</copy>
+		<delete>
+			<fileset dir="${thisapprootdir}/build" includes="*.jar"/>
+		</delete>
+	</target>
+	
+	<target name="wsapp" depends="bejb">
+	    <echo>"***Building wsapp"</echo>
+	    <ant dir="${buildrootdir}/FubarWSAppProject/build" />
+	</target>
+	
+	<target name="webapp" depends="bejb">
+	    <echo>"***Building webapp"</echo>
+	    <ant dir="${buildrootdir}/FubarWebAppProject/build" />
+	</target>
+	
+	<target name="clusterwebapp">
+	    <echo>"***Building Cluster Webapp"</echo>
+	    <ant dir="${buildrootdir}/FubarClusterWebApp/build" />
+	</target>
+	
+	<target name="wsappclient" depends="wsapp">
+	    <echo>"***Building wsappclient"</echo>
+	    <ant dir="${buildrootdir}/FubarWSAppClientProject/build" />
+	</target>
+
+	<target name="webappclient" depends="common">
+	    <echo>"***Building webappclient"</echo>
+	    <ant dir="${buildrootdir}/FubarWebAppClientProject/build" />
+	</target>
+
+	<target name="ejbappclient" depends="bejb">
+	    <echo>"***Building ejbappclient"</echo>
+	    <ant dir="${buildrootdir}/FubarBMTEJBAppClientProject/build" />
+	</target>
+
+	<target name="packandgo" depends="common, qmdb, bejb, wsapp, webapp, clusterwebapp, webappclient">
+		<delete dir="${thisapprootdir}/build/fubar"/>
+		<mkdir dir="${thisapprootdir}/build/fubar"/>
+		<mkdir dir="${thisapprootdir}/build/fubar/server"/>
+		<mkdir dir="${thisapprootdir}/build/fubar/client"/>
+		<copy todir="${thisapprootdir}/build/fubar/server">
+			<fileset file="${buildrootdir}/FubarQueueMDBAppProject/build/*.ear"/>
+			<fileset file="${buildrootdir}/FubarTopicMDBAppProject/build/*.ear"/>
+			<fileset file="${buildrootdir}/FubarBMTEJBAppProject/build/*.ear"/>
+			<fileset file="${buildrootdir}/FubarWSAppProject/build/*.ear"/>
+			<fileset file="${buildrootdir}/FubarWebAppProject/build/*.ear"/>
+			<fileset file="${buildrootdir}/FubarClusterWebApp/build/*.ear"/>
+			<fileset file="${thisapprootdir}/readme.txt"/>
+		</copy>
+		<copy todir="${thisapprootdir}/build/fubar/client">
+			<fileset file="${buildrootdir}/FubarCommonProject/build/fubarcommon.jar"/>
+			<fileset file="${buildrootdir}/FubarWSAppProject/build/FubarWSAppClient.jar"/>
+			<fileset file="${buildrootdir}/FubarBMTEJBAppProject/build/FubarBMTEJBClientJ2SE.jar"/>
+			<fileset file="${buildrootdir}/FubarWSAppClientProject/build/wsclientimpl.jar"/>
+			<fileset file="${buildrootdir}/FubarWSAppClientProject/runwsclient.cmd"/>
+			<fileset file="${buildrootdir}/FubarWebAppClientProject/build/waclientimpl.jar"/>
+			<fileset file="${buildrootdir}/FubarWebAppClientProject/runwaclient.cmd"/>
+			<fileset file="${buildrootdir}/FubarBMTEJBAppClientProject/build/ejbclientimpl.jar"/>
+			<fileset file="${buildrootdir}/FubarBMTEJBAppClientProject/runejbclient.cmd"/>
+			<fileset file="${thisapprootdir}/setupEnv.cmd"/>
+		</copy>
+	</target>
+	
+</project>

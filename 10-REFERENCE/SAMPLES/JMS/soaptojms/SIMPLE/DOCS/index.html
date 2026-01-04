@@ -1,0 +1,435 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/12/02 13:34:08">
+	<title>SOAP to JMS Sample Application:  SOAP to JMS Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            SOAP to JMS Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="SOAP to JMS Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+SOAP to JMS Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the SOAP to JMS sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20001"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20364"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+The SOAP to JMS sample application contains 2 simple standalone java programs, <FONT FACE="courier, couriernew, monospaced size"> SendSOAPMessageWithJMS</FONT> and <FONT FACE="courier, couriernew, monospaced size">ReceiveSOAPMessageWithJMS</FONT>. 
+</FONT>
+<P> <ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<B> <li></B>
+<FONT FACE="courier, couriernew, monospaced size">SendSOAPMessageWithJMS</FONT> constructs a SOAP message with
+ java.xml.soap API, converts it to a JMS message, and then uses JMS to publish the message to a JMS Topic Destination.
+</FONT>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">ReceiveSOAPMessageWithJMS</FONT> uses JMS to subscribes to a JMS Topic, retrieves a JMS-wrapped SOAP message, then converts the message to a SOAP message.
+</FONT>
+</ul><P>
+
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14865"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the SOAP to JMS sample application using a Command Line Interface (CLI).
+</FONT>
+<P>
+<ol type="1">
+<A NAME="19415"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory of the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19371"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;AS_HOME&gt;/samples/jms/soaptojms/simple/src </FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14889"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Compile and assemble the application. For example: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19998"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/bin/asant</FONT> 
+</FONT>
+</dl> 
+<P><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target<FONT FACE="courier, couriernew, monospaced size"> core </FONT> will be executed to compile the java files and rebuild the jar file. 
+</FONT>
+<P><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the web application project area using the <FONT FACE="courier, couriernew, monospaced size">
+asant clean </FONT>command (optional). For example:
+</FONT>
+<P><dl>
+       <DT> <A NAME="14525"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;AS_HOME&gt;/bin/asant clean
+</FONT>
+<P>    </dl>
+<A NAME="14526"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Generate javadocs (optional). For example:
+</FONT>
+<P><dl>
+       <DT> <A NAME="14527"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;AS_HOME&gt;/bin/asant javadocs
+</FONT>
+<P>    </dl>
+
+<A NAME="14528"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+After javadocs have been generated, you may access them at
+ <FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/jms/soaptojms/simple/javadocs</FONT>
+</FONT>
+</ol>
+<P>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14416"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;</FONT>
+ is Sun ONE application server installation home.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+
+<BR>
+<BR>
+
+<A NAME="20001"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19752"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To run the sample application using asant target, do the following:
+</FONT>
+<P>
+<ol type="1">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the<FONT FACE="courier, couriernew, monospaced size"> src</FONT> directory of the sample. For example: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19993"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;AS_HOME&gt;/samples/jms/soaptojms/simple/src</FONT> 
+</FONT>
+<P></DL>
+
+<A NAME="19975"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Run the <FONT FACE="courier, couriernew, monospaced size">ReceiveSOAPMessageWithJMS</FONT> program in a command window as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19993"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/bin/asant subscribe-message</FONT>
+</FONT>
+<P></DL>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Wait until you see the message "<FONT FACE="courier, couriernew, monospaced size">ready to receive SOAP messages ...</FONT>" displaying in the first window, then in another command window, run the 
+<FONT FACE="courier, couriernew, monospaced size">SendSOAPMessageWithJMS </FONT> program as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20201"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/bin/asant publish-message</FONT>
+</FONT>
+<P>     <DT> <A NAME="20219"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The <FONT FACE="courier, couriernew, monospaced size">SendSOAPMessageWithJMS </FONT> program should print the following messages:
+</FONT>
+<P><dl>     <DT> <A NAME="20221"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Create a SOAP message</FONT>
+</FONT>
+<BR>     <DT> <A NAME="20222"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Attach a URL to the message</FONT>
+</FONT>
+<BR>     <DT> <A NAME="20223"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Convert the message to a JMS message</FONT>
+</FONT>
+<BR>     <DT> <A NAME="20224"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Publish the message</FONT>
+</FONT>
+<BR>     <DT> <A NAME="20225"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Finished</FONT>
+</FONT>
+<P></dl> 
+<P>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+As soon as the <FONT FACE="courier, couriernew, monospaced size">SendSOAPMessageWithJMS </FONT> program finished
+publishing the message, the <FONT FACE="courier, couriernew, monospaced size">ReceiveSOAPMessageWithJMS </FONT> program
+in the first command window will display the following messages followed by the html content of the attached URL:
+</FONT> 
+<P><dl>  <DT> 
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Message received! Converting the JMS message to SOAP message</FONT>
+</FONT>
+<BR>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Attachment counts: 1</FONT>
+</FONT>
+<BR>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Content type: text/html</FONT>
+</FONT>
+<BR>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Content Id: cid-001</FONT>
+</FONT>
+<BR>     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">[java] Attachment content:</FONT>
+</FONT>
+<P></dl> </dl>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<P>  <DL><DT>
+Exit the <FONT FACE="courier, couriernew, monospaced size">ReceiveSOAPMessageWithJMS</FONT> program by typing
+<FONT FACE="courier, couriernew, monospaced size"> CTR-C</FONT>.
+</FONT>
+<P></DL>
+</ol>
+<P>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14416"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;</FONT>
+ is Sun ONE application server installationation home.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+<HR SIZE="1">
+<P>
+<A NAME="20369"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+Alternatively, you can run the <FONT FACE="courier, couriernew, monospaced size">SendSOAPMessageWithJMS </FONT>
+ and the <FONT FACE="courier, couriernew, monospaced size"> ReceiveSOAPMessageWithJMS </FONT>
+ programs via the provided scripts under 
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/jms/soaptojms/simple/src/scripts </FONT>
+directory. There are two Shell scripts, <FONT FACE="courier, couriernew, monospaced size">subscribe-message.csh and publish-message.csh </FONT>, to run on Solaris environment and two bat scripts, <FONT FACE="courier, couriernew, monospaced size">subscribe-message.bat and publish-message.bat </FONt>, for Windows environment.
+To run the programs,  do the following:
+<P></FONT>
+
+<ol type="1">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B><li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size"> scripts </FONT> directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19993"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;AS_HOME&gt;/samples/jms/soaptojms/simple/src/scripts</FONT>
+</FONT>
+<P></DL>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<P><B><li></B>
+On Solaris, change the permission to make the scripts executable
+</FONT>
+<P><DL>
+<DT><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">chmod 755 publish-message.csh subscribe-message.csh</FONT>
+</FONT></DL>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<P><B><li></B>
+Type the script name at a command window. The output should be similar to those described above. 
+</FONT>
+</ol>
+<P>
+<BR>
+<BR>
+
+<A NAME="20364"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you get <FONT FACE="courier, couriernew, monospaced size">Permission denied</FONT> error message when running the
+ <FONT FACE="courier, couriernew, monospaced size">publish-message</FONT> and <FONT FACE="courier, couriernew, monospaced size">subscribe-message</FONT> scripts in the <FONT FACE="courier, couriernew, monospaced size"> scripts </FONT> directory, change the permission to make the scripts executable. 
+<BR>For example, on Solaris execute the command:
+<P><DL>
+<DT><FONT FACE="courier, couriernew, monospaced size">chmod 755 publish-message.csh subscribe-message.csh</FONT> 
+</DL>
+<P><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you are unable to run the <FONT FACE="courier, couriernew, monospaced size">publish-message</FONT> and <FONT FACE="courier, couriernew, monospaced size">subscribe-message</FONT> scripts in the <FONT FACE="courier, couriernew, monospaced size"> scripts </FONT> directory, make sure that you have the environment variable <FONT FACE="courier, couriernew, monospaced size">AS_HOME</FONT> set to where the Sun ONE Application Server is installed. 
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 31, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

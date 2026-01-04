@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+<!-- ============================================================== -->
+<!-- Ant XML file for jdbcrealm sample application as deployed to-->
+<!-- Sun ONE Application Server.                                    -->
+<!--                                                                -->
+<!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+<!-- ============================================================== -->
+
+<project name="jdbcrealm-sample" default="core" basedir=".">
+
+<property name="sample.home" value="../../../../"/>
+  <!-- ======================================================= -->
+  <!--                   App name-dependent settings.                              -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="jdbcsecurity"/>
+
+  <!-- ======================================================= -->
+  <!--                   Package directory structures of interest.         -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/security/jdbcrealm"/>
+
+  <!-- ======================================================= -->
+  <!--                  Java Doc properties .                                          -->
+  <!-- ======================================================= -->
+
+  <property name="sample.name" value="jdbcsecurity"/>
+  <property name="javadoc.pkgnames" value="samples.security.jdbcrealm.*" />
+
+  <!-- ======================================================= -->
+  <!--                  Pointbase properties .                                         -->
+  <!-- ======================================================= -->
+   <property name="db.user" value="security"/>
+   <property name="db.pwd" value="security"/>
+   <property name="db.file" value="sql/dbscript-pb.sql"/>
+
+
+
+  <!-- ======================================================= -->
+  <!--                  Xml files properties .                                         -->
+  <!-- ======================================================= -->
+
+  <property name="earDD" value="application.xml,sun-application.xml"/>
+
+  <!-- ======================================================= -->
+  <!--                          Include common.xml                                             -->
+  <!-- ======================================================= -->
+
+  &include;
+
+  <!-- ======================================================= -->
+  <!--          Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+
+  <target name="sql" depends="sql_common"/>
+  <target name="clean" depends="clean_common"/>
+  <target name="core" depends="init_common,compile_common,create_jar_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="all" depends="core,javadocs_common" />
+ 
+
+</project>

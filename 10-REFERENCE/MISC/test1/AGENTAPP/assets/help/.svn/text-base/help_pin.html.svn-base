@@ -1,0 +1,15 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="wrapper">
+<h1>PIN</h1>
+<p>
+Enter your 4 digit PIN to authenticate your request. 
+Click on 'Back' to go back to the previous page.
+</p>
+<p>
+Contact <%CUSTOMER_CARE%> if you need help.
+</p>
+</body>
+</html>

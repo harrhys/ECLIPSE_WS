@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ============================================================== -->
+  <!-- SunOne Application Server Sample Application build xml         -->
+  <!--                                                                -->
+  <!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+  <!-- ============================================================== -->
+
+  <project name="corba-ejbsample" default="core" basedir=".">
+
+  <!-- ============================================================== -->
+  <!--           App name-dependent settings.                         -->
+  <!-- ============================================================== -->
+
+  <property name="appname"        value="corba-ejbsample"/>
+  <property name="sample.home"    value="../../../"/>
+  <property name="sample.name"    value="CorbaEjbSample"/>
+
+  <property name="orb.installpath" value="/export2/iona/asp/5.1"/>
+  <property name="omg.classpath" value="${orb.installpath}/lib/j2ee13-product.jar"/>
+  <property name="orbix.classpath" value="${orb.installpath}/lib/orbix2000.jar"/>
+  <property name="corba.server.classpath" value="${orb.installpath}/demos/corba/classes"/>
+  <property name="corba.app.classpath" value="${omg.classpath}:${orbix.classpath}:${corba.server.classpath}:${build.classesdir}"/>
+
+  <property name="classpath.suffix" value=".:${corba.app.classpath}"/>
+  
+<!-- ============================================================== -->
+  <!--           App specific DD settings.                            -->
+  <!-- ============================================================== -->
+
+  <property name="jarDD" value="ejb-jar.xml,sun-ejb-jar.xml"/>
+
+  <!-- ============================================================== -->
+  <!--           Package directory structures of interest.            -->
+  <!-- ============================================================== -->
+
+  <property name="app.pkg"        value="samples/corba/ejbsample/client"/>
+  <property name="war.pkg"        value="samples/corba/ejbsample/servlet"/>
+  <property name="jar.pkg"        value="samples/corba/ejbsample/ejb"/>
+<property name="common.pkgprefix" value="samples/corba/common"/>
+  <!-- ============================================================== -->
+  <!--           Java Doc properties.                                 -->
+  <!-- ============================================================== -->
+  <property name="sample.name"      value="CorbaEjbSample"/>
+  <property name="javadoc.pkgnames" value="samples.corba.ejbsample.*" />
+
+  <!-- ============================================================== -->
+  <!--           Include common.xml.                                  -->
+  <!-- ============================================================== -->
+
+  &include;
+  
+  <!-- ============================================================== -->
+  <!--           Tagets to build and deploy sample application.       -->
+  <!-- ============================================================== -->
+
+
+  <target name="create_ejbjar_" depends="clean_ejbjar_common">
+    <mkdir dir="${assemble.ejbjar}"/>
+    <copy todir="${assemble.ejbjar}/${jar.pkg}">
+      <fileset dir="${build.classesdir}/${jar.pkg}/"
+             includes="**/*.class" excludes="**/servlet/"/>
+    </copy>
+    <copy todir="${assemble.ejbjar}/${common.pkgprefix}">
+      <fileset dir="${build.classesdir}/${common.pkgprefix}/"/>
+    </copy>
+
+    <copy todir="${assemble.ejbjar}/">
+      <fileset dir="${corba.server.classpath}/"
+             includes="demos\simple\Simple\_SimpleObjectStub.class,
+                       demos\simple\Simple\SimpleObject.class,
+                       demos\simple\Simple\SimpleObjectOperations.class,
+                       demos\simple\Simple\SimpleObjectHelper.class"/>
+    </copy>
+    <mkdir dir="${assemble.ejbjar}/META-INF"/>
+    <copy todir="${assemble.ejbjar}/META-INF/">
+      <fileset dir="." includes="${jarDD}"/>
+    </copy>
+    <jar jarfile="../${ejbjar}"
+       basedir="${assemble.ejbjar}"
+       excludes="**/*.jar"/>
+       <move file="../${ejbjar}" todir="${assemble.ejbjar}"/>
+    <copy file="${assemble.ejbjar}/${ejbjar}" tofile="../${ejbjar}"/>
+       <property name="ejbjar.done" value="true"/>
+  </target>
+
+<target name="runrmic" depends="init_common,compile_common">
+    <echo>java samples.corba.ejbsample.client.RmiClient raja 3700</echo>
+    <java classname="samples.corba.ejbsample.client.RmiClient" fork="yes" classpath="${build.classpath}">
+      <arg value="raja" />
+      <arg value="3700" />
+    </java>
+  </target>
+
+  <target name="reconfig"   depends="reconfig_common"/>
+  <target name="clean"      depends="clean_common"/>
+  <target name="init"       depends="init_common"/>
+  <target name="compile"    depends="compile_common" />
+  <target name="javadocs"   depends="javadocs_common" />
+  <target name="deploy"     depends="deploy_common" />
+  <target name="undeploy"   depends="undeploy_common"/>
+  <target name="verify"     depends="verify_common"/>
+  <target name="jar"        depends="create_ejbjar_"/>
+  <target name="clientjar" depends="clientjar_common"/>
+  <target name="war"       depends="create_war_common"/>
+  <target name="ear"       depends="jar,war,clientjar,create_ear_common"/>
+  <target name="core"      depends="compile,ear" />
+  <target name="all"       depends="core,javadocs,verify,deploy"/>
+
+</project>

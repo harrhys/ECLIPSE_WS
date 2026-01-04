@@ -1,0 +1,219 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="TEMPLATEBASE" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/09/02 13:15:21">
+	<title>CORBA Interoperability Sample Application:  CORBA Interoperability Samples</title>
+</head>
+
+<body text="#000000" link="10% #594fbf" vlink="#594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <table width="100%" border="0" cellspacing="4">
+      <tr>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Contents
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="E2A.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Next
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </tr>
+
+      <tr>
+         <td valign="TOP" align="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            CORBA Interoperability Sample Application</B></FONT>
+         </td>
+      </tr>
+
+   </table>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <blockquote>
+<BR>
+<BR>
+
+      <A NAME="8063"> </A>
+<A NAME="CORBA Interoperability Samples"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+CORBA Interoperability Samples
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15139"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the CORBA Interoperability sample applications in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15143"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15147"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15165"  >Overview</A>
+</FONT>
+<P><A NAME="15232"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15035"  >Configuring Third Party ORBs with Sun ONE Application server</A>
+</FONT>
+<P><A NAME="15155"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15041"  >Deploying and Running the Sample Applications</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="15165"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15025"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">J2EE components (such as Servlet and EJBs) deployed on a Sun ONE Application Server can access backend CORBA objects through third party Object Request Brokers (ORBs). This support enables J2EE applications to leverage investments in existing CORBA-based business components. In addition to supporting server side access to backend CORBA objects, you can also use the built-in Sun ONE ORB for RMI/IIOP-based access to EJBs from Java/C++ application clients.
+</FONT>
+<P>
+
+<A NAME="15030"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following instructions and basic sample applications provide an introduction to the interoperability of CORBA components with Sun ONE Application Server. These samples focus on the use of J2EE components acting as clients to existing backend CORBA objects. This document explains the configuration of a third party ORB to interoperate with Sun ONE Application Server, and the deployment of small-scale sample applications to demonstrate the interoperability.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15035"> </A>
+<A NAME="Configuring Third Party ORBs with Sun ONE Application server"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Configuring Third Party ORBs with Sun ONE Application server
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15131"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In order to access backend CORBA objects through third party Object Request Brokers (ORBs), you need to configure it with Sun ONE Application server. The samples provided in this section use IONA E2A Application Server Platform 5.1 as the third party ORB. For detailed information, see <A HREF="E2A.html#8063"  >E2A Application Server Platform 5.1 Configuration</A>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15041"> </A>
+<A NAME="Deploying and Running the Sample Applications"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying and Running the Sample Applications
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15043"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The samples provided in this document demonstrate a <A HREF="../servletsample/docs/index.html#8063"  >Servlets Accessing Backend CORBA Objects via IONA Orbix</A> (Orbix "Simple") and an <A HREF="../ejbsample/docs/index.html#8063"  >EJB Accessing Backend CORBA Objects via IONA Orbix</A> (Orbix "Simple") showing both Web and RMI/IIOP client access to the EJB.
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+            <a href="contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Contents
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="E2A.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Next
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 09, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</body>
+
+
+</html>

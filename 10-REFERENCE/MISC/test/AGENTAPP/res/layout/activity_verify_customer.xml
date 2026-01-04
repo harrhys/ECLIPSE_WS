@@ -1,0 +1,88 @@
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    tools:context=".VerifyCustomerActivity">
+		<LinearLayout 
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   android:orientation="vertical">
+				   <TextView
+				        android:layout_width="match_parent"
+				        android:layout_height="@dimen/title_size"
+				        android:text="@string/verify_customer"
+				        android:layout_marginBottom="20dp" 
+				        style="@style/TitleLabel" />
+				    
+				    <TextView 
+				       android:layout_width="wrap_content"
+				       android:layout_height="wrap_content"
+				       android:text="@string/mobile_number"
+				       android:layout_marginLeft="@dimen/padding_left"
+				       android:layout_marginRight="@dimen/padding_right"/>    
+				    <LinearLayout 
+				        android:orientation="horizontal"
+				        android:layout_width="match_parent"
+				        android:layout_height="wrap_content"
+				        android:layout_marginLeft="@dimen/padding_left"
+				        android:layout_marginRight="@dimen/padding_right"
+				        android:layout_marginBottom="@dimen/padding_bottom">
+				        <TextView 
+				            android:layout_width="wrap_content"
+					        android:layout_height="40dp"
+					        android:gravity="center_vertical"
+					        android:text="@string/mobile_code"/>
+					    <EditText 
+					        android:id="@+id/mobile_number_edit_text_verify_customer"
+					        android:layout_width="match_parent"
+					        android:layout_height="40dp"
+					        android:inputType="number" 
+					        android:maxLength="@string/mobileNumberMaxLength"
+					        android:hint="@string/enter_mobile_number" />
+				    </LinearLayout> 
+				    <TextView 
+				       android:layout_width="wrap_content"
+				       android:layout_height="wrap_content"
+				       android:text="@string/date_of_birth"
+				       android:layout_marginLeft="@dimen/padding_left"
+				       android:layout_marginRight="@dimen/padding_right"/>
+				    
+				    
+				    <LinearLayout
+		        		android:layout_width="match_parent"
+				        android:layout_height="wrap_content"
+				        android:orientation="horizontal"
+				        android:layout_marginRight="@dimen/padding_right" >
+
+					   <!--  <CalendarView 
+					        android:layout_width="match_parent"
+					        android:layout_height="wrap_content"
+					        android:maxDate="12/31/2000" 
+					    />  -->   
+							<EditText 
+						        android:id="@+id/date_of_birth_edit_text_verify_customer"
+						      	android:layout_width="0dp"
+						        android:layout_height="40dp"
+						        android:inputType="date"
+						        android:hint="@string/date_format"
+						        android:layout_weight=".9"
+						        android:layout_marginLeft="@dimen/padding_left"
+						        android:layout_marginBottom="@dimen/padding_bottom"/>
+		
+						    <Button
+						        android:id="@+id/date_of_birth_date_picker_verify_customer"
+						        android:layout_width="0dp"
+						        android:layout_height="40dp"
+						        android:layout_weight=".15"
+						        android:background="@drawable/calendar_icon" />
+		   		 </LinearLayout>
+				    <Button 
+				        android:id="@+id/submit_button_verify_customer"
+				        android:layout_width="100dp"
+				        android:layout_height="50dp"
+				        android:text="@string/submit" 
+				        android:layout_gravity="center"
+				        android:background="@drawable/submit_buttons"/>
+			</LinearLayout>
+</ScrollView>

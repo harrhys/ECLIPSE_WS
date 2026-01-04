@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="savingsaccount" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="bmp-savingsaccount"/>
+  <property name="sample.home" value="../../../../"/>
+  <property name="sample.name" value="SavingsAccount"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/ejb/bmp/savingsaccount/client"/>
+  <property name="jar.pkg" value="samples/ejb/bmp/savingsaccount/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  <property name="sample.name" value="savingsaccount"/>
+  <property name="javadoc.pkgnames" value="samples.ejb.bmp.savingsaccount.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+  <property name="jarDD" value="ejb-jar.xml,sun-ejb-jar.xml"/>
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+	
+
+  <!-- ============================================================== -->
+  <!--           Resource specific properties.                        -->
+  <!-- ============================================================== -->
+
+  <property name="conpool.name"       value="bmp-savingsaccount-pool" />
+  <property name="jdbc.resource.name" value="jdbc/bmp-savingsaccount" />
+
+  <property name="db.user"  value="bmp"/>
+  <property name="db.pwd"   value="bmp"/>
+  <property name="ds.class" value="com.pointbase.jdbc.jdbcDataSource" />
+  <property name="db.file"  value="sql/savingsaccount.sql"/>
+  <property name="url.prop" value="DatabaseName" />
+
+
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+
+  <target name="create-jdbc-connection-pool">
+    <property name="db.host"  value="localhost"/>
+    <property name="db.port"  value="9092"/>
+    <property name="db.sid"   value="sun-appserv-samples"/>
+    <property name="db.url"   value="jdbc:pointbase://${db.host}:${db.port}\/${db.sid}" />
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="create-jdbc-connection-pool ${conpool.name}
+          --datasourceclassname ${ds.class}
+          --instance ${sunone.instance}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.${url.prop}=${db.url}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.User=${db.user}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.Password=${db.pwd}" />
+    </antcall>
+  </target>
+
+  <target name="create-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="create-jdbc-resource ${jdbc.resource.name}
+         --connectionpoolid ${conpool.name}
+         --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+  <target name="delete-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="delete-jdbc-connection-pool ${conpool.name}
+          --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="delete-jdbc-resource ${jdbc.resource.name}
+          --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="setup" depends="setup_env">
+    <antcall target="create-jdbc-connection-pool"/>
+    <antcall target="create-jdbc-resource"/>
+    <antcall target="reconfig"/>
+  </target>
+
+  <target name="setup-ora" depends="setup_env">
+    <property name="db.host"  value="localhost"/>
+    <property name="db.port"  value="1521"/>
+    <property name="db.sid"   value="sun-appserv-samples"/>
+    <antcall target="create-jdbc-connection-pool">
+      <param name="ds.class" value="oracle.jdbc.pool.OracleDataSource" />
+      <param name="db.url"   value="jdbc:oracle:thin:@${db.host}:${db.port}:${db.sid}" />
+      <param name="url.prop" value="url" />
+    </antcall>
+    <antcall target="create-jdbc-resource"/>
+    <antcall target="reconfig"/>
+  </target>
+
+  <target name="unsetup" depends="delete-jdbc-resource, delete-jdbc-connection-pool, reconfig"/>
+
+  <target name="sql"        depends="sql_common"/>
+
+  <target name="reconfig" depends="reconfig_common"/>
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="setup, deploy_common"/>
+  <target name="undeploy" depends="unsetup, undeploy_common "/>
+  <target name="verify" depends="verify_common"/>
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="clientjar" depends="clientjar_common"/>
+  <target name="ear" depends="init,jar,create_ear_common"/>
+  <target name="core" depends="compile,jar, clientjar, ear" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

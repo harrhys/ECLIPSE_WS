@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-cmp-mappings PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 OR Mapping //EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-cmp-mapping_1_0.dtd">
+<sun-cmp-mappings>
+<sun-cmp-mapping>
+<schema>petstoreDBSchema</schema>
+<entity-mapping>
+    <ejb-name>CustomerEJB</ejb-name>
+    <table-name>CUSTOMEREJBTABLE</table-name>
+    <cmp-field-mapping>
+    <field-name>userId</field-name> 
+    <column-name>USERID</column-name> 
+    </cmp-field-mapping>
+    <cmr-field-mapping>
+     <cmr-field-name>account</cmr-field-name>
+     <column-pair>
+     <column-name>CUSTOMEREJBTABLE.ACCOUNT___PMPRIMARYKEY</column-name>
+     <column-name>ACCOUNTEJBTABLE.PMPRIMARYKEY</column-name>
+     </column-pair>
+    </cmr-field-mapping>
+
+    <cmr-field-mapping>
+     <cmr-field-name>profile</cmr-field-name>
+     <column-pair>
+     <column-name>CUSTOMEREJBTABLE.PROFILE___PMPRIMARYKEY</column-name>
+     <column-name>PROFILEEJBTABLE.PMPRIMARYKEY</column-name>
+     </column-pair>
+    </cmr-field-mapping>
+
+    </entity-mapping>
+<entity-mapping>
+    <ejb-name>ProfileEJB</ejb-name>
+    <table-name>PROFILEEJBTABLE</table-name>
+    <cmp-field-mapping>
+    <field-name>preferredLanguage</field-name> 
+    <column-name>PREFERREDLANGUAGE</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>myListPreference</field-name> 
+    <column-name>MYLISTPREFERENCE</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>favoriteCategory</field-name> 
+    <column-name>FAVORITECATEGORY</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>bannerPreference</field-name> 
+    <column-name>BANNERPREFERENCE</column-name> 
+    </cmp-field-mapping>
+    </entity-mapping>
+<entity-mapping>
+    <ejb-name>CreditCardEJB</ejb-name>
+    <table-name>CREDITCARDEJBTABLE</table-name>
+    <cmp-field-mapping>
+    <field-name>cardType</field-name> 
+    <column-name>CARDTYPE</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>expiryDate</field-name> 
+    <column-name>EXPIRYDATE</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>cardNumber</field-name> 
+    <column-name>CARDNUMBER</column-name> 
+    </cmp-field-mapping>
+    </entity-mapping>
+<entity-mapping>
+    <ejb-name>ContactInfoEJB</ejb-name>
+    <table-name>CONTACTINFOEJBTABLE</table-name>
+    <cmp-field-mapping>
+    <field-name>familyName</field-name> 
+    <column-name>FAMILYNAME</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>telephone</field-name> 
+    <column-name>TELEPHONE</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>givenName</field-name> 
+    <column-name>GIVENNAME</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>email</field-name> 
+    <column-name>EMAIL</column-name> 
+    </cmp-field-mapping>
+    
+    <cmr-field-mapping>
+     <cmr-field-name>address</cmr-field-name>
+     <column-pair>
+     <column-name>CONTACTINFOEJBTABLE.ADDRESS___PMPRIMARYKEY</column-name>
+     <column-name>ADDRESSEJBTABLE.PMPRIMARYKEY</column-name>
+     </column-pair>
+    </cmr-field-mapping>
+
+    </entity-mapping>
+<entity-mapping>
+    <ejb-name>AddressEJB</ejb-name>
+    <table-name>ADDRESSEJBTABLE</table-name>
+    <cmp-field-mapping>
+    <field-name>zipCode</field-name> 
+    <column-name>ZIPCODE</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>state</field-name> 
+    <column-name>STATE</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>streetName2</field-name> 
+    <column-name>STREETNAME2</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>streetName1</field-name> 
+    <column-name>STREETNAME1</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>country</field-name> 
+    <column-name>COUNTRY</column-name> 
+    </cmp-field-mapping>
+    <cmp-field-mapping>
+    <field-name>city</field-name> 
+    <column-name>CITY</column-name> 
+    </cmp-field-mapping>
+    </entity-mapping>
+<entity-mapping>
+    <ejb-name>AccountEJB</ejb-name>
+    <table-name>ACCOUNTEJBTABLE</table-name>
+    <cmp-field-mapping>
+    <field-name>status</field-name> 
+    <column-name>STATUS</column-name> 
+    </cmp-field-mapping>
+    
+    <cmr-field-mapping>
+     <cmr-field-name>contactInfo</cmr-field-name>
+     <column-pair>
+     <column-name>ACCOUNTEJBTABLE.CONTACTINFO___PMPRIMARYKEY</column-name>
+     <column-name>CONTACTINFOEJBTABLE.PMPRIMARYKEY</column-name>
+     </column-pair>
+    </cmr-field-mapping>
+
+    <cmr-field-mapping>
+     <cmr-field-name>creditCard</cmr-field-name>
+     <column-pair>
+     <column-name>ACCOUNTEJBTABLE.CREDITCARD___PMPRIMARYKEY</column-name>
+     <column-name>CREDITCARDEJBTABLE.PMPRIMARYKEY</column-name>
+     </column-pair>
+    </cmr-field-mapping>
+    
+    </entity-mapping>
+</sun-cmp-mapping>
+</sun-cmp-mappings>

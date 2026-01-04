@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun One Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="transactions-globalweb" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--       App name-dependent settings.                      -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="transactions-globalweb"/>
+  <property name="classpath.prefix" value="."/>
+  <property name="classpath.suffix" value="."/>
+  <property name="sample.home" value="../../../.."/>
+  <property name="sample.name" value="servlet Transaction"/>
+
+  <!-- ======================================================= -->
+  <!--       Package directory structures of interest.         -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/transactions/web/simple/servlet"/>
+  <property name="war.pkg" value="samples/transactions/web/simple/servlet"/>
+  <!-- ======================================================= -->
+  <!--      Java Doc properties .                              -->
+  <!-- ======================================================= -->
+  
+  <property name="javadoc.pkgnames" value="samples.transactions.web.simple.servlet.*" />
+
+  <!-- ======================================================= -->
+  <!--        Include common.xml                               -->
+  <!-- ======================================================= -->
+ 
+  &include;
+
+  <!-- ======================================================= -->
+  <!--              Pointbase properties                       -->
+  <!-- ======================================================= -->
+
+   <property name="db.user" value="transactions"/>
+   <property name="db.pwd" value="transactions"/>
+   <property name="db.file" value="sql/transactions-globalweb-local.sql"/>
+
+ <!-- ======================================================= -->
+  <!-- CleanUp Pointbase table Targets.                        -->
+  <!-- ======================================================= -->
+
+  <target name="sql" depends="sql_common">
+  <!-- Datasource #2 -->
+   <antcall target="sql_common">
+     <param name="db.file" value="sql/transactions-globalweb-foreign.sql"/>
+     <param name="db.url"  value="jdbc:pointbase:server://localhost:8000/sun-appserv-samples2"/>
+   </antcall>
+  </target>
+
+ 
+  <!-- ======================================================= -->
+  <!--    Targets to build and deploy sample application        -->
+  <!-- ======================================================= -->
+
+  <!-- ======================================================= -->
+  <!--    1st datasource                                       -->
+  <!-- ======================================================= -->
+
+ <target name="create-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-connection-pool --datasourceclassname com.pointbase.xa.xaDataSource LocalPool --instance ${sunone.instance} --restype javax.sql.XADataSource" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-connection-pool LocalPool --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="set-DatabaseName">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.LocalPool.property.DatabaseName=jdbc:pointbase:server://localhost:9092/sun-appserv-samples" /> </antcall> </target>
+
+  <target name="set-User">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.LocalPool.property.User=transactions" />
+    </antcall>
+  </target>
+
+  <target name="set-Password">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.LocalPool.property.Password=transactions" />
+    </antcall>
+  </target>
+
+  <target name="create-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-resource --connectionpoolid LocalPool jdbc/transactions-globalweb/LocalBankDB --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-resource jdbc/transactions-globalweb/LocalBankDB --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="reconfig">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="reconfig ${sunone.instance}" />
+    </antcall>
+  </target>
+
+<target name= "deploy_jdbc_resource" depends = "create-jdbc-connection-pool, set-DatabaseName, set-User, set-Password, create-jdbc-resource, reconfig"/>
+
+  <target name= "undeploy_jdbc_resource" depends = "delete-jdbc-resource,delete-jdbc-connection-pool, reconfig" />
+
+   <target name= "undeploy_jdbc_resource2" depends = "delete-jdbc-resource2,delete-jdbc-connection-pool2, reconfig" />
+
+  <!-- ======================================================= -->
+  <!--    2nd datasource                                       -->
+  <!-- ======================================================= -->
+
+<target name="create-jdbc-connection-pool2">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-connection-pool --datasourceclassname com.pointbase.xa.xaDataSource ForeignPool --instance ${sunone.instance} --restype javax.sql.XADataSource" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-connection-pool2">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-connection-pool ForeignPool --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="set-DatabaseName2">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.ForeignPool.property.DatabaseName=jdbc:pointbase:server://localhost:8000/sun-appserv-samples2"/> </antcall>
+ </target>
+
+  <target name="set-User2">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.ForeignPool.property.User=transactions" />
+    </antcall>
+  </target>
+
+  <target name="set-Password2">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.ForeignPool.property.Password=transactions" />
+    </antcall>
+  </target>
+
+  <target name="create-jdbc-resource2">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-resource --connectionpoolid ForeignPool jdbc/transactions-globalweb/ForeignBankDB --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+<target name="delete-jdbc-resource2">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-resource jdbc/transactions-globalweb/ForeignBankDB --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+<target name= "deploy_jdbc_resource2" depends = "create-jdbc-connection-pool2, set-DatabaseName2, set-User2, set-Password2, create-jdbc-resource2, reconfig"/>
+
+<!-- Oracle database settings -->
+
+<!-- This target will create the foreign database on an Oracle database.  -->
+
+
+  <target name= "setup_foreign_ora" depends = "setup_env">
+    <property name="jdbc.resource.name" value="jdbc/transactions-globalweb/ForeignBankDB"/>
+    <property name="url.prop" value="url" />
+    <property name="conpool.name"       value="ForeignPool"/>
+    <property name="ora.db.url"   value="jdbc:oracle:thin:@${db.host}:${db.port}:${db.sid}" />
+    <property name="ds.class" value="oracle.jdbc.xa.client.OracleXADataSource" />
+
+     <antcall target="admin_command_common">
+     <param name="admin.command" value="create-jdbc-connection-pool --datasourceclassname ${ds.class} ${conpool.name}  --instance ${sunone.instance} --restype javax.sql.XADataSource" />
+    </antcall> 
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.${url.prop}=${ora.db.url}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.User=${db.user}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.Password=${db.pwd}" />
+     </antcall>
+    
+    <antcall target="create-jdbc-resource_common">
+    </antcall>
+  </target>
+
+  <!-- This target deploy_ora will create and deploy one DB resource in pointbase (local)
+       and one DB resource in Oracle (foreign) -->
+  <target name= "deploy_ora" depends = "setup_foreign_ora,deploy_jdbc_resource, deploy_common, reconfig"/>
+
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="verify" depends="verify_common"/>
+  <target name="deploy" depends="init_common, deploy_common, deploy_jdbc_resource, deploy_jdbc_resource2, reconfig"/>
+  <target name="undeploy" depends="init_common,undeploy_common, undeploy_jdbc_resource, undeploy_jdbc_resource2, reconfig" />
+   
+  <target name="war" depends="init,create_war_common"/>
+  <target name="ear" depends="init, war,create_ear_common"/>
+  <target name="core" depends="compile,war,ear" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+</project>

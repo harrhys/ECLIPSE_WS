@@ -1,0 +1,355 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.77 [en]C-CCK-MCD NSCPCD477  (Windows NT 5.0; U) [Netscape]">
+   <title>Using Ant with the Samples</title>
+<link rel="stylesheet" href="default.css">
+<!--stopindex-->
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<a name="top"></a> <!-- SUN.COM TEMPLATE V4.2 --> <!-- BEGIN GLOBAL NAVIGATION TOOLBAR --> 
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody> 
+  <tr> 
+    <td width="49%"><span class="sp2"> </span></td>
+  </tr>
+  <form action="http://www.sun.com/search/index.cgi">
+  </form>
+  <tr> 
+    <td width="49%" nowrap valign="middle"> 
+      <div class="sitelinks"> <a href="http://www.sun.com/">sun.com</a></div>
+    </td>
+    <td nowrap valign="middle" width="49%" colspan="3"> 
+      <div class="sitelinks"> 
+        <div align="right"><a href="http://www.sun.com/sales/index.html">How To 
+          Buy</a>  |  <a href="http://mysun.sun.com/">My Sun</a>  |  <a href="http://www.sun.com/worldwide/">Worldwide 
+          Sites</a></div>
+      </div>
+    </td>
+  </tr>
+  <tr> 
+    <td width="49%"><span class="sp2"> </span></td>
+  </tr>
+  </tbody> 
+</table>
+<!-- END GLOBAL NAVIGATION TOOLBAR --> <!-- BEGIN GENERIC MASTHEAD --> 
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+  <tbody>
+  <tr> 
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+    <td class="sunblue" valign="top"><a href="http://www.sun.com/"><img src="images/logo_sun.gif" width="110" height="43" border="0" alt="Sun Microsystems Logo"></a><br>
+      <img src="images/a.gif" width="170" height="1" alt=""></td>
+    <td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+    <td width="50%" class="sunyellow" valign="bottom" nowrap><br>
+      <span class="sp5"> </span></td>
+    <td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+    <td width="50%" class="sunred" valign="bottom" nowrap><br>
+      <span class="sp5"> </span></td>
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+  </tr>
+  </tbody>
+</table>
+<!-- END GENERIC MASTHEAD --> <!-- BEGIN BREADCRUMB --><br>
+  <!-- END BREADCRUMB --> <!-- BEGIN PAGETITLE --> 
+  
+<div class="pagetitle2">Sun[tm] ONE Application Server 7</div>
+  <div class="pagetitle">Using Ant with the Samples</div>
+  <!-- END PAGETITLE --> <!-- BEGIN WRAPPER TABLE, 3 COLUMN, LEFT/MAIN/RIGHT -->
+<table border=0 cellspacing=10 cellpadding=0 width="100%" >
+  <tr bgcolor="#FFFFFF"> 
+    <td valign=TOP><!-- BEGIN D2 PRIMARY NAVIGATION --><i>This product includes 
+      software developed by the Apache Software Foundation (http://www.apache.org). 
+      Specifically, the Ant Java[tm]-based build tool is included as part of Sun 
+      ONE Application Server.</i> <br>
+      <br>
+      <table width="100%">
+        <tr> 
+          <td width="4%">&nbsp;</td>
+          <td width="94%"><span class="rightarrowblue">»</span> <a href="#benefits">Benefits 
+            of Using Ant</a></td>
+        </tr>
+        <tr> 
+          <td width="4%">&nbsp;</td>
+          <td width="94%"><span class="rightarrowblue">»</span> <a href="#ant">Ant 
+            Environment in Sun ONE Application Server 7</a> </td>
+        </tr>
+        <tr> 
+          <td width="4%">&nbsp;</td>
+          <td width="94%"><span class="rightarrowblue">»</span> <a href="#using-build">Using 
+            the Build Facility</a></td>
+        </tr>
+        <tr> 
+          <td width="4%">&nbsp;</td>
+          <td width="94%"><span class="rightarrowblue">»</span> <a href="#build-examples">Custom 
+            Ant Tasks</a></td>
+        </tr>
+        <tr> 
+          <td width="4%">&nbsp;</td>
+          <td width="94%"><span class="rightarrowblue">»</span> <a href="#studio">Using 
+            Sample Build Files in Sun ONE Studio 4</a></td>
+        </tr>
+      </table>
+      <br>
+      <h2> <a name="benefits"></a><font face="Arial, Helvetica, sans-serif">Benefits 
+        Of Using Ant</font></h2>
+      <p><font face="Arial, Helvetica, sans-serif">Many server side Java developers 
+        have found Ant to be an extremely useful tool for accelerating the development 
+        cycle associated with J2EE[tm] applications. Ant contains many built-in 
+        functions that relieve the burden of repetitive development tasks. As 
+        described in the Ant documentation, "In theory it is kind of like make 
+        without make's wrinkles". For more information about Ant, see: </font></p>
+      <blockquote> 
+        <p><font face="Arial, Helvetica, sans-serif"><a href="http://jakarta.apache.org/ant/index.html">http://jakarta.apache.org/ant/index.html</a>&nbsp;</font> 
+        </p>
+      </blockquote>
+      <h2> <a name="ant"></a><font face="Arial, Helvetica, sans-serif">Ant Environment 
+        in Sun ONE Application Server 7</font></h2>
+      <p><font face="Arial, Helvetica, sans-serif">In the Ant environment, <font face="Courier New, Courier, mono">build.xml</font> 
+        files are analogous to a Makefiles. A <font face="Courier New, Courier, mono">build.xml 
+        </font>file can define various targets that are used to compile and assemble 
+        a J2EE application. To use Ant with the sample applications provided as 
+        part of the application server, you need to ensure that your PATH includes 
+        the <font face="Courier New, Courier, mono">&lt;install_dir&gt;/bin</font> 
+        directory of your application server installation. A simple wrapper script 
+        named <font face="Courier New, Courier, mono">asant(.bat)</font> is located 
+        in this directory. No further set up is required.&nbsp;</font> 
+      <p><font face="Arial, Helvetica, sans-serif">The following build targets 
+        are represented in the <font face="Courier New, Courier, mono">build.xml</font> 
+        files accompanying the sample applications. The presence or absence of 
+        a target depends on the type of J2EE application. Since the Java Pet Store 
+        application from Sun Microsystems already includes <font face="Courier New, Courier, mono">build.xml</font> 
+        files, you might notice that not all of the following targets are represented 
+        in the Java Pet Store sample application bundled with the application 
+        server.</font> <br>
+        &nbsp; 
+      <table BORDER cellpadding=5 width="71%" align="center" >
+        <tr bgcolor="#CCCCCC"> 
+          <td width="12%"><b>Target</b></td>
+          <td width="88%"><b>Function</b></td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>compile</b></font></td>
+          <td width="88%">Compiles all Java source code.</td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>war</b></font></td>
+          <td width="88%">Assembles the WAR file in<font face="Courier New, Courier, mono"> 
+            &lt;sample_dir>/assemble/war/</font>.</td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>ear</b></font></td>
+          <td width="88%">Assembles the EAR file in<font face="Courier New, Courier, mono"> 
+            &lt;sample_dir>/assemble/ear/</font>.</td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>core</b> 
+            (default)&nbsp;</font></td>
+          <td width="88%">Compiles all sources, builds stubs/skeletons and assembles 
+            EJB[tm] JAR, WAR and EAR files. This is the default target for all 
+            <font face="Courier New, Courier, mono">build.xml</font> files shipped 
+            in the application server.</td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>javadocs</b></font></td>
+          <td width="88%">Creates Java docs in <font face="Courier New, Courier, mono">&lt;sample_dir>/javadocs</font></td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>all</b></font></td>
+          <td width="88%">Builds both core and javadocs, verifies, registers resources 
+            and deploys app.</td>
+        </tr>
+        <tr> 
+          <td width="12%" height="18"><font face="Courier New, Courier, mono"><b>deploy&nbsp;</b></font></td>
+          <td width="88%" height="18">Registers resources, deploys app, but does 
+            not install Javadocs.</td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>deploy</b>_<b>common</b></font></td>
+          <td width="88%">Application deployment only. No resource registration.</td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>undeploy&nbsp;</b></font></td>
+          <td width="88%">Removes the deployed sample from application server.</td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>clean</b></font></td>
+          <td width="88%">Removes <font face="Courier New, Courier, mono">&lt;appname>/build/</font> 
+            and <font face="Courier New, Courier, mono">&lt;appname>/assemble/ 
+            </font>content.</td>
+        </tr>
+        <tr> 
+          <td width="12%"><font face="Courier New, Courier, mono"><b>verify&nbsp;</b></font></td>
+          <td width="88%">Executes the J2EE application verifier against the sample 
+            application. </td>
+        </tr>
+      </table>
+      <h2> <br>
+        <a name="using-build"></a><font face="Arial, Helvetica, sans-serif">Using 
+        the Build Facility</font></h2>
+      <b><font face="Arial, Helvetica, sans-serif">1. Set Up Your Environment</font></b> 
+      <p><font face="Arial, Helvetica, sans-serif">In order to use the Ant tool 
+        to compile and reassemble the sample applications, you need to ensure 
+        that the <font face="Courier New, Courier, mono">&lt;install_dir&gt;/bin</font><tt> 
+        </tt> directory is in your environment's path.</font> 
+      <p><font face="Arial, Helvetica, sans-serif"> On UNIX platforms, you will 
+        need to add the<font face="Courier New, Courier, mono"> &lt;install_dir&gt;/bin</font> 
+        directory to your PATH environment variable. </font> 
+      <p><font face="Arial, Helvetica, sans-serif">On Windows platforms, after 
+        installation of the application server, the System path needs to be set 
+        by adding <font face="Courier New, Courier, mono">&lt;install_dir&gt;\bin</font></font> 
+        to the user's PATH environment variable.</p>
+      <p><b><font face="Arial, Helvetica, sans-serif">2. Compile and Assemble 
+        a Sample Application</font></b> 
+      <p><font face="Arial, Helvetica, sans-serif">Using the simple stateless 
+        EJB sample as an example, execute several of the build targets.</font> 
+      <p><font face="Arial, Helvetica, sans-serif">Change to the <tt>ejb/stateless/simple 
+        </tt>sample directory:</font> 
+      <blockquote><font face="Arial, Helvetica, sans-serif">cd <tt><font face="Courier New, Courier, mono">&lt;install_dir&gt;/samples/ejb/stateless/simple/src</font></tt></font></blockquote>
+      <p> <font face="Arial, Helvetica, sans-serif">Execute the compile target 
+        to compile the Java sources:</font> 
+      <blockquote><tt><font face="Courier New, Courier, mono">asant compile</font></tt></blockquote>
+      <p> <font face="Arial, Helvetica, sans-serif">Execute the <tt>war</tt>, 
+        <tt>ejbjar</tt> and <tt>ear</tt> targets to assemble the J2EE module files 
+        and the EAR file:</font> 
+      <blockquote><tt><font face="Courier New, Courier, mono">asant ejbjar</font></tt><font face="Courier New, Courier, mono"> 
+        <br>
+        <tt>asant war</tt> <br>
+        <tt>asant ear</tt></font></blockquote>
+      <p> <font face="Arial, Helvetica, sans-serif">Alternatively, you could accomplish 
+        all of these tasks by simply executing either the <font face="Courier New, Courier, mono">core</font> 
+        or <font face="Courier New, Courier, mono">all</font> targets:</font> 
+      <blockquote><tt><font face="Courier New, Courier, mono">asant core</font></tt></blockquote>
+      <p> <font face="Arial, Helvetica, sans-serif"> Since the default build target 
+        is <font face="Courier New, Courier, mono">core</font>, you could execute 
+        ant without arguments to rebuild the entire application: </font> 
+      <blockquote><tt><font face="Courier New, Courier, mono">asant</font></tt></blockquote>
+      <p><b>3. Additional Build Examples</b></p>
+      <p><font face="Arial, Helvetica, sans-serif">The following examples demonstrate 
+        how one can use the build facility to quickly accomplish recurring development 
+        and deployment tasks. </font> </p>
+      <p><font face="Arial, Helvetica, sans-serif">Build everything (including 
+        Javadocs). Then install Javadocs and deploy the application: </font> </p>
+      <blockquote> 
+        <p><font face="Courier New, Courier, mono">asant all</font></p>
+      </blockquote>
+      <p><font face="Arial, Helvetica, sans-serif">Build everything (except for 
+        Javadocs). Then deploy the application (most frequently used approach):</font> 
+      </p>
+      <blockquote> 
+        <p><font face="Arial, Helvetica, sans-serif"><font face="Courier New, Courier, mono">asant 
+          core</font> (or simply: <font face="Courier New, Courier, mono">asant) 
+          </font></font> </p>
+        <p><font face="Courier New, Courier, mono">asant deploy </font> </p>
+      </blockquote>
+      <p><font face="Arial, Helvetica, sans-serif">Rebuild an EAR After modifying 
+        the deployment descriptors (no recompile needed):&nbsp; </font> </p>
+      <blockquote> 
+        <p><font face="Courier New, Courier, mono">asant ear </font> </p>
+        <p><font face="Courier New, Courier, mono">asant deploy<target name="rmi_entity_fix"></target><target name="rmi_entity_fix"></target>_common</font></p>
+      </blockquote>
+      <table width="85%" border="1" cellpadding="3" align="center" height="82">
+        <tr> 
+          <td height="65"> 
+            <p><b><img src="images/warning_24.gif" width="24" height="24">Redeploying 
+              Applications : </b>To redeploy an application, it is recommended 
+              that you use the <font face="Courier New, Courier, mono">deploy_common</font> 
+              target. Execution of this target will not result in an attempt to 
+              register the necessary resources. If you attempt to execute the 
+              <font face="Courier New, Courier, mono">deploy</font> target several 
+              times in succession, then the subsequent deployment attempts may 
+              fail because the resources will have already been registered.</p>
+            </td>
+        </tr>
+      </table>
+      <br>
+      <table width="85%" border="1" cellpadding="3" align="center">
+        <tr> 
+          <td height="94"> 
+            <p><b><img src="images/warning_24.gif" width="24" height="24">common.properties 
+              File: </b><font face="Arial, Helvetica, sans-serif">In order to 
+              deploy sample applications, property settings in the <font face="Courier New, Courier, mono">common.properties</font> 
+              file under <font face="Courier New, Courier, mono">&lt;install_dir&gt;/samples/</font> 
+              must be set to the appropriate values for your environment. If a 
+              property contained in this file is not set, you will be prompted 
+              for the property's value during the deployment of a sample application. 
+              </font></p>
+            <p>See the <a href="setupenv.html#PROPS">Creating Your Own Samples 
+              Environment</a> section for a detailed description of the properties 
+              contained in the <font face="Courier New, Courier, mono">common.properties</font> 
+              file.</p>
+          </td>
+        </tr>
+      </table>
+      <br>
+      <h2> <font face="Arial, Helvetica, sans-serif"><a name="custom-ant-tasks"></a>Custom 
+        Ant Tasks</font></h2>
+      <p><font face="Arial, Helvetica, sans-serif">The Sun ONE Application Server 
+        7 ships with custom Ant tasks that are part of the build environment for 
+        all samples. The following tasks are used in the sample <font face="Courier New, Courier, mono">build.xml</font> 
+        files:</font></p>
+      <table BORDER cellpadding=5 width="85%" align="center" >
+        <tr bgcolor="#CCCCCC"> 
+          <td width="21%"><b>Custom Ant Task</b></td>
+          <td width="79%"><b>Function</b></td>
+        </tr>
+        <tr> 
+          <td width="21%"><font face="Courier New, Courier, mono">sun-appserv-deploy</font></td>
+          <td width="79%"><font face="Arial, Helvetica, sans-serif">Deploys J2EE 
+            modules to the Sun ONE Application Server 7. </font></td>
+        </tr>
+        <tr> 
+          <td width="21%"><font face="Courier New, Courier, mono">sun-appserv-undeploy</font></td>
+          <td width="79%"><font face="Arial, Helvetica, sans-serif">Undeploys 
+            J2EE components from the Sun ONE Application Server 7. </font></td>
+        </tr>
+        <tr> 
+          <td width="21%"><font face="Courier New, Courier, mono">sun-appserv-admin</font></td>
+          <td width="79%"><font face="Arial, Helvetica, sans-serif">Enables arbitrary 
+            administrative commands and scripts to be executed on the Sun ONE 
+            Application Server 7. </font></td>
+        </tr>
+      </table>
+      <p> <font face="Arial, Helvetica, sans-serif">For more information about 
+        these Ant tasks and for a full list of the custom Ant tasks, please see 
+        the Administrator's Guide documentation.</font></p>
+      <h2><font face="Arial, Helvetica, sans-serif"><a name="studio"></a>Using 
+        Sample Build Files in Sun ONE Studio 4</font></h2>
+      <p><font face="Arial, Helvetica, sans-serif">The Sun ONE Studio 4, Enterprise 
+        Edition for Java IDE includes support for Ant build files. To use the 
+        IDE to execute the targets contained in the sample application <font face="Courier New, Courier, mono">build.xml</font> 
+        files, you must ensure that the the JAR file containing the custom Ant 
+        tasks for Sun ONE Application Server 7 is added to the IDE's classpath.</font></p>
+      <p>1. Copy the file <font face="Courier New, Courier, mono">&lt;install_dir&gt;/lib/sun-appserv-ant.jar 
+        </font>from the application server's installation directory to the <font face="Courier New, Courier, mono">&lt;ide_install_dir&gt;/modules/patches/org-apache-tools-ant-module/</font> 
+        directory and restart the IDE. </p>
+      <p>2. Mount a file system in the IDE that corresponds to a <font face="Courier New, Courier, mono">src/ 
+        </font>directory of a sample application. For example:</p>
+      <blockquote> 
+        <p><font face="Courier New, Courier, mono">&lt;samples_dir&gt;/jdbc/simple/src</font></p>
+      </blockquote>
+      <p>3. Expand the <font face="Courier New, Courier, mono">build</font> node 
+        under the <font face="Courier New, Courier, mono">src/ </font>directory 
+        to list the targets available in the sample's <font face="Courier New, Courier, mono">build.xml</font> 
+        file.</p>
+      <p>4. Double click the <font face="Courier New, Courier, mono">compile</font> 
+        target to recompile the sample application.</p>
+      <p>5. Execute additional targets to experiment with other operations such 
+        as deployment and undeployment of applications.</p>
+      <p>In order to deploy a sample application, ensure that you modify the<font face="Courier New, Courier, mono"> 
+        samples/common.properties</font> file by setting the admin.password to 
+        the appropriate value.</p>
+      </td>
+  </tr>
+</table>
+<table border=0 cellspacing=10 cellpadding=0 width="100%" >
+  <tr> 
+    <td class="grey1">&nbsp;</td>
+  </tr>
+</table>
+<div align="center"> <a href="http://wwws.sun.com/company/">Company Info</a>   |   
+  <a href="http://wwws.sun.com/contact/">Contact</a>   |  Copyright 2002 Sun Microsystems 
+  <!-- END GLOBAL FOOTER --> </div>
+</body>
+</html>

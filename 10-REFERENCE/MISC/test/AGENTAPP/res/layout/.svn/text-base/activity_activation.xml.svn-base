@@ -1,0 +1,135 @@
+<ScrollView 
+	    xmlns:android="http://schemas.android.com/apk/res/android"
+    	xmlns:tools="http://schemas.android.com/tools"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent" 
+	    tools:context=".ActivationActivity" >
+	    
+	<LinearLayout 
+    	android:layout_width="match_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="vertical">
+
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/title_size"
+		        android:text="@string/activation"
+		        android:layout_marginBottom="20dp" 
+		        style="@style/TitleLabel"/>
+		    
+		    <TextView 
+		       android:layout_width="match_parent"
+		       android:layout_height="wrap_content"
+		       android:text="@string/date_of_birth"
+		       android:layout_marginLeft="@dimen/padding_left"
+		       android:layout_marginRight="@dimen/padding_right" />
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_marginRight="@dimen/padding_right" >
+
+		   <!--  <CalendarView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:maxDate="12/31/2000" 
+		    />  -->   
+
+		    <EditText
+		        android:id="@+id/date_of_birth_edit_text_activation"
+		        android:layout_width="0dp"
+		        android:layout_height="40dp"
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        android:layout_marginLeft="@dimen/padding_left"
+		        android:hint="@string/date_format"
+		        android:layout_weight=".9"
+		        android:inputType="date" />
+
+		    <Button
+		        android:id="@+id/date_of_birth_date_picker_activation"
+		        android:layout_width="0dp"
+		        android:layout_height="40dp"
+		        android:layout_weight=".15"
+		        android:background="@drawable/calendar_icon" />
+		    </LinearLayout>
+		    <TextView 
+		       android:layout_width="match_parent"
+		       android:layout_height="wrap_content"
+		       android:text="@string/mother_date_of_birth"
+		       android:layout_marginLeft="@dimen/padding_left"
+		       android:layout_marginRight="@dimen/padding_right" />
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:layout_marginRight="@dimen/padding_right" >
+
+		   <!--  <CalendarView 
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:maxDate="12/31/2000" 
+		    />  -->   
+
+		    <EditText
+		        android:id="@+id/mother_date_of_birth_edit_text_activation"
+		        android:layout_width="0dp"
+		        android:layout_height="40dp"
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        android:layout_marginLeft="@dimen/padding_left"
+		        android:hint="@string/date_format"
+		        android:layout_weight=".9"
+		        android:inputType="date" />
+
+		    <Button
+		        android:id="@+id/mother_date_of_birth_date_picker_activation"
+		        android:layout_width="0dp"
+		        android:layout_height="40dp"
+		        android:layout_weight=".15"
+		        android:background="@drawable/calendar_icon" />
+		    </LinearLayout>
+		       
+		    <TextView 
+		       android:layout_width="match_parent"
+		       android:layout_height="wrap_content"
+		       android:text="@string/enter_new_pin"
+		       android:layout_marginLeft="@dimen/padding_left"
+			   android:layout_marginRight="@dimen/padding_right"/>
+		    
+		    <EditText 
+		        android:id="@+id/new_pin_edit_text_activation"
+		        android:layout_width="match_parent"
+		        android:layout_height="40dp"
+		        android:inputType="number"
+		        android:password="true"
+		        android:maxLength="@string/pinMaxLength"
+		        android:hint="@string/enter_new_pin"
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        android:layout_marginLeft="@dimen/padding_left"
+			   android:layout_marginRight="@dimen/padding_right"/>
+		     <TextView 
+		       android:layout_width="match_parent"
+		       android:layout_height="wrap_content"
+		       android:text="@string/re_enter_new_pin"
+		       android:layout_marginLeft="@dimen/padding_left"
+			   android:layout_marginRight="@dimen/padding_right"/>
+		    
+		    <EditText 
+		        android:id="@+id/re_enter_new_pin_edit_text_activation"
+		        android:layout_width="match_parent"
+		        android:layout_height="40dp"
+		        android:inputType="number"
+		        android:password="true"
+		        android:maxLength="@string/pinMaxLength"
+		        android:hint="@string/re_enter_new_pin"
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        android:layout_marginLeft="@dimen/padding_left"
+			   android:layout_marginRight="@dimen/padding_right" />
+		    <Button 
+		        android:id="@+id/submit_button_activation"
+		        android:layout_width="100dp"
+		        android:layout_height="50dp"
+		        android:text="@string/submit" 
+		        android:layout_gravity="center"
+		        android:background="@drawable/submit_buttons"/>
+	</LinearLayout>
+</ScrollView>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE rmi PUBLIC "-//BEA Systems, Inc.//RMI Runtime DTD 1.0//EN" "rmi.dtd">
+<rmi
+    name="com.weblogic.sample.ejbapp.FubarBMTEJB_79xz40_EOImpl"
+>
+<cluster
+    clusterable="true"
+    propagate-environment="true"
+>
+</cluster>
+
+<lifecycle
+    dgc-policy="managed"
+>
+</lifecycle>
+
+<method
+    name="getPrimaryKey()"
+>
+</method>
+<method
+    name="getHandle()"
+>
+</method>
+<method
+    name="remove()"
+>
+</method>
+<method
+    name="sampleMethod(com.weblogic.sample.common.FubarRequestData)"
+    idempotent="true"
+>
+</method>
+<method
+    name="isIdentical(javax.ejb.EJBObject)"
+>
+</method>
+<method
+    name="getEJBHome()"
+>
+</method>
+
+<security
+    client-authentication="supported"
+    client-cert-authentication="supported"
+    identity-assertion="supported"
+    confidentiality="supported"
+    integrity="supported"
+>
+</security>
+
+</rmi>

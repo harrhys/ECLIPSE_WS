@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-application PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 J2EE Application 1.3//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-application_1_3-0.dtd">
+<sun-application>
+<unique-id>753093337</unique-id>
+<security-role-mapping>
+    <role-name>administrator</role-name>
+    <principal-name>jps_admin</principal-name>
+    <group-name>administrator_group</group-name>
+  </security-role-mapping>
+</sun-application>

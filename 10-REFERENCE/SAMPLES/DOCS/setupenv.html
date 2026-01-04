@@ -1,0 +1,628 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Creating Your Own Samples Environment</title>
+
+
+
+
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+
+
+
+<meta name="keywords" value="">
+
+
+
+<meta name="description" value="">
+
+
+
+<link rel="stylesheet" href="default.css"><!--stopindex--></head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" bgcolor="#ffffff">
+
+<a name="top"></a> <!-- SUN.COM TEMPLATE V4.2 --> <!-- BEGIN GLOBAL NAVIGATION TOOLBAR -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+
+
+  <tbody>
+
+
+
+  <tr>
+
+
+
+    <td width="49%"><span class="sp2"> </span></td>
+
+
+
+  </tr>
+
+
+
+  <form action="http://www.sun.com/search/index.cgi">
+
+
+
+  </form>
+
+
+
+  <tr>
+
+
+
+    <td width="49%" nowrap valign="middle">
+
+
+
+      <div class="sitelinks"> <a href="http://www.sun.com/">sun.com</a></div>
+
+
+
+    </td>
+
+
+
+    <td nowrap valign="middle" width="49%" colspan="3">
+
+
+
+      <div class="sitelinks">
+
+
+
+        <div align="right"><a href="http://www.sun.com/sales/index.html">How To
+
+
+
+          Buy</a>  |  <a href="http://mysun.sun.com/">My Sun</a>  |  <a href="http://www.sun.com/worldwide/">Worldwide
+
+
+
+          Sites</a></div>
+
+
+
+      </div>
+
+
+
+    </td>
+
+
+
+  </tr>
+
+
+
+  <tr>
+
+
+
+    <td width="49%"><span class="sp2"> </span></td>
+
+
+
+  </tr>
+
+
+
+  </tbody>
+
+
+
+</table>
+
+
+
+<!-- END GLOBAL NAVIGATION TOOLBAR -->
+
+
+
+<!-- BEGIN GENERIC MASTHEAD -->
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+
+
+<tbody><tr>
+
+
+
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+
+
+
+    <td class="sunblue" valign="top"><a href="http://www.sun.com/"><img src="images/logo_sun.gif" width="110" height="43" border="0" alt="Sun Microsystems Logo"></a><br>
+
+
+
+      <img src="images/a.gif" width="170" height="1" alt=""></td>
+
+
+
+<td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+
+
+
+    <td width="50%" class="sunyellow" valign="bottom" nowrap><br>
+
+
+
+      <span class="sp5"> </span></td>
+
+
+
+<td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+
+
+
+    <td width="50%" class="sunred" valign="bottom" nowrap><br>
+
+
+
+      <span class="sp5"> </span></td>
+
+
+
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+
+
+
+</tr>
+
+
+
+</tbody></table>
+
+
+
+<span class="sp5"> </span><br>
+
+
+
+<!-- END GENERIC MASTHEAD --> <!-- BEGIN BREADCRUMB --><br>
+
+
+
+<!-- END BREADCRUMB -->
+
+
+
+<!-- BEGIN PAGETITLE -->
+
+
+
+<div class="pagetitle2">Sun[tm] ONE Application Server 7 Samples</div>
+
+<div class="pagetitle">Creating Your Own Samples Environment</div>
+
+
+
+<!-- END PAGETITLE -->
+
+
+
+<!-- BEGIN WRAPPER TABLE, 3 COLUMN, LEFT/MAIN/RIGHT -->
+
+
+
+<table border="0" cellpadding="0" cellspacing="10" width="100%">
+  <tbody> 
+  <tr> 
+
+    <td valign="top"> <!-- BEGIN D2 PRIMARY NAVIGATION --> 
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody> 
+
+        <tr> 
+          <td colspan="3"> 
+            <p>If you are either sharing your application server installation 
+              with other users or your system user ID does not have write permissions 
+              to the area in which the application server is installed, then it 
+              is recommended that you create your own samples environment. The 
+              steps involved in creating your own samples environment can consist 
+              of:</p>
+            <table width="100%">
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#DOMAIN">Creating 
+                  a New Administrative Domain and Application Server Instance</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#SAMPLES">Creating 
+                  a Copy of the Sample Applications</a></td>
+              </tr>
+            </table>
+            <br>
+            <h2><b><a name="DOMAIN"></a>Creating a New Administrative Domain and 
+              Application Server Instance</b></h2>
+            <p>If the application server was installed as part of a Solaris 9 
+              installation, then you must create your own administrative domain 
+              and application server instance in order to work with the product. 
+              Additionally, if you are using a shared application server installation, 
+              you should create your own administrative domain to avoid any conflicts 
+              with other users.</p>
+            <p>If you already created your own samples environment and created 
+              an initial administrative domain and an application server instance 
+              by following the Getting Started Guide, then go back to the <a href="../index.html#directory-structure">Sample 
+              Applications</a> main page and continue reviewing how to work with 
+              the samples.</p>
+            <p>The Sun ONE Application Server 7 installation that is installed 
+              as part of a Solaris 9 installation contains only the necessary 
+              libraries, executables and other supporting files required to run 
+              an application server. No application server configuration exists 
+              upon installation. </p>
+            <p>To create an initial configuration, you must use the application 
+              server's <font face="Courier New, Courier, mono">asadmin</font> 
+              command line interface (CLI). The <font face="Courier New, Courier, mono">create-domain</font> 
+              subcommand of the <font face="Courier New, Courier, mono">asadmin</font> 
+              CLI enables you to create an administrative domain in a location 
+              of your choice. Each administrative domain consists of an administrative 
+              server and application server instance configurations. When you 
+              create an initial administrative domain, you specify the administrative 
+              user name, password and port number associated with the administrative 
+              server of the domain.</p>
+            <p>Once you've created an administrative domain, you can create one 
+              or more application server instances within the domain. Each application 
+              server instance houses an HTTP server, the J2EE[tm] web and EJB 
+              containers and other application server facilities.</p>
+            <p><b>Create an Administrative Domain</b></p>
+            <p>By default, the <font face="Courier New, Courier, mono">create-domain</font> 
+              subcommand creates the new administrative domain configuration under 
+              either <font face="Courier New, Courier, mono">/var/appserver/domains/</font> 
+              (in the case of the application server installed as part of a Solaris 
+              9 installation) or <font face="Courier New, Courier, mono">/var/opt/SUNWappserver7/domains/</font> 
+              (in the case of an unbundled installation of the application server 
+              on Solaris). If you are logged in as a user that does not have write 
+              permissions to the default domain configuration area, then you must 
+              use the <font face="Courier New, Courier, mono">--path</font> option 
+              to specify a suitable location for the newly created domain when 
+              executing the <font face="Courier New, Courier, mono">create-domain 
+              </font>subcommand. </p>
+            <p>To create an administrative domain, follow these steps:</p>
+            <p>1. If you are not using the root user ID and your user ID does 
+              not possess the necessary permissions to create an administrative 
+              domain, you will need to either request that the systems administrator 
+              create or your domain or request that your user ID be added to the 
+              UNIX group that is able to create administrative domains.</p>
+            <table width="85%" border="1" cellpadding="3" align="center" height="241">
+              <tr> 
+                <td height="238"> 
+                  <p><b><img src="images/warning_24.gif" width="24" height="24">User 
+                    Permissions on UNIX Platforms: </b>If the application server 
+                    was installed using the root user ID, then special considerations 
+                    must be taken into account when using a non-root user to work 
+                    with the application server and the sample applications.</p>
+                  <p>In order for a non-root user to create and delete administrative 
+                    domains, the user ID must be added to the UNIX group that 
+                    has write permissions to the domain configuration file. By 
+                    default, the UNIX group <font face="Courier New, Courier, mono">asadmin</font> 
+                    has write privileges to the domain configuration file.</p>
+                  <p>Alternatively, you can request that the system administrator 
+                    use the root user ID to create your domain on your behalf 
+                    by specifying the<font face="Courier New, Courier, mono"> 
+                    --sysuser</font> option with your user ID on the<font face="Courier New, Courier, mono"> 
+                    create-domain</font> subcommand.</p>
+                  <p>Once an administrative domain is created under your user 
+                    ID, you may execute <font face="Courier New, Courier, mono">asadmin</font> 
+                    subcommands to create new application server instances and 
+                    perform a wide variety of administrative operations against 
+                    the application server instances without the user ID belonging 
+                    to the UNIX group that has write privileges for the administrative 
+                    domain configuration file. Membership in the group is required 
+                    only to create and delete administrative domains.</p>
+                </td>
+              </tr>
+            </table>
+            <p>2. Ensure that either the <font face="Courier New, Courier, mono"> 
+              /usr/sbin</font> directory (in the case of the application server 
+              that is installed as part of a Solaris 9 installation) or the <font face="Courier New, Courier, mono">&lt;install_dir&gt;/bin</font> 
+              directory (in the case of an unbundled install) is included in your 
+              environment's path.</p>
+            <p>3. From the command line, execute the following command to create 
+              a new administrative domain named &quot;domain1&quot;:</p>
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">asadmin create-domain 
+                  --path &lt;domain_config_dir&gt; --adminport 4848 --adminuser 
+                  admin --adminpassword password domain1 </font></p>
+              </blockquote>
+              <p>Where <font face="Courier New, Courier, mono">&lt;domain_config_dir&gt;</font> 
+                specifies the location under which the administrative domain configuration 
+                will be created. The <font face="Courier New, Courier, mono">--adminport</font>, 
+                <font face="Courier New, Courier, mono">--adminuser</font> and 
+                <font face="Courier New, Courier, mono">--adminpassword</font> 
+                options specify the initial settings of the new administrative 
+                server defined for the domain.</p>
+              <p>If the root user is executing the <font face="Courier New, Courier, mono">create-domain</font> 
+                subcommand to create an administrative domain on your behalf, 
+                the --sysuser option should be used to specify the system user 
+                ID under which the administrative domain files and directories 
+                will be created. For example:</p>
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">asadmin create-domain 
+                  <b>--sysuser ckamps </b>--path &lt;domain_config_dir&gt; --adminport 
+                  4848 --adminuser admin --adminpassword password domain1 </font></p>
+              </blockquote>
+              <p>Upon execution of the <font face="Courier New, Courier, mono">create-domain</font> 
+                subcommand, you should see the following message:</p>
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">Created Domain domain1 
+                  successfully</font></p>
+              </blockquote>
+              <p>If the name &quot;domain1&quot; has already been used, execute 
+                the <font face="Courier New, Courier, mono">create-domain</font> 
+                subcommand again with another domain name. You can use periods 
+                and other characters in your domain names. You could use your 
+                login user name as a qualifier to help ensure that your domain 
+                name is unique. For example: <font face="Courier New, Courier, mono">ckamps.domain1</font>.</p>
+              <p>When you execute the <font face="Courier New, Courier, mono">create-domain</font> 
+                subcommand and the following error message is encountered, the 
+                message is an indication that your user ID does not have permissions 
+                to access the domain configuration files. See the steps above 
+                for either adding your user ID to the appropriate UNIX group or 
+                requesting that your systems administrator create the administrative 
+                domain on your behalf.</p>
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">Cannot create domain 
+                  : domain1<br>
+                  problem locking store /etc/appserver/domains.lck (Permission 
+                  denied)</font></p>
+              </blockquote>
+            </blockquote>
+            <p>4. Execute the <font face="Courier New, Courier, mono">list-domains</font> 
+              subcommand to display a list of all of the domains configured for 
+              the application server installation. (Execution of this read only 
+              command does not require your user ID to be part of the UNIX group 
+              that has write privileges to the domain configuration files).</p>
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">asadmin list-domains<br>
+                  domain1 [&lt;domain_config_dir&gt;/domain1]</font></p>
+              </blockquote>
+              <p>Where the value of <font face="Courier New, Courier, mono">&lt;domain_config_dir&gt;</font> 
+                represents either the default location for newly created administrative 
+                domains or the value specified on the <font face="Courier New, Courier, mono">--path</font> 
+                option of the <font face="Courier New, Courier, mono">create-domain 
+                </font>subcommand.</p>
+            </blockquote>
+            <p><b>Create an Application Server Instance</b></p>
+            <p>Once either the systems administrator has created an administrative 
+              domain on your behalf or you created the administrative domain, 
+              your next step is to create an application server instance under 
+              the newly created administrative domain. Creation of an application 
+              server under your own administrative domain does not require that 
+              your user ID be part of the UNIX group that has write privileges 
+              to the domain configuration files.</p>
+            <p>Execute the <font face="Courier New, Courier, mono">create-instance</font> 
+              subcommand to create the application server instance:</p>
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">asadmin create-instance 
+                  --domain domain1 --instanceport 80 server1</font></p>
+              </blockquote>
+              <p>Where &quot;<font face="Courier New, Courier, mono">domain1</font>&quot; 
+                is the domain name specified during domain creation, &quot;<font face="Courier New, Courier, mono">80</font>&quot; 
+                is the HTTP server port number of the application server instance 
+                and &quot;<font face="Courier New, Courier, mono">server1</font>&quot; 
+                is the name of the instance. Specify appropriate values for these 
+                options depending on your specific environment. Since port numbers 
+                less than 1024 are not accessible to non-root users, you will 
+                need to specify a port number greater than 1024 if you are logged 
+                in as a non-root user.</p>
+              <p>As long as you have only a single administrative domain defined 
+                on your system, you do not need to specify the target domain name 
+                when creating an instance. </p>
+            </blockquote>
+            <p>Your next step is to make your own copy of the sample applications.</p>
+            <h2><a name="SAMPLES"></a>Creating a Copy of the Sample Applications</h2>
+            <p>Making your own copy of the sample applications involves two basic 
+              steps: copying the installed samples to your own area and customizing 
+              a set of properties used to interact with an application server 
+              instance. </p>
+            <p><b>Copy Samples Directory</b></p>
+            <p>Since the sample applications and the supporting Ant-based build 
+              files are contained in a common directory of your application server 
+              installation, you can make your own copy of the sample applications 
+              by simply copying the following directory to a location in which 
+              your user ID has write permissions:</p>
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">&lt;install_dir&gt;/samples</font></p>
+            </blockquote>
+            <p><b><a name="PROPS"></a>Customize the <font face="Courier New, Courier, mono">common.properties</font> 
+              File</b></p>
+            <p>Once you make a copy of the samples directory, you must ensure 
+              that the <font face="Courier New, Courier, mono">samples/common.properties</font> 
+              file is configured to match your environment. The <font face="Courier New, Courier, mono">common.properties</font> 
+              file specifies the environmental information required by the Ant-based 
+              build facility that is used to build and deploy the sample applications. 
+              <br>
+            </p>
+            <table width="78%" border="1" height="64" cellpadding="3" align="center">
+              <tr bgcolor="#CCCCCC"> 
+                <td height="36" width="21%"><b>Property</b></td>
+                <td height="36" width="79%"><b>Description</b></td>
+              </tr>
+              <tr> 
+                <td height="27" width="21%"><font face="Courier New, Courier, mono">admin.host</font></td>
+                <td height="27" width="79%"> 
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">The name 
+                    of the host on which the administrative server resides. For 
+                    example, <font face="Courier New, Courier, mono">localhost</font> 
+                    if the administrative server is on the local machine.</font></p>
+                </td>
+              </tr>
+              <tr> 
+                <td height="21" width="21%"><font face="Courier New, Courier, mono">admin.port</font></td>
+                <td height="21" width="79%"><font face="Arial, Helvetica, sans-serif" size="-1">The 
+                  port number on which the administrative server is listening. 
+                  For example, <font face="Courier New, Courier, mono">4848</font>.</font></td>
+              </tr>
+              <tr> 
+                <td height="21" width="21%"><font face="Courier New, Courier, mono">admin.user</font></td>
+                <td height="21" width="79%"><font face="Arial, Helvetica, sans-serif" size="-1">The 
+                  administrative user defined for the administrative domain. For 
+                  example, <font face="Courier New, Courier, mono">admin</font>.</font></td>
+              </tr>
+              <tr> 
+                <td height="135" width="21%"><font face="Courier New, Courier, mono">admin.password</font></td>
+                <td height="135" width="79%"> 
+                  <p>The administrative user's password.</p>
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">During 
+                    installation of the application server, this property is not 
+                    set. You may either choose to set this property or enter the 
+                    password during each deployment and undeployment operation 
+                    with the samples. </font></p>
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">You may 
+                    either set this property in the common.properties file or 
+                    set an environment variable named AS_ADMIN_PASSWORD with the 
+                    value of the administrative password.</font></p>
+                </td>
+              </tr>
+              <tr> 
+                <td height="59" width="21%"><font face="Courier New, Courier, mono">com.sun.aas.installRoot</font></td>
+                <td height="59" width="79%"> 
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">The application 
+                    server's installation directory. For example, in the case 
+                    where the application server is installed as part of a Solaris 
+                    9 installation, the value of this property should be set to 
+                    </font><font face="Courier New, Courier, mono">/usr/appserver.</font></p>
+                  </td>
+              </tr>
+              <tr> 
+                <td height="29" width="21%"><font face="Courier New, Courier, mono">com.sun.aas.javaRoot</font></td>
+                <td height="29" width="79%"><font face="Arial, Helvetica, sans-serif" size="-1">The 
+                  location in which a compatible Java[tm] 2 SDK is installed. 
+                  </font></td>
+              </tr>
+              <tr> 
+                <td height="58" width="21%"><font face="Courier New, Courier, mono">com.sun.aas.pointbaseRoot</font></td>
+                <td height="58" width="79%"> 
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">The PointBase 
+                    installation directory.</font> If PointBase was installed 
+                    as part of the application server, then this property should 
+                    be set to <font face="Courier New, Courier, mono">&lt;install_dir&gt;/pointbase</font> 
+                    where <font face="Courier New, Courier, mono">&lt;install_dir&gt;</font> 
+                    is the application server's installation directory.</p>
+                  <p>If you are working with the application server that was installed 
+                    as part of a Solaris 9 installation, then you will install 
+                    PointBase and set this property in the next section.</p>
+                  </td>
+              </tr>
+              <tr> 
+                <td height="52" width="21%"><font face="Courier New, Courier, mono">com.sun.aas.webServicesLib</font></td>
+                <td height="52" width="79%"> 
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">Location 
+                    of the Java web services libraries. For example, </font><font face="Courier New, Courier, mono" size="-1">&lt;install_dir&gt;/share/lib.</font></p>
+                  <p><font size="-1">When the application server is installed 
+                    as part of a Solaris 9 installation, the value of this property 
+                    should be set to <font face="Courier New, Courier, mono">/usr/share/lib</font>.</font></p>
+                </td>
+              </tr>
+              <tr> 
+                <td height="76" width="21%"><font face="Courier New, Courier, mono">com.sun.aas.imqLib</font></td>
+                <td height="76" width="79%"> 
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">Location 
+                    of the Sun ONE Message Queue libraries. For example,<font face="Courier New, Courier, mono"> 
+                    &lt;install_dir&gt;/imq/lib</font>.</font></p>
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">When 
+                    the application server is installed as part of a Solaris 9 
+                    installation, the value of this property should be set to 
+                    <font face="Courier New, Courier, mono">/usr/share/lib/imq</font>.</font></p>
+                </td>
+              </tr>
+              <tr> 
+                <td height="35" width="21%"><font face="Courier New, Courier, mono">sunone.instance</font></td>
+                <td height="35" width="79%"> 
+                  <p><font face="Arial, Helvetica, sans-serif" size="-1">The name 
+                    of the application server instance to which sample applications 
+                    are to be deployed.</font></p>
+                </td>
+              </tr>
+              <tr> 
+                <td height="31" width="21%"><font face="Courier New, Courier, mono">sunone.instance.port</font></td>
+                <td height="31" width="79%"> <font face="Arial, Helvetica, sans-serif" size="-1">The 
+                  HTTP port number on which the application server instance is 
+                  listening.</font></td>
+              </tr>
+            </table>
+            <p>Return to the <a href="../index.html#setup-env">Sample Applications</a> 
+              main page and continue reviewing how to work with the samples.</p>
+          </td>
+
+        </tr>
+
+        </tbody> 
+
+      </table>
+
+    </td>
+
+  </tr>
+
+  <tr> 
+
+    <td class="grey1" height="18"> </td>
+
+  </tr>
+
+  <!-- BEGIN SPACER ROW --> <!-- END SPACER ROW --> </tbody> 
+
+</table>
+
+
+
+<div class="sitelinks" align="center"> <a href="http://wwws.sun.com/company/">Company 
+
+  Info</a>   |   <a href="http://wwws.sun.com/contact/">Contact</a>   |  Copyright 
+
+  2002 Sun Microsystems <br>
+
+
+
+ 
+
+
+
+</div>
+
+
+
+<!-- END GLOBAL FOOTER -->
+
+
+
+</body></html>
+

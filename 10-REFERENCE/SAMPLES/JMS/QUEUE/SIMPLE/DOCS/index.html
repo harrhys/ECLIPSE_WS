@@ -1,0 +1,1369 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="TEMPLATEBASE" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/10/02 18:51:38">
+	<title>JMS Queue Simple Sample Application: Chapter&#32;1 Java Message Service (JMS) Queue Simple Sample Application</title>
+</head>
+
+<body text="#000000" link="10% #594fbf" vlink="#594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <table width="100%" border="0" cellspacing="4">
+      <tr>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+<a href="2_InstallMQSeries.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Next
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </tr>
+
+      <tr>
+         <td valign="TOP" align="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            JMS Queue Simple Sample Application</B></FONT>
+         </td>
+      </tr>
+
+   </table>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <blockquote>
+<BR>
+<BR>
+
+      <A NAME="13832"> </A><A NAME=""> </A><FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#666666"><B>
+Chapter&#32;1 
+&nbsp;
+</B>
+</FONT>
+
+
+<A NAME="13833"> </A>
+<A NAME="Java Message Service (JMS) Queue Simple Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Java Message Service (JMS) Queue Simple Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="14284"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the JMS Queue Simple sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="14288"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14292"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14310"  >Overview</A>
+</FONT>
+<P><A NAME="14296"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14499"  >Compiling and Assembling the Sample Application</A>
+</FONT>
+<P><A NAME="14300"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14530"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="14304"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14611"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="14308"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14622"  >Troubleshooting and Known Issues</a>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14310"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14314"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The JMS Queue Simple sample application is a sample JMS client application designed to demonstrate how a JMS client can send and receive a message to a point-to-point JMS queue.  The application is a servlet which handles the message delivery to the target queues based on the request of a client. The servlet also takes care of retrieving the message and displaying it  to the message box of the target receiver. The following diagram illustrates the technology involved:
+</FONT>
+<P>
+
+<A NAME="14318"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="simplequeue-overview.gif" align="baseline" hspace="2">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="14322"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In order to successfully deploy and run the JMS Queue Simple sample application, the following tasks need to be completed:
+</FONT>
+<P>
+<ul>
+<A NAME="14326"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14332"  >Set Environment Variables</A>
+</FONT>
+<P><A NAME="14330"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14346"  >Install and Configure Java Message Service (JMS) Providers</A>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14332"> </A>
+<A NAME="Set Environment Variables"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Set Environment Variables
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14333"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following environment variables need to be set. For example:
+</FONT>
+<P>
+<ul>
+<P><A NAME="14335"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">setenv IMQ_HOME    $AS_HOME/imq</FONT>
+</FONT>
+<P><A NAME="14336"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">setenv JAVA_HOME  $AS_HOME/jdk</FONT>
+</FONT>
+<P><A NAME="14337"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">setenv PATH  $JAVA_HOME/bin:$AS_HOME/bin:$PATH</FONT>
+</FONT>
+<P></ul>
+
+<A NAME="14338"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can set these environment variables in a command window or you can have them set in a shell script of your choice.
+</FONT>
+<P>
+
+<A NAME="14344"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14341"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14343"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The <FONT FACE="courier, couriernew, monospaced size">AS_HOME</FONT> variable must be set to the directory where Sun ONE Application Server is installed. For example, when installing the application server in<FONT FACE="courier, couriernew, monospaced size"> /export/sun/appserver7</FONT>,  the <FONT FACE="courier, couriernew, monospaced size">AS_HOME</FONT> is set to <FONT FACE="courier, couriernew, monospaced size">/export/sun/appserver7</FONT>.
+
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14346"> </A>
+<A NAME="Install and Configure Java Message Service (JMS) Providers"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Install and Configure Java Message Service (JMS) Providers
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14350"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The JMS Queue Simple sample application has been tested with the following JMS providers:
+</FONT>
+<P>
+<ul>
+<A NAME="14354"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14361"  >Sun ONE Message Queue (MQ)</A>
+</FONT>
+<P><A NAME="14358"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14481"  >IBM WebSphere MQ</A>
+</FONT>
+<P></ul>
+
+<A NAME="14359"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can choose either product to test the sample application. However, it is suggested that you test with Sun ONE MQ first. Because Sun ONE MQ is bundled with Sun ONE Application Server, it is thereby faster and easier to setup and create JMS resources.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14361"> </A>
+<A NAME="Sun ONE Message Queue (MQ)"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Sun ONE Message Queue (MQ)
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14362"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, you will learn how to test and start the Sun ONE Message Queue (MQ) Broker. The term <I>Broker</I> refers to the software component that routes and delivers messages.
+</FONT>
+<P>
+
+<A NAME="14363"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Sun ONE MQ message service is bundled with and supported by the Sun ONE Application Server. The product resides under the <FONT FACE="courier, couriernew, monospaced size">$AS_HOME/imq</FONT> directory.
+</FONT>
+<P>
+
+<A NAME="14364"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Sun ONE MQ can consist of one or more brokers. When you install Sun ONE Application Server,  a default broker is created on localhost, instance server1.  Port number 7676 will be selected as the port of the default broker if it has not been used.  Otherwise, a different port number will be selected. 
+</FONT>
+<P>
+
+<A NAME="14365"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To find out the port number designated for the default broker,  do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14366"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Access the Sun ONE Application Server Administration Tool from a web browser.
+</FONT>
+<P><A NAME="14367"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Navigate down the following folders by clicking on them in the left hand frame: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14368"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+App Server Instances-&gt;server1-&gt;JMS-&gt;Service
+</FONT>
+<P>     <DT> <A NAME="14369"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You will see the default broker service information displayed on the right hand frame, including the port number. 
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14370"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To Test if the broker is running,  do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14371"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Use the <FONT FACE="courier, couriernew, monospaced size">imqcmd</FONT> utility to display the information about the broker. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14372"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">$IMQ_HOME/bin/imqcmd query bkr  -u  &lt;admin_user&gt; -p </FONT>&lt;admin_password&gt;<FONT FACE="courier, couriernew, monospaced size"> -b &lt;host&gt;:&lt;jms_port&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="14373"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;admin-user&gt;</FONT> is the admin user name ("admin" by default), <FONT FACE="courier, couriernew, monospaced size">&lt;admin_password&gt;</FONT> is the admin password ("admin by default), <FONT FACE="courier, couriernew, monospaced size">&lt;host&gt;</FONT> is the machine the broker is on, and <FONT FACE="courier, couriernew, monospaced size">&lt;jms-port&gt;</FONT> is the jms-service port assigned to the broker.
+</FONT>
+<P>     <DT> <A NAME="14374"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If the broker is running, you will receive an output similar to the one below: 
+</FONT>
+<P>     <DT> <A NAME="14375"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">imqcmd query bkr -u admin -p admin -b  localhost:7676</FONT>
+</FONT></dl>
+<dl> <dl>
+<P>     <DT> <A NAME="14376"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Querying the broker specified by:</FONT>
+</FONT>
+<P>     <DT> <A NAME="14377"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">------------------------- </FONT>
+</FONT>
+     <DT> <A NAME="14378"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Host         Primary Port </FONT>
+</FONT>
+     <DT> <A NAME="14379"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">------------------------- </FONT>
+</FONT>
+     <DT> <A NAME="14380"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">localhost    7676</FONT>
+</FONT>
+<P>     <DT> <A NAME="14382"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Auto Create Queues                            true</FONT>
+</FONT>
+     <DT> <A NAME="14383"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Auto Create Topics                            true</FONT>
+</FONT>
+     <DT> <A NAME="14384"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Auto Created Queue Delivery Policy            Single</FONT>
+</FONT>
+     <DT> <A NAME="14385"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Cluster Broker List (active)                  optimus/192.18.114.108:7676
+(domain1_server1)</FONT>
+</FONT>
+     <DT> <A NAME="14386"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Cluster Broker List (configured)</FONT>
+</FONT>
+     <DT> <A NAME="14387"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Cluster Master Broker</FONT>
+</FONT>
+     <DT> <A NAME="14388"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Cluster URL</FONT>
+</FONT>
+     <DT> <A NAME="14389"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Current Number of Messages in System          0</FONT>
+</FONT>
+     <DT> <A NAME="14390"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Current Size of Messages in System (bytes)    0</FONT>
+</FONT>
+     <DT> <A NAME="14391"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Instance Name                                 domain1_server1</FONT>
+</FONT>
+     <DT> <A NAME="14392"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Log Level                                     INFO</FONT>
+</FONT>
+     <DT> <A NAME="14393"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Log Rollover Interval (seconds)               604800</FONT>
+</FONT>
+     <DT> <A NAME="14394"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Log Rollover Size (bytes)                     0 (unlimited)</FONT>
+</FONT>
+     <DT> <A NAME="14395"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Max Message Size                              70m</FONT>
+</FONT>
+     <DT> <A NAME="14396"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Max Number of Messages in System              0 (unlimited)</FONT>
+</FONT>
+     <DT> <A NAME="14397"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Max Size of Messages in System                0 (unlimited)</FONT>
+</FONT>
+     <DT> <A NAME="14398"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Primary Port                                  7676</FONT>
+</FONT>
+     <DT> <A NAME="14399"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Version                                       3.0</FONT>
+</FONT>
+<P>     <DT> <A NAME="14400"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Successfully queried the broker.</FONT>
+</FONT>
+<P>  </dl></dl>
+<A NAME="14402"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+If the broker is not running,  start the broker using the command <FONT FACE="courier, couriernew, monospaced size">imqbrokerd</FONT>. 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14403"> </A>
+<P>     <DT> <A NAME="14404"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">$IMQ_HOME/bin/imqbrokerd -tty -port &lt;jms_port&gt; -name &lt;instance_name&gt; &amp;</FONT>
+</FONT>
+<P>     <DT> <A NAME="14405"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;jms_port&gt;</FONT> is the jms-service port, and <FONT FACE="courier, couriernew, monospaced size">&lt;instance_name&gt;</FONT> is your application server instance name.
+</FONT>
+<P>     <DT> <A NAME="14406"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example:
+</FONT>
+<P>     <DT> <A NAME="14426"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">$IMQ_HOME/bin/imqbrokerd -tty -port 7676 -name server1 &amp;</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+<BR>
+<P>
+<A NAME="14407"> </A>
+<A NAME="Creating JMS Resources"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Creating JMS Resources
+</B>
+</FONT>
+<BR>
+
+<A NAME="14408"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Sun ONE MQ provides 2 types of administered objects: <FONT FACE="courier, couriernew, monospaced size">ConnectionFactory</FONT> and <FONT FACE="courier, couriernew, monospaced size">Destination</FONT>.  The JMS Queue Simple sample application will access these objects through JNDI lookup.
+</FONT>
+<P>
+
+<A NAME="14412"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To create these objects using the <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> command line tool, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14413"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Run the <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> command using  the multi mode feature in which you can enter multiple <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> subcommands.
+<P>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14416"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14418"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+For every sub command you enter, you are required to provide global parameters such as user name, password, host, etc. 
+</FONT>
+
+<A NAME="14419"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+In the multi mode, you can pre-set the global parameter once and thus will not have to enter them every time. 
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+<FONT>
+
+<P>  <dl>
+     <DT> <A NAME="14420"> </A>
+<P>     <DT> <A NAME="14421"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">$AS_HOME/bin/asadmin multimode</FONT>
+</FONT>
+<P>     <DT> <A NAME="14422"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt;export AS_ADMIN_USER=&lt;admin_username&gt; 
+ AS_ADMIN_PASSWORD=&lt;admin_password&gt; AS_ADMIN_HOST=&lt;host&gt; 
+ AS_ADMIN_PORT=&lt;adminserver_port&gt; AS_ADMIN_INSTANCE=&lt;instance_name&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="14424"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where &lt;<FONT FACE="courier, couriernew, monospaced size">admin_username&gt;</FONT> is application server admin user name, &lt;<FONT FACE="courier, couriernew, monospaced size">admin_password&gt;</FONT> is the admin password, &lt;<FONT FACE="courier, couriernew, monospaced size">host&gt;</FONT> is the machine on which the application server is installed , &lt; <FONT FACE="courier, couriernew, monospaced size">adminserver_port&gt;</FONT> is admin server port of the application server, and &lt; <FONT FACE="courier, couriernew, monospaced size">instance_name&gt;</FONT> is the application server instance name (e.g. server1).
+</FONT>
+<P>     <DT> <A NAME="14425"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example:
+</FONT>
+<P>     <DT> <A NAME="14426"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt;export  AS_ADMIN_USER=admin AS_ADMIN_PASSWORD=iasadmin  AS_ADMIN_HOST=optimus AS_ADMIN_PORT=9000 AS_ADMIN_INSTANCE=server1</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14428"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Create QueueConnectionFactory objects.
+</FONT>
+<P><dl>
+       <DT> <A NAME="14429"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance &lt;instance_name&gt; --resourcetype javax.jms.QueueConnectionFactory   --property
+imqBrokerHostPort=&lt;broker_port&gt;:imqBrokerHostName=&lt;broker_host&gt; jms/sampleQCF
+</FONT>
+<P>       <DT> <A NAME="14431"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance &lt;instance_name&gt; --resourcetype javax.jms.QueueConnectionFactory   --property
+imqBrokerHostPort=&lt;broker_port&gt;:imqBrokerHostName=&lt;broker_host&gt; jms/sampleQCF1
+</FONT>
+<P>       <DT> <A NAME="14433"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance &lt;instance_name&gt; --resourcetype javax.jms.QueueConnectionFactory   --property
+imqBrokerHostPort=&lt;broker_port&gt;:imqBrokerHostName=&lt;broker_host&gt; jms/sampleQCF2
+</FONT>
+<P>       <DT> <A NAME="14435"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance &lt;instance_name&gt; --resourcetype javax.jms.QueueConnectionFactory   --property
+imqBrokerHostPort=&lt;broker_port&gt;:imqBrokerHostName=&lt;broker_host&gt; jms/sampleQCF3
+</FONT>
+<P>    </dl>
+
+     <DT> <A NAME="14437"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where &lt;<FONT FACE="courier, couriernew, monospaced size">instance_name&gt;</FONT> is the application server instance name (e.g. server1), &lt;<FONT FACE="courier, couriernew, monospaced size">broker_port&gt;</FONT> is the port of the broker, and &lt;<FONT FACE="courier, couriernew, monospaced size">broker_host&gt;</FONT> is the host the broker is running on. 
+</FONT>
+<P>     <DT> <A NAME="14438"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example:
+</FONT>
+<P><dl>
+       <DT> <A NAME="14439"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance server1  --resourcetype javax.jms.QueueConnectionFactory   --property
+imqBrokerHostPort=7676:imqBrokerHostName=optimus jms/sampleQCF1 
+</FONT>
+<P>    </dl>
+
+<A NAME="14441"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Create Destination Queue objects.
+</FONT>
+<P><dl>
+       <DT> <A NAME="14442"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance &lt;instance_name&gt; --resourcetype  javax.jms.Queue  --property  imqDestinationName=SampleQueue jms/sampleQ
+</FONT>
+<P>    <DT> <A NAME="14443"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance &lt;instance_name&gt; --resourcetype  javax.jms.Queue  --property  imqDestinationName=SampleQueue1 jms/sampleQ1
+</FONT>
+<P>    <DT> <A NAME="14444"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance &lt;instance_name&gt; --resourcetype  javax.jms.Queue  --property  imqDestinationName=SampleQueue2 jms/sampleQ2
+</FONT>
+<P>    <DT> <A NAME="14445"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance &lt;instance_name&gt; --resourcetype  javax.jms.Queue  --property  imqDestinationName=SampleQueue3 jms/sampleQ3
+</FONT>
+<P>
+     <DT> <A NAME="14446"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;instance_name&gt;</FONT> is the application server instance name (e.g. server1).
+</FONT>
+<P>  <DT> <A NAME="14447"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example:
+</FONT>
+<P>  <DT> <A NAME="14448"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jms-resource --instance server1 --resourcetype  javax.jms.Queue  --property  imqDestinationName=SampleQueue3 jms/sampleQ3
+</FONT>
+<P> </dl> 
+
+<A NAME="14449"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+List JMS resources to verify the list of all JMS objects added to a given server instance.
+</FONT>
+<P><dl>
+     <DT> <A NAME="14450"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;list-jms-resources &lt;instance_name&gt;
+</FONT>
+<P>
+     <DT> <A NAME="14451"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;instance_name&gt;</FONT> is the application server instance name (e.g. server1). 
+</FONT>
+<P>  <DT> <A NAME="14452"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You should receive a list similar to the one displayed below:
+</FONT>
+<P></dl>
+ <dl> <dl>
+      <DT> <A NAME="14453"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+The list of JMS resources are:
+</FONT>
+<P><DT> <A NAME="14454"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+jms/sampleQCF
+</FONT>
+   <DT> <A NAME="14455"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+jms/sampleQCF1
+</FONT>
+   <DT> <A NAME="14456"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+jms/sampleQCF1
+</FONT>
+   <DT> <A NAME="14457"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+jms/sampleQCF3
+</FONT>
+   <DT> <A NAME="14458"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+jms/sampleQ
+</FONT>
+   <DT> <A NAME="14459"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+jms/sampleQ1
+</FONT>
+   <DT> <A NAME="14460"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+jms/sampleQ2
+</FONT>
+   <DT> <A NAME="14461"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+jms/sampleQ3
+</FONT>
+<P></dl> </dl>  
+<A NAME="14462"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Create JMS physical destinations.
+</FONT>
+<P><dl> 
+      <DT> <A NAME="14463"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jmsdest  --instance &lt;instance_name&gt; --desttype  queue  SampleQueue
+</FONT>
+<P>   <DT> <A NAME="14464"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jmsdest  --instance &lt;instance_name&gt; --desttype  queue  SampleQueue1
+</FONT>
+<P>   <DT> <A NAME="14465"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jmsdest  --instance &lt;instance_name&gt; --desttype  queue  SampleQueue2
+</FONT>
+<P>   <DT> <A NAME="14466"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jmsdest  --instance &lt;instance_name&gt; --desttype  queue  SampleQueue3
+</FONT>
+<P>   
+      <DT> <A NAME="14467"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;instance_name&gt;</FONT> is the application server instance name (e.g. server1). 
+</FONT>
+<P>   <DT> <A NAME="14468"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example:
+</FONT>
+<P>
+      <DT> <A NAME="14469"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;create-jmsdest -u admin -w iasadmin -H optimus -p 9000 --instance server1 --desttype  queue  SampleQueue
+</FONT>
+<P>    </dl>
+<A NAME="14470"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Reconfigure the server instance to make sure the changes you made have been propagated to the <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT> file. For example:
+</FONT>
+<P><dl>
+      <DT> <A NAME="14471"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin&gt;reconfig &lt;instance_name&gt;
+</FONT>
+<P>
+     <DT> <A NAME="14472"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;instance_name&gt;</FONT> is the application server instance name (e.g. server1).
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14475"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After you have finished setting up the Sun ONE MQ,  you can proceed to <A HREF="index.html#14499"  >Compiling and Assembling the Sample Application</A> or <A HREF="index.html#14530"  >Deploying the Sample Application</A> section.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14481"> </A>
+<A NAME="IBM WebSphere MQ"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+IBM WebSphere MQ
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14485"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following links provide instructions to test the JMS Queue Simple sample application using IBM WebSphere MQ:
+</FONT>
+<P>
+<ul>
+<A NAME="14489"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="2_InstallMQSeries.html#13833"  >Installing IBM TM WebSphere MQ</A>
+</FONT>
+<P><A NAME="14490"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="3_ConfigMQSeries.html#13833"  >Configuring IBM TM WebSphere MQ for JMS</A>
+</FONT>
+<P></ul>
+
+<A NAME="14493"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After you have finished installing and configuring WebSphere MQ, you may proceed to <A HREF="index.html#14499"  >Compiling and Assembling the Sample Application</A> or <A HREF="index.html#14530"  >Deploying the Sample Application</A>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14499"> </A>
+<A NAME="Compiling and Assembling the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14503"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the JMS Queue Simple sample application from scratch using Command Line Interface (CLI).
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14504"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory of the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14505"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd $AS_HOME/samples/jms/queue/simple/src</FONT>
+</FONT>
+<P>  </dl>
+
+<A NAME="14502"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+If you wish deploy the application to run with WebSphere MQ, you have to modify the <FONT FACE="courier, couriernew, monospaced size">sun-web.xml</FONT> to take out the name and password of the default-resource-principal element.
+<br>The default name and password is guest/guest. You can remove the value and leave the name and password attributes blank. 
+</FONT>
+
+<P><A NAME="14506"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Compile and assemble the application. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14507"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">$AS_HOME/bin/asant</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14516"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The default target core will be executed to compile java files and rebuild the WAR file.
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14510"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14514"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you have<FONT FACE="courier, couriernew, monospaced size"> $AS_HOME/bin</FONT> set in your PATH as shown in the section <A HREF="index.html#14332"  >Set Environment Variables</A>, then simply type <FONT FACE="courier, couriernew, monospaced size">asant</FONT> instead of <FONT FACE="courier, couriernew, monospaced size">$AS_HOME/bin/asant.</FONT>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14518"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14521"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Once you have re-created the sample application from scratch proceed to <A HREF="index.html#14530"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="14523"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Clean the web application project area using the <FONT FACE="courier, couriernew, monospaced size">asant clean </FONT>command. For example:
+</FONT>
+<P><dl>
+       <DT> <A NAME="14525"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+$AS_HOME/bin/asant clean
+</FONT>
+<P>    </dl>
+<A NAME="14526"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Generate javadocs (optional). For example:
+</FONT>
+<P><dl>
+       <DT> <A NAME="14527"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+$AS_HOME/bin/asant javadocs
+</FONT>
+<P>    </dl>
+
+<A NAME="14528"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After javadocs have been generated, you may access them at <FONT FACE="courier, couriernew, monospaced size">$AS_HOME/samples/jms/queue/simple/javadocs</FONT>
+</FONT>
+<P></ol>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+You can run <FONT FACE="courier, couriernew, monospaced size">asant all</FONT> command to compile and assemble the application, verify the <FONT FACE="courier, couriernew, monospaced size">queueSample.ear</FONT> file, generate javadocs, and deploy the application all in one step. For example:
+</FONT>
+<P><dl>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+$AS_HOME/bin/asant all 
+</FONT>
+<P></dl>
+
+<BR>
+<BR>
+
+<A NAME="14530"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14534"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, you will learn how to deploy the JMS Queue Simple sample application.
+</FONT>
+<P>
+
+<A NAME="14535"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploying the application:
+</FONT>
+<P>
+<ul>
+<A NAME="14539"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14545"  >Command Line-based Deployment</A> describes how to manually register the application in Sun ONE Application Server using a Command Line Interface (CLI). This is the fastest means of deploying the sample application.
+</FONT>
+<P><A NAME="14543"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14582"  >GUI-based Deployment</A> describes how to use the Sun ONE Application Server Deployment Tool to import and deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14545"> </A>
+<A NAME="Command Line-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14546"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a complete EAR file is supplied, the fastest means of setting up the application is to use the command line utilities described in this section.
+</FONT>
+<P>
+
+<A NAME="14547"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The pre-built <FONT FACE="courier, couriernew, monospaced size">queueSample.ear</FONT> file is an Enterprise Archive file that contains the Web Archive (WAR) file of the application. Within the WAR file resides the XML deployment descriptor files, application class files, JSPs and other content required by the application.
+</FONT>
+<P>
+
+<A NAME="14550"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploying the pre-built <FONT FACE="courier, couriernew, monospaced size">queueSample.ear</FONT> file is simple. Deploy either <A HREF="index.html#14556"  >Using the asant script</A> or by <A HREF="index.html#14568"  >Using the asadmin command</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14556"> </A>
+<A NAME="Using the asant script"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asant script
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="14557"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the src directory of  the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14558"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd $AS_HOME/samples/jms/queue/simple/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14559"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Run asant using deploy task. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14560"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">$AS_HOME/bin/asant deploy</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14566"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14563"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14565"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you run <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT> for the first time,  you'll be asked to enter your Sun ONE app-server host name, admin port, admin user, password and instance name The subsequent runs of <FONT FACE="courier, couriernew, monospaced size">asant</FONT> will get this information from a properties file create after the first time you ran <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT>. 
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14568"> </A>
+<A NAME="Using the asadmin command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asadmin command
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="14569"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the root of the sample directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14570"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">
+cd $AS_HOME/samples/jms/queue/simple 
+</FONT> </FONT>
+<P>  </dl>
+<A NAME="14571"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to deploy application to the local application server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14572"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">$AS_HOME/bin/asadmin deploy -u &lt;admin_username&gt; -w &lt;admin_password&gt; -H &lt;host&gt; -p &lt;adminserver_port&gt; --instance  &lt;instance_name&gt; queueSample.ear</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14573"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Where &lt;<FONT FACE="courier, couriernew, monospaced size">admin_username&gt;</FONT> is application server admin user name, &lt;<FONT FACE="courier, couriernew, monospaced size">admin_password&gt;</FONT> is the admin password, &lt;<FONT FACE="courier, couriernew, monospaced size">host&gt;</FONT> is the machine on which the application server is installed, <FONT FACE="courier, couriernew, monospaced size">&lt;adminserver_port&gt;</FONT> is admin server port of the application server, and <FONT FACE="courier, couriernew, monospaced size">&lt;instance_name&gt;</FONT> is the application server instance name (e.g. server1).
+</FONT>
+<P>
+
+<A NAME="14576"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, you may proceed to <A HREF="index.html#14597"  >Verifying Deployment</A>.  Otherwise, proceed to <A HREF="index.html#14611"  >Running the Sample Application</A>. 
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14582"> </A>
+<A NAME="GUI-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+GUI-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14583"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a pre-built Enterprise Archive (EAR) file for the sample application is included with the application server, you can use the Sun One Application Server Administration Tool to quickly read the EAR file and deploy it to the Application Server.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14584"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+From your web browser, access the Sun ONE Application Server by entering the URL. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14585"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">http://&lt;server-host&gt;:&lt;admin-port&gt;</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14586"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Enter the server administrator's username and password to access the admin server.
+</FONT>
+<P><A NAME="14587"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+On the left panel, navigate the tree by clicking on the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14588"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+App Server Instances-&gt;server1-&gt;Applications-&gt;Enterprise Apps
+</FONT>
+<P>  </dl>
+<A NAME="14589"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+On the right panel, click on the Deploy button.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14590"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Select the file (from disk) to be deployed (<FONT FACE="courier, couriernew, monospaced size">queueSample.ear</FONT>)
+</FONT>
+<P>     <DT> <A NAME="14591"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click OK.
+</FONT>
+<P>  </dl>
+<A NAME="14592"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+You will be prompted for the application name. 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14593"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Type <FONT FACE="courier, couriernew, monospaced size">queueSample</FONT>
+</FONT>
+<P>     <DT> <A NAME="14594"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click OK.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14595"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If the deployment processes correctly, you will see the original panel displaying the queueSample application as deployed.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14597"> </A>
+<A NAME="Verifying Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Deployment
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14598"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. Otherwise, proceed directly to <A HREF="index.html#14611"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="14602"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, do the following:
+</FONT>
+<P>
+
+<A NAME="14603"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute the command <FONT FACE="courier, couriernew, monospaced size">asadmin list-components</FONT> to display applications deployed with a server instance. 
+</FONT>
+<P>
+
+<A NAME="14604"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">$AS_HOME/bin/asadmin  list-components  -u &lt;admin_username&gt; -w &lt;admin_password&gt; -H &lt;host&gt; -p &lt;adminserver_port&gt; &lt;instance_name&gt;</FONT>
+</FONT>
+<P>
+
+<A NAME="14605"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For example:
+</FONT>
+<P>
+<A NAME="14606"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+$AS_HOME/bin/asadmin  list-components -u admin -w iasadmin -H 
+optimus -p 9000  server1
+
+</FONT>
+<P>
+<A NAME="14607"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You should see output similar to what is displayed below:
+</FONT>
+<P><dl><dl>
+<A NAME="14608"></A>
+<DT><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+List of Deployed Applications
+</FONT>
+<A NAME="14609"></A>
+<DT><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+queueSample
+</FONT>
+</dl></dl>
+<P>
+<P>
+<BR>
+<A NAME="Undeploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Undeploying the Sample Application
+</FONT>
+<BR>
+<BR>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+You can undeploy the sample application without deleting all the JMS resources that you have already set up.
+To undeploy the sample application, run the following command:
+</FONT>
+<P>
+<dl>
+<DT><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<ol type="1">
+<li value="1">cd to <FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+$AS_HOME/samples/jms/queue/simple/src </FONT>
+<li value="2">Execute <FONT FACE="courier, couriernew, monospaced size" SIZE="-1">asant undeploy</FONT></li>
+</FONT></ol>
+</dl>
+<P>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+If you want to delete the JMS resources which you've created with <A HREF="index.html#14481">IBM Websphere MQ </A>, 
+please refer to the product document for how to delete the JMS resources. 
+<br>For JMS resources that have been created with <A HREF="index.html#14361">Sun ONE MQ </A>, do the following to delete them:  
+</FONT>
+<ol type="1">
+<P><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Delete JMS resoures. 
+<P>  <dl>
+     <DT>
+<FONT FACE="courier, couriernew, monospaced size">
+$AS_HOME/bin/asadmin delete-jms-resource -u &lt;admin_username&gt; -w &lt;admin_password&gt; -H &lt;host&gt; -p &lt;adminserver_port&gt; --instance &lt;instance_name&gt; &lt;jndiname&gt; 
+</FONT>
+</FONT>
+<P>  
+     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;jndiname&gt;</FONT> is the JNDI name associated with the JMS resources
+that you have created.
+</FONT>
+<P>  <DT> 
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example:
+</FONT>
+<P>  <DT>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin delete-jms-resource -u admin -w asadmin -H optimus -p 9000 --instance server1 jms/sampleQCF
+<br>asadmin delete-jms-resource -u admin -w asadmin -H optimus -p 9000 --instance server1 jms/sampleQ
+</FONT>
+<P> </dl>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Delete JMS physical destination.
+<P>  <dl>
+     <DT>
+<FONT FACE="courier, couriernew, monospaced size">
+$AS_HOME/bin/asadmin delete-jmsdest -u &lt;admin_username&gt; -w &lt;admin_password&gt; -H &lt;host&gt; -p &lt;adminserver_port&gt; --instance &lt;instance_name&gt; --desttype &lt;type&gt; &lt;destination_name&gt;
+</FONT>
+</FONT>
+<P>
+     <DT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;type&gt;</FONT> is the destination type which is either queue or topic. 
+&lt;destination_name&gt; is the named destinations that you have created. 
+</FONT>
+<P>  <DT> <A NAME="14447"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example:
+</FONT>
+<P>  <DT> <A NAME="14448"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin delete-jmsdest -u admin -w asadmin -H optimus -p 9000 --instance server1 --desttype queue SampleQueue
+</FONT>
+<P> </dl>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Reconfigure the server instance.
+</FONT>
+<P><dl>
+      <DT> <A NAME="14471"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+$AS_HOME/bin/asadmin reconfig -u &lt;admin_username&gt; -w &lt;admin_password&gt; -H &lt;host&gt; -p &lt;adminserver_port&gt; &lt;instance_name&gt;
+</FONT>
+</dl>
+
+</ol>
+<P>
+<BR>
+<BR>
+
+<A NAME="14611"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<A NAME="14615"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To run the JMS Queue Simple sample application, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14616"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+From your browser , access the application launch page at: <FONT FACE="courier, couriernew, monospaced size">http://&lt;host&gt;:&lt;port&gt;/queueSample/queueSample</FONT>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14617"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Where <FONT FACE="courier, couriernew, monospaced size">&lt;host&gt;</FONT> is the machine on which Sun ONE application server is installed and <FONT FACE="courier, couriernew, monospaced size">&lt;port&gt;</FONT> is the http server port you entered when installing the application server. For example:
+</FONT>
+<P>     <DT> <A NAME="14618"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">http://optimus:8080/queueSample/queueSample</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14619"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Once the application page is displayed on the browser, select a Message Sender and Message Receiver, type a message to send to the receiver from the sender, then click the Process button. You should see the message displayed on the message box of the selected receiver. 
+</FONT>
+<P>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14622"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting and Known Issues
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="14623"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you receive a <FONT FACE="courier, couriernew, monospaced size">not found</FONT> error when running the application by accessing the URL <FONT FACE="courier, couriernew, monospaced size">http://&lt;host&gt;:&lt;port&gt;/queueSample/queueSample</FONT>, you should restart the server instance and retry. To restart the server instance, run the following commands: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14625"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">$AS_HOME/bin/asadmin</FONT>
+</FONT>
+<P>     <DT> <A NAME="14626"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt; stop-instance  -u &lt;admin_username&gt; -w &lt;admin_password&gt; -H &lt;host&gt; -p &lt;adminserver_port&gt; &lt;instance_name&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="14627"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt; start-instance  -u &lt;admin_username&gt; -w &lt;admin_password&gt; -H &lt;host&gt; -p &lt;adminserver_port&gt; &lt;instance_name&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="14628"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin&gt; exit</FONT>
+</FONT>
+<P>  </dl>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+There is a known issue to this Queue Simple sample application. That is User Session is not implemented. As a result,
+if two or more users access the application from different browsers, they can see each others' messages.
+</FONT>
+</ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+<a href="2_InstallMQSeries.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Next
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 10, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</body>
+
+
+</html>

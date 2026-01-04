@@ -1,0 +1,777 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/10/02 11:50:31">
+	<title> Message Driven Bean (MDB) Simple Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+             Message Driven Bean (MDB) Simple Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="8063"> </A>
+<A NAME="Message Driven Bean (MDB) Simple Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Message Driven Bean (MDB) Simple Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="16924"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the Message Driven Bean (MDB) simple sample application in conjunction with the Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="14787"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14789"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="indexmqseies.html#14799"  >Overview</A>
+</FONT>
+<P><A NAME="14790"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="indexmqseies.html#15909"  >Compiling and Assembling the Sample Application</A>
+</FONT>
+<P><A NAME="14791"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="indexmqseies.html#14836"  >Deploying the Sample Application</A>
+</FONT>
+
+<P><A NAME="14792"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="indexmqseies.html#14943"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="14794"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="indexmqseies.html#14976"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14799"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14801"><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+The sample demonstrate the use of a simple yet powerful message driven
+bean. A message-driven bean is an enterprise bean that allows J2EE applications
+to process messages asynchronously. It acts as a JMS message listener,
+which is similar to an event listener except that it receives messages
+instead of events. The messages may be sent by any J2EE component--an application
+client, another enterprise bean, or a Web component--or by a JMS application
+or system that does not use J2EE technology.
+<p>This is how it looks like when you try to run the client using <font face="Courier New,Courier"><font size=-1>appclient</font></font>.
+<p><font face="Courier New,Courier"><font size=-1>> appclient -client MDB-SimpleClient.jar
+-name SimpleMessageClient -textauth</font></font>
+<br><font face="Courier New,Courier"><font size=-1>...</font></font>
+<br><font face="Courier New,Courier"><font size=-1>Sending message: This
+is message 1</font></font>
+<br><font face="Courier New,Courier"><font size=-1>Sending message: This
+is message 2</font></font>
+<br><font face="Courier New,Courier"><font size=-1>Sending message: This
+is message 3</font></font>
+<p>The message bean receives the messages and are printed in the log file
+(server.log) as follows:
+<br><font face="Courier New,Courier"><font size=-1>MESSAGE BEAN: Message
+received: This is message 1</font></font>
+<br><font face="Courier New,Courier"><font size=-1>MESSAGE BEAN: Message
+received: This is message 2</font></font>
+<br><font face="Courier New,Courier"><font size=-1>MESSAGE BEAN: Message
+received: This is message 3</font></font>
+
+<BR>
+
+<p>Refer <a href="indexmqseies.html#14943">here</a> for running the sample. To understand
+sample application source code better, you can generate javadocs using
+<font face="Courier New,Courier"><font size=-1>asant
+javadocs</font></font> and access them at <font face="Courier New,Courier"><font size=-1>&lt;install_root>/samples/ejb/mdb/simple/javadocs/index.html</font></font>.
+<p>
+</FONT>
+<BR>
+
+<BR>
+
+<A NAME="15909"> </A>
+<A NAME="Compiling and Assembling the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<A NAME="15911"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Before compiling and Assembling the application, refer to <a href="InstallingMQSeries.html">Installing MQ Series</a> to install the product</FONT>.
+<ul>
+<li>
+
+<A NAME="15910"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Edit 
+<FONT FACE="courier, couriernew, monospaced size">&lt;install_root>/samples/ejb/mdb/simple/src/sun-application-client.xml</FONT> and remove <I>guest</I> from userid and password.
+</FONT>
+</li>
+<li>
+<A NAME="15910"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This <A HREF="indexmqseies.html#14815"  >Command Line Based Compilation and Assembly</A> procedure describes how to assemble and compile the sample using a Command Line Interface (CLI).
+</FONT>
+</li>
+</ul>
+
+<P>
+<P>
+<BR>
+<A NAME="14815"> </A>
+<A NAME="Command Line Based Compilation and Assembly"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line Based Compilation and Assembly
+</FONT>
+<BR>
+<BR>
+
+
+<BR>
+<P>
+<A NAME="14817"> </A>
+<A NAME="To rebuild the entire application from scratch:"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+To rebuild the entire application from scratch, do the following:
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="14819"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14821"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>command under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/mdb/simple/src/</FONT>
+</FONT>
+<P>     <DT> <A NAME="14822"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+[please add &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/bin to your path</FONT>]
+</FONT>
+<P>     <DT> <A NAME="14824"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core is executed to rebuild the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P>  </dl>
+<A NAME="14826"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Configure resources.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14827"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+When you have re-created the sample application from scratch, proceed to &nbsp;&nbsp; <a href="ConfigMQSeries.html">Configuring Resources</a> to configure resources with  MQ series 
+</FONT>
+<P>  </dl>
+
+<A NAME="14826"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14827"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+After configuring the resources, proceed to <a href="indexmqseies.html#14836"> Deploying the Sample Application.</A>
+</FONT>
+<P>  </dl>
+<A NAME="14829"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Clean the web application project area.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14830"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant clean </FONT>command to remove the sample application's assemble and build directories.
+</FONT>
+<P>  </dl>
+<A NAME="14829"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Undeploy the sample application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14830"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant undeploy </FONT>command to undeploy sample application. Make sure you delete the resources through GUI admin before undeploying the application.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14836"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14838"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploy the application:
+</FONT>
+<P>
+<ul>
+<A NAME="14840"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="indexmqseies.html#14846"  >Command Line Based Deployment</A> describes how to manually register the application in a Sun ONE Application Server using a Command Line Interface (CLI). This is the fastest means of deploying the application.
+</FONT>
+<P><A NAME="14843"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="indexmqseies.html#15432"  >GUI Based Deployment</A> describes how to use the Sun ONE Deployment Tool to import and deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14846"> </A>
+<A NAME="Command Line Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line Based Deployment
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14848"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a complete <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> file is supplied, the fastest means of setting up the application is to use the command line utilities as described in this section.
+If you want to deploy through a GUI tool, follow the instructions for <A HREF="indexmqseies.html#15432"  >GUI Based Deployment</A>.
+</FONT>
+<P>
+
+<A NAME="14852"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The pre-built<FONT FACE="courier, couriernew, monospaced size"> mdb-simple.ear </FONT>file is an Enterprise Archive file that contains the Java Archive (JAR) files of the application.
+Since this application consists of EJB and client, it has two JARs - one for each. Individual JAR files have the XML deployment descriptor files, application class files, and other content as required by the application.
+</FONT>
+<P>
+
+<A NAME="16011"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploy using either the <A HREF="indexmqseies.html#14858"><FONT FACE="courier, couriernew, monospaced size">asant</FONT> script </A> or the<A HREF="indexmqseies.html#16666"><FONT FACE="courier, couriernew, monospaced size"> asadmin </FONT>command.</A>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14858"> </A>
+<A NAME="Using the asant Script"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asant Script
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="15255"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the<FONT FACE="courier, couriernew, monospaced size"> src </FONT>directory of the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16664"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/mdb/simple/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="16665"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant deploy </FONT>command.
+</FONT>
+<P></ol>
+<BR>
+<P>
+<A NAME="16666"> </A>
+<A NAME="Using the asadmin Command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asadmin Command
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="14870"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the root of the sample directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16064"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/mdb/simple/</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14874"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asadmin </FONT>command to deploy the application to the local application server instance.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16096"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u </FONT>&lt;<I>user-name</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -w </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -H </FONT>&lt;<I>hostname</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -p </FONT>&lt;<I>admin server port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --instance </FONT>&lt;<I>instance name</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> mdb-simple.ear</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14879"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="14880"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+It authenticates against the local application server's administrative server.
+</FONT>
+<P><A NAME="16141"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The<FONT FACE="courier, couriernew, monospaced size"> .ear</FONT> file is transferred to the administrative server.
+</FONT>
+<P><A NAME="16146"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="16149"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P><A NAME="16157"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into the repository.
+</FONT>
+<P><A NAME="16160"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application<FONT FACE="courier, couriernew, monospaced size"> mdb-simple </FONT>by updating the<FONT FACE="courier, couriernew, monospaced size"> server.xml</FONT> file.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="16171"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If you want to verify the registration of the application, proceed to the <A HREF="indexmqseies.html#14924"  >Verifying Registration</A> section.
+</FONT>
+<P>       <DT> <A NAME="16180"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Otherwise, you are ready to exercise the application by <A HREF="indexmqseies.html#14943"  >Running the Sample Application</A>.
+</FONT>
+<P>    </dl>
+  </ul>
+</ul>
+<P>
+<BR>
+<A NAME="15432"> </A>
+<A NAME="GUI Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+GUI Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15433"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a pre-built Enterprise Archive (<FONT FACE="courier, couriernew, monospaced size">.ear</FONT>) file for the sample application is included with the application server, you can use the Admin Tool to quickly read in the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file and deploy it to the application server.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14896"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Open the pre-existing sample<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P><A NAME="14898"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Start the admin server if it is not already started.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14900"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+UNIX
+</FONT>
+<P>  </dl>
+  <ol type="a">
+<A NAME="14902"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/domains/domain1/admin-server/</FONT>.
+</FONT>
+<P><A NAME="14904"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> startserv </FONT>command.
+</FONT>
+<P>  </ol>
+  <dl>
+     <DT> <A NAME="14906"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Windows
+</FONT>
+<P>  </dl>
+  <ol type="a">
+<A NAME="14908"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;\domains\domain1\admin-server\</FONT>
+</FONT>
+<P><A NAME="14910"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Run<FONT FACE="courier, couriernew, monospaced size"> startserv</FONT>.
+</FONT>
+<P>  </ol>
+<A NAME="14912"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Open the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P>  <ol type="a">
+<A NAME="16329"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Navigate to the browser based admin server page [<FONT FACE="courier, couriernew, monospaced size">http://</FONT>&lt;<I>server-host</I>&gt;<FONT FACE="courier, couriernew, monospaced size">:</FONT>&lt;<I>admin-port</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/index.html</FONT>].
+</FONT>
+<P><A NAME="16330"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Enter your username and password to access the admin server.
+</FONT>
+<P><A NAME="16331"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click App Server Instances&gt;server1&gt;Applications&gt;Enterprise Apps.
+</FONT>
+<P><A NAME="14917"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+In the right hand pane, click Deploy to deploy an application.
+</FONT>
+<P><A NAME="16340"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Choose the file (from disk) to be deployed (<FONT FACE="courier, couriernew, monospaced size">mdb-simple.ear</FONT>).
+</FONT>
+<P><A NAME="16344"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click OK.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14919"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You are prompted to supply the application name.
+</FONT>
+<P>    </dl>
+<A NAME="16359"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Enter<FONT FACE="courier, couriernew, monospaced size"> mdb-simple</FONT>.
+</FONT>
+<P><A NAME="16369"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click OK.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14920"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If the deployment goes through properly, you see the original pane with the<FONT FACE="courier, couriernew, monospaced size"> mdb-simple </FONT>application as deployed.
+</FONT>
+<P>    </dl>
+  </ol>
+</ol>
+<P>
+<BR>
+<A NAME="14924"> </A>
+<A NAME="Verifying Registration"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Registration
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14926"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered.
+</FONT>
+<P>
+
+<A NAME="16417"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you do not want to verify that the application has been registered, proceed directly to <A HREF="indexmqseies.html#14943"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14930"> </A>
+<A NAME="To verify the registration of the application:"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+To verify the registration of the application:
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="16467"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asadmin </FONT>command to look at applications deployed with a server instance. You see<FONT FACE="courier, couriernew, monospaced size"> mdb-simple </FONT>as one of the listed applications.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14935"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u </FONT>&lt;<I>username</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -w </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -H </FONT>&lt;<I>host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -p </FONT>&lt;<I>admin-port</I>&gt;&lt;<I>server instance name</I>&gt;.
+</FONT>
+<P>  </dl>
+<A NAME="14938"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Or navigate the Admin tool GUI to App Server Instances&gt;server1&gt;Applications&gt;Enterprise Apps.
+</FONT>
+<P><A NAME="16509"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Click Enterprise Apps on the left frame menu to display a list of applications deployed on the server.
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+<A NAME="14943"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14945"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Running the sample is a three step process.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14944"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&nbsp; Modify classpath and LD_LIBRARY_PATH in&nbsp; appclient&nbsp;
+to include&nbsp; MQ Series jar files.
+</FONT>
+<P><A NAME="14946"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Go to the directory where the sample has been deployed.
+</FONT>
+<P><A NAME="14947"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Run<FONT FACE="courier, couriernew, monospaced size"> appclient </FONT>using the following instructions.
+</FONT>
+<P>  <dl>
+      <DT> <A NAME="14948"> </A>
+      <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+     <p>><FONT FACE="courier, couriernew, monospaced size">cd &lt;install_dir&gt;/bin</font>
+<br>> change&nbsp; JVM_CLASSPATH&nbsp;
+in appclient&nbsp;&nbsp; to include </FONT>
+<br><font face="Courier New,Courier"><font size=-1>&nbsp;&nbsp; /opt/mqm/java/lib/com.ibm.mq.jar</font></font>
+<br><font face="Courier New,Courier"><font size=-1>&nbsp;&nbsp; /opt/mqm/java/lib/com.ibm.mqjms.jar</font></font>
+<br><font face="Courier New,Courier"><font size=-1>&nbsp;&nbsp; /opt/mqm/java/lib</font></font>
+<br><font face="Courier New,Courier"><font size=-1>> change LD_LIBRARY_PATH
+to include /opt/mqm/java/lib</font></font>
+     <DT> <A NAME="14949"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&gt; cd </FONT>&lt; <I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/server1/applications/j2ee-apps/mdb-simple_1</FONT>
+</FONT>
+<P>     <DT> <A NAME="14950"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&gt; appclient -client mdb-simpleClient.jar -name  SimpleMessageClient -textauth</FONT>
+</FONT>
+<P>     <DT> <A NAME="16543"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You see the following output:
+</FONT>
+<P>  <dl>
+       <DT> <A NAME="16544"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">...</FONT>
+</FONT>
+<P>       <DT> <A NAME="16545"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">
+<p><br><font face="Courier New,Courier"><font size=-1>Sending message: This
+is message 1</font></font>
+<br><font face="Courier New,Courier"><font size=-1>Sending message: This
+is message 2</font></font>
+<br><font face="Courier New,Courier"><font size=-1>Sending message: This
+is message 3</font></font>
+<p>The message bean receives the messages and are printed in the log file
+(<font face="Courier New,Courier"><font size=-1>server.log</font></font>)
+as follows:
+<br><font face="Courier New,Courier"><font size=-1>MESSAGE BEAN: Message
+received: This is message 1</font></font>
+<br><font face="Courier New,Courier"><font size=-1>MESSAGE BEAN: Message
+received: This is message 2</font></font>
+<br><font face="Courier New,Courier"><font size=-1>MESSAGE BEAN: Message
+received: This is message 3</font></font>
+<p></FONT>
+</FONT>
+<P>  </dl> </ol>
+<A NAME="15015"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<BR>
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+<BR>
+<A NAME="14961"> </A>
+<A NAME="Generating Javadocs"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Generating Javadocs
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14963"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To understand sample application source code better, you can refer to the related javadocs. To generate javadocs, run the command
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="16579"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT>
+</FONT>
+<P>     <DT> <A NAME="14967"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+or
+</FONT>
+<P>     <DT> <A NAME="14968"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant all</FONT>
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="14970"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After javadocs are generated, you can access them at 
+</FONT>
+<P>
+
+<A NAME="14972"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/mdb/simple/javadocs/index.html</FONT>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14976"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14978"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Although the war, ear, context-root and servlet alias
+names in this sample are all "mdb-simple", it is not necessary that it
+be so. The application will work as expected if the names of each of these
+attributes is unique. Rebuild the app after changing the context-root (in
+<FONT FACE="courier, couriernew, monospaced size">application.xml</FONT>), the servlet alias (in <FONT FACE="courier, couriernew, monospaced size">web.xml</FONT>) and the war and ear names,
+redeploy and test the sample to confirm this.
+</FONT>
+<P>
+
+<A NAME="14979"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you encounter problems when deploying the application, make sure you configured resources before deploying the application. </FONT>
+<P>
+
+<A NAME="14978"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-dir&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log </FONT>to see what went wrong.
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 6, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

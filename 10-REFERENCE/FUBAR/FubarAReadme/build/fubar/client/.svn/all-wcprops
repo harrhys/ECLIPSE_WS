@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client
+END
+runwsclient.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/runwsclient.cmd
+END
+FubarBMTEJBClientJ2SE.jar
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/FubarBMTEJBClientJ2SE.jar
+END
+fubarcommon.jar
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/fubarcommon.jar
+END
+waclientimpl.jar
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/waclientimpl.jar
+END
+FubarWSAppClient.jar
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/FubarWSAppClient.jar
+END
+wsclientimpl.jar
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/wsclientimpl.jar
+END
+runejbclient.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/runejbclient.cmd
+END
+setupEnv.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/setupEnv.cmd
+END
+ejbclientimpl.jar
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/ejbclientimpl.jar
+END
+runwaclient.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/client/runwaclient.cmd
+END

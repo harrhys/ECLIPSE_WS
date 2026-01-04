@@ -1,0 +1,577 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/13/02 23:52:57">
+	<title>Packaging Sample Applications:  Packaging Sample Applications</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Packaging Sample Applications</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Packaging Sample Applications"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Packaging Sample Applications
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="27642"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+This is the top level document for the packaging samples. This document gives an overview about each individual
+packaging samples i.e pkgingA, pkgingB, pkgingC, pkgingD and pkgingE. The idea of these packaging samples is to
+demonstrate different ways of assembling and packaging an enterprise application using Sun ONE Application Server
+version 7.
+</FONT>
+<P>
+
+<A NAME="27654"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#26624"  >Overview</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#25722"  >Code Structure</A>
+</FONT>
+<P></ul>
+
+<A NAME="27660"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+Prior to installing the Packaging samples, review the <I>Getting Started</I>
+guide, which includes a checklist of pre-requisites for deploying the
+sample applications to the Sun ONE Application Server. The <I>Getting Started</I> guide is available
+at <font face="Courier New, Courier, mono"><i>&lt;install_root&gt;</i>/docs/getting-started/index.html</font>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="26624"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="27669"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The packaging samples demonstrate a number of methods in which applications and components can be packaged and deployed to the SunONE Application Server. 
+</FONT>
+<P>
+
+<A NAME="27672"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Each of the samples in this section calculates the Simple Interest and the Compound Interest. As you work with samples from A to E, the samples become progressively more complex in their packaging structure. All of the samples reuse the same EJB source code and helper classes. Each sample has its own WAR module (static files, JSPs and servlets). This is intended to simulate a real world scenario where business logic (stored in EJBs) and libraries are reused by different client applications.
+</FONT>
+<P>
+
+<A NAME="27711"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A summary of the Packaging Samples is described in <A HREF="index.html#27883"  >Table&nbsp;1</A>.
+</FONT>
+<P>
+
+<A NAME="27877"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="27883"> </A>
+<A NAME="Summary of Packaging Samples"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 1	&nbsp&nbsp Summary of Packaging Samples
+</B>
+</FONT>
+
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="27893"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Item
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="27895"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<A HREF="../pkgingA/docs/index.html">Sample A</A>
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="27897"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<A HREF="../pkgingB/docs/index.html">Sample B</B>
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="27899"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<A HREF="../pkgingC/docs/index.html">Sample C</A>
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="27901"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<A HREF="../pkgingD/docs/index.html">Sample D</A>
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="28108"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<A HREF="../pkgingE/docs/index.html">Sample E</A>
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="28013"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+WAR to EJB JAR Access
+</B>
+</FONT>
+&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27915"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27917"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27919"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27921"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="28110"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="27923"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Multiple WARs
+</B>
+</FONT>
+&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27925"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27927"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27929"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27931"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="28112"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="28030"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Multiple EJB JARs
+</B>
+</FONT>
+&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27935"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27937"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27939"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27941"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="28114"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="28037"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Module-based Registration
+</B>
+</FONT>
+&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27945"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27947"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27949"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27951"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="28116"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="27953"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+RMI/IIOP Access
+</B>
+</FONT>
+&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27955"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27957"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27959"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27961"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="28118"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="28050"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+WAR Access to Resource File
+</B>
+</FONT>
+&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27965"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27967"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27969"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27971"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="28120"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="28057"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+WAR Access to Library
+</B>
+</FONT>
+&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27975"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27977"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27979"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27981"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="28122"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="28064"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+EJB JAR Access to Library
+</B>
+</FONT>
+&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27985"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27987"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27989"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="27991"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+X
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="28124"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+-
+</FONT>&nbsp;</TD>
+  </TR>
+</TABLE>
+
+
+
+<P>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="25722"> </A>
+<A NAME="Code Structure"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Code Structure
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="28290"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The packaging samples are structured to demonstrate several ways in which a single code base can be packaged into an application. All the samples share the same source code for EJBs and helper classes.
+</FONT>
+<P>
+
+<A NAME="28293"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The common code is in the directory: <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/components</FONT>
+</FONT>
+<P>
+
+<A NAME="28297"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The source code for all EJBs is under: <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/components/ejb/</FONT>
+</FONT>
+<P>
+
+<A NAME="28301"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The source code for the shared library classes is under: <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/components/lib/</FONT>
+</FONT>
+<P>
+
+<A NAME="28305"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Each sample includes WAR content in its own source directory. For example, the <FONT FACE="courier, couriernew, monospaced size">pkgingA</FONT> sample houses all static files and JSPs in the following directory: <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/pkgingA/src/docroot</FONT>
+</FONT>
+<P>
+
+<A NAME="28310"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">All servlets are housed under: <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/packaging/pkgingA/src/samples/packaging/pkgingA/servlet.</FONT>
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 13, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

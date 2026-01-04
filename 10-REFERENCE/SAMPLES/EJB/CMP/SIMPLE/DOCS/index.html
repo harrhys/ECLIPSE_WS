@@ -1,0 +1,879 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/12/02 16:39:11">
+	<title> CMP Simple Sample Application:  CMP Simple Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         
+    <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf"> <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B> 
+      CMP Simple Sample Application</B></FONT> </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="8063"> </A>
+<A NAME="Product (cmp-simple) Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+CMP Simple Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="14784"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the CMP Simple sample application in conjunction with the Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15892"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+  <ul>
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> <a name="14786"> 
+      </a><A HREF="index.html#14796"  >Overview</A> </font> 
+      <P>
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14787"> 
+      </a><A HREF="index.html#14847"  >Compiling and Assembling the Application</A> 
+      </font> 
+      <P>
+    <li><a name="14788"></a><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> 
+      <A HREF="index.html#14873" >Deploying the Application</A> </font> 
+      <P>
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14790"> 
+      </a><A HREF="index.html#14956"  >Configuring Oracle Database</A> </font> 
+      <P>
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14793"> 
+      </a><A HREF="index.html#14955"  >Registering Resources</A> </font> 
+      <P>
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14791"> 
+      </a><A HREF="index.html#14983"  >Running the Sample Application</A> </font> 
+      <P>
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14792"> 
+      </a><A HREF="index.html#15052"  >Troubleshooting</A> </font> 
+      <P>
+  </ul>
+
+<BR>
+<BR>
+
+<A NAME="14796"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+  <p><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample is based on the Product EJB sample included in Sun's J2EE Developer's 
+    Guide, version 1.2.1 . This will illustrate the functionality for <i>CMP 1.1</i>. 
+    The following instructions describe how to assemble and deploy the same EJB 
+    to Sun One Application Server and how to access the EJB from both a simple 
+    Java client application using RMI/IIOP as well as from a Servlet client using 
+    HTTP. Although the client application and EJB offer minimal functionality, 
+    this sample should provide you with a basic understanding of RMI/IIOP and 
+    CMP support in Sun One Application Server.</font> </p>
+  <p style="margin-bottom: 0cm"><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The CMP 1.1 EJB in this sample has three CMP fields:</FONT> 
+  </p><BR>
+  <TABLE WIDTH="50%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+    <tr> 
+      <th> 
+        <p><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">CMP field</FONT></p>
+      </th>
+      <th> 
+        <p><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Java type</FONT></p>
+      </th>
+    </tr>
+    <tr> 
+      <td> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">productId</font></p>
+      </td>
+      <td> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">java.lang.String</font></p>
+      </td>
+    </tr>
+    <tr> 
+      <td> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">description</font></p>
+      </td>
+      <td> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">java.lang.String</font></p>
+      </td>
+    </tr>
+    <tr> 
+      <td height="33"> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">price</font></p>
+      </td>
+      <td height="33"> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">double</font></p>
+      </td>
+    </tr>
+  </table>
+  <p style="margin-bottom: 0cm"><font face="Arial, Helvetica, sans-serif" size="2">And 
+    it has two custom finder methods: </font></p><BR>
+  <TABLE WIDTH="50%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+    <col width=156> <col width=297> 
+    <tr> 
+      <th width=156> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">Custom Finder Method</font></p>
+      </th>
+      <th width=297> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">description</font></p>
+      </th>
+    </tr>
+    <tr> 
+      <td width=156> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">findByDescription</font></p>
+      </td>
+      <td width=297> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">find all the product 
+          matching the given description</font></p>
+      </td>
+    </tr>
+    <tr> 
+      <td width=156> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">findInRange</font></p>
+      </td>
+      <td width=297> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">find all the product 
+          lie in given price range</font></p>
+      </td>
+    </tr>
+  </table>
+  <BR><p> 
+    <A NAME="14847"> </A> <A NAME="Compiling and Assembling the Application"> 
+    </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> Compiling and Assembling 
+    the Application </FONT>
+  <HR SIZE="2" NOSHADE>
+  <BR>
+  <A NAME="14849"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To recompile, 
+  assemble, and deploy the application, see the <A HREF="../../../../docs/ant.html">Sample 
+  Application Build Facility</A> document for details on using a build facility 
+  to quickly perform these tasks. </FONT> 
+  <P>
+
+<A NAME="14852"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To rebuild the entire application from scratch, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14854"> </A>
+<li value="1">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Compile and assemble the J2EE application.
+</font>
+<P>  <dl>
+     <DT> <A NAME="14856"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>command under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/cmp/simple/src</FONT>
+</FONT>
+<P>     <DT> <A NAME="14858"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core is executed to rebuild the<FONT FACE="courier, couriernew, monospaced size"> .jar </FONT>and<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>files.
+</FONT>
+<P>  </dl>
+<A NAME="15351"> </A>
+<li value="2">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Deploy the application.
+</font>
+<P>  <dl>
+     <DT> <A NAME="15352"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Once you have re-created the sample application from scratch proceed to deploying the application.
+</FONT>
+<P>  </dl>
+<A NAME="15393"> </A>
+<li value="3">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Clean the application project area.
+</font>
+<P>  <dl>
+     <DT> <A NAME="15394"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant clean </FONT>command to clean the application area.
+</FONT>
+<P>  </dl>
+<A NAME="15395"> </A>
+<li value="4">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Undeploy the application.
+</font>
+<P>  <dl>
+     <DT> <A NAME="14869"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant undeploy </FONT>command to undeploy the application.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14873"> </A>
+<A NAME="Deploying the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+  <A NAME="14875"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A pre-built<FONT FACE="courier, couriernew, monospaced size"> 
+  cmp-simple.ear </FONT>file is supplied with the application server installation. 
+  The pre-built<FONT FACE="courier, couriernew, monospaced size"> cmp-simple.ear 
+  </FONT>file is an Enterprise Archive (<FONT FACE="courier, couriernew, monospaced size">.ear</FONT>) 
+  file that contains, the EJB<FONT FACE="courier, couriernew, monospaced size"> 
+  .jar </FONT>file, the web applicatation .war file, and the Application Client<FONT FACE="courier, couriernew, monospaced size"> 
+  .jar </FONT>file of the application. Within each file resides the XML deployment 
+  descriptor files, application class files, and other content required by the 
+  application. You can use the pre-built<FONT FACE="courier, couriernew, monospaced size"> 
+  .ear </FONT>file to deploy the application. If you want to experience compiling 
+  and assembling the application from scratch, follow the instructions in <A HREF="index.html#14847"  >Compiling 
+  and Assembling the Application</A>. </FONT> 
+  <P>
+
+<A NAME="14880"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, the administrative server needs to be running. To start the administrative server if it is not already started:
+</FONT>
+<P>
+
+<A NAME="14883"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">UNIX
+</FONT>
+  <ul><P><A NAME="14885"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute 
+    &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/admin-server/bin/startserv</FONT> 
+    </FONT></ul> 
+  <P>
+
+<A NAME="14887"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Windows
+</FONT>
+<ul><P>
+
+<A NAME="14889"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Start-&gt;Programs-&gt;Sun ONE Application Server 7-&gt;Start Application Server
+</FONT></ul>
+<P>
+
+<A NAME="14892"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploy the application:
+</FONT>
+<P>
+  <ul>
+    <A NAME="14894"> </A> 
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b><A HREF="index.html#14903">Command 
+      Line-based Deployment</A> describes how to manually register the application 
+      using a Command Line Interface (CLI). This is the fastest means of deploying 
+      the application. </font> 
+      <P><A NAME="14896"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b><A HREF="index.html#14939">Web-based 
+      Deployment</A> describes how to use the web based administration tool to deploy 
+      the sample application. </font> <BR> 
+      <P> 
+  </ul>
+  <P> <BR>
+    <A NAME="14903"> </A> <A NAME="Command Line-based Deployment"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Command Line-based Deployment </FONT> <BR>
+    <BR>
+    <A NAME="14905"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Command 
+    Line Interface is the fastest means of deploying the application.</FONT><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If 
+    you want to deploy through a GUI tool, follow the instructions for GUI Based 
+    Deployment. </FONT><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">CLI 
+    deployment of the application can be done using either the<FONT FACE="courier, couriernew, monospaced size"> 
+    asant </FONT>script or using the <FONT FACE="courier, couriernew, monospaced size">asadmin 
+    </FONT>command. </FONT> 
+  <P> <font face="Arial, Helvetica, sans-serif" size="2">Deployment process includes 
+    deploying the application EAR, configuring datasbase and registering required 
+    resources to Sun ONE application server. Installation comes with already configured 
+    pointbase database. If you choose to use prepopulated pointbase database, 
+    you do not need to configure database. Otherwise please follow <a href="#14956">Configuring 
+    oracle database</a> instructions.</font>
+  <P>
+<BR>
+<P>
+<A NAME="14910"> </A>
+<A NAME="Deploy the Application Using asant"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Deploy the Application Using asant
+</B>
+</FONT>
+<BR>
+<BR>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Please start your database server, if not started.</FONT>
+<P>
+<A NAME="14912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you choose to use the PointBase database, execute the following steps:
+</FONT>
+<P>
+  <ul>
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> <FONT FACE="courier, couriernew, monospaced size"><a name="14913"> 
+      </a><font size="2" face="Arial, Helvetica, sans-serif">cd</font> </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/cmp/simple/src</FONT> 
+      </font> 
+    <p><li><a name="16616"></a><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>Execute the<FONT FACE="courier, couriernew, monospaced size"> asant deploy 
+      </FONT>command. It is an interactive 
+          command that may prompt you for the admin-server host, admin-server 
+          port, admin user name, admin password, and appserv instance. This also 
+          registers the resources to the Sun ONE application server. </FONT> 
+          <P>
+  </ul>
+  <p style="margin-bottom: 0cm"><font face="Arial, Helvetica, sans-serif" size="2">If 
+    you choose to use oracle database please execute the following steps. </font></p>
+  <ul>
+    <li><a name="14923"></a>
+	<font face="Arial, Helvetica, sans-serif" size="2">cd</font>
+	<font face="Helvetica, Arial, sans-serif" size="-1">&lt;<i>install_dir</i>&gt;
+	<font face="courier, couriernew, monospaced size">/samples/ejb/cmp/simple/src</font></font> 
+    <p><li><a name="14923"></a> 
+      <font face="Helvetica, Arial, sans-serif" size="-1">Execute 
+        the</font> <font face="Helvetica, Arial, sans-serif" size="-1"><font face="Courier New, Courier, mono">asant 
+        deploy-ora</font><font face="courier, couriernew, monospaced size">. </font></font><font face="Arial, Helvetica, sans-serif" size="2">It 
+        is interactive command which may ask for admin-server host, admin-server 
+        port, admin user name, admin password and appserv instance. </font>
+    <p><li><a name="14923"></a>
+	<font face="Arial, Helvetica, sans-serif" size="2">Note 
+        that, it assumes the db host as localhost, db port as 1521 and sid as 
+        sun-appserv-samples. If you want to use different parameters, please use</font>
+      <font face="Courier New, Courier, mono" size="-1">asant deploy-ora -Ddb.host=&lt;db 
+      host&gt; -Ddb.port=&lt;db port&gt; -Ddb.sid=&lt;db sid&gt;</font>
+  </ul>
+  <p><font face="Arial, Helvetica, sans-serif" size="2">This will also register 
+    the resources to Sun ONE application server. Now you are ready to <a href="#14983">run</a> 
+    the application.</font></p>
+	<BR>
+<P>
+<A NAME="16618"> </A>
+<A NAME="Deploy the Application using asadmin"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Deploy the Application File Using the asadmin Command
+</B>
+</FONT>
+<BR>
+  <ul>
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> <FONT FACE="courier, couriernew, monospaced size"><a name="14921"> 
+      </a>cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/cmp/simple</FONT> 
+      </font> 
+    <p><li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14922"> 
+      </a>Execute the command <FONT FACE="courier, couriernew, monospaced size">asadmin 
+      deploy --user </FONT>&lt;<I>user-name</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+      --password </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+      --host </FONT>&lt;<I>hostname</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+      --port </FONT>&lt;<I>admin server port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+      --instance </FONT>&lt;<I>instance name</I>&gt; <FONT FACE="courier, couriernew, monospaced size">cmp-simple.ear</FONT> 
+      </font> 
+      <P>
+  </ul>
+
+  <A NAME="14924"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Now you 
+  need to register the resources to the Sun ONE application server. </FONT><A NAME="16694"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Proceed to <A HREF="index.html#14955"  >Registering Resources</A>.
+</FONT>
+<P>
+
+<A NAME="14926"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+  <ul>
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> <a name="14927"> 
+      </a>It authenticates against the local application server's administrative 
+      server. </font> 
+      <P>
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14928"> 
+      </a>The<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file 
+      is transferred to the administrative server. </font> 
+      <P>
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14929"> 
+      </a>The administrative server begins the registration process: </font> 
+      <P> 
+      <ul>
+        <li><a name="14930"> </a> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <B></b> Parses the<FONT FACE="courier, couriernew, monospaced size"> 
+          .ear </FONT>file and embedded<FONT FACE="courier, couriernew, monospaced size"> 
+          .jar </FONT>and<FONT FACE="courier, couriernew, monospaced size"> .war 
+          </FONT>files. </font> 
+          <P>
+		  <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14931"> 
+          </a>Explodes the bits into the repository. </font> 
+          <P>
+        <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <a name="14932"> 
+          </a>Registers the J2EE application <I>cmp-simple</I> by updating the<FONT FACE="courier, couriernew, monospaced size"> 
+          server.xml </FONT>file. </font> 
+          <P> 
+      </ul>
+  </ul>
+
+<A NAME="14935"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you want to verify the registration of the application, proceed to <A HREF="index.html#15023"  >Verifying Registration</A>.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14939"> </A>
+<A NAME="Web-Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Web-Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+  <ol type="1">
+    <li value="1"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      <a name="15584"> </a>Log in to the web-based administration tool from the 
+      browser. </font>
+	  <P>
+    <li value="2"><a name="15585"> </a><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> 
+      Navigate as follows: </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14944"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Application Server Instances --&gt; &lt;server instance&gt; --&gt; Applications 
+          --&gt; Enterprise Applications </FONT> 
+          <P> 
+      </dl>
+    <li value="3"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      <a name="14946"> </a>Click Deploy. </font> 
+      <P>
+    <li value="4"><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> 
+      <a name="14947"> </a>Click Browse to locate the<FONT FACE="courier, couriernew, monospaced size"> 
+      cmp-simple.ear </FONT>file.</font> 
+      <P><font face="Arial, Helvetica, sans-serif" size="2">The ear file is located 
+        under </font><font face="Helvetica, Arial, sans-serif" size="-1">&lt;<i>install_dir</i>&gt;<font face="courier, couriernew, monospaced size">/samples/ejb/cmp/simple</font></font>. 
+		<p>
+    <li value="5"><a name="16853"> </a><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> 
+      Click OK. </font> 
+      <P>
+    <li value="6"><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> 
+      <a name="14948"> </a>Enter<FONT FACE="courier, couriernew, monospaced size"> 
+      cmp-simple </FONT>in the<FONT FACE="courier, couriernew, monospaced size"> 
+      Application Name </FONT>field. </font> 
+      <P>
+    <li value="7"><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> 
+      <a name="16875"> </a>Click OK. </font> 
+      <P>
+    <li value="8"><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> 
+      <a name="15620"> </a>Click the <font face="courier, couriernew, monospaced size">cmp-simple</font> 
+      link to verify that the application is deployed. </font> 
+      <P> 
+    <li value="9"><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> 
+      <a name="168795"> </a><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Now you 
+  need to register the resources to the Sun ONE application server. </FONT>
+  <FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Proceed to <A HREF="index.html#14955"  >Registering Resources</A>.
+</FONT></font> 
+      <P>
+  </ol>
+  <P> <BR>
+  <font face="Arial, Helvetica, sans-serif" size="2"><a name="14956"> </a><a name="configdb"></a><font size="+1">Configuring 
+    Oracle Database</font></font>
+  <hr size="2" NOSHADE>
+  <p><font face="Helvetica, Arial, sans-serif" size="+1"></font><font face="Arial, Helvetica, sans-serif" size="2">The 
+    product application requires the following database setup prior to running: 
+    </font></p>
+  <ol>
+    <li> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>Ensure Database 
+        Requirements are Met</b> </font></p>
+      <p><font face="Arial, Helvetica, sans-serif" size="2">See the Sun 
+        One Application Server Release Notes for database version requirements. 
+        The Product sample includes schema script for Oracle.</font></p>
+    <li> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>Create 
+        an RDBMS User</b> </font></p>
+      <ul>
+        <li> 
+          <p><font size="2" face="Arial, Helvetica, sans-serif">cd 
+            &lt;install_dir&gt;/samples/ejb/cmp/simple/src/sql</font> </p>
+        <li> 
+          <p><font face="Arial, Helvetica, sans-serif" size="2">sqlplus 
+            to oracle as system user</font> </p>
+        <li> 
+          <p><font face="Arial, Helvetica, sans-serif" size="2">SQL&gt; 
+            @createUser</font> </p>
+        <li> 
+          <p><font face="Arial, Helvetica, sans-serif" size="2">exit 
+            sqlplus</font> </p>
+      </ul>
+    <li> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>Create 
+        and Populate the Product RDBMS Tables</b> </font></p>
+      <ul>
+        <li> 
+          <p><font size="2" face="Arial, Helvetica, sans-serif">cd 
+            &lt;install_dir&gt;/samples/ejb/cmp/simple/src/sql</font> </p>
+        <li> 
+          <p><font face="Arial, Helvetica, sans-serif" size="2">sqlplus 
+            to oracle as cmp user</font> </p>
+        <li> 
+          <p><font size="2" face="Arial, Helvetica, sans-serif">SQL&gt; 
+            @product.sql;</font></p>
+        <li> 
+          <p><font face="Arial, Helvetica, sans-serif" size="2">exit 
+            sqlplus</font></p>
+      </ul>
+    <li> 
+      <p><font face="Arial, Helvetica, sans-serif" size="2"><b>Register JDBC Driver</b> 
+        </font></p>
+      <font face="Arial, Helvetica, sans-serif" size="2">Make sure 
+        that JDBC driver zip/jar files are in classpath-suffix attribute of java-config 
+        element in server.xml of the instance running this product application. 
+        You may like to edit this file if necessary. Please make sure that the 
+        server.xml is also copied to backup directory. And then restart the server 
+        instance.</font>
+  </ol>
+  <P><A NAME="14955"> </A> <A NAME="Registering Resources"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Registering Resources </FONT> <BR>
+  <hr size="2" NOSHADE>
+  <P><A NAME="14957"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+    section describes how to create resources required for running cmp-simple 
+    application. You do not need to register them separately when you deploy the 
+    application using the<FONT FACE="courier, couriernew, monospaced size"> asant 
+    deploy </FONT>command. However, the resources can be registered as follows: 
+    </FONT> 
+  <P>
+<ul>
+<li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+Please start your database server, if not started.
+</FONT></li>
+<p><A NAME="14960"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+JDBC Resource and its Associated Connection Pool
+</font>
+<P>  <dl>
+     <DT> <A NAME="14962"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin create-jdbc-connection-pool 
+--host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+--port </FONT>&lt;<I>admin port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+--user </FONT>&lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+--password </FONT>&lt;<I>password</I>&gt;
+<FONT FACE="courier, couriernew, monospaced size"> --instance </FONT>&lt;<I>server instance name</I>&gt; 
+<FONT FACE="courier, couriernew, monospaced size"> --datasourceclassname </FONT>&lt;<I>datasource classname</I>&gt; 
+<FONT FACE="courier, couriernew, monospaced size"> --property User=cmp:Password=cmp:&lt;<I>url-property</I>&gt;="&lt;</FONT><I>database jdbc url</I>&gt;" <FONT FACE="courier, couriernew, monospaced size">cmp-simple-pool</FONT>
+<p>
+In case of PointBase, please use <FONT FACE="courier, couriernew, monospaced size">DatabaseName</FONT> as <FONT FACE="courier, couriernew, monospaced size">&lt;<I>url-property</I>&gt;</FONT>.
+In case of Oracle, please use <FONT FACE="courier, couriernew, monospaced size">Url</FONT> as <FONT FACE="courier, couriernew, monospaced size">&lt;<I>url-property</I>&gt;</FONT>.
+You will need to escape <FONT FACE="courier, couriernew, monospaced size">":"</FONT> and <FONT FACE="courier, couriernew, monospaced size">"/"</FONT>, in  &lt;<FONT FACE="courier, couriernew, monospaced size"><I>database jdbc url</I>&gt; </FONT>.
+An example of <FONT FACE="courier, couriernew, monospaced size">&lt;<I>database jdbc url</I>&gt; </FONT> is <FONT FACE="courier, couriernew, monospaced size">"jdbc\:pointbase\:server\:\/\/localhost\:9092\/sun-appserv-samples"</FONT>.
+
+<P>     <DT> <A NAME="14966"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin create-jdbc-resource --host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --port </FONT>&lt;<I>admin port</I>&gt; <FONT FACE="courier, couriernew, monospaced size">--user</FONT> &lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --password </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --instance </FONT>&lt;<I>server instance name</I>&gt; <FONT FACE="courier, couriernew, monospaced size">--connectionpoolid cmp-simple-pool jdbc/cmp-simple</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14970"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Persistence Manager Factory Resource
+</font>
+<P>  <dl>
+     <DT> <A NAME="14972"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin create-persistence-resource --host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --port </FONT>&lt;<I>admin port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --user </FONT>&lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --password </FONT>&lt;<I>password</I>&gt; <FONT FACE="courier, couriernew, monospaced size">--instance </FONT>&lt;<I>server instance name</I>&gt; <FONT FACE="courier, couriernew, monospaced size">--jdbcjndiname jdbc/cmp-simple --factoryclass com.sun.jdo.spi.persistence.support.sqlstore.impl.PersistenceManagerFactoryImpl  jdo/cmp-simple</FONT>
+</FONT>
+          <P>  </dl>
+<A NAME="14974"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Reconfiguring Server Instance
+</font>
+<P>  <dl>
+     <DT> <A NAME="14976"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin reconfig --host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --port </FONT>&lt;<I>admin port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --user </FONT>&lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --password </FONT>&lt;<I>password</I>&gt; &lt;<I>server instance name</I>&gt;
+</FONT>
+          <P>  </dl>
+</ul>
+
+<BR>
+<BR>
+  <A NAME="14983"> </A> <A NAME="Running the Sample Application"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+  Running the Sample Application 
+  <HR SIZE="2" NOSHADE>
+  </FONT>
+      <BR>
+	    <FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+  			The application be executed, using web client and using appclient container.
+  		</FONT> 
+  <DT> 
+    <ul>
+
+      <HR SIZE="1">
+      <TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+        <TR> 
+          <TD VALIGN=TOP> <A NAME="16487"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+            <B> Note </B> </FONT> </TD>
+          <TD VALIGN=TOP> 
+            <ul>
+              <P><A NAME="16501"> </A> 
+              <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> Before 
+                you run the application, you need to start up your PointBase Server. 
+                Refer <A HREF="../../../../docs/pointbase.html">here</A> 
+                for how to start up your PointBase Server. If you try to run the
+                application without starting PointBase Server, you will need to start PointBase 
+                Server and restart application server, before running the application.</font> 
+                <P> 
+            </ul>
+          </TD>
+        </TR>
+      </TABLE>
+      <HR SIZE="1">
+    </ul>
+    <BR>
+    <p><b><font face="Arial, Helvetica, sans-serif" size="2">Execute Servlet Client</font></b></p>
+    <p><font face="Arial, Helvetica, sans-serif" size="2">To run the web application, 
+      go to the following URL: </font></p>
+    <blockquote><font face="Arial, Helvetica, sans-serif" size="2">http://&lt;<i>web 
+      server hostname</i>&gt;:&lt;<i>port</i>&gt;/product/ProductServlet</font></blockquote>
+    <p><font face="Arial, Helvetica, sans-serif" size="2">If your deployment process 
+      was successful, the servlet sends the following information to your browser: 
+      </font></p>
+    <blockquote><font face="Arial, Helvetica, sans-serif" size="2">Ceramic Dog: 
+      10.0 <br>
+      Ceramic Dog: 14.0 <br>
+      Chrome Fish: 22.0 <br>
+      999: Ivory Cat 19.0 <br>
+      789: Ivory Cat 33.0 <br>
+      123: 14.0 <br>
+      456: 13.0 <br>
+      999: 19.0</font></blockquote>
+    <p><font face="Arial, Helvetica, sans-serif" size="2">Compare the resulting 
+      web page with the ProductServlet.java source code. </font></p>
+    <p><font face="Arial, Helvetica, sans-serif" size="2">After servlet application 
+      completes, the PRODUCT table should contain the following rows: </font></p>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">SQL&gt; select 
+      * from product;</font> </blockquote>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">DESCRIPTION 
+      PRICE PRODUCTID</font> <font face="Arial, Helvetica, sans-serif" size="2"><br>
+      ----------- ----- ------------------------------</font> <font face="Arial, Helvetica, sans-serif" size="2"><br>
+      Ceramic Dog 14 123</font> </blockquote>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">Wooden Duck 
+      13 456</font> </blockquote>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">Ivory Cat 19 
+      999</font> </blockquote>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">Ivory Cat 33 
+      789</font> </blockquote>
+    <blockquote><font face="Arial, Helvetica, sans-serif" size="2">Chrome Fish 
+      22 876</font></blockquote>
+    <p><font face="Arial, Helvetica, sans-serif" size="2"><b>Execute Rich Client</b> 
+      <br>
+      </font></p>
+    <p><font face="Arial, Helvetica, sans-serif" size="2">To run the rich client, 
+      please do following: </font></p>
+    <ol>
+      <li> 
+        <p><font face="Arial, Helvetica, sans-serif" size="2">execute appclient 
+          as follows: </font></p>
+        <font face="Arial, Helvetica, sans-serif" size="2">appclient 
+          -client &lt;install_dir&gt;/domains/&lt;domain-instance&gt;/&lt;server-instance&gt;/applications/j2ee-apps/cmp-simple_1/cmp-simpleClient.jar</font>.
+          <BR>Please note that, you may have to use directory different than cmp-simple_1, in case of multiple subsequent deployments.
+    </ol>
+    <p><font size="2" face="Arial, Helvetica, sans-serif">The application should 
+      print the following messages: </font></p>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">Ceramic Dog: 
+      10.0 <br>
+      Ceramic Dog: 14.0 <br>
+      Chrome Fish: 22.0 <br>
+      999: Ivory Cat 19.0 <br>
+      789: Ivory Cat 33.0 <br>
+      123: 14.0 <br>
+      456: 13.0 <br>
+      999: 19.0</font></blockquote>
+    <p><font face="Arial, Helvetica, sans-serif" size="2">Compare the resulting 
+      web page with the</font> <font size="2" face="Arial, Helvetica, sans-serif">ProductClient.java</font> 
+      <font face="Arial, Helvetica, sans-serif" size="2">source code. </font></p>
+    <p><font face="Arial, Helvetica, sans-serif" size="2">After servlet application 
+      completes, the PRODUCT table should contain the following rows:</font> </p>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">SQL&gt; select 
+      * from product;</font> </blockquote>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">DESCRIPTION 
+      PRICE PRODUCTID</font> <font face="Arial, Helvetica, sans-serif" size="2"><br>
+      ----------- ----- ------------------------------</font> <font face="Arial, Helvetica, sans-serif" size="2"><br>
+      Ceramic Dog 14 123</font> </blockquote>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">Wooden Duck 
+      13 456</font> </blockquote>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">Ivory Cat 19 
+      999</font> </blockquote>
+    <blockquote><font size="2" face="Arial, Helvetica, sans-serif">Ivory Cat 33 
+      789</font> </blockquote>
+    <blockquote><font face="Arial, Helvetica, sans-serif" size="2">Chrome Fish 
+      22 876</font></blockquote>
+  <DT><font face="Arial, Helvetica, sans-serif" size="2"> <BR>
+    </font><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"> 
+    <HR SIZE="1">
+    <TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+      <TR> 
+        <TD VALIGN=TOP> <A NAME="17191"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <B> Note </B> </FONT> </TD>
+        <TD VALIGN=TOP> <A NAME="17197"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Before 
+          rerunning the application client again, ensure that you clean the database 
+          table by removing all rows from the table.The application will not work 
+          correctly unless you clean up. </FONT> 
+          <P> <A NAME="17208"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You 
+            can do the following to clean the database. </FONT> 
+          <P> 
+          <ul>
+            <A NAME="17198"> </A> 
+            <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+              <FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/cmp/simple/src/</FONT> 
+              </font> 
+              <P><A NAME="17199"> </A> 
+            <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <FONT FACE="courier, couriernew, monospaced size">asant 
+              sql</FONT> </font> 
+              <P> 
+          </ul>
+        </TD>
+      </TR>
+    </TABLE>
+    <HR SIZE="1">
+    <BR>
+    </FONT> 
+    <P> 
+    <P> <BR>
+      <A NAME="15023"> </A> <A NAME="Verifying Registration"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+      Verifying Registration </FONT> <BR>
+      <BR>
+    <hr size="2" NOSHADE>
+  <DT>&nbsp;
+  <DT><A NAME="15025"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As 
+    an optional step, you can use the Sun One Application Server Administration 
+    Tool to verify that the application has been registered. If you do not want 
+    to verify that the application has been registered, proceed directly to <A HREF="index.html#14983"  >Running 
+    the Sample Application</A>. </FONT> 
+    <P> <A NAME="15028"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To 
+      verify the registration of the application, execute the<FONT FACE="courier, couriernew, monospaced size"> 
+      asadmin </FONT>command to look at applications deployed with a server instance: 
+      </FONT> 
+    <P> 
+    <dl> 
+      <dl> 
+        <DT> <A NAME="15030"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">asadmin list-components 
+          --host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+          --port </FONT>&lt;<I>admin port</I>&gt; <FONT FACE="courier, couriernew, monospaced size">--user 
+          </FONT>&lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+          --password </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+          --type application </FONT>&lt;<I>server instance name</I>&gt; </FONT> 
+          <P> 
+      </dl>
+    </dl>
+    <A NAME="15032"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You 
+    can also execute the<FONT FACE="courier, couriernew, monospaced size"> asadmin 
+    </FONT>command to look at application status: </FONT> 
+    <P> 
+    <dl> 
+      <dl> 
+        <DT> <A NAME="15034"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">asadmin show-component-status 
+          --host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+          --port </FONT>&lt;<I>admin port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+          --user </FONT>&lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+          --password </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+          --instance </FONT>&lt;<I>instance name</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+          --type application </FONT>&lt;<I>application name</I>&gt; </FONT> 
+          <P> 
+      </dl>
+    </dl>
+    <P> <BR>
+      <A NAME="15039"> </A> <A NAME="Generating Javadocs"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+      Generating Javadocs </FONT> <BR>
+    <hr size="2" NOSHADE>
+  <DT>&nbsp;
+  <DT> <A NAME="15041"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To 
+    understand sample application source code better, you can refer to the related 
+    javadocs. </FONT> 
+    <P> <A NAME="15042"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To 
+      generate javadocs run the following command: </FONT> 
+    <P> 
+    <dl> 
+      <dl> 
+        <DT> <A NAME="15043"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT> 
+          </FONT> 
+          <P> 
+        <DT> <A NAME="15044"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          or </FONT> 
+          <P> 
+        <DT> <A NAME="15045"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">asant all</FONT> </FONT> 
+          <P> 
+      </dl>
+    </dl>
+    <A NAME="15047"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After 
+    javadocs are generated, you can access them at </FONT> 
+    <P> <A NAME="15049"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/ejb/cmp/simple/javadocs/index.html</FONT> 
+      </FONT> 
+    <P> <BR>
+      <BR>
+      <A NAME="15052"> </A> <A NAME="Troubleshooting"> </A> 
+    <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> Troubleshooting 
+    <HR SIZE="2" NOSHADE>
+    </FONT> <BR>
+    <A NAME="17346"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Make 
+    certain that you run the <FONT FACE="courier, couriernew, monospaced size">asant 
+    undeploy</FONT> command before redeploying this sample to make sure that all 
+    modules are undeployed and the resources are disabled. </FONT> 
+    <P> <A NAME="15056"> </A><font face="Arial, Helvetica, sans-serif" size="2">If 
+      you don't receive data in the browser (see a blank page) and the server log shows a &quot;ORA-00001: 
+      unique constraint ...&quot; message in the server.log, the condition is 
+      most likely one in which the sample was run at least partially before</font><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">. 
+      Please clean your database before rerunning the application.</FONT> 
+    <P> <A NAME="15059"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If 
+      you encounter problems when running the application, review the log files 
+      at &lt;<I>install-dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/</FONT>&lt;<I>server-instance</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/logs/server.log</FONT> 
+      to learn what went wrong. </FONT> 
+    <P>&nbsp;
+    <P> 
+</BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <P ALIGN="RIGHT">
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">Last Updated <B>July 12, 2002</B>
+   </font>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

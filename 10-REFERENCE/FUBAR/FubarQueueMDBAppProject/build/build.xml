@@ -1,0 +1,101 @@
+<project name="FubarQueueMDB" default="all" basedir=".">
+
+		<!-- set global properties for this build file -->
+		<property name="ear.version" value="1.0"/>
+		<property name="beahomedir" value="C:/bea/weblogic92"/>
+		<property name="buildrootdir" value="${basedir}/../.."/>
+		<property name="ejb_name" value="FubarQueueMDB"/>
+		<property name="ejb_package_name" value="com/weblogic/sample/mdbapp"/>
+		<property name="project_dir" value="${buildrootdir}/${ejb_name}AppProject"/>
+		<property name="ear_dir_name" value="${ejb_name}Ear"/>
+		<property name="ear_stage_dir_name" value="${ejb_name}EarStage"/>
+		<property name="ear_file" value="${ejb_name}App.ear"/>
+
+		<!-- For more information on Weblogic wlappc ant task see:                  -->
+		<!-- http://download.oracle.com/docs/cd/E13222_01/wls/docs92/programming/splitbuild.html#wp1113817 -->
+		<taskdef name="wlappc"
+			classname="weblogic.ant.taskdefs.j2ee.Appc"
+			classpath="${beahomedir}/server/lib/weblogic.jar" />
+		<!-- For more information on Weblogic wlcompile ant task see:               -->
+		<!-- http://download.oracle.com/docs/cd/E13222_01/wls/docs92/programming/splitbuild.html#wp1100175 -->
+		<taskdef name="wlcompile"
+			classname="weblogic.ant.taskdefs.build.WLCompileTask"
+			classpath="${beahomedir}/server/lib/weblogic.jar" />	
+		<!-- For more information on Weblogic wlpackage ant task see:                -->
+		<!-- http://download.oracle.com/docs/cd/E13222_01/wls/docs92/programming/splitdeploy.html#wp1100568 -->
+		<taskdef name="wlpackage"
+			classname="weblogic.ant.taskdefs.build.WLPackageTask"
+			classpath="${beahomedir}/server/lib/weblogic.jar" />	
+
+		<target name="all" depends="clean, earstage, earbuild, earpackage"/>
+
+		<target name="clean">
+			<delete file="${project_dir}/build/${ear_file}"/>
+			<delete dir="${project_dir}/build/${ear_dir_name}"/>
+			<delete dir="${project_dir}/build/${ear_stage_dir_name}"/>
+		</target>
+
+		<target name="earstage" depends="clean">
+			<delete dir="${project_dir}/build/${ear_stage_dir_name}"/>
+			<mkdir dir="${project_dir}/build/${ear_stage_dir_name}"/>
+			<mkdir dir="${project_dir}/build/${ear_stage_dir_name}/${ejb_name}"/>
+			<copy todir="${project_dir}/build/${ear_stage_dir_name}/${ejb_name}">
+				<fileset dir="${project_dir}/src"/>
+			</copy>
+			<replace dir="${project_dir}/build/${ear_stage_dir_name}/${ejb_name}"
+				value="${ear.version}">
+				<include name="**/*.java"/>
+				<replacetoken>#.#</replacetoken>
+			</replace>
+		    <!-- Copy the ejb java file name to .ejb so that    -->
+			<!-- wlcompile can recognize it is to be EJBGen'd.  -->
+			<!-- This may seem bogus, but it is copied from the -->
+			<!-- build.xml example in:                          -->
+			<!-- samples\server\examples\src\examples\ejb\ejb20\basic\statelessSession -->
+		    <copy file="${project_dir}/build/${ear_stage_dir_name}/${ejb_name}/${ejb_package_name}/${ejb_name}.java"
+		      tofile="${project_dir}/build/${ear_stage_dir_name}/${ejb_name}/${ejb_package_name}/${ejb_name}.ejb"/>
+			<mkdir dir="${project_dir}/build/${ear_stage_dir_name}/META-INF"/>
+			<copy todir="${project_dir}/build/${ear_stage_dir_name}/META-INF">
+				<fileset file="${project_dir}/nonjavasrc/APPMETA-INF/application.xml"/>
+				<fileset file="${project_dir}/nonjavasrc/APPMETA-INF/weblogic-application.xml"/>
+			</copy>
+			<mkdir dir="${project_dir}/build/${ear_stage_dir_name}/APP-INF"/>
+			<mkdir dir="${project_dir}/build/${ear_stage_dir_name}/APP-INF/lib"/>
+			<copy todir="${project_dir}/build/${ear_stage_dir_name}/APP-INF/lib">
+				<fileset file="${buildrootdir}/FubarCoreProject/build/fubarcore.jar"/>
+				<fileset file="${buildrootdir}/FubarCommonProject/build/fubarcommon.jar"/>
+			</copy>
+		</target>
+
+		<target name="earbuild" depends="earstage">
+			<wlcompile srcdir="${project_dir}/build/${ear_stage_dir_name}"
+				destdir="${project_dir}/build/${ear_dir_name}"
+				includes="${ejb_name}"
+				classpath="${beahomedir}/server/lib/weblogic.jar;
+				${buildrootdir}/FubarCoreProject/build/fubarcore.jar;
+				${buildrootdir}/FubarCommonProject/build/fubarcommon.jar">
+				<ejbgen source="1.5"/>
+			</wlcompile>
+			<wlappc source="${project_dir}/build/${ear_dir_name}">
+				<classpath>
+					<pathelement path="${classpath}"/>
+					<pathelement location="${beahomedir}/server/lib/weblogic.jar"/>
+					<pathelement location="${buildrootdir}/FubarCoreProject/build/fubarcore.jar"/>
+					<pathelement location="${buildrootdir}/FubarCommonProject/build/fubarcommon.jar"/>
+		   		</classpath>
+			</wlappc>
+		</target>
+
+		<target name="earpackage" depends="earbuild">
+			<wlpackage srcdir="${project_dir}/build/${ear_stage_dir_name}"
+				destdir="${project_dir}/build/${ear_dir_name}"
+				todir="${project_dir}/build/${ear_stage_dir_name}" />
+			<jar jarfile="${project_dir}/build/${ear_file}"
+				basedir="${project_dir}/build/${ear_stage_dir_name}">
+				<manifest>
+					<attribute name="Weblogic-Application-Version" value="${ear.version}"/>
+				</manifest>
+		    </jar>
+		</target>
+		
+</project>

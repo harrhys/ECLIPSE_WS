@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--  Copyright 2002 Sun Microsystems, Inc. All rights reserved.-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="lifecycle-simple" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="lifecycle-simple"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/lifecycle/simple"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="lifecycle-simple"/>
+  <property name="javadoc.pkgnames" value="samples.lifecycle.simple.*" />
+
+  <!-- ======================================================= -->
+  <!--			Deployment specific properties .       -->
+  <!-- ======================================================= -->
+  
+  <property name="deploy.file" value="samples.lifecycle.simple.LifecycleListenerImpl"/>
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+  
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common"/>
+  <target name="javadocs" depends="javadocs_common"/>
+  <target name="jar" depends="init, create_jar_common"/>
+  <target name="core" depends="compile, jar" />
+  <target name="deploy" depends="init">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-lifecycle-module --classname ${deploy.file} --classpath ${basedir}/../${jar} ${appname}" />
+    </antcall>
+    <antcall target="reconfig_common"/>
+  </target>
+  <target name="undeploy" depends="init">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-lifecycle-module ${appname}" />
+    </antcall>
+    <antcall target="reconfig_common"/>
+  </target>
+  <target name="all" depends="core,javadocs,deploy"/>
+
+</project>

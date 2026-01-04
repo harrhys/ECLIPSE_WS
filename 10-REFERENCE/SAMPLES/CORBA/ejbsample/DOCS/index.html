@@ -1,0 +1,1466 @@
+<html lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="TEMPLATEBASE" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/09/02 13:15:22">
+	<title>CORBA Interoperability Sample Application:  EJB Accessing Backend CORBA Objects via IONA Orbix</title>
+</head>
+
+<body text="#000000" link="10% #594fbf" vlink="#594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <table width="100%" border="0" cellspacing="4">
+      <tr>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="../../docs/E2A.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../docs/contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Contents
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="../../servletsample/docs/index.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Next
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </tr>
+
+      <tr>
+         <td valign="TOP" align="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            CORBA Interoperability Sample Application</B></FONT>
+         </td>
+      </tr>
+
+   </table>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <blockquote>
+<BR>
+<BR>
+
+      <A NAME="8063"> </A>
+<A NAME="EJB Accessing Backend CORBA Objects via IONA Orbix"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+EJB Accessing Backend CORBA Objects via IONA Orbix
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15558"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the CORBA Interoperability sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15562"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15566"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15613"  >Overview</A>
+</FONT>
+<P><A NAME="15570"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15057"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="15574"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15178"  >Deploying the Sample</A>
+</FONT>
+<P><A NAME="15578"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15260"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15582"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15976"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="15613"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15032"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample demonstrates how a simple stateless session bean can call methods of a remote CORBA object with IONA E2A platform as the underlying ORB. Since the EJB accesses the "SimpleObject" CORBA object that is part of the Orbix  demo applications,  you must first run the Orbix demo application in the Orbix environment, before running this Sun ONE AS (Application Server) sample application. In this sample, a simple servlet is used to access the EJB. 
+</FONT>
+<P>
+
+<A NAME="15637"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample also demonstrates the use of a Java client application and RMI/IIOP to call a method of the same EJB that accesses the backend CORBA application. Using RMI/IIOP to access the EJB demonstrates how one can use both Sun ONE and a third party ORB within the same application server instance to support both front-end RMI/IIOP-based access to EJBs and backend CORBA-based access to existing CORBA applications. 
+</FONT>
+<P>
+
+<A NAME="15041"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Initialization of multiple ORBs in this sample is avoided through the use of a singleton class. Regardless of the number of instances of the stateless session bean created by the EJB container, the singleton approach ensures that at most one instance of the ORB is created for the entire application. To learn more about how the singleton design pattern has been used in this sample, review the <A HREF="../../docs/singleton-orbix.html#8063"  >Using a Singleton for ORB Initialization</A> document. 
+</FONT>
+<P>
+
+<A NAME="15045"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><A HREF="index.html#15658"  >Figure&nbsp;1</A> depicts the main components of this sample: 
+</FONT>
+<P>
+
+<A NAME="15049"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="../../docs/images/rmi-ejb-backend-corba.gif" align="baseline" hspace="2">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="15658"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 1	&nbsp&nbsp CORBA sample Architecture 
+</B>
+</FONT>
+<P><P>
+<BR>
+<A NAME="15052"> </A>
+<A NAME="Setting Up the Environmentl"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Setting Up the Environmentl
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15054"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The <A HREF="../../docs/E2A.html#15035"  >Configuring Third Party ORBs with Sun ONE Application server</A><I> </I>section describes how to setup and run the Orbix "Simple Object" demo application in a standalone mode prior to following the instructions to run it with Sun ONE Application Server.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15057"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15059"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Although the pre-built XML deployment descriptors are included with the sample, includes preset values of environment setting, these values may not match your ORB installation path. The first step in assembling the sample is to modify the environment settings.
+</FONT>
+<P>
+
+<A NAME="15061"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">There are two locations where you have to modify the settings as per your ORB installation:
+</FONT>
+<P>
+<ul>
+<A NAME="15063"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15069"  >Modifying ejb-jar.xml CORBA Environment Settings</A> Settings (Web Deployment descriptor)
+</FONT>
+<P><A NAME="19000"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15141"  >Modifying The Build File</A> (<FONT FACE="courier, couriernew, monospaced size">build.xml</FONT>)
+</FONT>
+<P></ul>
+
+<A NAME="19001"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After changing the environment settings , go to <A HREF="index.html#18952"  >Compiling and Assembling the Application Using Ant Build</A>.  The fastest means of setting up the application is to use the <A HREF="index.html#15183"  >Command Line Interface (CLI)-based Deployment</A>. If you would like to deploy through Admin GUI, then follow instructions for <A HREF="index.html#15208"  >Web Interface (GUI)-based Deployment</A>.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="15069"> </A>
+<A NAME="Modifying ejb-jar.xml CORBA Environment Settings"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Modifying ejb-jar.xml CORBA Environment Settings
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15071"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The sample web application relies on several J2EE environment settings to access the Orbix ORB domain location and several Interoperable Object Reference (IOR) files. Preset values are included in the pre-built EAR, but these default values are unlikely to suit your ORB installation path. (Since this is a 'simple' sample, IOR files are used in place of dynamic lookups through a CORBA naming service). 
+</FONT>
+<P>
+
+<A NAME="15075"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><A HREF="index.html#16278"  >Table&nbsp;1</A> lists the environment settings required by the sample web application. These settings are available in the <FONT FACE="courier, couriernew, monospaced size">ejb-jar.xml</FONT> file,  which is under the <FONT FACE="courier, couriernew, monospaced size">src/</FONT> directory of the sample application. If you are using the <A HREF="../../../docs/ant.html">Ant Buld Facility</A><I> </I>to rebuild the sample application, then you can simply change the settings as they appear in the <FONT FACE="courier, couriernew, monospaced size">ejb-jar.xml</FONT> file and rebuild the application.
+</FONT>
+<P>
+
+<A NAME="15078"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">  <BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="16278"> </A>
+<A NAME="Required Environment Settings"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 1	&nbsp&nbsp Required Environment Settings
+</B>
+</FONT>
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="16282"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Environment Name
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="16284"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Description
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="16286"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">orbDomainName</FONT>
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="16288"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Name of ORB domain.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="16290"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">orbCfgDir</FONT>
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="16292"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Location of domain configuration file.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="16294"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">simpleObjectIor1</FONT>
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="16296"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+IOR file used to access first CORBA object. Produced when the Orbix sample build script is executed.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="16298"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">simpleObjectIor2</FONT>
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<A NAME="16700"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">IOR file used to access second CORBA object. Produced when the Orbix sample build script is executed.
+</FONT>
+<P>
+&nbsp;</TD>
+  </TR>
+</TABLE>
+
+
+
+<P>
+</FONT>
+<P>
+
+<A NAME="15093"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Modifying these settings in the <FONT FACE="courier, couriernew, monospaced size">ejb-jar.xml</FONT> file is preferred because the changes will be present each time you deploy the application to the application server.
+</FONT>
+<P>
+
+<A NAME="15096"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To modify the environment setting in <FONT FACE="courier, couriernew, monospaced size">the ejb-jar.xml</FONT> file, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15098"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Edit <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/samples/corba/ejbsample/src/ejb-jar.xml</FONT>
+</FONT>
+<P><A NAME="16727"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Change the environment settings listed in <A HREF="index.html#16278"  >Table&nbsp;1</A> to match your ORB installation:
+</FONT>
+<P>  <ul>
+<A NAME="15101"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+On Windows:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15103"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+...
+</FONT>
+<P>       <DT> <A NAME="15104"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15105"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-name&gt;orbCfgDir&lt;/env-entry-name&gt;
+</FONT>
+<P>       <DT> <A NAME="15106"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-value&gt;<FONT FACE="courier, couriernew, monospaced size"><B>c:\&lt;domain_path&gt;\domains</B></FONT>&lt;/env-entry-value&gt;
+</FONT>
+<P>       <DT> <A NAME="15107"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
+</FONT>
+<P>       <DT> <A NAME="15108"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;/env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15109"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15110"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-name&gt;simpleObjectIor1&lt;/env-entry-name&gt;
+</FONT>
+<P>       <DT> <A NAME="16846"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-value&gt;<FONT FACE="courier, couriernew, monospaced size"><B>c:\&lt;orb_installpath&gt;\demos\corba\orb\simple1.ior</B></FONT>&lt;/env-entry-value&gt;
+</FONT>
+<P>       <DT> <A NAME="15112"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
+</FONT>
+<P>       <DT> <A NAME="15113"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;/env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15114"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15115"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-name&gt;simpleObjectIor2&lt;/env-entry-name&gt;
+</FONT>
+<P>       <DT> <A NAME="16920"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-value&gt;<FONT FACE="courier, couriernew, monospaced size"><B>c:\&lt;orb_installpath&gt;\demos\corba\orb\simple2.ior</B></FONT>&lt;/env-entry-value&gt;
+</FONT>
+<P>       <DT> <A NAME="15117"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
+</FONT>
+<P>       <DT> <A NAME="15118"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;/env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15119"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+...
+</FONT>
+<P>    </dl>
+</dl><A NAME="15121"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+On Solaris:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15123"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+...
+</FONT>
+<P>       <DT> <A NAME="15124"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15125"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-name&gt;orbCfgDir&lt;/env-entry-name&gt;
+</FONT>
+<P>       <DT> <A NAME="15126"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-value&gt;<FONT FACE="courier, couriernew, monospaced size"><B>/&lt;domain_path&gt;/domains</B></FONT>&lt;/env-entry-value&gt;
+</FONT>
+<P>       <DT> <A NAME="15127"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt;
+</FONT>
+<P>       <DT> <A NAME="15128"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;/env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15129"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry&gt;
+</FONT>
+<P>       <DT> <A NAME="15130"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-name&gt;simpleObjectIor1&lt;/env-entry-name&gt;
+</FONT>
+<P>       <DT> <A NAME="17122"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-value&gt;<FONT FACE="courier, couriernew, monospaced size"><B>/&lt;orb_installpath&gt;/demos/corba/orb/simple1.ior</B></FONT>&lt;/env-entry-value&gt; 
+</FONT>
+<P>       <DT> <A NAME="15132"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt; 
+</FONT>
+<P>       <DT> <A NAME="15133"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;/env-entry&gt; 
+</FONT>
+<P>       <DT> <A NAME="15134"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry&gt; 
+</FONT>
+<P>       <DT> <A NAME="15135"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-name&gt;simpleObjectIor2&lt;/env-entry-name&gt;
+</FONT>
+<P>       <DT> <A NAME="17195"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-value&gt;<FONT FACE="courier, couriernew, monospaced size"><B>/&lt;orb_installpath&gt;/demos/corba/orb/simple2.ior</B></FONT>&lt;/env-entry-value&gt; 
+</FONT>
+<P>       <DT> <A NAME="15137"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;env-entry-type&gt;java.lang.String&lt;/env-entry-type&gt; 
+</FONT>
+<P>       <DT> <A NAME="15138"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;/env-entry&gt; 
+</FONT>
+<P>       <DT> <A NAME="15139"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+...
+</FONT>
+<P>    </dl>
+</dl>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="15141"> </A>
+<A NAME="Modifying The Build File"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Modifying The Build File
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15143"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Before recompilation and reassembling the sample, you will need to modify the build file to reflect the installation location of your ORB.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17321"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Under the directory <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/samples/corba/ejbsample/src/</FONT>
+</FONT>
+<P><A NAME="17280"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Edit the <FONT FACE="courier, couriernew, monospaced size">build.xml</FONT> file by modifying the following property to suit your ORB installation environment:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15150"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+On Windows:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15152"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;!-- OMG CORBA Classes --&gt;
+</FONT>
+<P>       <DT> <A NAME="15153"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;property name="orb.installpath" value="&lt;orb_installpath"/&gt;
+</FONT>
+<P>    </dl>
+</dl>     <DT> <A NAME="15155"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+On Solaris:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15157"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;!-- OMG CORBA Classes --&gt;
+</FONT>
+<P>       <DT> <A NAME="15158"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&lt;property name="orb.installpath" value="&lt;orb_installpath&gt;"/&gt;
+</FONT>
+<P>    </dl>
+</dl>  </dl>
+</ol>
+
+<A NAME="15160"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">These modifications will enable you to easily compile and reassemble the sample application. If you don't make this change, the servlet source code will not compile because it will not be able to access the OMG ORB classes.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="18952"> </A>
+<A NAME="Compiling and Assembling the Application Using Ant Build"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application Using Ant Build
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="18953"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To compile and assemble the application using <A HREF="../../../docs/ant.html">Ant Build Facility</A>, do the following:
+</FONT>
+<P>
+<ul>
+<A NAME="18954"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+On UNIX, prior to executing the build command, you need to ensure that <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/bin</FONT> is in your PATH.
+</FONT>
+<P><A NAME="15167"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Rebuild the application by executing the <FONT FACE="courier, couriernew, monospaced size">asant</FONT> command under the <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/samples/corba/ejbsample/src/</FONT> directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15169"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant</FONT>
+</FONT>
+<P>  </dl>
+</ul>
+
+<A NAME="15171"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Executing the build command will compile the application source files and reassemble both the WAR and EAR files. The EAR file will be placed in <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/samples/corba/ejbsample/assemble/ear/.</FONT>
+</FONT>
+<P>
+
+<A NAME="15175"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You are now ready to follow either the <A HREF="index.html#15183"  >Command Line Interface (CLI)-based Deployment</A> or <A HREF="index.html#15208"  >Web Interface (GUI)-based Deployment</A> instructions. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15178"> </A>
+<A NAME="Deploying the Sample"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15180"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After compiling and assembling the application, you can choose to deploy and register the application through either <I>command line utilities</I> or <FONT FACE="courier, couriernew, monospaced size">Sun ONE Application Server Admin GUI</FONT>. The deployment procedure is same for Windows and Solaris platforms.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="15183"> </A>
+<A NAME="Command Line Interface (CLI)-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line Interface (CLI)-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15185"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Once you've modified the CORBA environment settings, deploying the newly built <FONT FACE="courier, couriernew, monospaced size">corba-ejbsample.ear</FONT> file is simple.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15187"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the directory in which the newly assembled EAR file is located. For example: <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/samples/corba/ejbsample/assemble/ear</FONT>
+</FONT>
+<P><A NAME="15191"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Before executing the command line deploy utility, ensure that you have <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/bin</FONT> in your <FONT FACE="courier, couriernew, monospaced size">PATH</FONT>.
+</FONT>
+<P><A NAME="15193"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">iasadmin</FONT> to deploy application to the particular application server instance. For example: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="17480"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asadmin deploy --type application --instance &lt;instance name&gt; --host &lt;hostname.domainname&gt; --port &lt;admin port&gt;
+</FONT>
+<P>       <DT> <A NAME="15196"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+--user &lt;admin user&gt; --password &lt;admin password&gt; --name &lt;app root name&gt; --force=true corba-ejbsample.ear
+</FONT>
+<P>    </dl>
+</dl><A NAME="15198"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Alternatively, under the <FONT FACE="courier, couriernew, monospaced size">src/ </FONT>directory, you can execute following command to deploy the application to the default application server instance installed on localhost.
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="15201"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+asant deploy
+</FONT>
+<P>    </dl>
+</dl></ol>
+
+<A NAME="15203"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, proceed to <A HREF="index.html#15232"  >Verifying Registration</A>. Otherwise, you're ready to exercise the application by <A HREF="index.html#15260"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="15208"> </A>
+<A NAME="Web Interface (GUI)-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Web Interface (GUI)-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15210"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Sun ONE Admininstration Tool GUI provides an easy way of deploying applications to Sun ONE Application Server. 
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17565"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17571"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Before proceeding, you must ensure that the application is repackaged with modified deployment descriptors containing the environment setting in accordance with your ORB installation. 
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+<A NAME="15214"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a prebuilt Enterprise Archive (EAR) file for the sample application is included with the application server, you can deploy it to the application server if your ORB installation is set to default or first build the application using <A HREF="../../../docs/ant.html">Ant Build Facility</A><I> </I>and use this EAR file for deployment.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15217"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Open the browser and go to the admin server. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17639"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">http://&lt;host&gt;:&lt;admin port&gt;/</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="15220"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Login as Admin user.
+</FONT>
+<P><A NAME="15221"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">Application Server Instances -&gt; server1 (or any other instance)  -&gt; Applications</FONT>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17643"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click on the link Enterprise Applications.
+</FONT>
+<P>     <DT> <A NAME="17651"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You will see the deployed j2ee applications on this server instance here.
+</FONT>
+<P>  </dl>
+<A NAME="15223"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Click on the Deploy tab to deploy your application.
+</FONT>
+<P><A NAME="15224"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Give the absolute location of your Application EAR file
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17661"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+or 
+</FONT>
+<P>     <DT> <A NAME="17662"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Navigate to <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/samples/corba/ejb/assemble/ear</FONT> and open the <FONT FACE="courier, couriernew, monospaced size">corba-ejbsample.ear</FONT> file.
+</FONT>
+<P>  </dl>
+<A NAME="17610"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Click OK.
+</FONT>
+<P><A NAME="15226"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+After uploading your application EAR file, the GUI will ask you for a AppName.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17691"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Type any appropriate <FONT FACE="courier, couriernew, monospaced size">AppRoot</FONT> directory name and click OK.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="15228"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you have deployed the application successfully, this application will be listed under Deployed Applications. After the application is deployed you can proceed to <A HREF="index.html#15260"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="15232"> </A>
+<A NAME="Verifying Registration"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Verifying Registration
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="15234"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15236"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+In the Admin GUI go to <FONT FACE="courier, couriernew, monospaced size">Application Server Instances -&gt; server1 (or any other instance)  -&gt; Applications.</FONT>
+</FONT>
+<P><A NAME="17703"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Click on the link  Enterprise Applications.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17730"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You will see the deployed j2ee applications on this server instance.
+</FONT>
+<P>  </dl>
+<A NAME="15244"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+You can also execute the <FONT FACE="courier, couriernew, monospaced size">iasadmin</FONT> command to look at applications deployed with a server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17799"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u </FONT>&lt;<I>username</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -w</FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -H </FONT>&lt;<I>host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -p </FONT>&lt;<I>admin-port</I>&gt;&lt;<I>server instance name</I>&gt;</FONT></FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="15260"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="17811"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Prior to running the sample, ensure that you have performed the following steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17812"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Run the Orbix <FONT FACE="courier, couriernew, monospaced size">SimpleObject</FONT> sample in standalone mode outside of Sun ONE Application Server.
+</FONT>
+<P><A NAME="17813"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Started the server side CORBA object.
+</FONT>
+<P></ol>
+
+<A NAME="17814"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Refer to the <A HREF="E2A.html#8063"  >E2A Application Server Platform 5.1 Configuration</A> to see how to setup and run the Orbix "SimpleObject" demo application in a standalone mode prior to running the servlet application in the application server.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17809"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+After you've started the Orbix services and the server side CORBA object, run the application  by accessing: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17837"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">http://&lt;application server hostname&gt;:&lt;instance http port&gt;/corba-ejbsample/CorbaServlet</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="15266"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You should see the following output in your browser:
+</FONT>
+<P>
+
+<A NAME="17841"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="../../docs/images/browser-backend-ejb-orbix.gif" align="baseline" hspace="2">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="17842"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 2	&nbsp&nbsp Servlet calling EJB to access backend CORBA server
+</B>
+</FONT>
+<P>
+<BR>
+<BR>
+<A NAME="20140"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the RMI/IIOP Client Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<P><A NAME="20142"></a><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<br>This section demonstrates an RMI/IIOP-based client calling the business
+method of an EJB that in turn calls a method of a backend
+<br>CORBA component. This scenario is particularly interesting as you will
+be using the Sun ONE ORB to support the front-end RMI/IIOP access
+<br>and the Orbix ORB to support the backend CORBA access.</FONT>
+<p><b><font size=+1>Deploy the Client Application</font></b>
+<p><A NAME="20144"></a><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">To Run the RMI client&nbsp; set JAVA_HOME and PATH variables to &lt;JDK-1.4-install-dir>
+and &lt;JDK-1.4-install-dir>/bin.&nbsp; Classpath must contain&nbsp; appserv-ext.jar
+and&nbsp;&nbsp; corba-ejbsampleClient.jar
+<blockquote>java -cp &lt;Sun-ONE-AS-install_dir>/domains/&lt;domain_name>/&lt;server_name>/applications/j2ee-apps/corba-ejbsample_1/<b>corba-ejbsampleClient.jar:</b>&lt;Sun-ONE-AS-install_dir>/lib/appserv-ext.jar
+samples.corba.ejbsample.RmiClient&nbsp; &lt;hostname> &lt;orb-port></blockquote>
+Where:
+<blockquote><b>&lt;hostname></b>
+is the host name of the Sun ONE Application Server.
+<br><b>&lt;orb-port></b>
+is the IIOP port number of the IIOP Listener on the Sun ONE Application
+Server instance. default is&nbsp; 3700</blockquote>
+
+<p><br>The&nbsp; application should produce the following messages:
+<blockquote>Client side:
+<p><font size=-1>Call
+of corbaClinet.doWork() was a success.
+<p>Server logs :
+<p>[16/Apr/2002:23:55:25]
+INFO (11019): CorbaClientEJB: doWork() started on obj samples.corba.ejbsample.ejb.CorbaClientEJB@6270b
+<br>[16/Apr/2002:23:55:25]
+INFO (11019): CorbaClientEJB: Invoking method on first object.
+<br>[16/Apr/2002:23:55:25]
+INFO (11019): CorbaClientEJB: Invoking method on second object.
+<br>[16/Apr/2002:23:55:25]
+INFO (11019): CorbaClientEJB: doWork() finished on obj samples.corba.ejbsample.ejb.CorbaClientEJB@6270b</font></blockquote>
+
+<blockquote>&nbsp;</blockquote>
+
+
+
+<A NAME="15976"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="18937"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Although the sample web application contains limited exception handling, it should provide you with a sense of some of the failure scenarios and basic recovery techniques that apply when accessing remote CORBA objects from within the application server. 
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="18938"> </A>
+<A NAME="Ejb Initialization Failures"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Ejb Initialization Failures
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="18939"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Ejb may issue a <FONT FACE="courier, couriernew, monospaced size">EjbException</FONT> during the <FONT FACE="courier, couriernew, monospaced size">ejbCreate()</FONT> method due to any one of the following actions:
+</FONT>
+<P>
+<ul>
+<A NAME="15282"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+By not including the Orbix classes in the application server's CLASSPATH
+</FONT>
+<P><A NAME="15283"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+By renaming or deleting one or more of the environment settings contained in the web application
+</FONT>
+<P><A NAME="15284"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+By renaming one of the IOR files
+</FONT>
+<P><A NAME="15285"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+By not starting the Orbix services
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="15287"> </A>
+<A NAME="Post Initialization Failures"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Post Initialization Failures
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15288"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you stop the server side CORBA object server and rerun the servlet application, you will notice that the servlet will catch the CORBA exceptions and attempt to reinitialize object references. These attempts will fail until you restart the CORBA object server.
+</FONT>
+<P>
+
+<A NAME="15291"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Upon restarting the CORBA object server and attempting to rerun the servlet application, you should observe that the client successfully reinitializes the object references and access the remote methods.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="15294"> </A>
+<A NAME="Run time errors"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Run time errors
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15295"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Ensure that you've started the Orbix services as well as the CORBA server prior to running the application.
+</FONT>
+<P>
+
+<A NAME="15297"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following errors are described in this section:
+</FONT>
+<P>
+<ul>
+<A NAME="15299"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15304"  >org.omg.CORBA.OBJ_ADAPTER Error</A>
+</FONT>
+<P><A NAME="15300"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#18279"  >LICENSE_FILE_NOT_AVAIL/org.omg.CORBA.INITIALIZE</A> 
+</FONT>
+<P><A NAME="15301"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15394"  >CORBA.TRANSIENT exception</A>
+</FONT>
+<P><A NAME="15302"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15419"  >Class Cast Exception</A>
+</FONT>
+<P></ul>
+<BR>
+<P>
+<A NAME="15304"> </A>
+<A NAME="org.omg.CORBA.OBJ_ADAPTER Error"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+org.omg.CORBA.OBJ_ADAPTER Error
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="15306"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you encounter the following messages in the Server log file, then you have not configured the application server to use the Orbix ORB classes. Refer to the <A HREF="../../docs/E2A.html#8063"  >E2A Application Server Platform 5.1 Configuration</A> document for more details. 
+</FONT>
+<P>
+
+<A NAME="15309"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Browser output:
+</FONT>
+<P>
+<A NAME="18096"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Retrieving JNDI initial context 
+
+</FONT>
+<P><A NAME="15312"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Looking up CorbaClient bean home interface 
+
+</FONT>
+<P><A NAME="15313"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Looking up: java:comp/env/ejb/TheCorbaClient 
+
+</FONT>
+<P><A NAME="15314"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Creating the CorbaClient bean 
+
+</FONT>
+<P><A NAME="15315"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Calling CorbaClient bean to do some work. 
+
+</FONT>
+<P><A NAME="15316"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+aught RemoteException while calling EJB business method: 
+java.rmi.ServerException: RemoteException occurred in server thread; 
+nested exception is: java.rmi.RemoteException: nested exception is:
+
+</FONT>
+<P><A NAME="15318"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+java.rmi.RemoteException: Call to first CORBA method failed.; nested 
+exception is:
+
+</FONT>
+<P><A NAME="15319"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+java.rmi.RemoteException: Call to first CORBA method failed. 
+
+</FONT>
+<P><A NAME="15320"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Result of calling CorbaClient bean: failure 
+
+</FONT>
+<P><A NAME="15321"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Done
+
+</FONT>
+<P>
+<A NAME="15323"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Server log:
+</FONT>
+<P>
+<A NAME="18286"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+... 
+
+</FONT>
+<P><A NAME="18287"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:17] INFO (11001): CorbaClientEJB: doWork() 
+started on obj 
+samples.corba.backend.orbix.ejb.bean.CorbaClientEJB@b28980 
+
+</FONT>
+<P><A NAME="18289"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:17] INFO (11001): CorbaClientEJB: Invoking method 
+on first object. 
+
+</FONT>
+<P><A NAME="18290"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:17] INFO (11001): creating connection to 
+EndPoint: EndPoint
+
+</FONT>
+<P><A NAME="18291"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[IIOP_CLEAR_TEXT:129.158.228.203:38978:false] 
+
+</FONT>
+<P><A NAME="18292"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:17] INFO (11001): <FONT FACE="courier, couriernew, monospaced size"><B>Caught exception: 
+org.omg.CORBA.OBJ_ADAPTER</B></FONT>:   vmcid: SUN  minor code: 202  completed: 
+No  (Minor code meaning not found) 
+
+</FONT>
+<P><A NAME="18294"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:17] SEVERE (11001): "EJB5018: Some unmapped 
+exception occurred : <FONT FACE="courier, couriernew, monospaced size"><B>javax.ejb.EJBException</B></FONT>: nested exception is: 
+<FONT FACE="courier, couriernew, monospaced size"><B>java.rmi.RemoteException: Call to first CORBA method failed</B></FONT>." 
+
+</FONT>
+<P><A NAME="18430"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:17] SEVERE (11001): "EJB5019: Some application or 
+system exception occurred : java.rmi.RemoteException: nested 
+exception is: java.rmi.RemoteException: Call to first CORBA method 
+failed.; nested exception is: 
+
+</FONT>
+<P><A NAME="18484"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+java.rmi.RemoteException: Call to first CORBA method failed." 
+
+</FONT>
+<P><A NAME="18485"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:18] INFO (11001): Caught RemoteException while 
+calling EJB business method:
+
+</FONT>
+<P><A NAME="18486"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+java.rmi.ServerException: RemoteException occurred in server thread; 
+nested exception is:
+
+</FONT>
+<P><A NAME="18487"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:18] INFO (11001):    java.rmi.RemoteException: 
+nested exception is:
+
+</FONT>
+<P><A NAME="18488"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+java.rmi.RemoteException: Call to first CORBA method failed.; nested 
+exception is:
+
+</FONT>
+<P><A NAME="18489"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:18] INFO (11001):    java.rmi.RemoteException: 
+Call to first CORBA method failed.
+
+</FONT>
+<P><A NAME="18411"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:23:36:18] INFO (11001): Result of calling CorbaClient 
+bean: <FONT FACE="courier, couriernew, monospaced size"><B>failure
+</B></FONT>
+</FONT>
+<P><BR>
+<P>
+<A NAME="18279"> </A>
+<A NAME="LICENSE_FILE_NOT_AVAIL/org.omg.CORBA.INITIALIZE"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+LICENSE_FILE_NOT_AVAIL/org.omg.CORBA.INITIALIZE
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="15350"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Double check the <FONT FACE="courier, couriernew, monospaced size">CLASSPATH</FONT> of the application server to ensure that the name of the directory under which the <FONT FACE="courier, couriernew, monospaced size">licenses.txt</FONT> file is located is part of the <FONT FACE="courier, couriernew, monospaced size">CLASSPATH</FONT>. Refer to the <A HREF="../../docs/E2A.html#8063"  >E2A Application Server Platform 5.1 Configuration</A> document for more details.
+</FONT>
+<P>
+
+<A NAME="15353"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Browser output:
+</FONT>
+<P>
+<A NAME="15355"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Retrieving JNDI initial context
+
+</FONT>
+<P><A NAME="15356"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Looking up CorbaClient bean home interface
+
+</FONT>
+<P><A NAME="15357"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Looking up: java:comp/env/ejb/TheCorbaClient
+
+</FONT>
+<P><A NAME="15358"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Creating the CorbaClient bean
+
+</FONT>
+<P><A NAME="15359"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Calling CorbaClient bean to do some work
+
+</FONT>
+<P><A NAME="15360"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Caught RemoteException while calling EJB business 
+method:<FONT FACE="courier, couriernew, monospaced size"><B>java.rmi.ServerException: RemoteException</B></FONT> occurred in server 
+thread; nested exception is: java.rmi.RemoteException: nested 
+exception is: <FONT FACE="courier, couriernew, monospaced size"><B>javax.ejb.EJBException</B></FONT>: nested exception is: 
+javax.ejb.CreateException: Could not create stateless EJB: 
+java.lang.reflect.InvocationTargetException; nested exception is: 
+javax.ejb.EJBException: nested exception is:
+
+</FONT>
+<P><A NAME="15366"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size"><B>javax.ejb.CreateException</B></FONT>: Could not create stateless EJB: 
+<FONT FACE="courier, couriernew, monospaced size"><B>java.lang.reflect.InvocationTargetException
+</B></FONT>
+</FONT>
+<P><A NAME="18590"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Result of calling CorbaClient bean: <FONT FACE="courier, couriernew, monospaced size"><B>failure
+</B></FONT>
+</FONT>
+<P><A NAME="15368"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Done
+
+</FONT>
+<P>
+<A NAME="15370"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Server log: 
+</FONT>
+<P>
+<A NAME="15373"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:51:43] SEVERE (10930): "EJB5070: Exception creating 
+stateless session bean : 
+java.lang.reflect.InvocationTargetException" 
+
+</FONT>
+<P><A NAME="15375"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:51:43] SEVERE (10930): ejb.preinvoke_exception 
+
+</FONT>
+<P><A NAME="15376"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:51:43] SEVERE (10930): "EJB5018: Some unmapped 
+exception occurred : <FONT FACE="courier, couriernew, monospaced size"><B>javax.ejb.EJBException</B></FONT>: nested exception is: 
+javax.ejb.EJBException: nested exception is: 
+javax.ejb.CreateException: <FONT FACE="courier, couriernew, monospaced size"><B>Could not create stateless EJB: 
+java.lang.reflect.InvocationTargetException</B></FONT>" 
+
+</FONT>
+<P><A NAME="15379"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:51:43] SEVERE (10930): "EJB5019: Some application or 
+system exception occurred : java.rmi.RemoteException: nested 
+exception is: javax.ejb.EJBException: nested exception is: 
+javax.ejb.CreateException: Could not create stateless EJB: 
+java.lang.reflect.InvocationTargetException; nested exception is: 
+
+</FONT>
+<P><A NAME="15383"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+javax.ejb.EJBException: nested exception is: 
+javax.ejb.CreateException: Could not create stateless EJB: 
+java.lang.reflect.InvocationTargetException" 
+
+</FONT>
+<P><A NAME="18817"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:51:43] INFO (10930): Caught RemoteException while 
+calling EJB business method: java.rmi.ServerException: 
+RemoteException occurred in server thread; nested exception is: 
+[16/Apr/2002:21:51:43] INFO (10930): java.rmi.RemoteException: 
+nested exception is: javax.ejb.EJBException: nested exception is: 
+javax.ejb.CreateException: Could not create stateless EJB:
+
+</FONT>
+<P><A NAME="15389"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+java.lang.reflect.InvocationTargetException; nested exception is: 
+[16/Apr/2002:21:51:43] INFO (10930): javax.ejb.EJBException: nested 
+exception is: javax.ejb.CreateException: Could not create stateless 
+EJB: java.lang.reflect.InvocationTargetException 
+[16/Apr/2002:21:51:43] INFO (10930): Result of calling CorbaClient 
+bean: <FONT FACE="courier, couriernew, monospaced size"><B>failure
+</B></FONT>
+</FONT>
+<P><BR>
+<P>
+<A NAME="15394"> </A>
+<A NAME="CORBA.TRANSIENT exception"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+CORBA.TRANSIENT exception
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="15396"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Ensure that the <FONT FACE="courier, couriernew, monospaced size">demos.simple.Server</FONT> application has been started. Refer to the <A HREF="../../docs/E2A.html#8063"  >E2A Application Server Platform 5.1 Configuration</A> document for more details. Upon restarting the CORBA server application and executing the servlet again, the servlet should work properly. 
+</FONT>
+<P>
+<A NAME="15399"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+... 
+
+</FONT>
+<P><A NAME="15400"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:21] INFO (10901): CorbaClientEJB: doWork() 
+started on obj samples.corba.ejbsample.ejb.CorbaClientEJB@9b4fac 
+
+</FONT>
+<P><A NAME="15402"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:21] INFO (10901): CorbaClientEJB: Invoking method 
+on first object. 
+
+</FONT>
+<P><A NAME="15403"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:22] INFO (10901): <FONT FACE="courier, couriernew, monospaced size"><B>Caught org.omg.CORBA.TRANSIENT 
+exception.org.omg.CORBA.TRANSIENT</B></FONT>: cannot establish binding  vmcid: 
+
+</FONT>
+<P><A NAME="15405"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+0x49540000  minor code: 770  completed: No[16/Apr/2002:21:42:22] 
+INFO (10901): CorbaClientEJB: Trying to reinitialize object refs.
+
+</FONT>
+<P><A NAME="15407"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+...
+
+</FONT>
+<P><A NAME="15408"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:22] INFO (10901): CorbaClientEJB: Invoking narrow 
+on second object.
+
+</FONT>
+<P><A NAME="15409"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:22] INFO (10901): CorbaClientEJB: Invoking method 
+on second object.
+
+</FONT>
+<P><A NAME="15410"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:22] INFO (10901): <FONT FACE="courier, couriernew, monospaced size"><B>Caught org.omg.CORBA.TRANSIENT 
+exception</B></FONT>.
+
+</FONT>
+<P><A NAME="15411"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:22] INFO (10901): <FONT FACE="courier, couriernew, monospaced size"><B>org.omg.CORBA.TRANSIENT: cannot 
+establish binding</B></FONT>  vmcid: 0x49540000  minor code: 770  completed: No
+
+</FONT>
+<P><A NAME="15413"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:22] INFO (10901): CorbaClientEJB: Trying to 
+reinitialize object refs.
+
+</FONT>
+<P><A NAME="15414"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+... 
+
+</FONT>
+<P><A NAME="15415"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:22] INFO (10901): CorbaClientEJB: doWork() 
+finished on obj samples.corba.ejbsample.ejb.CorbaClientEJB@9b4fac 
+
+</FONT>
+<P><A NAME="15417"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[16/Apr/2002:21:42:22] INFO (10901): Result of calling CorbaClient 
+bean: <FONT FACE="courier, couriernew, monospaced size"><B>failure
+</B></FONT>
+</FONT>
+<P><BR>
+<P>
+<A NAME="15419"> </A>
+<A NAME="Class Cast Exception"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Class Cast Exception
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="15421"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Ensure that the demos.simple.Server application has been started. Refer to the <A HREF="../../docs/E2A.html#8063"  >E2A Application Server Platform 5.1 Configuration</A> document for more details. Upon restarting the CORBA server application and executing the servlet again, the servlet should work properly. The cause of this problem is likely the same as the cause of the <A HREF="index.html#15394"  >CORBA.TRANSIENT exception</A>, but the circumstances of the timing are different.
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+            <a href="../../docs/E2A.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../../docs/contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Contents
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+
+<a href="../../servletsample/docs/index.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Next
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 09, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</body>
+
+
+</html>

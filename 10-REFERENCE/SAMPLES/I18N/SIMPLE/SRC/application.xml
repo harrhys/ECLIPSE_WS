@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+-->
+<!DOCTYPE application PUBLIC "-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN" 'http://java.sun.com/dtd/application_1_3.dtd'>
+
+<application>
+    <display-name>i18n-simple</display-name>
+  <module>
+    <web>
+      <web-uri>i18n-simple.war</web-uri>
+      <context-root>/i18n-simple</context-root>
+    </web>
+  </module>
+</application>

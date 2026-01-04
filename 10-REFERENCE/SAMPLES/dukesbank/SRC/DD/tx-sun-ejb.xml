@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sun-ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN' 'http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd'>
+
+<sun-ejb-jar>
+<security-role-mapping>
+  <role-name>BankCustomer</role-name>
+  <group-name>Customer</group-name>
+</security-role-mapping>
+<security-role-mapping>
+  <role-name>BankAdmin</role-name>
+  <group-name>Admin</group-name>
+</security-role-mapping>
+<enterprise-beans>
+    <name>tx-ejb.jar</name>
+    <unique-id>2059221020</unique-id>
+    <ejb>
+      <ejb-name>TxControllerEJB</ejb-name>
+      <jndi-name>ejb/txController</jndi-name>
+      <ejb-ref>
+        <ejb-ref-name>ejb/tx</ejb-ref-name>
+        <jndi-name>ejb/tx</jndi-name>
+      </ejb-ref>
+      <ejb-ref>
+        <ejb-ref-name>ejb/account</ejb-ref-name>
+        <jndi-name>ejb/account</jndi-name>
+      </ejb-ref>
+      <resource-ref>
+        <res-ref-name>jdbc/BankDB</res-ref-name>
+        <jndi-name>jdbc/Cloudscape</jndi-name>
+      </resource-ref>
+    </ejb>
+    <ejb>
+      <ejb-name>TxEJB</ejb-name>
+      <jndi-name>ejb/tx</jndi-name>
+      <resource-ref>
+        <res-ref-name>jdbc/BankDB</res-ref-name>
+        <jndi-name>jdbc/Cloudscape</jndi-name>
+      </resource-ref>
+    </ejb>
+</enterprise-beans>
+</sun-ejb-jar>
+

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+ ***************************************************************
+ * Copyright  2002 Sun Microsystems, Inc. All rights reserved. *
+ ***************************************************************
+-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="queueSample" default="core" basedir=".">
+  <property name="sample.home" value="../../../../"/>
+
+  <!-- ======================================================= -->
+  <!-- App name-dependent settings.			       -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="queueSample"/>
+
+  <!-- ======================================================= -->
+  <!-- Package directory structures of interest.	       -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/jms/simplequeue"/>
+  <property name="war.pkg" value="samples/jms/simplequeue"/>
+ 
+  <!-- ======================================================= -->
+  <!-- Java Doc properties.				       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="JMS Queue Sample"/>
+  <property name="javadoc.pkgnames" value="samples.jms.simplequeue.*" />
+
+  <!-- ======================================================= -->
+  <!-- Xml files properties.				       -->
+  <!-- ======================================================= -->
+  
+  <property name="warDD" value="sun-web.xml, web.xml"/>
+  <property name="earDD" value="application.xml"/>
+ 
+  <!-- ======================================================= -->
+  <!-- Include common.xml				       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+  
+  <property name="classpath.prefix" value="${com.sun.aas.imqLib}/imq.jar:${com.sun.aas.imqLib}/jms.jar"/> 
+
+  <!-- ======================================================= -->
+  <!-- Tagets to build and deploy sample application           -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/> 
+  <target name="compile" depends="compile_common" /> 
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="deploy_common"/> 
+  <target name="undeploy" depends="undeploy_common"/> 
+  <target name="verify" depends="verify_common"/> 
+
+  <target name="war" depends="init,create_war_common"/>
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="ear" depends="init,war,create_ear_common"/>
+  <target name="core" depends="compile,war,ear" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

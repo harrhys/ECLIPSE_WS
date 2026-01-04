@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<configuration xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/config"> 
+    <service name="HelloWorld" 
+        targetNamespace="http://proxy.org/wsdl" 
+        typeNamespace="http://proxy.org/types" 
+        packageName="samples.webservices.jaxrpc.proxy"> 
+        <interface name="samples.webservices.jaxrpc.proxy.HelloIF" 
+            servantName="samples.webservices.jaxrpc.proxy.HelloImpl"/> 
+     </service> 
+</configuration> 

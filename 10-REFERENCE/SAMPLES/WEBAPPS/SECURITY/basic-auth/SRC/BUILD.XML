@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server WebBasic Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="WebBasic-sample" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../../"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="WebBasicApp"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/security/web/basic"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="WebBasic"/>
+  <property name="javadoc.pkgnames" value="samples.security.web.basic.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="earDD" value="application.xml,sun-application.xml"/>
+ 
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+  
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="war" depends="init_common,create_war_common"/>
+  <target name="ear" depends="init_common,war,create_ear_common"/>
+  <target name="core" depends="compile_common,ear" />
+  <target name="compile" depends="init_common,compile_common" />
+  <target name="verify" depends="init_common,verify_common" />
+  <target name="deploy" depends="init_common,deploy_common"/>
+  <target name="undeploy" depends="init_common,undeploy_common"/>
+  <target name="all" depends="core,verify_common,deploy_common"/>
+
+</project>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--  Copyright 2002 Sun Microsystems, Inc. All rights reserved.-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="lifecycle-rmiserver" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="lifecycle-rmiserver"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/lifecycle/rmiserver"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="lifecycle-rmiserver"/>
+  <property name="javadoc.pkgnames" value="samples.lifecycle.rmiserver.*" />
+
+  <!-- ======================================================= -->
+  <!--			Deployment specific properties .       -->
+  <!-- ======================================================= -->
+  
+  <property name="deploy.file" value="samples.lifecycle.rmiserver.LifecycleListenerImpl"/>
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+  <property name="policy.file" value="lifecycle-rmi.policy"/>
+  
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common"/>
+  <target name="javadocs" depends="javadocs_common"/>
+  <target name="jar" depends="init, create_jar_common"/>
+  <target name="core" depends="compile, rmic, jar" />
+  <target name="deploy" depends="init">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-lifecycle-module --classname ${deploy.file} --classpath ${basedir}/../${jar}  --property policy.file=${policy.file} ${appname}" />
+    </antcall>
+    <antcall target="reconfig_common"/>
+  </target>
+  <target name="undeploy" depends="init">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-lifecycle-module ${appname}" />
+    </antcall>
+    <antcall target="reconfig_common"/>
+  </target>
+
+  <target name="rmic" depends="init_common">
+  <echo message="Generating stub and skeleton"/>
+  <rmic classname="samples.lifecycle.rmiserver.SampleRMIServer"
+        base="${build.classesdir}"/>
+  </target>
+  <target name="all" depends="core,javadocs,deploy"/>
+
+</project>

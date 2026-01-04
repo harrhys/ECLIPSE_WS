@@ -1,0 +1,1128 @@
+<HTML lang="en">
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+        <META NAME="templatebase" manual wdt 1.7.0 OAK rebranded for Sun ONE 06-18-02">
+        <title> Java Smart Ticket Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+             Java<sup><font size="-2">TM</font></sup> Smart Ticket Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT> <BOOKCONTENT> 
+<BLOCKQUOTE> <BR>
+  <BR>
+  <A NAME="8063"> </A> <A NAME="Java Smart Ticket Sample Application"> </A> <FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000"> 
+  <B> Java<sup><font size="-2">TM</font></sup> Smart Ticket Sample Application 
+  </B> </FONT> <BR>
+  <BR>
+  <BR>
+  <A NAME="14782"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+  document describes how to utilize the Java<sup><font size="-2">TM</font></sup> 
+  Smart Ticket 1.1.1 sample application from <A HREF="http://java.sun.com/blueprints/">Java 
+  BluePrints</A> in conjunction with the Sun ONE Application Server version 7. 
+  </FONT> 
+  <P> <A NAME="14785"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+    sample application document contains the following sections: </FONT> 
+  <P> 
+  <ul>
+    <A NAME="14787"> </A> 
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> <A HREF="#overview"  >Overview</A> 
+      </font> 
+      <P><A NAME="16333"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <A HREF="#setup"  >Setting 
+      Up the Environment</A> </font> 
+      <P><A NAME="16334"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <A HREF="#compile"  >Compiling 
+      and Deploying the Sample Application</A> </font> 
+      <P><A NAME="14790"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <A HREF="#run"  >Running 
+      the Sample Application</A> </font> 
+      <P><A NAME="16340"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <A HREF="#configure"  >Configuring 
+      the Sample Application</A> </font> 
+      <P><A NAME="14792"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <A HREF="#configuredb"  >Configuring for Using Oracle Database</A> </font> 
+      <P><A NAME="14792"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> <A HREF="#trouble"  >Troubleshooting 
+      and Notes</A> </font> 
+      <P>
+  </ul>
+  <BR>
+  <BR>
+  <A NAME="overview"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+  Overview 
+  <HR SIZE="2" NOSHADE>
+  </FONT> <BR>
+  <A NAME="14798"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Today's 
+  businesses have the Java 2 Platform, Enterprise Edition (J2EE) as the established 
+  standard for developing enterprise applications. </FONT> 
+  <P> <A NAME="16159"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The 
+    Java 2 Platform, Micro Edition (J2ME) provides businesses with the opportunity 
+    to accommodate the following new set of enterprise clients: </FONT> 
+  <P> 
+  <ul>
+    <A NAME="16174"> </A> 
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> Cell phones 
+      </font> 
+      <P><A NAME="16178"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> Two-way pagers 
+      </font> 
+      <P><A NAME="16179"> </A> 
+    <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> Palmtops </font> 
+      <P>
+  </ul>
+  <A NAME="16180"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">These 
+  devices can be programmed using the Mobile Information Device Profile (MIDP) 
+  and Connected Limited Device Configuration (CLDC) to provide a complete Java 
+  runtime environment. </FONT> 
+  <P> <A NAME="16306"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The 
+    high level architecture of a Java wireless enterprise application is shown 
+    in Figure&nbsp;1. </FONT> 
+  <P> <A NAME="16314"> </A> 
+  <center>
+    <figure> 
+    <table border="0">
+      <tr> 
+        <td align="center"> <img SRC="images/architecture.gif" height=145 width=545></td>
+      </tr>
+      <tr> 
+        <td align="center"> <b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Figure 1 &nbsp&nbsp J2EE-J2ME Application Architecture </FONT></b> </td>
+      </tr>
+    </table>
+    </figure> 
+  </center>
+  <P> <A NAME="16315"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The 
+    client tier consists of an MIDP application, or MIDLet. The MIDLet provides 
+    the user interface on the mobile device and communicates with Java servlets 
+    in the Web tier to access the business logic of Enterprise JavaBeans components 
+    in the EJB tier. Both the servlets and enterprise beans are located on a J2EE 
+    application server. Finally, the Enterprise Information Systems (EIS) tier 
+    supports access to the application database through the JDBC API. </FONT> 
+  <P> <A NAME="14812"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Java<sup><font size="-2">TM</font></sup> 
+    Smart Ticket 1.1.1 is a wireless sample application that demonstrates how 
+    to build wireless services connecting J2ME mobile clients to J2EE application 
+    servers. In this sample application, customers go through a typical e-shopping 
+    scenario to buy movie tickets through a mobile device as shown in Figure&nbsp;2. 
+    </FONT> 
+  <P> 
+  <P> <BR>
+    <A NAME="14816"> </A> <A NAME="Signing In"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Signing In </FONT> <BR>
+    <BR>
+    <A NAME="14817"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Customers 
+    can sign in to the application using an account that they create when they 
+    first install the application. The customers' application preferences are 
+    stored with their account information. Some of these preferences are stored 
+    on the server side in a database, while the rest are stored locally in the 
+    record store of the client device. </FONT> 
+  <P> 
+  <P> <BR>
+    <A NAME="14821"> </A> <A NAME="Browsing Movies"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Browsing Movies </FONT> <BR>
+    <BR>
+    <A NAME="14822"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The 
+    application gives the customer a list of movies which is initially filtered 
+    by the customer's zip code. After selecting from this list, customers may 
+    choose the theater where they want to see the movie and the time they want 
+    to see it. </FONT> 
+  <P> 
+  <P> <BR>
+    <A NAME="14825"> </A> <A NAME="Reserving Seats"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Reserving Seats </FONT> <BR>
+    <BR>
+    <A NAME="16253"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Once 
+    customers have chosen the show (movie, theater, time), they can view a seating 
+    plan for the theater and choose specific seats. The application then prompts 
+    them to confirm their purchase. While customers decide, the seats are reserved. 
+    If the customer confirms the purchase, it is recorded in the database. Otherwise, 
+    the reservations are cancelled. </FONT> 
+  <P> <A NAME="16254"> </A> 
+  <p> 
+  <center>
+    <figure> 
+    <table border="0">
+      <tr> 
+        <td align="center"> <img SRC="images/scenario.gif" height=395 width=440></td>
+      </tr>
+      <tr> 
+        <td align="center"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <b>Figure 2 &nbsp&nbsp An E-Shopping Scenario</b> </font> </td>
+      </tr>
+    </table>
+    </figure> 
+  </center>
+  <P> <BR>
+    <A NAME="setup"> </A> 
+  <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> Setting Up the Environment 
+  <HR SIZE="2" NOSHADE>
+  </FONT> <BR>
+  <A NAME="14838"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+  section describes the steps required to set up the environment in order to compile, 
+  deploy, or run the sample application. </FONT> 
+  <P> 
+  <ol type="1">
+    <A NAME="14840"> </A> 
+    <li value="1"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Install the J2ME Wireless Toolkit. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="18575"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <BR>
+          <HR SIZE="1">
+          <TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+            <TR> 
+              <TD VALIGN=TOP> <A NAME="18578"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+                <B> Note </B> </FONT> </TD>
+              <TD VALIGN=TOP> <A NAME="18582"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+                step is required to compile or run the sample application. </FONT> 
+                <P> 
+              </TD>
+            </TR>
+          </TABLE>
+          <HR SIZE="1">
+          <BR>
+          </FONT> 
+          <P> 
+        <DT> <A NAME="14841"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          The Java<sup><font size="-2">TM</font></sup> Smart Ticket sample application 
+          is included in the Sun ONE application server. </FONT> 
+          <P> 
+        <DT> <A NAME="16354"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          For example, </FONT> 
+          <P> 
+          <dl> 
+            <DT> <A NAME="16371"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              &lt;<I>as_install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/smartticket1.1.1/</FONT> 
+              </FONT> 
+              <P> 
+          </dl>
+        <DT> <A NAME="14843"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          For convenience, name it &lt;<I>st_dir</I>&gt;. </FONT> 
+          <P> 
+        <DT> <A NAME="16433"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          For demonstration purposes, the sample requires the J2ME Wireless Toolkit 
+          (J2MEWTK). The Java 2 Platform, Micro Edition Wireless Toolkit (v1.0.4) 
+          can be downloaded from the following site: </FONT> 
+          <P> 
+          <dl> 
+            <DT> <A NAME="16487"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              <A HREF="http://java.sun.com/products/j2mewtoolkit/download.html"><FONT FACE="courier, couriernew, monospaced size">http://java.sun.com/products/j2mewtoolkit/download.html</font></A> 
+              </FONT> 
+              <P> 
+          </dl>
+      </dl>
+      <ul>
+        <A NAME="16434"> </A> 
+        <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> Install 
+          J2MEWTK on the machine where the application server is installed and 
+          configure the sample to point to it. </font> 
+          <P><A NAME="16458"> </A> 
+        <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> Set <FONT FACE="courier, couriernew, monospaced size">j2mewtk.home=</FONT>&lt;<I>wtk_install_dir</I>&gt; 
+          in the &lt;<I>st_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/smarticket.properties</FONT> 
+          file. </font> 
+          <P> 
+          <dl> 
+            <DT> <A NAME="18355"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              For example: </FONT> 
+              <P> 
+          </dl>
+          <ul>
+            <A NAME="18359"> </A> 
+            <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+              On Windows: </font> 
+              <P> 
+              <dl> 
+                <DT> <A NAME="18373"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+                  <FONT FACE="courier, couriernew, monospaced size">j2mewtk.home=C:/wtk104</FONT> 
+                  </FONT> 
+                  <P> 
+              </dl>
+              <A NAME="18360"> </A> 
+            <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+              On Solaris: </font> 
+              <P> 
+              <dl> 
+                <DT> <A NAME="18377"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+                  <FONT FACE="courier, couriernew, monospaced size">j2mewtk.home=/export/home/wtk104</FONT> 
+                  </FONT> 
+                  <P> 
+              </dl>
+          </ul>
+      </ul>
+      <A NAME="14853"> </A> 
+    <li value="2"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Set the Compiling and Deploying Environment. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14854"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Ensure that the application server's bin directory &lt;<I>as_install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/bin 
+          </FONT>appears in the path. </FONT> 
+          <P> 
+      </dl>
+      <A NAME="14858"> </A> 
+    <li value="3"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Start up the Database. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14859"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          The Application Server uses the PointBase database server. The database 
+          is populated with all of the demo data for the Smart Ticket sample application. 
+          </FONT> 
+          <P> 
+      </dl>
+      <ul>
+        <A NAME="16508"> </A> 
+        <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> To start 
+          the PointBase database server, go to the directory &lt;<I>as_install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/pointbase/server</FONT>. 
+          </font> 
+          <P><A NAME="16546"> </A> 
+        <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> Run the 
+          script: </font> 
+          <P> 
+          <ul>
+            <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Solaris: </font> 
+             <p>
+              <FONT FACE="courier, couriernew, monospaced size">StartServer.sh</FONT> 
+             <p>
+            <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">On Windows: </font> 
+            <p><FONT FACE="courier, couriernew, monospaced size">StartServer.bat</FONT> 
+              <P> 
+          </ul>
+      </ul>
+      <A NAME="14864"> </A> 
+    <li value="4"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Register PointBase JDBC Resource in Application Server. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14865"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Use the <FONT FACE="courier, couriernew, monospaced size">asant</FONT> 
+          command to register a JDBC resource and define a JDBC connection pool 
+          for this sample in the application server. </FONT> 
+          <P> 
+      </dl>
+      <ul>
+        <A NAME="16571"> </A> 
+        <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> Go to 
+          &lt;<I>st_dir</I>&gt; </font> 
+          <P><A NAME="16587"> </A> 
+        <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> Execute 
+          the command  </font>  
+         <P> <FONT FACE="courier, couriernew, monospaced size">asant regdb</FONT> 
+           <P> 
+      </ul>
+      <dl> 
+        <DT> <A NAME="14870"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          After setting up the environment, you can go to the next section to 
+          compile sample application. </FONT> 
+          <P> 
+      </dl>
+</ol>
+  If you would like to run sample with using Oracle Database,
+   please refer to the section of <a href="#configuredb">Configuring for Using Oracle Database</a>. 
+  <p>
+  <A NAME="compile"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+  Compiling and Deploying the Sample Application 
+  <HR SIZE="2" NOSHADE>
+  </FONT> <BR>
+  <A NAME="14875"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+  section contains instructions to compile, assemble, and deploy the Smart Ticket 
+  sample application. </FONT> 
+  <P> 
+  <ol type="1">
+    <A NAME="16676"> </A> 
+    <li value="1"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Go to the Sample Directory. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14878"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          &lt;<I>st_dir</I>&gt; </FONT> 
+          <P> 
+      </dl>
+      <A NAME="14880"> </A> 
+    <li value="2"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Compile and Assemble the Sample. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14881"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Execute the command. </FONT> 
+          <P> 
+          <FONT FACE="courier, couriernew, monospaced size">asant</FONT> 
+          <P> 
+        <DT> <A NAME="18598"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <BR>
+          <HR SIZE="1">
+          <TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+            <TR> 
+              <TD VALIGN=TOP> <A NAME="18601"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+                <B> Note </B> </FONT> </TD>
+              <TD VALIGN=TOP> <A NAME="18611"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You 
+                may skip this step and go to Step 3 to use prebuilt files. </FONT> 
+                <P> 
+              </TD>
+            </TR>
+          </TABLE>
+          <HR SIZE="1">
+          <BR>
+          </FONT> 
+          <P> 
+      </dl>
+      <A NAME="14884"> </A> 
+    <li value="3"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Deploy the Sample. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14885"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Execute the command. </FONT> 
+          <P> 
+         <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT> </FONT> 
+          <P> 
+      </dl>
+      <A NAME="16728"> </A> 
+    <li value="4"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Optionally, you may verify the registration. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="16729"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Go to <FONT FACE="courier, couriernew, monospaced size">http://server:port/SmarTicketApp/</FONT> 
+          </FONT> 
+          <P> 
+        <DT> <A NAME="16731"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          The document root of the application appears indicating that your application 
+          is deployed and the application context root is registered properly. 
+          </FONT> 
+          <P> 
+        <DT> <A NAME="14894"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          After deploying the sample application, you may proceed to the next 
+          section to run the sample application. </FONT> 
+          <P> 
+      </dl>
+  </ol>
+  <BR>
+  <BR>
+  <A NAME="run"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> Running 
+  the Sample Application 
+  <HR SIZE="2" NOSHADE>
+  </FONT> <BR>
+  <A NAME="14899"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+  section describes how to run the MIDP part of the sample application using the 
+  J2ME Wireless Toolkit in the default configuration. </FONT> 
+  <P> 
+  <ol type="1">
+    <A NAME="14901"> </A> 
+    <li value="1"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Go to the sample directory. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14902"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          &lt;<I>st_dir</I>&gt; </FONT> 
+          <P> 
+      </dl>
+      <A NAME="14904"> </A> 
+    <li value="2"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Bring up a Phone emulator. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14905"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Execute the command </FONT> 
+          <P> 
+          <FONT FACE="courier, couriernew, monospaced size">asant  emulate</FONT> 
+          <p>to bring up a phone emulator. </FONT> 
+          <P> 
+      </dl>
+      <A NAME="14909"> </A> 
+    <li value="3"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Launch the Demo. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14910"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Press Launch to start the Java Smart Ticket demo. </FONT> 
+          <P> 
+      </dl>
+      <A NAME="14912"> </A> 
+    <li value="4"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Set up Preferences. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14913"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          If you are running the application for the very first time, fill out 
+          the user preferences form to create a new user account. </FONT> 
+          <P> 
+      </dl>
+      <ul>
+        <A NAME="14914"> </A> 
+        <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> Press 
+          Sign In. </font> 
+          <P> 
+          <dl> 
+            <DT> <A NAME="16842"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              A dialog box appears prompting you to create an account. </FONT> 
+              <P> 
+          </dl>
+          <A NAME="14915"> </A> 
+        <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> Fill 
+          out the user preferences form completely. </font> 
+          <P><A NAME="16850"> </A> 
+        <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> Click 
+          Save. </font> 
+          <P> 
+      </ul>
+      <A NAME="14917"> </A> 
+    <li value="5"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Use the Application. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14918"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          You can now use the application to sign in, browse movies, and reserve 
+          seats. </FONT> 
+          <P> 
+      </dl>
+  </ol>
+  <BR>
+  <BR>
+  <A NAME="configure"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+  Configuring the Sample Application 
+  <HR SIZE="2" NOSHADE>
+  </FONT> <BR>
+  <A NAME="14924"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+  section describes the steps needed to set up features of the sample application 
+  which are not supported by the default configuration. </FONT> 
+  <P> 
+  <P> <BR>
+    <A NAME="14926"> </A> <A NAME="Connecting to a Remote Server "> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Connecting to a Remote Server </FONT> <BR>
+    <BR>
+    <A NAME="14928"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">By 
+    default, the client is set to connect to a server running on localhost at 
+    port 1024. </FONT> 
+  <P> <A NAME="18404"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+    section describes the steps to connect a client to remote server. </FONT> 
+  <P> 
+  <ol type="1">
+    <A NAME="14931"> </A> 
+    <li value="1"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Create a Package for the Sample Application. </font> 
+      <P> 
+      <ul>
+        <A NAME="18418"> </A> 
+        <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> On the 
+          machine where the sample is deployed with the application server, go 
+          to the sample directory &lt;<I>st_dir</I>&gt;. </font> 
+          <P><A NAME="18424"> </A> 
+        <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> Execute 
+          the command,
+<p>
+<FONT FACE="courier, couriernew, monospaced size">asant package</FONT> 
+           </font> 
+          <P> 
+          <dl> 
+            <DT> <A NAME="14936"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              This creates a package as &lt;<I>st_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/smarticket.zip</FONT>. 
+              </FONT> 
+              <P> 
+          </dl>
+      </ul>
+      <A NAME="14939"> </A> 
+    <li value="2"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Install the Package on another machine. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14940"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Transfer it to another machine and then unpack it in a directory (for 
+          example, &lt;<I>st_install_dir</I>&gt;). </FONT> 
+          <P> 
+      </dl>
+      <A NAME="14943"> </A> 
+    <li value="3"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Configure the MIDP client. </font> 
+      <P> 
+      <ul>
+        <A NAME="14944"> </A> 
+        <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> On the 
+          second machine, configure the server to which the client connects. </font> 
+          <P><A NAME="16994"> </A> 
+        <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> In the 
+          file &lt;<I>st_install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/smarticket/bin/smarticket.jad</FONT>, 
+          look for the following lines: </font> 
+          <P> 
+          <dl> 
+            <DT> <A NAME="14948"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              <FONT FACE="courier, couriernew, monospaced size">SMARTicket-Servlet-URL: 
+              http://localhost:1024/SmarTicketApp/servlet/</FONT> </FONT> 
+              <P> 
+            <DT> <A NAME="14949"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              <FONT FACE="courier, couriernew, monospaced size">SMARTicket-Poster-URL: 
+              http://localhost:1024/SmarTicketApp/</FONT> </FONT> 
+              <P> 
+            <DT> <A NAME="14950"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              <FONT FACE="courier, couriernew, monospaced size">SMARTicket-Splash-URL: 
+              http://localhost:1024/SmarTicketApp/</FONT> </FONT> 
+              <P> 
+            <DT> <A NAME="14952"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              Replace all occurrences of localhost and 1024 with the name of the 
+              host and the port on which the application server is running. </FONT> 
+              <P> 
+          </dl>
+      </ul>
+      <A NAME="14954"> </A> 
+    <li value="4"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Install the J2ME Wireless Toolkit. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14955"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Install the J2ME Toolkit in a directory (for example, &lt;<I>wtk_install_dir</I>&gt;) 
+          on the machine where the Smart Ticket package is installed. </FONT> 
+          <P> 
+      </dl>
+      <A NAME="14959"> </A> 
+    <li value="5"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Bring up the Emulator. </font> 
+      <P> 
+      <ul>
+        <A NAME="14960"> </A> 
+        <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> Go to 
+          the sample directory (for example, &lt;<I>st_install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/smarticket/bin</FONT>). 
+          </font> 
+          <P><A NAME="17146"> </A> 
+        <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> Execute 
+          the command,
+<p>
+&lt;<I>wtk_install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/bin/emulator &nbsp;  -Xdescriptor:smarticket.jad</FONT> 
+<p>on Solaris, or click <FONT FACE="courier, couriernew, monospaced size">smarticket.jad</FONT> 
+          on Windows to bring up the emulator. </font> 
+          <P> 
+      </ul>
+      <A NAME="14968"> </A> 
+    <li value="6"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B></b> 
+      Run the Sample Application. </font> 
+      <P> 
+      <dl> 
+        <DT> <A NAME="14969"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Now you can run the sample from this client to a remote server. </FONT> 
+          <P> 
+      </dl>
+  </ol>
+  <P> <BR>
+    <A NAME="14971"> </A> <A NAME="Connecting Over HTTPS"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Connecting Over HTTPS </FONT> <BR>
+    <BR>
+    <A NAME="14973"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The 
+    J2ME Wireless Toolkit supports HTTPS, although not all MIDP devices are required 
+    to support it. This section describes how to configure the Java Smart Ticket 
+    Demo to use HTTP over SSL (HTTPS). </FONT> 
+  <P> 
+  <ol type="1" >
+    <font face="Helvetica, Arial, sans-serif"> <font size=-1> 
+    <li value="1" ><b>Enable SSL on Application Server</b>
+    <p>
+      Follow the instructions provided in Sun ONE Application Server Administrator's Guide to Security 
+      to enable SSL on Application Server. The outline is provided below: 
+      <ul>
+        <li>Create a Trust Database. 
+        <li>Generate a Certificate Request. 
+        <li>Get Certificates. <br>
+          Save the certificates in files, which will be used in configuring J2ME 
+          Toolkits. For example, the SSL server certificate is in the file of 
+          <b>server.cer</b>, while the root certificate is in the file of <b>root.cer</b>. 
+        <li>Install Certificates. 
+        <li>Manage Certificates. 
+        <li>Add a HTTP listener on a separate port. <br>
+          In the listener, make sure you enable security and all the ciphers when 
+          enabling SSL2 and SSL3, but don't enable Client Authentication. 
+        <li>Test HTTPS <br>
+          Try to connect to the secure port through the browser, e.g. <br>
+          <FONT FACE="courier, couriernew, monospaced size">https://server:secure-port/SmarTicketApp/</FONT> 
+      </ul>
+      <blockquote> 
+        <p>&nbsp;</p>
+      </blockquote>
+      <p> 
+    <li value="2"><b>Import Server Certificates into J2ME Wireless Toolkit.</b> <p>
+      Normally you would use the keytool's <code>-certreq</code> option, and ask 
+      some Certificate Authority (CA) to sign your server's public key certificate, 
+      while ensuring that the CA's root certificate was in the J2ME Wireless Toolkit's 
+      keystore. However, for testing purposes, you can put the server's public 
+      key and root certificates into the J2ME Wireless Toolkit's keystore. 
+      <p></p>
+      <p>For example, you can use the certificate files saved in previous section. 
+      <ul>
+        <li>Go to J2ME Wireless Toolkit directory, e.g. <br>
+          <I>&lt;wtk_install_dir&gt;</I>. 
+        <li>Create a keystore with server and root certificates. 
+            <p>
+            <font face="Courier New, Courier, mono">keytool -import -alias server 
+            -file <b>server.cer</b> -keystore keystore 
+            -storepass changeit </font>
+           <p>
+            <font face="Courier New, Courier, mono"> keytool -import -alias root 
+            -file <b>root.cer</b> -keystore keystore -storepass 
+            changeit </font> 
+           <p>
+          which puts the certificates in the file of keystore. 
+        <li>Import certificates to J2ME Toolkit database <p>
+          On Solaris: 
+          <p>
+            <font face="Courier New, Courier, mono"> java -jar bin/MEKeyTool.jar 
+            -import  -alias server -keystore keystore -storepass 
+            changeit </font>
+          <p>
+          
+            <font face="Courier New, Courier, mono"> java -jar bin/MEKeyTool.jar 
+            -import -alias root -keystore keystore -storepass 
+            changeit </font>
+<p>
+          <br>
+          On Windows: 
+          <p>
+            <font face="Courier New, Courier, mono"> java -jar bin\MEKeyTool.jar 
+            -import  -alias server  -keystore keystore  -storepass 
+            changeit </font>
+          <p>
+          
+            <font face="Courier New, Courier, mono"> java -jar bin\MEKeyTool.jar 
+            -import  -alias root  -keystore keystore  -storepass 
+            changeit </font> 
+          <p>
+        <li>Verify the certificate installation. <p>
+          On Solaris: 
+          <p>
+            <font face="Courier New, Courier, mono">java -jar bin/MEKeyTool.jar 
+            -list </font>
+          <p>
+          On Windows: 
+          <p>
+            <font face="Courier New, Courier, mono"> java -jar bin\MEKeyTool.jar 
+            -list </font>
+          <p>
+          You should see the certificates in the list. 
+      </ul>
+      <p> 
+    <li value="3"><b>Edit the JAD File to Use Secure Port.</b> 
+        <p>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b> In the 
+          file &lt;<I>st_install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/smarticket/bin/smarticket.jad</FONT>, 
+          look for the following lines: </font> 
+          <P> 
+          <dl> 
+            <DT> <A NAME="14948"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              <FONT FACE="courier, couriernew, monospaced size">SMARTicket-Servlet-URL: 
+              http://localhost:1024/SmarTicketApp/servlet/</FONT> </FONT> 
+              <P> 
+            <DT> <A NAME="14949"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              <FONT FACE="courier, couriernew, monospaced size">SMARTicket-Poster-URL: 
+              http://localhost:1024/SmarTicketApp/</FONT> </FONT> 
+              <P> 
+            <DT> <A NAME="14950"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              <FONT FACE="courier, couriernew, monospaced size">SMARTicket-Splash-URL: 
+              http://localhost:1024/SmarTicketApp/</FONT> </FONT> 
+              <P> 
+            <DT> <A NAME="14952"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+              Replace all occurrences of http, localhost and 1024 with https, server (the name of the 
+              host where the application server is running) and secure-port. </FONT> 
+              <P> 
+          </dl>
+</font></font>
+  </ol>
+  <P> <A NAME="14976"> </A> <A NAME="Using a Different Character Set"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Using a Different Character Set </FONT> 
+  <p> <A NAME="14978"> </A>
+  <FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Java Smart Ticket Demo 
+  is internationalized. It is also localized in US English, French, and Japanese. 
+  This section describes how to use a different character set. 
+  <p> With the default configuration, three sets of messages are stored in the 
+    client or server for demonstration purposes, as shown in Table 1. These three 
+    sets will be shown in the locale screen of emulator. 
+  </font> 
+  <p> 
+  <center>
+    <table BORDER WIDTH="80%" >
+      <caption><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <b>Table 1 &nbsp;&nbsp;&nbsp; Localized Messages in Default Configuration</b></font> 
+      <tr> 
+        <td>Set</td>
+        <td>Locale</td>
+        <td>Messages Stored</td>
+        <td>Message Source Files</td>
+      </tr>
+      <tr> 
+        <td>0</td>
+        <td>en_US</td>
+        <td>MIDP Client</td>
+        <td><font face="Courier New, Courier, mono">&lt;st_dir>/messages/en_US.properties</font></td>
+      </tr>
+      <tr> 
+        <td>1</td>
+        <td>en_GB</td>
+        <td>J2EE Server</td>
+        <td><font face="Courier New, Courier, mono">&lt;st_dir>/src/sql/smarticket.sql</font></td>
+      </tr>
+      <tr> 
+        <td>2</td>
+        <td>fr_FR</td>
+        <td>J2EE Server</td>
+        <td><font face="Courier New, Courier, mono">&lt;st_dir>/src/sql/smarticket.sql</font></td>
+      </tr>
+      <br>
+      </caption>
+    </table>
+  <p>&nbsp;</p></center>
+
+ <font face="Helvetica, Arial, sans-serif"><font size=-1>  
+  <p>
+<font size=+0><b>Using Sample in French</b></font>
+<p>To use French, the locale can be simply selected from emulator with default 
+    configuration and environment as using Sample in English. 
+  <ol>
+    <li>Bring up the emulator, e.g. <br>
+      <font face="Courier New, Courier, mono">asant emulate</font> 
+<p>
+    <li>Choose locale as fr_FR after launching sample. 
+<p>
+    <li>Exit emulator. 
+<p>
+    <li>Bring up emulator again to sign in. 
+  </ol>
+The emulator should display French messages.
+<p>
+<font size=+0><b>Using Sample in Japanese</b></font>
+  <p> 
+    The Japanese localization use different character set and encoding from the 
+    US English or French localization. 
+    In order to display Japanese messages properly on the J2ME WTK emulator,
+ please follow these steps.
+<ol>
+<li><b>Configure and Compile the Sample</b>
+<p>
+  Change locale setting as <br>
+      &nbsp&nbsp midp.locale=ja_JP <br>
+ in build configuration file (&lt;st_dir&gt;/smarticket.properties).
+<p> Clean the project area and then compile in sample directory (&lt;st_dir&gt;), e.g. <br>
+      &nbsp&nbsp asant clean <br>
+      &nbsp&nbsp asant <br>
+<p> After compiling, the message file (&lt;st_dir&gt;/messages/ja_JP.properties) 
+   is used as default properties in MIDP client. 
+   That is, the first set of locale is changed from en_US as shown in Table 1 to ja_JP.
+   The locale options for sample become ja_JP, en_GB and fr_FR which will be
+    shown in the locale screen of emulator. 
+<p>
+<li><b>Clean Emulator DataBase</b>
+<p>
+If the previous setting of the emualtor is en_US, you need to clean its database since en_US is not an option in current configuration. 
+To clean the emulator database, remove the files of &lt;wtk_install_dir>/appdb/run_by*.
+<p>
+<li><b>Run Emulator in Japanese Environment</b>
+<p>
+  The message file of ja_JP.properties is encoded in SJIS.  The emulator needs to run 
+  in the Japanese environment which has default system encoding as SJIS.
+<p>
+For example, on Solaris 8, choose Language as ja_JP.PCK and then login.
+You should be able to view the message file of ja_JP.properties correctly with Text Editor (dtpad).
+Bring up the emulator in this environment.
+Optionally, choose locale as ja_JP (default) after launching Smart Ticket demo. 
+</ol>
+The emulator should display Japanese messages.  You can start demo
+to create an account, sign in, browse movies and reserve seats.
+ </FONT> 
+  <P> <BR>
+    <A NAME="14982"> </A> <A NAME="Further Studying the Sample"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Further Studying the Sample </FONT> <BR>
+    <BR>
+    <A NAME="14984"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+To better understand the sample, you may refer to the 
+<a href="api/index.html">Overview of API document</a>.  Besides 
+    the basic options for the <FONT FACE="courier, couriernew, monospaced size">asant</FONT> 
+    command described before, there are more options for further studying the 
+    sample as listed in Table&nbsp;2. </FONT> 
+  <P> <A NAME="17583"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"> 
+    </FONT> 
+  <P> 
+  </FONT><A NAME="17638"></a><font face="Helvetica, Arial, sans-serif"> 
+  <P> <div align="center">
+  <TABLE  WIDTH="80%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+    <CAPTION> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> <B> Table 2  
+    &nbsp&nbsp Arguments for the asant command </B> </FONT> </CAPTION>
+    <BR>
+    <BR>
+    <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP> 
+      <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="18509"> </A> 
+        <P ALIGN="LEFT"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <B> Argument </B> </FONT> 
+      </TH>
+      <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="18511"> </A> 
+        <P ALIGN="LEFT"> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <B> Purpose </B> </FONT> 
+      </TH></DIV>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18513"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">core</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18515"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Builds the entire application. (This is the default target.) </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18517"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">midp</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18519"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Builds the MIDP client part of the application. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18521"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">j2ee</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18523"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Builds the J2EE server part of the application. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18525"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">clean</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18527"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Cleans out the build output directories. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18529"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">emulate</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18531"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Runs the MIDP client part in the emulator. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18533"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">deploy</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18535"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Deploys the J2EE server part on the application server. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18537"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">undeploy</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18539"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Undeploys the J2EE server part from the application server. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18541"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">package</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18543"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Creates a package for entire application. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18545"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">regdb</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18547"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Registers JDBC Resource on the application Server. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18549"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">unregdb</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18551"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Unregisters JDBC Resource from the application Server. </FONT>&nbsp;
+      </TD>
+    </TR>
+    <TR> 
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18553"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          <FONT FACE="courier, couriernew, monospaced size">freshdb</FONT> </FONT>&nbsp;
+      </TD>
+      <TD VALIGN=TOP> 
+        <P> <A NAME="18555"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"> 
+          Repopulate demo data on PointBase database server. </FONT>&nbsp;
+      </TD>
+    </TR>
+  </TABLE></div>
+  <P> 
+  </font> 
+  <P> <BR>
+  <BR>
+  <A NAME="configuredb"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+  Configuring for Using Oracle Database
+  <HR SIZE="2" NOSHADE>
+  </FONT> 
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>The section describes
+the setup for using Oracle database.</font></font>
+<ol>
+<li><b><font face="Arial, Helvetica, sans-serif"><font size=-1>Create an Oracle
+User</font></font></b>
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>
+A tablespace is recommended to be created once for all samples in 
+Oracle database.  Please refer to <a href="../../docs/oracle.html">Working with Oracle Database</a> for creating tablespace.
+After having a tablesapce (e.g. 
+<FONT FACE="courier, couriernew, monospaced size">samples</font>), you can
+create an Oracle user (e.g. <FONT FACE="courier, couriernew, monospaced size">smarticket</font>)
+by executing the <FONT FACE="courier, couriernew, monospaced size">cr_ora_user.sql</font> script as an Oracle system user (e.g. system/manager@sid) 
+in the directory of 
+<FONT FACE="courier, couriernew, monospaced size">&lt;as_install_dir>/samples/docs</font>,  i.e.
+<p><ul><FONT FACE="courier, couriernew, monospaced size">SQL> @cr_ora_user.sql smarticket smarticket samples</font></ul>
+</font></font>
+<p>
+<li> <b><font face="Arial, Helvetica, sans-serif"><font size=-1>Populate Demo Data</font></font></b>
+<font face="Arial, Helvetica, sans-serif"><font size=-1>
+<p>The demo data needs to be populated for this sample.  It can be done by executing
+ the <FONT FACE="courier, couriernew, monospaced size">smarticket.sql</font> script as the Oracle user created in the last step (e.g. smarticket/smarticket@sid)  
+in the directory of 
+<FONT FACE="courier, couriernew, monospaced size">&lt;st_dir>/src/sql</font>, i.e.
+<p><ul><FONT FACE="courier, couriernew, monospaced size">SQL> @smarticket.sql</font></ul>
+</font></font>
+<p>
+<li><b><font face="Arial, Helvetica, sans-serif"><font size=-1>Register Oracle JDBC
+Driver</font></font></b>
+<p><font face="Arial, Helvetica, sans-serif"><font size=-1>
+Oracle JDBC driver is recommended to register once in Application Server for all samples.
+Please refer to <a href="../../docs/oracle.html">Working with Oracle Database</a> for
+configuring Application Server with Oracle JDBC driver.  Make sure the JVM Settings
+(Path Settings and JVM Options) are configured properly for Oracle JDBC driver 
+as instructed.</font></font>
+<p>
+<li><b><font face="Arial, Helvetica, sans-serif"><font size=-1>Register Oracle JDBC Resource in Application Server</font></font></b>
+<p><font size=-1><font face="Helvetica, Arial, sans-serif">
+The Oracle JDBC resource needs to be registered once for this sample.
+<p>
+If you have followed the instructions to run this sample with 
+the PointBase database server, then
+<p>
+(a)  Go to the sample directory, &lt;st_dir>.
+<p>
+(b)  Unregister JDBC resource for using PointBase, e.g. execute the command,
+<p>
+<ul><FONT FACE="courier, couriernew, monospaced size">asant unregdb</font></ul>
+<p>
+(c)  Register JDBC resource for using Oracle, e.g.  execute the command,
+<p>
+<ul><FONT FACE="courier, couriernew, monospaced size">asant regdb_ora -Ddb.host=&lt;host> -Ddb.port=&lt;port> -Ddb.sid=&lt;sid></font></ul>
+<p>
+(d)  Restart the server instance.
+<p>
+(e)  Clean emulator database.
+<p>
+To clean the emulator database, remove the files of &lt;wtk_install_dir>/appdb/run_by*.
+<p>
+</font></font>
+<p>
+<font face="Helvetica, Arial, sans-serif"><font size=-1>After steps (a) - (e),
+you can run the sample with using Oracle database server.
+<p>If you have not registered PointBase JDBC resource before, then do
+ steps (a) and (c) only to register Oracle JDBC resource.
+<p>If you have not compiled, deployed or run the sample before, please refer
+to the instructions in the previous sections to compile, deploy or run the sample.
+<p>
+
+</font></font>
+<p>
+</ol> 
+The above steps provided a supplementary information for
+<a href="#setup">Setting Up the Environment</a>
+in regarding to the use of Oracle database.
+
+<p>
+    <A NAME="trouble"> </A> 
+  <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> Troubleshooting and Notes 
+  <HR SIZE="2" NOSHADE>
+  </FONT> <BR>
+  <ul>
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><b>Monitor Log</b> 
+      <br>
+      As you run the application, monitor the server log to learn what is going 
+      on. </FONT><p> 
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><b>Cannot Connect 
+      to Server</b> <br>
+      If you see the message, "<font face="Courier New, Courier, mono">Cannot 
+      connect to server</font>" in the screen of phone emulator, the server port 
+      in emulator configuration is probably wrong. The default port is 1024. If 
+      your server port is not 1024, please correct it in the following file: 
+      <ul>
+        <font face="Courier New, Courier, mono">&lt;<I>st_dir</I>&gt;/bin/smarticket.jad</font> 
+      </ul>
+      </FONT> <p>
+    <li> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><b>Repopulate Demo 
+      Data</b> <br>
+      The PointBase database for Application Server is already populated with 
+      demo data for Smart Ticket sample. If you need to repopulate the demo data for it, 
+      execute <font face="Courier New, Courier, mono">asant freshdb</font> in 
+      the sample directory, i.e. &lt;<I>st_dir</I>&gt;. 
+      <p>If you used Oracle database,
+      you need to execute smarticket.sql script with sqlplus to repopulate the demo data.
+      <p>If you need to clean 
+      the client (emulator) database,  remove the files of <font face="Courier New, Courier, mono">&lt;<I>wtk_install_dir</I>&gt;/appdb/run_by*</font>. 
+      </FONT> 
+  </ul>
+  <P> 
+</BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+
+</FOOTERCONTENT>
+</MAINCONTENT>
+</BODY>
+</HTML>

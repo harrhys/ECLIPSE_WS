@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<!DOCTYPE application PUBLIC '-//Sun Microsystems, Inc.//DTD J2EE Application 1.2//EN' 'http://java.sun.com/j2ee/dtds/application_1_2.dtd'>
+
+<application>
+  <display-name>transactions-globalweb</display-name>
+    <module>
+      <web>
+        <web-uri>transactions-globalweb.war</web-uri>
+        <context-root>transactions-globalweb</context-root>
+    </web>
+  </module>
+</application>
+

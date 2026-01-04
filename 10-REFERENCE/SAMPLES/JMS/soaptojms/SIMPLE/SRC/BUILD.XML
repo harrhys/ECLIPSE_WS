@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+ *******************************************************************
+ * Copyright (c)  2002 Sun Microsystems, Inc. All rights reserved. *
+ *******************************************************************
+-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="soaptojmsmessage" default="core" basedir=".">
+  <property name="sample.home" value="../../../../"/>
+
+  <!-- ======================================================= -->
+  <!-- App name-dependent settings.			       -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="SOAPtoJMSMessageSample"/>
+
+  <!-- ======================================================= -->
+  <!-- Package directory structures of interest.	       -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/jms/soaptojms"/>
+  <property name="jar.file" value="../${appname}.jar"/>
+ 
+  <!-- ======================================================= -->
+  <!-- Java Doc properties.				       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="SOAP to JMS Message Sample"/>
+  <property name="javadoc.pkgnames" value="samples.jms.soaptojms.*" />
+
+  <!-- ======================================================= -->
+  <!-- Xml files properties.				       -->
+  <!-- ======================================================= -->
+  
+  <property name="earDD" value="application.xml"/>
+ 
+  <!-- ======================================================= -->
+  <!-- Include common.xml				       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+  
+  <property name="classpath.prefix" value="${com.sun.aas.imqLib}/jms.jar:${com.sun.aas.imqLib}/imq.jar:${com.sun.aas.imqLib}/imqutil.jar:${com.sun.aas.imqLib}/jaxm-api.jar:${com.sun.aas.imqLib}/imqxm.jar"/>
+
+  <!-- ======================================================= -->
+  <!-- Tagets to build and deploy sample application           -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/> 
+  <target name="compile" depends="compile_common" /> 
+  <target name="javadocs" depends="javadocs_common" />
+
+  <target name="jar" depends="create_jar_common"/>
+  <target name="core" depends="compile,jar" />
+  <target name="all" depends="core,javadocs"/>
+
+  <!-- ======================================================= -->
+  <!-- Tagets to run sample application                        -->
+  <!-- ======================================================= -->
+
+  <target name="publish-message" depends="init" >
+    <echo>java samples.jms.soaptojms.SendSOAPMessageWithJMS ASTOPIC</echo>
+    <java classname="samples.jms.soaptojms.SendSOAPMessageWithJMS"  fork="yes">
+      <arg value="ASTOPIC"/>
+      <classpath>
+           <pathelement location="${jar.file}"/>
+           <pathelement path="${build.classpath}"/>
+      </classpath>
+    </java>
+  </target>
+
+  <target name="subscribe-message" depends="init" >
+    <echo>java samples.jms.soaptojms.ReceiveSOAPMessageWithJMS ASTOPIC</echo>
+    <java classname="samples.jms.soaptojms.ReceiveSOAPMessageWithJMS" fork="yes">
+      <arg value="ASTOPIC" />
+      <classpath>
+           <pathelement location="${jar.file}"/>
+           <pathelement path="${build.classpath}"/>
+      </classpath>
+    </java>
+  </target>
+
+
+</project>

@@ -1,0 +1,1466 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/26/02 14:51:04">
+	<title>Global Transaction from Servlet Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Global Transaction from Servlet Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Global Transaction from Servlet Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Global Transaction from Servlet Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the Global Transaction (transactions-globalweb) from servlet sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22325"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="22833"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22497"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15155"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22344"  >Configuring for use with the Oracle Database</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22343"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20774"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19851"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, the Global Transaction from Servlet sample application is described.
+</FONT>
+<P>
+
+<A NAME="21354"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The global transaction involves the following steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="25327"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Transfer Amount is withdrawn from the Source Account in the Local Bank data source.
+</FONT>
+<P><A NAME="25328"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Transfer Amount is deposited to the Recipient Account in the Foreign Bank data source. The Local Bank  and Foreign Bank data sources are distinct data sources and could reside in different database servers.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="25383"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example, the Local Bank data source could be an Oracle server while the Foreign Bank data source  could be a Sybase server.  In this example, both datasources are created in PointBase.
+</FONT>
+<P>  </dl>
+<A NAME="25331"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+If the resulting balance for the Source Account is not negative, the transaction is committed. Otherwise, the Source Account does not have enough funds to transfer and the transaction is rolled back. When a rollback occurs, both the Source and Recipient Accounts retain their original balances.
+</FONT>
+<P></ol>
+
+<BR>
+<A NAME="19336"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In order to successfully deploy and run the transactions-globalweb sample application, Database resources (<A HREF="../../../../docs/pointbase.html">PointBase</A>) needs to be setup with the Application Server.
+</FONT>
+<P>
+<A NAME="19336"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you want to run this sample on Oracle Database, please refer to (<A HREF="../../../../docs/oracle.html">How to run sample applications with Oracle </A>) .
+</FONT>
+<P>
+
+<BR>
+<BR>
+<P>
+<BR>
+<A NAME="21421"> </A>
+<A NAME="Global Transaction Resource Requirements"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Global Transaction from Servlet Resource Requirements
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="21423"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The global transaction sample applications in this package require the following resources:
+</FONT>
+<P>
+<ul>
+<A NAME="21425"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">com.pointbase.jdbc.jdbcUniversalDriver</FONT>
+</FONT>
+<P><A NAME="21426"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Database Server for a Local Bank database
+</FONT>
+<P><A NAME="21427"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Local Bank database
+</FONT>
+<P><A NAME="21480"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Database User transactions
+</FONT>
+<P><A NAME="21481"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Database Server for a Foreign Bank database
+</FONT>
+<P><A NAME="21482"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Foreign Bank database
+</FONT>
+<P><A NAME="21419"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Database User transactions
+</FONT>
+<P></ul>
+
+<A NAME="21515"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document will walk you through all of the necessary steps designed to make this particular application operational. These steps are not included as part of the Sun ONE Application Server installation process.
+</FONT>
+<P>
+
+<A NAME="21519"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you have already completed the deployment process you may proceed to <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="25388"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application illustrates the implementation of a global Transaction from within a servlet. It demonstrates how a transaction can be performed without an EJB context. The transaction is started in a servlet by looking up the <tt>javax.transaction.UserTransaction</tt> object via JNDI.  The application simulates the transfer of funds from one account to another in which the accounts may come from different banks. The transaction is "global" because it involves multiple data sources: a local bank and a foreign bank. 
+</FONT>
+<P>
+
+<A NAME="21525"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The first page of the application, seen in <A HREF="index.html#21511"  >Figure&nbsp;1</A>, is an HTML form that allows the user to enter the information displayed in <A HREF="index.html#21633"  >Table&nbsp;1</A>: <BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="21633"> </A>
+<A NAME=""> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 1	&nbsp&nbsp 
+</B>
+</FONT>
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="21637"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Input Field
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="21639"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Description
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21641"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Source Bank
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21643"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The bank that is associated with the Source Account.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21645"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Source Account ID
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21647"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Account Number of the Source Account from which the funds should be withdrawn.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21649"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Recipient Bank
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21651"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The bank that is associated with the Recipient Account.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21653"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Recipient Account ID
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21655"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Account Number of the Recipient Account to which the funds should be deposited.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21657"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Transfer Amount
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="21659"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The amount of money to be transferred.
+</FONT>&nbsp;</TD>
+  </TR>
+</TABLE>
+
+
+
+<P>
+</FONT>
+<P>
+
+<A NAME="21511"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 1	&nbsp&nbsp Global Transaction from Servlet Input Form
+</B>
+</FONT>
+<P>
+<A NAME="21512"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="images/GlobalWebTransactionInput.jpg" align="baseline" hspace="2">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="21760"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">When the user clicks the Transfer Funds button, the <FONT FACE="courier, couriernew, monospaced size">GlobalCmtServlet</FONT> is invoked to perform the following transactional process:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="21762"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Get the account balance of the Source Account and Recipient Account.
+</FONT>
+<P><A NAME="21763"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Withdraw the transfer amount from the Source Account.
+</FONT>
+<P><A NAME="21764"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Deposit the transfer amount to the Recipient Account.
+</FONT>
+<P><A NAME="21765"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Get the new account balance of the Source Account and Recipient Account.
+</FONT>
+<P><A NAME="21766"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+If the Source Account balance is negative, the Source Account does not have enough funds to transfer and an exception is thrown. The exception causes the container to throw a <FONT FACE="courier, couriernew, monospaced size">TransactionRolledbackException</FONT> which rolls back all the database updates that were executed in the <FONT FACE="courier, couriernew, monospaced size">transferFunds( )</FONT> method. Otherwise, if the Source Account balance is not negative, the Source Account has enough funds to transfer and the container automatically commits the transaction at the end of the <FONT FACE="courier, couriernew, monospaced size">transferFunds( ) </FONT>method.
+</FONT>
+<P></ol>
+
+<A NAME="21854"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The results of the transaction are displayed in an HTML form similar to the one shown in <A HREF="index.html#21828"  >Figure&nbsp;2</A>. 
+</FONT>
+<P>
+
+<A NAME="21828"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 2	&nbsp&nbsp Global Transaction from Servlet Output Form
+</B>
+</FONT>
+<P>
+<A NAME="21866"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="images/GlobalWebTransactionOutput.jpg" align="baseline" hspace="2">
+
+<br>
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="21902"> </A>
+<A NAME="Architecture and Process Flow"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Architecture and Process Flow
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="21904"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The architecture and process flow diagram is shown in <A HREF="index.html#21867"  >Figure&nbsp;3</A>.
+</FONT>
+<P>
+
+<A NAME="21867"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 3	&nbsp&nbsp Global Transaction from JNDI
+</B>
+</FONT>
+<P>
+<A NAME="21875"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="images/GlobalWebTransaction.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>
+
+<!-- additions here -->
+<A NAME="25439"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><p>The <FONT FACE="courier, couriernew, monospaced size">GlobalWebServlet.doGet()</FONT> method performs the transaction.
+The transaction involves the following steps:
+<ol type="1">
+<A NAME="21762"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<p>Get a global transaction from JNDI.
+<blockquote><FONT FACE="courier, couriernew, monospaced size">javax.transaction.UserTransaction txn = (UserTransaction)
+new InitialContext( ).lookup( "java:comp/UserTransaction" );</FONT></blockquote>
+<A NAME="21762"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+ Start the global transaction using the <tt>javax.transaction.UserTransaction.begin()</tt>
+method. Get the account balance for the Source Account and Recipient Account.
+<A NAME="21762"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<p>Withdraw the transfer amount from the Source Account by deducting
+the amount from its balance. If the Source Account is from a Local Bank,
+<FONT FACE="courier, couriernew, monospaced size">LocalBankAccount.withdraw(amount )</FONT> is invoked. Otherwise, <FONT FACE="courier, couriernew, monospaced size">ForeignBankAccount.withdraw( amount
+)</FONT> is executed.
+<A NAME="21762"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<p>Deposit the transfer amount to the Recipient Account by adding the
+amount to its balance. If the Recipient Account is from a Local Bank, <FONT FACE="courier, couriernew, monospaced size">LocalBankAccount.deposit(amount) </FONT>is invoked. Otherwise, <FONT FACE="courier, couriernew, monospaced size">ForeignBankAccount.deposit( amount) </FONT>is executed.
+<A NAME="21762"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<p>Get the updated balance of the Source Account. If the balance is not negative,&nbsp; the transaction can be completed and all database updates within the transaction will be committed. This is implemented using the <FONT FACE="courier, couriernew, monospaced size">javax.transaction.UserTransaction.commit(
+)</FONT> method. On the other hand, if the balance is negative, this means
+that the Source Account does not have enough funds to transfer. When this
+exception (or any other exception) occurs, the transaction cannot be completed
+-- the transaction must be rolled back so that the database updates will
+not take effect. This is implemented using the <FONT FACE="courier, couriernew, monospaced size">javax.transaction.UserTransaction.rollback()</FONT> method.
+<p>To understand sample application source code better, you can refer to the related javadocs which can be accessed at <br>&lt;install_dir&gt;/samples/transactions/web/simple/javadocs/index.html&nbsp;
+once they are generated by executing the command :<FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT>.
+</FONT>
+<p>
+
+<BR>
+<BR>
+
+<!-- End additions -->
+
+<A NAME="22325"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="22339"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To compile and assemble the application, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="22353"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the src directory of  the sample. For example: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22463"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;install_dir&gt;/samples/transactions/web/simple/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22357"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asant</FONT>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22470"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target <FONT FACE="courier, couriernew, monospaced size">core</FONT> will be executed to build the <FONT FACE="courier, couriernew, monospaced size">.war</FONT> file.
+</FONT>
+<P>  </dl>
+<A NAME="22363"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+To clean the application project area, execute <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22496"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This will remove the sample application assemble and build directories. This is required when you want to rebuild the application.
+</FONT>
+<P>  </dl>
+</ol>
+<P>
+<BR>
+<A NAME="22502"> </A>
+<A NAME="Configuring a second datasource"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Configuring a second datasource
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="22505"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since this application requires two different datasources for global transactions, extra steps are required to create a second instance of the PointBase server.  Currently, the first datasource has already been created and pre-populated with the required LocalBank information.  A second datasource is necessary for the ForeignBank account information. 
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="22591"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="22597"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you have already created and configured a second datasource for the <FONT FACE="courier, couriernew, monospaced size">transactions/ejb/bmt/simple</FONT> or <FONT FACE="courier, couriernew, monospaced size">transactions/ejb/cmt/simple</FONT> application, <I>it is not necessary to complete this procedure</I>. 
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+<A NAME="22510"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To configure a second datasource, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="22622"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/pointbase</FONT> directory
+</FONT>
+<P><A NAME="22511"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22670"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cp -r server server2</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22673"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Execute the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22674"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd server2</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22513"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Open up the file StartServer.sh and change the port number to 8000. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22681"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">../../jdk/bin/java -classpath ./lib/pbserver42RE.ja com.pointbase.net.netServer/port:8000</FONT> 
+</FONT>
+<P>  </dl>
+<A NAME="22516"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Start the server by executing the <FONT FACE="courier, couriernew, monospaced size">StartServer.sh</FONT> script.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22700"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Leave this window open to keep the server running.
+</FONT>
+<P>  </dl>
+<A NAME="22517"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Execute the following command in the same <FONT FACE="courier, couriernew, monospaced size">pointbase/server2</FONT> directory: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22707"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">UNIX:  java -cp ../client_tools/lib/pbclient42RE.jar:../client_tools/lib/pbtools42RE.jar  com.pointbase.tools.toolsCommander com.pointbase.jdbc.jdbcUniversalDriver jdbc:pointbase://localhost:8000/sun-appserv-samples2,create=force transactions transactions</FONT>
+<br>
+<br>
+
+<FONT FACE="courier, couriernew, monospaced size">W2K:  java -cp ..\client_tools\lib\pbclient42RE.jar;..\client_tools\lib\pbtools42RE.jar  com.pointbase.tools.toolsCommander com.pointbase.jdbc.jdbcUniversalDriver jdbc:pointbase://localhost:8000/sun-appserv-samples2,create=force transactions transactions</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22520"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+You have now sucessfully created the database.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22725"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Type <FONT FACE="courier, couriernew, monospaced size">exit</FONT> to quit the PointBase Commander tool.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="22522"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Please note that if you desire to create a database with a different port number, you will need to modify 8000 with your new port number in <A HREF="index.html#22513"  >Step 4</A> and <A HREF="index.html#22517"  >Step 6</A>.  You will also have to modify the <FONT FACE="courier, couriernew, monospaced size">build.xml</FONT> located in the <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/transactions/web/simple/src</FONT> directory to reflect the new port number in the <FONT FACE="courier, couriernew, monospaced size">set DatabaseName2</FONT> section.   This entry is displayed below:
+</FONT>
+<P>
+
+<A NAME="22526"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">&lt;target name="set-DatabaseName2"&gt; </FONT>
+</FONT>
+<P>
+
+<A NAME="22527"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">    &lt;antcall target="admin_command_common"&gt; </FONT>
+</FONT>
+<P>
+
+<A NAME="22528"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">      &lt;param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.ForeignPool.property.Databa </FONT>
+</FONT>
+<P>
+
+<A NAME="22529"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">seName=jdbc:pointbase:server://localhost:</FONT><FONT FACE="courier, couriernew, monospaced size"><B>8000</B></FONT>/sun-appserv-samples2"/&gt; &lt;/antcall&gt; 
+</FONT>
+<P>
+
+<A NAME="22530"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size"> &lt;/target&gt; </FONT>
+</FONT>
+<P>
+
+<A NAME="22532"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You now have to populate this database with the relevant data.  To do so, execute the following steps: 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="22534"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Start the PointBase Server1 (if not started already) by executing the following command:
+</FONT>
+<P>
+ <A NAME="22804"> </A>
+ <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+ <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/pointbase/server/StartServer.sh</FONT>
+ </FONT>
+ <P> <A NAME="22534"> </A>
+ <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+ <B>  <li value="2"></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/transactions/web/simple/src</FONT> directory.
+</FONT>
+<P><A NAME="22535"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant sql</FONT>. This will populate the two databases.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22801"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+</FONT>
+<P>  </dl>
+<A NAME="22536"> </A>
+<P>  
+<A NAME="22537"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Restart the Sun ONE Application Server.
+</FONT>
+<P></ol>
+
+<A NAME="22539"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Again note that if you are changing the port number of the second database, you will have to change the value in the same <FONT FACE="courier, couriernew, monospaced size">build.xml</FONT> in the target <FONT FACE="courier, couriernew, monospaced size">sql</FONT>.  This entry appears below:
+</FONT>
+<P>
+
+<A NAME="22542"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">&lt;target name="sql" depends="sql_common"&gt; </FONT>
+</FONT>
+<P>
+
+<A NAME="22543"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">  &lt;!-- Datasource #2 --&gt; </FONT>
+</FONT>
+<P>
+
+<A NAME="22544"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">   &lt;antcall target="sql_common"&gt; </FONT>
+</FONT>
+<P>
+
+<A NAME="22545"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">     &lt;param name="db.file" value="sql/transactions-globalweb-foreign.sql"/&gt; </FONT>
+</FONT>
+<P>
+
+<A NAME="22546"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">     &lt;param name="db.url"  value="jdbc:pointbase:server://localhost:</FONT><FONT FACE="courier, couriernew, monospaced size"><B>8000</B></FONT>/sun-appserv-samples2"/&gt; 
+</FONT>
+<P>
+
+<A NAME="22547"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">   &lt;/antcall&gt; </FONT>
+</FONT>
+<P>
+
+<A NAME="22548"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">  &lt;/target&gt; </FONT>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="22497"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="22858"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process includes deploying the application EAR, configuring database and registering required resources to the Sun ONE Application Server. Installation comes with a pre-configured PointBase database. If you choose to use the prepopulated PointBase database, you do not need to configure database.
+</FONT>
+<P>
+
+<A NAME="22856"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You may select one of the following methods of deploying and registering the application:
+</FONT>
+<P>
+<ul>
+<A NAME="22889"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22929"  >Command Line Interface (CLI)-based Deployment</A> describes how to manually register the sample application using a Command Line Interface (CLI). This is the fastest means of deploying the application to the application server. 
+</FONT>
+<P><A NAME="22892"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#23025"  >Web Interface (GUI)-based Deployment</A> describes how to use the Sun ONE Deployment Tool to import and deploy the sample application. Alternatively, you can also assemble the application from scratch and deploy it using the Deployment Tool.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="22929"> </A>
+<A NAME="Command Line Interface (CLI)-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line Interface (CLI)-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="22931"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since the sample application is supplied with a complete EAR file, the fastest means of setting up the application is to use the command line utilities as described in this section. If you would like to experience either deploying through a Web based tool, then follow instructions in <A HREF="index.html#23025"  >Web Interface (GUI)-based Deployment</A>. 
+</FONT>
+<P>
+
+<A NAME="22935"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">There are two command line utilities to deploy the application, <A HREF="index.html#22938"  >Using asant script</A> or <A HREF="index.html#22949"  >Using asadmin command</A>. 
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="22938"> </A>
+<A NAME="Using asant script "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using asant script 
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="22940"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory of  the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23455"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;install_dir&gt;/samples/transactions/web/simple/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22944"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23460"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+<BR>
+<P>
+<A NAME="22949"> </A>
+<A NAME="Using asadmin command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using asadmin command
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="22951"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the bin directory of your application server installation. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23527"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;install_dir&gt;/bin/</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22955"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to deploy the module to the local application server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23561"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/transactions/web/simple</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22961"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Execute the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23567"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin  server port&gt; --instance &lt;instance name&gt; transactions-globalweb.ear</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22964"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Commit the changes. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23573"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin reconfig -H &lt;host&gt; -p &lt;Admin Port&gt; -u &lt;user&gt; -w &lt;password&gt; &lt;instancename&gt;</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="22969"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You are now ready to exercise the application. Follow the instructions provided in <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="23599"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The <FONT FACE="courier, couriernew, monospaced size">transactions-globalcmt.ear</FONT> file is an Enterprise Archive (EAR) file that contains the Web Archive (WAR) file for the application. Since this application does not have any EJB's, there is no JAR file involved.
+</FONT>
+<P>
+
+<A NAME="23600"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="23601"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Authenticates against the local application server's administrative server.
+</FONT>
+<P><A NAME="22976"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The EAR file is transferred to the administrative server.
+</FONT>
+<P><A NAME="22977"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="22978"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the EAR file and embedded WAR file. 
+</FONT>
+<P><A NAME="23507"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into repository
+</FONT>
+<P><A NAME="22980"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application <FONT FACE="courier, couriernew, monospaced size">transactions-globalweb</FONT> by updating <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT> 
+</FONT>
+<P>  </ul>
+</ul>
+
+<A NAME="22983"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, proceed to <A HREF="index.html#23008"  >Verifying Registration</A>.
+</FONT>
+<P>
+
+<A NAME="22985"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Otherwise, you are now ready to exercise the application by <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="23008"> </A>
+<A NAME="Verifying Registration "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Verifying Registration 
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="23010"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. If you do not want to verify that the application has been registered, proceed directly to <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="23014"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<P>
+
+<A NAME="23614"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;admin-port&gt; &lt;server instance name&gt;</FONT>
+</FONT>
+<P>
+
+<A NAME="23020"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You will see the <FONT FACE="courier, couriernew, monospaced size">transactions-globalweb</FONT> as one of the listed applications.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="23025"> </A>
+<A NAME="Web Interface (GUI)-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Web Interface (GUI)-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="23027"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Login to web-based administration tool from browser.
+</FONT>
+<P><A NAME="23028"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Navigate as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23367"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Application Server Instances --&gt; &lt;server instance&gt; --&gt; Applications --&gt; Enterprise Applications</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="23033"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Click on the Deploy icon.
+</FONT>
+<P><A NAME="23034"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Use Browse button to locate the <FONT FACE="courier, couriernew, monospaced size">transactions-globalweb.ear</FONT> file and then click the OK button. 
+</FONT>
+<P><A NAME="23035"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Type in product in "App Name" and then click OK. 
+</FONT>
+<P><A NAME="22921"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Verify that the application is deployed by clicking on the product link. 
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="22344"> </A>
+<A NAME="Configuring for use with the Oracle Database"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Configuring for use with the Oracle Database
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+  <P>
+  <P><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>The product 
+  application requires the following database setup prior to running:
+  Since this sample requires 2 databases, the build.xml has been configured with an ant target to create a Pointbase DB instance (Local Account) and an Oracle DB instance (Foreign Account).  The sample will demonstrate by transferring funds between the foreing and local accounts how transactions can be managed across two different database systems.</FONT></FONT>
+  <BR>
+  <BR>
+  <B><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>Ensure 
+    Database Requirements are Met</FONT></FONT></B> 
+    <P><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>See the Sun One 
+    Application Server Release Notes for database version requirements. The 
+    Product sample includes schema script for Oracle.</FONT></FONT> 
+    <P><B><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>Create an 
+    RDBMS User</FONT></FONT></B> 
+    <UL><FONT face=Arial size=2>cd 
+      &lt;install_root&gt;/samples/transactions/web/simple/src/sql</FONT>
+<P><FONT face=Arial size=2>sqlplus to oracle as system 
+    user and create a user called transactions.</FONT> 
+      <P><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>SQL&gt; 
+      @createUser.sql&nbsp;</FONT></FONT></UL>
+          <BR><B><FONT face="Arial, Helvetica, sans-serif"><FONT 
+    size=-1>Create and Populate the Product RDBMS Tables</FONT></FONT></B> 
+    <UL><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>cd 
+      &lt;install_root&gt;/samples/transactions/web/simple/src/sql</FONT></FONT> 
+      <P><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1> sqlplus 
+      to oracle as&nbsp;"transactions" user</FONT></FONT> 
+      <P><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>SQL&gt; 
+      @transactions-globalweb-foreign.sql;</FONT></FONT> 
+      <P><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>exit 
+      sqlplus</FONT></FONT></P></UL><B><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>Register JDBCDriver</FONT></FONT></B> <BR><FONT face="Arial, Helvetica, sans-serif"><FONT 
+    size=-1>Make sure that JDBC driver zip/jar files are in classpath-suffix 
+    attribute of java-config element in server.xml of the instance running this 
+    product application.</FONT></FONT> 
+    <P><B><FONT face="Arial, Helvetica, sans-serif"><FONT size=-1>Create a new 
+    Oracle JDBC Connection Pool</FONT></FONT></B> <BR><FONT 
+    face="Helvetica, Arial, sans-serif"><FONT size=-1>If you have followed the 
+    instructions for Compiling, Assembling and Deploying the Application against 
+    the PointBase server then:</FONT></FONT> 
+    <DL><FONT face="courier, couriernew, monospaced size"><FONT 
+      size=-1></FONT></FONT>&nbsp;</DL><FONT size=-1><FONT 
+    face="courier, couriernew, monospaced size">Change to the directory </FONT><FONT 
+    face="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/transactions/web/simple/src</FONT></FONT> 
+    <BR><FONT size=-1><FONT 
+    face="courier, couriernew, monospaced size">Execute the command 
+  asant undeploy
+    </FONT>
+<A NAME="23653"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"> The build.xml has been configured with an ant target to create a Pointbase DB instance (Local Account) and an Oracle DB instance (Foreign Account).  The sample will demonstrate by transferring funds between the foreign and local accounts how transactions can be managed across two different database systems.  To deploy the above described target, do the following:
+ol
+</FONT>
+<P>
+<ol type="1">
+<A NAME="23655"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the src directory of the sample.  For example:
+cd &lt;install_dir&gt;/samples/transactions/web/simple/src
+</FONT>
+
+<P>  
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the command: <FONT FACE="courier, couriernew, monospaced size">asant deploy_ora -Ddb.host=&lt;DB Oracle hostname&gt; -Ddb.port=&lt;port number&gt; -Ddb.sid=&lt;Oracle SID&gt;. </FONT>
+<br>
+For example:<FONT FACE="courier, couriernew, monospaced size"> asant deploy_ora -Ddb.host=sx450 -Ddb.port=1521 -Ddb.sid=BX3 </FONT>
+</FONT>
+
+<P> 
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+This will create and deploy both DB resources (one PB, one Oracle) for this sample.  Restart the application server instance.
+</FONT>
+</ol>
+
+<br>
+<A NAME="22343"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="23653"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This describes how to start the application, navigate through it and how to troubleshoot in the event of problems. 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="23655"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Start the application by accessing the following URL:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23695"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">http://&lt;web server hostname&gt;:&lt;port&gt;/transactions-globalweb/index.html</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="23782"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Enter a value for Source Bank, Source Account ID, Recipient Bank and Recipient Account ID.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23783"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Local Bank Accounts are listed in <A HREF="index.html#23789"  >Table&nbsp;2</A>.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="23784"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="23789"> </A>
+<A NAME="Local Bank Accounts"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 2	&nbsp&nbsp Local Bank Accounts
+</B>
+</FONT>
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="23795"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Local Bank Account ID
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="23797"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Initial Balance
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="23799"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Maximum Withdrawal Amount
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23801"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+001
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23803"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+100
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23805"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+300
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23807"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+002
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23809"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+500
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23811"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+300
+</FONT>&nbsp;</TD>
+  </TR>
+</TABLE>
+
+
+
+<P>
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="23673"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Foreign Bank Accounts are listed in <A HREF="index.html#23912"  >Table&nbsp;3</A>.
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="23859"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="23912"> </A>
+<A NAME="Foreign Bank Accounts"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 3	&nbsp&nbsp Foreign Bank Accounts
+</B>
+</FONT>
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="23916"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Foreign Bank Account ID
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="23918"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Initial Balance
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23920"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+1000
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23922"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+1000
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23924"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+1001
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="23926"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+5000
+</FONT>&nbsp;</TD>
+  </TR>
+</TABLE>
+
+
+
+<P>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="23970"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Enter a value for Transfer Amount.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23987"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This must be a value that is not less than 0 and not more than the Account's Maximum Withdrawal Amount.
+</FONT>
+<P>  </dl>
+<A NAME="23907"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Click on Transfer Funds to execute the transaction.
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="20774"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="21346"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">When running the application, the following error conditions, listed in <A HREF="index.html#23998"  >Table&nbsp;4</A>, could occur and cause the transaction to roll back: 
+</FONT>
+<P>
+
+<A NAME="21347"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="23998"> </A>
+<A NAME="Error Messages, Descriptions and Solutions"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 4	&nbsp&nbsp Error Messages, Descriptions and Solutions
+</B>
+</FONT>
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="24004"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Error Message
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="24006"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Description
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="24008"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Solution
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24010"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Please correct your entries.</FONT>
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24077"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The values entered in the required fields are either blank or contain incorrect values.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24082"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Make sure there is a value for all the required fields. Transfer Amount must be a number greater than 0.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24016"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Account ID X does not exist.</FONT>
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24093"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The value X that was entered for either the Source Account ID or Recipient Account ID is not one of the valid Account ID's listed above.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24099"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Make sure that both Source Account ID and Recipient Account ID are in the list of valid Account ID's shown above.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24105"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Cannot withdraw from Source Account:</FONT>
+</FONT>
+<P>
+<A NAME="24022"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Account has insufficient funds.</FONT>
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24110"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Source Account does not have enough funds to transfer the requested amount to the Recipient Account.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24116"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Reduce the Transfer Amount to be less or equal to the Source Account Balance.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24121"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Cannot withdraw from Source Account: Maximum withdrawal amount is 300.</FONT>
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24126"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Transfer Amount exceeds the Maximum Withdrawal Amount that was defined for the Source Account. This only happens when the Source Account is from a Local Bank. Foreign Bank Accounts do not have a maximum withdrawal amount.
+</FONT>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="24135"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Reduce the Transfer Amount to be less or equal to the Account's Maximum Withdrawal Amount.
+</FONT>&nbsp;</TD>
+  </TR>
+</TABLE>
+
+<P>
+</FONT>
+<P>
+<ul>
+<A NAME="24143"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+You may also restore the second databases with the original data by executing <FONT FACE="courier, couriernew, monospaced size">asant sql</FONT> in the <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/transactions/web/simple/src</FONT> directory.
+</FONT>
+<P><A NAME="24145"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+When using the admin UI to restart the Sun ONE Application Server, it may be necessary to click on 'Apply Changes' then on 'Restart Server'.
+</FONT>
+<P><A NAME="24147"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Please make sure that you run <FONT FACE="courier, couriernew, monospaced size">asant undeploy</FONT> before redeploying this sample. This will ensure that all modules are undeployed and the resources are disabled.
+</FONT>
+<P></ul>

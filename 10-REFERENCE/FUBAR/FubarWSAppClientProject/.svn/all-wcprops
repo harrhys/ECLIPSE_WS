@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/repos/obo/!svn/ver/55256/Operations/branches/EntEngCert/Fubar/FubarWSAppClientProject
+END
+runwsclient.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/repos/obo/!svn/ver/55196/Operations/branches/EntEngCert/Fubar/FubarWSAppClientProject/runwsclient.cmd
+END
+.classpath
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/repos/obo/!svn/ver/55196/Operations/branches/EntEngCert/Fubar/FubarWSAppClientProject/.classpath
+END
+.project
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/repos/obo/!svn/ver/55196/Operations/branches/EntEngCert/Fubar/FubarWSAppClientProject/.project
+END

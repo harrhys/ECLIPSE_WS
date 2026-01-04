@@ -1,0 +1,76 @@
+<!--
+ Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
+-->
+
+<project name="jaxmtags" default="main" >
+  
+  <property name="app.base" location="../.." />
+  <property name="app.name"  value="jaxmtags" />
+
+  <property name="jaxm.home"  value="/ws1/jaxm/build/dist" />
+  
+  <path id="cp.g" >
+    <fileset dir="${app.base}/WEB-INF/lib" includes="*.jar" /> 
+    <pathelement location="${app.base}/WEB-INF/classes/" />
+  </path>
+
+  <!-- ==================== Tasks ==================== -->     
+  
+  <!-- ==================== Defaults ==================== -->
+  <target name="init" >
+    <echo message="${app.base}" />
+
+    <!-- load all jaxm tasks -->  
+    <taskdef 
+       classpathref="cp.g" 
+       resource="com/sun/xml/messaging/tags/tasks.properties"/>
+
+    <jaxmContext name="default" />
+
+  </target>
+  
+  <!-- ==================== File tests ==================== -->
+  <!-- File, directory and welcome tests -->
+  
+  <target name="test1" depends="init">
+    <!-- remoteURL=""-->
+    <jaxmCall 
+      msgId="req1"
+      resId="res1"
+      endpoint="http://localhost:8080/${app.name}/echo.jsp" >
+        <sHeader><![CDATA[ <h:head xmlns:h="http://foo.bar.head/" >5</h:head>
+        ]]></sHeader>
+        <sBody><![CDATA[ <t:transaction xmlns:t="http://foo.bar/" >5</t:transaction>
+        ]]></sBody>
+
+    </jaxmCall>
+    <echo message="Request: " />
+    <jaxmDisplay name="req1" />
+    <echo message="Response: " />
+    <jaxmDisplay name="res1" />
+  </target>   
+ 
+  <target name="test2" depends="init">
+    <!-- remoteURL=""-->
+    <jaxmCall 
+      msgId="req1"
+      resId="res1"
+      endpoint="http://localhost:8080/${app.name}/hello.jsp" >
+        <sHeader><![CDATA[ <h:head xmlns:h="http://foo.bar.head/" >5</h:head>
+        ]]></sHeader>
+        <sBody><![CDATA[ <t:transaction xmlns:t="http://foo.bar/" >5</t:transaction>
+        ]]></sBody>
+
+    </jaxmCall>
+    <echo message="Request: " />
+    <jaxmDisplay name="req1" />
+    <echo message="Response: " />
+    <jaxmDisplay name="res1" />
+  </target>   
+ 
+  
+  <target name="main" depends="test1" />
+
+</project>
+

@@ -1,0 +1,310 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Samples Directory Structure</title>
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+
+<meta name="keywords" value="">
+
+<meta name="description" value="">
+
+<link rel="stylesheet" href="default.css"><!--stopindex--></head>
+
+
+
+
+
+
+
+
+
+
+
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" bgcolor="#ffffff">
+<a name="top"></a> <!-- SUN.COM TEMPLATE V4.2 --> <!-- BEGIN GLOBAL NAVIGATION TOOLBAR --> 
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+  <tr>
+
+    <td width="49%"><span class="sp2"> </span></td>
+
+  </tr>
+
+  <form action="http://www.sun.com/search/index.cgi">
+
+  </form>
+
+  <tr>
+
+    <td width="49%" nowrap valign="middle">
+
+      <div class="sitelinks"> <a href="http://www.sun.com/">sun.com</a></div>
+
+    </td>
+
+    <td nowrap valign="middle" width="49%" colspan="3">
+
+      <div class="sitelinks">
+
+        <div align="right"><a href="http://www.sun.com/sales/index.html">How To
+
+          Buy</a>  |  <a href="http://mysun.sun.com/">My Sun</a>  |  <a href="http://www.sun.com/worldwide/">Worldwide
+
+          Sites</a></div>
+
+      </div>
+
+    </td>
+
+  </tr>
+
+  <tr>
+
+    <td width="49%"><span class="sp2"> </span></td>
+
+  </tr>
+
+  </tbody>
+
+</table>
+
+<!-- END GLOBAL NAVIGATION TOOLBAR -->
+
+<!-- BEGIN GENERIC MASTHEAD -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+<tbody><tr>
+
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+
+    <td class="sunblue" valign="top"><a href="http://www.sun.com/"><img src="images/logo_sun.gif" width="110" height="43" border="0" alt="Sun Microsystems Logo"></a><br>
+
+      <img src="images/a.gif" width="170" height="1" alt=""></td>
+
+<td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+
+    <td width="50%" class="sunyellow" valign="bottom" nowrap><br>
+
+      <span class="sp5"> </span></td>
+
+<td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+
+    <td width="50%" class="sunred" valign="bottom" nowrap><br>
+
+      <span class="sp5"> </span></td>
+
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+
+</tr>
+
+</tbody></table>
+
+<span class="sp5"></span><br>
+
+<!-- END GENERIC MASTHEAD --> <!-- BEGIN BREADCRUMB --><br>
+
+<!-- END BREADCRUMB -->
+
+<!-- BEGIN PAGETITLE -->
+
+<div class="pagetitle2">Sun ONE Application Server 7</div>
+<div class="pagetitle">Samples Directory Structure</div><!-- END PAGETITLE --> <!-- BEGIN WRAPPER TABLE, 3 COLUMN, LEFT/MAIN/RIGHT -->
+
+  
+<table border="0" cellpadding="0" cellspacing="5" width="100%" height="1226">
+  <tbody> 
+  <tr> 
+    <td valign="top"> 
+      <p><br>
+        The sample applications included as part of the Sun ONE Application Server 
+        7 are packaged according to a consistent directory structure. This structure 
+        is meant to represent a realistic approach to defining source code workspaces 
+        for J2EE applications. If you are establishing a source code directory 
+        structure for your own J2EE applications, you will find it useful to review 
+        the layout of the sample application source directories and how they are 
+        used in the <a href="ant.html">Ant-based build environment</a>.</p>
+      <p>The larger sample applications such as Java Pet Store are located directly 
+        under the directory:</p>
+      <blockquote> 
+        <p> <font face="Courier New, Courier, mono"><i>install_root</i>/samples/</font> 
+        </p>
+      </blockquote>
+      <p>The balance of the samples are arranged under various categories within 
+        the <font face="Courier New, Courier, mono">samples/</font> directory. 
+        For example, Enterprise Javabean (EJB) samples are collected under:</p>
+      <blockquote> 
+        <p><font face="Courier New, Courier, mono"><i>install_root</i>/samples/ejb/&lt;<i>samplename</i>&gt;/</font>.</p>
+      </blockquote>
+      <p>For most samples, the following directories and files exist:</p>
+      <table align="center" cellpadding="3">
+        <tr bgcolor="#CCCCCC"> 
+          <td width="32%"><b>Directory or File</b></td>
+          <td width="68%"><b>Description</b></td>
+        </tr>
+        <tr> 
+          <td width="32%"><font face="Courier New, Courier, mono">&lt;<i>sampleroot</i>&gt;/ 
+            </font></td>
+          <td width="68%">&nbsp;</td>
+        </tr>
+        <tr> 
+          <td width="32%" height="23"> 
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">&lt;<i>samplename</i>&gt;.(ear|war)</font></p>
+            </blockquote>
+          </td>
+          <td width="68%" height="23">Pre-built J2EE EAR/WAR file.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">docs/ </font></p>
+            </blockquote>
+          </td>
+          <td width="68%">Sample setup instructions.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">javadocs/ </font></p>
+            </blockquote>
+          </td>
+          <td width="68%">Location of Javadoc information when using &quot;ant 
+            javadocs&quot; to generate API documentation for a sample.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">src/</font></p>
+            </blockquote>
+          </td>
+          <td width="68%">Sample source code. Contains J2EE deployment descriptors.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">sql/</font></p>
+              </blockquote>
+            </blockquote>
+          </td>
+          <td width="68%">Database setup scripts and DDL.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">docroot/</font></p>
+              </blockquote>
+            </blockquote>
+          </td>
+          <td width="68%">Web content: JSPs, HTML, images, etc.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <blockquote> 
+                <blockquote> 
+                  <p><font face="Courier New, Courier, mono">WEB-INF/</font></p>
+                </blockquote>
+              </blockquote>
+            </blockquote>
+          </td>
+          <td width="68%">Tag library definition and resource files.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">&lt;<i>packagename</i>&gt;/</font></p>
+              </blockquote>
+            </blockquote>
+          </td>
+          <td width="68%">Java source code (if any)</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">build/</font></p>
+            </blockquote>
+          </td>
+          <td width="68%">Transient build area.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">classes/</font></p>
+              </blockquote>
+            </blockquote>
+          </td>
+          <td width="68%">Class files generated by build facility.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">assemble/</font></p>
+            </blockquote>
+          </td>
+          <td width="68%">Transient assembly area.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">ear/</font></p>
+              </blockquote>
+            </blockquote>
+          </td>
+          <td width="68%">EAR file assembly area.</td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">war/</font></p>
+              </blockquote>
+            </blockquote>
+          </td>
+          <td width="68%">WAR file assembly area. </td>
+        </tr>
+        <tr> 
+          <td width="32%"> 
+            <blockquote> 
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">jar/</font></p>
+              </blockquote>
+            </blockquote>
+          </td>
+          <td width="68%">EJB JAR file assembly area.</td>
+        </tr>
+      </table>
+      <p><font face="Arial, Helvetica, sans-serif">Here's a file explorer view 
+        of a sample applications directory:</font></p>
+      <table width="41%" align="center" height="431">
+        <tr align="center"> 
+          <td height="433"><img src="images/screenshot.jpg" width="408" height="417"></td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td class="grey1"><span class="sp5"> </span></td>
+  </tr>
+  <!-- BEGIN SPACER ROW --> <!-- END SPACER ROW --> </tbody> 
+</table>
+
+<div class="sitelinks" align="center"> <a href="http://wwws.sun.com/company/">Company
+    Info</a>   |   <a href="http://wwws.sun.com/contact/">Contact</a>   |   Copyright
+    2002 Sun Microsystems <br>
+
+ 
+
+</div>
+
+<!-- END GLOBAL FOOTER -->
+
+</body></html>

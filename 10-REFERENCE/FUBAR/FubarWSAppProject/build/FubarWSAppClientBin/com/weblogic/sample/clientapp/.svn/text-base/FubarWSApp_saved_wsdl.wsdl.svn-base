@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<s0:definitions name="FubarWSAppDefinitions" targetNamespace="http://www.obopay.com" xmlns="" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://www.obopay.com" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/">
+  <s0:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="java:com.weblogic.sample.common" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://www.obopay.com" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="FubarRequestData">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="clientID" nillable="true" type="xs:string"/>
+          <xs:element minOccurs="1" name="asyncFlag" nillable="false" type="xs:boolean"/>
+          <xs:element minOccurs="1" name="publishFlag" nillable="false" type="xs:boolean"/>
+          <xs:element minOccurs="1" name="sleepTime" nillable="false" type="xs:int"/>
+          <xs:element minOccurs="1" name="reqNumber" nillable="false" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="FubarResponseData">
+        <xs:sequence>
+          <xs:element minOccurs="1" name="result" nillable="true" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://www.obopay.com" xmlns:s0="http://schemas.xmlsoap.org/wsdl/" xmlns:s1="http://www.obopay.com" xmlns:s2="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="java:com.weblogic.sample.common"/>
+      <xs:element name="sampleMethod">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="inputData" type="java:FubarRequestData" xmlns:java="java:com.weblogic.sample.common"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="sampleMethodResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="sampleMethodResponse" type="java:FubarResponseData" xmlns:java="java:com.weblogic.sample.common"/>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+  </s0:types>
+  <s0:message name="sampleMethod">
+    <s0:part element="s1:sampleMethod" name="parameters"/>
+  </s0:message>
+  <s0:message name="sampleMethodResponse">
+    <s0:part element="s1:sampleMethodResponse" name="parameters"/>
+  </s0:message>
+  <s0:portType name="FubarWSAppPortType">
+    <s0:operation name="sampleMethod" parameterOrder="parameters">
+      <s0:input message="s1:sampleMethod"/>
+      <s0:output message="s1:sampleMethodResponse"/>
+    </s0:operation>
+  </s0:portType>
+  <s0:binding name="FubarWSAppSoapBinding" type="s1:FubarWSAppPortType">
+    <s2:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <s0:operation name="sampleMethod">
+      <s2:operation soapAction="" style="document"/>
+      <s0:input>
+        <s2:body parts="parameters" use="literal"/>
+      </s0:input>
+      <s0:output>
+        <s2:body parts="parameters" use="literal"/>
+      </s0:output>
+    </s0:operation>
+  </s0:binding>
+  <s0:service name="FubarWSApp">
+    <s0:port binding="s1:FubarWSAppSoapBinding" name="FubarWSAppPortTypeSoapPort">
+      <s2:address location="http://localhost:7001/FubarWSApp/Series1"/>
+    </s0:port>
+  </s0:service>
+</s0:definitions>

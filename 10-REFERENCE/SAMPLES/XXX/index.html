@@ -1,0 +1,168 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+   <title>Sun ONE Application Server 7 Sample Applications</title>
+<link rel="stylesheet" href="docs/default.css">
+<!--stopindex-->
+</head>
+<body bgcolor="#FFFFFF" leftmargin="0" topmargin="0" marginheight="0" marginwidth="0">
+<a NAME="top"></a>
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+<tr>
+<td WIDTH="49%"><span class="sp2"></span></td>
+</tr>
+
+<tr>
+<td VALIGN=CENTER NOWRAP WIDTH="49%">
+<div class="sitelinks"><a href="http://www.sun.com/">sun.com</a></div>
+</td>
+
+<td VALIGN=CENTER COLSPAN="3" NOWRAP WIDTH="49%">
+<div class="sitelinks">
+<div align=right><a href="http://www.sun.com/sales/index.html">How To Buy</a>&nbsp;
+|&nbsp; <a href="http://mysun.sun.com/">My Sun</a>&nbsp; |&nbsp; <a href="http://www.sun.com/worldwide/">Worldwide
+Sites</a></div>
+</div>
+</td>
+</tr>
+
+<tr>
+<td WIDTH="49%"><span class="sp2"></span></td>
+</tr>
+</table>
+<!-- END GLOBAL NAVIGATION TOOLBAR --><!-- BEGIN GENERIC MASTHEAD -->
+<table BORDER=0 CELLSPACING=0 CELLPADDING=0 WIDTH="100%" >
+
+<tr>
+<td><img SRC="docs/images/a.gif" ALT="" BORDER=0 height=8 width=10></td>
+
+<td VALIGN=TOP class="sunblue"><a href="http://www.sun.com/"><img SRC="docs/images/logo_sun.gif" ALT="Sun Microsystems Logo" BORDER=0 height=43 width=110></a>
+<br><img SRC="docs/images/a.gif" ALT="" height=1 width=170></td>
+
+<td><img SRC="docs/images/a.gif" ALT="" BORDER=0 height=1 width=10></td>
+
+<td VALIGN=BOTTOM NOWRAP WIDTH="50%" class="sunyellow">
+<br><span class="sp5"></span></td>
+
+<td><img SRC="docs/images/a.gif" ALT="" BORDER=0 height=1 width=10></td>
+
+<td VALIGN=BOTTOM NOWRAP WIDTH="50%" class="sunred">
+<br><span class="sp5"></span></td>
+
+<td><img SRC="docs/images/a.gif" ALT="" BORDER=0 height=8 width=10></td>
+</tr>
+</table>
+<span class="sp5"></span>
+<br>
+<!-- END GENERIC MASTHEAD --><!-- BEGIN BREADCRUMB --> <!-- END BREADCRUMB --><!-- BEGIN PAGETITLE --> 
+<div class="pagetitle2">Sun[tm] ONE Application Server 7</div>
+
+<div class="pagetitle">Sample Applications</div>
+<!-- END PAGETITLE --><!-- BEGIN WRAPPER TABLE, 3 COLUMN, LEFT/MAIN/RIGHT --> 
+<table BORDER=0 CELLSPACING=10 CELLPADDING=0 WIDTH="100%" >
+
+  <tr BGCOLOR="#FFFFFF"> 
+    <td VALIGN=TOP><!-- BEGIN D2 PRIMARY NAVIGATION --> <br>
+      <b>Samples Index</b> 
+      <p>Complete <b><a href="docs/list.html">index of sample applications</a></b> 
+        provided as part of the application server. <br>
+        <b><br>
+        Getting Started Guide&nbsp;</b> 
+      <p>Before working with the samples, ensure that you've followed the Getting 
+        Started Guide in order to familiarize yourself with the features and basic 
+        operation of the application server. The Getting Started Guide is available 
+        at <font face="Courier New, Courier, mono">&lt;install_dir&gt;/docs/getting-started/index.html 
+        </font><br>
+        <b><br>
+        Before Working With Samples</b> 
+      <blockquote>In addition to following the Getting Started Guide, it is recommended 
+        that you review the following sections prior to working with the sample 
+        applications. 
+        <p><b><a name="setup-env"></a>1. Set Up Your Environment</b> <br>
+          Before deploying sample applications to Sun ONE Application Server, 
+          ensure your application server environment is functioning properly. 
+          The basic operations introduced in the Getting Started Guide will help 
+          ensure that your environment is configured properly. A key requirement 
+          prior to working with the samples is to ensure that the following directory 
+          is added to your PATH environment variable: 
+        <blockquote> 
+          <p><font face="Courier New, Courier, mono">&lt;install_dir&gt;/bin</font> 
+          </p>
+        </blockquote>
+        <p>If you are either sharing your application server installation with 
+          other users or using a user ID that does not have write permissions 
+          to the area in which the application server is installed (for example, 
+          a non root user using an application server installed under<font face="Courier New, Courier, mono"> 
+          /usr/appserver/ </font>on Solaris[tm] 9), you should make a copy of 
+          the sample applications in your own directory before working with the 
+          samples. For more information on creating your own samples environment, 
+          see the section <a href="docs/setupenv.html"><b>Creating Your Own Samples 
+          Environment</b></a>.
+        <p>If you are using the application server that is installed as part of 
+          a Solaris 9 installation, you will need to download and install PointBase 
+          if you intend to use the sample applications that depend on JDBC[tm] 
+          to access a database. Follow the steps in <b><a href="docs/pointbase.html">Using 
+          PointBase with the Samples</a></b> section for instructions on downloading, 
+          installing and configuring PointBase for use with the sample applications. 
+          Alternatively, you can use an Oracle database server by following the 
+          section below that addresses how to use Oracle with the samples. 
+        <p><b><a name="directory-structure"></a>2. Review Samples Directory Structure</b> 
+          <br>
+          The sample applications included in the application server installation 
+          are packaged according to a consistent structure. Each sample's directory 
+          structure represents a typical source code directory structure layout. 
+          For more information on the manner in which the samples are organized, 
+          see the section <b><a href="docs/packaging.html">Samples Directory Structure</a></b>. 
+        <p><b><a name="using-ant"></a>3. Review Using Ant with the Samples&nbsp;</b> 
+          <br>
+          All of the samples include <font face="Courier New, Courier, mono">build.xml</font> 
+          files that enable you to use the Java[tm]-based Ant build facility to 
+          easily recompile, reassemble and redeploy the sample applications. For 
+          more information on using Ant with the samples, see the section <b><a href="docs/ant.html">Using 
+          Ant with the Samples</a></b>. 
+        <p><b><a name="using-pointbase"></a>4. Review Using PointBase with the 
+          Samples</b> <br>
+          When the PointBase database server is installed as part of the application 
+          server installation, the database server includes a prepopulated database 
+          containing the tables and data required by the sample applications. 
+          For more information on how to use PointBase with the samples, see the 
+          section <b><a href="docs/pointbase.html">Using PointBase with the Samples</a></b>. 
+          This section also addresses how to download, install and configure the 
+          PointBase server when you are using the application server that is installed 
+          as part of a Solaris 9 installation. 
+        <p><b><a name="using-oracle"></a>5. Review Using Oracle with the Samples</b> 
+          <br>
+          The samples which require database&nbsp;connections can also work with 
+          an Oracle RDBMS. For more information on how to use an Oracle RDBMS 
+          with the samples, see the section <b><a href="docs/oracle.html">Using 
+          Oracle with the Samples</a></b>. <br>
+        <p>&nbsp;
+      </blockquote>
+      <p><b>Obtaining Assistance</b> </p>
+      <p>If you encounter problems while running the samples, please access the 
+        Sample Applications topic in the Sun ONE Application Server 7 area of 
+        the <b><a href="http://softwareforum.sun.com/">Sun Software Forums</a></b>. 
+    </td>
+</tr>
+</table>
+
+<table BORDER=0 CELLSPACING=10 CELLPADDING=0 WIDTH="100%" >
+<caption><tbody></tbody></caption>
+
+<tr>
+<td class="grey1">&nbsp;</td>
+</tr>
+</table>
+
+<div class="sitelinks">
+<center><a href="http://wwws.sun.com/company/">Company Info</a>&nbsp;&nbsp;
+|&nbsp;&nbsp; <a href="http://wwws.sun.com/contact/">Contact</a>&nbsp;
+|&nbsp;&nbsp; Copyright 2002 Sun Microsystems</center>
+
+<br>&nbsp;</div>
+<!-- END GLOBAL FOOTER -->
+</body>
+</html>

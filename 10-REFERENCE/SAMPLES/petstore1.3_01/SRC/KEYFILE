@@ -1,0 +1,9 @@
+# List of users for simple file realm. Empty by default.
+# User		Password	Group
+# jps_admin	admin		staff
+# rcvr		rcvr		staff
+# petstore	petstore	staff
+jps_admin;{SSHA}EX9lBjbqtHncI/JBXO6vxnLId+7bDYkEXil16w==;staff
+rcvr;{SSHA}CTV3vAimpAM4VDrKwKkp8vH8FzdPBzJElXjmQQ==;staff
+j2ee;{SSHA}g1GxPnuH1QZ/iNWQSgIv0uDIfGpNf92kHL4eQg==;staff
+

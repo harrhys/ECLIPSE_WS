@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="converter" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="mdb-simple"/>
+  <property name="sample.home" value="../../../../"/>
+  <property name="sample.name" value="SimpleMessageApp"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/ejb/mdb/simple/client"/>
+  <property name="jar.pkg" value="samples/ejb/mdb/simple/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  <property name="sample.name" value="simple"/>
+  <property name="javadoc.pkgnames" value="samples.ejb.mdb.simple.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+
+  <!-- ============================================================== -->
+  <!--           Resource specific properties.                        -->
+  <!-- ============================================================== -->
+  <property name="queue.factory.type" value="javax.jms.QueueConnectionFactory" />
+  <property name="queue.factory.jndi.name" value="jms/MyQcf" />
+  <property name="queue.type" value="javax.jms.Queue" />
+  <property name="queue.jndi.name" value="jms/MyQueue" />
+  <property name="queue.property.name" value="imqDestinationName" />
+  <property name="queue.property.value" value="MyQueue" />
+	
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+  <target name="create-jms-connection">
+    <antcall target="admin_command_common">
+      <param name="admin.command" 
+        value="create-jms-resource ${queue.factory.jndi.name}
+          --resourcetype ${queue.factory.type}
+          --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jms-connection">
+    <antcall target="admin_command_common">
+      <param name="admin.command" 
+        value="delete-jms-resource ${queue.factory.jndi.name} " />
+    </antcall>
+  </target>
+
+  <target name="create-jms-queue">
+    <antcall target="admin_command_common">
+      <param name="admin.command" 
+        value="create-jms-resource ${queue.jndi.name}
+          --resourcetype ${queue.type}
+          --property ${queue.property.name}=${queue.property.value}
+          --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jms-queue">
+    <antcall target="admin_command_common">
+      <param name="admin.command" 
+        value="delete-jms-resource ${queue.jndi.name} " />
+    </antcall>
+  </target>
+
+  <target name= "deploy-jms-resource"
+    depends = "create-jms-connection, create-jms-queue" >
+    <antcall target="reconfig"/>
+  </target>
+
+  <target name= "undeploy-jms-resource"
+    depends = "delete-jms-connection, delete-jms-queue">
+     <antcall target="reconfig"/>
+  </target>
+
+  <target name="reconfig" depends="reconfig_common"/>
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="verify" depends="verify_common"/>
+
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="clientjar" depends="init,clientjar_common"/>
+  <target name="war" depends="init,create_war_common"/>
+  <target name="ear" depends="init,jar,war,clientjar,create_ear_common"/>
+  <target name="core" depends="compile,jar,war,ear,clientjar" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

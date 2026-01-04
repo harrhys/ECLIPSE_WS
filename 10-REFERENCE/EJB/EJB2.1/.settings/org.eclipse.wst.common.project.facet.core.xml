@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faceted-project>
+  <runtime name="BEA WebLogic Server v9.2"/>
+  <fixed facet="java"/>
+  <fixed facet="jst.ejb"/>
+  <installed facet="java" version="1.5"/>
+  <installed facet="jst.ejb" version="2.1"/>
+  <installed facet="wls.ejb" version="9.2"/>
+</faceted-project>

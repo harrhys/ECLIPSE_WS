@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-cmp-mappings PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 OR Mapping //EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-cmp-mapping_1_0.dtd">
+<sun-cmp-mappings>
+<sun-cmp-mapping>
+<schema>SupplierDB</schema>
+<entity-mapping>
+      <ejb-name>InventoryEJB</ejb-name>
+      <table-name>INVENTORYEJBTABLE</table-name>
+      <cmp-field-mapping>
+        <field-name>itemId</field-name>
+        <column-name>INVENTORYEJBTABLE.ITEMID</column-name>
+      </cmp-field-mapping>
+      <cmp-field-mapping>
+        <field-name>quantity</field-name>
+        <column-name>INVENTORYEJBTABLE.QUANTITY</column-name>
+      </cmp-field-mapping>
+    </entity-mapping>
+</sun-cmp-mapping>
+</sun-cmp-mappings>

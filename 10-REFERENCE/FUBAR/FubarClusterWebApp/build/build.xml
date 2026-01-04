@@ -1,0 +1,61 @@
+<project name="FubarWebApp" default="all" basedir=".">
+
+	<!-- setup properties for this build file -->
+	<property name="ear.version" value="1.0"/>
+	<property name="beahomedir" value="C:/bea/weblogic92"/>
+	<property name="buildrootdir" value="${basedir}/../.."/>
+	<property name="approotdir" value="${buildrootdir}/FubarClusterWebApp"/>
+	<property name="approotname" value="FubarCluster"/>
+	<property name="web_mod_file" value="${approotname}WebMod.war"/>
+	<property name="web_app_file" value="${approotname}WebApp.ear"/>
+
+	<target name="all" depends="clean, webmodstage, webmod, webappstage, webapp"/>
+
+	<target name="clean">
+		<delete file="${approotdir}/build/${web_app_file}"/>
+		<delete file="${approotdir}/build/${web_mod_file}"/>
+		<delete dir="${approotdir}/build/tmpwebmodstage"/>
+		<delete dir="${approotdir}/build/tmpwebappstage"/>
+	</target>
+
+	<target name="webmodstage">
+		<delete dir="${approotdir}/build/tmpwebmodstage"/>
+		<mkdir dir="${approotdir}/build/tmpwebmodstage"/>
+		<mkdir dir="${approotdir}/build/tmpwebmodstage/WEB-INF"/>
+		<copy todir="${approotdir}/build/tmpwebmodstage/WEB-INF">
+			<fileset file="${approotdir}/nonjavasrc/MODWEB-INF/web.xml"/>
+			<fileset file="${approotdir}/nonjavasrc/MODWEB-INF/weblogic.xml"/>
+		</copy>
+		<mkdir dir="${approotdir}/build/tmpwebmodstage/WEB-INF/classes"/>
+	</target>
+
+	<target name="webmod" depends="webmodstage">
+		<delete file="${approotdir}/build/${web_mod_file}"/>
+		<jar jarfile="${approotdir}/build/${web_mod_file}"
+			basedir="${approotdir}/build/tmpwebmodstage"
+		/>
+	</target>
+	
+	<target name="webappstage" depends="webmod">
+		<delete dir="${approotdir}/build/tmpwebappstage"/>
+		<mkdir dir="${approotdir}/build/tmpwebappstage"/>
+		<copy todir="${approotdir}/build/tmpwebappstage">
+			<fileset file="${approotdir}/build/${web_mod_file}"/>
+		</copy>
+		<mkdir dir="${approotdir}/build/tmpwebappstage/META-INF"/>
+		<copy todir="${approotdir}/build/tmpwebappstage/META-INF">
+			<fileset file="${approotdir}/nonjavasrc/APPMETA-INF/application.xml"/>
+			<fileset file="${approotdir}/nonjavasrc/APPMETA-INF/weblogic-application.xml"/>
+		</copy>		
+	</target>
+
+	<target name="webapp" depends="webappstage">
+		<jar jarfile="${approotdir}/build/${web_app_file}"
+			basedir="${approotdir}/build/tmpwebappstage">
+			<manifest>
+				<attribute name="Weblogic-Application-Version" value="${ear.version}"/>
+			</manifest>
+		</jar>
+	</target>
+	
+</project>

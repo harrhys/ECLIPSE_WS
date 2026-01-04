@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!--
+ Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ 
+ - Redistribution in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in
+   the documentation and/or other materials provided with the
+   distribution.
+ 
+ Neither the name of Sun Microsystems, Inc. or the names of
+ contributors may be used to endorse or promote products derived
+ from this software without specific prior written permission.
+ 
+ This software is provided "AS IS," without a warranty of any
+ kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES
+ SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR
+ DISTRIBUTING THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN
+ OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR
+ PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF
+ LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE,
+ EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ 
+ You acknowledge that Software is not designed, licensed or intended
+ for use in the design, construction, operation or maintenance of
+ any nuclear facility.
+-->
+
+
+<screen-definitions>
+
+  <template>/template.jsp</template>
+
+  <screen>
+    <screen-name>main</screen-name>
+    <parameter key="title" value="Welcome to the BluePrints Petstore" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/main.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="advicebanner" value="/advice_banner.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>cart</screen-name>
+    <parameter key="title" value="Cart" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/cart.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+    <parameter key="advicebanner" value="/advice_banner.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>items</screen-name>
+    <parameter key="title" value="Items" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/items.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>product</screen-name>
+    <parameter key="title" value="Product" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/product.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>item</screen-name>
+    <parameter key="title" value="Item" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/item.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>update_customer</screen-name>
+    <parameter key="title" value="Update Account" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/edit_customer.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>search</screen-name>
+    <parameter key="title" value="Search" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/search.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>create_customer</screen-name>
+    <parameter key="title" value="Create Customer" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/create_customer.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>order_complete</screen-name>
+    <parameter key="title" value="Order Placed" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/order_completed.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>customer</screen-name>
+    <parameter key="title" value="Customer" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/customer.jsp" direct="false"/>
+    <parameter key="mylist" value="/mylist.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>enter_order_information</screen-name>
+    <parameter key="title" value="Enter Order Information" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/enter_order_information.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>signoff</screen-name>
+    <parameter key="title" value="Sign Off" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/signoff.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>signon_welcome</screen-name>
+    <parameter key="title" value="Welcome" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/main.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>signon</screen-name>
+    <parameter key="title" value="Sign On" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/signon.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>duplicate_account</screen-name>
+    <parameter key="title" value="Duplicate Account" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/duplicate_account.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>signon_create</screen-name>
+    <parameter key="title" value="Create Sign On" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/create_user.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>signon_error</screen-name>
+    <parameter key="title" value="Sign On Error" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/signon_failed.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>cart_empty_order_error</screen-name>
+    <parameter key="title" value="Cart Empty Error" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/cart_empty_order_error.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+
+   <screen>
+    <screen-name>general_error</screen-name>
+    <parameter key="title" value="General Error" direct="true"/>
+    <parameter key="banner" value="/banner.jsp" direct="false"/>
+    <parameter key="sidebar" value="/sidebar.jsp" direct="false"/>
+    <parameter key="body" value="/general_error.jsp" direct="false"/>
+    <parameter key="footer" value="/footer.jsp" direct="false"/>
+   </screen>
+</screen-definitions>
+

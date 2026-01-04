@@ -1,0 +1,2079 @@
+<HTML>
+
+<HEAD>
+        <META NAME="keywords" CONTENT="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Netscape, Sun Microsystems, Sun-Netscape Alliance, iPlanet, internet software">
+        <META NAME="description" CONTENT="The Sun-Netscape Alliance, a strategic alliance formed by America Online and Sun Microsystems, Inc., is delivering iPlanet e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy">
+	<META HTTP-EQUIV="Content-Type" content="text/html; charset=ISO-8859-1">
+	<META NAME="TEMPLATEBASE" CONTENT="Authored in FrameMaker. Converted to HTML in WebWorks Publisher 2000. manual wdt 1.5">
+	<META NAME="LASTUPDATED" CONTENT="07/12/02 11:37:36">
+	<TITLE>Sun ONE Application Server Administrator's Guide to Security:  Administering SSL/TLS Encryption</TITLE>
+</HEAD>
+
+
+
+
+<BODY TEXT="#000000" LINK="#666699" VLINK="#666699" ALINK="#333366" BGCOLOR="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <TD VALIGN="TOP">
+            <A HREF="http://www.iplanet.com">
+            <IMG SRC="../../../../docs/images/SunONE.jpg" VALIGN="BOTTOM" HEIGHT="40" WIDTH="120" BORDER="0"></a>&nbsp;&nbsp;&nbsp;&nbsp;
+            <b><a href="sgcerts.htm">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Previous</a></FONT>&nbsp;&nbsp;&nbsp;&nbsp;</b>
+<a href="contents.htm">
+<b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Contents</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="ix.htm"><b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Index</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../index.htm">
+<b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="black">DocHome</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="sgaccess.htm">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">
+Next
+</a>
+</FONT>
+</b>&nbsp;&nbsp;&nbsp;&nbsp;
+         </TD>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#CCCCCC">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#000000" SIZE="-1"><B>
+            Sun ONE Application Server Administrator's Guide to Security</B></FONT>
+         </TD>
+      </TR>
+      <TR>
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <blockquote>
+<BR>
+<BR>
+
+      <A NAME="13833"> </A>
+<A NAME="Administering SSL/TLS Encryption"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+<zchaptitle>Administering SSL/TLS Encryption</zchaptitle>
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="14283"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Before beginning any of the tasks described in this section, you should already have a certificate and be familiar with the basic concepts of public-key cryptography, including encryption and decryption; public and private keys; digital certificates; and encryption protocols. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="15166"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>This section addresses the following topics:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="15170"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#15981"  >About Encryption</A></zsmartlist1>
+</FONT>
+<P><A NAME="15213"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14334"  >Enabling SSL Communication with LDAP</A></zsmartlist1>
+</FONT>
+<P><A NAME="15218"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14347"  >Turning Security On</A></zsmartlist1>
+</FONT>
+<P><A NAME="17083"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14403"  >Enabling SSL and TLS</A></zsmartlist1>
+</FONT>
+<P><A NAME="15223"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14470"  >Configuring Security Globally</A></zsmartlist1>
+</FONT>
+<P><A NAME="15227"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14514"  >Using External Encryption Modules</A></zsmartlist1>
+</FONT>
+<P><A NAME="15235"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#15647"  >Setting Strong Ciphers</A></zsmartlist1>
+</FONT>
+<P><A NAME="16265"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#16257"  >Preventing Clients from Caching SSL Files</A></zsmartlist1>
+</FONT>
+<P></ul>
+
+<A NAME="16298"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>For more information on encryption and related topics, see <I>Introduction to SSL</I> in the Sun ONE Directory Server document collection.</zparagraph>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15981"> </A>
+<A NAME="About Encryption"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>About Encryption</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14298"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Encryption is the process of transforming information so it is unintelligible to anyone but the intended recipient; <I>decryption</I> is the process of transforming encrypted information so that it is intelligible again. The Sun ONE Application Server 7 supports the Secure Sockets Layer (SSL) and Transport Layer Security (TLS) encryption protocols.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14301"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>A <I>cipher</I> is a cryptographic algorithm (a mathematical function), used for encryption or decryption. The SSL and TLS protocols contain numerous cipher suites. Some ciphers are stronger and more secure than others. Generally speaking, the more bits a cipher uses, the harder it is to decrypt the data.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14303"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>In any two-way encryption process, both parties must use the same ciphers. Because a number of ciphers are available, you need to enable your Sun ONE Application Server for those that are most commonly used in your environment. </zparagraph>
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="15755"> </A>
+<A NAME="SSL and TLS Protocols"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>SSL and TLS Protocols</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15760"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Sun ONE Application Server supports the Secure Sockets Layer (SSL) 3.0 and the Transport Layer Security (TLS) 1.0 protocols for encrypted communication. SSL and TLS are application independent, and higher-level protocols can be layered transparently on them. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="15763"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>SSL and TLS protocols support a variety of ciphers used to authenticate the server and client to each other, transmit certificates, and establish session keys. Clients and servers may support different cipher suites, or sets of ciphers, depending on factors such as which protocol they support, company policies on encryption strength, and government restrictions on export of encrypted software. Among other functions, the SSL and TLS handshake protocols determine how the server and client negotiate which cipher suites they will use to communicate. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="14304"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>During a secure connection, the client and the server agree to use the strongest cipher they have both enabled for communication. You can choose ciphers from the SSL2, SSL3, and TLS protocols. 
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14311"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14313"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Improvements to security and performance were made after SSL version 2.0; you should not use SSL 2.0 unless you have clients that are not capable of using SSL 3.0. Client certificates are not guaranteed to work with SSL 2.0 ciphers.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16271"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>[[Does the Note above still apply?]]</zparagraph>
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14314"> </A>
+<A NAME="Public and Private Keys"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Public and Private Keys</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15356"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The encryption cipher process alone isn't enough to secure your server's confidential information. A key must be used with the encrypting cipher to produce the actual encrypted result, or to decrypt previously encrypted information. The encryption process uses two keys to achieve this result: a public key and a private key. Information encrypted with a public key can be decrypted only with the associated private key. The public key is published as part of a certificate; only the associated private key is safeguarded. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="14316"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>For description of the various cipher suites, and more information about keys and certificates, see <I>Introduction to SSL</I> in the Sun ONE Directory Server document collection. </zparagraph>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14334"> </A>
+<A NAME="Enabling SSL Communication with LDAP"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Enabling SSL Communication with LDAP</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="16023"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You should immediately configure your Administration Server to communicate with the LDAP using SSL. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="16027"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To enable SSL, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17392"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17390"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Security in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="14338"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select Configure Directory Service.</zsmartlist1>
+</FONT>
+<P><A NAME="14339"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click Yes next to Use Secure Sockets Layer (SSL) for connections?</zsmartlist1>
+</FONT>
+<P><A NAME="14340"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Click Save Changes.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16925"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>You are asked if you want to switch to the standard port.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14341"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Click OK to change your port to the standard port for LDAP over SSL.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="14347"> </A>
+<A NAME="Turning Security On"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Turning Security On</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="16938"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You must turn security on before you can configure any other security settings. The following sections describe the ways of turning security on:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="15774"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14349"  >Turning Security On When Creating a Listen Socket</A></zsmartlist1>
+</FONT>
+<P><A NAME="15782"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14365"  >Turning Security On When Editing a Listen Socket</A></zsmartlist1>
+</FONT>
+<P><A NAME="16948"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14403"  >Enabling SSL and TLS</A></zsmartlist1>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14349"> </A>
+<A NAME="Turning Security On When Creating a Listen Socket"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Turning Security On When Creating a Listen Socket</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14351"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To turn security on when creating a new listen socket, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="16969"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="16975"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access HTTP Server and HTTP Server Listeners in the left pane.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16976"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The HTTP Listeners page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14353"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Click New.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16982"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The listener settings page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14357"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>While you are entering the information for the new listener, check Security Enabled under the SSL/TLS Settings to turn security on.</zsmartlist1>
+</FONT>
+<P><A NAME="14358"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Click Save.</zsmartlist1>
+</FONT>
+<P><A NAME="14364"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Restart the server for changes to take effect.</zsmartlist1>
+</FONT>
+<P></ol>
+<P>
+<BR>
+<A NAME="14365"> </A>
+<A NAME="Turning Security On When Editing a Listen Socket"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Turning Security On When Editing a Listen Socket</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14367"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To turn security on when editing an existing listen socket, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17014"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17015"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access HTTP Server and HTTP Listeners in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17016"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select a listener.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17017"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The HTTP Listeners settings page is displayed.</zparaindent1>
+</FONT>
+<P>
+<P>
+<A NAME="17244"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17241"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17243"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you have an external module installed, the Manage Server Certificates page appears requiring the external module's password before you can continue.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+  </dl>
+<A NAME="17020"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Under the SSL/TLS Settings, check Security Enabled to turn security on.</zsmartlist1>
+</FONT>
+<P><A NAME="17021"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Click Save.</zsmartlist1>
+</FONT>
+<P><A NAME="17027"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Restart the server for changes to take effect.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="14403"> </A>
+<A NAME="Enabling SSL and TLS"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Enabling SSL and TLS</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14404"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To protect the security of your application server, you should enable SSL by enabling the SSL2, SSL3, and TLS encryption protocols and selecting the various cipher suites. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="16100"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The default settings allow the most commonly-used ciphers. Unless you have a compelling reason for not using a specific cipher suite, you should allow them all. For more information regarding specific ciphers, see <A HREF="http://docs.iplanet.com/docs/manuals/security/sslin/index.htm"><I><A HREF="http://docs.iplanet.com/docs/manuals/security/sslin/index.htm"><A HREF="http://docs.iplanet.com/docs/manuals/security/sslin/index.htm">Introduction to SSL.</I></zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="15301"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="15319"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<zcaution>Caution</zcaution>
+</B>
+</FONT>
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="15321"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Do not select "No Encryption, only MD5 message authentication". If no other ciphers are available on the client side, the server will default to this setting and no encryption will occur. </zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<A NAME="16084"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Before enabling SSL and TLS, security must be turned on, and you must have at least one certificate installed.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16079"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To enable SSL and TLS, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17100"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17101"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access HTTP Servers and HTTP Server Listeners in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17473"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select the listener you want.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17103"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The HTTP Listeners setting page is displayed.</zparaindent1>
+</FONT>
+<P>
+<P>
+<A NAME="17153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17157"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17159"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you have an external module installed, the Manage Server Certificates page appears requiring the external module's password before you can continue.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+  </dl>
+<A NAME="17106"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Under the SSL/TLS Settings, check the appropriate boxes associated with SSL and TLS, including all the ciphers.</zsmartlist1>
+</FONT>
+<P>
+<P>
+<A NAME="17119"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17122"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17124"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Unless you have a compelling reason for not using a specific cipher suite, you should allow them all. </zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+<A NAME="17107"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>For rollback:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="17230"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>TLS must also be enabled on the browser seeking access to your server:</zsmartlist2>
+</FONT>
+<P><A NAME="17184"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Check both TLS and SSL3 for Netscape Navigator 6.0. </zsmartlist2>
+</FONT>
+<P><A NAME="17199"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>Use the TLS Rollback option for Microsoft Internet Explorer 5.0 and 5.5. </zsmartlist2>
+</FONT>
+<P><A NAME="17206"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>For TLS Rollback also check TLS, and make sure both SSL3 and SSL2 are disabled.</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="17176"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Click Save.</zsmartlist1>
+</FONT>
+<P><A NAME="17108"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Restart the server for changes to take effect.</zsmartlist1>
+</FONT>
+<P>
+<P>
+<A NAME="17141"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+</FONT>
+<P>
+
+</ol>
+
+<A NAME="16123"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The <FONT FACE="courier, couriernew, monospaced size">init.conf</FONT> file is automatically modified to show security on, and all virtual servers are automatically assigned the default security parameters.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14465"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>After you have enabled SSL on a server, its URLs use <FONT FACE="courier, couriernew, monospaced size">https</FONT> instead of <FONT FACE="courier, couriernew, monospaced size">http</FONT>. URLs that point to documents on an SSL-enabled server have this format:</zparagraph>
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="14466"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">https://</FONT>servername.[domain.[dom]]:[port#]</zparaindent1>
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="14467"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>For example:</zparagraph>
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="15439"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">https://admin.sun.com:443</FONT></zparaindent1>
+</FONT>
+<P>
+<P>
+<A NAME="14468"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="15445"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="15454"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you use the default secure HTTP port number (443), you don't have to enter the port number in the URL. </zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+  </dl>
+</dl>
+<BR>
+<BR>
+
+<A NAME="14470"> </A>
+<A NAME="Configuring Security Globally"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Configuring Security Globally</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14472"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Installing an SSL-enabled server creates directive entries in the <FONT FACE="courier, couriernew, monospaced size">init.conf</FONT> file for global security parameters. Security must be enabled for virtual server security settings to work. SSL properties for virtual servers can be found on a per-server basis in the <FONT FACE="courier, couriernew, monospaced size">SSLPARAMS</FONT> element of the <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT> file. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="16662"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Security directive globally enables or disables SSL by making certificates available to the server instance. It must be on for virtual servers to use SSL. If enabled, the user is prompted for the administrator password to access certificates, and so on). </zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="16668"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="16665"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="16667"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>When you create a secure listen socket through the Administration interface, security is automatically turned on globally in the <FONT FACE="courier, couriernew, monospaced size">init.conf</FONT> file. When you create a secure listen socket manually in the <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT> file, security must be turned on by editing the <FONT FACE="courier, couriernew, monospaced size">init.conf</FONT> file<FONT FACE="courier, couriernew, monospaced size">.</FONT></zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<A NAME="16207"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The following topics address global security configuration:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="16208"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#16139"  >SSL Configuration File Directives</A></zsmartlist1>
+</FONT>
+<P><A NAME="16216"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14477"  >Setting Values for SSL Directives</A></zsmartlist1>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="16139"> </A>
+<A NAME="SSL Configuration File Directives"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>SSL Configuration File Directives</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="16483"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To configure security globally, you must set values for the following SSL configuration file directives in the <FONT FACE="courier, couriernew, monospaced size">init.conf</FONT> file:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="16562"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#16518"  >SSLCacheEntries</A></zsmartlist1>
+</FONT>
+<P><A NAME="16566"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#16532"  >SSLClientAuthDataLimit</A></zsmartlist1>
+</FONT>
+<P><A NAME="16558"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#16538"  >SSLClientAuthTimeout</A></zsmartlist1>
+</FONT>
+<P><A NAME="16487"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#16571"  >SSLSessionTimeout</A></zsmartlist1>
+</FONT>
+<P><A NAME="16491"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#16622"  ></A><A HREF="sgencryp.htm#16580"  >SSL3SessionTimeout</A></zsmartlist1>
+</FONT>
+<P></ul>
+<BR>
+<P>
+<A NAME="16518"> </A>
+<A NAME="SSLCacheEntries"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>SSLCacheEntries</zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="16519"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Specifies the number of SSL sessions that can be cached. There is no upper limit. </zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="16520"> </A>
+<A NAME="Syntax "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<zhead4>Syntax </zhead4>
+</B>
+</FONT>
+<BR>
+
+<A NAME="16521"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph><FONT FACE="courier, couriernew, monospaced size">SSLCacheEntries </FONT>number</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16522"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If the <I>number</I> is 0, the default value, which is 10000, is used.</zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="16532"> </A>
+<A NAME="SSLClientAuthDataLimit"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>SSLClientAuthDataLimit</zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="16533"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Specifies the maximum amount of application data, in bytes, that is buffered during the client certificate handshake phase. The default value is <FONT FACE="courier, couriernew, monospaced size">1048576</FONT> (1 MB).</zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="16538"> </A>
+<A NAME="SSLClientAuthTimeout"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>SSLClientAuthTimeout</zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="16539"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Specifies the number of seconds after which the client certificate handshake phase times out. The default value is <FONT FACE="courier, couriernew, monospaced size">60.</FONT></zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="16571"> </A>
+<A NAME="SSLSessionTimeout"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>SSLSessionTimeout</zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="16572"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Controls SSL2 session caching. </zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="16573"> </A>
+<A NAME="Syntax "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<zhead4>Syntax </zhead4>
+</B>
+</FONT>
+<BR>
+
+<A NAME="16574"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph><FONT FACE="courier, couriernew, monospaced size">SSLSessionTimeout </FONT>seconds</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16575"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The <I>seconds</I> value is the number of seconds until a cached SSL2 session becomes invalid. If the <FONT FACE="courier, couriernew, monospaced size">SSLSessionTimeout</FONT> directive is specified, the value of seconds is silently constrained to be between 5 and 100 seconds. The default value is 100.</zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="16580"> </A>
+<A NAME="SSL3SessionTimeout"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>SSL3SessionTimeout</zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="16581"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>Controls SSL3 session caching. </zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="16582"> </A>
+<A NAME="Syntax"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<zhead4>Syntax</zhead4>
+</B>
+</FONT>
+<BR>
+
+<A NAME="16583"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph><FONT FACE="courier, couriernew, monospaced size">SSL3SessionTimeout </FONT>seconds</zparagraph>
+</FONT>
+<P>
+
+<A NAME="16584"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The <I>seconds</I> value is the number of seconds until a cached SSL3 session becomes invalid. The default value is 86400 (24 hours). If the <FONT FACE="courier, couriernew, monospaced size">SSL3SessionTimeout</FONT> directive is specified, the value of seconds is silently constrained to be between 5 and 86400 seconds. </zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="16622"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="15501"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="15504"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>A single connection group on a listen socket must have the same SSLPARAMS; multiple groups can have different SSLPARAMS.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+<P>
+<BR>
+<A NAME="14477"> </A>
+<A NAME="Setting Values for SSL Directives"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Setting Values for SSL Directives</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="16203"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To set values for your SSL configuration file directives, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17400"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17398"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access HTTP Server and HTTP Listener in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17499"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Click the listener you want.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17503"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The HTTP Listener settings page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="17328"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>In the SSL/TLS Settings section, check the Security Enabled checkbox.</zsmartlist1>
+</FONT>
+<P><A NAME="17349"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Click Save.</zsmartlist1>
+</FONT>
+<P><A NAME="17330"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Select HTTP Server in the left pane.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17384"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The HTTP Server page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="17385"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Select the Advanced tab.</zsmartlist1>
+</FONT>
+<P><A NAME="14480"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Choose the SSL link.</zsmartlist1>
+</FONT>
+<P><A NAME="14485"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+<zsmartlist1>Enter the values for:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14486"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>SSLSessionTimeout</zsmartlist2>
+</FONT>
+<P><A NAME="14487"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>SSLCacheEntires</zsmartlist2>
+</FONT>
+<P><A NAME="14488"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>SSL3SessionTimeout</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="14489"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+<zsmartlist1>Click OK.</zsmartlist1>
+</FONT>
+<P><A NAME="17368"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="11"></B>
+<zsmartlist1>Restart the server for changes to take effect.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="14514"> </A>
+<A NAME="Using External Encryption Modules"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Using External Encryption Modules</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14515"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Sun ONE Application Server supports the two methods for using external cryptographic modules (such as smart cards or token rings): Public Key Cryptography Standard (PKCS#1) and Federal Information Processing Standards (FIPS-140).</zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="15623"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="15626"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="15635"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You will need to add the PKCS #11 module before enabling the FIPS-140 encryption standard.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<A NAME="15552"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>This section addresses the following topics:</zparagraph>
+</FONT>
+<P>
+<ul>
+<A NAME="15553"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14521"  >Installing the PKCS11Module</A></zsmartlist1>
+</FONT>
+<P><A NAME="15564"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#14625"  >Enabling FIPS-140 Standard</A></zsmartlist1>
+</FONT>
+<P><A NAME="15950"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist1><A HREF="sgencryp.htm#15904"  >Starting the Server with an External Certificate</A></zsmartlist1>
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14521"> </A>
+<A NAME="Installing the PKCS11Module"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Installing the PKCS11Module</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14523"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Sun ONE Application Server supports Public Key Cryptography Standard (PKCS) #11, which defines the interface used for communication between SSL and PKCS11 modules. PKCS11 modules are used for standards-based connectivity to SSL hardware accelerators. Imported certificates and keys for external hardware accelerators are stored in the <FONT FACE="courier, couriernew, monospaced size">secmod.db</FONT> file, which is generated when the PKCS11 module is installed.</zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14525"> </A>
+<A NAME="Using modutil to Install a PKCS11 Module"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>Using modutil to Install a PKCS11 Module</zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14526"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You can install PKCS11 modules in the form of <FONT FACE="courier, couriernew, monospaced size">.jar</FONT> files or object files using the <FONT FACE="courier, couriernew, monospaced size">modutil</FONT> tool.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14528"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To install the PKCS11 module using <FONT FACE="courier, couriernew, monospaced size">modutil</FONT>, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14529"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Verify that all servers, including the Sun ONE Application Server, are turned off.</zsmartlist1>
+</FONT>
+<P><A NAME="14530"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Go to the instance_dir/config directory containing the databases.</zsmartlist1>
+</FONT>
+<P><A NAME="14531"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Add to your PATH: instance_dir/bin/https/admin/bin </zsmartlist1>
+</FONT>
+<P><A NAME="14532"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Locate the <FONT FACE="courier, couriernew, monospaced size">modutil</FONT> tool in instance_dir/bin/https/admin/bin.</zsmartlist1>
+</FONT>
+<P><A NAME="14533"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Set the environment. For example:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14534"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On Unix: <FONT FACE="courier, couriernew, monospaced size">setenv</FONT></zsmartlist2>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14535"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2><FONT FACE="courier, couriernew, monospaced size">LD_LIBRARY_PATH </FONT><I>instance_dir</I>/bin/https/lib:${LD_LIBRARY_PATH}</zparaindent2>
+</FONT>
+<P>    </dl>
+<A NAME="14536"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On IBM-AIX: <FONT FACE="courier, couriernew, monospaced size">LIBPATH</FONT></zsmartlist2>
+</FONT>
+<P><A NAME="14537"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On HP-UX: <FONT FACE="courier, couriernew, monospaced size">SHLIB_PATH</FONT></zsmartlist2>
+</FONT>
+<P><A NAME="14538"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On Windows, add it to the <FONT FACE="courier, couriernew, monospaced size">PATH:</FONT></zsmartlist2>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14539"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2><FONT FACE="courier, couriernew, monospaced size">LD_LIBRARY_PATH </FONT><I>instance_dir</I>\bin\https\bin</zparaindent2>
+</FONT>
+<P>       <DT> <A NAME="14540"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2>You can find the PATH for your machine listed under: instance_dir\https-admin\start.</zparaindent2>
+</FONT>
+<P>    </dl>
+  </ul>
+<A NAME="14541"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Invoke the <FONT FACE="courier, couriernew, monospaced size">modutil</FONT> tool: </zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16395"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">modutil</FONT></zparaindent1>
+</FONT>
+<P>     <DT> <A NAME="14542"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The options are displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14543"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Perform the actions required.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14544"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>For example, to add the PCKS#11 module in Unix, use the following syntax:</zparaindent1>
+</FONT>
+<P>     <DT> <A NAME="14545"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">modutil -add &lt;</FONT><I>PCKS#11_filename</I>&gt; -libfile &lt;<I>libfile_name_for_PCKS#11</I>&gt; -nocertdb -dbdir &lt;<I>db _directory</I>&gt;</zparaindent1>
+</FONT>
+<P>  </dl>
+</ol>
+<BR>
+<P>
+<A NAME="14546"> </A>
+<A NAME="Using pk12util to Import and Export"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+<zhead3>Using pk12util to Import and Export</zhead3>
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="14548"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The <FONT FACE="courier, couriernew, monospaced size">pk12util</FONT> tool allows you to export certificates and keys from your internal database and to import them into an internal or external PKCS11 module. You can always export certificates and keys to your internal database, but most external tokens will not allow you to export certificates and keys. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="16349"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>By default, the <FONT FACE="courier, couriernew, monospaced size">pk12util tool</FONT> uses certificate and key databases named <FONT FACE="courier, couriernew, monospaced size">cert7.db</FONT> and <FONT FACE="courier, couriernew, monospaced size">key3.db</FONT>. </zparagraph>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14549"> </A>
+<A NAME="Exporting With pk12util"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<zhead4>Exporting With pk12util</zhead4>
+</B>
+</FONT>
+<BR>
+
+<A NAME="14550"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To export a certificate and key from an internal database, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14551"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Go to the <FONT FACE="courier, couriernew, monospaced size">server_root/config</FONT> directory containing the databases.</zsmartlist1>
+</FONT>
+<P><A NAME="14552"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Add to your PATH: instance_dir/bin/https/admin/bin</zsmartlist1>
+</FONT>
+<P><A NAME="14553"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Locate the <FONT FACE="courier, couriernew, monospaced size">pk12util</FONT> tool in instance_dir/bin/https/admin/bin.</zsmartlist1>
+</FONT>
+<P><A NAME="14554"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Set the environment. For example:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14555"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On Unix: <FONT FACE="courier, couriernew, monospaced size">setenv</FONT></zsmartlist2>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14556"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2><FONT FACE="courier, couriernew, monospaced size">LD_LIBRARY_PATH/</FONT><I>instance_dir</I>/bin/https/lib:${LD_LIBRARY_PATH}</zparaindent2>
+</FONT>
+<P>    </dl>
+<A NAME="14557"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On IBM-AIX: <FONT FACE="courier, couriernew, monospaced size">LIBPATH</FONT></zsmartlist2>
+</FONT>
+<P><A NAME="14558"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On HP-UX: <FONT FACE="courier, couriernew, monospaced size">SHLIB_PATH</FONT></zsmartlist2>
+</FONT>
+<P><A NAME="14559"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On Windows, add it to the <FONT FACE="courier, couriernew, monospaced size">PATH:</FONT></zsmartlist2>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14560"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2><FONT FACE="courier, couriernew, monospaced size">LD_LIBRARY_PATH </FONT><I>instance_dir</I>\bin\https\bin</zparaindent2>
+</FONT>
+<P>       <DT> <A NAME="16406"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2>You can find the PATH for your machine listed under: instance_dir\https-admin\start.</zparaindent2>
+</FONT>
+<P>    </dl>
+  </ul>
+<A NAME="16407"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Invoke the <FONT FACE="courier, couriernew, monospaced size">modutil</FONT> tool: </zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16419"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">pk12util</FONT></zparaindent1>
+</FONT>
+<P>     <DT> <A NAME="16408"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The options are displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14564"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Perform the actions required.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14565"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>For example, in Unix you would enter:</zparaindent1>
+</FONT>
+<P>     <DT> <A NAME="14566"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">pk12util -o certpk12 -n Server-Cert [-d /</FONT><I>instance_dir</I>/config] [-P https-test-host]</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14567"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Enter the database password.</zsmartlist1>
+</FONT>
+<P><A NAME="14568"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Enter the <FONT FACE="courier, couriernew, monospaced size">pkcs12</FONT> password.</zsmartlist1>
+</FONT>
+<P></ol>
+<BR>
+<P>
+<A NAME="14569"> </A>
+<A NAME="Importing With pk12util"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<zhead4>Importing With pk12util</zhead4>
+</B>
+</FONT>
+<BR>
+
+<A NAME="14571"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To import a certificate and key into an internal or external PKCS11 module, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14572"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Go to the instance_dir/config directory containing the databases.</zsmartlist1>
+</FONT>
+<P><A NAME="14573"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Add to your PATH: instance_dir/bin/https/admin/bin </zsmartlist1>
+</FONT>
+<P><A NAME="14574"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Locate <FONT FACE="courier, couriernew, monospaced size">pk12util</FONT> in instance_dir/bin/https/admin/bin.</zsmartlist1>
+</FONT>
+<P><A NAME="14575"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Set the environment. For example:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14576"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On Unix: <FONT FACE="courier, couriernew, monospaced size">setenv</FONT></zsmartlist2>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14577"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2><FONT FACE="courier, couriernew, monospaced size">LD_LIBRARY_PATH/</FONT><I>instance_dir</I>/bin/https/lib:${LD_LIBRARY_PATH}</zparaindent2>
+</FONT>
+<P>    </dl>
+<A NAME="14578"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On IBM-AIX: <FONT FACE="courier, couriernew, monospaced size">LIBPATH</FONT></zsmartlist2>
+</FONT>
+<P><A NAME="14579"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On HP-UX: <FONT FACE="courier, couriernew, monospaced size">SHLIB_PATH</FONT></zsmartlist2>
+</FONT>
+<P><A NAME="14580"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>On Windows, add it to the <FONT FACE="courier, couriernew, monospaced size">PATH:</FONT></zsmartlist2>
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14581"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2><FONT FACE="courier, couriernew, monospaced size">LD_LIBRARY_PATH </FONT><I>instance_dir</I>/bin/https/bin</zparaindent2>
+</FONT>
+<P>       <DT> <A NAME="14582"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent2>You can find the PATH for your machine listed under: instance_dir/https-admin/start</zparaindent2>
+</FONT>
+<P>    </dl>
+  </ul>
+<A NAME="14583"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Enter the command: <FONT FACE="courier, couriernew, monospaced size">pk12util</FONT>.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14584"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The options are displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14585"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Perform the actions required.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14586"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>For example, in Unix you would enter:</zparaindent1>
+</FONT>
+<P>     <DT> <A NAME="14587"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">pk12util -i pk12_sunspot [-d certdir][-h "nCipher"][-P https-jones.redplanet.com-jones-]</FONT></zparaindent1>
+</FONT>
+<P>     <DT> <A NAME="14588"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">-P</FONT> must follow the <FONT FACE="courier, couriernew, monospaced size">-h</FONT> and be the last argument.</zparaindent1>
+</FONT>
+<P>     <DT> <A NAME="14589"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>Enter the exact token name including capital letters and spaces between quote marks.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14590"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Enter the database password.</zsmartlist1>
+</FONT>
+<P><A NAME="14591"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Enter the <FONT FACE="courier, couriernew, monospaced size">pkcs12</FONT> password.</zsmartlist1>
+</FONT>
+<P></ol>
+<P>
+<BR>
+<A NAME="15904"> </A>
+<A NAME="Starting the Server with an External Certificate"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Starting the Server with an External Certificate</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14592"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you install a certificate for your server into an external PKCS11 module (for example, a hardware accelerator), the server will not be able to start using that certificate until you edit the <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT> file, or specify the certificate name as described below.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14593"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The server always tries to start with the certificate named Server-Cert. However, certificates in external PKCS11 modules include one of the module's token names in their identifier. For example, a server certificate installed on an external smartcard reader called <FONT FACE="courier, couriernew, monospaced size">smartcard0</FONT> would be named <FONT FACE="courier, couriernew, monospaced size">smartcard0:Server-Cert</FONT>.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="14594"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To start a server with a certificate installed in an external module, you'll need to specify the certificate name for the connection group it runs on. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="14597"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To select the certificate name for the connection group, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17413"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17411"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access HTTP Server and HTTP Listeners in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17373"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Click the link for the listener you want.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<A NAME="17428"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>[[I can't find the UI path for this procedure. Query to Siraj 7/11]]</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14601"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Edit Listen Sockets link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14602"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Listen Socket Table page appears.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14603"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Use the drop-down Action list to select Edit, if not already displayed, for the connection group you are enabling security for.</zsmartlist1>
+</FONT>
+<P><A NAME="14604"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Use the drop-down list to turn Security on for that connection group, if it is off.</zsmartlist1>
+</FONT>
+<P><A NAME="14605"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Click OK. </zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14606"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Attributes link appears. </zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14607"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Click the Attributes link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14608"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Security Settings of Listen Socket page appears.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14609"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+<zsmartlist1>Use the drop-down CertificateName list to select the external server certificate.</zsmartlist1>
+</FONT>
+<P><A NAME="14610"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+<zsmartlist1>Click OK.</zsmartlist1>
+</FONT>
+<P><A NAME="17433"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="11"></B>
+<zsmartlist1>Restart the server for changes to take affect.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<A NAME="14612"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You can tell the Sun ONE Application Server to start with that server certificate by manually editing the <FONT FACE="courier, couriernew, monospaced size">server.xml </FONT>file. Change the <FONT FACE="courier, couriernew, monospaced size">servercertnickname</FONT> attribute in the <FONT FACE="courier, couriernew, monospaced size">SSLPARAMS</FONT> element to:</zparagraph>
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="14615"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">$TOKENNAME:Server-Cert</FONT></zparaindent1>
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="14617"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To find what value to use for <FONT FACE="courier, couriernew, monospaced size">$TOKENNAME</FONT>, go to the server's Security tab and select the Manage Certificates link. When you log in to the external module where Server-Cert is stored, its certificates are displayed in the list in the <FONT FACE="courier, couriernew, monospaced size">$TOKENNAME:$NICKNAME</FONT> form.
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="14620"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="14623"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you did not create a trust database, one will be created for you when you request or install a certificate for an external PKCS11 module. This default database has no password and cannot be accessed. Your external module will work, but you will not be able to request and install server certificates. </zparagraph>
+</FONT>
+<P>
+
+<A NAME="16254"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If a default database has been created without a password, use the Security tab Create Database page to set the password. </zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+</zparagraph>
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14625"> </A>
+<A NAME="Enabling FIPS-140 Standard"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead2>Enabling FIPS-140 Standard</zhead2>
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14626"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>PKCS11 APIs enable communication with software or hardware modules that perform cryptographic operations. Once PKCS11 is installed on your Sun ONE Application Server, you can configure the server to be Federal Information Processing Standards (FIPS)-140 compliant. </zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="16445"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="16449"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="16455"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>These libraries are included only in SSL version 3.0. </zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<A NAME="17419"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To enable FIPS-140, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14630"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Install the plug-in following the FIPS-140 instructions.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<A NAME="17466"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>[[Can't find the UI path for this procedure. Query to Siraj 7/11]]</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14631"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access Admin Server and select the server instance in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="16433"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select the Preferences tab, if not already selected.</zsmartlist1>
+</FONT>
+<P><A NAME="14633"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Click the Edit Listen Sockets link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14634"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Listen Socket Table page appears.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14635"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Use the drop-down Action list to select Edit, if not already displayed, for the connection group you are enabling FIPS-140 on.</zsmartlist1>
+</FONT>
+<P><A NAME="14636"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Use the drop-down list to turn Security on for that connection group, if it is off.</zsmartlist1>
+</FONT>
+<P><A NAME="14637"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Click OK. </zsmartlist1>
+</FONT>
+<P><A NAME="14639"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Click the Attributes link.</zsmartlist1>
+</FONT>
+<P><A NAME="14640"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+<zsmartlist1>The Security Settings of Listen Socket page appears.</zsmartlist1>
+</FONT>
+<P><A NAME="14641"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+<zsmartlist1>Click the SSL3/TLS link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14642"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Security Feature window appears.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="14643"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="11"></B>
+<zsmartlist1>Check Allow: SSL version 3, if it is not already checked.</zsmartlist1>
+</FONT>
+<P><A NAME="14644"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="12"></B>
+<zsmartlist1>Select the appropriate FIPS-140 cipher suite:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="14646"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>(FIPS) DES&#151;with 56 bit encryption and SHA message authentication </zsmartlist2>
+</FONT>
+<P><A NAME="14648"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>(FIPS) Triple DES&#151;with 168 bit encryption and SHA message authentication</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="14649"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="13"></B>
+<zsmartlist1>Click OK to close the Security Features window. </zsmartlist1>
+</FONT>
+<P><A NAME="14650"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="14"></B>
+<zsmartlist1>Click OK.</zsmartlist1>
+</FONT>
+<P><A NAME="17455"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="15"></B>
+<zsmartlist1>Restart the server to apply your changes.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="15647"> </A>
+<A NAME="Setting Strong Ciphers"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Setting Strong Ciphers</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15649"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Strong Ciphers option presents a choice of 168, 128, or 56-bit secret key size for access or no restriction. You can specify a file to be served when the restriction is not met. If no file is specified, the Sun ONE Application Server returns a Forbidden status.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="15650"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>If you select a key size for access that is not consistent with the current cipher settings, the Sun ONE Application Server warns that you need to enable ciphers with larger secret key sizes.</zparagraph>
+</FONT>
+<P>
+
+<A NAME="15652"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The implementation of the key size restriction is based on an NSAPI <FONT FACE="courier, couriernew, monospaced size">PathCheck</FONT> directive in the <FONT FACE="courier, couriernew, monospaced size">obj.conf</FONT> file, rather than Service <FONT FACE="courier, couriernew, monospaced size">fn=key-toosmall</FONT>. This directive is: </zparagraph>
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="15653"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">PathCheck fn="ssl-check" [secret-keysize=&lt;</FONT><I>nbits</I>&gt;] [bong-file=<I>filename</I>]</zparaindent1>
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="15654"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>where:</zparagraph>
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="15916"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>nbits is the minimum number of bits required in the secret key.</zparaindent1>
+</FONT>
+<P>     <DT> <A NAME="15938"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>filename is the name of a file (not a URI) to be served if the restriction is not met. </zparaindent1>
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="15657"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph><FONT FACE="courier, couriernew, monospaced size">PathCheck</FONT> returns <FONT FACE="courier, couriernew, monospaced size">REQ_NOACTION</FONT> if SSL is not enabled, or if the <FONT FACE="courier, couriernew, monospaced size">secret-keysize</FONT> parameter is not specified. If the secret key size for the current session is less than the specified <FONT FACE="courier, couriernew, monospaced size">secret-keysize</FONT>, the function returns <FONT FACE="courier, couriernew, monospaced size">REQ_ABORTED</FONT> with a status of <FONT FACE="courier, couriernew, monospaced size">PROTOCOL_FORBIDDEN</FONT> if <FONT FACE="courier, couriernew, monospaced size">bong-file</FONT> is not specified, or else <FONT FACE="courier, couriernew, monospaced size">REQ_PROCEED</FONT>, and the path variable is set to the <FONT FACE="courier, couriernew, monospaced size">bong-file</FONT> filename. Also, when a key size restriction is not met, the SSL session cache entry for the current session is invalidated, so that a full SSL handshake will occur the next time the same client connects to the server.</zparagraph>
+</FONT>
+<P>
+
+<P>
+<A NAME="15667"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="15664"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+<znote>Note</znote>
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="15666"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>The Strong Ciphers option removes any Service <FONT FACE="courier, couriernew, monospaced size">fn=key-toosmall</FONT> directives that it finds in an object when it adds a <FONT FACE="courier, couriernew, monospaced size">PathCheck</FONT> <FONT FACE="courier, couriernew, monospaced size">fn=ssl-check</FONT>.</zparagraph>
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+
+</FONT>
+<P>
+
+
+<A NAME="15668"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>To use the Strong Ciphers option, perform the following steps:</zparagraph>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17439"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<zsmartlist1>Access App Server Instances and select the server instance in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="17437"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+<zsmartlist1>Access HTTP Server in the left pane.</zsmartlist1>
+</FONT>
+<P><A NAME="15670"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+<zsmartlist1>Select Virtual Servers and click the virtual server you want.</zsmartlist1>
+</FONT>
+<P><A NAME="17281"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+<zsmartlist1>Select the HTTP/HTML tab and click the Strong Ciphers link.</zsmartlist1>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17297"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1>The Enforce Strong Security Requirements page is displayed.</zparaindent1>
+</FONT>
+<P>  </dl>
+<A NAME="15674"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+<zsmartlist1>Select Stronger Ciphers.</zsmartlist1>
+</FONT>
+<P><A NAME="15675"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+<zsmartlist1>Choose to edit:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="15676"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>From the drop down list</zsmartlist2>
+</FONT>
+<P><A NAME="15677"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>By clicking Browse </zsmartlist2>
+</FONT>
+<P><A NAME="15678"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>By clicking Wildcard</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="15679"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+<zsmartlist1>Select the secret key size restriction:</zsmartlist1>
+</FONT>
+<P>  <ul>
+<A NAME="15680"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>168 bit or larger</zsmartlist2>
+</FONT>
+<P><A NAME="15681"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>128 bit or larger</zsmartlist2>
+</FONT>
+<P><A NAME="15682"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>56 bit or larger</zsmartlist2>
+</FONT>
+<P><A NAME="15683"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<zsmartlist2>No restrictions</zsmartlist2>
+</FONT>
+<P>  </ul>
+<A NAME="15684"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+<zsmartlist1>Enter the file location of the message to reject access.</zsmartlist1>
+</FONT>
+<P><A NAME="15685"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+<zsmartlist1>Click OK. </zsmartlist1>
+</FONT>
+<P><A NAME="17307"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+<zsmartlist1>Restart the server to apply your changes.</zsmartlist1>
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="16257"> </A>
+<A NAME="Preventing Clients from Caching SSL Files"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+<zhead1>Preventing Clients from Caching SSL Files</zhead1>
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="16259"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><zparagraph>You can prevent pre-encrypted files from being cached by a client by adding the following line inside the <FONT FACE="courier, couriernew, monospaced size">&lt;HEAD&gt;</FONT> section of a file in HTML: </zparagraph>
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="16260"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<zparaindent1><FONT FACE="courier, couriernew, monospaced size">&lt;meta http-equiv="pragma" content="no-cache"&gt;</FONT></zparaindent1>
+</FONT>
+<P>  </dl>
+</dl>
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+            <b><a href="sgcerts.htm">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Previous</a></FONT>&nbsp;&nbsp;&nbsp;&nbsp;</b>
+<a href="contents.htm">
+<b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Contents</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="ix.htm"><b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">Index</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="../index.htm">
+<b><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="black">DocHome</a></FONT></b>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="sgaccess.htm">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#993300">
+Next
+</a>
+</FONT>
+</b>&nbsp;&nbsp;&nbsp;&nbsp;
+        <HR NOSHADE SIZE="1">
+
+
+   <font face="Helvetica, Arial, sans-serif" size="-2">
+
+Copyright &#169; 2001 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+Some preexisting portions Copyright &#169; 2001 Netscape Communications Corp. All rights reserved.</FONT>
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 12, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

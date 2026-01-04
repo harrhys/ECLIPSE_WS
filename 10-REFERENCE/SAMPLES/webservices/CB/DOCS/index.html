@@ -1,0 +1,772 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/23/02 14:44:34">
+	<title>Web Services Coffee Break Sample Application:  Web Services Coffee Break Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="#1005fb" alink ="#333366" bgcolor="#ffffff">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="top">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG alt="Sun ONE logo" border 
+                =0
+                height=40 src="../../../docs/images/SunONE.jpg" width=120  valign="BOTTOM"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="top" ALIGN="right" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Web Services Coffee Break Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR></NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Web Services Coffee Break Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Web Services Coffee Break Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the Webservices Coffee Break sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A href="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>
+<A href="index.html#14862"  >Compiling, Assembling and Deploying the Application</A> </FONT>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>
+<A href="index.html#14931"  >Running the Sample Application</A> </FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>
+<A href="index.html#17770"  >Troubleshooting</A> </FONT>
+<P></P></li></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="17321"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Coffee Break application facilitates the sale of coffee on the Internet. Customers communicate with the Coffee Break server to order coffee online. The server consists of Java Servlets, JSP pages, and JavaBean components. A customer enters the quantity of each coffee to order and clicks the "Submit" button to send the order. 
+</FONT>
+<P>
+
+<A NAME="17325"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Coffee Break application does not maintain any inventory. It is designed to handle customer and order management and billing functions. Each order is filled by forwarding suborders to one or more coffee distributors. This process is depicted in <A href="index.html#17365"  >Figure&nbsp;1</A>. 
+</FONT>
+<P>
+
+<A NAME="17364"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><IMG align=baseline hspace=2 src="images/CBa.gif">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="17365"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+ Figure	1 &nbsp;&nbsp;Coffee Break Application Flow
+</B>
+</FONT>
+<P>
+<A NAME="17478"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Coffee Break server obtains the various coffees it sells and their associated prices by querying distributors at startup and on demand.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="17480"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+The Coffee Break server uses JAXM messaging to communicate with one of its distributors. It has been dealing with this distributor for some time and has previously made the necessary arrangements for performing request-response JAXM messaging.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17482"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The two parties have agreed to exchange four kinds of XML messages and have set up the DTDs that these messages will follow.
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="17483"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+The Coffee Break server uses JAXR to send a query searching for coffee distributors that support JAX-RPC to the Registry Server.
+</FONT>
+<P><A NAME="17485"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="3"></B>The Coffee Break server requests price 
+    lists from each of the coffee distributors. The server makes the appropriate 
+    remote procedure calls and waits for the response, which is a JavaBean 
+    component representing a price list. The JAXM distributor returns the price 
+    lists as XML documents. </FONT>
+<P><A NAME="17488"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="4"></B>Upon receiving the responses, the 
+    Coffee Break server processes the price lists from the JavaBean components 
+    returned by calls to the distributors. </FONT>
+<P><A NAME="17490"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="5"></B>The Coffee Break Server creates a local 
+    database of distributors. </FONT>
+<P><A NAME="17366"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="6"></B>When an order is placed, suborders are 
+    sent to one or more distributors using the distributor's preferred protocol. 
+    </FONT>
+<P></P></li></ol>
+<P>
+<BR>
+<A NAME="14831"> </A>
+<A NAME="Setting up the environment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Setting up the environment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="17783"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The source code for the Coffee Break application is located in the directory <FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb</FONT>. Within the cb directory are subdirectories for each Web application-: <FONT FACE="courier, couriernew, monospaced size">jaxm</FONT>, <FONT FACE="courier, couriernew, monospaced size">jaxrpc</FONT>, and <FONT FACE="courier, couriernew, monospaced size">server</FONT>. It also contains a directory, <FONT FACE="courier, couriernew, monospaced size">common</FONT>, for classes shared by the Web applications. Each subdirectory contains a <FONT FACE="courier, couriernew, monospaced size">build.xml</FONT> file, and some contain the <FONT FACE="courier, couriernew, monospaced size">build.properties</FONT> also. The Web application subdirectories in turn contain an <FONT FACE="courier, couriernew, monospaced size">src</FONT> subdirectory for Java classes, a web subdirectory for Web resources and the Web application deployment descriptor. 
+<BR>
+
+<BR>
+
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="18965"> </A>
+<A NAME="Setting the Configuration"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Setting the Configuration
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="18967"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Set the following information before you build and deploy the application.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="19332"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+In a terminal window, do the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19142"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">vi &lt;AS_HOME&gt;/samples/webservices/cb/jaxm/src/com/sun/cb/JAXMService.properties</FONT>
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="19365"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Change the host and port to appropriate values for the following entries:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19375"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">pricelist.url=http://localhost:1024/jaxm-coffee-supplier/getPriceList order.url=http://localhost:1024/jaxm-coffee-supplier/orderCoffee</FONT>
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="19376"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+In a terminal window, do the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19104"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">vi</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18974"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/jaxrpc/src/com/sun/cb/CoffeeRegistry.properties</FONT>.
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="18975"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Change the host, port and the registry auth info to appropriate values for the following entries: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18977"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">endpoint=http://localhost:1024/jaxrpc-coffee-supplier/jaxrpc</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18978"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">query.url=http://uddi.ibm.com/testregistry/inquiryapi</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18979"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">publish.url=https://uddi.ibm.com/testregistry/protect/publishapi</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18980"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">registry.username=</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18981"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">registry.password=</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="19256"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Leave the rest of the entries unchanged.
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="18982"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+In a terminal window, do the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19084"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">vi </FONT>
+</FONT>
+<P></P>     <DT> <A NAME="19086"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/jaxrpc/build.properties</FONT>
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="18983"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Change the host and port to appropriate values, for the following entries
+</FONT>
+<P><A NAME="19322"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="7"></B>In a terminal window, do the following: 
+    </FONT>
+<P>  <dl>
+     <DT> <A NAME="19093"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">vi</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="19095"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/build.properties</FONT>
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="18986"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Change the instance,host, port and the admin server auth info to appropriate values, for the following entries                                                                                               
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18988"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">admin.user=admin</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18989"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">admin.host=localhost</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18990"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">admin.port=4848</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18963"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">as.instance=server1</FONT>
+</FONT>
+<P></P></DT>  </dl></li>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14865"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the Coffee Break sample application:
+</FONT>
+<P>
+<ul>
+<A NAME="18935"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A href="index.html#18847"  >Building the Common Classes</A>
+</FONT>
+<P><A NAME="18943"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>
+<A href="index.html#18863"  >Building and Deploying the JAX-RPC Service</A> </FONT>
+<P><A NAME="18948"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>
+<A href="index.html#18918"  >Building and Deploying the JAXM Service</A> </FONT>
+<P><A NAME="cbserver20"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>
+<A href="index.html#cbserver"  >Building and Deploying the Coffee Break Server</A> </FONT>
+</li></ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<B>Note</B> Please refer to the section for 
+  setup <A href="#18965" >above</a>, before following this section</FONT>
+<BR>
+<BR>
+<P>
+<A NAME="18847"> </A>
+<A NAME="Building the Common Classes"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Building the Common Classes
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="18848"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To build the common classes, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18849"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+In a terminal window, go to <FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/common</FONT>.
+</FONT>
+<P><A NAME="18850"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="2"></B>
+Run <FONT FACE="courier, couriernew, monospaced size">asant core</FONT>. </FONT>
+<P></P></li></ol>
+<BR>
+<P>
+<A NAME="18863"> </A>
+<A NAME="Building and Deploying the JAX-RPC Service"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Building and Deploying the JAX-RPC Service
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="18864"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To build the JAX-RPC service and client library, and install the service, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18865"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+In a terminal window, go to <FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/jaxrpc</FONT>.
+</FONT>
+<P><A NAME="18866"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="2"></B>
+Run <FONT FACE="courier, couriernew, monospaced size">asant core</FONT>. </FONT>
+<P>  <dl>
+     <DT> <A NAME="18867"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This task generates the JAX-RPC ties and stubs, creates the JAXR and client libraries, compiles the server classes, and copies them into the correct location for installation.
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="18868"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+If they are not already running, start the Sun ONE Application Server and registry server.
+</FONT>
+<P><A NAME="18885"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="4"></B>
+Run <FONT FACE="courier, couriernew, monospaced size">asant set-up-service</FONT>. </FONT>
+<P>  <dl>
+     <DT> <A NAME="18886"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This task deploys the JAX-RPC service into App Server and registers the service with the Registry Server. The registration process can take some time, so wait until you see the following output before proceeding to the next step: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="18887"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+run-jaxr-publish:
+</FONT>
+<P></P>       <DT> <A NAME="18888"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[echo] Running OrgPublisher.
+</FONT>
+<P></P>       <DT> <A NAME="18889"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[echo] Note: Remember to start the registry server before running this program.
+</FONT>
+<P></P>       <DT> <A NAME="18890"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] Created connection to registry
+</FONT>
+<P></P>       <DT> <A NAME="18891"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] Got registry service, query manager, and life cycle manager
+</FONT>
+<P></P>       <DT> <A NAME="18892"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] Established security credentials
+</FONT>
+<P></P>       <DT> <A NAME="18893"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] Organization saved
+</FONT>
+<P></P>       <DT> <A NAME="18894"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] Organization key is edeed14d-5eed-eed1-31c2- aa789a472fe0
+</FONT>
+<P></P></DT>    </dl>
+</dl></DT>  </dl>
+<A NAME="18900"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+You can test that the JAX-RPC service has been installed correctly by running one or both of the following test programs: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18901"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+execute <FONT FACE="courier, couriernew, monospaced size">asant run-test-price</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18902"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+or
+</FONT>
+<P></P>     <DT> <A NAME="18903"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant run-test-order</FONT>.
+</FONT>
+<P></P>     <DT> <A NAME="18904"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Here is what you should see when you run <FONT FACE="courier, couriernew, monospaced size">asant run-test-price</FONT>: 
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="18905"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+run-test-price:
+</FONT>
+<P></P>       <DT> <A NAME="18906"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+run-test-client:
+</FONT>
+<P></P>       <DT> <A NAME="18907"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] 05/21/02 06/20/02
+</FONT>
+<P></P>       <DT> <A NAME="18908"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] Kona 6.50
+</FONT>
+<P></P>       <DT> <A NAME="18909"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] French Roast 5.00
+</FONT>
+<P></P>       <DT> <A NAME="18910"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] Wake Up Call 5.50
+</FONT>
+<P></P>       <DT> <A NAME="18911"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] Mocca 4.00
+</FONT>
+<P></P></DT>    </dl>
+</dl></DT>  </dl></li>
+</ol>
+
+<A NAME="18912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Later on, you may remove the JAX-RPC service by running asant<FONT FACE="courier, couriernew, monospaced size"> take-down-service</FONT>. This command deletes the service from the Registry Server and then uninstalls the service from App Server. <I>Do not remove the service at this time</I>. 
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="18918"> </A>
+<A NAME="Building and Deploying the JAXM Service"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Building and Deploying the JAXM Service
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="18919"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To build the JAXM service and client library and install the service, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18920"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+In a terminal window, go to <FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/jaxm</FONT>.
+</FONT>
+<P><A NAME="18921"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="2"></B>
+Run <FONT FACE="courier, couriernew, monospaced size">asant package</FONT>. </FONT>
+<P>  <dl>
+     <DT> <A NAME="18922"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This task creates the client library and compiles the server classes and copies them into the correct location for installation.
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="18923"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Make sure the Sun ONE Application Server is started.
+</FONT>
+<P><A NAME="18924"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li value="4"></B>
+Run <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT>. </FONT>
+<P>  <dl>
+     <DT> <A NAME="18925"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This task installs the JAXM service into App Server. 
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="18926"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+You can test that the JAXM service has been installed correctly by running one or both of the following test programs: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18927"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+execute <FONT FACE="courier, couriernew, monospaced size">asant run-test-price</FONT>
+</FONT>
+<P></P>     <DT> <A NAME="18928"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+or
+</FONT>
+<P></P>     <DT> <A NAME="18929"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant run-test-order</FONT>.
+</FONT>
+<P></P></DT>  </dl></li>
+</ol>
+
+<P><A name=cbserver></A><A name="Building and Deploying the Coffee Break Server"></A><FONT face="Helvetica, Arial, sans-serif"><B>Building and Deploying the Coffee Break Server </B></FONT><BR><BR><A name=cbserver></A><FONT face="Helvetica, Arial, sans-serif" size=2>To build and deploy the Coffee Break server: </FONT>
+
+ <P>
+<OL type=1><A name=cbserver01></A><FONT face="Helvetica, Arial, sans-serif" size=-1><B>
+  <LI value=1></B>In a terminal window, go to <FONT face="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/server</FONT>. 
+  </FONT>
+  <P><A name=cbserver02></A><FONT face="Helvetica, Arial, sans-serif" size=-1><B></P>
+  <LI value=2></B>Run <FONT face="courier, couriernew, monospaced size">asant package</FONT>. </FONT>
+  <P>
+  <DL>
+    <DT><A name=cbserver03></A><FONT face="Helvetica, Arial, sans-serif" size=-1>This task compiles the server classes and copies the classes, JSP pages, client libraries, and tag libraries into <br>the correct location for Deployment. Note that the Coffee Break server depends on the client <br>libraries generated by the JAX-RPC (jaxrpc-client.jar) and JAXM (jaxm-client.jar) build process. </FONT><P></P></DT></DL><A name=18923></A><FONT face="Helvetica, Arial, sans-serif" size=-1><B>
+  <LI value=3></B>Make sure the Sun ONE Application Server is started. </FONT>
+  <P><A name=cbserver04></A><FONT face="Helvetica, Arial, sans-serif" size=-1><B></P>
+  <LI value=4></B>Run <FONT face="courier, couriernew, monospaced size">asant deploy</FONT>. </FONT>
+  <P>
+  <DL>
+    <DT><A name=cbserver05></A><FONT face="Helvetica, Arial, sans-serif" size=-1>This task deploys the cbserver app into App Server. </FONT></DT></DL><FONT face="Helvetica, Arial, sans-serif" size=-1><B></B></FONT></LI></OL>
+<BR>
+<BR>
+
+<A NAME="14931"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+ <HR SIZE="1">
+ <TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+   <TR>
+     <TD VALIGN=top>
+ <A NAME="17830"> </A>
+ <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+ <B>
+ Note
+ </B>
+ </FONT>
+ </TD>
+     <TD VALIGN=top>
+ <A NAME="17832"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You may need to add <FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/share/lib/xercesImpl.jar</FONT> to the application server classpath suffix, using the application server administration tool, and restart the application server.</FONT>
+ <P></P>
+ </TD>
+   </TR>
+ </TABLE>
+
+ <HR SIZE="1">
+
+<BR>
+
+<A NAME="14934"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To run the Coffee Break client, do the following:
+</FONT>
+<P>
+
+<A NAME="18697"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After you have installed all the Web applications, check that all the applications are running, from the Sun ONE Application Server Administation Tool. 
+</FONT>
+<P>
+
+<A NAME="18724"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Next, run the Coffee Break client by doing the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18725"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Open the Coffee Break server URL in a Web browser:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18739"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">http://localhost:1024/cbserver/orderForm</FONT>
+</FONT>
+<P></P></DT>  </dl>
+<A NAME="18743"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+You should see a page something like the one shown in <A href="index.html#18751"  >Figure&nbsp;2</A>. 
+</FONT>
+<P></P></LI></ol>
+
+<A NAME="18744"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><IMG align=baseline hspace=2 src="images/orderForm.gif">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="18751"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+ Figure	2 &nbsp;&nbsp;Order Form
+</B>
+</FONT>
+<P><ol type="1">
+<A NAME="18771"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+After you have completed the application screens, you will receive an order confirmation that looks similar to the the one shown in <A href="index.html#18782"  >Figure&nbsp;3</A>.
+</FONT>
+<P></P></LI></ol>
+
+<A NAME="18741"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><IMG align=baseline hspace=2 src="images/confirmation.gif">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="18782"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+ Figure	3 &nbsp;&nbsp;Order Confirmation 
+</B>
+</FONT>
+<P>
+<BR>
+<BR>
+
+<A NAME="17770"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="17671"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-root&gt;/domains/&lt;domain-name>/&lt;server-instance>/logs/server.log</FONT> to learn what exactly went wrong.
+</FONT>
+<P><A NAME="17673"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>
+If you encounter errors while deploying the application, make sure that your admin password is set correctly in <FONT FACE="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/build.properties</FONT>. 
+    </FONT>
+<P><A NAME="17675"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>
+If you encounter errors while running the URL <FONT FACE="courier, couriernew, monospaced size">http://localhost/cbserver/orderForm</FONT>, also verify the URL <FONT FACE="courier, couriernew, monospaced size">http://localhost/cbserver/loadPriceList</FONT>, this 
+    gives the exact location where the application fails. 
+<P><A NAME="17675"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B></P>  <li></B>If 
+    none of the above works for you, please verify<CODE><FONT face=Courier><FONT 
+    face="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb</FONT>/jaxm/src/com/sun/cb/JAXMService.properties 
+    </FONT><CODE><FONT face=Courier><FONT 
+    face="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb</FONT>/jaxrpc/src/com/sun/cb/CoffeeRegistry.properties</FONT> 
+    <FONT face=Courier><CODE><FONT 
+    face="courier, couriernew, monospaced size">&lt;AS_HOME&gt;/samples/webservices/cb/</FONT><FONT 
+    face=Courier>jaxrpc/build.properties</FONT></CODE></FONT></CODE></CODE></FONT></FONT></LI></ul>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Some Known Issues
+<ul><p><li>The Coffee Break Server component can not be deployed from the application server administration GUI, if <FONT FACE="courier, couriernew, monospaced size">Precompile JSPs</FONT> option is selected. 
+Solution is, try deploying the application without <FONT FACE="courier, couriernew, monospaced size">Precompile JSPs</FONT>, or deploy using <FONT FACE="courier, couriernew, monospaced size">asant</FONT>.
+<p><li>The Coffee Break Server component can not be deployed using <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> with option <FONT FACE="courier, couriernew, monospaced size">--precompilejsp=true</FONT>.
+Solution is, try deploying the application without the option <FONT FACE="courier, couriernew, monospaced size">--precompilejsp=true</FONT>, or deploy using <FONT FACE="courier, couriernew, monospaced size">asant</FONT>.
+</ul>
+
+
+   </BLOCKQUOTE></BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright © 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font><!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="right">Last Updated <B>July 23, 2002</B>
+   </FONT>
+   <BR></FOOTERCONTENT></MAINCONTENT></P>
+
+</body>
+
+
+</HTML>

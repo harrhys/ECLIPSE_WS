@@ -1,0 +1,51 @@
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    tools:context=".ManageCustomerActivity">
+		<LinearLayout 
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   android:orientation="vertical">
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/title_size"
+		        android:text="@string/manage_customer" 
+		        android:layout_marginBottom="20dp"
+		        style="@style/TitleLabel"/>
+		
+		    <Button
+		        android:id="@+id/new_customer_button"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:text="@string/new_customer" 
+		        android:layout_marginLeft="@dimen/button_padding_left" 
+		        android:layout_marginRight="@dimen/button_padding_right"
+		        android:layout_marginTop="@dimen/padding_top" 
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        style="@style/CustomButton"/>
+		    
+		     <Button
+		        android:id="@+id/verify_customer_button"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp" 
+		        android:text="@string/verify_customer" 
+		        android:layout_marginLeft="@dimen/button_padding_left" 
+		        android:layout_marginRight="@dimen/button_padding_right"
+		        android:layout_marginTop="@dimen/padding_top" 
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        style="@style/CustomButton"/>
+		     
+		      <Button
+		        android:id="@+id/issue_card_button"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:text="@string/issue_card" 
+		        android:layout_marginLeft="@dimen/button_padding_left" 
+		        android:layout_marginRight="@dimen/button_padding_right"
+		        android:layout_marginTop="@dimen/padding_top" 
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        style="@style/CustomButton"/>
+		</LinearLayout>
+</ScrollView>

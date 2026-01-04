@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN' 'http://java.sun.com/dtd/ejb-jar_2_0.dtd'>
+
+<ejb-jar>  
+  <description>EJB Components</description>
+  <display-name>Bookstore2EJB</display-name>
+  <enterprise-beans>
+    <session>
+      <display-name>BookDBEJB</display-name>
+      <ejb-name>BookDBEJB</ejb-name>
+      <home>samples.webapps.bookstore.bookstore2.ejb.database.BookDBEJBHome</home>
+      <remote>samples.webapps.bookstore.bookstore2.ejb.database.BookDBEJB</remote>
+      <ejb-class>samples.webapps.bookstore.bookstore2.ejb.database.BookDBEJBImpl</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <resource-ref>
+        <res-ref-name>jdbc/BookDB</res-ref-name>
+        <res-type>javax.sql.DataSource</res-type>
+        <res-auth>Container</res-auth>
+        <res-sharing-scope>Shareable</res-sharing-scope>
+      </resource-ref>
+    </session>
+  </enterprise-beans>
+</ejb-jar>
+

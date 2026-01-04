@@ -1,0 +1,20 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HelpActivity" >
+	
+	<TextView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/title_size"
+        android:gravity="center"
+        android:text="@string/help"
+        android:layout_marginBottom="20dp"
+        style="@style/TitleLabel" />
+    <ListView 
+       	android:id="@+id/list_view_help"
+       	android:layout_height="match_parent"
+       	android:layout_width="match_parent"/>
+
+</LinearLayout>

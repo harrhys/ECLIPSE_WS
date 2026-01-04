@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd">
+<sun-ejb-jar>
+<enterprise-beans>
+    <name>petstore-ejb.jar</name>
+    <unique-id>50</unique-id>
+    <ejb>
+    <ejb-name>ShoppingClientControllerEJB</ejb-name>
+    <jndi-name>ejb/ShoppingClientControllerEJB</jndi-name>
+    <ejb-ref>
+    <ejb-ref-name>ejb/local/Catalog</ejb-ref-name>
+    <jndi-name>ejb/local/petstore/catalog/Catalog</jndi-name>
+    </ejb-ref>
+    <ejb-ref>
+    <ejb-ref-name>ejb/local/ShoppingCart</ejb-ref-name>
+    <jndi-name>ejb/local/petstore/petstore/ShoppingCart</jndi-name>
+    </ejb-ref>
+    <ejb-ref>
+    <ejb-ref-name>ejb/local/ShoppingClientFacade</ejb-ref-name>
+    <jndi-name>ejb/local/petstore/petstore/ShoppingClientFacade</jndi-name>
+    </ejb-ref>
+    <ejb-ref>
+    <ejb-ref-name>ejb/local/SignOn</ejb-ref-name>
+    <jndi-name>ejb/local/petstore/signon/SignOn</jndi-name>
+    </ejb-ref>
+    <ejb-ref>
+    <ejb-ref-name>ejb/local/AsyncSender</ejb-ref-name>
+    <jndi-name>ejb/local/petstore/asyncsender/AsyncSender</jndi-name>
+    </ejb-ref>
+    <gen-classes/>
+    </ejb>
+    <ejb>
+    <ejb-name>ShoppingClientFacadeEJB</ejb-name>
+    <jndi-name>ejb/ShoppingClientFacadeEJB</jndi-name>
+    <ejb-ref>
+    <ejb-ref-name>ejb/local/Customer</ejb-ref-name>
+    <jndi-name>ejb/local/petstore/customer/Customer</jndi-name>
+    </ejb-ref>
+    <ejb-ref>
+    <ejb-ref-name>ejb/local/ShoppingCart</ejb-ref-name>
+    <jndi-name>ejb/local/petstore/petstore/ShoppingCart</jndi-name>
+    </ejb-ref>
+    <gen-classes/>
+    </ejb>
+    </enterprise-beans>
+</sun-ejb-jar>

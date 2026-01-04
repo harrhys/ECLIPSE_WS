@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1"?> 
+
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+ <!-- ============================================================== -->
+  <!-- Sun ONE Application Server Sample Application build xml         -->
+  <!--                                                                -->
+  <!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+  <!-- ============================================================== -->
+
+
+<project name="DOMEcho" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../" />
+<!-- ======================================================= -->
+  <!--                  Java Doc properties .
+       -->
+  <!-- ======================================================= -->
+
+  <property name="javadoc.pkgnames" value="samples.xml.*" />
+
+<!-- ======================================================= -->
+  <!--                          Include common.xml
+               -->
+  <!-- ======================================================= -->
+
+  &include;
+
+  <path id="project-classpath">
+    <pathelement location="."/>
+    <pathelement location="${build.classesdir}"/>
+  </path>
+ 
+  
+  <target name="run" depends="core">
+    <echo>java samples.xml.dom.DOMEcho ../../data/namespace.xml</echo>
+    <java classname="samples.xml.dom.DOMEcho" fork="yes">
+      <arg value="../../data/namespace.xml"/>
+      <classpath refid="project-classpath"/>
+    </java>
+
+  </target>
+
+  <target name="clean"      depends="clean_common"/>
+  <target name="init"       depends="init_common"/>
+  <target name="compile"    depends="compile_common" />
+  <target name="javadocs"   depends="javadocs_common" />
+
+  <target name="core" depends="init,compile"/>
+  <target name="all" depends="core,javadocs"/>
+  
+
+</project>

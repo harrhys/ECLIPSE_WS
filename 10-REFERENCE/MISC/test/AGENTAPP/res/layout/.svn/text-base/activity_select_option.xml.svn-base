@@ -1,0 +1,62 @@
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    tools:context=".SelectOptionActivity">
+		<LinearLayout 
+		   android:layout_width="match_parent"
+		   android:layout_height="wrap_content"
+		   android:orientation="vertical">
+		    <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/title_size"
+		        android:text="@string/select_option" 
+		        android:layout_marginBottom="20dp"
+		        style="@style/TitleLabel"/>
+		
+		    <Button
+		        android:id="@+id/button_manage_customer_main"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:text="@string/manage_customer" 
+		        android:layout_marginLeft="@dimen/button_padding_left" 
+		        android:layout_marginRight="@dimen/button_padding_right"
+		        android:layout_marginTop="@dimen/padding_top" 
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        style="@style/CustomButton"/>
+		    
+		     <Button
+		        android:id="@+id/button_deposit_money_main"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp" 
+		        android:text="@string/cash_in" 
+		        android:layout_marginLeft="@dimen/button_padding_left" 
+		        android:layout_marginRight="@dimen/button_padding_right"
+		        android:layout_marginTop="@dimen/padding_top" 
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        style="@style/CustomButton"/>
+		     
+		      <Button
+		        android:id="@+id/button_remit_money_main"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:text="@string/cash_out" 
+		        android:layout_marginLeft="@dimen/button_padding_left" 
+		        android:layout_marginRight="@dimen/button_padding_right"
+		        android:layout_marginTop="@dimen/padding_top" 
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        style="@style/CustomButton"/>
+		      
+		       <Button
+		        android:id="@+id/button_my_account_main"
+		        android:layout_width="match_parent"
+		        android:layout_height="50dp"
+		        android:text="@string/my_account" 
+		        android:layout_marginLeft="@dimen/button_padding_left" 
+		        android:layout_marginRight="@dimen/button_padding_right"
+		        android:layout_marginTop="@dimen/padding_top" 
+		        android:layout_marginBottom="@dimen/padding_bottom"
+		        style="@style/CustomButton"/>
+		</LinearLayout>
+</ScrollView>

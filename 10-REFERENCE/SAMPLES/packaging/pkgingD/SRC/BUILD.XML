@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  SunOne Application Server pkgingD Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="pkgingD-sample" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="pkgingDApp"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/packaging/pkgingD"/>
+  <property name="jar.pkg" value="samples/packaging/pkging/ejb"/>
+  <property name="war.pkg" value="samples/packaging/pkgingD/servlet"/>
+
+  <property name="components.pkgprefix" value="samples/packaging/pkging"/>
+  <property name="build.components" value="../../components/build/classes"/>
+  <property name="classpath.suffix" value="../../components/build/classes"/>
+
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="pkgingD"/>
+  <property name="javadoc.pkgnames" value="samples.packaging.pkgingD.*" />
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+
+  <target name="componentsclean">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="clean" />
+  </target>
+
+  <target name="componentscompile" depends="componentsclean">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="compile" />
+  </target>
+
+  <target name="componentsjavadocs">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="javadocs" inheritAll="false"/>
+  </target>
+
+  <!-- ============================================================== -->
+  <!-- Assemble library.jar tobe used in Class-Path in Manifest.mf .  -->
+  <!-- ============================================================== -->
+  <target name="library" >
+    <jar jarfile="${assemble.ear}/library.jar"
+       basedir="${build.components}"
+       includes="${components.pkgprefix}/lib/**"
+    />
+  </target>
+  
+  <!-- ======================================================= -->
+  <!--                   Assemble WAR                          -->
+  <!-- ======================================================= -->
+  <target name="war_local">
+    <mkdir dir="${assemble.war}"/>
+    <copy todir="${assemble.war}">
+      <fileset dir="${src.docroot}"/>
+    </copy>
+    <copy todir="${assemble.war}/WEB-INF/classes/${app.pkg}">
+        <fileset dir="${build.classesdir}/${app.pkg}/">
+                <include name="**/servlet/*.class"/>
+        </fileset>
+    </copy>
+    <copy file="web.xml"     tofile="${assemble.war}/WEB-INF/web.xml"/>
+    <copy file="sun-web.xml" tofile="${assemble.war}/WEB-INF/sun-web.xml"/>
+    <jar jarfile="${assemble}/war/${war}"
+       basedir="${assemble.war}" excludes ="**/*.war"/>
+       <property name="war.done" value="true" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!--                   Assemble EJB JAR                      -->
+  <!-- ======================================================= -->
+  <target name="ejbjar_local">
+    <mkdir dir="${assemble.ejbjar}"/>
+    <copy todir="${assemble.ejbjar}/${components.pkgprefix}">
+        <fileset dir="${build.components}/${components.pkgprefix}/">
+                <include name="**/ejb/*.class"/>
+                <exclude name="**/ejb/*Module*.class"/>
+        </fileset>
+    </copy>
+
+    <mkdir dir="${assemble.ejbjar}/META-INF"/>
+    <copy file="ejb-jar.xml"     tofile="${assemble.ejbjar}/META-INF/ejb-jar.xml"/>
+    <copy file="sun-ejb-jar.xml" tofile="${assemble.ejbjar}/META-INF/sun-ejb-jar.xml"/>
+    <copy file="${src}/MANIFEST.MF" todir="${assemble.ejbjar}/META-INF"/>
+    <jar jarfile="${assemble}/jar/${ejbjar}"
+       manifest="${src}/MANIFEST.MF"
+       basedir="${assemble.ejbjar}" excludes ="**/*.jar"/>
+       <property name="ejbjar.done" value="false" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!--              Create EAR                                 -->
+  <!-- ======================================================= -->
+  <target name="create_ear" depends="clean_ear_common,mkdir_ear,jar,copy_ejbjar,war,copy_war,library">
+    <copy todir="${assemble.ear}/META-INF/">
+      <fileset dir="." includes="${earDD}"/>
+    </copy>
+    <jar jarfile="${assemble.ear}/${ear}"
+       basedir="${assemble.ear}" excludes="**/*.ear"/>
+    <delete file="${assemble.ear}/${war}" />
+    <delete file="${assemble.ear}/${ejbjar}" />
+    <delete file="../${war}" />
+    <delete file="../${ejbjar}" />
+    <copy file="${assemble.ear}/${ear}" tofile="../${ear}"/>
+  </target>
+  
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="componentsclean,clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="componentscompile,compile_common"/>
+  <target name="javadocs" depends="componentsjavadocs, javadocs_common"/>
+  <target name="war" depends="init,war_local"/>
+  <target name="jar" depends="init,ejbjar_local"/>
+  <target name="ear" depends="init,create_ear"/>
+  <target name="core" depends="compile,ear"/>
+  <target name="deploy" depends="deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="all" depends="core,componentsjavadocs,javadocs,verify,deploy"/>
+</project>

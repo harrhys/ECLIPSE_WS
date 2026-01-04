@@ -1,0 +1,940 @@
+<?xml version="1.0"?>
+
+<!--
+ Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ 
+ - Redistribution in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in
+   the documentation and/or other materials provided with the
+   distribution.
+ 
+ Neither the name of Sun Microsystems, Inc. or the names of
+ contributors may be used to endorse or promote products derived
+ from this software without specific prior written permission.
+ 
+ This software is provided "AS IS," without a warranty of any
+ kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES
+ SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR
+ DISTRIBUTING THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN
+ OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR
+ PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF
+ LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE,
+ EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ 
+ You acknowledge that Software is not designed, licensed or intended
+ for use in the design, construction, operation or maintenance of
+ any nuclear facility.
+-->
+
+
+<!-- =================================================================== -->
+<!-- $Id: build.xml,v 1.1.2.32 2002/08/22 16:33:42 bhate Exp $                -->
+<!-- =================================================================== -->
+
+<project name="blueprints" default="core" basedir=".">
+
+  <property file="../../common.properties"/>
+  <!-- include top-level common properties -->
+  <property file="build.properties"/>
+  <property environment="as.env"/>
+  <target name="init" depends="build_classpath">
+
+    <property name="javadocs.dir" value="../javadocs"/>
+
+    <!-- deploy application specific properties -->
+    <property name="opc.application.name" value="OrderProcessingCenterEAR"/>
+    <property name="admin.application.name" value="AdminEAR"/>
+    <property name="petstore.application.name" value="PetStoreEAR"/>
+    <property name="supplier.application.name" value="SupplierEAR"/>
+
+  </target>
+  <target name="build_classpath" unless="sunone.cpath">
+    <path id="petstore_classpath">
+      <fileset dir="${com.sun.aas.installRoot}/lib" includes="*.jar" />
+      <fileset dir="${com.sun.aas.webServicesLib}" includes="*.jar"/>
+    </path>
+    <property name="sunone.cpath" refid="petstore_classpath"/>
+  </target>
+
+  <target name="setpassword" depends="envpassword, readpassword"/>
+ 
+  <target name="envpassword" if="as.env.AS_ADMIN_PASSWORD" >
+    <property name="admin.password" value="${as.env.AS_ADMIN_PASSWORD}"/>
+  </target>
+
+  <target name="readpassword"  unless="admin.password" >
+    <sun-appserv-input message="Please Enter SunONE app-server Admin User Password : " addproperty="admin.password" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Core tragets.                                           -->
+  <!-- ======================================================= -->
+
+  <target name="core" depends="init">
+    <ant dir="apps" target="core"/>     
+  </target>
+  <target name="core-opc" depends="init">
+    <ant dir="apps/opc/src" target="core"/>     
+  </target>
+  <target name="core-admin" depends="init">
+    <ant dir="apps/admin/src" target="core"/>     
+  </target>
+  <target name="core-sup" depends="init">
+    <ant dir="apps/supplier/src" target="core"/>     
+  </target>
+  <target name="core-pet" depends="init">
+    <ant dir="apps/petstore/src" target="core"/>     
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Clean traget.                                           -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="init" >
+    <ant dir="components" target="clean"/>
+    <ant dir="waf/src" target="clean"/>         
+    <ant dir="apps" target="clean"/>         
+    <delete dir="${javadocs.dir}"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Deploy tragets.                                         -->
+  <!-- ======================================================= -->
+
+  <target name="deploy" depends="init, setpassword, setup, keygen">
+    <antcall target="deploy-ears"/>     
+  </target>
+  <target name="deploy-ora" depends="init, setpassword, setup-oracle, keygen ">
+    <antcall target="deploy-ears"/>     
+  </target>
+  <target name="deploy-ears" depends="setpassword">
+    <antcall target="deploy-opc"/>     
+    <antcall target="deploy-admin"/>     
+    <antcall target="deploy-sup"/>     
+    <antcall target="deploy-pet"/>     
+  </target>
+  <target name="deploy-opc" depends="init, setpassword">
+    <echo message="Deploying ../opc.ear." />
+    <sun-appserv-deploy
+      file="../opc.ear"
+      name="${opc.application.name}"
+      retrievestubs="apps/admin/src"
+      type="application"
+      force="true"
+      upload="true"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${sunone.instance}"
+      sunonehome="${com.sun.aas.installRoot}"/>
+  </target>
+  <target name="deploy-admin" depends="init, setpassword">
+    <antcall target="deploy-ear">     
+      <param name="deploy.file" value="../petstoreadmin.ear"/>
+      <param name="app.name" value="${admin.application.name}"/>
+    </antcall>
+  </target>
+  <target name="deploy-sup" depends="init, setpassword">
+    <antcall target="deploy-ear">     
+      <param name="deploy.file" value="../supplier.ear"/>
+      <param name="app.name" value="${supplier.application.name}"/>
+    </antcall>
+  </target>
+  <target name="deploy-pet" depends="init, setpassword">
+    <antcall target="deploy-ear">     
+      <param name="deploy.file" value="../petstore.ear"/>
+      <param name="app.name" value="${petstore.application.name}"/>
+    </antcall>
+  </target>
+  <target name="deploy-ear" depends="init, setpassword">
+    <echo message="Deploying ${deploy.file}." />
+    <sun-appserv-deploy
+      name="${app.name}"
+      file="${deploy.file}"
+      type="application"
+      force="true"
+      upload="true"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${sunone.instance}"
+      sunonehome="${com.sun.aas.installRoot}"/>
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Verify tragets.                                         -->
+  <!-- ======================================================= -->
+
+  <target name="verify">
+    <antcall target="verify-ears"/>     
+  </target>
+  <target name="verify-ears">
+    <antcall target="verify-opc"/>     
+    <antcall target="verify-admin"/>     
+    <antcall target="verify-sup"/>     
+    <antcall target="verify-pet"/>     
+  </target>
+  <target name="verify-opc" depends="init">
+    <antcall target="verify-ear">     
+      <param name="verify.file" value="../opc.ear"/>
+    </antcall>
+  </target>
+  <target name="verify-admin" depends="init">
+    <antcall target="verify-ear">     
+      <param name="verify.file" value="../petstoreadmin.ear"/>
+    </antcall>
+  </target>
+  <target name="verify-sup" depends="init">
+    <antcall target="verify-ear">     
+      <param name="verify.file" value="../supplier.ear"/>
+    </antcall>
+  </target>
+  <target name="verify-pet" depends="init">
+    <antcall target="verify-ear">     
+      <param name="verify.file" value="../petstore.ear"/>
+    </antcall>
+  </target>
+  <target name="verify-ear" depends="init">
+    <echo message="Verifying Process for ${verify.file}" />
+    <java classname="com.sun.enterprise.tools.verifier.Verifier" fork="yes" dir=".">
+      <classpath path="${sunone.cpath}"/>
+      <sysproperty key="com.sun.aas.verifier.xsl" value="${com.sun.aas.installRoot}/lib/verifier/" />
+      <sysproperty key="com.sun.aas.installRoot" value="${com.sun.aas.installRoot}"/>
+      <!-- uncomment the following for verbose output -->
+      <!--<arg value="-v"/>-->
+      <arg value="${verify.file}"/>
+    </java>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Undeploy tragets.                                       -->
+  <!-- ======================================================= -->
+
+  <target name="undeploy" depends="setpassword, unsetup, keydel">
+    <antcall target="undeploy-ears"/>     
+  </target>
+  <target name="undeploy-ears" depends="setpassword">
+    <antcall target="undeploy-opc"/>     
+    <antcall target="undeploy-admin"/>     
+    <antcall target="undeploy-sup"/>     
+    <antcall target="undeploy-pet"/>     
+  </target>
+  <target name="undeploy-opc" depends="init, setpassword">
+    <antcall target="undeploy-ear">     
+      <param name="app.name" value="${opc.application.name}"/>
+    </antcall>
+  </target>
+  <target name="undeploy-admin" depends="init, setpassword">
+    <antcall target="undeploy-ear">     
+      <param name="app.name" value="${admin.application.name}"/>
+    </antcall>
+  </target>
+  <target name="undeploy-sup" depends="init, setpassword">
+    <antcall target="undeploy-ear">     
+      <param name="app.name" value="${supplier.application.name}"/>
+    </antcall>
+  </target>
+  <target name="undeploy-pet" depends="init, setpassword">
+    <antcall target="undeploy-ear">     
+      <param name="app.name" value="${petstore.application.name}"/>
+    </antcall>
+  </target>
+  <target name="undeploy-ear" depends="init, setpassword">
+    <echo message="Undeploying ${app.name}." />
+    <sun-appserv-undeploy
+      name="${app.name}"
+      type="application"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${sunone.instance}"
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- FileRealm key generaion targets.                        -->
+  <!-- ======================================================= -->
+
+  <target name="keygen_common">
+    <echo message="Generating key for user ${app.user} in server ${sunone.instance}"/>
+    <sun-appserv-admin 
+      command="create-file-user --groups ${app.groups} --userpassword=${app.userpassword} ${app.user}"
+      instance="${sunone.instance}"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <target name="keydel_common">
+    <echo message="Deleting key for user ${app.user} in server ${sunone.instance}"/>
+    <sun-appserv-admin 
+      command="delete-file-user ${app.user}"
+      instance="${sunone.instance}"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <target name="keygen-jps_admin">
+    <property name="app.user"  value="jps_admin" />
+    <property name="app.userpassword"  value="admin" />
+    <property name="app.groups"  value="staff" />
+    <antcall target="keygen_common"/>
+  </target>
+
+  <target name="keydel-jps_admin">
+    <property name="app.user"  value="jps_admin" />
+    <antcall target="keydel_common"/>
+  </target>
+ 
+
+  <target name="keygen-rcvr">
+    <property name="app.user"  value="rcvr" />
+    <property name="app.userpassword"  value="rcvr" />
+    <property name="app.groups"  value="staff" />
+    <antcall target="keygen_common"/>
+  </target>
+
+  <target name="keydel-rcvr">
+    <property name="app.user"  value="rcvr" />
+    <antcall target="keydel_common"/>
+  </target>
+
+
+  <target name="keygen-j2ee">
+    <property name="app.user"  value="j2ee" />
+    <property name="app.userpassword"  value="j2ee" />
+    <property name="app.groups"  value="staff" />
+    <antcall target="keygen_common"/>
+  </target>
+
+  <target name="keydel-j2ee">
+    <property name="app.user"  value="j2ee" />
+    <antcall target="keydel_common"/>
+  </target>
+
+ <target name="keydel">
+    <antcall target="keydel-jps_admin"/>
+    <antcall target="keydel-rcvr"/>
+    <antcall target="keydel-j2ee"/>
+    <antcall target="reconfig"/>
+  </target>
+
+  <target name="keygen">
+    <antcall target="keygen-jps_admin"/>
+    <antcall target="keygen-rcvr"/>
+    <antcall target="keygen-j2ee"/>
+    <antcall target="reconfig"/>
+  </target>
+
+
+
+  <!-- ======================================================= -->
+  <!-- Javadocs tragets.                                       -->
+  <!-- ======================================================= -->
+
+  <target name="javadocs" depends="core">
+    <echo message="Generating API Javadocs...."/>
+    <mkdir dir="${javadocs.dir}"/>    
+    <javadoc packagenames="com.sun.j2ee.blueprints.*"
+             destdir="${javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="Java Pet Store Demo API"
+             doctitle="Java Pet Store Demo"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath>
+        <pathelement path="${sunone.cpath}"/>
+        <pathelement path="components/address/build/classes"/>
+        <pathelement path="components/asyncsender/build/classes"/>
+        <pathelement path="components/cart/build/classes"/>
+        <pathelement path="components/catalog/build/classes"/>
+        <pathelement path="components/contactinfo/build/classes"/>
+        <pathelement path="components/creditcard/build/classes"/>
+        <pathelement path="components/customer/build/classes"/>
+        <pathelement path="components/mailer/build/classes"/>
+        <pathelement path="components/purchaseorder/build/classes"/>
+        <pathelement path="components/signon/build/classes"/>
+        <pathelement path="components/supplierpo/build/classes"/>
+        <pathelement path="components/uidgen/build/classes"/>
+        <pathelement path="components/util/tracer/build/classes"/>
+        <pathelement path="components/util/shared/build/classes"/>
+        <pathelement path="components/xmldocuments/build/classes"/>
+        <pathelement path="waf/build/classes"/>
+        <pathelement path="apps/admin/build/classes"/>
+        <pathelement path="apps/opc/build/classes"/>
+        <pathelement path="apps/petstore/build/classes"/>
+        <pathelement path="apps/supplier/build/classes"/>
+      </classpath>
+      <sourcepath>
+        <pathelement path="components/address/src"/>
+        <pathelement path="components/asyncsender/src"/>
+        <pathelement path="components/cart/src"/>
+        <pathelement path="components/catalog/src"/>
+        <pathelement path="components/contactinfo/src"/>
+        <pathelement path="components/creditcard/src"/>
+        <pathelement path="components/customer/src"/>
+        <pathelement path="components/mailer/src"/>
+        <pathelement path="components/purchaseorder/src"/>
+        <pathelement path="components/signon/src"/>
+        <pathelement path="components/supplierpo/src"/>
+        <pathelement path="components/uidgen/src"/>
+        <pathelement path="components/util/tracer/src"/>
+        <pathelement path="components/xmldocuments/src"/>
+        <pathelement path="waf/src/"/>
+        <pathelement path="apps/admin/src"/>
+        <pathelement path="apps/opc/src"/>
+        <pathelement path="apps/petstore/src"/>
+        <pathelement path="apps/supplier/src"/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Reconfig traget.                                        -->
+  <!-- ======================================================= -->
+
+  <target name="reconfig" depends="init, setpassword">
+    <echo message="Reconfiguring server ${sunone.instance}"/>
+    <sun-appserv-admin
+      command="reconfig ${sunone.instance}"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Resource setup realted tragets.                         -->
+  <!-- ======================================================= -->
+
+  <target name="setup" depends="init, setpassword, pb-specific-resources, general-resources"/>
+  <target name="setup-oracle" depends="init, setpassword, oracle-specific-resources, general-resources"/>
+  
+  <target name="create-jdbc-connection-pool" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="create-jdbc-connection-pool --datasourceclassname ${ds.class} --restype javax.sql.XADataSource ${pool.name}" />
+
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      command="set ${sunone.instance}.jdbc-connection-pool.${pool.name}.property.${url.prop}=${db.url}"/>
+
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      command="set ${sunone.instance}.jdbc-connection-pool.${pool.name}.property.User=${db.user}"/>
+
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      command="set ${sunone.instance}.jdbc-connection-pool.${pool.name}.property.Password=${db.password}"/>
+
+  </target>
+
+  <target name="create-jdbc-resource" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="create-jdbc-resource --connectionpoolid ${pool.name} --enabled=true ${jdbc.resource.name}"/>
+  </target>
+
+  <target name="create-persistence-resource" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="create-persistence-resource ${pm.resource.name}"/>
+
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      command="set ${sunone.instance}.persistence-manager-factory-resource.${pm.resource.name}.factoryClass=com.sun.jdo.spi.persistence.support.sqlstore.impl.PersistenceManagerFactoryImpl"/>
+
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      command="set ${sunone.instance}.persistence-manager-factory-resource.${pm.resource.name}.JdbcResourceJndiName=${jdbc.resource.name}"/>
+  </target>
+
+  <target name="create-jms-resource" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="create-jms-resource --resourcetype ${jms.restype} --enabled=true ${jms.resource.name}"/>
+  </target>
+
+  <target name="create-javamail-resource" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="create-javamail-resource --mailhost ${mail.host} --mailuser ${mail.username} --fromaddress ${mail.fromaddress} ${javamail.resource.name}"/>
+  </target>
+
+  <target name="pb-specific-resources" depends="init">
+
+    <echo message="Registering jdbc-connection-pools pool1."/>
+    <antcall target="create-jdbc-connection-pool">
+      <param name="pool.name"   value="pool1" />
+      <param name="db.user"     value="petstore" />
+      <param name="db.password" value="petstore" />
+      <param name="ds.class"    value="com.pointbase.xa.xaDataSource" />
+      <param name="db.url"      value="jdbc:pointbase://${db.host}:${db.port}\/${db.SID}" />
+      <param name="url.prop"    value="DatabaseName" />
+    </antcall>
+
+    <echo message="Registering jdbc-connection-pools opcpool."/>
+    <antcall target="create-jdbc-connection-pool">
+      <param name="pool.name"   value="opcpool" />
+      <param name="db.user"     value="opc" />
+      <param name="db.password" value="opc" />
+      <param name="ds.class"    value="com.pointbase.xa.xaDataSource" />
+      <param name="db.url"      value="jdbc:pointbase://${db.host}:${db.port}\/${db.SID}" />
+      <param name="url.prop"    value="DatabaseName" />
+    </antcall>
+
+    <echo message="Registering jdbc-connection-pools SupplierPool."/>
+    <antcall target="create-jdbc-connection-pool">
+      <param name="pool.name"   value="SupplierPool" />
+      <param name="db.user"     value="supplier" />
+      <param name="db.password" value="supplier" />
+      <param name="ds.class"    value="com.pointbase.xa.xaDataSource" />
+      <param name="db.url"      value="jdbc:pointbase://${db.host}:${db.port}\/${db.SID}" />
+      <param name="url.prop"    value="DatabaseName" />
+    </antcall>
+
+  </target>
+
+  <target name="oracle-specific-resources" depends="init">
+ 
+   <echo message="Registering jdbc-connection-pools pool1."/>
+    <antcall target="create-jdbc-connection-pool">
+      <param name="pool.name"   value="pool1" />
+      <param name="db.user"     value="petstore" />
+      <param name="db.password" value="petstore" />
+      <param name="ds.class"    value="oracle.jdbc.xa.client.OracleXADataSource" />
+      <param name="db.url"      value="jdbc:oracle:thin:@${db.host}:${db.port}:${db.SID}"/>
+      <param name="url.prop"    value="URL" />
+    </antcall>
+
+    <echo message="Registering jdbc-connection-pools opcpool."/>
+    <antcall target="create-jdbc-connection-pool">
+      <param name="pool.name"   value="opcpool" />
+      <param name="db.user"     value="opc" />
+      <param name="db.password" value="opc" />
+      <param name="ds.class"    value="oracle.jdbc.xa.client.OracleXADataSource" />
+      <param name="db.url"      value="jdbc:oracle:thin:@${db.host}:${db.port}:${db.SID}"/>
+      <param name="url.prop"    value="URL" />
+    </antcall>
+
+    <echo message="Registering jdbc-connection-pools SupplierPool."/>
+    <antcall target="create-jdbc-connection-pool">
+      <param name="pool.name"   value="SupplierPool" />
+      <param name="db.user"     value="supplier" />
+      <param name="db.password" value="supplier" />
+      <param name="ds.class"    value="oracle.jdbc.xa.client.OracleXADataSource" />
+      <param name="db.url"      value="jdbc:oracle:thin:@${db.host}:${db.port}:${db.SID}"/>
+      <param name="url.prop"    value="URL" />
+    </antcall>
+
+ </target>
+
+ <target name="general-resources" depends="init">
+    <echo message="Registering jdbc resource jdbc/Oracle "/>
+    <antcall target="create-jdbc-resource">
+      <param name="pool.name"            value="pool1" />
+      <param name="jdbc.resource.name"   value="jdbc/Oracle" />
+    </antcall>
+
+    <echo message="Registering jdbc resource jdbc/opc "/>
+    <antcall target="create-jdbc-resource">
+      <param name="pool.name"            value="opcpool" />
+      <param name="jdbc.resource.name"   value="jdbc/opc" />
+    </antcall>
+
+    <echo message="Registering jdbc resource jdbc/petstore/PetStoreDB "/>
+    <antcall target="create-jdbc-resource">
+      <param name="pool.name"            value="pool1" />
+      <param name="jdbc.resource.name"   value="jdbc/petstore/PetStoreDB" />
+    </antcall>
+
+    <echo message="Registering jdbc resource jdbc/petstore/SupplierDB "/>
+    <antcall target="create-jdbc-resource">
+      <param name="pool.name"            value="SupplierPool" />
+      <param name="jdbc.resource.name"   value="jdbc/petstore/SupplierDB" />
+    </antcall>
+    
+    <echo message="Registering persistence-manager-factory for jdo/pmf "/>
+    <antcall target="create-persistence-resource">
+      <param name="pm.resource.name"     value="jdo/pmf" />
+      <param name="jdbc.resource.name"   value="jdbc/Oracle" />
+    </antcall>
+
+    <echo message="Registering persistence-manager-factory for jdo/opc "/>
+    <antcall target="create-persistence-resource">
+      <param name="pm.resource.name"     value="jdo/opc" />
+      <param name="jdbc.resource.name"   value="jdbc/opc" />
+    </antcall>
+
+    <echo message="Registering persistence-manager-factory for jdo/supplier "/>
+    <antcall target="create-persistence-resource">
+      <param name="pm.resource.name"     value="jdo/supplier" />
+      <param name="jdbc.resource.name"   value="jdbc/petstore/SupplierDB" />
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/petstore/QueueConnectionFactory "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.QueueConnectionFactory" />
+      <param name="jms.resource.name"   value="jms/queue/petstore/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/opc/OrderQueue "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Queue" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=jms_queue_opc_OrderQueue jms/queue/opc/OrderQueue"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/QueueConnectionFactory "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.QueueConnectionFactory" />
+      <param name="jms.resource.name"   value="jms/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/TopicConnectionFactory "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.TopicConnectionFactory" />
+      <param name="jms.resource.name"   value="jms/TopicConnectionFactory"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/QueueName "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Queue" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=MessageBeanQueue jms/QueueName"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/Queue "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Queue" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=SampleQueue jms/Queue"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/Topic "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Topic" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=SampleTopic jms/Topic"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/opc/MailOrderApprovalQueue "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Queue" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=jms_queue_opc_MailOrderApprovalQueue jms/queue/opc/MailOrderApprovalQueue"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/opc/MailQueue "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Queue" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=jms_queue_opc_MailQueue jms/queue/opc/MailQueue"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/opc/OrderApprovalQueue "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Queue" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=jms_queue_opc_OrderApprovalQueue jms/queue/opc/OrderApprovalQueue"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/opc/InvoiceTopic "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Topic" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=jms_topic_opc_InvoiceTopic jms/topic/opc/InvoiceTopic"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/supplier/PurchaseOrderQueue "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.Queue" />
+      <param name="jms.resource.name"   value="--property imqDestinationName=jms_queue_supplier_PurchaseOrderQueue jms/queue/supplier/PurchaseOrderQueue"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/opc/QueueConnectionFactory "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.QueueConnectionFactory" />
+      <param name="jms.resource.name"   value="jms/queue/opc/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/supplier/QueueConnectionFactory "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.QueueConnectionFactory" />
+      <param name="jms.resource.name"   value="jms/queue/supplier/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/topic/supplier/TopicConnectionFactory "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.TopicConnectionFactory" />
+      <param name="jms.resource.name"   value="jms/topic/supplier/TopicConnectionFactory"/>
+    </antcall>
+
+    <echo message="Registering jms-resources jms/queue/admin/QueueConnectionFactory "/>
+    <antcall target="create-jms-resource">
+      <param name="jms.restype"         value="javax.jms.QueueConnectionFactory" />
+      <param name="jms.resource.name"   value="jms/queue/admin/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Registering mail-resources."/>
+    <echo message="Registering javamail-resource mail/petstoreMail "/>
+    <antcall target="create-javamail-resource">
+      <param name="javamail.resource.name"   value="mail/petstoreMail"/>
+    </antcall>
+
+  </target>
+
+  <target name="delete-persistence-resource" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="delete-persistence-resource ${pm.resource.name}"/>
+  </target>
+
+  <target name="delete-jdbc-resource" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="delete-jdbc-resource ${jdbc.resource.name}"/>
+  </target>
+
+  <target name="delete-jdbc-connection-pool" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="delete-jdbc-connection-pool ${jdbc.pool.name}"/>
+  </target>
+
+  <target name="delete-jms-resource" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="delete-jms-resource ${jms.resource.name}"/>
+  </target>
+
+  <target name="delete-javamail-resource" depends="init">
+    <sun-appserv-admin
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      sunonehome="${com.sun.aas.installRoot}"
+      instance="${sunone.instance}"
+      command="delete-javamail-resource ${javamail.resource.name}"/>
+  </target>
+
+  <target name="unsetup" depends="init">
+
+    <echo message="Deleting persistence-manager-factory for jdo/pmf "/>
+    <antcall target="delete-persistence-resource">
+      <param name="pm.resource.name" value="jdo/pmf" />
+    </antcall>
+
+    <echo message="Deleting persistence-manager-factory for jdo/opc "/>
+    <antcall target="delete-persistence-resource">
+      <param name="pm.resource.name" value="jdo/opc" />
+    </antcall>
+
+    <echo message="Deleting persistence-manager-factory for jdo/supplier "/>
+    <antcall target="delete-persistence-resource">
+      <param name="pm.resource.name" value="jdo/supplier" />
+    </antcall>
+
+    <echo message="Deleting jdbc resource jdbc/Oracle "/>
+    <antcall target="delete-jdbc-resource">
+      <param name="jdbc.resource.name" value="jdbc/Oracle" />
+    </antcall>
+
+    <echo message="Deleting jdbc resource jdbc/opc "/>
+    <antcall target="delete-jdbc-resource">
+      <param name="jdbc.resource.name" value="jdbc/opc" />
+    </antcall>
+
+    <echo message="Deleting jdbc resource jdbc/petstore/PetStoreDB "/>
+    <antcall target="delete-jdbc-resource">
+      <param name="jdbc.resource.name" value="jdbc/petstore/PetStoreDB" />
+    </antcall>
+
+    <echo message="Deleting jdbc resource jdbc/petstore/SupplierDB "/>
+    <antcall target="delete-jdbc-resource">
+      <param name="jdbc.resource.name" value="jdbc/petstore/SupplierDB" />
+    </antcall>
+
+    <echo message="Deleting jdbc-connection-pools pool1."/>
+    <antcall target="delete-jdbc-connection-pool">
+      <param name="jdbc.pool.name" value="pool1" />
+    </antcall>
+
+    <echo message="Deleting jdbc-connection-pools opcpool."/>
+    <antcall target="delete-jdbc-connection-pool">
+      <param name="jdbc.pool.name" value="opcpool" />
+    </antcall>
+
+    <echo message="Deleting jdbc-connection-pools SupplierPool."/>
+    <antcall target="delete-jdbc-connection-pool">
+      <param name="jdbc.pool.name" value="SupplierPool" />
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/petstore/QueueConnectionFactory "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/petstore/QueueConnectionFactory" />
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/opc/OrderQueue "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/opc/OrderQueue"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/QueueConnectionFactory "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/TopicConnectionFactory "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/TopicConnectionFactory"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/QueueName "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/QueueName"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/Queue "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/Queue"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/Topic "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/Topic"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/opc/MailOrderApprovalQueue "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/opc/MailOrderApprovalQueue"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/opc/MailQueue "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/opc/MailQueue"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/opc/OrderApprovalQueue "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/opc/OrderApprovalQueue"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/opc/InvoiceTopic "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/topic/opc/InvoiceTopic"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/supplier/PurchaseOrderQueue "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/supplier/PurchaseOrderQueue"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/opc/QueueConnectionFactory "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/opc/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/supplier/QueueConnectionFactory "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/supplier/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/topic/supplier/TopicConnectionFactory "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/topic/supplier/TopicConnectionFactory"/>
+    </antcall>
+
+    <echo message="Deleting jms-resources jms/queue/admin/QueueConnectionFactory "/>
+    <antcall target="delete-jms-resource">
+      <param name="jms.resource.name" value="jms/queue/admin/QueueConnectionFactory"/>
+    </antcall>
+
+    <echo message="Deleting mail-resources."/>
+    <echo message="Deleting javamail-resource mail/petstoreMail "/>
+    <antcall target="delete-javamail-resource">
+      <param name="javamail.resource.name" value="mail/petstoreMail"/>
+    </antcall>
+
+  </target>
+
+
+  <target name="all" depends="core, javadocs, verify, deploy"/>
+</project>

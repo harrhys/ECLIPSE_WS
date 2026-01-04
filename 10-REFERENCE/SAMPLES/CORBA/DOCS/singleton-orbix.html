@@ -1,0 +1,1380 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/09/02 13:15:24">
+	<title>CORBA Interoperability Sample Application:  Using a Singleton for ORB Initialization</title>
+</head>
+
+<body text="#000000" link="10% #594fbf" vlink="#594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+
+     <tr>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+            <a href="../servletsample/docs/index.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Contents
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+         </td>
+     </tr>
+
+      <tr>
+         <td valign="TOP" align="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            CORBA Interoperability Sample Application</B></FONT>
+         </td>
+      </tr>
+
+   </TABLE>
+   <BR><BR>
+
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+
+      <A NAME="8063"> </A>
+<A NAME="Using a Singleton for ORB Initialization"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Using a Singleton for ORB Initialization
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="16023"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="16024"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="singleton-orbix.html#15514"  >Introduction</A>
+</FONT>
+<P><A NAME="15019"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="singleton-orbix.html#15033"  >Singleton Implementation in the Samples</A>
+</FONT>
+<P><A NAME="15512"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="singleton-orbix.html#15330"  >Class Loading Impact on Singletons</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="15514"> </A>
+<A NAME="Introduction"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Introduction
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15021"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">When you develop a web application or EJB that leverages a backend CORBA object, you have several options as to how your client code within the application server initializes the ORB. If you simply call <FONT FACE="courier, couriernew, monospaced size">ORB.init()</FONT> from within a servlet's <FONT FACE="courier, couriernew, monospaced size">init()</FONT> method or from within an EJB's <FONT FACE="courier, couriernew, monospaced size">ejbCreate()</FONT> method, an ORB instance will be instantiated for every instance of the servlet and EJB class. For small scale implementations, this basic approach may be all that you need to support the expected load on your system. However, for large scale implementations, you should consider implementing the singleton design pattern to minimize the number of ORB instances within the application server.
+</FONT>
+<P>
+
+<A NAME="15027"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For an introduction to using singletons, refer to the article "When is a Singleton Not a Singleton?" written by Joshua Fox of JavaWorld: <FONT FACE="courier, couriernew, monospaced size"><A HREF="http://developer.java.sun.com/developer/technicalArticles/Programming/singletons/ ">http://developer.java.sun.com/developer/technicalArticles/Programming/singletons</FONT>/</A>
+</FONT>
+<P>
+
+<A NAME="15031"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To arrive at the best solution for your environment, it is recommended that you exercise several solutions within a production-like environment. As you run performance tests, monitor JVM memory consumption, file descriptor usage and response times to determine the relative behavior of each approach. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15033"> </A>
+<A NAME="Singleton Implementation in the Samples"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Singleton Implementation in the Samples
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15037"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The backend CORBA samples provided with Sun ONE Application Server utilizes a very simple singleton <FONT FACE="courier, couriernew, monospaced size">OrbSingleton</FONT> to carry out ORB initialization. You can find the source code for OrbSingleton in this directory: <FONT FACE="courier, couriernew, monospaced size">&lt;Sun-ONE-AS-install_dir&gt;/samples/corba/ejbsample/src/samples/corba/common/</FONT>
+</FONT>
+<P>
+
+<A NAME="15042"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The servlet <FONT FACE="courier, couriernew, monospaced size">init()</FONT> and <FONT FACE="courier, couriernew, monospaced size">ejbCreate()</FONT> methods call <FONT FACE="courier, couriernew, monospaced size">getInstance()</FONT> on the singleton to obtain a reference to the singleton. Then <FONT FACE="courier, couriernew, monospaced size">getOrb()</FONT> is called to obtain a reference to the initialized ORB: 
+</FONT>
+<P>
+<A NAME="16233"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+public class CorbaClientServlet extends HttpServlet {
+
+</FONT>
+<P><A NAME="16234"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16235"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16236"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16237"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         ...
+
+</FONT>
+<P><A NAME="16238"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16239"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16240"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16241"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         public void init (ServletConfig config) throws 
+ServletException
+
+</FONT>
+<P><A NAME="16242"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16243"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16244"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16245"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         {
+
+</FONT>
+<P><A NAME="16246"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16247"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16248"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16249"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           ...
+
+</FONT>
+<P><A NAME="16250"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16251"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16252"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16253"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           OrbSingleton orbSingleton = OrbSingleton.getInstance 
+(orbDomainName, orbCfgDir);
+
+</FONT>
+<P><A NAME="16254"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16255"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16256"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16257"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           orb = orbSingleton.getOrb();
+
+</FONT>
+<P><A NAME="16258"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16259"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16260"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16261"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           ...
+
+</FONT>
+<P><A NAME="16262"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16263"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16264"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16265"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16266"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16267"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16268"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16269"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+     public class CorbaClientEJB implements javax.ejb.SessionBean {
+
+</FONT>
+<P><A NAME="16270"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16271"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16272"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16273"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         ...
+
+</FONT>
+<P><A NAME="16274"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16275"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16276"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16277"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         public void ejbCreate() throws java.rmi.RemoteException, 
+javax.ejb.CreateException
+
+</FONT>
+<P><A NAME="16278"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16279"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16280"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16281"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         {
+
+</FONT>
+<P><A NAME="16282"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16283"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16284"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16285"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           ...
+
+</FONT>
+<P><A NAME="16286"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16287"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16288"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16289"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           OrbSingleton orbSingleton = OrbSingleton.getInstance 
+(orbDomainName, orbCfgDir);
+
+</FONT>
+<P><A NAME="16290"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16291"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16292"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16293"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           orb = orbSingleton.getOrb();
+
+</FONT>
+<P><A NAME="16294"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16295"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16296"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16086"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           ...
+
+</FONT>
+<P>
+<A NAME="16090"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+</FONT>
+<P>
+
+<A NAME="16325"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">When <FONT FACE="courier, couriernew, monospaced size">getInstance()</FONT> is called, the singleton class simply checks to determine whether or not the ORB has already been initialized: 
+</FONT>
+<P>
+<A NAME="16349"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+public class OrbSingleton {
+
+</FONT>
+<P><A NAME="16350"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16351"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16352"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16353"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       private ORB orb;
+
+</FONT>
+<P><A NAME="16354"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16355"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16356"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16357"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       static private String orbDomain = null;
+
+</FONT>
+<P><A NAME="16358"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16359"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16360"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16361"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       static private String orbCfg = null;
+
+</FONT>
+<P><A NAME="16362"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16363"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16364"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16365"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       static private OrbSingleton _instance = null;
+
+</FONT>
+<P><A NAME="16366"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16367"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16368"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16369"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       ...
+
+</FONT>
+<P><A NAME="16370"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16371"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16372"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16373"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       static public synchronized OrbSingleton getInstance(String 
+orbDomainName, String orbCfgDir)
+
+</FONT>
+<P><A NAME="16374"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16375"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16376"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16377"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       {
+
+</FONT>
+<P><A NAME="16378"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16379"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16380"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16381"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         if (null == _instance) {
+
+</FONT>
+<P><A NAME="16382"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16383"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16384"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16385"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           orbDomain = orbDomainName;
+
+</FONT>
+<P><A NAME="16386"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16387"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16388"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="15175"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           orbCfg = orbCfgDir;
+
+</FONT>
+<P><A NAME="16414"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16415"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           _instance = new OrbSingleton();
+
+</FONT>
+<P><A NAME="16416"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16417"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16418"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16419"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         }
+
+</FONT>
+<P><A NAME="16420"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16421"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16422"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16423"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         return _instance;
+
+</FONT>
+<P><A NAME="16424"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16425"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16426"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16427"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       }
+
+</FONT>
+<P><A NAME="16428"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16429"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16430"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16099"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       ...
+
+</FONT>
+<P>
+<A NAME="16102"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+</FONT>
+<P>
+
+<A NAME="16103"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If the instance has not already been created, then the constructor for the class is called to create a new instance: 
+</FONT>
+<P>
+<A NAME="16440"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+public class OrbSingleton {
+
+</FONT>
+<P><A NAME="16441"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16442"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16443"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16444"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         private ORB orb;
+
+</FONT>
+<P><A NAME="16445"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16446"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16447"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16448"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         static private String orbDomain = null;
+
+</FONT>
+<P><A NAME="16449"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16450"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16451"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16452"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         static private String orbCfg = null;
+
+</FONT>
+<P><A NAME="16453"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16454"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16455"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16456"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+             static private OrbSingleton _instance = null;
+
+</FONT>
+<P><A NAME="16457"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16458"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16459"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16460"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         ...
+
+</FONT>
+<P><A NAME="16461"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16462"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16463"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16464"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         private OrbSingleton() {
+
+</FONT>
+<P><A NAME="16465"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16466"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16467"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16468"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           ...
+
+</FONT>
+<P><A NAME="16469"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16470"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16471"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16472"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           try {
+
+</FONT>
+<P><A NAME="16473"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16474"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16475"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="15239"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+             orb = ORB.init(args, orbProperties);
+
+</FONT>
+<P><A NAME="16494"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+}
+
+</FONT>
+<P><A NAME="16495"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16496"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16497"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16498"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           catch (SystemException ex) {
+
+</FONT>
+<P><A NAME="16499"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16500"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16501"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16502"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+             System.out.println("OrbSingleton() constructor: 
+ORB.init() exception: " + 
+SystemExceptionDisplayHelper.toString(ex));
+
+</FONT>
+<P><A NAME="16503"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16504"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16505"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16506"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+           }
+
+</FONT>
+<P><A NAME="16507"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16508"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16509"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16510"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+         }
+
+</FONT>
+<P><A NAME="16511"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16512"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16513"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16122"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+       ...
+
+</FONT>
+<P>
+<A NAME="16125"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+</FONT>
+<P>
+
+<A NAME="16126"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The getOrb() method simply returns the ORB instance reference: 
+</FONT>
+<P>
+<A NAME="16541"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+public class OrbSingleton {
+
+</FONT>
+<P><A NAME="16542"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16543"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16544"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16545"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+      private ORB orb;
+
+</FONT>
+<P><A NAME="16546"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16547"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16548"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16549"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+      static private String orbDomain = null;
+
+</FONT>
+<P><A NAME="16550"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16551"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16552"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16553"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+      static private String orbCfg = null;
+
+</FONT>
+<P><A NAME="16554"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16555"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16556"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16557"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+      static private OrbSingleton _instance = null;
+
+</FONT>
+<P><A NAME="16558"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16559"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16560"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16561"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+      ...
+
+</FONT>
+<P><A NAME="16562"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16563"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16564"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16565"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+      public ORB getOrb()
+
+</FONT>
+<P><A NAME="16566"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16567"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16568"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16569"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+      {
+
+</FONT>
+<P><A NAME="16570"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16571"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16572"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16573"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+        return orb;
+
+</FONT>
+<P><A NAME="16574"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16575"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16576"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16577"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+      }
+
+</FONT>
+<P><A NAME="16578"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16579"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="16580"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+
+
+</FONT>
+<P><A NAME="15283"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+    ...
+
+</FONT>
+<P>
+<A NAME="16144"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+</FONT>
+<P>
+
+<A NAME="16145"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">When running the servlet client to CORBA sample for Orbix, you'll see the following output in the Server log file as you run the sample for the first time. Since the singleton does not yet exist, you see the constructor of the <FONT FACE="courier, couriernew, monospaced size">OrbSingleton</FONT> class being called. The <FONT FACE="courier, couriernew, monospaced size">ORB.init()</FONT> is called within the constructor: 
+</FONT>
+<P>
+<A NAME="16614"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: init 
+
+</FONT>
+<P><A NAME="16615"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+Initializing ORB 
+
+</FONT>
+<P><A NAME="16616"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+orbDomainName=localhost 
+
+</FONT>
+<P><A NAME="16617"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+orbCfgDir=/space/sanju/install/orbix_2000/orbix_art/1.2/localhost 
+
+</FONT>
+<P><A NAME="16618"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+iorFile1=/space/sanju/install/orbix_2000/orbix_art/1.2/demos/simple
+1.ior 
+
+</FONT>
+<P><A NAME="16619"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+iorFile1=/space/sanju/install/orbix_2000/orbix_art/1.2/demos/simple
+1.ior 
+
+</FONT>
+<P><A NAME="16620"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): OrbSingleton() constructor: 
+Calling ORB.init(). 
+
+</FONT>
+<P><A NAME="16621"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): OrbSingleton() constructor: 
+orbDomainName=localhost 
+
+</FONT>
+<P><A NAME="16622"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): OrbSingleton() constructor: 
+rbCfgDir=/space/sanju/install/orbix_2000/orbix_art/1.2/localhost 
+
+</FONT>
+<P><A NAME="16623"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): OrbSingleton() constructor: 
+ORB.init() successful. 
+
+</FONT>
+<P><A NAME="16624"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Invoking 
+import_object() for first object 
+
+</FONT>
+<P><A NAME="16625"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Reading 
+object reference from 
+/space/sanju/install/orbix_2000/orbix_art/1.2/demos/simple1.ior 
+
+</FONT>
+<P><A NAME="16626"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): Invoking import_object() for 
+second object 
+
+</FONT>
+<P><A NAME="16627"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Reading 
+object reference from 
+/space/sanju/install/orbix_2000/orbix_art/1.2/demos/simple2.ior 
+
+</FONT>
+<P><A NAME="16628"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Invoking 
+narrow on first object. 
+
+</FONT>
+<P><A NAME="16629"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Invoking 
+narrow on second object.. 
+
+</FONT>
+<P><A NAME="16630"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:46:59] INFO ( 1837): CorbaClientServlet: Invoking 
+method on first object. 
+
+</FONT>
+<P><A NAME="15305"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:46:59] INFO ( 1837): CorbaClientServlet: Invoking 
+method on second object.
+
+</FONT>
+<P>
+<A NAME="16186"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+</FONT>
+<P>
+
+<A NAME="16187"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you start several browsers and repeatedly hit reload to send multiple concurrent requests to the application server, the Servlet container will create additional instances of the Servlet. During creation of each additional Servlet instance, the servlet <FONT FACE="courier, couriernew, monospaced size">init()</FONT> method will be called. By reviewing the Server log files, you can see that the <FONT FACE="courier, couriernew, monospaced size">OrbSingleton().getInstance()</FONT> method prints out a message stating that a singleton already exists. In this case the original ORB reference is returned to the new Servlet instance:
+</FONT>
+<P>
+
+<A NAME="15326"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+</FONT>
+<P>
+<A NAME="16717"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: init 
+
+</FONT>
+<P><A NAME="16718"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+Initializing ORB 
+
+</FONT>
+<P><A NAME="16719"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+orbDomainName=localhost 
+
+</FONT>
+<P><A NAME="16720"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+orbCfgDir=/space/sanju/install/orbix_2000/orbix_art/1.2/localhost 
+
+</FONT>
+<P><A NAME="16721"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+iorFile1=/space/sanju/install/orbix_2000/orbix_art/1.2/demos/simple
+1.ior 
+
+</FONT>
+<P><A NAME="16722"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): CorbaClientServlet: 
+iorFile1=/space/sanju/install/orbix_2000/orbix_art/1.2/demos/simple
+1.ior 
+
+</FONT>
+<P><A NAME="16723"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:02] INFO ( 1837): OrbSingleton().getInstance(): 
+Singleton already exists. 
+
+</FONT>
+<P><A NAME="16724"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Invoking 
+import_object() for first object 
+
+</FONT>
+<P><A NAME="16725"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Reading 
+object reference from 
+/space/sanju/install/orbix_2000/orbix_art/1.2/demos/simple1.ior 
+
+</FONT>
+<P><A NAME="16726"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): Invoking import_object() for 
+second object 
+
+</FONT>
+<P><A NAME="16727"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Reading 
+object reference from 
+/space/sanju/install/orbix_2000/orbix_art/1.2/demos/simple2.ior 
+
+</FONT>
+<P><A NAME="16728"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Invoking 
+narrow on first object. 
+
+</FONT>
+<P><A NAME="16729"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:45:05] INFO ( 1837): CorbaClientServlet: Invoking 
+narrow on second object.. 
+
+</FONT>
+<P><A NAME="16730"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:46:59] INFO ( 1837): CorbaClientServlet: Invoking 
+method on first object. 
+
+</FONT>
+<P><A NAME="16206"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[10/Apr/2002:20:46:59] INFO ( 1837): CorbaClientServlet: Invoking 
+method on second object.
+
+</FONT>
+<P>
+<A NAME="16207"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Although this simple approach to implementing the singleton design pattern will help minimize the number of ORB instances created within a JVM of the application server, it will not always result in a single instance being created throughout a JVM. The manner in which an application server manages class loading has a significant impact on the number of singletons created within each JVM.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15330"> </A>
+<A NAME="Class Loading Impact on Singletons"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Class Loading Impact on Singletons
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15332"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Sun ONE Application Server implements a hierarchy of class loaders to manage system classes, J2EE applications and individual J2EE modules. Since a singleton cannot span multiple class loaders, it is important to understand the basics of class loading in the application server when considering singletons. 
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="15336"> </A>
+<A NAME="J2EE Application Deployments"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+J2EE Application Deployments
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15338"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you deploy a J2EE application as an EAR file, the application server dedicates a class loader to the application. All classes deployed as part of the WAR and EJB JAR files within the EAR are loaded by the same class loader. If you implement a singleton anywhere within the EAR, you are able to ensure that at most one instance of the singleton will be created for that application within a JVM process.
+</FONT>
+<P>
+
+<A NAME="15342"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">However, if multiple applications contain the same singleton class, you will see multiple instances of the singleton created because separate class loaders are used for each application. This behavior may or may not be acceptable in your environment. If you exercise both the servlet and EJB backend CORBA sample applications, you will notice that the common singleton class shared by these two applications is created twice.
+</FONT>
+<P>
+
+<A NAME="15346"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To avoid instantiating multiple copies of the same singleton class, you can deploy your application code as individual modules.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="15348"> </A>
+<A NAME="Module-based Deployments"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Module-based Deployments
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15350"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since the application server uses a common class loader for all applications deployed as individual WAR and EJB JAR modules, you can deploy your applications as individual modules and be assured that a common class loader would create only one instance of a singleton throughout a JVM process.
+</FONT>
+<P>
+
+<A NAME="15352"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You must weigh the costs and benefits of deploying your applications as individual modules to achieve a true singleton support within a JVM as compared to perhaps having a small number of J2EE applications each creating their own copy of the singleton.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="15355"> </A>
+<A NAME="Application Server Classpath"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Application Server Classpath
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15357"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Although it involves extra deployments other than that of your application classes, you could add the singleton class to the application server's classpath and not include it in the J2EE modules or application. This approach would force the creation of at most one instance of the singleton class for the entire application server instance.
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+            <a href="../servletsample/docs/index.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Previous
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="contents.html">
+<b>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2" COLOR="#d12124">
+Contents
+</FONT>
+</b>
+</a>
+&nbsp;&nbsp;&nbsp;&nbsp;
+
+       <HR NOSHADE SIZE="1">
+
+  
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 09, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+
+</BODY>
+
+
+</HTML>

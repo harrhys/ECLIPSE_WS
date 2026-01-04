@@ -1,0 +1,22 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+      <TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/title_size"
+		        android:text="@string/app_name" 
+		        android:layout_marginBottom="20dp"
+		        style="@style/TitleLabel"/>
+
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="match_parent"
+          android:layout_margin="@dimen/button_padding_left"
+          android:layout_gravity="center"
+          android:gravity="center"
+          android:textSize="18sp"
+          android:textStyle="bold"
+          android:text="@string/welcome_text" />
+      
+</LinearLayout>

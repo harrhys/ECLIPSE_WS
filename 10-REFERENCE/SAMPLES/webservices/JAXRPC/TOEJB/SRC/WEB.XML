@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ISO-8859-1"?> 
+
+<!DOCTYPE web-app 
+    PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" 
+    "http://java.sun.com/dtd/web-app_2_3.dtd"> 
+
+<web-app> 
+   <display-name>HelloWorldApplication</display-name> 
+   <description>Hello World Application</description> 
+   <session-config> 
+      <session-timeout>60</session-timeout> 
+   </session-config> 
+  <ejb-ref>
+    <ejb-ref-name>ejb/SimpleGreeting</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>samples.webservices.jaxrpc.toejb.ejb.GreetingHome</home>
+    <remote>samples.webservices.jaxrpc.toejb.ejb.Greeting</remote>
+  </ejb-ref>
+</web-app>
+

@@ -1,0 +1,40 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+		<TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/title_size"
+	        android:text="@string/title_atm_card_issuance"
+	        android:layout_marginBottom="20dp" 
+	        style="@style/TitleLabel"/>
+		<TextView 
+	       android:layout_width="match_parent"
+	       android:layout_height="wrap_content"
+	       android:text="@string/atm_card_ref_number"
+	       android:layout_marginLeft="@dimen/padding_left"
+	       android:layout_marginRight="@dimen/padding_right" />
+	    
+	    <EditText 
+	       android:id="@+id/atm_card_ref_no_edit_text_atm_card_issuance"
+	       android:layout_width="match_parent"
+	       android:layout_height="40dp"
+	       android:hint="@string/enter_atm_card_ref_number" 
+	       android:layout_marginBottom="@dimen/padding_bottom"
+	       android:layout_marginLeft="@dimen/padding_left"
+	       android:layout_marginRight="@dimen/padding_right"
+	       android:inputType="number"
+	       android:maxLength="@string/atm_card_ref_number_length"
+	       android:selectAllOnFocus="true"
+		   android:imeOptions="actionNext" />
+		
+	    <Button 
+		        android:id="@+id/submit_button_atm_card_issuance"
+		        android:layout_width="100dp"
+		        android:layout_height="50dp"
+		        android:text="@string/next" 
+		        android:layout_gravity="center"
+		        android:background="@drawable/submit_buttons"/>
+</LinearLayout>

@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/server
+END
+FubarWSApp.ear
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/server/FubarWSApp.ear
+END
+FubarWebApp.ear
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/server/FubarWebApp.ear
+END
+FubarClusterWebApp.ear
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/server/FubarClusterWebApp.ear
+END
+FubarTopicMDBApp.ear
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/server/FubarTopicMDBApp.ear
+END
+FubarBMTEJBApp.ear
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/server/FubarBMTEJBApp.ear
+END
+readme.txt
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/server/readme.txt
+END
+FubarQueueMDBApp.ear
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/obo/!svn/ver/55259/Operations/branches/EntEngCert/Fubar/FubarAReadme/build/fubar/server/FubarQueueMDBApp.ear
+END

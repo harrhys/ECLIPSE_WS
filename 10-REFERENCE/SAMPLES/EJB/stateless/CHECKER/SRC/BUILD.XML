@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+  <!-- ======================================================= -->
+  <!--  SunOne Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="helloworld" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="stateless-checker"/>
+  <property name="sample.home" value="../../../../"/>
+  <property name="sample.name" value="CheckerApp"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/ejb/stateless/checker/client"/>
+  <property name="jar.pkg" value="samples/ejb/stateless/checker/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  <property name="sample.name" value="checker"/>
+  <property name="javadoc.pkgnames" value="samples.ejb.stateless.checker.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+	
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="verify" depends="verify_common"/>
+
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="clientjar" depends="init,clientjar_common"/>
+  <target name="ear" depends="init,jar,clientjar,create_ear_common"/>
+  <target name="core" depends="compile,jar,ear,clientjar" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

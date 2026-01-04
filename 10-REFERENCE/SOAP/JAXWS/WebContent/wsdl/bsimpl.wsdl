@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="BSImplService" targetNamespace="http://test.com/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://test.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+  <wsdl:types>
+    <schema xmlns="http://www.w3.org/2001/XMLSchema">
+  <import namespace="http://test.com/" schemaLocation="bsimpl_schema1.xsd"/>
+</schema>
+  </wsdl:types>
+  <wsdl:message name="sayHello">
+    <wsdl:part name="parameters" element="tns:sayHello">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part name="parameters" element="tns:sayHelloResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="WSImpl">
+    <wsdl:operation name="sayHello">
+      <wsdl:input name="sayHello" message="tns:sayHello">
+    </wsdl:input>
+      <wsdl:output name="sayHelloResponse" message="tns:sayHelloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BSImplServiceSoapBinding" type="tns:WSImpl">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="urn:SayHello" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BSImplService">
+    <wsdl:port name="BSImplPort" binding="tns:BSImplServiceSoapBinding">
+      <soap:address location="http://localhost:8080/JAXWS/services/BSImplPort"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

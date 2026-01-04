@@ -1,0 +1,240 @@
+<?xml version="1.0"?>
+
+<!--
+ Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ 
+ - Redistribution in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in
+   the documentation and/or other materials provided with the
+   distribution.
+ 
+ Neither the name of Sun Microsystems, Inc. or the names of
+ contributors may be used to endorse or promote products derived
+ from this software without specific prior written permission.
+ 
+ This software is provided "AS IS," without a warranty of any
+ kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES
+ SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR
+ DISTRIBUTING THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN
+ OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR
+ PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF
+ LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE,
+ EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ 
+ You acknowledge that Software is not designed, licensed or intended
+ for use in the design, construction, operation or maintenance of
+ any nuclear facility.
+-->
+
+
+<!-- =================================================================== -->
+<!-- $Id: build.xml,v 1.1.2.12 2002/08/01 03:51:46 bhate Exp $               -->
+<!-- =================================================================== -->
+
+<project name="orderprocesscontroller" default="core" basedir=".">
+
+
+  <target name="init">
+    <!-- include top-level common properties -->
+    <property file="../../../build.properties"/>
+    <property name="sunone.cpath" value="${com.sun.aas.installRoot}/lib/appserv-ext.jar"/>
+
+    <property name="opc.home" value=".."/>
+
+    <property name="opc.src" value="${opc.home}/src"/>
+
+    <property name="opc.rsrc" value="${opc.src}/rsrc"/>
+
+    <!-- The destination directory for the build -->
+    <property name="opc.build" value="${opc.home}/build"/>
+    <property name="opc.buildjardir" value="${opc.home}/build/earjar"/>
+
+
+    <!-- The destination directory for all the compiled classes. -->
+    <property name="opc.classbindir" value="${opc.build}/classes"/>
+
+    <!-- The destination directory for all the javadocs. -->
+    <property name="opc.javadocs.dir" value="${opc.build}/docs/api"/>
+
+   <!-- The root directory of all the components. -->
+    <property name="opc.components.basedir" value="../../../components"/>
+
+
+    <!-- XML Documents Component - this contains the PO/Invoice classes -->
+    <property name="opc.xmldocuments.home" value="${opc.components.basedir}/xmldocuments"/>
+    <property name="opc.xmldocuments.client" value="${opc.xmldocuments.home}/build/xmldocuments.jar"/>
+
+
+    <!-- Purchase Order EJB Components -->
+    <property name="opc.po.home" value="../../../components/purchaseorder"/>
+    <property name="opc.po.ejbjar" value="${opc.po.home}/build/PurchaseOrderJAR.jar"/>
+    <property name="opc.po.ejbjar.client" value="${opc.po.home}/build/po-ejb-client.jar"/>
+
+
+    <!-- Mailer Component -->
+    <property name="opc.mailer.home" value="${opc.components.basedir}/mailer"/>
+    <property name="opc.mailer.ejbjar" value="${opc.mailer.home}/build/MailerJAR.jar"/>
+    <property name="opc.mailer.ejbjar.client" value="${opc.mailer.home}/build/mailer-ejb-client.jar"/>
+
+
+    <!-- OPC components and glue code -->
+    <property name="opc.ejbjar" value="${opc.build}/OrderProcessingCenterJAR.jar"/>
+    <property name="opc.ejbclientjar" value="${opc.build}/opc-ejb-client.jar"/>
+    <property name="opc.ear" value="opc.ear"/>
+
+    <!-- The classpath used for building the workspace. -->
+    <property name="opc.classpath" value="${opc.classbindir}:${opc.xmldocuments.client}:${opc.po.ejbjar.client}:${opc.mailer.ejbjar.client}:${sunone.cpath}"/>
+
+  </target>
+
+
+  <target name="compile" depends="init">
+    <mkdir dir="${opc.classbindir}"/>
+    <javac srcdir="${opc.src}"
+           destdir="${opc.classbindir}"
+           debug="on"
+	   classpath="${opc.classpath}"
+	   includes="com/**"/>
+    <copy todir="${opc.classbindir}" >
+     <fileset dir= "${opc.rsrc}"/>
+    </copy>
+  </target> 
+
+
+  <target name="ejbjar" depends="init">
+    <mkdir dir="${opc.buildjardir}/META-INF"/>
+
+    <copy todir="${opc.buildjardir}">
+     <fileset dir= "${opc.classbindir}"/>
+     <fileset dir="${opc.xmldocuments.home}/build/classes" />
+    </copy>
+
+    <copy file="ejb-jar.xml" tofile="${opc.buildjardir}/META-INF/ejb-jar.xml" />  
+    <copy file="sun-ejb-jar.xml" tofile="${opc.buildjardir}/META-INF/sun-ejb-jar.xml" />  
+ 
+
+    <delete file="${opc.ejbjar}"/>
+    <jar jarfile="${opc.ejbjar}" basedir="${opc.buildjardir}" manifest="ejb-jar-manifest.mf"/>
+
+    <delete dir="${opc.buildjardir}"/>
+  </target>
+
+
+  <target name="ejbclientjar" depends="init">
+    <property name="opc.buildjardir" value="${opc.home}/build/ejbjar"/>
+    <copy todir="${opc.buildjardir}">
+     <fileset dir= "${opc.classbindir}"/>
+    </copy>
+    
+    <!-- Delete any unecessary files for client jars -->
+    <delete file="${opc.buildjardir}/com/sun/j2ee/blueprints/opc/ejb/MsgBean.class"/>
+    <delete file="${opc.buildjardir}/com/sun/j2ee/blueprints/opc/ejb/InvoiceMDB.class"/>
+
+    <delete file="${opc.buildjardir}/com/sun/j2ee/blueprints/opc/ejb/OrderApprovalMDB.class"/>
+
+    <delete file="${opc.ejbclientjar}"/>
+    <jar jarfile="${opc.ejbclientjar}" basedir="${opc.buildjardir}"/>
+    <delete dir="${opc.buildjardir}"/>
+  </target>
+
+
+
+ <target name="ear" depends="init">
+    <mkdir dir="${opc.buildjardir}/META-INF"/>
+    <copy file="${opc.src}\application.xml" todir="${opc.buildjardir}/META-INF/" />
+    <copy file="${opc.src}\sun-application.xml" todir="${opc.buildjardir}/META-INF/" />
+
+    <!-- Copy in the EJB jars --> 
+    
+    <copy file="${opc.ejbjar}" todir="${opc.buildjardir}" />
+    <copy file="${opc.mailer.ejbjar}" todir="${opc.buildjardir}" />
+    <copy file="${opc.po.ejbjar}" todir="${opc.buildjardir}" />
+
+     <!-- Copy in the client jars -->
+     <copy file="${opc.mailer.ejbjar.client}" todir="${opc.buildjardir}" />
+     <copy file="${opc.po.ejbjar.client}" todir="${opc.buildjardir}" />
+     <copy file="${opc.xmldocuments.client}" todir="${opc.buildjardir}" />
+
+           <!-- Delete the old Jar and rebuild -->
+    <delete file="${opc.build}/${opc.ear}"/>
+    <delete file="../../../../${opc.ear}"/>
+    <jar jarfile="${opc.build}/${opc.ear}" basedir="${opc.buildjardir}" />
+    <delete dir="${opc.buildjardir}"/>
+  </target>
+
+  <target name="copy_ear" depends="init">
+      <copy file="${opc.build}/${opc.ear}" todir="../../../.." />
+  </target>
+
+
+  <target name="verify">
+    <ant dir="../../../" target="verify-opc" inheritall="false"/>
+  </target>
+
+  <target name="deploy">
+    <ant dir="../../../" target="deploy-opc" inheritall="false"/>
+  </target>
+
+  <target name="undeploy">
+    <ant dir="../../../" target="undeploy-opc" inheritall="false"/>
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${opc.build}"/>
+    <ant dir="${opc.xmldocuments.home}/src" target="clean"/>
+    <ant dir="${opc.mailer.home}/src" target="clean"/>
+    <ant dir="${opc.po.home}/src" target="clean"/>
+  </target>
+
+  <target name="components" depends="init">
+    <ant dir="${opc.xmldocuments.home}/src" target="core"/>
+    <ant dir="${opc.mailer.home}/src" target="core"/>
+    <ant dir="${opc.po.home}/src" target="core"/>
+  </target>
+
+  <target name="javadocs" depends="init, core">
+    <mkdir dir="${opc.javadocs.dir}"/>    
+    <javadoc packagenames="com.sun.j2ee.blueprints.*"
+             destdir="${opc.javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="Java Pet Store Order Processing Center API"
+             doctitle="Java Pet Store Order Processing Center Application"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath path="${opc.classpath}"/>
+      <sourcepath>
+        <pathelement path="${opc.mailer.home}/src"/>
+        <pathelement path="${opc.po.home}/src"/>
+        <pathelement path="${opc.xmldocuments.home}/src"/>
+        <pathelement path="."/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="banner">
+      <echo>+---------------------------------------+</echo>
+      <echo>+    Building OPC Application           +</echo>
+      <echo>+---------------------------------------+</echo>
+  </target>
+
+
+  <target name="ejbs" depends="compile, ejbjar, ejbclientjar" />
+ 
+  <target name="core" depends="components, banner, ejbs, ear, copy_ear" />
+
+  <target name="all" depends="core, javadocs" />
+
+  <target name="clientjar" depends="compile, ejbclientjar" />
+
+</project>
+

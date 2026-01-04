@@ -1,0 +1,758 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/13/02 16:00:16">
+	<title>A Simple Logging Sample Application:  A Simple Logging Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            A Simple Logging Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="A Simple Logging Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+A Simple Logging Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#25722"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="22833"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22497"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22343"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20774"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19851"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+The essence of this sample is to demonstrate the use of Loggers in writing enterprise applications.
+A <FONT FACE="courier, couriernew, monospaced size">Logger</FONT> object is used to log messages for
+a specific system or application component. Log messages help developers debug their applications.
+
+<p><i><b>Java<sup><font size=-2>TM</font></sup>&nbsp;2&nbsp;Platform Std.&nbsp;Ed. v1.4.0</b></i> introduces
+a new package <A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/logging/package-summary.html">
+java.util.logging</A>, that has all the classes and interfaces for the core logging
+facilities. The central goal of the logging APIs is to support maintaining and servicing software at customer
+sites.
+
+<p>Typically, the application developer uses a <FONT FACE="courier, couriernew, monospaced size">Logger</FONT>
+object with a name that corresponds to the class or package name of the application to generate log messages -- at
+any of seven severity levels (defined by the <FONT FACE="courier, couriernew, monospaced size">Level</FONT> class).
+
+<P>These messages might report errors and warnings, or provide informational messages about interesting events
+in the application's lifecycle.  They can include debugging information, or even trace the execution of important
+methods within the program.  It is not intended that all of these messages will actually be generated and logged
+all of the time; there is a default logging configuration file that specifies where log messages are directed to
+(the console, a file, a network socket, or a combination of these), how they are formatted (as plain text or XML
+documents), and at what severity threshold they are logged (log messages with a severity below the specified
+threshold are discarded with very little overhead and should not significantly impact the performance of the
+application.)  The system administrator or end user of the application can modify this default configuration to
+suit their needs.
+
+<P>The <A HREF="http://java.sun.com/j2se/1.4/docs/api/java/util/logging/package-summary.html">java.util.logging</A>
+package is very flexible, and can be used in a number of ways.  For most applications, however, use of the Logging
+API is quite simple. Obtain a named <FONT FACE="courier, couriernew, monospaced size">Logger</FONT> object whenever
+necessary by calling the static <FONT FACE="courier, couriernew, monospaced size">Logger.getLogger()</FONT> method,
+passing the class or package name of the application as the logger name. Then use one of the many <FONT FACE="courier,
+couriernew, monospaced size">Logger</FONT> instance methods to generate log messages. The easiest methods to use
+have names that correspond to severity levels, such as <FONT FACE="courier, couriernew, monospaced size">severe()</FONT>,
+<FONT FACE="courier, couriernew, monospaced size">warning()</FONT>, <FONT FACE="courier, couriernew, monospaced size">
+info()</FONT>, and <FONT FACE="courier, couriernew, monospaced size">debug()</FONT>
+
+<p>We will demonstrate the use of these loggers in our sample in four different ways:
+<ul>
+<li>Print log messages with <FONT FACE="courier, couriernew, monospaced size">System.err.println</FONT> (Not using loggers)
+<li>Print INFO log using <FONT FACE="courier, couriernew, monospaced size">java.util.logging.Logger</FONT>
+<li>Bypass log-level and log using a lower log-level
+<li>Log to a file (Can be set in log.properties. Default is helloworld.log)
+</ul>
+
+The sample code comes ready with a wide range of logging APIs. Based on user's selection, the application starts logging
+messages to the <FONT FACE="courier, couriernew, monospaced size">server.log</FONT> file. However, the later two selections
+need some special treatment. See <A HREF="index.html#22343">Running the Sample</A>, section for details.
+
+<p>Following section will guide you through the execution of the sample.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="26596"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Bring up a web page with a form like the one seen in <A HREF="index.html#26598"  >Figure&nbsp;1</A>. 
+</FONT>
+<P></ol>
+
+<A NAME="26597"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="images/main.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="26598"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 1	&nbsp&nbsp Logging front page
+</B>
+</FONT>
+<P><ol type="1">
+<A NAME="26599"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Enter your name, make your logging selection and press the Process button. 
+</FONT>
+<P><A NAME="26627"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+A servlet gets invoked and in turn calls a stateless session bean to determine a greeting
+based upon the current system time.
+</FONT>
+<P><A NAME="26749"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Both the servlet and the bean start writing log messages, based on user's logging selection.
+</FONT>
+<P><A NAME="26753"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+The servlet dispatches a JSP to deliver the greeting back to the browser. 
+</FONT>
+<P><A NAME="26625"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+As a result of the JSP execution, you can see the page displayed in <A HREF="index.html#26730"  >Figure&nbsp;2</A> returned to your browser.
+</FONT>
+<P></ol>
+
+<A NAME="26729"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br>
+<img src="images/overview.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="26730"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 2	&nbsp&nbsp Logging results page
+</B>
+</FONT>
+
+<p>
+
+<A NAME="25722"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="25768"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, a procedure describes how to assemble and compile the sample using a Command Line Interface (CLI). 
+</FONT>
+<P>
+
+<A NAME="26834"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To rebuild the entire application from scratch, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="25783"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble Logging Sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="25796"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/logging/simple/src/.</FONT>
+</FONT>
+<P>     <DT> <A NAME="25794"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target <FONT FACE="courier, couriernew, monospaced size">core</FONT> will be executed to rebuild the WAR and EAR files.
+</FONT>
+<P>  </dl>
+<A NAME="25815"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="25824"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Once you have re-created the sample application from scratch, you may proceed to <A HREF="index.html#22497"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="25846"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the web application project area. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="25855"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> to remove the sample application's assemble and build directories.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="25868"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You are now ready to use this EAR file for deployment.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="22497"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="22856"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You may select one of the following methods of deploying and registering the application:
+</FONT>
+<P>
+<ul>
+<A NAME="22889"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22929"  >Command Line Interface (CLI)-based Deployment</A> describes how to manually register the sample application using a Command Line Interface (CLI). This is the fastest means of deploying the application to the application server. 
+</FONT>
+<P><A NAME="22892"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#23025"  >Web Interface (GUI)-based Deployment</A> describes how to use the Sun ONE Deployment Tool to import and deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="22929"> </A>
+<A NAME="Command Line Interface (CLI)-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line Interface (CLI)-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="22931"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since the sample application is supplied with a complete EAR file, the fastest means of setting up the application is to use the command line utilities as described in this section. If you would like to experience either deploying through a Web based tool, then follow instructions in <A HREF="index.html#23025"  >Web Interface (GUI)-based Deployment</A>.
+</FONT>
+<P>
+
+<A NAME="26852"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The pre-built <FONT FACE="courier, couriernew, monospaced size">logging-helloworld.ear</FONT> file is a Enterprise Archive file that contains the Web Archive (WAR) file of the application. Within the WAR file resides the XML deployment descriptor files, application class files, JSPs and other content required by the application. 
+</FONT>
+<P>
+
+<A NAME="26850"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploying the pre-built <FONT FACE="courier, couriernew, monospaced size">logging-helloworld.ear</FONT> file is simple. Deploy either using a <A HREF="index.html#22938"  >Using asant script</A> or <A HREF="index.html#22949"  >Using asadmin command</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="22938"> </A>
+<A NAME="Using asant script "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using asant script 
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="22940"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory of  the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26884"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/logging/simple/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22944"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23460"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+<BR>
+<P>
+<A NAME="22949"> </A>
+<A NAME="Using asadmin command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using asadmin command
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="25900"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the root of the sample directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26895"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&lt;s1as_install_dir&gt;/samples/logging/simple/</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="22955"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to deploy the module to the local application server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26908"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt; logging-helloworld.ear</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="23600"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="23601"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Authenticates against the local application server's administrative server.
+</FONT>
+<P><A NAME="22976"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The EAR file is transferred to the administrative server.
+</FONT>
+<P><A NAME="22977"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="22978"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the EAR file and embedded WAR file
+</FONT>
+<P><A NAME="23507"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into repository
+</FONT>
+<P><A NAME="22980"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application <FONT FACE="courier, couriernew, monospaced size">logging-helloworld</FONT> by updating <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT>.
+</FONT>
+<P>  </ul>
+</ul>
+
+<A NAME="22983"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, proceed to <A HREF="index.html#23008"  >Verifying Registration</A>. Otherwise, you are now ready to exercise the application by <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="23008"> </A>
+<A NAME="Verifying Registration"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Verifying Registration
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="23010"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. If you do not want to verify that the application has been registered, proceed directly to <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="23014"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, do one of the following:
+</FONT>
+<P>
+<ul>
+<A NAME="26360"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="23614"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;admin-port&gt; &lt;server instance name&gt;</FONT>
+</FONT>
+<P>     <DT> <A NAME="23020"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You will see the <FONT FACE="courier, couriernew, monospaced size">logging-helloworld</FONT> app as one of the listed applications.
+</FONT>
+<P>  </dl>
+</ul>
+
+<A NAME="26318"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">OR
+</FONT>
+<P>
+<ul>
+<A NAME="26369"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Navigate the Admin tool GUI to 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="26403"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">App Server Instances&gt;server1&gt;Applications&gt;Enterprise Apps</FONT>. 
+</FONT>
+<P>     <DT> <A NAME="26376"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click on Enterprise Apps on the left frame menu to diplay list of applications deployed on server.
+</FONT>
+<P>  </dl>
+</ul>
+<P>
+<BR>
+<A NAME="23025"> </A>
+<A NAME="Web Interface (GUI)-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Web Interface (GUI)-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="25974"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a pre-built Enterprise Archive (EAR) file for the sample application is included with the application server, you can use the Sun ONE Application Server Administration Tool to quickly read in the <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> file and deploy it to the application server. 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="23027"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Open the pre-existing sample EAR file.
+</FONT>
+<P><A NAME="23028"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Start the admin server if not already started using one of the following two methods, depending on your Operations System:
+</FONT>
+<P>  <ul>
+<A NAME="26945"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<A NAME="26946"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">UNIX
+</FONT>
+  <ul><P><A NAME="26947"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute 
+    &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/admin-server/bin/startserv</FONT> 
+    </FONT></ul> 
+  <P>
+
+<A NAME="26943"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Windows
+</FONT>
+<ul><P>
+
+<A NAME="26009"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Start-&gt;Programs-&gt;Sun ONE Application Server 7-&gt;Start Application Server
+</FONT></ul>
+<P>
+  
+<A NAME="23033"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Open the EAR file.
+</FONT>
+<P>  <ul>
+<A NAME="26304"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Navigate to the browser based admin server page [<FONT FACE="courier, couriernew, monospaced size">http://&lt;server-host&gt;:&lt;admin-port&gt;/index.html</FONT>]. Enter your username and password to access the admin server.
+</FONT>
+<P><A NAME="26169"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Click on <FONT FACE="courier, couriernew, monospaced size">App Server Instances&gt;server1&gt;Applications&gt;Enterprise Apps.</FONT>
+</FONT>
+<P><A NAME="26171"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+In the right hand pane, click on Deploy to deploy an application. Choose the file (from disk) to be deployed (<FONT FACE="courier, couriernew, monospaced size">logging-helloworld.ear</FONT>) and Click OK.
+</FONT>
+<P><A NAME="26174"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+You will be asked for the application name. Enter <FONT FACE="courier, couriernew, monospaced size"><B>logging-helloworld</B></FONT> and Click OK.
+</FONT>
+<P>  </ul>
+  <dl>
+     <DT> <A NAME="26164"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If the deployment goes through fine, you will see the original pane with <FONT FACE="courier, couriernew, monospaced size">logging-helloworld</FONT> application as deployed.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="22343"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="27000"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+Unlike any other sample, running this sample is not as simple as typing-in the url
+<FONT FACE="courier, couriernew, monospaced size">http://&lt;hostname&gt;:&lt;port&gt;/logging-helloworld</FONT>. There
+is more to it.
+
+<p>As we discussed earlier in the <A HREF="index.html#14805">overview</A> section, we have four options to choose from.
+They are:
+<ul>
+<li>Print log messages with <FONT FACE="courier, couriernew, monospaced size">System.err.println</FONT> (Not using loggers)
+<li>Print INFO log using <FONT FACE="courier, couriernew, monospaced size">java.util.logging.Logger</FONT>
+<li>Bypass log-level and log using a lower log-level
+<li>Log to a file (Can be set in log.properties. Default is helloworld.log)
+</ul>
+
+<p><b>Note</b><br>
+First two options are pretty simple. However, the later two options require special access control permission, since they
+try to overwrite the default logging mechanism of the server. This needs a change in the <FONT FACE="courier, couriernew,
+monospaced size">server.policy</FONT> file. This file can be found at <FONT FACE="courier, couriernew, monospaced size">
+&lt;s1as-instance-dir&gt;/domains/domain1/server1/config</FONT>.
+
+<p>Add following entries to your <FONT FACE="courier, couriernew, monospaced size">server.policy</FONT> file for the later two options
+<p><FONT FACE="courier, couriernew, monospaced size">
+grant codeBase "file:${com.sun.aas.instanceRoot}/domains/domain1/server1/applications/j2ee-apps/logging-helloworld_1/logging-helloworld_war/WEB-INF/classes/-" {
+	permission java.util.logging.LoggingPermission  "control";
+};
+<br>
+grant codeBase "file:${com.sun.aas.instanceRoot}/domains/domain1/server1/applications/j2ee-apps/logging-helloworld_1/logging-helloworldEjb_jar/-" {
+	permission java.util.logging.LoggingPermission  "control";
+};
+</FONT>
+
+<p>For the last option, a log file of our choice can be specified in <FONT FACE="courier, couriernew, monospaced size">log.properties</FONT>
+file, that comes bundled with this sample. The content looks as follows:
+<p>
+<FONT FACE="courier, couriernew, monospaced size">
+# Log File<br>
+log_file=../logs/helloworld.log
+<p>
+# Log Level (One of, SEVERE,WARNING,INFO,CONFIG,FINE,FINER and FINEST)<br>
+log_level=FINE
+</FONT>
+
+<p>Please restart server instance. Now we are ready to run the application. Log messages will be generated in <FONT FACE="courier, couriernew, monospaced size">server.log</FONT> file.
+For the fourth option, log will also be generated in the specified log file in <FONT FACE="courier, couriernew, monospaced size">log.properties</FONT>.
+
+<p><b>Output (Option 1)</b><br>
+<FONT FACE="courier, couriernew, monospaced size">
+[14/Aug/2002:00:40:25] WARNING (13546): CORE3283: stderr: GreeterServlet is executing ...
+[14/Aug/2002:00:40:25] WARNING (13546): CORE3283: stderr: Looking up greeter bean home interface using JNDI name: java:comp/env/ejb/logger
+[14/Aug/2002:00:40:25] WARNING (13546): CORE3283: stderr: Bean found!!!
+[14/Aug/2002:00:40:25] WARNING (13546): CORE3283: stderr: Creating a remote bean object...
+[14/Aug/2002:00:40:25] WARNING (13546): CORE3283: stderr: Calling bean's getGreeting method...
+[14/Aug/2002:00:40:25] INFO (13546): inside the getGreeting method of the bean...
+[14/Aug/2002:00:40:25] INFO (13546): returnig message to the caller...
+[14/Aug/2002:00:40:25] WARNING (13546): CORE3283: stderr: Got message from greeter bean: morning
+[14/Aug/2002:00:40:25] WARNING (13546): CORE3283: stderr: Storing the message in request object
+[14/Aug/2002:00:40:25] WARNING (13546): CORE3283: stderr: Dispatching JSP for output
+</FONT>
+
+<p><b>Output (Option 2)</b><br>
+<FONT FACE="courier, couriernew, monospaced size">
+[14/Aug/2002:00:54:12] INFO (13546): GreeterServlet is executing ...
+[14/Aug/2002:00:54:12] INFO (13546): Looking up greeter bean home interface using JNDI name: java:comp/env/ejb/logger
+[14/Aug/2002:00:54:12] INFO (13546): Bean found!!!
+[14/Aug/2002:00:54:12] INFO (13546): Creating a remote bean object...
+[14/Aug/2002:00:54:12] INFO (13546): Calling bean's getGreeting method...
+[14/Aug/2002:00:54:12] INFO (13546): inside the getGreeting method of the bean...
+[14/Aug/2002:00:54:12] INFO (13546): returnig message to the caller...
+[14/Aug/2002:00:54:12] INFO (13546): Got message from greeter bean: morning
+[14/Aug/2002:00:54:12] INFO (13546): Storing the message in request object
+[14/Aug/2002:00:54:12] INFO (13546): Dispatching JSP for output
+</FONT>
+
+<p><b>Output (Option 3)</b><br>
+<FONT FACE="courier, couriernew, monospaced size">
+[14/Aug/2002:00:56:28] WARNING (13546): Trying to set the log level to FINE
+[14/Aug/2002:00:56:28] FINE (13546): Changed the log level to FINE.
+[14/Aug/2002:00:56:28] FINE (13546): GreeterServlet is executing ...
+[14/Aug/2002:00:56:28] FINE (13546): Looking up greeter bean home interface using JNDI name: java:comp/env/ejb/logger
+[14/Aug/2002:00:56:28] FINE (13546): Bean found!!!
+[14/Aug/2002:00:56:28] FINE (13546): Creating a remote bean object...
+[14/Aug/2002:00:56:28] FINE (13546): Calling bean's getGreeting method...
+[14/Aug/2002:00:56:28] INFO (13546): inside the getGreeting method of the bean...
+[14/Aug/2002:00:56:28] INFO (13546): returnig message to the caller...
+[14/Aug/2002:00:56:28] FINE (13546): Got message from greeter bean: morning
+[14/Aug/2002:00:56:28] FINE (13546): Storing the message in request object
+[14/Aug/2002:00:56:28] FINE (13546): Dispatching JSP for output
+</FONT>
+
+<p><b>Output (Option 4)</b><br>
+<FONT FACE="courier, couriernew, monospaced size">
+[14/Aug/2002:00:57:06] INFO (13546): GreeterServlet is executing ...
+[14/Aug/2002:00:57:06] INFO (13546): Looking up greeter bean home interface using JNDI name: java:comp/env/ejb/logger
+[14/Aug/2002:00:57:06] INFO (13546): Bean found!!!
+[14/Aug/2002:00:57:06] INFO (13546): Creating a remote bean object...
+[14/Aug/2002:00:57:06] INFO (13546): Calling bean's getGreeting method...
+[14/Aug/2002:00:57:06] INFO (13546): inside the getGreeting method of the bean...
+[14/Aug/2002:00:57:06] INFO (13546): returnig message to the caller...
+[14/Aug/2002:00:57:06] INFO (13546): Got message from greeter bean: morning
+[14/Aug/2002:00:57:06] INFO (13546): Storing the message in request object
+[14/Aug/2002:00:57:06] INFO (13546): Dispatching JSP for output
+[</FONT>
+
+<p>Similar log messages will be generated, in the log file specified in
+<FONT FACE="courier, couriernew, monospaced size">log.properties</FONT> file.
+
+</FONT>
+
+
+<P>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="20774"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="27032"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Although the war, ear, context-root and servlet alias names in this sample are all 
+<FONT FACE="courier, couriernew, monospaced size">logging-helloworld</FONT>, it is not necessary that it be so. The application will work as expected if the names of each of these attributes is unique. Rebuild the app after changing the context-root (in application.xml), the servlet alias (in <FONT FACE="courier, couriernew, monospaced size">web.xml</FONT>) and the war and ear names, redeploy and test the sample to confirm this.
+</FONT>
+<P><A NAME="27035"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;s1as-instance-dir&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong. 
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 13, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

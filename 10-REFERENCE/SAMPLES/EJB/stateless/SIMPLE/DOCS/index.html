@@ -1,0 +1,675 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/21/02 12:04:52">
+	<title>Stateless Simple EJB Sample Application:  Stateless Simple EJB Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            Stateless Simple EJB Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="Stateless Simple EJB Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+Stateless Simple EJB Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the Stateless Simple EJB sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Sample Application</A>
+</FONT>
+<P><A NAME="15154"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#19434"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#19746"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15009"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="22344"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The HelloWorld sample is a simple application based on Servlets, EJBs, JSPs and HTML. Assembling this application and deploying it to Sun ONE Application Server provides an introduction to the server's assembly, deployment and registration tools. 
+</FONT>
+<P>
+
+<A NAME="22347"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For the sake of instruction, let's assume that you want to create a small application to demonstrate web-based access to a stateless session bean via a servlet and JSP. The application look and feel is described as follows:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="22391"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Bring up a web page with a form like the one displayed in <A HREF="index.html#22463"  >Figure&nbsp;1</A>: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22437"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<br><img src="images/main.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="22463"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 1	&nbsp&nbsp Main screen
+</B>
+</FONT>
+<P><ol type="1">
+<A NAME="22438"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Enter your name and press the Process button.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22483"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+A servlet is invoked.  The servlet will be the "controller" for the application.
+</FONT>
+<P>  </dl>
+<A NAME="22395"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+The servlet calls a stateless session bean to determine a greeting based upon the current system time.  This EJB fulfills the role of the "model" for our app.
+</FONT>
+<P><A NAME="22397"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+The servlet dispatches a JSP to deliver the greeting back to the browser.  
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22484"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The JSP servers as the "view" component of our application.
+</FONT>
+<P>  </dl>
+<A NAME="22385"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+As a result of the JSP execution, you will see the page displayed in <A HREF="index.html#22488"  >Figure&nbsp;2</A> returned to your browser.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22380"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<br><img src="images/result.jpg" align="baseline">
+
+<br>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="22488"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 2	&nbsp&nbsp Result screen
+</B>
+</FONT>
+<P>
+<A NAME="22508"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The terms "model," "view" and "controller" are used in the description above.  If you have done Smalltalk programming, you may recognize the MVC (Model/View/Controller) design pattern.  Each part of an MVC design has an independent role.  The "model" is the business policy implemented by the application.  In this example, it is the EJB that knows how to create appropriate greetings. For example, the "Good afternoon" message would be displayed as "Good evening" if you ran the application after 6 PM.  The "view" is the component that handles the user interface display; this is our JSP.  Finally, the "controller" is the traffic cop that provides a single control point from which worker components are dispatched.
+</FONT>
+<P>
+
+<A NAME="22547"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><br><img src="images/overview.gif" align="baseline" hspace="2">
+
+<br>
+</FONT>
+<P>
+
+<A NAME="22548"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Figure 3	&nbsp&nbsp Overview
+</B>
+</FONT>
+<P>
+<A NAME="22561"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The following instructions describe how to manually deploy the application. You may want to experiment by modifying and redeploying the Simple Web Sample example.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="21600"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To recompile, assemble, and deploy the application, see the <A HREF="../../../docs/ant.html">Sample Application Build Facility document</A> for details on using a build facility to quickly perform these tasks.
+</FONT>
+<P>
+
+<A NAME="19962"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To rebuild the entire application from scratch, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20591"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble the J2EE Application. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20676"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/ejb/stateless/simple/src</FONT>
+</FONT>
+<P>     <DT> <A NAME="20595"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target <FONT FACE="courier, couriernew, monospaced size">core</FONT> will be executed to rebuild the <FONT FACE="courier, couriernew, monospaced size">.jar</FONT> and <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> files.
+</FONT>
+<P>  </dl>
+<A NAME="20597"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20673"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Once you have re-created the sample application from scratch proceed to <A HREF="index.html#19434"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="20601"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the web application project area. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20603"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT>
+</FONT>
+<P>     <DT> <A NAME="20690"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This will remove the sample application assemble and build directories.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="19434"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="21638"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A pre-built <FONT FACE="courier, couriernew, monospaced size">stateless-simple.ear</FONT> file is supplied with the application server installation. The pre-built <FONT FACE="courier, couriernew, monospaced size">stateless-simple.ear</FONT> file is an Enterprise Archive (<FONT FACE="courier, couriernew, monospaced size">.ear</FONT>) file that contains, the EJB <FONT FACE="courier, couriernew, monospaced size">.jar</FONT> file and the web applicatation <FONT FACE="courier, couriernew, monospaced size">.war</FONT> file of the application. Within each file resides the XML deployment descriptor files, application class files, and other content required by the application. You can use the pre-built <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> file to deploy the application. If you want to experience compiling and assembling the application from scratch, follow the instructions in <A HREF="index.html#14862"  >Compiling and Assembling the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="21693"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, the administrative server needs to be running. To start the administrative server if it is not already started, do one of the following, depending on your oeprating system.
+</FONT>
+<P>
+<ul>
+<A NAME="21695"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+UNIX
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21759"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/domains/domain1/admin-server/bin/startserv</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="21699"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Windows
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21701"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Start-&gt;Programs-&gt;Sun ONE Application Server 7-&gt;Start Application Server</FONT>
+</FONT>
+<P>  </dl>
+</ul>
+
+<A NAME="18252"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploying the application:
+</FONT>
+<P>
+<ul>
+<A NAME="20137"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20114"  >Command Line-based Deployment</A> describes how to manually register the application in Sun ONE Application Server using a Command Line Interface (CLI). This is the fastest means of deploying the sample application.
+</FONT>
+<P><A NAME="20141"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20118"  >GUI-based Deployment</A> describes how to use the Sun ONE Application Server Deployment Tool to import and deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="20114"> </A>
+<A NAME="Command Line-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="21785"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Command Line Interface is the fastest means of deploying the application. If you want to deploy through a GUI tool, follow the instructions for GUI Based Deployment. CLI deployment of the application can be done by either the <A HREF="index.html#18308"  >Using the asant script</A> or by <A HREF="index.html#19456"  >Using the asadmin command</A>.
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="18308"> </A>
+<A NAME="Using the asant script"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asant script
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="18309"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">src</FONT> directory of  the sample. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21811"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;install_dir&gt;/samples/ejb/stateless/simple/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="18311"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Run <FONT FACE="courier, couriernew, monospaced size">asant</FONT> using deploy task. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18312"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">%asant deploy</FONT>
+</FONT>
+<P>     <DT> <A NAME="21822"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+It is an interactive command that may prompt you for the admin-server host, admin-server port, admin user name, admin password, and appserv instance. This also registers the resources to the Sun ONE application server.
+</FONT>
+<P>  </dl>
+</ol>
+<BR>
+<P>
+<A NAME="19456"> </A>
+<A NAME="Using the asadmin command"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Using the asadmin command
+</B>
+</FONT>
+<BR>
+<BR>
+<ol type="1">
+<A NAME="21847"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the <FONT FACE="courier, couriernew, monospaced size">root</FONT> of the sample directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21855"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;install_dir&gt;/samples/ejb/stateless/simple</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="21849"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to deploy application to the local application server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="22696"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt; stateless-simple.ear</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="20750"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations: 
+</FONT>
+<P>
+<ul>
+<A NAME="19521"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Authenticates against the local application server's administrative server
+</FONT>
+<P><A NAME="19522"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The EAR file is transferred to the administrative server
+</FONT>
+<P><A NAME="19523"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="19524"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the EAR file and embedded JAR and WAR files
+</FONT>
+<P><A NAME="19525"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into repository
+</FONT>
+<P><A NAME="19526"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application "stateless-simple" by updating <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT>
+</FONT>
+<P>  </ul>
+</ul>
+
+<A NAME="19529"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, you may proceed to <A HREF="index.html#19560"  >Verifying Deployment</A>.  Otherwise, proceed to <A HREF="index.html#19746"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="20118"> </A>
+<A NAME="GUI-based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+GUI-based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="20159"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the EAR file, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="21899"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Log in to the web-based administration tool from the browser.
+</FONT>
+<P><A NAME="21901"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Navigate as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21903"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Application Server Instances --&gt; &lt;server instance&gt; --&gt; Applications --&gt; Enterprise Applications</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="21905"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Click Deploy.
+</FONT>
+<P><A NAME="21907"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Click Browse to locate the <FONT FACE="courier, couriernew, monospaced size">stateless-simple.ear</FONT> file.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="21909"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The ear file is located under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/ejb/stateless/simple</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="21911"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Click OK.
+</FONT>
+<P><A NAME="21913"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Enter <FONT FACE="courier, couriernew, monospaced size"><B>stateless-simple</B></FONT> in the Application Name field.
+</FONT>
+<P><A NAME="21915"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Click OK.
+</FONT>
+<P><A NAME="20974"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Click the stateless-simple link to verify that the application is deployed.
+</FONT>
+<P></ol>
+<P>
+<BR>
+<A NAME="19560"> </A>
+<A NAME="Verifying Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. Otherwise, proceed directly to <A HREF="index.html#19746"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="14915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15737"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asadmin list-components</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20328"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;admin-port&gt; &lt;server instance name&gt;</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="20348"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Alternately, you may navigate the Admin tool GUI to the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20354"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">App Server Instances&gt;server1&gt;Applications</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="20355"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+On the left frame, Click on Enterprise Apps to display list of applications deployed on server.
+</FONT>
+<P></ol>
+<BR>
+<P>
+<A NAME="22050"> </A>
+<A NAME="Generating Javadocs"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Generating Javadocs
+</B>
+</FONT>
+<BR>
+<BR>
+
+<A NAME="22611"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To better understand sample application source code, you can generate javadocs using <FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT> and access them at <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/ejb/stateless/simple/javadocs/index.html</FONT>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="19746"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="22721"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To run the application, type-in the following URL: <FONT FACE="courier, couriernew, monospaced size">http://&lt;hostname&gt;:&lt;port&gt;/helloworld</FONT>
+</FONT>
+<P>
+
+<A NAME="22157"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The sample will greet you based on your input.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15009"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="22267"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Make certain that you run the <FONT FACE="courier, couriernew, monospaced size">asant undeploy</FONT> command before redeploying this sample to make sure that all modules are undeployed properly.
+</FONT>
+<P><A NAME="22269"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Although the war, ear, context-root and servlet alias names in this sample are all "stateless-simple", it is not necessary that it be so. The application will work as expected if the names of each of these attributes is unique. Rebuild the application after changing the context-root (in <FONT FACE="courier, couriernew, monospaced size">application.xml</FONT>), the servlet alias (in <FONT FACE="courier, couriernew, monospaced size">web.xml</FONT>) and the war and ear names, redeploy and test the sample to confirm this.
+</FONT>
+<P><A NAME="22273"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-dir&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what went wrong. 
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 21, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

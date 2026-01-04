@@ -1,0 +1,360 @@
+<!--
+ 
+ * Copyright 2002 Sun Microsystems, Inc. All Rights Reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following
+ * conditions are met:
+ * 
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ * 
+ * - Redistribution in binary form must reproduce the above
+ *   copyright notice, this list of conditions and the following
+ *   disclaimer in the documentation and/or other materials
+ *   provided with the distribution.
+ * 
+ * Neither the name of Sun Microsystems, Inc. or the names of
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * 
+ * This software is provided "AS IS," without a warranty of any
+ * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ * EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY
+ * DAMAGES OR LIABILITIES SUFFERED BY LICENSEE AS A RESULT OF OR
+ * RELATING TO USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE OR
+ * ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE
+ * FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT,
+ * SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+ * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF
+ * THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ * 
+ * You acknowledge that this software is not designed, licensed or
+ * intended for use in the design, construction, operation or
+ * maintenance of any nuclear facility.
+  
+-->
+
+<project name="JAX-RPC, Coffee Break" default="core" basedir=".">
+
+  <property file="../../../common.properties"/>
+  <property file="${user.home}/build.properties"/>
+  <property file="../build.properties"/>
+  <property file="build.properties"/>
+  <property name="build" value="build"/>
+  <property name="example.path" value="${com.sun.aas.installRoot}/samples/webservices/cb" />
+  <property name="context.path" value="jaxrpc" />
+  <property name="context.name" value="jaxrpc-coffee-supplier" />
+  <property name="srcdir" value="src/com/sun/cb"/>
+  <property name="src" value="src/com/sun/cb"/>
+  <property name="common" value="../common/build"/>
+  <property name="build.path"   value="build" />
+  <property name="war.file" value="${context.name}.war" />
+  <property name="portable-war"  value="${context.name}-portable.war"/>
+  <property name="jaxrpc.config" value="${srcdir}/jaxrpc-ri.xml"/>
+  <property name="jaxr.org.jar" value="jaxr-org.jar" />
+  <property name="client.jar" value="jaxrpc-client.jar" />
+  <property name="jaxrpc.javadocs.dir" value="build/docs/api"/>
+  <property name="build.compiler" value="modern" />
+  <target name="build_cbpath" unless="sunone.cpath">
+    <path id="cb_classpath">
+        <fileset dir="${com.sun.aas.installRoot}/lib" includes="*.jar" />
+        <fileset dir="${com.sun.aas.webServicesLib}" includes="*.jar"/>
+        <fileset dir="${com.sun.aas.javaRoot}/lib" includes="tools.jar" />
+      </path>
+    <property name="sunone.cpath" refid="cb_classpath"/>
+  </target>
+
+  <target name="prepare" depends="build_cbpath"
+     description="Creates the build and dist directories" >
+     <echo message="Creating the required directories...." />
+     <mkdir dir="${build}/client" />
+     <mkdir dir="${build}/service-class" />
+     <mkdir dir="${build}/registry" />
+  </target>
+
+  <target name="compile-jaxr" depends="prepare"
+      description="Compiles the JAXR code">
+      <echo message="Compiling the JAXR source code...."/>
+      <javac 
+         srcdir="${srcdir}" 
+         destdir="${build}/registry"
+         includes="JAXR*.java,Org*.java" >
+      <classpath path="${sunone.cpath}" />
+      </javac>
+  </target>
+
+  <target name="compile-server" depends="prepare"
+      description="Compiles the server-side source code">
+      <echo message="Compiling the server-side source code...."/>
+      <javac
+         srcdir="${srcdir}"
+         destdir="${build}/service-class"
+         includes="PriceLoader.java"
+      >
+      <classpath path="${sunone.cpath}:${common}" />
+      </javac>
+      <javac
+         srcdir="${srcdir}"
+         destdir="${build}/service-class"
+         includes="Supplier*.java"
+      >
+      <classpath path="${sunone.cpath}:${common}" />
+      </javac>
+  </target>
+
+  <target name="create-war" depends="compile-server, copy-common, copy-to-web-inf"
+      description="Packages the WAR file">
+      <echo message="Creating the WAR...."/>
+      <delete file="../${portable-war}" />
+      <java classname="com.sun.xml.rpc.tools.wscompile.Main" fork="yes" dir=".">
+        <classpath path="${sunone.cpath}:${build.classpath}:${build}/service-class"/>
+          <arg line="-gen:both" />
+          <arg line="-d ${build}/WEB-INF/classes" />
+          <arg line="${srcdir}/config.xml" />
+          <arg line="-model ${build}/WEB-INF/Supplier_model.xml.gz" />
+      </java>
+      <jar jarfile="${build}/${portable-war}" >
+          <fileset dir="${build}" includes="WEB-INF/**" />
+      </jar>
+      <move file="${build}/${portable-war}" todir="../" />
+  </target>
+
+  <target name="package-war" depends="create-war"
+      description="Runs the wsdeploy tool for the server.">
+      <echo message="Running wsdeploy for the server:"/>
+      <delete file="../${war.file}" />
+      <delete dir="${build}/wsdeploy-generated" />
+      <mkdir dir="${build}/wsdeploy-generated" />
+      <java classname="com.sun.xml.rpc.tools.wsdeploy.Main" fork="yes" dir=".">
+      <classpath path="${sunone.cpath}:${build.classpath}"/>
+        <arg line="-o"/>
+        <arg line="../${war.file}"/>
+        <arg line="-tmpdir"/>
+        <arg line="${build}/wsdeploy-generated"/>
+        <arg line="../${portable-war}"/>
+      </java>
+  </target>
+
+  <target name="wscompile-client" depends="compile-server, copy-common"
+      description="Runs the wscompile tool for the client.">
+      <echo message="Running wscompile for the client:"/>
+      <mkdir dir="${build}/client/" />
+      <java classname="com.sun.xml.rpc.tools.wscompile.Main" fork="yes" dir=".">
+      <classpath path="${sunone.cpath}:${build.classpath}:${build}/service-class"/>
+         <arg line="-gen:client" />
+         <arg line="-d ${build}/client" />
+         <arg line="-s ${build}/client" />
+         <arg line="${srcdir}/config.xml" />
+      </java>
+  </target>
+
+  <target name="compile-client" depends="wscompile-client"
+      description="Compiles the client source code"  >
+      <echo message="Compiling the client source code...."/>
+      <javac
+         srcdir="${srcdir}"
+         destdir="${build}/client"
+         includes="OrderCaller.java, PriceFetcher.java, TestOrderCaller.java, TestPriceFetcher.java"
+      >
+      <classpath>
+        <pathelement path="${sunone.cpath}"/>
+        <pathelement path="${build.classpath}"/>
+        <pathelement path="${build}/service-class"/>
+        <pathelement path="${build}/client"/>
+        <pathelement path="${common}"/>
+      </classpath>
+      </javac>
+  </target>
+
+  <target name="jar-client" depends="compile-client" 
+      description="Builds the JAR file that contains the JAX-RPC client routines">
+      <echo message="Building the ${client.jar} file...."/>
+      <delete file="../${client.jar}" />
+      <jar jarfile="../${client.jar}" >
+        <fileset dir="${build}/client" >
+             <exclude name="**/*Test*" />
+        </fileset>
+        <fileset dir="${build}/service-class" > 
+             <exclude name="**/*Impl*" />
+        </fileset>
+      </jar>
+  </target>
+
+  <target name="jar-jaxr" depends="compile-jaxr"
+      description="Builds the JAR file that contains the JAXR utilities">
+      <echo message="Building the ${jaxr.org.jar}  file...."/>
+      <delete file="../${jaxr.org.jar}" />
+      <copy file="${srcdir}/CoffeeRegistry.properties" todir="${build}/registry/com/sun/cb" />
+     <mkdir dir="${build}/registry/com/sun/xml/registry/common/tools/resources" />
+     <copy todir="${build}/registry/com/sun/xml/registry/common/tools/resources">
+         <fileset dir="src/resources" excludes=""/>
+     </copy>
+      <jar jarfile="../${jaxr.org.jar}" >
+        <fileset dir="${build}/registry" />
+      </jar>
+  </target>
+
+  <target name="copy-to-web-inf"
+     description="Copies files to build/WEB-INF">
+     <echo message="Setting up ${build}/WEB-INF...."/>
+     <delete dir="${build}/WEB-INF" />
+     <mkdir dir="${build}/WEB-INF/classes" />
+     <copy todir="${build}/WEB-INF/classes">
+         <fileset dir="${build}/service-class" excludes="**/Test*"/>
+         <fileset dir="${build}/registry" excludes="**/Test*"/>
+     </copy>
+     <copy todir="${build}/WEB-INF/classes/com/sun/cb">
+         <fileset dir="${srcdir}" includes="*.properties"/>
+     </copy>
+     <copy file="web/web.xml" todir="${build}/WEB-INF" />
+     <copy file="${jaxrpc.config}" todir="${build}/WEB-INF" />
+  </target>
+
+  <!-- copy-common is a temp kludge until I figure out how to specify
+       multiple classpaths (separated by quotes) for wscompile --> 
+  <target name="copy-common"
+     description="Copies common class files to build/service-class">
+     <echo message="Copying common classes...."/>
+     <copy todir="${build}/service-class">
+         <fileset dir="${common}" excludes="**/Test*" />
+     </copy>
+  </target>
+
+  <target name="javadocs" depends="core">
+    <mkdir dir="${jaxrpc.javadocs.dir}"/>
+    <javadoc packagenames="com.sun.cb.*"
+             destdir="${jaxrpc.javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="JAX-RPC, Coffee Break API"
+             doctitle="JAX-RPC, Coffee Break"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath>
+        <pathelement path="${sunone.cpath}"/>
+        <pathelement path="${build.classpath}"/>
+        <pathelement path="${build}/service-class"/>
+        <pathelement path="${build}/client"/>
+        <pathelement path="${common}" />
+      </classpath>
+      <sourcepath>
+        <pathelement path="../common/src"/>
+        <pathelement path="src"/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="run-test-order" 
+     description="Runs TestOrderCaller">
+     <antcall target="run-test-client">
+       <param name="client.class" value="com.sun.cb.TestOrderCaller"/>
+     </antcall>
+  </target>
+
+  <target name="run-test-price" 
+     description="Runs TestPriceFetcher">
+     <antcall target="run-test-client">
+       <param name="client.class" value="com.sun.cb.TestPriceFetcher"/>
+     </antcall>
+  </target>
+
+  <target name="run-test-client" 
+     description="Runs a test JAX-RPC client." depends="build_cbpath">
+      <java
+            fork="on"
+            classname="${client.class}"
+      >
+           <arg value="${endpoint}" />
+      <classpath>
+        <pathelement path="${sunone.cpath}"/>
+        <pathelement path="${build.classpath}"/>
+        <pathelement path="../${client.jar}"/>
+        <pathelement path="${build}/client" />
+      </classpath>
+      </java>
+  </target>
+
+  <target name="run-jaxr-publish" depends="build_cbpath"
+     description="Publishes an organization in the registry server.  Note: You must start the registry server before executing this task." >
+     <echo message="Running OrgPublisher." />
+     <echo message="Note: Remember to start the registry server before running this program." />
+    <java classname="com.sun.cb.OrgPublisher" 
+      fork="yes" > 
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath path="${sunone.cpath}:${build.classpath}:../${jaxr.org.jar}" />
+    </java>
+  </target>
+
+  <target name="run-jaxr-remove" depends="build_cbpath"
+     description="Removes an organization from the registry. Note: You must start the registry server before executing this task." >
+     <echo message="Running OrgRemover." />
+     <echo message="Note: Remember to start the registry server before running this program." />
+    <java classname="com.sun.cb.OrgRemover" 
+      fork="yes" > 
+      <sysproperty key="useSOAP" value="false"/>
+      <classpath path="${sunone.cpath}:${build.classpath}:../${jaxr.org.jar}" />
+    </java>
+  </target>
+
+  <target name="set-up-service" depends="run-jaxr-publish, deploy"
+     description="Installs the service and publishes its organization in the registry. ">
+  </target>
+
+  <target name="take-down-service" depends="run-jaxr-remove, undeploy"
+     description="Removes the organization from the registry and removes (de-installs) the service.">
+  </target>
+
+  <target name="clean" 
+     description="Removes the build and dist directories">
+    <delete dir="${build}" />
+  </target>
+
+  <target name="debug" >
+     <echo message="**Debug**" />
+     <echo message="  ${user.home}" />
+     <echo message="  ${username}" />
+     <echo message="  ${password}" />
+     <echo message="  ${url}" />
+     <echo message="  ${context.path}" />
+     <echo message="  ${build.path}" />
+     <echo message="  ${build}" />
+     <echo message="  ${srcdir}" />
+     <echo message="  ${common}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!--          property need to build war deployment.         -->
+  <!-- ======================================================= -->
+
+  <property name="apptype"     value="web"/>
+  <property name="appname"     value="jaxrpc-coffee-supplier"/>
+  <property name="verify.file"  value="${war.file}"/>
+  <property name="deploy.file" value="${war.file}"/>
+
+  <target name="deploy" depends="">
+    <ant dir="../" target="deploy_common" inheritall="true"/>
+  </target>
+
+  <target name="undeploy" depends="">
+    <ant dir="../" target="undeploy_common" inheritall="true"/>
+  </target>
+
+  <target name="verify" depends="">
+    <ant dir="../" target="verify_common" inheritall="true"/>
+  </target>
+
+  <target name="banner">
+      <echo>+---------------------------------------+</echo>
+      <echo>+    Building JAXRPC, Coffee Break Application +</echo>
+      <echo>+---------------------------------------+</echo>
+  </target>
+
+  <target name="core" depends="banner, jar-jaxr, package-war, jar-client"
+     description="Executes the targets needed to build this example.">
+  </target>
+
+  <target name="all" depends="core, javadocs" />
+
+</project>

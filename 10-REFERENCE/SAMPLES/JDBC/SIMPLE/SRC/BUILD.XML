@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+   Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="jdbc-simple" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="jdbc-simple"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="war.pkg" value="samples/jdbc/simple/servlet"/>
+  <property name="jar.pkg" value="samples/jdbc/simple/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="jdbc-simple"/>
+  <property name="javadoc.pkgnames" value="samples.jdbc.simple.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="warDD" value="web.xml,sun-web.xml"/>
+  <property name="jarDD" value="ejb-jar.xml,sun-ejb-jar.xml"/>
+
+  <!-- ======================================================= -->
+  <!--			Pointbase properties .					       -->
+  <!-- ======================================================= -->
+   <property name="db.user" value="jdbc"/> 
+   <property name="db.pwd" value="jdbc"/> 
+   <property name="db.file" value="sql/jdbc-simple-pb.sql"/> 
+   <property name="conpool.name"       value="jdbc-simple-pool" />
+   <property name="jdbc.resource.name" value="jdbc/jdbc-simple" />
+ 
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+
+ 
+  &include;
+  
+  <target name="reconfig" depends="reconfig_common"/>
+
+   <target name="sql" depends="sql_common"/>
+   <target name="setup" depends="setup_env, deploy_jdbc_resource_pb_common, reconfig"/>
+   <target name="setup_ora" depends="setup_env, deploy_jdbc_resource_ora_common, reconfig"/>
+   <target name="unsetup" depends="delete-jdbc-resource_common, delete-jdbc-connection-pool_common"/>
+
+  <target name="compile" depends="compile_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="javadocs" depends="javadocs_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="clean" depends="clean_common"/>
+  <target name="war" depends="init,create_war_common"/>
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="ear" depends="init,war,jar, create_ear_common"/>
+  <target name="core" depends="compile,war,ear" />
+  <target name="deploy" depends="init, deploy_common, setup"/>
+  <target name="deploy_ora" depends="init, deploy_common"/>
+  <target name="all" depends="core,javadocs,verify, deploy"/>
+  <target name="undeploy" depends="init,undeploy_common, unsetup"/>
+
+
+
+</project>

@@ -1,0 +1,615 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/11/02 20:50:44">
+	<title> JAX-RPC simplebean Sample Application:  JAX-RPC simplebean Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+             JAX-RPC simplebean Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15031"> </A>
+<A NAME="JAX-RPC simplebean Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+JAX-RPC simplebean Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15042"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the JAX-RPC simplebean sample application in conjunction with the Sun ONE Application Server version 7. 
+</FONT>
+<P>
+
+<A NAME="14783"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14785"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14793"  >Overview</A>
+</FONT>
+<P><A NAME="14786"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14845"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="14787"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14871"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="14788"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14942"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="14789"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14962"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14793"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14795"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This example demonstrates a client program invoking methods with arguments of non-primitive type, of a webservice using JAX-RPC.
+</FONT>
+<P>
+
+<A NAME="14797"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can find source code for the sample application under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/simplebean/src/samples/webservices/jaxrpc/simplebean</FONT>
+</FONT>
+<P>
+
+<A NAME="14800"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">At runtime, the JAX-RPC client HelloClient makes a remote call to the demoArray method of the JAX-RPC Web service. The webservice takes String Array as input, and returns reversed String Array.
+</FONT>
+<P>
+
+<dl>
+   <DT> <A NAME="15917"> </A>
+   <FONT FACE="courier, couriernew, monospaced size">
+   private static void demoArray(HelloIF_Stub stub) {<br>
+   <dl>
+      <DT> <A NAME="15918"> </A>
+      <p>try {<br>
+      <dl>
+         <DT>String[] words = {"it", "was", "a", "dark", "and", "stormy", "night"};
+         <p>
+         <DT>System.out.println("demoArray method:");<br>
+         <DT>for (int j = 0; j &lt; words.length; j++) {<br>
+         <dl>
+             <DT>System.out.println(words[j] + " ");<br>
+         </dl>
+         <DT>}<br>
+         <DT>System.out.println();<br>
+         <p>
+         <DT>String[] backwards = stub.reverse(words);<br>
+         <DT>for (int j = 0; j &lt; backwards.length; j++) {<br>
+         <dl>
+             <DT>System.out.println(backwards[j] + " ");<br>
+         </dl>
+         <DT>}<br>
+         <DT>System.out.println();
+         <p>
+      </dl>
+      <DT>} catch (Exception ex) {<br>
+      <dl>
+         <DT>ex.printStackTrace();<br>
+      </dl>
+      <DT>}<br>
+   </dl>
+   <p>
+   <DT>} // demoArray<br>
+</FONT>
+</dl>
+
+<A NAME="15907"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">At runtime, the JAX-RPC client HelloClient makes a remote call to the demoBean method of the JAX-RPC Web service. The webservice takes the SimpleAccountBean object as input, and returns the new BigDecimal account balance by calculating interest.
+</FONT>
+<P>
+<dl>
+     <DT> <A NAME="14826"> </A>
+     <FONT FACE="courier, couriernew, monospaced size">
+     private static void demoBean(HelloIF_Stub stub) {<br>
+     <dl>
+        <p>
+        <DT>try {<br>
+        <dl>
+           <DT>System.out.println();<br>
+           <DT>System.out.println("demoBean method:");<br>
+           <DT>SimpleAccountBean dukesAccount = new SimpleAccountBean();<br>
+           <DT>dukesAccount.setBalance(new BigDecimal("1200.00"));<br>
+           <DT>dukesAccount.setCustomerName("Duke");<br>
+           <DT>BigDecimal newBalance = stub.calculateInterest(dukesAccount);<br>
+           <DT>System.out.println("newBalance: " + newBalance);<br>
+           <DT>dukesAccount.setBalance(newBalance);<br>
+        </dl>
+        <p>
+        <DT>} catch (Exception ex) {<br>
+        <dl>
+           <DT>ex.printStackTrace();<br>
+        </dl>
+        <DT>}<br>
+     </dl>
+     <p>
+     <DT>} // demoBean<br>
+<P>
+</dl>
+
+<BR>
+<BR>
+
+<A NAME="14845"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14847"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To recompile, assemble and deploy the application, see the <A HREF="../../../../docs/ant.html">Sample Application Build Facility</A> document for details on using a build facility to quickly perform these tasks.
+</FONT>
+<P>
+
+<A NAME="14850"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For example, to rebuild the entire application from scratch, perform the following steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14852"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble the J2EE Application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14854"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant command </FONT>under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/simplebean/src</FONT>
+</FONT>
+<P>     <DT> <A NAME="14856"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core is executed to rebuild the<FONT FACE="courier, couriernew, monospaced size"> .jar </FONT>and<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>files.
+</FONT>
+<P>  </dl>
+<A NAME="14858"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14860"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+After you have re-created the sample application from scratch, proceed to Deploying the application.
+</FONT>
+<P>  </dl>
+<A NAME="14861"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the application project area.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14863"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant clean command </FONT>to clean the application area.
+</FONT>
+<P>  </dl>
+<A NAME="14865"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Undeploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14866"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant undeploy command </FONT>to undeploy the application.
+</FONT>
+<P>  </dl>
+<A NAME="16182"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Build Javadocs.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16180"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant javadocs </FONT>command to build Javadocs.
+</FONT>
+<P>  <DT> <A NAME="16181"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Javadocs are created under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/simplebean/javadocs</FONT>.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14871"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14873"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A pre-built<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-simplebean.war </FONT>file is supplied with the application server installation. The pre-built<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-simplebean.war </FONT>file contains the<FONT FACE="courier, couriernew, monospaced size"> .xml </FONT>deployment descriptor files, application class files, and other content required by the application. You can use the pre-built<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>files to deploy the application. If you want to compile and assemble the application from scratch, follow the instructions under <A HREF="index.html#14845"  >Compiling and Assembling the Application</A>.
+</FONT>
+<P>
+
+<A NAME="14877"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application administrative server needs to be running.
+</FONT>
+<P>
+
+<A NAME="16210"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To start the administrative server if it is not already started:
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14879"> </A>
+<A NAME="For UNIX"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+For UNIX
+</B>
+</FONT>
+<BR>
+
+<A NAME="14881"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/admin-server/startserv</FONT>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14883"> </A>
+<A NAME="For Windows"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+For Windows
+</B>
+</FONT>
+<BR>
+
+<A NAME="14885"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Start-&gt;Programs-&gt;Sun ONE Application Server 7-&gt;Start Application Server
+</FONT>
+<P>
+
+<A NAME="14887"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploy the application:
+</FONT>
+<P>
+<ul>
+<A NAME="14889"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14894"  >Command Line-Based Deployment</A> describes how to manually register the application using a Command Line Interface (CLI).
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16233"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This is the quickest means of deploying the application.
+</FONT>
+<P>  </dl>
+<A NAME="14891"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14927"  >Web-Based Deployment</A> describes how to use the web-based administration tool to deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14894"> </A>
+<A NAME="Command Line-Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line-Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15429"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">While Command Line Interface is the quickest means of deploying the application, if you want to deploy through a GUI tool, follow the instructions under the <A HREF="index.html#14927"  >Web-Based Deployment</A> section.
+</FONT>
+<P>
+
+<A NAME="16250"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">CLI deployment of the application can be performed using either the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>script or the<FONT FACE="courier, couriernew, monospaced size"> asadmin </FONT>command.
+</FONT>
+<P>
+
+<A NAME="15430"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process includes deploying the application<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file to the Sun ONE application server.
+</FONT>
+<P>
+
+<A NAME="14900"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploy the application using the asant command:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14901"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/simplebean/src</FONT>
+</FONT>
+<P><A NAME="14903"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant deploy </FONT>command.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16287"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+It is an interactive command that might prompt you to provide the admin-server host, admin-server port, admin user name, admin password and appserv instance.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14907"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploy the application file using asadmin command
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14909"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/simplebean</FONT>
+</FONT>
+<P><A NAME="14910"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asadmin deploy -u </FONT>&lt;<I>user-name</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -w </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> -H </FONT>&lt;<I>hostname</I>&gt; <FONT FACE="courier, couriernew, monospaced size">-p </FONT>&lt;<I>admin server port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --instance </FONT>&lt;<I>instance name</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-simplebean.war </FONT>command.
+</FONT>
+<P></ol>
+
+<A NAME="14914"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="15535"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+It authenticates against the local application server's administrative server.
+</FONT>
+<P><A NAME="14916"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file is transferred to the administrative server.
+</FONT>
+<P><A NAME="14917"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="15570"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file.
+</FONT>
+<P><A NAME="14919"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into the repository
+</FONT>
+<P><A NAME="15601"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application<I> jaxrpc-simplebean </I>by updating the<FONT FACE="courier, couriernew, monospaced size"> server.xml </FONT>file.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14923"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Now you are ready to run the application (see <A HREF="index.html#14942"  >Running the Sample Application</A>).
+</FONT>
+<P>    </dl>
+  </ul>
+</ul>
+<P>
+<BR>
+<A NAME="14927"> </A>
+<A NAME="Web-Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Web-Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="14929"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Log in to the web-based administration tool from the browser.
+</FONT>
+<P><A NAME="14930"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Navigate as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14931"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Application Server Instances --&gt; &lt;server instance&gt; --&gt; Applications --&gt; Web Apps
+</FONT>
+<P>  </dl>
+<A NAME="14932"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Click Deploy.
+</FONT>
+<P><A NAME="16380"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Click Browse to locate the<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-simplebean.war </FONT>file.The file is located under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/simplebean</FONT>.
+</FONT>
+<P><A NAME="16388"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Click OK.
+</FONT>
+<P><A NAME="14934"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Enter<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-simplebean </FONT>in the <I>Web Application Name</I> field.
+</FONT>
+<P><A NAME="14936"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Enter<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-simplebean </FONT>in the <I>Context Root</I> field.
+</FONT>
+<P><A NAME="16400"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Click OK.
+</FONT>
+<P><A NAME="14935"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+Click the<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-simplebean </FONT>link to verify that the application is deployed.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14938"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Now you are ready to run the application (see <A HREF="index.html#14942"  >Running the Sample Application</A>).
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14942"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14944"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Perform the following steps to run the sample application:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="16415"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/simplebean/src</FONT>
+</FONT>
+<P><A NAME="14945"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant run </FONT>command.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14948"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The program should display following:
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="14950"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">demoArray method:<br>it was a dark and stormy night<br>night stormy and dark a was it</FONT>
+</FONT>
+<P>       <DT> <A NAME="14953"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">demoBean method:<br>SimpleAccountBean: setting balance to 1200.00<br>SimpleAccountBean: setting customerName to Duke<br>newBalance: 1260.0000<br>SimpleAccountBean: setting balance to 1260.0000</FONT>
+</FONT>
+<P>    </dl>
+  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14962"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14964"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you see a Connection refused error, when you do asant run, make certain that <I>soap:address location</I> in &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/simplebean/src/HelloWorld.wsdl</FONT> is set to <FONT FACE="courier, couriernew, monospaced size">http://</FONT>&lt;<I>hostname</I>&gt;<FONT FACE="courier, couriernew, monospaced size">:</FONT>&lt;<I>instance-port</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/jaxrpc-simplebean/simplebean</FONT>. Please modify the file and execute <FONT FACE="courier, couriernew, monospaced size">asant core</FONT> before running the sample again.
+</FONT>
+<P>
+<A NAME="14966"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You might see some warnings while executing <FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT>. These warnings can be ignored.</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 11, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

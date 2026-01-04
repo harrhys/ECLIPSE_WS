@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<!DOCTYPE ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN" "http://java.sun.com/dtd/ejb-jar_2_0.dtd">
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<ejb-jar>
+  <display-name>pkgingEJB</display-name>
+  <enterprise-beans>
+    <session>
+      <ejb-name>SunONE.pkgingE.pkgingEEJB.CompoundInterest</ejb-name>
+      <home>samples.packaging.pkging.ejb.CompoundInterestHome</home>
+      <remote>samples.packaging.pkging.ejb.CompoundInterest</remote>
+      <ejb-class>samples.packaging.pkging.ejb.CompoundInterestEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+	    <description>Specifies that the library classes will be loaded frm a classfile</description>
+	    <env-entry-name>library</env-entry-name>
+	    <env-entry-type>java.lang.String</env-entry-type>
+	    <env-entry-value>file</env-entry-value>
+      </env-entry>
+      <ejb-ref>
+	    <ejb-ref-name>ejb/SunONE.pkging.pkgingEJB.SimpleInterest</ejb-ref-name>
+	    <ejb-ref-type>Session</ejb-ref-type>
+	    <home>samples.packaging.pkging.ejb.SimpleInterestHome</home>
+	    <remote>samples.packaging.pkging.ejb.SimpleInterest</remote>
+	    <ejb-link>SunONE.pkgingE.pkgingEEJB.SimpleInterest</ejb-link>
+      </ejb-ref>
+    </session>
+    <session>
+      <ejb-name>SunONE.pkgingE.pkgingEEJB.SimpleInterest</ejb-name>
+      <home>samples.packaging.pkging.ejb.SimpleInterestHome</home>
+      <remote>samples.packaging.pkging.ejb.SimpleInterest</remote>
+      <ejb-class>samples.packaging.pkging.ejb.SimpleInterestEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+	    <description>Specifies that the library classes will be loaded frm a classfile</description>
+	    <env-entry-name>library</env-entry-name>
+	    <env-entry-type>java.lang.String</env-entry-type>
+	    <env-entry-value>file</env-entry-value>
+      </env-entry>
+      <ejb-ref>
+	    <ejb-ref-name>ejb/SunONE.pkging.pkgingEJB.CompoundInterest</ejb-ref-name>
+	    <ejb-ref-type>Session</ejb-ref-type>
+	    <home>samples.packaging.pkging.ejb.CompoundInterestHome</home>
+	    <remote>samples.packaging.pkging.ejb.CompoundInterest</remote>
+	    <ejb-link>SunONE.pkgingE.pkgingEEJB.CompoundInterest</ejb-link>
+      </ejb-ref>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <method-permission>
+      <unchecked></unchecked>
+      <method>
+	<ejb-name>SunONE.pkgingE.pkgingEEJB.CompoundInterest</ejb-name>
+	<method-name>*</method-name>
+      </method>
+      <method>
+	<ejb-name>SunONE.pkgingE.pkgingEEJB.SimpleInterest</ejb-name>
+	<method-name>*</method-name>
+      </method>
+    </method-permission>
+  </assembly-descriptor>
+</ejb-jar>
+

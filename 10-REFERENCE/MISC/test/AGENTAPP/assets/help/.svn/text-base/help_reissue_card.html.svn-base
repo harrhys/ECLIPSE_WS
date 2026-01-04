@@ -1,0 +1,16 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="wrapper">
+<h1>Reissue Card</h1>
+<p>
+This option allows you to issue a new card or reissue a card to the customer when 
+the customer's card is hotlisted, lost or stolen. 
+Enter card reference number and customer's mobile number to issue/reissue a card.
+ Click on 'Back' to go back to the main menu.</p>
+<p>
+Contact <%CUSTOMER_CARE%> if you need help.
+</p>
+</body>
+</html>

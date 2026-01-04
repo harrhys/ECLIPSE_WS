@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+<!-- ============================================================== -->
+<!-- Ant XML file for HelloWorld sample application as deployed to  -->
+<!-- iPlanet Application Server.                                    -->
+<!--                                                                -->
+<!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+<!-- ============================================================== -->
+
+<project name="subclassing-sample" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+  <!-- App name-dependent settings. -->
+  <property name="appname" value="subclassing"/>
+
+  <!-- Package directory structures of interest. -->
+  <property name="app.pkg" value="samples/ejb/subclassing"/>
+  <property name="jar.pkg" value="samples/ejb/subclassing/ejb"/>
+  <property name="war.pkg" value="samples/ejb/subclassing/servlet"/>
+
+  <!-- ======================================================= -->
+  <!--                  Java Doc properties .                                          -->
+  <!-- ======================================================= -->
+
+  <property name="sample.name" value="subclassing"/>
+  <property name="javadoc.pkgnames" value="samples.ejb.subclassing.*" />
+   
+  <!-- ============================================================== -->
+  <!--           Resource specific properties.                        -->
+  <!-- ============================================================== -->
+
+  <property name="db.user"  value="subclass"/>
+  <property name="db.pwd"   value="subclass"/>
+  <property name="db.file"  value="sql/simpleBank.sql"/>
+  <property name="conpool.name"       value="ejb-subclassing-pool" />
+  <property name="jdbc.resource.name" value="jdbc/ejb-subclassing" />
+
+  
+  <!-- ======================================================= -->
+  <!--                          Include common.xml                                             -->
+  <!-- ======================================================= -->
+
+  &include;
+
+  <!-- ============================================================== -->
+  <!--           Application specific targets.                        -->
+  <!-- ============================================================== -->
+
+  <target name="reconfig" depends="reconfig_common"/>
+
+  <target name="sql" depends="sql_common"/>
+  <target name="setup" depends="setup_env, deploy_jdbc_resource_pb_common, reconfig"/>
+  <target name="setup_ora" depends="setup_env, deploy_jdbc_resource_ora_common, reconfig"/>
+  <target name="unsetup" depends="delete-jdbc-resource_common, delete-jdbc-connection-pool_common"/>
+
+
+  <target name="clean" depends="clean_common" />
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="verify" depends="verify_common" />
+  <target name="core" depends="compile, create_ejbjar_common, create_war_common, create_ear_common" />
+  <target name="deploy" depends="setup,deploy_common"/>
+  <target name="deploy_ora" depends="setup_ora,deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="all" depends="core,verify, deploy" />
+
+</project>

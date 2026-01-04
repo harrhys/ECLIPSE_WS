@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 Servlet 2.3//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-web-app_2_3-0.dtd">
+<sun-web-app>
+<security-role-mapping>
+    <role-name>administrator</role-name>
+    <principal-name>rcvr</principal-name>
+    <group-name>administrator_group</group-name>
+  </security-role-mapping>
+<session-config>
+    <session-manager persistence-type="memory">
+      <manager-properties/>
+      <store-properties/>
+    </session-manager>
+    <session-properties/>
+    <cookie-properties/>
+  </session-config>
+<resource-env-ref>
+    <resource-env-ref-name>jms/topic/opc/InvoiceTopic</resource-env-ref-name>
+    <jndi-name>jms/topic/opc/InvoiceTopic</jndi-name>
+  </resource-env-ref>
+<resource-ref>
+    <res-ref-name>jms/topic/TopicConnectionFactory</res-ref-name>
+    <jndi-name>jms/topic/supplier/TopicConnectionFactory</jndi-name>
+  </resource-ref>
+<cache enabled='true'>
+    <default-helper/>
+  </cache>
+<class-loader delegate='true'/>
+<jsp-config/>
+</sun-web-app>

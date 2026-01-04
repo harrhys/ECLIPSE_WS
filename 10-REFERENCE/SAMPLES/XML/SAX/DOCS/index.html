@@ -1,0 +1,838 @@
+<HTML lang="en">
+
+
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+
+
+rebranded for Sun ONE
+
+06-18-02">
+
+	<meta name="LastUpdated" content="07/12/02 13:34:08">
+
+	<title>XML SAX Sample Application:  XML SAX Sample Application</title>
+
+</head>
+
+
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+
+
+<MAINCONTENT>
+
+
+
+<NAVIGATIONCONTENT>
+
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+
+      <TR>
+
+         <td VALIGN="TOP">
+
+            <A HREF="http://wwws.sun.com/software">
+
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+
+                valign="BOTTOM"
+
+                height="40" width="120" border="0"></A>
+
+             &nbsp;&nbsp;&nbsp;&nbsp;
+
+         </td>
+
+     </TR>
+
+
+
+      <TR>
+
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+
+            XML SAX Sample Application</B></FONT>
+
+         </TD>
+
+      </TR>
+
+
+
+   </TABLE>
+
+   <BR>
+
+</NAVIGATIONCONTENT>
+
+
+
+<BOOKCONTENT>
+
+   <BLOCKQUOTE>
+
+<BR>
+
+<BR>
+
+
+
+      <A NAME="15913"> </A>
+
+<A NAME="XML SAX Sample Application"> </A>
+
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+
+<B>
+
+XML SAX Sample Application
+
+</B>
+
+</FONT>
+
+<BR>
+
+<BR>
+
+<BR>
+
+
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the XML SAX sample application in conjunction with Sun ONE Application Server version 7.
+
+</FONT>
+
+<P>
+
+
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+
+</FONT>
+
+<P>
+
+<ul>
+
+<A NAME="15123"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li></B>
+
+<A HREF="index.html#14805"  >Overview</A>
+
+</FONT>
+
+<P><A NAME="15153"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li></B>
+
+<A HREF="index.html#14862"  >Compiling and Assembling the Application</A>
+
+</FONT>
+
+<P><A NAME="15158"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li></B>
+
+<A HREF="index.html#20001"  >Running the Sample Application</A>
+
+</FONT>
+
+<P><A NAME="15139"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li></B>
+
+<A HREF="index.html#20364"  >Troubleshooting</A>
+
+</FONT>
+
+<P></ul>
+
+
+
+<BR>
+
+<BR>
+
+
+
+<A NAME="14805"> </A>
+
+<A NAME="Overview"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+
+Overview
+
+<HR SIZE="2" NOSHADE>
+
+</FONT>
+
+<BR>
+
+
+
+
+
+<A NAME="19851"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The XML SAX sample application uses the <FONT FACE="courier, couriernew, monospaced size">SAXLocalNameCount</FONT> program to count the number of unique element local names in an XML document, ignoring the namespace name for simplicity. This example also shows one way to turn on DTD  validation and how to use a SAX ErrorHandler.
+
+</FONT>
+
+<P>
+
+
+
+<A NAME="19854"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">There are several ways to parse a document using SAX and JAXP. The first step is to bootstrap a parser.
+
+</FONT>
+
+<P>
+
+
+
+<A NAME="19881"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">There are two ways to bootstrap a parser: one is to use only the SAX API, the other is to use the JAXP utility classes in the <FONT FACE="courier, couriernew, monospaced size">javax.xml.parsers </FONT>package. The JAXP utility classes in the <FONT FACE="courier, couriernew, monospaced size">javax.xml.parsers </FONT>package will be used in this example.
+
+</FONT>
+
+<P>
+
+
+
+<A NAME="19889"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After bootstrapping a parser/XMLReader, there are several ways to begin a parse. In this example, the SAX API will be used.
+
+</FONT>
+
+<P>
+
+
+
+<BR>
+
+<BR>
+
+
+
+<A NAME="14862"> </A>
+
+<A NAME="Compiling and Assembling the Application"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+
+Compiling and Assembling the Application
+
+<HR SIZE="2" NOSHADE>
+
+</FONT>
+
+<BR>
+
+
+
+
+
+<A NAME="14865"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the XML SAX sample application using a Command Line Interface (CLI).
+
+</FONT>
+
+<P>
+
+<ol type="1">
+
+<A NAME="19415"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li value="1"></B>
+
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/xml/sax/src</FONT>
+
+</FONT>
+
+<P>  <dl>
+
+     <DT> <A NAME="19371"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="19369"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+The default target <FONT FACE="courier, couriernew, monospaced size">core</FONT> will be executed to compile the application.
+
+</FONT>
+
+<P>  </dl>
+
+<A NAME="14889"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li value="2"></B>
+
+Clean the application project area (optional).
+
+</FONT>
+
+<P>  <dl>
+
+     <DT> <A NAME="19998"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> to remove the sample application assemble and build directories.
+
+</FONT>
+
+<P>  </dl>
+
+</ol>
+
+
+
+<BR>
+
+<BR>
+
+
+
+<A NAME="20001"> </A>
+
+<A NAME="Running the Sample Application"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+
+Running the Sample Application
+
+<HR SIZE="2" NOSHADE>
+
+</FONT>
+
+<BR>
+
+
+
+
+
+<A NAME="19752"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To run the sample application, do the following:
+
+</FONT>
+
+<P>
+
+<ol type="1">
+
+<A NAME="19975"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li value="1"></B>
+
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/xml/sax/src </FONT>and execute the following command:
+
+</FONT>
+
+<P>  <dl>
+
+     <DT> <A NAME="19993"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">asant rundtd</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20016"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+If your build was successful, the sample displays the following information:
+
+</FONT>
+
+<P>     <DT> <A NAME="20018"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Order" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20082"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Quantity" occurs 5 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20083"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Tax" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20084"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Item" occurs 5 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20022"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Customer" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20023"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Receipt" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20024"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Name" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20025"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Subtotal" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20026"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Total" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20027"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Title" occurs 5 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20028"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "ID" occurs 5 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20029"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Cardnum" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20030"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "UnitPrice" occurs 5 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20008"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "Manifest" occurs 1 times</FONT>
+
+</FONT>
+
+<P>  </dl>
+
+<A NAME="20200"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li value="2"></B>
+
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/xml/sax/src </FONT>and execute the following command:
+
+</FONT>
+
+<P>  <dl>
+
+     <DT> <A NAME="20201"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">asant runnodtd</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20219"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+The application should print the following results:
+
+</FONT>
+
+<P>     <DT> <A NAME="20221"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "name" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20222"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "reservation" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20223"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "seat" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20224"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "examples" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20225"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "book" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20226"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "author" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20227"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "a" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20228"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "title" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20229"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "section" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20230"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "departure" occurs 1 times</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="20198"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">[java] Local Name "signing" occurs 1 times</FONT>
+
+</FONT>
+
+<P>  </dl>
+
+</ol>
+
+
+
+<A NAME="20369"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Alternatively, you may run both of the previous tests at the same time by doing the following:
+
+</FONT>
+
+<P>
+
+<ol type="1">
+
+<A NAME="20393"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li value="3"></B>
+
+Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/xml/sax/src</FONT> and execute the following command:
+
+</FONT>
+
+<P>  <dl>
+
+     <DT> <A NAME="20396"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">asant run</FONT>
+
+</FONT>
+
+<P>  </dl>
+
+</ol>
+
+
+
+<P>
+
+<BR>
+
+<A NAME="14961"> </A>
+
+<A NAME="Generating Javadocs"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+
+Generating Javadocs
+
+</FONT>
+
+<BR>
+
+<BR>
+
+
+
+
+
+
+
+<A NAME="14963"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To understand sample application source code better, you can refer to the related javadocs. To generate javadocs, run the command
+
+</FONT>
+
+<P>
+
+<dl>  <dl>
+
+     <DT> <A NAME="16579"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT>
+
+</FONT>
+
+<P>     <DT> <A NAME="14967"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+or
+
+</FONT>
+
+<P>     <DT> <A NAME="14968"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<FONT FACE="courier, couriernew, monospaced size">asant all</FONT>
+
+</FONT>
+
+<P>  </dl>
+
+</dl>
+
+<A NAME="14970"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After javadocs are generated, you can access them at
+
+</FONT>
+
+<P>
+
+
+
+<A NAME="14972"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">&lt;<I>i
+
+nstall_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/xml/sax/javadocs/index.html</FONT>
+
+</FONT>
+
+<P>
+
+<BR>
+
+<BR>
+
+
+
+<A NAME="20364"> </A>
+
+<A NAME="Troubleshooting"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+
+Troubleshooting
+
+<HR SIZE="2" NOSHADE>
+
+</FONT>
+
+<BR>
+
+
+
+<ul>
+
+<A NAME="20414"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li></B>
+
+If you re unable to compile the application, check whether you have <FONT FACE="courier, couriernew, monospaced size">asant</FONT> in your PATH.
+
+</FONT>
+
+<P><A NAME="20415"> </A>
+
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+
+<B>  <li></B>
+
+If you don't receive the required results, or you receive an error, check whether you have xml  data files under <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/xml/data</FONT> directory.
+
+</FONT>
+
+<P></ul>
+
+
+
+
+
+
+
+   </BLOCKQUOTE>
+
+</BOOKCONTENT>
+
+
+
+<FOOTERCONTENT>
+
+   <BLOCKQUOTE>
+
+ <BR>
+
+           
+
+        <HR NOSHADE SIZE="1">
+
+
+
+
+
+   
+
+<!-- start copyright -->
+
+<font face="Helvetica, Arial, sans-serif" size="-2">
+
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+
+All rights reserved.
+
+</font>
+
+<!--  end copyright  -->
+
+   </BLOCKQUOTE>
+
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+
+   <P ALIGN="RIGHT">Last Updated <B>July 12, 2002</B>
+
+   </FONT>
+
+   <BR>
+
+
+
+</FOOTERCONTENT>
+
+
+
+</MAINCONTENT>
+
+
+
+</BODY>
+
+
+
+
+
+</HTML>
+

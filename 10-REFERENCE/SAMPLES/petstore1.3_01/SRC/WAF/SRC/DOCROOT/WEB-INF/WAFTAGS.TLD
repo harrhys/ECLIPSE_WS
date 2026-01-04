@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE taglib
+ PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.1//EN"
+ "http://java.sun.com/j2ee/dtds/web-jsptaglibrary_1_1.dtd">
+
+<!-- a tag library descriptor -->
+
+<taglib>
+
+  <tlibversion>1.0</tlibversion>
+  <jspversion>1.1</jspversion>
+  <shortname>WafTags</shortname>
+  <uri></uri>
+
+  <info>
+    BluePrints Web Application Framework Tags
+  </info>
+
+  <!-- sum tag -->
+  <tag>
+    <name>sum</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.SumTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+  </tag>
+
+  <!-- term tag -->
+  <tag>
+    <name>term</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.TermTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+  </tag>
+
+  <!-- link tag -->
+  <tag>
+    <name>link</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.LinkTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+
+    <attribute>
+      <name>href</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>linkContent</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- linkContent tag -->
+  <tag>
+    <name>linkContent</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.LinkContentTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+  </tag>
+
+  <!-- queryParameter tag -->
+  <tag>
+    <name>queryParameter</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.QueryParameterTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- form tag -->
+  <tag>
+    <name>form</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.FormTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>action</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>method</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+
+  <!-- checkbox tag -->
+  <tag>
+    <name>checkbox</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.CheckboxTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      Enhanced version of the html Checkbox input tag
+    </info>
+
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+
+
+  <!-- checkbox checked tag -->
+  <tag>
+    <name>checked</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.CheckedTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      To be used with the checkbox to specify whether or not the tag is to be checked
+    </info>
+
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- input tag -->
+  <tag>
+    <name>input</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.InputTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+
+    <attribute>
+      <name>type</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>size</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>validation</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>maxlength</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>cssClass</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+
+
+
+  <!-- name tag -->
+  <tag>
+    <name>name</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.NameTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+  </tag>
+
+  <!-- value tag -->
+  <tag>
+    <name>value</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.ValueTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+  </tag>
+
+  <!-- select tag -->
+  <tag>
+    <name>select</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.SelectTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>size</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>editable</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- selected tag -->
+  <tag>
+    <name>selected</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.SelectedTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+  </tag>
+
+  <!-- option tag -->
+  <tag>
+    <name>option</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.OptionTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+
+    <attribute>
+      <name>value</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- bool tag -->
+  <tag>
+    <name>bool</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.BooleanTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- conditional tag -->
+  <tag>
+    <name>listIsEmpty</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.list.ListIsEmptyTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- true tag -->
+  <tag>
+    <name>true</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.TrueTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+  </tag>
+
+  <!-- false tag -->
+  <tag>
+    <name>false</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.FalseTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      <!-- FIXME -->
+    </info>
+  </tag>
+
+  <!-- parameter tag -->
+  <tag>
+    <name>parameter</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.request.ParameterTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+        An parameter tag for extracting parameters from the request
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>name</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>default</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <!-- list tag -->
+  <tag>
+    <name>list</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.list.ListTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+        A tag for listing Iterators
+    </info>
+
+    <attribute>
+      <name>collectionId</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>listItem</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.list.ListItemTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+        A sub tag of the ListTag for listing items properties in the list
+    </info>
+
+    <attribute>
+      <name>formatText</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>locale</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>numberFormatPattern</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>precision</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+    <name>extract</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.ExtractPropertyTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+        A tag for extracting properties from objects and placing them in a target scope.
+    </info>
+
+    <attribute>
+      <name>property</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>destinationId</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>destinationScope</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>
+
+
+  <tag>
+    <name>extract_parameter</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.ExtractPropertyParameterTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+        A tag for extracting properties from objects and placing them in a target scope.
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>arg</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>parameter</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>type</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>default</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+  </tag>
+
+  <tag>
+    <name>getSmartProperty</name>
+    <tagclass>com.sun.j2ee.blueprints.waf.view.taglibs.smart.SmartPropertyTag</tagclass>
+
+    <bodycontent>JSP</bodycontent>
+    <info>
+      A  tag that is simlar to the standard getProperty tag with the exception
+      that this tag can format the properties (e.g. currencies, numbers, percentage in
+      a locale independent way).
+    </info>
+
+    <attribute>
+      <name>id</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>scope</name>
+      <required>true</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>formatText</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>locale</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>numberFormatPattern</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+    <attribute>
+      <name>precision</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+
+    <attribute>
+      <name>property</name>
+      <required>false</required>
+      <rtexprvalue>true</rtexprvalue>
+    </attribute>
+
+  </tag>
+
+</taglib>

@@ -1,0 +1,491 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/12/02 13:52:30">
+	<title>XML DOM Sample Application:  XML DOM Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            XML DOM Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="XML DOM Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+XML DOM Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the XML DOM sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20001"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20774"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19851"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, the XML DOM sample application is described.
+</FONT>
+<P>
+
+<A NAME="20449"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The XML DOM example reads an XML file and generates a DOM Document object from it.  The steps to do this are as follows:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20451"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Create a <FONT FACE="courier, couriernew, monospaced size">DocumentBuilderFactory</FONT> and <FONT FACE="courier, couriernew, monospaced size">setNamespaceAware</FONT> as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20494"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance(); dbf.setNamespaceAware(true);</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="20455"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Create a <FONT FACE="courier, couriernew, monospaced size">DocumentBuilder</FONT> as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20517"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">DocumentBuilder db = dbf.newDocumentBuilder();</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="20458"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Parse the input file to get a Document object as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20545"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Document doc = db.parse(new File(filename);</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="20461"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The program also gives an example of using an error handler . Finally, this program helps you understand how DOM works by showing you the structure and contents of a DOM tree. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="20555"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To build the entire application from scratch, follow these steps: .
+</FONT>
+<P>
+<ol type="1">
+<A NAME="19415"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to<FONT FACE="courier, couriernew, monospaced size"> s1as_install_dir/samples/xml/dom/src</FONT>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19371"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant</FONT>
+</FONT>
+<P>     <DT> <A NAME="19369"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target <FONT FACE="courier, couriernew, monospaced size">core</FONT> will be executed to compile the application.
+</FONT>
+<P>  </dl>
+<A NAME="14889"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Clean the application project area (optional).
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19998"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> to remove the sample application assemble and build directories.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="20001"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19752"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To run the sample application, do the following:
+</FONT>
+<P>
+
+<A NAME="19975"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Go to <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/xml/dom/src </FONT>and execute the following command:
+</FONT>
+<P>
+
+<A NAME="19993"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">asant run</FONT>
+</FONT>
+<P>
+
+<A NAME="20771"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If your deployment process was successful, the sample displays the following information:
+</FONT>
+<P>
+<A NAME="20781"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java] DOC: nodeName="#document"
+
+</FONT>
+<P><A NAME="20852"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]   ELEM: nodeName="examples" local="examples"
+
+</FONT>
+<P><A NAME="20853"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]     TEXT: nodeName="#text" nodeValue=[WS]
+
+</FONT>
+<P><A NAME="21325"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]     ELEM: nodeName="section" uri="http://www.example.com/books-r-us" 
+local="section"
+
+</FONT>
+<P><A NAME="21326"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         ATTR: nodeName="xmlns" uri="http://www.w3.org/2000/xmlns/" 
+local="xmlns" nodeValue="http://www.example.com/books-r-us"
+
+</FONT>
+<P><A NAME="20786"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       TEXT: nodeName="#text" nodeValue=[WS]
+
+</FONT>
+<P><A NAME="20787"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       ELEM: nodeName="title" uri="http://www.example.com/books-r-us" 
+local="title"
+
+</FONT>
+<P><A NAME="20788"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         TEXT: nodeName="#text" nodeValue="Book-Signing Event" 
+
+</FONT>
+<P><A NAME="20789"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20790"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       ELEM: nodeName="signing" uri="http://www.example.com/books-r-us" 
+local="signing" 
+
+</FONT>
+<P><A NAME="20791"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20792"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         ELEM: nodeName="author" uri="http://www.example.com/books-r-us" 
+local="author" 
+
+</FONT>
+<P><A NAME="20793"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]             ATTR: nodeName="title" local="title" nodeValue="Mr." 
+
+</FONT>
+<P><A NAME="20794"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]             ATTR: nodeName="name" local="name" nodeValue="Vikram Seth" 
+
+</FONT>
+<P><A NAME="20795"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20796"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         ELEM: nodeName="book" uri="http://www.example.com/books-r-us" 
+local="book" 
+
+</FONT>
+<P><A NAME="20797"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]             ATTR: nodeName="title" local="title" nodeValue="A Suitable Boy" 
+
+</FONT>
+<P><A NAME="20798"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]             ATTR: nodeName="price" local="price" nodeValue="$2295" 
+
+</FONT>
+<P><A NAME="20799"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20800"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20801"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]     TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20802"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]     ELEM: nodeName="reservation" local="reservation" 
+
+</FONT>
+<P><A NAME="20803"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         ATTR: nodeName="xmlns:html" uri="http://www.w3.org/2000/xmlns/" 
+pre="xmlns" local="html" nodeValue="http://www.w3.org/TR/REC-html40" 
+
+</FONT>
+<P><A NAME="20804"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20805"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       ELEM: nodeName="name" local="name" 
+
+</FONT>
+<P><A NAME="20806"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]           ATTR: nodeName="html:class" uri="http://www.w3.org/TR/REC-html40" 
+pre="html" local="class" nodeValue="largeSansSerif" 
+
+</FONT>
+<P><A NAME="20807"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         TEXT: nodeName="#text" nodeValue="Seth, Vikram" 
+
+</FONT>
+<P><A NAME="20808"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20809"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       ELEM: nodeName="seat" local="seat" 
+
+</FONT>
+<P><A NAME="20810"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]           ATTR: nodeName="class" local="class" nodeValue="Y" 
+
+</FONT>
+<P><A NAME="20811"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]           ATTR: nodeName="html:class" uri="http://www.w3.org/TR/REC-html40" 
+pre="html" local="class" nodeValue="largeMonotype" 
+
+</FONT>
+<P><A NAME="20812"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         TEXT: nodeName="#text" nodeValue="33B" 
+
+</FONT>
+<P><A NAME="20813"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20814"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       ELEM: nodeName="html:a" uri="http://www.w3.org/TR/REC-html40" 
+pre="html" local="a" 
+
+</FONT>
+<P><A NAME="20815"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]           ATTR: nodeName="href" local="href" 
+nodeValue="/servlets/ResStatus" 
+
+</FONT>
+<P><A NAME="20816"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         TEXT: nodeName="#text" nodeValue="Check Status" 
+
+</FONT>
+<P><A NAME="20817"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20818"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       ELEM: nodeName="departure" local="departure" 
+
+</FONT>
+<P><A NAME="20819"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]         TEXT: nodeName="#text" nodeValue="1997-05-24T19:22:00+5" 
+
+</FONT>
+<P><A NAME="20820"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]       TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P><A NAME="20772"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+[java]     TEXT: nodeName="#text" nodeValue=[WS] 
+
+</FONT>
+<P>
+
+<P>
+<BR>
+<A NAME="14961"> </A>
+<A NAME="Generating Javadocs"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Generating Javadocs
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14963"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+To understand sample application source code better, you can refer to the related javadocs.
+To generate javadocs, run the command
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="16579"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT>
+</FONT>
+<P>     <DT> <A NAME="14967"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+or
+</FONT>
+<P>     <DT> <A NAME="14968"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asant all</FONT>
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="14970"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After javadocs are generated, you can access them at
+</FONT>
+<P>
+
+<A NAME="14972"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">&lt;<I>i
+nstall_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/xml/dom/javadocs/index.html</FONT>
+</FONT>
+<P>
+<BR>
+<BR>
+
+<A NAME="20774"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="20414"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you re unable to compile the application, check whether you have <FONT FACE="courier, couriernew, monospaced size">asant</FONT> in your PATH.
+</FONT>
+<P><A NAME="20415"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you don't receive the required results, or you receive an error, check whether you have xml  data files under <FONT FACE="courier, couriernew, monospaced size">s1as_install_dir/samples/xml/data</FONT> directory.
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 12, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

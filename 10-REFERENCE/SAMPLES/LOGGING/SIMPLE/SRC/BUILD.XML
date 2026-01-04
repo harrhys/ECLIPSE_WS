@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+  <!-- ======================================================= -->
+  <!--  SunOne Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="logging" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="logging-helloworld"/>
+  <property name="sample.home" value="../../../"/>
+  <property name="sample.name" value="logging"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/logging/simple/"/>
+  <property name="war.pkg" value="samples/logging/simple/servlet"/>
+  <property name="jar.pkg" value="samples/logging/simple/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  <property name="sample.name" value="logging"/>
+  <property name="javadoc.pkgnames" value="samples.logging.simple.*" />
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= --> 
+  &include;
+	
+  <!-- ======================================================= -->
+  <!-- Assemble WAR module.                                    -->
+  <!-- ======================================================= -->
+  <target name="war_local">
+    <mkdir dir="${assemble.war}"/>
+    <copy todir="${assemble.war}/WEB-INF/classes/${war.pkg}">
+      <fileset dir="${build.classesdir}/${war.pkg}/" includes="**/*.class"/>
+    </copy>
+    <copy todir="${assemble.war}">
+      <fileset dir="${src.docroot}" excludes="cvs,annontation"/>
+    </copy>
+    <copy file="${assemble.ejbjar}/${ejbjar}" tofile="${assemble.war}/WEB-INF/lib/${ejbjar}"/>
+    <copy file="${src.docroot}/log.properties" todir="${assemble.war}/WEB-INF"/>
+    <copy file="web.xml"     tofile="${assemble.war}/WEB-INF/web.xml"/>
+    <copy file="sun-web.xml" tofile="${assemble.war}/WEB-INF/sun-web.xml"/>
+    <jar jarfile="${assemble}/${war}"
+       basedir="${assemble.war}"/>
+    <move file="${assemble}/${war}"
+       todir="${assemble.war}"/>
+    <property name="war.done" value="true"/>
+  </target>
+
+
+  <!-- ======================================================= -->
+  <!--	Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="verify" depends="verify_common"/>
+
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="war" depends="init,war_local"/>
+  <target name="ear" depends="init,jar,war,create_ear_common"/>
+  <target name="core" depends="compile,jar,war,ear" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

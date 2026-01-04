@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE ProviderConfig
+    PUBLIC "-//Sun Microsystems, Inc.//DTD JAXM Provider//EN"
+    "http://java.sun.com/xml/dtds/jaxm_provider_0_8.dtd">
+
+<ProviderConfig>
+  <Profile profileId="ebxml">
+    <Transport>
+      <Protocol>
+          http
+      </Protocol>
+
+      <Endpoint>
+	  <URI>
+	     http://www.wombats.com/remote/sender
+	  </URI>
+	  <URL>
+	     http://127.0.0.1:8081/jaxm-provider/receiver/ebxml
+	  </URL>
+      </Endpoint>
+
+      <Endpoint>
+	  <URI>
+	     http://www.wombats.com/remote/test
+	  </URI>
+	  <URL>
+	     http://127.0.0.1:8081/jaxm-provider/test2
+	  </URL>
+      </Endpoint>
+
+      <Persistence>
+        <Directory>
+           ebxml/
+        </Directory>
+        <RecordsPerFile>
+            50
+        </RecordsPerFile>
+      </Persistence>
+    </Transport>
+
+    <Transport>
+      <Protocol>
+          https
+      </Protocol>
+
+      <Endpoint>
+	  <URI>
+	     fluffy
+	  </URI>
+	  <URL>
+	     https://127.0.0.1:8
+	  </URL>
+      </Endpoint>
+
+
+      <Endpoint>
+	  <URI>
+	     tuffy
+	  </URI>
+	  <URL>
+	     https://this_is_https
+	  </URL>
+      </Endpoint>
+
+      <Persistence>
+        <Directory>
+           ebxml_https/
+        </Directory>
+        <RecordsPerFile>
+            250
+        </RecordsPerFile>
+      </Persistence>
+    </Transport>
+
+  </Profile>
+
+  <Profile profileId="soaprp">
+    <Transport>
+      <Protocol>
+          http
+      </Protocol>
+
+      <Endpoint>
+	  <URI>
+	     http://www.wombats.com/soaprp/sender
+	  </URI>
+	  <URL>
+	     http://127.0.0.1:8081/jaxm-provider/receiver/soaprp
+	  </URL>
+      </Endpoint>
+
+     <Endpoint>
+	  <URI>
+	     http://www.wombats.com/remote/testrp
+	  </URI>
+	  <URL>
+	     http://127.0.0.1:8081/jaxm-provider/anotherone
+	  </URL>
+      </Endpoint>
+
+       <ErrorHandling>
+        <Retry>
+           <MaxRetries>
+		12
+       	   </MaxRetries>
+  	   <RetryInterval>
+		1232
+	   </RetryInterval>
+        </Retry>
+    </ErrorHandling>
+
+      <Persistence>
+        <Directory>
+           soaprp/
+        </Directory>
+        <RecordsPerFile>
+            1800
+        </RecordsPerFile>
+      </Persistence>
+    </Transport>
+
+    <Transport>
+      <Protocol>
+          https
+      </Protocol>
+
+     <Endpoint>
+	  <URI>
+	     soaprp_https
+	  </URI>
+	  <URL>
+	     https://127.0.0.1:8081/jaxm-provider/anotherone
+	  </URL>
+      </Endpoint>
+
+    <ErrorHandling>
+        <Retry>
+           <MaxRetries>
+		23
+       	   </MaxRetries>
+  	   <RetryInterval>
+		9000
+	   </RetryInterval>
+        </Retry>
+    </ErrorHandling>
+
+   </Transport>
+
+  </Profile>
+
+      <ErrorHandling>
+        <Retry>
+           <MaxRetries>
+		15
+       	   </MaxRetries>
+  	   <RetryInterval>
+		2008
+	   </RetryInterval>
+        </Retry>
+    </ErrorHandling>
+
+    <Persistence>
+      <Directory>
+         temp/
+      </Directory>
+      <RecordsPerFile>
+           7
+      </RecordsPerFile>
+    </Persistence>
+</ProviderConfig>

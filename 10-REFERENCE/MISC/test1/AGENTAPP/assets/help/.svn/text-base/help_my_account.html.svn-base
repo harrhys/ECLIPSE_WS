@@ -1,0 +1,25 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="wrapper">
+<h1>My Account</h1>
+<h3>Balance</h3>
+<p>
+You can view the current balance in your account by using this option.
+Enter your 4-digit PIN to authenticate your request.
+Click on 'Back' to go back to the previous page.</p>
+<h3>History</h3>
+<p>
+You can view the history of your past transactions by using this option.
+Enter your 4-digit PIN to authenticate your request.
+Click on 'Back' to go back to the previous page.</p>
+<h3>Change PIN</h3>
+<p>
+To change your PIN, enter your current PIN and set a new PIN. Re-enter the new PIN to confirm. 
+Click on 'Back' to go back to the previous page.</p>
+<p>
+Contact <%CUSTOMER_CARE%> if you need help.
+</p>
+</body>
+</html>

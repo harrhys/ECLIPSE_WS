@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN' 'http://java.sun.com/dtd/web-app_2_3.dtd'>
+
+<web-app>
+  <display-name>Bookstore2WAR</display-name>
+  <description>Bookstore2 Web</description>
+    <servlet>
+      <servlet-name>cashier</servlet-name>
+      <display-name>cashier</display-name>
+      <description>no description</description>
+      <jsp-file>/cashier.jsp</jsp-file>
+    </servlet>
+    <servlet>
+      <servlet-name>banner</servlet-name>
+      <display-name>banner</display-name>
+      <description>no description</description>
+      <jsp-file>/banner.jsp</jsp-file>
+    </servlet>
+    <servlet>
+      <servlet-name>enter</servlet-name>
+      <display-name>enter</display-name>
+      <description>no description</description>
+      <jsp-file>/bookstore.jsp</jsp-file>
+    </servlet>
+    <servlet>
+      <servlet-name>receipt</servlet-name>
+      <display-name>receipt</display-name>
+      <description>no description</description>
+      <jsp-file>/receipt.jsp</jsp-file>
+    </servlet>
+    <servlet>
+      <servlet-name>showcart</servlet-name>
+      <display-name>showcart</display-name>
+      <description>no description</description>
+      <jsp-file>/showcart.jsp</jsp-file>
+    </servlet>
+    <servlet>
+      <servlet-name>catalog</servlet-name>
+      <display-name>catalog</display-name>
+      <description>no description</description>
+      <jsp-file>/catalog.jsp</jsp-file>
+    </servlet>
+    <servlet>
+      <servlet-name>bookdetails</servlet-name>
+      <display-name>bookdetails</display-name>
+      <description>no description</description>
+      <jsp-file>/bookdetails.jsp</jsp-file>
+    </servlet>
+    <servlet-mapping>
+      <servlet-name>cashier</servlet-name>
+      <url-pattern>/cashier</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>enter</servlet-name>
+      <url-pattern>/enter</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>receipt</servlet-name>
+      <url-pattern>/receipt</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>showcart</servlet-name>
+      <url-pattern>/showcart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>catalog</servlet-name>
+      <url-pattern>/catalog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+      <servlet-name>bookdetails</servlet-name>
+      <url-pattern>/bookdetails</url-pattern>
+    </servlet-mapping>
+
+    <session-config>
+      <session-timeout>30</session-timeout>
+    </session-config>
+
+    <error-page>
+      <exception-type>samples.webapps.bookstore.bookstore2.ejb.exception.BooksNotFoundException</exception-type>
+      <location>/errorpage.jsp</location>
+    </error-page>
+    <error-page>
+      <exception-type>samples.webapps.bookstore.bookstore2.ejb.exception.BookNotFoundException</exception-type>
+      <location>/errorpage.jsp</location>
+    </error-page>
+
+    <ejb-ref>
+      <ejb-ref-name>ejb/BookDBEJB</ejb-ref-name>
+      <ejb-ref-type>Session</ejb-ref-type>
+      <home>samples.webapps.bookstore.bookstore2.ejb.database.BookDBEJBHome</home>
+      <remote>samples.webapps.bookstore.bookstore2.ejb.database.BookDBEJB</remote>
+      <ejb-link>BookDBEJB</ejb-link>
+    </ejb-ref>	
+</web-app>
+

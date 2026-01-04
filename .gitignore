@@ -1,4 +1,4 @@
-/.metadata/*
+**/.metadata/*
 *.class
 *.log
 *.index
@@ -6,4 +6,5 @@
 *.bak
 */classes
 /.metadata/
-node_modules
+**/node_modules/
+**/env*/

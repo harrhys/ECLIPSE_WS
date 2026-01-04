@@ -1,0 +1,12 @@
+MIDlet-Data-Size: 256
+MIDlet-Description: A Movie Ticket service
+MIDlet-Name: Smart Ticket
+MIDlet-Jar-Size: 22930
+MIDlet-Jar-URL: smarticket.jar
+MIDlet-Vendor: Java Software, Sun Microsystems
+MIDlet-Version: 0.0.1
+SMARTicket-Servlet-URL: http://localhost:1024/SmarTicketApp/servlet/
+SMARTicket-Poster-URL: http://localhost:1024/SmarTicketApp/
+SMARTicket-Splash-URL: http://localhost:1024/SmarTicketApp/
+SMARTicket-Locale: en_US
+

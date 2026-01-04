@@ -1,0 +1,23 @@
+#
+#Thu Oct 18 20:06:32 IST 2007
+genBasicCompId=false
+sessionFactoryName=
+profile=
+daoSFId=
+version=3.1
+jndiPath=
+detectM2M=false
+reStrategyClass=
+springDaoFile=
+useJavaTypes=true
+keyGenerator=
+libInstallFolder=WebRoot/WEB-INF/lib
+addLibs2Project=false
+genVersionTag=false
+sessionFactoryId=
+basePersistenceClass=
+reSettingsFile=
+configFile=/MyBlogStrutsHibernateExample/src/hibernate.cfg.xml
+createConfigFile=true
+addLibs2Classpath=false
+baseDaoClass=com.myeclipseide.examples.myblog.strutshibernate.BaseHibernateDAO

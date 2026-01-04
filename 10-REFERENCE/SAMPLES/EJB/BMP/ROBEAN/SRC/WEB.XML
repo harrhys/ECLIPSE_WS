@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Web Application 2.2//EN' 'http://java.sun.com/j2ee/dtds/web-app_2_2.dtd'>
+
+<web-app>
+  <display-name>SimpleBank</display-name>
+  <distributable></distributable>
+  <servlet>
+    <servlet-name>SimpleBankServlet</servlet-name>
+    <servlet-class>samples.ejb.bmp.robean.servlet.SimpleBankServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SimpleBankServlet</servlet-name>
+    <url-pattern>/SimpleBankServlet</url-pattern>
+  </servlet-mapping>
+  <login-config>
+   <auth-method>BASIC</auth-method> 
+   <realm-name></realm-name>
+    <form-login-config>
+      <form-login-page></form-login-page>
+      <form-error-page></form-error-page>
+    </form-login-config>
+  </login-config>
+  <ejb-ref>
+    <ejb-ref-name>ejb/address</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>samples.ejb.bmp.robean.ejb.AddressHome</home>
+    <remote>samples.ejb.bmp.robean.ejb.Address</remote>
+    <ejb-link>AddressEJB</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/customer</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>samples.ejb.bmp.robean.ejb.CustomerHome</home>
+    <remote>samples.ejb.bmp.robean.ejb.Customer</remote>
+    <ejb-link>CustomerEJB</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/customerTransactional</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>samples.ejb.bmp.robean.ejb.CustomerTransactionalHome</home>
+    <remote>samples.ejb.bmp.robean.ejb.CustomerTransactional</remote>
+    <ejb-link>CustomerTransactionalEJB</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/customerRefresh</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>samples.ejb.bmp.robean.ejb.CustomerRefreshHome</home>
+    <remote>samples.ejb.bmp.robean.ejb.CustomerRefresh</remote>
+    <ejb-link>CustomerRefreshEJB</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/customerProgRefresh</ejb-ref-name>
+    <ejb-ref-type>Entity</ejb-ref-type>
+    <home>samples.ejb.bmp.robean.ejb.CustomerProgRefreshHome</home>
+    <remote>samples.ejb.bmp.robean.ejb.CustomerProgRefresh</remote>
+    <ejb-link>CustomerProgRefreshEJB</ejb-link>
+  </ejb-ref>
+</web-app>
+

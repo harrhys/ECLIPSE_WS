@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved.  -->
+
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd">
+
+<sun-ejb-jar>
+  <enterprise-beans>
+    <name>creditcard-ejb.jar</name>
+    <unique-id>0</unique-id>
+    <ejb>
+      <ejb-name>CreditCardEJB</ejb-name>
+      <jndi-name>ejb/local/creditcard/creditcard/CreditCard</jndi-name>
+      <ior-security-config>
+        <transport-config>
+          <integrity>SUPPORTED</integrity>
+          <confidentiality>SUPPORTED</confidentiality>
+          <establish-trust-in-target>SUPPORTED</establish-trust-in-target>
+          <establish-trust-in-client>SUPPORTED</establish-trust-in-client>
+        </transport-config>
+        <as-context>
+          <auth-method>USERNAME_PASSWORD</auth-method>
+          <realm>default</realm>
+          <required>true</required>
+        </as-context>
+        <sas-context>
+          <caller-propagation>SUPPORTED</caller-propagation>
+        </sas-context>
+      </ior-security-config>
+      <gen-classes />
+    </ejb>
+    <cmp-resource>
+      <ds-jndi-name>jdbc/petstore/PetStoreDB</ds-jndi-name>
+      <default-resource-principal>
+        <name>admin</name>
+        <password>admin</password>
+      </default-resource-principal>
+    </cmp-resource>
+  </enterprise-beans>
+</sun-ejb-jar>
+
+

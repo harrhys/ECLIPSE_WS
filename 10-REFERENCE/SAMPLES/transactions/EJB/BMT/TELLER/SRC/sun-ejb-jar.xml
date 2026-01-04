@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<!DOCTYPE sun-ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN' 'http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd'>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<sun-ejb-jar>
+  <enterprise-beans>
+    <ejb>
+      <ejb-name>TellerBean</ejb-name>
+      <jndi-name>ejb/transactions-tellerEjb</jndi-name>
+      <resource-ref>
+        <res-ref-name>jdbc/transactions-teller/TellerDB</res-ref-name>
+        <jndi-name>jdbc/transactions-teller/TellerDB</jndi-name>
+      </resource-ref>
+   </ejb>
+  </enterprise-beans>
+</sun-ejb-jar>
+

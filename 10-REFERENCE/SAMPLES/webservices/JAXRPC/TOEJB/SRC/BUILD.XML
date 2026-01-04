@@ -1,0 +1,209 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+  <!-- ============================================================== -->
+  <!-- Sun One Application Server Sample Application build xml        -->
+  <!--                                                                -->
+  <!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+  <!-- ============================================================== -->
+
+
+<project name="JAX-RPC Tutorial" default="core" basedir=".">
+
+  <!-- ============================================================== -->
+  <!--           App name-dependent settings.                         -->
+  <!-- ============================================================== -->
+
+  <property name="appname"       value="jaxrpc-toejb"/>
+  <property name="sample.home"   value="../../../../"/>
+  <property name="javadoc.pkgnames" value="samples.webservices.jaxrpc.toejb.*" />
+  <property name="app.war"       value="${appname}.war"/>
+  <property name="app.ear"       value="${appname}.ear"/>
+  <property name="deploy.file"   value="../${app.ear}"/>
+  <property name="verify.file"   value="../${app.ear}"/>
+  <property name="client.class"  value="samples.webservices.jaxrpc.toejb.HelloClient"/>
+  <property name="client.jar"    value="${appname}Client.jar"/>
+  <property name="portable-war"  value="${appname}-portable.war"/>
+  <property name="app.pkg" value="samples/webservices/jaxrpc/toejb/client" />
+  <property name="jar.pkg" value="samples/webservices/jaxrpc/toejb/ejb" />
+  <property name="greeting.appname" value="GreetingApp" />
+  <property name="ear" value="${greeting.appname}.ear" />
+  <property name="war" value="${greeting.appname}.war" />
+  <property name="ejbjar" value="${greeting.appname}Ejb.jar" />
+  <property name="clientjar" value="${greeting.appname}Client.jar" />
+
+  &include; 
+
+  <property name="classpath.suffix" value="${com.sun.aas.javaRoot}/lib/tools.jar" />
+
+  <target name="wscompile-client" depends="compile-server"
+      description="Runs the wscompile tool for the client.">
+      <echo message="Running wscompile for the client:"/>
+      <mkdir dir="${build}/client/" />
+      <java classname="com.sun.xml.rpc.tools.wscompile.Main" fork="yes" dir=".">
+      <classpath path="${build.classpath}"/>
+         <arg line="-gen:client" />
+         <arg line="-d ${build}/client" />
+         <arg line="-classpath ${build}/shared" />
+         <arg line="config.xml" />
+      </java>
+  </target>
+
+  <target name="compile-server" depends="greeting"
+      description="Compiles the server-side source code">
+      <echo message="Compiling the server-side source code...."/>
+      <mkdir dir="${build}/shared/" />
+      <javac
+         srcdir="."
+         destdir="${build}/shared"
+         includes="**/Hello*.java"
+         excludes="**/*Client.java"
+         classpath="${build.classpath}"
+      />
+  </target>
+
+  <target name="compile-client" depends="wscompile-client,init"
+      description="Compiles the client-side source code"  >
+      <echo message="Compiling the client source code...."/>
+      <javac
+         srcdir="."
+         destdir="${build}/client"
+         classpath="${build.classpath}:build/shared:build/client"
+         includes="**/HelloClient.java"
+      />
+  </target>
+
+  <target name="create-client-jar" depends="compile-client"
+      description="Builds the JAR file that contains the client">
+      <echo message="Building the client JAR  file...."/>
+      <jar jarfile="${assemble}/${client.jar}" >
+        <fileset dir="${build}/client" />
+        <fileset dir="${build}/shared" > 
+             <exclude name="**/*Impl*" />
+        </fileset>
+      </jar>
+     <move file="${assemble}/${client.jar}" todir="../" />
+  </target>
+
+  <target name="create-war" depends="compile-server"
+     description="Packages the WAR file">
+     <echo message="Creating the WAR...."/>
+     <delete file="${assemble}/${portable-war}" />
+     <delete dir="${assemble}/WEB-INF" />
+     <copy todir="${assemble}/WEB-INF/lib/" file="${clientjar}"/>
+     <copy todir="${assemble}/WEB-INF/classes/">
+         <fileset dir="${build}/shared/" includes="**/*.class" />
+     </copy>
+     <copy file="web.xml" todir="${assemble}/WEB-INF" />
+     <copy file="sun-web.xml" todir="${assemble}/WEB-INF" />
+     <copy file="jaxrpc-ri.xml" todir="${assemble}/WEB-INF" />
+     <jar jarfile="${assemble}/${portable-war}" >
+       <fileset dir="${assemble}" includes="WEB-INF/**" />
+     </jar>
+  </target>
+
+  <target name="process-war" depends="create-war"
+      description="Runs wsdeploy to generate the ties and create a deployable WAR file">
+      <echo message="Running wsdeploy...."/>
+      <delete file="../${war}" />
+      <delete dir="${build}/wsdeploy-generated" />
+      <mkdir dir="${build}/wsdeploy-generated" />
+      <java classname="com.sun.xml.rpc.tools.wsdeploy.Main" fork="yes" dir=".">
+      <classpath path="${build.classpath}"/>
+        <arg line="-o"/>
+        <arg line="../${app.war}"/>
+        <arg line="-tmpdir"/>
+        <arg line="${build}/wsdeploy-generated"/>
+        <arg line="${assemble}/${portable-war}"/>
+      </java>
+  </target>
+
+  <target name="create-ear" depends="process-war" 
+    description="Packages the EAR file">
+     <echo message="Creating the EAR...."/>
+     <delete dir="${assemble}/appear" />
+     <copy file="application-jaxrpc.xml" tofile="${assemble}/appear/META-INF/application.xml" />
+     <move file="../${app.war}" todir="${assemble}/appear" />
+     <jar jarfile="${assemble}/${app.ear}">
+       <fileset dir="${assemble}/appear" />
+     </jar>
+     <move file="${assemble}/${app.ear}" todir="../" />
+  </target>
+
+  <target name="run" depends="init"
+     description="Runs the example client">
+     <echo message="Running the ${client.class} program:" />
+      <java 
+            fork="on" 
+            classpath="../${client.jar}:${build.classpath}" 
+            classname="${client.class}" >
+      </java>
+  </target>
+
+  <target name="build-static" depends="create-client-jar"
+     description="Executes the targets needed to build a static client.">
+  </target>
+
+  <target name="build-service" depends="create-ear"
+     description="Executes the targets needed to build and package the service.">
+  </target>
+
+  <target name="core" depends="build-service, build-static"
+     description="Executes the targets needed to build this example.">
+  </target>
+
+  <target name="greeting"
+     depends="compile-greeting,create_ejbjar_common,clientjar_common,create_ear_common"
+     description="Compile and assembles greeting ejb.">
+  </target>
+
+  <target name="compile-greeting" depends="init"
+     description="Compiles greeting ejb.">
+     <antcall target="compile_common">
+       <param name="src" value="samples/webservices/jaxrpc/toejb/ejb"/>
+     </antcall>
+     <antcall target="compile_common">
+       <param name="src" value="samples/webservices/jaxrpc/toejb/client"/>
+     </antcall>
+  </target>
+
+  <target name="deploy-greeting" depends="setup_env">
+    <echo message="Deploying ../${ear}."/>
+    <sun-appserv-deploy
+      retrievestubs="."
+      file="../${ear}"
+      name="${greeting.appname}"
+      type="application"
+      force="true"
+      upload="true"
+      user="${admin.user}"
+      password="${admin.password}"
+      host="${admin.host}"
+      port="${admin.port}"
+      instance="${sunone.instance}"
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <target name="undeploy-greeting">
+    <antcall target="undeploy_common">
+      <param name="appname" value="${greeting.appname}"/>
+      <param name="apptype" value="application"/>
+    </antcall>
+  </target>
+
+  <target name="verify-greeting">
+    <antcall target="verify_common">
+      <param name="verify.file" value="../${ear}"/>
+    </antcall>
+  </target>
+
+  <target name="init" depends="init_common"/>
+  <target name="clean" depends="clean_common"/>
+  <target name="deploy" depends="deploy-greeting,deploy_common"/>
+  <target name="verify" depends="verify_common,verify-greeting"/>
+  <target name="undeploy" depends="undeploy_common,undeploy-greeting"/>
+  <target name="javadocs" depends="javadocs_common"/>
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

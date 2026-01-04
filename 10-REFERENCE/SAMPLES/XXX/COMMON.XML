@@ -1,0 +1,607 @@
+  <!-- ======================================================== --> 
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================== --> 
+
+  <!-- ======================================================== -->
+  <!--  Sun ONE Application Server Common Properties            -->
+  <!-- ======================================================== -->
+  <!-- properties to be read from properties file - set default to -->
+  <property file="${sample.home}/common.properties"/>
+
+  <property environment="as.env"/>
+
+  <property name="earDD"       value="application.xml,sun-application.xml"/>
+  <property name="warDD"       value="sun-web.xml,web.xml"/>
+  <property name="jarDD"       value="ejb-jar.xml,sun-ejb-jar.xml"/>
+  <property name="clientDD"    value="application-client.xml,sun-application-client.xml"/>
+  
+  <!-- change this property to use a compiler other than javac. -->
+  <property name="build.compiler" value="modern"/>
+  
+  <!-- Source file location. -->
+  <property name="src"         value="."/>
+  <property name="src.docroot" value="${src}/docroot"/>
+  
+  <!-- Destination directory for the build and assembly targets -->
+  <property name="build"              value="../build"/>
+  <property name="build.docdir"       value="../javadocs/"/>
+  <property name="build.classesdir"   value="${build}/classes"/>
+  <property name="assemble"           value="../assemble"/>
+  <property name="assemble.jar"       value="${assemble}/jar"/>
+  <property name="assemble.ejbjar"    value="${assemble}/jar"/>
+  <property name="assemble.war"       value="${assemble}/war"/>
+  <property name="assemble.ear"       value="${assemble}/ear"/>
+  <property name="assemble.clientjar" value="${assemble}/client"/>
+
+  <!-- Target file Names.                                      -->
+  <property name="ear"         value="${appname}.ear"/>
+  <property name="war"         value="${appname}.war"/>
+  <property name="jar"         value="${appname}.jar"/>
+  <property name="ejbjar"      value="${appname}Ejb.jar"/>
+  <property name="clientjar"   value="${appname}Client.jar"/>  
+  <property name="verify.file" value="../${ear}"/>
+  <property name="deploy.file" value="../${ear}"/>
+  
+  <!-- application type                                        -->
+  <property name="apptype"     value="application"/>
+
+  <!-- classpath jar files location. -->
+  <property name="sample.classpath.dir" value="${com.sun.aas.installRoot}/lib"/>
+  <property name="optional.taskdef.jar" value="sun-appserv-ant.jar"/>
+
+
+  <!-- pointbase properties -->
+   <property name="db.driver" value="com.pointbase.jdbc.jdbcUniversalDriver"/>
+   <property name="db.root" value="${com.sun.aas.pointbaseRoot}"/>
+   <property name="db.url" value="jdbc:pointbase:server://localhost/sun-appserv-samples"/>
+   <property name="db.classpath" value="${db.root}/client_tools/lib/pbtools42RE.jar;${db.root}/client_tools/lib/pbclient42RE.jar"/>
+
+ 
+  <!-- ======================================================= -->
+  <!--              Read/Set properties.                       -->
+  <!-- ======================================================= -->
+
+  <target name="init_common" depends="build_cpath">
+    <!-- define these properties if samples dont define  -->
+    <property name="classpath.prefix" value="."/>
+    <property name="classpath.suffix" value="."/>
+    <property name="build.classpath" 
+      value="${classpath.prefix}:${build.classesdir}:${sunone.cpath}:${classpath.suffix}"/>
+  </target>
+
+  <target name="build_cpath" unless="sunone.cpath">
+    <path id="sample_classpath_jars">
+      <fileset dir="${com.sun.aas.installRoot}/lib" includes="*.jar" />
+      <fileset dir="${com.sun.aas.webServicesLib}" includes="*.jar"/>
+    </path>
+    <pathconvert pathsep=":" property="sunone.cpath" refid="sample_classpath_jars"/>
+  </target>
+
+  <target name="setup_env" depends="init_common,sethost,setport,setuser,setpassword,setinstance,undate_env"/>
+
+  <target name="undate_env" if="update.done">
+    <propertyfile file="${sample.home}/common.properties">
+      <entry key="admin.host" value="${admin.host}"/>
+      <entry key="admin.port" value="${admin.port}"/>
+<!--      <entry key="admin.password" value="${admin.password}"/>  -->
+      <entry key="admin.user" value="${admin.user}"/>
+      <entry key="sunone.instance" value="${sunone.instance}"/>
+    </propertyfile>
+  </target>
+
+  <target name="sethost" depends="envhost, readhost"/>
+
+  <target name="envhost" if="as.env.AS_ADMIN_HOST" >
+    <property name="admin.host" value="${as.env.AS_ADMIN_HOST}"/>
+  </target>
+
+  <target name="readhost" unless="admin.host" >
+    <echo>
+     ======================================================================================
+     You will be promted for application server installation parameters. These inputs will 
+     be stored in ${com.sun.aas.installRoot}/samples/common.properties. Please edit this 
+     file to make any corrections in future.
+     ======================================================================================
+     </echo>
+    <sun-appserv-input message="Please Enter SunONE app-server Host Name : " addproperty="admin.host" />
+    <property name="update.done" value="true"/>
+  </target>
+
+  <target name="setport" depends="envport, readport"/>
+
+  <target name="envport" if="as.env.AS_ADMIN_PORT" >
+    <property name="admin.port" value="${as.env.AS_ADMIN_PORT}"/>
+  </target>
+
+  <target name="readport"  unless="admin.port" >
+    <sun-appserv-input message="Please Enter SunONE app-server Admin Port : " addproperty="admin.port" />
+    <property name="update.done" value="true"/>
+  </target>
+ 
+  <target name="setuser" depends="envuser, readuser"/>
+
+  <target name="envuser" if="as.env.AS_ADMIN_USER" >
+    <property name="admin.user" value="${as.env.AS_ADMIN_USER}"/>
+  </target>
+
+  <target name="readuser" unless="admin.user">
+    <sun-appserv-input message="Please Enter SunONE app-server Admin User Name : " addproperty="admin.user" />
+    <property name="update.done" value="true"/>
+  </target>
+
+  <target name="setpassword" depends="envpassword, readpassword"/>
+
+  <target name="envpassword" if="as.env.AS_ADMIN_PASSWORD" >
+    <property name="admin.password" value="${as.env.AS_ADMIN_PASSWORD}"/>
+  </target>
+
+  <target name="readpassword"  unless="admin.password" >
+    <sun-appserv-input message="Please Enter SunONE app-server Admin User Password : " addproperty="admin.password" />
+    <property name="update.done" value="true"/>
+  </target>
+ 
+  <target name="setinstance" depends="envinstance, readinstance"/>
+
+  <target name="envinstance" if="as.env.AS_ADMIN_INSTANCE" >
+    <property name="sunone.instance" value="${as.env.AS_ADMIN_INSTANCE}"/>
+    <echo message="${sunone.instance}"/>
+  </target>
+
+  <target name="readinstance"  unless="sunone.instance" >
+    <sun-appserv-input message="Please Enter SunONE app-server Instance Name : " addproperty="sunone.instance" />
+    <property name="update.done" value="true"/>
+    <echo>
+     ======================================================================================
+     Your inputs have been stored in ${com.sun.aas.installRoot}/samples/common.properties. 
+     Please edit this file to make any corrections.
+     ======================================================================================
+    </echo>
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Compile all classes.                                    -->
+  <!-- ======================================================= -->
+  <target name="compile_common" depends="init_common">
+    <mkdir dir="${build.classesdir}"/>
+    <echo message="Compiling source files" />
+    <javac srcdir="${src}"
+           destdir="${build.classesdir}" 
+           classpath="${build.classpath}"/>
+  </target> 
+  
+
+  <!-- ======================================================= -->
+  <!-- Compile all JSP's.                                    -->
+  <!-- ======================================================= -->
+<target name="compile_jsp_common" depends="create_war_common">
+     <echo message="Compiling JSP(s)"/>
+     <mkdir dir="${assemble.war}/WEB-INF/generated"/>
+     <sun-appserv-jspc
+         webapp="${assemble.war}"
+         destdir="${assemble.war}/WEB-INF/generated"
+         classpath="${assemble.war}/WEB-INF/classes:${com.sun.aas.installRoot}/lib/appserv-rt.jar:${com.sun.aas.installRoot}/lib/appserv-ext.jar"/>
+     <javac
+         srcdir="${assemble.war}/WEB-INF/generated"
+         destdir="${assemble.war}/WEB-INF/generated"
+         debug="on"
+         classpath="${assemble.war}/WEB-INF/classes:${com.sun.aas.installRoot}/lib/appserv-rt.jar:${com.sun.aas.installRoot}/lib/appserv-ext.jar">
+         <include name="**/*.java"/>
+     </javac>
+   </target>
+
+ 
+
+  <!-- ======================================================= -->
+  <!-- Clean up various files and directories.                 -->
+  <!-- ======================================================= -->
+  <target name="clean_clientjar_common">
+    <delete dir="${assemble.clientjar}"/>
+    <delete file="../${clientjar}"/>
+  </target>
+  
+  <target name="clean_ear_common">
+    <delete dir="${assemble.ear}"/>
+    <delete file="../${ear}"/>
+  </target>
+ 
+  <target name="clean_war_common">
+    <delete dir="${assemble.war}"/>
+    <delete file="../${war}"/>
+  </target>
+ 
+  <target name="clean_ejbjar_common">
+    <delete dir="${assemble.ejbjar}"/>
+    <delete file="../${ejbjar}"/>
+  </target>
+  
+  <target name="clean_jar_common">
+    <delete dir="${assemble.jar}"/>
+    <delete file="../${jar}"/>
+  </target>
+
+  <target name="clean_common" >
+    <delete dir="${build}"/>
+    <delete dir="${build.docdir}"/>
+    <delete dir="${assemble}"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Assemble WAR module.                                    -->
+  <!-- ======================================================= -->
+  <target name="check_warfile">
+    <available file="${build.classesdir}/${war.pkg}/" type="dir" 
+               property="warfiles.present"/>
+    <available file="${src}/docroot" type="dir" 
+               property="docroot.present"/>
+  </target>
+
+  <target name="copy_warfiles" if="warfiles.present">
+    <copy todir="${assemble.war}/WEB-INF/classes/${war.pkg}">
+      <fileset dir="${build.classesdir}/${war.pkg}/" includes="**/*.class"/>
+    </copy>
+  </target>
+
+  <target name="copy_docroot" if="docroot.present">
+    <copy todir="${assemble.war}">
+      <fileset dir="${src.docroot}" excludes="cvs,annontation"/>
+    </copy>
+  </target>
+
+  <target name="copy_ejbjar_war" if="ejbjar.done">
+    <copy file="${assemble.ejbjar}/${ejbjar}" 
+          tofile="${assemble.war}/WEB-INF/lib/${ejbjar}"/>
+  </target>
+
+  <target name="create_war_common" 
+          depends="clean_war_common,check_warfile,copy_docroot,copy_warfiles,copy_ejbjar_war">
+    <mkdir dir="${assemble.war}"/>
+    <copy todir="${assemble.war}/WEB-INF/">
+      <fileset dir="." includes="${warDD}"/>
+    </copy>
+    <jar jarfile="../${war}"
+       basedir="${assemble.war}" />
+    <move file="../${war}" todir="${assemble.war}"/>
+    <copy file="${assemble.war}/${war}" tofile="../${war}"/>
+    <property name="war.done" value="true"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Assemble EAR module.                                    -->
+  <!-- ======================================================= -->
+  <target name="mkdir_ear">
+    <mkdir dir="${assemble.ear}/META-INF"/>
+  </target>
+ 
+  <target name="copy_ejbjar" if="ejbjar.done">
+    <copy file="${assemble.ejbjar}/${ejbjar}" 
+          tofile="${assemble.ear}/${ejbjar}"/>
+  </target>
+
+  <target name="copy_war" if="war.done">
+    <copy file="${assemble.war}/${war}"    tofile="${assemble.ear}/${war}"/>
+  </target>
+  
+  <target name="copy_clientjar" if="clientjar.done">
+     <copy file="${assemble.clientjar}/${clientjar}" 
+           tofile="${assemble.ear}/${clientjar}"/>
+  </target>
+  
+  <target name="create_ear_common" depends="clean_ear_common,mkdir_ear,copy_ejbjar,copy_clientjar,copy_war">
+    <copy todir="${assemble.ear}/META-INF/">
+      <fileset dir="." includes="${earDD}"/>
+    </copy>
+    <jar jarfile="${assemble.ear}/${ear}"
+       basedir="${assemble.ear}" excludes="**/*.ear"/>
+    <delete file="${assemble.ear}/${war}" />
+    <delete file="${assemble.ear}/${ejbjar}" />
+    <delete file="${assemble.ear}/${clientjar}" />
+    <delete file="../${war}" />
+    <delete file="../${ejbjar}" />
+    <delete file="../${clientjar}" />
+    <copy file="${assemble.ear}/${ear}" tofile="../${ear}"/>
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Assemble EJB JAR module.                                -->
+  <!-- ======================================================= -->
+  <target name="create_ejbjar_common" depends="clean_ejbjar_common">
+    <mkdir dir="${assemble.ejbjar}"/>
+    <copy todir="${assemble.ejbjar}/${jar.pkg}">
+      <fileset dir="${build.classesdir}/${jar.pkg}/" includes="**/*.class" excludes="**/servlet/, **/client/"/>
+    </copy>
+    <mkdir dir="${assemble.ejbjar}/META-INF"/>
+    <copy todir="${assemble.ejbjar}/META-INF/">
+      <fileset dir="." includes="${jarDD}"/>
+    </copy>
+    <jar jarfile="../${ejbjar}"
+       basedir="${assemble.ejbjar}" />
+    <move file="../${ejbjar}" todir="${assemble.ejbjar}"/>
+    <copy file="${assemble.ejbjar}/${ejbjar}" tofile="../${ejbjar}"/>
+    <property name="ejbjar.done" value="true"/>
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Assemble CLIENT JAR module.                             -->
+  <!-- ======================================================= -->
+  <target name="clientjar_common" depends="clean_clientjar_common">
+    <mkdir dir="${assemble.clientjar}"/>
+    <copy todir="${assemble.clientjar}/${app.pkg}">
+      <fileset dir="${build.classesdir}/${app.pkg}/" 
+               includes="**/*Client.class" excludes="**/servlet/"/>
+    </copy>
+    <mkdir dir="${assemble.clientjar}/META-INF"/>
+    <copy todir="${assemble.clientjar}/META-INF/">
+      <fileset dir="." includes="${clientDD}"/>
+    </copy>
+    <jar jarfile="../${clientjar}"
+       basedir="${assemble.clientjar}" 
+       manifest="MANIFEST.MF" />
+    <move file="../${clientjar}" todir="${assemble.clientjar}"/>
+    <property name="clientjar.done" value="true"/>
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Assemble Simple JAR file.                               -->
+  <!-- ======================================================= -->
+  <target name="create_jar_common" depends="clean_jar_common">
+    <mkdir dir="${assemble.jar}"/>
+    <copy todir="${assemble.jar}/${app.pkg}">
+      <fileset dir="${build.classesdir}/${app.pkg}/" 
+               includes="**/*.class"/>
+    </copy>
+    <jar jarfile="../${jar}"
+       basedir="${assemble.jar}" />
+    <move file="../${jar}" todir="${assemble.jar}"/>
+    <copy file="${assemble.jar}/${jar}" tofile="../${jar}"/>
+  </target>
+    
+  <!-- ======================================================= -->
+  <!-- Install targets.                                        -->
+  <!-- ======================================================= -->
+  <target name="deploy_common" depends="setup_env">
+    <echo message="Deploying ${deploy.file}."/>
+    <sun-appserv-deploy 
+      file="${deploy.file}" 
+      name="${appname}"
+      type="${apptype}"
+      force="true"
+      upload="true"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      instance="${sunone.instance}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- FileRealm key generaion targets.                        -->
+  <!-- ======================================================= -->
+
+  <target name="keygen_common" depends="setup_env">
+    <echo message="Generating key for user ${app.user} in server ${sunone.instance}"/>
+    <sun-appserv-admin 
+      command="create-file-user --groups ${app.groups} --userpassword=${app.userpassword} ${app.user}"
+      instance="${sunone.instance}"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <target name="keydel_common" depends="setup_env">
+    <echo message="Deleting key for user ${app.user} in server ${sunone.instance}"/>
+    <sun-appserv-admin 
+      command="delete-file-user ${app.user}"
+      instance="${sunone.instance}"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Install targets.                                        -->
+  <!-- ======================================================= -->
+  <target name="deploy_jsp_common" depends="setup_env">
+    <echo message="Deploying ${deploy.file}."/>
+    <sun-appserv-deploy 
+      file="${deploy.file}" 
+      name="${appname}"
+      type="${apptype}"
+      force="true"
+      precompilejsp="true"
+      upload="true"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      instance="${sunone.instance}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+
+  <!-- ======================================================= -->
+  <!-- Uninstall targets.                                      -->
+  <!-- ======================================================= -->
+  <target name="undeploy_common" depends="setup_env">
+    <echo message="Undeploying ${appname}."/>
+    <sun-appserv-undeploy 
+      name="${appname}"
+      type="${apptype}"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      instance="${sunone.instance}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Admin targets.                                      -->
+  <!-- ======================================================= -->
+  <target name="admin_command_common" depends="setup_env">
+    <echo message="Doing admin task ${admin.command}"/>
+    <sun-appserv-admin 
+      command="${admin.command}"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+
+  <target name="reconfig_common" depends="setup_env">
+    <echo message="Reconfiguring server ${sunone.instance}"/>
+    <sun-appserv-admin 
+      command="reconfig ${sunone.instance}"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+ 
+  <!-- ======================================================= -->
+  <!-- Create Javadocs.                                        -->
+  <!-- ======================================================= -->
+  <target name="javadocs_common" depends="init_common">
+    <delete dir="${build.docdir}"/>
+    <mkdir dir="${build.docdir}"/>
+    <javadoc packagenames="${javadoc.pkgnames}"
+             sourcepath="${src}" 
+             destdir="${build.docdir}"
+             classpath="${build.classpath}"
+             author="true"
+             version="true"
+             use="true"
+             windowtitle="SunOne Application Server ${sample.name} Sample Application API"
+             doctitle="SunOne Application Server ${sample.name} Sample"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved."/>
+  </target>
+  
+  <!-- ======================================================= -->
+  <!-- Verify Targets.                                         -->
+  <!-- ======================================================= -->
+  <target name="verify_common" depends="init_common">
+    <echo message="Verifying Process for ${verify.file}" />
+    <java classname="com.sun.enterprise.tools.verifier.Verifier" fork="yes" dir=".">
+      <sysproperty key="com.sun.aas.installRoot" value="${com.sun.aas.installRoot}"/>
+      <sysproperty key="com.sun.aas.verifier.xsl" value="${com.sun.aas.installRoot}/lib/verifier/" />
+      <!-- uncomment the following for verbose output -->
+      <!--<arg value="-v"/>-->
+      <arg value="${verify.file}"/>
+      <classpath path="${build.classpath}"/>
+    </java>
+  </target>
+
+
+  <!-- ======================================================= --> 
+  <!-- CleanUp Pointbase table Targets.                        --> 
+  <!-- ======================================================= -->
+  <target name="sql_common"> 
+     <java classname="com.pointbase.tools.toolsCommander" classpath="${db.classpath}"> 
+	   <arg line="${db.driver} ${db.url} ${db.file} ${db.user} ${db.pwd}" /> 
+	 </java> 
+  </target>
+
+  <!-- ======================================================= -->
+  <!--       Targets to deploy/undeploy resources.             -->
+  <!-- ======================================================= -->
+  <target name="create-jdbc-connection-pool_common">
+    <property name="db.host"  value="localhost"/>
+    <property name="db.port"  value="9092"/>
+    <property name="db.sid"   value="sun-appserv-samples"/>
+   <property name="db.url" value="jdbc:pointbase:server://${db.host}:${db.port}/${db.sid}"/>
+    <property name="url.prop" value="DatabaseName" />
+    <property name="ds.class" value="com.pointbase.jdbc.jdbcDataSource" />
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="create-jdbc-connection-pool ${conpool.name}
+          --datasourceclassname ${ds.class}
+          --instance ${sunone.instance}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.${url.prop}=${db.url}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.User=${db.user}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="set ${sunone.instance}.jdbc-connection-pool.${conpool.name}.property.Password=${db.pwd}" />
+    </antcall>
+  </target>
+
+  <target name="create-jdbc-resource_common">
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="create-jdbc-resource ${jdbc.resource.name}
+         --connectionpoolid ${conpool.name}
+         --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-connection-pool_common">
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="delete-jdbc-connection-pool ${conpool.name}
+          --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-resource_common">
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="delete-jdbc-resource ${jdbc.resource.name}
+          --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="deploy_jdbc_resource_pb_common" depends="setup_env">
+    <antcall target="create-jdbc-connection-pool_common"/>
+    <antcall target="create-jdbc-resource_common"/>
+    <antcall target="reconfig_common"/>
+  </target>
+
+  <target name="deploy_jdbc_resource_ora_common" depends="setup_env">
+    <property name="db.host"  value="localhost"/>
+    <property name="db.port"  value="1521"/>
+    <property name="db.sid"   value="sun-appserv-samples"/>
+    <property name="url.prop" value="url" />
+    <property name="ds.class" value="oracle.jdbc.pool.OracleDataSource" />
+    <antcall target="create-jdbc-connection-pool_common">
+      <param name="db.url"   value="jdbc:oracle:thin:@${db.host}:${db.port}:${db.sid}" />
+    </antcall>
+    <antcall target="create-jdbc-resource_common"/>
+    <antcall target="reconfig_common"/>
+  </target>
+
+  <target name="create-persistence-resource_common" depends="setup_env">
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="create-persistence-resource ${pm.resource.name}
+          --instance ${sunone.instance}" />
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set
+        ${sunone.instance}.persistence-manager-factory-resource.${pm.resource.name}.factoryClass=${pm.factory.class}"/>
+    </antcall>
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set
+        ${sunone.instance}.persistence-manager-factory-resource.${pm.resource.name}.JdbcResourceJndiName=${jdbc.resource.name}" />
+    </antcall>
+  </target>
+
+  <target name="delete-persistence-resource_common" depends="setup_env">
+    <antcall target="admin_command_common">
+      <param name="admin.command"
+        value="delete-persistence-resource ${pm.resource.name}
+          --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+

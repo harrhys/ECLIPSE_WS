@@ -1,0 +1,174 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.76 [en] (X11; U; SunOS 5.8 sun4u) [Netscape]">
+   <title>JSTL: Examples Web Application</title>
+<!-- #BeginTemplate "/examples/web/Templates/ExamplesTemplate.dwt" -->
+<!-- #BeginEditable "doctitle" -->
+<!-- #EndEditable -->
+<link rel="stylesheet" href="global.css" type="text/css">
+</head>
+<body text="#000000" bgcolor="#FFFFFF">
+&nbsp;
+<table BORDER=0 CELLPADDING=5 WIDTH="100%" >
+<tr>
+<td HEIGHT="0"><b><font color="#000099">standard taglib * implementation
+of the JSP Standard Tag Library *&nbsp;</font></b></td>
+</tr>
+
+<tr>
+<td BGCOLOR="#CCCCFF"><font size=-1>Examples&nbsp;&nbsp;&nbsp;&nbsp; <a href="index.html">Introduction</a>
+* <a href="elsupport/index.html">General Purpose</a> * <a href="conditionals/index.html">Conditionals</a>
+* <a href="iterators/index.html">Iterators</a> * <a href="import/index.html">Import</a>
+* I18N &amp; Formatting * XML * SQL * <a href="misc/index.html">Misc.</a></font></td>
+</tr>
+</table>
+<!-- #BeginEditable "body" -->
+<h2>
+Welcome to the standard-examples web application!</h2>
+This web application includes a variety of sample JSP pages that showcase
+the JSTL tags specified within the <a href="http://www.jcp.org/jsr/detail/52.jsp">JSR-052
+Expert Group</a>.
+<h3>
+Documentation</h3>
+The <a href="http://www.jcp.org/aboutJava/communityprocess/review/jsr052/index.html">JSTL
+1.0 Specification</a> developed by the JSR052 expert group under the <a href="http://www.jcp.org">Java
+Community Process</a> is a complete JSTL 1.0 reference.
+<p>Documentation on the JSTL tags is available at <a href="http://jakarta.apache.org/taglibs/doc/standard-doc">http://jakarta.apache.org/taglibs/doc/standard-doc</a>.
+It is also available as the standard-doc web application of the standard
+taglib release.
+<h3>
+Examples</h3>
+The JSTL examples have been divided in the following categories:
+<ul>
+<li>
+<a href="elsupport/index.html">General Purpose Tags</a></li>
+
+<li>
+<a href="conditionals/index.html">Conditional Tags</a></li>
+
+<li>
+<a href="iterators/index.html">Iterator Tags</a></li>
+
+<li>
+<a href="import/index.html">Import Tags</a></li>
+
+<li>
+I18N &amp; Formatting Tags (ToBeDone)</li>
+
+<li>
+XML Tags (ToBeDone)</li>
+
+<li>
+SQL Tags (ToBeDone)</li>
+
+<li>
+<a href="misc/index.html">Miscellaneous</a></li>
+</ul>
+The navigation bar at the top of each index page provides quick navigation
+to each set of example pages.
+<p>When navigating the examples, the following icons will allow you to
+look at the source code as well as execute the example JSP page.
+<br>&nbsp;
+<table BORDER CELLPADDING=10 >
+<tr>
+<td WIDTH="30"><img SRC="images/code.gif" ></td>
+
+<td>Look at the source code of the example JSP page</td>
+</tr>
+
+<tr>
+<td WIDTH="30"><img SRC="images/execute.gif" ></td>
+
+<td>Execute the example JSP page</td>
+</tr>
+</table>
+
+<h3>
+Infrastructure</h3>
+The source code for the JSTL examples includes class <tt>startup.Init</tt>
+to initilialize the objects used in the examples. This allows us to mimic
+the environment that would normally be used within an MVC architecture:
+the Controller invokes the business logic, saves the objects required by
+the web application into JSP scoped attributes (usually request), and then
+invokes the proper JSP page. For the sake of this "examples" webapp, all
+objects are saved in the application scope.
+<p>The application attributes are:
+<ul>
+<li>
+<tt>customers</tt></li>
+
+<br>A collection of Customer objects
+<li>
+<tt>intArray</tt></li>
+
+<br>An array of int's
+<li>
+<tt>stringArray</tt></li>
+
+<br>An array of Strings
+<li>
+<tt>numberMap</tt></li>
+
+<br>A Map instance associating Integer objects with their Spanish names
+<li>
+<tt>enumeration</tt></li>
+
+<br>An enumeration on numberMap from above.</ul>
+The classes of interest that hold the information manipulated by the JSP
+pages are:
+<ul>
+<li>
+Customer</li>
+
+<ul>
+<li>
+int key</li>
+
+<li>
+String lastName</li>
+
+<li>
+String firstName</li>
+
+<li>
+Date birthDate</li>
+
+<li>
+Address address</li>
+
+<br>&nbsp;</ul>
+
+<li>
+Address</li>
+
+<ul>
+<li>
+String line1</li>
+
+<li>
+String line2</li>
+
+<li>
+String city</li>
+
+<li>
+String state</li>
+
+<li>
+String country</li>
+</ul>
+</ul>
+<!-- #EndEditable -->
+<hr noshade color="#000099">
+<table BORDER=0 CELLPADDING=5 WIDTH="100%" >
+<tr>
+<td HEIGHT="24"><b><font color="#000099">standard taglib * implementation
+of the JSP Standard Tag Library *&nbsp;</font></b></td>
+</tr>
+</table>
+
+</body>
+<!-- #EndTemplate -->
+</html>

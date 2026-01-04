@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appId">eV3v15BQSJd</string>
+    <string name="mobileNumberMaxLength">10</string>
+    <string name="pinMaxLength">4</string>
+    <string name="cardNumberMaxLength">14</string>
+    <string-array name="idtypes">
+        <item>Others</item>
+        <item>Banker\'s Verification Letter</item>
+        <item>Aadhar ID</item>
+        <item>Electricity Bill</item>
+        <item>Telephone Bill</item>
+        <item>PAN Card</item>
+        <item>Driving License</item>
+        <item>Voter ID Card</item>
+        <item>Passport</item>
+        <item>Valid College Letter</item>
+        <item>Water Bill</item>
+        <item>PAN Intimation Letter</item>
+        <item>Mobile Bill(Original)</item>
+        <item>Life Insurance Premium Receipt</item>
+        <item>Gas Connection Bill</item>
+        <item>Credit Card Statement</item>
+        <item>Broadband Bill</item>
+        <item>Ration Card</item>
+        <item>Defense Ex-servicemen Card</item>
+		<item>Defense Dependent Card</item>
+		<item>Bank Passbook</item>
+		<item>College ID Card</item>
+		<item>Govt. Employee Card</item>
+    </string-array>
+    
+     <string-array name="year">
+        <item>1971</item>
+        <item>1972</item>
+        <item>1973</item>
+        <item>1974</item>
+    </string-array>
+</resources>

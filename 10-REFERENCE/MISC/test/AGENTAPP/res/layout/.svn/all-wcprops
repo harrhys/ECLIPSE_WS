@@ -1,0 +1,209 @@
+K 25
+svn:wc:ra_dav:version-url
+V 83
+/repos/BLRDelivery/!svn/ver/17071/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout
+END
+activity_welcome_splash_screen.xml
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_welcome_splash_screen.xml
+END
+activity_cash_in.xml
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_cash_in.xml
+END
+activity_accept_eula.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_accept_eula.xml
+END
+activity_deposit_money_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_deposit_money_view.xml
+END
+activity_manage_customer.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_manage_customer.xml
+END
+activity_issue_card.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_issue_card.xml
+END
+template_program_button.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/template_program_button.xml
+END
+activity_about_help.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_about_help.xml
+END
+activity_viral_remit_money_beneficiary_ids.xml
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_viral_remit_money_beneficiary_ids.xml
+END
+activity_verify_customer_result.xml
+K 25
+svn:wc:ra_dav:version-url
+V 119
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_verify_customer_result.xml
+END
+activity_sms_activation.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_sms_activation.xml
+END
+activity_viral_remit_money_beneficiary.xml
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_viral_remit_money_beneficiary.xml
+END
+activity_show_transaction.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_show_transaction.xml
+END
+activity_show_balance.xml
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_show_balance.xml
+END
+activity_my_account_select_option.xml
+K 25
+svn:wc:ra_dav:version-url
+V 121
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_my_account_select_option.xml
+END
+activity_help.xml
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_help.xml
+END
+history_list_item_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/history_list_item_view.xml
+END
+fragment_enter_pin.xml
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/fragment_enter_pin.xml
+END
+activity_change_pin.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_change_pin.xml
+END
+activity_customer_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/BLRDelivery/!svn/ver/17071/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_customer_view.xml
+END
+activity_show_history.xml
+K 25
+svn:wc:ra_dav:version-url
+V 109
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_show_history.xml
+END
+activity_activation.xml
+K 25
+svn:wc:ra_dav:version-url
+V 107
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_activation.xml
+END
+activity_customer.xml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/repos/BLRDelivery/!svn/ver/17061/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_customer.xml
+END
+activity_atm_card_issuance.xml
+K 25
+svn:wc:ra_dav:version-url
+V 114
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_atm_card_issuance.xml
+END
+activity_select_option.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_select_option.xml
+END
+activity_verify_transaction.xml
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_verify_transaction.xml
+END
+activity_customer_language_selection.xml
+K 25
+svn:wc:ra_dav:version-url
+V 124
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_customer_language_selection.xml
+END
+activity_deposit_money_result.xml
+K 25
+svn:wc:ra_dav:version-url
+V 117
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_deposit_money_result.xml
+END
+splash_screen.xml
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/splash_screen.xml
+END
+activity_deposit_money.xml
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_deposit_money.xml
+END
+activity_remit_money_view.xml
+K 25
+svn:wc:ra_dav:version-url
+V 113
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_remit_money_view.xml
+END
+activity_verify_customer.xml
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_verify_customer.xml
+END
+activity_remit_money.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_remit_money.xml
+END
+activity_customer_program_selection.xml
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/res/layout/activity_customer_program_selection.xml
+END

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  SunOne Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="corba-servletsample" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+<property name="sample.name"    value="CorbaServletSample"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="corba-servletsample"/>
+
+<property name="orb.installpath" value="/export2/iona/asp/5.1"/>
+  <property name="omg.classpath" value="${orb.installpath}/lib/j2ee13-product.jar"/>
+  <property name="orbix.classpath" value="${orb.installpath}/lib/orbix2000.jar"/>
+  <property name="corba.server.classpath" value="${orb.installpath}/demos/corba/classes"/>
+  <property name="corba.app.classpath" value="${omg.classpath}:${orbix.classpath}:${corba.server.classpath}"/>
+
+  <property name="classpath.suffix" value=".:${corba.app.classpath}"/>
+
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/corba/servletsample"/>
+  <property name="common.pkgprefix" value="samples/corba/common"/>
+
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="CorbaServletSample"/>
+  <property name="javadoc.pkgnames" value="samples.corba.*" />
+
+  <!-- ======================================================= -->
+  <!-- Assemble WAR module.                                    --> 
+  <!-- ======================================================= -->
+  
+  <target name="create_war_" depends="clean_war_common">
+    <mkdir dir="${assemble.war}"/>
+    <copy todir="${assemble.war}/WEB-INF/classes/${app.pkg}">
+      <fileset dir="${build.classesdir}/${app.pkg}/"/>
+    </copy>
+    <copy todir="${assemble.war}/WEB-INF/classes/${common.pkgprefix}">
+      <fileset dir="${build.classesdir}/${common.pkgprefix}/"/>
+    </copy>
+
+    <copy todir="${assemble.war}/WEB-INF/classes/">
+      <fileset dir="${corba.server.classpath}/" 
+             includes="demos\simple\Simple\_SimpleObjectStub.class, 
+                       demos\simple\Simple\SimpleObject.class,
+                       demos\simple\Simple\SimpleObjectOperations.class,
+                       demos\simple\Simple\SimpleObjectHelper.class"/>
+    </copy>
+    <copy todir="${assemble.war}/WEB-INF/">
+      <fileset dir="." includes="${warDD}"/>
+    </copy>
+    <jar jarfile="${assemble.war}/${war}"
+       basedir="${assemble.war}"
+       excludes="**/*.war"/>
+       <property name="war.done" value="true"/>
+  </target>
+
+ 
+  <!-- ======================================================= -->
+  <!-- Include common.xml				       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+  
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="war" depends="init_common,create_war_"/>
+  <target name="jar" depends="init_common,create_ejbjar_common"/>
+  <target name="ear" depends="init_common,war,create_ear_common"/>
+  <target name="core" depends="compile_common,war,ear" />
+  <target name="deploy" depends="deploy_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="all" depends="core,javadocs_common,verify_common,deploy"/>
+
+</project>

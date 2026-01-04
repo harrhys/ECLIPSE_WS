@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://emp.test.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://emp.test.com" xmlns:intf="http://emp.test.com" xmlns:tns1="http://dto.emp.test.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://emp.test.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://dto.emp.test.com"/>
+   <element name="sayHello">
+    <complexType>
+     <sequence>
+      <element name="name" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="sayHelloResponse">
+    <complexType>
+     <sequence>
+      <element name="sayHelloReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addEmployee">
+    <complexType>
+     <sequence>
+      <element name="emp" type="tns1:EmpTO"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addEmployeeResponse">
+    <complexType/>
+   </element>
+   <element name="getEmployees">
+    <complexType/>
+   </element>
+   <element name="getEmployeesResponse">
+    <complexType>
+     <sequence>
+      <element name="getEmployeesReturn" type="impl:ArrayOf_xsd_anyType"/>
+     </sequence>
+    </complexType>
+   </element>
+   <complexType name="ArrayOf_xsd_anyType">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+  <schema elementFormDefault="qualified" targetNamespace="http://dto.emp.test.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://emp.test.com"/>
+   <complexType name="EmpTO">
+    <sequence>
+     <element name="ID" nillable="true" type="xsd:long"/>
+     <element name="department" nillable="true" type="xsd:string"/>
+     <element name="name" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="sayHelloRequest">
+
+      <wsdl:part element="impl:sayHello" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEmployeesResponse">
+
+      <wsdl:part element="impl:getEmployeesResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addEmployeeResponse">
+
+      <wsdl:part element="impl:addEmployeeResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getEmployeesRequest">
+
+      <wsdl:part element="impl:getEmployees" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="sayHelloResponse">
+
+      <wsdl:part element="impl:sayHelloResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="addEmployeeRequest">
+
+      <wsdl:part element="impl:addEmployee" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="DocEmpImpl">
+
+      <wsdl:operation name="sayHello">
+
+         <wsdl:input message="impl:sayHelloRequest" name="sayHelloRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:sayHelloResponse" name="sayHelloResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addEmployee">
+
+         <wsdl:input message="impl:addEmployeeRequest" name="addEmployeeRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:addEmployeeResponse" name="addEmployeeResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEmployees">
+
+         <wsdl:input message="impl:getEmployeesRequest" name="getEmployeesRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getEmployeesResponse" name="getEmployeesResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="DocEmpImplSoapBinding" type="impl:DocEmpImpl">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="sayHello">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="sayHelloRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="sayHelloResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addEmployee">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addEmployeeRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addEmployeeResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getEmployees">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getEmployeesRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getEmployeesResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="DocEmpImplService">
+
+      <wsdl:port binding="impl:DocEmpImplSoapBinding" name="DocEmpImpl">
+
+         <wsdlsoap:address location="http://localhost:8080/MyWS/services/DocEmpImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

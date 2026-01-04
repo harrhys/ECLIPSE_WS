@@ -1,0 +1,17 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="wrapper">
+<h1>Remit Money</h1>
+<p>
+This option allows you to verify the withdraw money transaction and transfer cash to both 
+registered and unregistered customers. You need to enter the beneficiary's mobile 
+number and transaction ID to verify the transaction. 
+Click on 'Back' to go back to the previous page.
+</p>
+<p>
+Contact <%CUSTOMER_CARE%> if you need help.
+</p>
+</body>
+</html>

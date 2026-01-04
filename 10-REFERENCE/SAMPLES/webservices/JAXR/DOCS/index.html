@@ -1,0 +1,1134 @@
+<HTML lang="en">
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+        <META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+        <meta name="LastUpdated" content="07/25/02 23:08:22">
+        <title>JAXR Sample Application:  JAXR Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            JAXR Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="JAXR Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+JAXR Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the JAXR sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#19418"  >Overview</A>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19454"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Provides a brief overview of Java API for XML Registries. 
+</FONT>
+<P>  </dl>
+<A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Application</A>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19459"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Describes how to compile and assemble the application. 
+</FONT>
+<P>  </dl>
+<A NAME="15154"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#20329"  >Deploying the Sample Application</A>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19464"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Describes how to configure the application to access various registry servers. 
+</FONT>
+<P>  </dl>
+<A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14931"  >Running the Sample Application</A>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19469"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Describes how to use various services provided by the application. 
+</FONT>
+<P>  </dl>
+<A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#17770"  >Troubleshooting</A>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19474"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Provides remedies for common questions.
+</FONT>
+<P>  </dl>
+</ul>
+
+<BR>
+<BR>
+
+<A NAME="19418"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19439"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The purpose of this document is to demonstrate the support for the Java API for XML Registries in the Sun ONE Application server. This document describes how to compile, assemble and run various components of the JAXR application. 
+</FONT>
+<P>
+
+<A NAME="19494"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">An XML registry is an infrastructure that enables the building, deployment, and discovery of Web services. The Java API for XML Registries (JAXR) provides a uniform and standard Java API for accessing different kinds of XML Registries. 
+</FONT>
+<P>
+
+<A NAME="19497"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The high-level architecture of JAXR consists of the following parts: 
+</FONT>
+<P>
+
+<A NAME="19499"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A JAXR client that uses the JAXR API to access a registry via a JAXR provider. 
+</FONT>
+<P>
+
+<A NAME="19501"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A JAXR provider that implements the RegistryService interface and other interfaces to allow a client to access registries. The provider provides registry access and registry object interfaces. 
+</FONT>
+<P>
+
+<A NAME="19504"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The purpose of this application is to address the JAXR client. For more information on JAXR, go to: <A HREF="http://java.sun.com/xml/jaxr/index.html">java.sun.com/xml/jaxr/index.html</A>. 
+</FONT>
+<P>
+
+<A NAME="19508"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The application has nine main Java classes that communicate with the JAXR provider. Each class has a makeConnection method to get the connection to the registry. There is a wrapper client class that reads input from the user or from asant, and calls one of the JAXR client classes accordingly. The source code is located at: <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/samples/webservices/jaxr/service/</FONT> 
+</FONT>
+<P>
+
+<A NAME="19655"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">and <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/samples/webservices/jaxr/client/</FONT>. 
+</FONT>
+<P>
+
+<A NAME="19432"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="19957"> </A>
+<A NAME="Main Java Classes"> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 1 &nbsp&nbsp Main Java Classes
+</B>
+</FONT>
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="19961"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Class Name
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="19963"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Description
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19965"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRQuery
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19967"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API, the <FONT FACE="courier, couriernew, monospaced size">executeQuery</FONT> API, and some private utility methods. The <FONT FACE="courier, couriernew, monospaced size">excuteQuery</FONT> API queries the registry for the <I>user input string</I>.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19969"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRPublish
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19971"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API and the <FONT FACE="courier, couriernew, monospaced size">executePublish</FONT> API. The <FONT FACE="courier, couriernew, monospaced size">executePublish</FONT> API, authenticates the user and publishes an organization to the registry.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19973"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRDelete
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19975"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API, the <FONT FACE="courier, couriernew, monospaced size">executeRemove</FONT> API, and some private utility methods. The <FONT FACE="courier, couriernew, monospaced size">executeRemove</FONT> API, authenticates the user and deletes an organization with a key provided by the user.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19977"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRQueryByWSDLClassification
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19979"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API, the <FONT FACE="courier, couriernew, monospaced size">executeQuery</FONT> API, and some private utility methods. The <FONT FACE="courier, couriernew, monospaced size">executeQuery</FONT> API queries the registry for organizations that offer services based on technical specifications that take the form of WSDL documents.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19981"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRQueryByNAICSClassification
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19983"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API, the <FONT FACE="courier, couriernew, monospaced size">executeQuery</FONT> API, and some private utility methods. The <FONT FACE="courier, couriernew, monospaced size">executeQuery</FONT> API queries the registry for organizations that use an NAICS classification.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19985"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRSaveClassificationScheme
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19987"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API and the <FONT FACE="courier, couriernew, monospaced size">executePublish</FONT> API. The <FONT FACE="courier, couriernew, monospaced size">executePublish</FONT> API, authenticates the user and publishes a classification scheme to the registry.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19989"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRDeleteScheme
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19991"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API, the <FONT FACE="courier, couriernew, monospaced size">executeRemove</FONT> API, and some private utility methods. The <FONT FACE="courier, couriernew, monospaced size">executeRemove</FONT> API, authenticates the user and deletes a classification scheme with a key provided by the user.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19989"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRGetMyObjects
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19991"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API, the <FONT FACE="courier, couriernew, monospaced size">executeQuery</FONT> API, and some private utility methods. The <FONT FACE="courier, couriernew, monospaced size">executeQuery</FONT> API, authenticates the user and retrieves all the objects in the registry server, owned by the user.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19993"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRPublishPostal
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19995"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API and the <FONT FACE="courier, couriernew, monospaced size">executePublish</FONT> API. The <FONT FACE="courier, couriernew, monospaced size">executePublish</FONT> API authenticates the user and publishes an organization, with contact person having postal address in user-specified uuid format, to the registry.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="19997"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRQueryPostal
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="19999"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API, the <FONT FACE="courier, couriernew, monospaced size">executeQuery</FONT> API, and some private utility methods. The <FONT FACE="courier, couriernew, monospaced size">excuteQuery</FONT> API queries the registry for the <I>user input string</I> and displays the postal addresses using <I>user-specified</I> uuid scheme.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="20001"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRDelete
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="20003"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This class implements the <FONT FACE="courier, couriernew, monospaced size">makeConnection</FONT> API, the <FONT FACE="courier, couriernew, monospaced size">executeRemove</FONT> API, and some private utility methods. The <FONT FACE="courier, couriernew, monospaced size">executeRemove</FONT> API, authenticates the user and deletes an organization with a key provided by the user.
+</FONT>&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="20005"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+JAXRClient
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<P>
+<A NAME="20007"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This is the wrapper class that calls the above classes, depending upon user input.
+</FONT>&nbsp;</TD>
+  </TR>
+</TABLE>
+
+
+
+<P>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="20128"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the JAXR sample application using the Command Line Interface. See the <A HREF="../../../docs/ant.html">Sample Application Build Facility document</A> for details on using a build facility.
+</FONT>
+<P>
+
+<A NAME="20159"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To rebuild the entire application from scratch, follow these steps: 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20161"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and assemble the application. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20231"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant</FONT> command under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P>     <DT> <A NAME="20164"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target <FONT FACE="courier, couriernew, monospaced size">core</FONT> is executed to compile Java files and rebuild the <FONT FACE="courier, couriernew, monospaced size">.jar</FONT> file. The <FONT FACE="courier, couriernew, monospaced size">.jar</FONT> file has the JAXR API classes and a wrapper client class.
+</FONT>
+<P>  </dl>
+<A NAME="20165"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Build Javadocs. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20259"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT> command under &lt;<FONT FACE="courier, couriernew, monospaced size">install_dir&gt;/samples/webservices/jaxr/src/</FONT> to create javadocs.
+</FONT>
+<P>     <DT> <A NAME="20168"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Javadocs are created under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/javadocs</FONT>. 
+</FONT>
+<P>  </dl>
+<A NAME="20169"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the web application project area. For example: 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20294"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> command under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT> to clean the application build and assemble area.
+</FONT>
+<P>  </dl>
+<A NAME="20172"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Deploy the sample application.
+</FONT>
+<P></ol>
+
+<A NAME="20306"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After you have re-created the sample application from scratch, proceed to <A HREF="index.html#20329"  >Deploying the Sample Application</A>. 
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="20329"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="20338"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Java API for XML Registries can be configured to access various registries. You can use either your own registry server or you can use public registry servers. If you choose to use a public registry server, make certain that you can publish to the registry server. 
+</FONT>
+<P>
+
+<A NAME="20330"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Please modify <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT> with the correct parameters. 
+</FONT>
+<P>
+
+<A NAME="20430"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><BR>
+<P>
+<TABLE WIDTH="90%" BORDER="1" CELLPADDING="5" CELLSPACING="0">
+  <CAPTION></CAPTION><P><FONT FACE=""><B>
+<A NAME="20433"> </A>
+<A NAME=""> </A>
+<ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Table 2 &nbsp&nbsp 
+</B>
+</FONT>
+</B></FONT>
+<BR>
+<BR>
+  <TR BGCOLOR="#CCCCCC" ALIGN=LEFT VALIGN=TOP>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="20437"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+
+</B>
+</FONT>
+</TH>
+    <TH VALIGN="TOP" ALIGN="LEFT" SCOPE="COL"><A NAME="20439"> </A>
+<P ALIGN="LEFT">
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+
+</B>
+</FONT>
+</TH>
+  </DIV></TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="20441"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">query-url
+</FONT>
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<A NAME="20474"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Fully qualified inquiry URI for the registry server.
+</FONT>
+<P>
+&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="20541"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+publish-url
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<A NAME="20543"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Fully qualified publish URI for the registry server.
+</FONT>
+<P>
+&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="20445"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+username
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<A NAME="20447"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Username to publish an organization to the registry server.
+</FONT>
+<P>
+&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="20449"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+password
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<A NAME="20451"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Password to publish an organization to the registry server.
+</FONT>
+<P>
+&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="20453"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+query-string
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<A NAME="20594"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The search string to search for in the registry.
+</FONT>
+<P>
+&nbsp;</TD>
+  </TR>
+  <TR>
+    <TD VALIGN=TOP><A NAME="20457"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+key-string
+
+</FONT>
+<P>&nbsp;</TD>
+    <TD VALIGN=TOP>
+<A NAME="20459"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The key of the organization to be deleted from the registry server.
+</FONT>
+<P>
+&nbsp;</TD>
+  </TR>
+</TABLE>
+
+
+
+<P>
+</FONT>
+<P>
+
+<A NAME="20376"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you wish to publish to the registry server, modify the publish organization info section under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>, if required. 
+</FONT>
+<P>
+
+<A NAME="18603"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You may now proceed to <A HREF="index.html#14931"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14931"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="20616"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The sample application provides capabilities of querying, publishing to, and deleting from various registries. A pre-built <FONT FACE="courier, couriernew, monospaced size">.jar</FONT> file is provided for running the application without compiling. Separate targets are provided to perform these activities. 
+</FONT>
+<P>
+
+<A NAME="20642"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Before running the application, make certain that you have followed the <A HREF="index.html#20329"  >Deploying the Sample Application</A> instructions to configure the application for the registry server you wish to use.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="20648"> </A>
+<A NAME="Querying Registry"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Querying Registry
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="20646"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This functionality allows user to search organizations in the registry for some input string.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20663"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="20675"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant run-query</FONT> command. 
+</FONT>
+<P>  <ul>
+<A NAME="20683"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This performs a search in the registry specified in the query-url based on the query-string. 
+</FONT>
+<P><A NAME="20693"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url and query-string are read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>. 
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="20712"> </A>
+<A NAME="Querying Registry Server for WSDL Services"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Querying Registry Server for WSDL Services
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="20713"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This functionality allows the user to search organizations in the registry that offer services based on technical specifications that take the form of WSDL documents. 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20740"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="20741"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant run-query-wsdl</FONT> command. 
+</FONT>
+<P>  <ul>
+<A NAME="20742"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This performs a search in the registry specified in the query-url for WSDL services.
+</FONT>
+<P><A NAME="20743"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url is read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>. 
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="20770"> </A>
+<A NAME="Querying Registry Server for NAICS classification"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Querying Registry Server for NAICS classification
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="20738"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This functionality allows the user to search a registry for organizations using an NAICS classification.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20787"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="20788"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant run-query-naics</FONT> command. 
+</FONT>
+<P>  <ul>
+<A NAME="20789"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This performs a search in the registry specified in the query-url for organization using an NAICS classification.
+</FONT>
+<P><A NAME="20790"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url is read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>.
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="20840"> </A>
+<A NAME="Publishing an Organization to Registry"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Publishing an Organization to Registry
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="20841"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This functionality allows the user to publish organizations to the registry. Modify the publish organization info section in <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT> with the appropriate information. 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20844"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="20846"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant run-publish</FONT> command.
+</FONT>
+<P>  <ul>
+<A NAME="20848"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This publishes an organization to the registry specified in publish-url.
+</FONT>
+<P><A NAME="20850"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url, publish-url, user authentication information, and organization information are read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>. 
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="20979"> </A>
+<A NAME="Deleting an Organization from Registry"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deleting an Organization from Registry
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="20980"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">     This functionality allows the user to delete an organization from the registry.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20982"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="20984"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">asant run-delete</FONT>.
+</FONT>
+<P>  <ul>
+<A NAME="20986"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This deletes an organization with key=key-string from the registry. 
+</FONT>
+<P><A NAME="20988"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url, publish-url, user authentication information and key-string are read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>.
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="21085"> </A>
+<A NAME="Creating a classification scheme in Registry "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Creating a classification scheme in Registry 
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="21086"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This functionality allows the user to create a classification scheme and save it to the registry. 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="21088"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="21090"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant run-save-scheme</FONT> command.
+</FONT>
+<P>  <ul>
+<A NAME="21092"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This creates a classification scheme and save it into the registry specified in publish-url. 
+</FONT>
+<P><A NAME="21094"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url, publish-url, user authentication information, and organization information are read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>.
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="21199"> </A>
+<A NAME="Deleting a classification scheme from Registry "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deleting a classification scheme from Registry 
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="21202"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="21204"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+.Execute asan<FONT FACE="courier, couriernew, monospaced size">t run-delete-scheme</FONT>.
+</FONT>
+<P>  <ul>
+<A NAME="21206"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This deletes an organization with key=key-string for classification scheme from <FONT FACE="courier, couriernew, monospaced size">run-save-scheme</FONT> operation.
+</FONT>
+<P><A NAME="21208"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url, publish-url, user authentication information and key-string are read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>.
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="21306"> </A>
+<A NAME="Publishing an Organization with postal address to Registry"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Publishing an Organization with postal address to Registry
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="21307"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This functionality allows the user to publish organization with a contact person having postal address to the registry.
+</FONT>
+<P>
+<ul>
+<A NAME="21449"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Be sure that you have executed <FONT FACE="courier, couriernew, monospaced size">run-save-scheme</FONT> before trying this operation. 
+</FONT>
+<P><A NAME="21448"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Please edit <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/postalconcepts.xml</FONT> and replace <FONT FACE="courier, couriernew, monospaced size">uuid-from-save</FONT> with the value returned by <FONT FACE="courier, couriernew, monospaced size">run-save-scheme</FONT> operation. 
+</FONT>
+<P><A NAME="21472"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Please edit &lt;<FONT FACE="courier, couriernew, monospaced size">install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT> and specify correct uuid-string.
+</FONT>
+<P><A NAME="21312"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="21314"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the asa<FONT FACE="courier, couriernew, monospaced size">nt run-publish-postal </FONT>command.
+</FONT>
+<P>  <ul>
+<A NAME="21316"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This publishes an organization to the registry specified in <FONT FACE="courier, couriernew, monospaced size">publish-url</FONT>. 
+</FONT>
+<P><A NAME="21318"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url, publish-url, uuid-string and user authentication information are read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>.
+</FONT>
+<P>  </ul>
+</ul>
+<P>
+<BR>
+<A NAME="21474"> </A>
+<A NAME="Querying Registry for organizations with postal address"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Querying Registry for organizations with postal address
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="21475"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This functionality allows user to search organizations in the registry for some input string. It displays the postal addresses the contacts of the organizations using the classification scheme created by <FONT FACE="courier, couriernew, monospaced size">run-save-scheme</FONT> operation. 
+</FONT>
+<P>
+
+<A NAME="21511"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Please edit <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT> and specify correct uuid-string.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="21479"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="21481"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant run-query-postal</FONT> command.
+</FONT>
+<P>  <ul>
+<A NAME="21483"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This performs a search in the registry specified in the <FONT FACE="courier, couriernew, monospaced size">query-url</FONT> based on the query-string. 
+</FONT>
+<P><A NAME="21194"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url, uuid-string and query-string are read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>.
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="21491"> </A>
+<A NAME="Retrieving objects owned by a user from Registry"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Retrieving objects owned by a user from Registry
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="21492"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This functionality allows user to retrieve all the objects 
+in the registry, owned by a user.
+</FONT>
+<P>
+
+<P>
+<ol type="1">
+<A NAME="21493"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>
+</FONT>
+<P><A NAME="21494"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant run-query-objects</FONT> command.
+</FONT>
+<P>  <ul>
+<A NAME="21494"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This retrieves all the objects owned by a user from the registry.
+</FONT>
+<P><A NAME="21495"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The query-url, publish-url and user authentication information are read from <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/jaxr.properties</FONT>.
+</FONT>
+<P>  </ul>
+</ol>
+<P>
+<BR>
+<A NAME="21606"> </A>
+<A NAME="Command line Help"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command line Help
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="21607"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This target provides help on all of the above commands with examples. Try <FONT FACE="courier, couriernew, monospaced size">asant help</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxr/src/</FONT>.
+</FONT>
+<P>
+
+<A NAME="21609"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you want to override the <FONT FACE="courier, couriernew, monospaced size">jaxr.properties</FONT> file, you can use command line arguments with asant commands. 
+</FONT>
+<P>
+
+<A NAME="21611"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For example, <FONT FACE="courier, couriernew, monospaced size">asant run-query -Dquery-string=Test</FONT>
+</FONT>
+<P>
+
+<A NAME="21601"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">runs the command <FONT FACE="courier, couriernew, monospaced size">run-query</FONT> and searches in the registry for <FONT FACE="courier, couriernew, monospaced size">query-string</FONT> Test.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="17770"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="21669"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+While running the sample, if you see the <FONT FACE="courier, couriernew, monospaced size">unknownUser</FONT> error, verify the username and password.
+</FONT>
+<P><A NAME="21671"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+While running the sample, if you see a <FONT FACE="courier, couriernew, monospaced size">no protocol</FONT> or <FONT FACE="courier, couriernew, monospaced size">bad response</FONT> error, verify that the <FONT FACE="courier, couriernew, monospaced size">query-url</FONT> and <FONT FACE="courier, couriernew, monospaced size">publish-url</FONT> are correct.
+</FONT>
+<P><A NAME="21673"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you are unable to delete from the registry server and you see the <FONT FACE="courier, couriernew, monospaced size">invalidKeyPassed</FONT> error, make certain that you are providing the correct key for the organization.
+</FONT>
+<P><A NAME="21676"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The following are the <FONT FACE="courier, couriernew, monospaced size">query-url</FONT> and the <FONT FACE="courier, couriernew, monospaced size">publish-url</FONT> for the IBM public registry server:
+</FONT>
+<P>  <ul>
+<A NAME="21678"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">query-url=http://uddi.ibm.com/testregistry/inquiryapi</FONT>
+</FONT>
+<P><A NAME="21680"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">publish-url=https://uddi.ibm.com/testregistry/protect/publishapi</FONT>
+</FONT>
+<P>  </ul>
+<A NAME="21682"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The following are the <FONT FACE="courier, couriernew, monospaced size">query-url</FONT> and the <FONT FACE="courier, couriernew, monospaced size">publish-url</FONT> for the Microsoft public registry server. 
+</FONT>
+<P>  <ul>
+<A NAME="21684"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">query-url=http://uddi.rte.microsoft.com/inquire</FONT> 
+</FONT>
+<P><A NAME="17675"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">publish-url=https://uddi.rte.microsoft.com/publish</FONT>
+</FONT>
+<P>  </ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+Some Known Issues:
+<ul>
+<li> The application will not work, if there is firewall between the Registry Server and the Application Server. Please manually edit the source files to specify http proxy server.
+Please look at  Java <sup>TM</sup> Web Services <a href="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXR.html">JAXR Tutorial</a> for more information.
+
+</li>
+</ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 25, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

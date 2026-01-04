@@ -1,0 +1,38 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DepositMoneyResult" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            style="@style/TitleLabel"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/title_size"
+            android:layout_marginBottom="10dp"
+            android:text="@string/cash_in" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/padding_right"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:text="@string/deposit_money_result"
+            android:textSize="20sp" />
+
+        <TableLayout
+            android:id="@+id/deposit_result_table"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="10dp" >
+        </TableLayout>
+    </LinearLayout>
+
+</ScrollView>

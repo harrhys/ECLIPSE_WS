@@ -1,0 +1,69 @@
+<HTML>
+
+  <HEAD>
+  <TITLE>Global Bean-Managed Transaction</TITLE>
+  </HEAD>
+
+  <BODY BGCOLOR=#BBCCDD>
+
+    <HR WIDTH=100%>
+
+    <CENTER><H1>Global Bean-Managed Transaction</H1></CENTER>
+
+    <HR WIDTH=100%>
+
+    <CENTER><H2>Transfer Funds</H2></CENTER>
+
+    <FORM NAME=GlobalTransaction METHOD=get ACTION="/transactions-globalbmt/GlobalBmtServlet">
+
+    <CENTER>
+
+    <TABLE>
+      <TR>
+        <TD><FONT SIZE=3 COLOR=blue>Source Bank:</FONT></TD>
+        <TD><FONT SIZE=3>
+          <SELECT NAME=from_bank SIZE=1>
+            <OPTION SELECTED VALUE="Local Bank">Local Bank</OPTION>
+            <OPTION VALUE="Foreign Bank">Foreign Bank</OPTION>
+          </SELECT></FONT></TD>
+      </TR>
+      <TR>
+        <TD><FONT SIZE=3 COLOR=blue>Source Account ID:</FONT></TD>
+        <TD><FONT SIZE=3><INPUT TYPE=text SIZE=25 NAME=from_account_id></FONT></TD>
+        <TD><FONT SIZE=2 COLOR=red>Required</FONT></TD>
+      </TR>
+      <TR>
+        <TD><FONT SIZE=3 COLOR=blue>Recipient Bank:</FONT></TD>
+        <TD><FONT SIZE=3>
+          <SELECT NAME=to_bank SIZE=1>
+            <OPTION SELECTED VALUE="Foreign Bank">Foreign Bank</OPTION>
+            <OPTION VALUE="Local Bank">Local Bank</OPTION>
+          </SELECT></FONT></TD>
+      </TR>
+      <TR>
+        <TD><FONT SIZE=3 COLOR=blue>Recipient Account ID:</FONT></TD>
+        <TD><FONT SIZE=3><INPUT TYPE=text SIZE=25 NAME=to_account_id></FONT></TD>
+        <TD><FONT SIZE=2 COLOR=red>Required</FONT></TD>
+      </TR>
+      <TR>
+        <TD><FONT SIZE=3 COLOR=blue>Transfer Amount:</FONT></TD>
+        <TD><FONT SIZE=3><INPUT TYPE=text SIZE=10 NAME=transfer_amount></FONT></TD>
+        <TD><FONT SIZE=2 COLOR=red>Required</FONT></TD>
+      </TR>
+    </TABLE>
+
+    <HR WIDTH="100%">
+
+    <FONT SIZE=3>
+      <INPUT TYPE=submit VALUE="Transfer Funds">
+    </FONT>
+
+    <HR WIDTH="100%">
+
+    </CENTER>
+
+    </FORM>
+
+  </BODY>
+
+</HTML>

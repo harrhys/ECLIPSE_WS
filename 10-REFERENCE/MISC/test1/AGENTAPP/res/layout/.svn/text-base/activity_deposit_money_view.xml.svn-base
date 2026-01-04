@@ -1,0 +1,120 @@
+<ScrollView 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   	xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    tools:context=".DepositMoneyViewActivity" >
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="vertical">
+   			<TextView
+		        android:layout_width="match_parent"
+		        android:layout_height="@dimen/title_size"
+		        android:text="@string/cash_in"
+		        style="@style/TitleLabel"
+		        android:layout_marginBottom="20dp" />
+	   
+   			<TextView
+        		android:layout_width="match_parent"
+        		android:layout_height="30dp"
+        		android:gravity="center_vertical"
+        		android:text="@string/confirm_deposit_money"
+		        android:textSize="20sp" 
+		        android:layout_marginTop="10dp" 
+		        android:layout_marginBottom="20dp"
+		        android:layout_marginLeft="@dimen/padding_left"
+		        android:layout_marginRight="@dimen/padding_right"/>   
+			   <LinearLayout 
+			       	android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:orientation="horizontal"> 
+					    <TextView 
+					       android:layout_width="wrap_content"
+					       android:layout_height="wrap_content"
+					       android:text="@string/mobile_number"
+					       android:layout_marginLeft="@dimen/padding_left"
+					       android:layout_marginBottom="@dimen/padding_bottom" />    
+					    <TextView 
+					        android:id="@+id/mobile_number_text_view"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"/>
+			    </LinearLayout>
+			    <LinearLayout 
+			       	android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:orientation="horizontal"> 			    
+					    <TextView 
+					       android:layout_width="wrap_content"
+					       android:layout_height="wrap_content"
+					       android:text="@string/first_name"
+					       android:layout_marginLeft="@dimen/padding_left"
+					       android:layout_marginBottom="@dimen/padding_bottom" />
+					    
+					    <TextView 
+					        android:id="@+id/first_name_text_view"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					       android:layout_marginBottom="@dimen/padding_bottom"
+					        android:layout_marginRight="@dimen/padding_right" />
+			    </LinearLayout>
+			     <LinearLayout 
+			       	android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:orientation="horizontal"> 
+					   <TextView 
+					       android:layout_width="wrap_content"
+					       android:layout_height="wrap_content"
+					       android:text="@string/last_name"
+					       android:layout_marginLeft="@dimen/padding_left"
+					       android:layout_marginBottom="@dimen/padding_bottom" />
+					    
+					    <TextView 
+					        android:id="@+id/last_name_text_view"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="@dimen/padding_bottom"
+					        android:layout_marginRight="@dimen/padding_right" />
+			    </LinearLayout>
+			    <LinearLayout 
+			       	android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:orientation="horizontal"> 
+					   <TextView 
+					       android:layout_width="wrap_content"
+					       android:layout_height="wrap_content"
+					       android:text="@string/amount"
+					       android:layout_marginLeft="@dimen/padding_left"
+					       android:layout_marginBottom="@dimen/padding_bottom" />
+					    
+					    <TextView 
+					        android:id="@+id/amount_deposited_text_view"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"
+					        android:layout_marginBottom="@dimen/padding_bottom"
+					        android:layout_marginRight="@dimen/padding_right"/>
+			    </LinearLayout>
+			    <LinearLayout 
+			       	android:layout_width="wrap_content"
+    				android:layout_height="wrap_content"
+    				android:orientation="horizontal"> 
+					    <TextView 
+					       android:layout_width="wrap_content"
+					       android:layout_height="wrap_content"
+					       android:text="@string/product"
+					       android:layout_marginLeft="@dimen/padding_left"
+					       android:layout_marginBottom="@dimen/padding_bottom" />    
+					    <TextView 
+					        android:id="@+id/product_deposit_money_view_text_view"
+					        android:layout_width="wrap_content"
+					        android:layout_height="wrap_content"/>
+			    </LinearLayout>
+			    <Button 
+				        android:id="@+id/submit_button"
+				        android:layout_width="100dp"
+				        android:layout_height="50dp"
+				        android:text="@string/confirm" 
+				        android:layout_gravity="center"
+				        android:background="@drawable/submit_buttons"/>
+	</LinearLayout>
+</ScrollView>

@@ -1,0 +1,541 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/11/02 15:01:43">
+	<title> JAX-RPC Dynamic Sample Application:  JAX-RPC Dynamic Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+             JAX-RPC Dynamic Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="8063"> </A>
+<A NAME="JAX-RPC Dynamic Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+JAX-RPC Dynamic Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15028"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the JAX-RPC Dynamic sample application in conjunction with the Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="14783"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14785"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14793"  >Overview</A>
+</FONT>
+<P><A NAME="14786"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14822"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="14787"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14851"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="14788"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14950"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="14789"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14961"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14793"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14795"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This example shows you how to use the Java API for the XML-based RPC (JAX-RPC) to invoke a remote procedure using a dynamic invocation interface. The dynamic invocation interface (DII) mechanism allows a client to invoke a remote procedure, even if the signature of the remote procedure or the name of the service is unknown until runtime. Because of its flexibility, a DII client can be used in a service broker that dynamically discovers services, configures the remote calls, and executes the calls.
+</FONT>
+<P>
+
+<A NAME="14809"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you want to experiment with a simple JAX-RPC application, see the <A HREF="../../simple/docs/index.html">JAX-RPC simple application</A>.
+</FONT>
+<P>
+
+<A NAME="15669"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For more information on the JAX-RPC and JAX-RPC dynamic invocation interface (DII) application, go to <A HREF="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXRPC6.html"><FONT FACE="courier, couriernew, monospaced size">http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXRPC6.html</A></FONT>.
+</FONT>
+<P>
+
+<A NAME="14815"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can find the source code for the sample application under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/dynamic/src/samples/webservices/jaxrpc/dynamic</FONT>
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14822"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15231"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To recompile, assemble, and deploy the application, see the <A HREF="../../../../docs/ant.html">Sample Application Build Facility</A> document for details on using a build facility to quickly perform these tasks.
+</FONT>
+<P>
+
+<A NAME="14830"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For example, to rebuild the entire application from scratch, perform the following steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15251"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble the J2EE Application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15265"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>command under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/dynamic/src</FONT>
+</FONT>
+<P>     <DT> <A NAME="15280"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core is executed to rebuild the<FONT FACE="courier, couriernew, monospaced size"> .jar </FONT>and<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>files.
+</FONT>
+<P>  </dl>
+<A NAME="14838"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the Application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15302"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+After you have re-created the sample application from scratch, proceed to <A HREF="index.html#14851"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="14841"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the application project area.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14843"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant clean </FONT>command to clean the application area.
+</FONT>
+<P>  </dl>
+<A NAME="14845"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Undeploy the Application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14847"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant undeploy </FONT>command to undeploy the application.
+</FONT>
+<P>  </dl>
+<A NAME="14849"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Building Javadocs.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14855"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant javadocs </FONT>command to create javadocs.
+</FONT>
+<P>     <DT> <A NAME="15667"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Javadocs are created under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxrpc/dynamic/javadocs.</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14851"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14853"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A pre-built <FONT FACE="courier, couriernew, monospaced size">jaxrpc-dynamic.war</FONT> file is supplied with the application server installation. The pre-built <FONT FACE="courier, couriernew, monospaced size">jaxrpc-dynamic.war</FONT> file is the Web Archive (<FONT FACE="courier, couriernew, monospaced size">.war</FONT>) file of the application. Within the<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file resides the XML deployment descriptor files, application class files, and other content required by the application. You can use the pre-built<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file to deploy the application. If you want to experience compiling and assembling the application from scratch, follow instructions under <A HREF="index.html#14822"  >Compiling and Assembling the Application</A>.
+</FONT>
+<P>
+
+<A NAME="14867"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy, the application administrative server needs to be running.
+</FONT>
+<P>
+
+<A NAME="15807"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To start the administrative server if it is not already started:
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14872"> </A>
+<A NAME="For UNIX"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+For UNIX
+</B>
+</FONT>
+<BR>
+
+<A NAME="14874"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/admin-server/startserv</FONT>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="14876"> </A>
+<A NAME="For Windows"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+For Windows
+</B>
+</FONT>
+<BR>
+
+<A NAME="14878"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Start-&gt;Programs-&gt;Sun ONE Application Server 7-&gt;Start Application Server
+</FONT>
+<P>
+
+<A NAME="14880"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploy the application:
+</FONT>
+<P>
+<ul>
+<A NAME="14882"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14893"  >Command Line-Based Deployment</A> describes how to manually register the application using a Command Line Interface (CLI).
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15839"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This is the quickest means of deploying the application.
+</FONT>
+<P>  </dl>
+<A NAME="14887"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14935"  >Web-Based Deployment</A> describes how to use the web-based administration tool to deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="14893"> </A>
+<A NAME="Command Line-Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line-Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14895"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">While Command Line Interface is the quickest means of deploying the application, if you want to experience deploying through a GUI tool, follow the instructions under the <A HREF="index.html#14935"  >Web-Based Deployment</A> section.
+</FONT>
+<P>
+
+<A NAME="15881"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">CLI deployment of the application can be performed using either the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>script or the<FONT FACE="courier, couriernew, monospaced size"> asadmin </FONT>command.
+</FONT>
+<P>
+
+<A NAME="15872"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process includes deploying the application<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file to the Sun ONE application server.
+</FONT>
+<P>
+
+<A NAME="14905"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploy the application using the asant command:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14907"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/dynamic/src </FONT>
+</FONT>
+<P><A NAME="14908"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant deploy </FONT>command.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15922"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+It is an interactive command that might prompt you to provide the admin-server host, admin-server port, admin user name, admin password, and appserv instance.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="14915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploy the application file using asadmin command:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14917"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/dynamic</FONT>
+</FONT>
+<P><A NAME="14918"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt; jaxrpc-dynamic.war</FONT> command.
+</FONT>
+<P></ol>
+
+<A NAME="15558"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="15559"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+It authenticates against the local application server's administrative server.
+</FONT>
+<P><A NAME="16002"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file is transferred to the administrative server.
+</FONT>
+<P><A NAME="16012"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="14926"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file.
+</FONT>
+<P><A NAME="14927"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into the repository.
+</FONT>
+<P><A NAME="14928"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application<I> jaxrpc-dynamic </I>by updating the<FONT FACE="courier, couriernew, monospaced size"> server.xml </FONT>file.
+</FONT>
+<P>  </ul>
+  <dl>
+     <DT> <A NAME="14931"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Now you are ready to run the application (see <A HREF="index.html#14950"  >Running the Sample Application</A>).
+</FONT>
+<P>  </dl>
+</ul>
+<P>
+<BR>
+<A NAME="14935"> </A>
+<A NAME="Web-Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Web-Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="14937"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Log in to the web-based administration tool from the browser.
+</FONT>
+<P><A NAME="14938"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Navigate as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16065"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Application Server Instances --&gt; &lt;server instance&gt; --&gt; Applications --&gt; Web Apps
+</FONT>
+<P>  </dl>
+<A NAME="14940"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Click Deploy.
+</FONT>
+<P><A NAME="14941"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Click Browse to locate the<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-dynamic.war </FONT>file. The file is located under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/dynamic/</FONT>.
+</FONT>
+<P><A NAME="16083"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Click OK.
+</FONT>
+<P><A NAME="14942"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Enter<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-dynamic </FONT>in the<I> Web Application Name </I>field.
+</FONT>
+<P><A NAME="14945"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Enter<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-dynamic </FONT>in the<I> Context Root </I>field.
+</FONT>
+<P><A NAME="16105"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Click OK.
+</FONT>
+<P><A NAME="14943"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+Click the<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-dynamic </FONT>link to verify that the application is deployed.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="14946"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Now you are ready to run the application (see <A HREF="index.html#14950"  >Running the Sample Application</A>).
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14950"> </A>
+<A NAME="Running the Sample Application "> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application 
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15611"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Perform the following steps to run the sample application:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="16119"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/dynamic/src</FONT>
+</FONT>
+<P><A NAME="15612"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant run </FONT>command.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The program should display the following line:
+</FONT>
+<P>     <DT> <A NAME="16146"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<I>A dynamic hello to Duke!</I>
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14961"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14963"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you see a Connection refused error, when you do asant run, make certain that <I>admin.host and sunone.instance.port</I> in &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/common.properties</FONT> are correct.
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 11, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

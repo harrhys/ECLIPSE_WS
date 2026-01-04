@@ -1,0 +1,840 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="08/14/02 11:42:09">
+	<title>RMI_IIOP_C++_CLIENT Sample Application:  RMI IIOP C++ Client Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            RMI_IIOP_C++_CLIENT Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="RMI IIOP C++ Client Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+RMI IIOP C++ Client Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the RMI IIOP C++ Client sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#25722"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="22833"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#27306"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#22343"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#27256"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="26898"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This application is a simplified version of a Shopping Cart to demonstrate how a  C++ IIOP client can access a Stateful Session Bean such as a Shopping Cart. The Shopping Cart Bean defined in this sample is a Shopping Cart for Books. A client can create the cart, and then add books to the cart, remove books from the cart and list the contents of the cart. For simplicity, other typical cart operations such as checkout etc., have been omitted in the Cart interface.
+</FONT>
+<P>
+
+<A NAME="27371"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample works with ORBacus 4.1.1 ORB from IONA technologies.  The installation of ORBacus 4.1.1 on the machine where the client is intended to run is a prerequisite for running this sample.
+</FONT>
+<P>
+
+<A NAME="27374"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Refer to iAS 70 Programmers guide for details on how to develop C++ clients accessing EJBs.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="25722"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="27433"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Note that these steps only build the J2EE application. The actual building of C++ client is described under <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="27435"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To easily recompile, assemble and deploy the application, see the <A HREF="../../../docs/ant.html">Sample Application Build Facility document</A> for details on using a build facility to quickly perform these tasks.
+</FONT>
+<P>
+
+<A NAME="27438"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For example, to rebuild the entire application from scratch, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="27439"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble Web Application. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27614"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant</FONT> under <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR/samples/rmi-iiop/cpp/src/</FONT>
+</FONT>
+<P>     <DT> <A NAME="27445"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core will be executed to rebuild the EAR file.
+</FONT>
+<P>     <DT> <A NAME="27447"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This step builds the <FONT FACE="courier, couriernew, monospaced size">BookCartApp.ear</FONT> which can be found under <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR/samples/rmi-iiop/cpp/assemble/ear</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="27449"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27635"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Once you have re-created the sample application from scratch proceed to <A HREF="index.html#27306"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="27302"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+To clean the web application project area, execute <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT>.
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="27306"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ol type="1">
+<A NAME="27640"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Deploy the Web Application. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="27756"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT> under <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR/samples/rmi-iiop/cpp/src/</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="27644"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The default target core will be executed to rebuild the  EAR file.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="27647"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Re-start the application server instance.
+</FONT>
+<P></ol>
+
+<A NAME="27774"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="27651"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Authenticates against the local application server's administrative server
+</FONT>
+<P><A NAME="27652"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The EAR file is transferred to the administrative server
+</FONT>
+<P><A NAME="27653"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P><ul>    <ul>
+<A NAME="27654"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+    <B>  <li></B>
+Parses the EAR file and embedded EJB jar file
+</FONT>
+<P><A NAME="27655"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+    <B>  <li></B>
+Explodes the bits into repository
+</FONT>
+<P><A NAME="27656"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+    <B>  <li></B>
+Registers the J2EE application <FONT FACE="courier, couriernew, monospaced size">cppcart</FONT> by updating <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT>.
+</FONT>
+<P>    </ul>
+</ul></ul>
+
+<A NAME="27658"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you would like to verify the registration of the application, proceed to <A HREF="index.html#27858"  >Verifying Registration</A>. Otherwise, you're ready to exercise the application by <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="27858"> </A>
+<A NAME="Verifying Registration"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Registration
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="27871"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. If you do not want to verify that the application has been registered, proceed directly to <A HREF="index.html#22343"  >Running the Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="27874"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, execute <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<P>
+
+<A NAME="27931"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; - &lt;admin-port&gt; &lt;server instance name&gt;</FONT> 
+</FONT>
+<P>
+
+<A NAME="27869"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You will see the <FONT FACE="courier, couriernew, monospaced size">cppcart</FONT> app as one of the listed applications.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="22343"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="27939"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample demonstrates a C++ IIOP client that accesses the Cart EJB. The C++ client  has to be built separately. The steps are listed below. The pre-requisite for this step is to Build and Deploy the BookCartApp EAR file in AppServer and start AppServer Instance.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="27963"> </A>
+<A NAME="UNIX/Solaris"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+UNIX/Solaris
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="28209"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Please download and Install ORBacus 4.1.1 from the orbacus website at <A HREF="http://www.orbacus.com"><FONT FACE="courier, couriernew, monospaced size">http://www.orbacus.com</A></FONT>  or from the ORBacus Installation CD.
+</FONT>
+<P><A NAME="28210"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+If you are having trouble in setting up ORBacus, please read the detailed instructions in <A HREF="index.html#29319"  >ORBacus Instructions</A> section and for further help go to <A HREF="http://www.orbacus.com">http://www.orbacus.com</A> or contact ORBacus Support.
+</FONT>
+<P><A NAME="28201"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Edit <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR/samples/rmi-iiop/cpp/src/client/make/cpp_def.mk</FONT>.
+</FONT>
+<P><A NAME="28202"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Set the environment variable <FONT FACE="courier, couriernew, monospaced size">OB_INSTDIR</FONT> to the <FONT FACE="courier, couriernew, monospaced size">root</FONT> directory of ORBacus installation and please make sure that the idl compiler is available in <FONT FACE="courier, couriernew, monospaced size">$(OB_INSTDIR)/bin/</FONT>.
+</FONT>
+<P><A NAME="27971"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Include path to the <FONT FACE="courier, couriernew, monospaced size">gmake</FONT> tool in the <FONT FACE="courier, couriernew, monospaced size">PATH</FONT> environment variable.  For example: <FONT FACE="courier, couriernew, monospaced size">export PATH=&lt;path to gmake&gt;:$PATH</FONT>.
+</FONT>
+<P><A NAME="27972"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Install Sun Workshop 6.2.  
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="28242"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Set the macro <FONT FACE="courier, couriernew, monospaced size">SUNWSPRO_DIR_61</FONT> to the WorkShop installation directory in the file <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR/samples/rmi-iiop/cpp/src/client/make/defines_SPARC_SOLARIS.mk</FONT>. 
+</FONT>
+<P>     <DT> <A NAME="28252"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example: <FONT FACE="courier, couriernew, monospaced size">SUNWSPRO_DIR_61 = /usr/dist/share/forte_dev/SUNWspro.</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="27975"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">gmake</FONT> from<FONT FACE="courier, couriernew, monospaced size"> APPSERV_INSTALDIR/samples/rmi-iiop/cpp/src/client/</FONT>. This will build all the c++ files and generate the binary <FONT FACE="courier, couriernew, monospaced size">client</FONT> in  <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR/samples/rmi-iiop/cpp/src/client/samples/rmi_iiop/cpp/ejb/SunOS5.8_DBG.OBJ</FONT> directory.  If the build is an optimized build (<FONT FACE="courier, couriernew, monospaced size">gmake BUILD_DEBUG=optimize all</FONT>), then the client executable will be created in the directory <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR/samples/rmi-iiop/cpp/src/client/samples/rmi_iiop/cpp/ejb/SunOS5.8_OPT.OBJ/</FONT>.
+</FONT>
+<P><A NAME="27979"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Set the path to libraries of ORBacus in <FONT FACE="courier, couriernew, monospaced size">LD_LIBRARY_PATH</FONT>.  For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="28286"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">export LD_LIBRARY_PATH=&lt;orbacus_install_dir&gt;/lib</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="27980"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+Run the client using the following the command client:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="28289"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">-ORBInitRef  NameService=corbaloc:iiop:&lt;hostname&gt;:&lt;port number&gt;/NameService</FONT> (The Default Port is 3700).
+</FONT>
+<P>  </dl>
+<A NAME="27982"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+You will see the following <A HREF="index.html#27959"  >Output</A>.
+</FONT>
+<P></ol>
+<BR>
+<P>
+<A NAME="27959"> </A>
+<A NAME="Output"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif">
+<B>
+Output
+</B>
+</FONT>
+<BR>
+<BR>
+<A NAME="28309"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+&gt; client -ORBInitRef 
+NameService=corbaloc:iiop:lego1:3700/NameService
+
+</FONT>
+<P><A NAME="28835"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Registering ValueFactories with ORB
+
+</FONT>
+<P><A NAME="28836"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Obtaining Reference to NameService of IAS
+
+</FONT>
+<P><A NAME="28837"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Looking up the Cart Home reference "ejb/CartEJB"
+
+</FONT>
+<P><A NAME="28313"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Narrowing the received object to CartHome
+
+</FONT>
+<P><A NAME="28314"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Narrowed CartHome...
+
+</FONT>
+<P><A NAME="28315"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Calling Create on Cart Home
+
+</FONT>
+<P><A NAME="28316"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Cart Created .....
+
+</FONT>
+<P><A NAME="28317"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Adding Book Titles to the Cart
+
+</FONT>
+<P><A NAME="28318"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Added Book Title 1: The Martian Chronicles
+
+</FONT>
+<P><A NAME="28319"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Added Book Title 2: 2001 A Space Odyssey
+
+</FONT>
+<P><A NAME="28320"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Added Book Title 3: The Left Hand of Darkness
+
+</FONT>
+<P><A NAME="28321"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Listing the Cart Contents
+
+</FONT>
+<P><A NAME="28322"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+------------------------------------
+
+</FONT>
+<P><A NAME="28323"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Title[1]: The Martian Chronicles
+
+</FONT>
+<P><A NAME="28324"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Title[2]: 2001 A Space Odyssey
+
+</FONT>
+<P><A NAME="28325"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Title[3]: The Left Hand of Darkness
+
+</FONT>
+<P><A NAME="28326"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+------------------------------------
+
+</FONT>
+<P><A NAME="28327"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Calling cart-&gt;removeBook(title) with invalid Title
+
+</FONT>
+<P><A NAME="28328"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: This should result in a BookException being Thrown
+
+</FONT>
+<P><A NAME="28329"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Caught BookException: User exception 
+`samples::rmi_iiop::cpp::ejb::
+
+</FONT>
+<P><A NAME="28330"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+BookEx'
+
+</FONT>
+<P><A NAME="28331"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Possible Cause : Invalid BookName given to Cart-&gt;remove()
+
+</FONT>
+<P><A NAME="28332"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+---------------------------------------------------
+
+</FONT>
+<P><A NAME="28333"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Starting Here, the sample demonstrates passing IDL-valuetypes (i.e 
+java serializable objects)
+
+</FONT>
+<P><A NAME="28335"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Dummy methods added to Cart interface will be used to demonstrate 
+passing ValueTypes
+
+</FONT>
+<P><A NAME="28337"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Sending ComplexObject Valuetype
+
+</FONT>
+<P><A NAME="28338"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Receiving ComplexObject Valuetype
+
+</FONT>
+<P><A NAME="28339"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Employee name is Bruce Willis
+
+</FONT>
+<P><A NAME="28340"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Employee salary  is 200000
+
+</FONT>
+<P><A NAME="28341"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+data in the InterfaceTest object is 10000678
+
+</FONT>
+<P><A NAME="28342"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+---------------------------------------------------
+
+</FONT>
+<P><A NAME="28343"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: Calling cart-&gt;remove(), (i.e remove() on EJBObject) 
+indicating we are done with the cart
+
+</FONT>
+<P><A NAME="27960"></A><FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+Cart Client: cart-&gt;remove() successful, exiting program
+
+</FONT>
+<P><P>
+<BR>
+<A NAME="27961"> </A>
+<A NAME="Windows 2000"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Windows 2000
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="28855"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Please download and Install ORBacus 4.1.1 from the orbacus website at <A HREF="http://www.orbacus.com"><FONT FACE="courier, couriernew, monospaced size">http://www.orbacus.com</A></FONT> or from the ORBacus Installation CD.
+</FONT>
+<P><A NAME="29190"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+If you are having trouble in setting up ORBacus, please read the detailed instructions in <A HREF="index.html#29319"  >ORBacus Instructions</A> section and for further help go to <A HREF="http://www.orbacus.com">http://www.orbacus.com</A> or contact ORBacus Support.
+</FONT>
+<P><A NAME="28858"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Edit <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR\samples\rmi-iiop\cpp\src\client\make\cpp_def.mk</FONT> and set <FONT FACE="courier, couriernew, monospaced size">OB_INSTDIR</FONT> to the <FONT FACE="courier, couriernew, monospaced size">root</FONT> directory of ORBacus installation. 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29207"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+For example, if Orbacus is installed in <FONT FACE="courier, couriernew, monospaced size">D:\opt\OB</FONT>, then set the following in the file : <FONT FACE="courier, couriernew, monospaced size">OB_INSTDIR = D:/opt/OB</FONT>.
+</FONT>
+<P>     <DT> <A NAME="28860"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Be warned that you'll need to use forward slashes ("/") instead of back slashes ("\") in this path and please make sure that the idl compiler is available in  <FONT FACE="courier, couriernew, monospaced size">$(OB_INSTDIR)/bin/</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="28862"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Install Cygwin  from <A HREF="http://www.cygwin.com/download.html"><FONT FACE="courier, couriernew, monospaced size">http://www.cygwin.com/download.html</A></FONT> (containing gmake, cvs, sh, perl, etc.).
+</FONT>
+<P><A NAME="28863"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+The makefiles check the <FONT FACE="courier, couriernew, monospaced size">TOOL_ROOT</FONT> environment variable for the <FONT FACE="courier, couriernew, monospaced size">root</FONT> of some required executables. The makefiles expect to find these executables in <FONT FACE="courier, couriernew, monospaced size">%TOOL_ROOT%/bin</FONT>, so set the <FONT FACE="courier, couriernew, monospaced size">TOOL_ROOT</FONT> environment variable  appropriately (e.g. <FONT FACE="courier, couriernew, monospaced size">TOOL_ROOT=c:</FONT>). 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29237"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Be warned that you'll need to use forward slashes ("/") instead of back slashes ("\") in this path. For example, if cygwin is installed in <FONT FACE="courier, couriernew, monospaced size">C:\cygwin</FONT> , then do the following:  <FONT FACE="courier, couriernew, monospaced size">C:&gt; set TOOL_ROOT=C:/cygwin.</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="28867"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Make sure your path environment variable is "<FONT FACE="courier, couriernew, monospaced size">Path</FONT>" and not "<FONT FACE="courier, couriernew, monospaced size">path</FONT>" or "<FONT FACE="courier, couriernew, monospaced size">PATH</FONT>".
+</FONT>
+<P><A NAME="28868"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Add <FONT FACE="courier, couriernew, monospaced size">%TOOL_ROOT%\bin </FONT>to the beginning of your path. It should be before <FONT FACE="courier, couriernew, monospaced size">winnt\system32</FONT> and before any other tools you have in your path.
+</FONT>
+<P><A NAME="28870"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Install MS Visual C++ 6.0 and associated Service Packs. 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29259"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Note: When installing, do not install in <FONT FACE="courier, couriernew, monospaced size">c:\Program Files</FONT> (or any other directory with white space in it).
+</FONT>
+<P>  </dl>
+<A NAME="28872"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+Set the environment variable <FONT FACE="courier, couriernew, monospaced size">MSVC_DIR</FONT> to the installation directory (e.g. <FONT FACE="courier, couriernew, monospaced size">MSVC_DIR=c:/VC98</FONT>). The makefiles are expecting to find <FONT FACE="courier, couriernew, monospaced size">cl.exe</FONT> in <FONT FACE="courier, couriernew, monospaced size">%MSVC_DIR%\bin</FONT>. 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29275"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Be warned that you'll need to use forward  slashes ("/") instead of back slashes ("\") in this path. For example, if VisualStudio is installed in <FONT FACE="courier, couriernew, monospaced size">C:\VisualStudio\Vc98,</FONT> then set the following: <FONT FACE="courier, couriernew, monospaced size">C:&gt;set MSVC_DIR=C:/VisualStudio/Vc98.</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="28875"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+Execute <FONT FACE="courier, couriernew, monospaced size">gmake</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29285"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This will build all the c++ files and generate the binary <FONT FACE="courier, couriernew, monospaced size">client.exe</FONT> in the <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR\samples\rmi-iiop\cpp\src\client\samples\cpp\WINNT4.0_DBG.OBJ</FONT>.  
+</FONT>
+<P>     <DT> <A NAME="29295"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+If the build is an optimized build (<FONT FACE="courier, couriernew, monospaced size">gmake BUILD_DEBUG=optimize all</FONT>), then the executable <FONT FACE="courier, couriernew, monospaced size">client.exe</FONT> will be created in the directory <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR\samples\rmi-iiop\cpp\src\client\samples\cpp\WINNT4.0_OPT.OBJ\</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="28879"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="11"></B>
+Run the client using the following the command client:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29309"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">-ORBInitRef  NameService=corbaloc:iiop:&lt;hostname&gt;:&lt;port number&gt;/NameService</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="28853"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="12"></B>
+You will see the above mentioned <A HREF="index.html#27959"  >Output</A>.
+</FONT>
+<P></ol>
+<P>
+<BR>
+<A NAME="29319"> </A>
+<A NAME="ORBacus Instructions"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+ORBacus Instructions
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="29340"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Download ORBacus 4.1.1 from <A HREF="http://www.orbacus.com">http://www.orbacus.com</A>. 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29611"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This is provided in the form of source files. The product may be found in the name of <FONT FACE="courier, couriernew, monospaced size">OB-4.1.1-eval.tar.gz</FONT> or <FONT FACE="courier, couriernew, monospaced size">OB-4.1.1-eval.zip</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="29342"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Download ORBacus4.1.1 IDL Compiler from <A HREF="http://www.orbacus.com">http://www.orbacus.com</A>. <FONT FACE="courier, couriernew, monospaced size">OB-4.1.1-eval-bin-solaris.tar.gz</FONT> and unzip into any directory, fro example: <FONT FACE="courier, couriernew, monospaced size">IDL_DIR</FONT>.
+</FONT>
+<P><A NAME="29343"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Get the <FONT FACE="courier, couriernew, monospaced size">license.txt</FONT> from the ORBacus Support team in the email and save it in a directory, for example: <FONT FACE="courier, couriernew, monospaced size">LICENSE_DIR</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29640"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This is required for the Evaluation Versions.
+</FONT>
+<P>  </dl>
+<A NAME="29345"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Set the environment variable <FONT FACE="courier, couriernew, monospaced size">ORBACUS_LICENSE</FONT> to <FONT FACE="courier, couriernew, monospaced size">LICENSE_DIE/license.txt</FONT>.
+</FONT>
+<P><A NAME="29346"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Include the following in your path variable:
+</FONT>
+<P>  <ol type="a">
+<A NAME="29347"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The location of your Workshop/VC++ bin Directory.  For example: <FONT FACE="courier, couriernew, monospaced size">/usr/dist/share/forte_dev/SUNWspro/bin</FONT>.
+</FONT>
+<P>    <dl>
+       <DT> <A NAME="29672"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This is required for the C++ Compiler and requires Sun Workshop 6.2 Install or MS Visual C++ 6.0.
+</FONT>
+<P>    </dl>
+<A NAME="29349"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The location of your make executable. For example:  <FONT FACE="courier, couriernew, monospaced size">/usr/local/tools/1.0/bin.</FONT>
+</FONT>
+<P><A NAME="29350"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The location of your gmake executable. For example: <FONT FACE="courier, couriernew, monospaced size">/tools/ns/bin/.</FONT>
+</FONT>
+<P><A NAME="29351"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The location of your IDL compiler you just downloaded. For example: <FONT FACE="courier, couriernew, monospaced size">IDL_DIR/bin.</FONT>
+</FONT>
+<P>  </ol>
+<A NAME="29352"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Now unzip the Source bundle (<FONT FACE="courier, couriernew, monospaced size">OB-4.1.1-eval.tar.gz</FONT> or <FONT FACE="courier, couriernew, monospaced size">OB-4.1.1-eval.zip</FONT>) and follow the instructions in the <FONT FACE="courier, couriernew, monospaced size">INSTALL</FONT> file.  
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="29715"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You need to run <FONT FACE="courier, couriernew, monospaced size">config</FONT>, <FONT FACE="courier, couriernew, monospaced size">make</FONT> and <FONT FACE="courier, couriernew, monospaced size">make install</FONT> to install the product.  You can install the product anywhere, for example <FONT FACE="courier, couriernew, monospaced size">ORBACUS_INSTDIR</FONT>.  If you are installing in <FONT FACE="courier, couriernew, monospaced size">/usr/local</FONT> (which is the default), you need to run <FONT FACE="courier, couriernew, monospaced size">make install</FONT> as <FONT FACE="courier, couriernew, monospaced size">root</FONT> user.
+</FONT>
+<P>  </dl>
+<A NAME="29355"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+After successful install of ORBacus, copy your IDL compiler tThe executable <FONT FACE="courier, couriernew, monospaced size">idl</FONT> found in <FONT FACE="courier, couriernew, monospaced size">IDL_DIR/bin</FONT>) to your ORBacus bin directory, <FONT FACE="courier, couriernew, monospaced size">ORBACUS_INSTDIR/bin</FONT>.
+</FONT>
+<P><A NAME="29357"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Now, set the following environment variables:
+</FONT>
+<P>  <ol type="a">
+<A NAME="29358"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<FONT FACE="courier, couriernew, monospaced size">LD_LIBRARY_PATH</FONT> to <FONT FACE="courier, couriernew, monospaced size">ORBACUS_INSTDIR/lib</FONT>.
+</FONT>
+<P><A NAME="29359"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Append orbacus bin dir <FONT FACE="courier, couriernew, monospaced size">ORBACUS_INSTDIR/bin</FONT> to your path variable.
+</FONT>
+<P>  </ol>
+<A NAME="29334"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+Now go back and compile and run your client Program.
+</FONT>
+<P></ol>
+
+<BR>
+<BR>
+
+<A NAME="27256"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="29764"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+On Unix, if the path to the shared libraries of ORBacus 4.1 are not set or are incorrectly set, the client will fail. Set the path to the shared libraries correctly.
+</FONT>
+<P><A NAME="29766"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If the portnumber of IIOP listener is not correct, the client will fail to contact iAS70.  Check portnumber of IIOP listener given while running the client.  The same thing applies for the hostname.
+</FONT>
+<P><A NAME="29768"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong. 
+</FONT>
+<P><A NAME="29770"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+On Unix, if you are having build problems try changing the defines for <FONT FACE="courier, couriernew, monospaced size">TOOL_ROOT</FONT> and <FONT FACE="courier, couriernew, monospaced size">NSTOOL_ROOT</FONT> in the file <FONT FACE="courier, couriernew, monospaced size">APPSERV_INSTALDIR//samples/rmi-iiop/cpp/src/client/make/defines_UNIX.mk</FONT>
+</FONT>
+<P><A NAME="27280"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+For additional details on compilation process refer to Readme.
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 14, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

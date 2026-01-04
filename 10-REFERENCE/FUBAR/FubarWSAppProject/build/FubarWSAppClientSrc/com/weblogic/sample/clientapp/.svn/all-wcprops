@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 136
+/repos/obo/!svn/ver/55197/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClientSrc/com/weblogic/sample/clientapp
+END
+FubarWSAppPortType.java
+K 25
+svn:wc:ra_dav:version-url
+V 160
+/repos/obo/!svn/ver/55197/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClientSrc/com/weblogic/sample/clientapp/FubarWSAppPortType.java
+END
+FubarWSApp.java
+K 25
+svn:wc:ra_dav:version-url
+V 152
+/repos/obo/!svn/ver/55197/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClientSrc/com/weblogic/sample/clientapp/FubarWSApp.java
+END
+FubarWSApp_Impl.java
+K 25
+svn:wc:ra_dav:version-url
+V 157
+/repos/obo/!svn/ver/55197/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClientSrc/com/weblogic/sample/clientapp/FubarWSApp_Impl.java
+END
+FubarWSApp_internaldd.xml
+K 25
+svn:wc:ra_dav:version-url
+V 162
+/repos/obo/!svn/ver/55197/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClientSrc/com/weblogic/sample/clientapp/FubarWSApp_internaldd.xml
+END
+FubarWSApp_saved_wsdl.wsdl
+K 25
+svn:wc:ra_dav:version-url
+V 163
+/repos/obo/!svn/ver/55197/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClientSrc/com/weblogic/sample/clientapp/FubarWSApp_saved_wsdl.wsdl
+END
+FubarWSAppPortType_Stub.java
+K 25
+svn:wc:ra_dav:version-url
+V 165
+/repos/obo/!svn/ver/55197/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClientSrc/com/weblogic/sample/clientapp/FubarWSAppPortType_Stub.java
+END
+FubarWSApp_java_wsdl_mapping.xml
+K 25
+svn:wc:ra_dav:version-url
+V 169
+/repos/obo/!svn/ver/55197/Operations/branches/EntEngCert/Fubar/FubarWSAppProject/build/FubarWSAppClientSrc/com/weblogic/sample/clientapp/FubarWSApp_java_wsdl_mapping.xml
+END

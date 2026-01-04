@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+  <!-- ======================================================= -->
+  <!--  SunOne Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="helloworld" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="stateless-simple"/>
+  <property name="sample.home" value="../../../../"/>
+  <property name="sample.name" value="HelloWorld"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/ejb/stateless/simple/"/>
+  <property name="war.pkg" value="samples/ejb/stateless/simple/servlet"/>
+  <property name="jar.pkg" value="samples/ejb/stateless/simple/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  <property name="sample.name" value="helloworld"/>
+  <property name="javadoc.pkgnames" value="samples.ejb.stateless.simple.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+  <property name="warDD" value="sun-web.xml,web.xml"/>
+  <property name="jarDD" value="ejb-jar.xml,sun-ejb-jar.xml"/>
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+	
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="verify" depends="verify_common"/>
+
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="war" depends="init,create_war_common"/>
+  <target name="ear" depends="init,jar,war,create_ear_common"/>
+  <target name="core" depends="compile,jar,war,ear" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

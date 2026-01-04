@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project name="FubarWSApp" default="all"  basedir=".">
+
+	<!-- set global properties for this build -->
+	<property name="ear.version" value="1.0"/>
+	<property name="beahomedir" value="C:/bea/weblogic92"/>
+	<property name="buildrootdir" value="${basedir}/../.."/>
+	
+	<property name="jws.name" value="FubarWSApp" />
+	<property name="jws.package" value="com/weblogic/sample/wsapp"/>
+	<property name="client.package" value="com.weblogic.sample.clientapp"/>
+		
+	<property name="jws.file" value="${jws.name}.java" />
+	<property name="core.project.dir" value="${buildrootdir}/FubarCoreProject"/>
+	<property name="core.jar" value="fubarcore.jar" />
+	<property name="server.project.dir" value="${buildrootdir}/${jws.name}Project"/>
+	<property name="server.stage.dir" value="${jws.name}Stage" />
+	<property name="server.tsrc.dir" value="${jws.name}Tsrc" />
+	<property name="server.ear" value="${jws.name}.ear" />
+	<property name="server.war" value="${jws.name}.war" />
+	<property name="client.src.dir" value="${jws.name}ClientSrc" />
+	<property name="client.bin.dir" value="${jws.name}ClientBin" />
+	<property name="client.jar" value="${jws.name}Client.jar" />
+
+	<!-- For more information on Weblogic jwsc ant task see:             -->
+	<!-- http://edocs.bea.com/wls/docs92/webserv/anttasks.html#wp1069899 -->
+	<taskdef name="jwsc"
+    classname="weblogic.wsee.tools.anttasks.JwscTask"
+    classpath="${beahomedir}/server/lib/weblogic.jar" />
+	<!-- For more information on Weblogic clientgen ant task see:        -->
+	<!-- http://edocs.bea.com/wls/docs92/webserv/anttasks.html#wp1039270 -->
+	<taskdef name="clientgen"
+    classname="weblogic.wsee.tools.anttasks.ClientGenTask"
+    classpath="${beahomedir}/server/lib/weblogic.jar" />
+
+	<target name="all" depends="clean, server, ear, client" />
+
+	<target name="clean" >
+		<delete dir="${server.project.dir}/build/${server.stage.dir}"/>
+		<delete dir="${server.project.dir}/build/${server.tsrc.dir}"/>
+		<delete dir="${server.project.dir}/build/${client.src.dir}"/>
+		<delete dir="${server.project.dir}/build/${client.bin.dir}"/>
+		<delete file="${server.project.dir}/build/${server.ear}"/>
+		<delete file="${server.project.dir}/build/${client.jar}"/>
+	</target>
+
+	<target name="server" >
+		<delete dir="${server.project.dir}/build/${server.stage.dir}"/>
+		<mkdir dir="${server.project.dir}/build/${server.stage.dir}"/>
+		<delete dir="${server.project.dir}/build/${server.tsrc.dir}"/>
+		<copy todir="${server.project.dir}/build/${server.tsrc.dir}">
+			<fileset dir="${server.project.dir}/src"/>
+		</copy>
+		<replace dir="${server.project.dir}/build/${server.tsrc.dir}"
+			value="${ear.version}">
+			<include name="**/*.java"/>
+			<replacetoken>#.#</replacetoken>
+		</replace>
+		<path id="jwsc.class.path">
+			<pathelement path="${classpath}"/>
+			<pathelement location="${core.project.dir}/build/${core.jar}"/>
+			<pathelement location="${buildrootdir}/FubarBMTEJBAppProject/build/FubarBMTEJBClientJ2SE.jar"/>
+			<pathelement location="${beahomedir}/server/lib/weblogic.jar"/>
+		</path>
+		<jwsc
+			sourcepath="${core.project.dir}/src"
+			srcdir="${server.project.dir}/build/${server.tsrc.dir}/${jws.package}"
+			destdir="${server.project.dir}/build/${server.stage.dir}"
+			keepGenerated="true"
+			classpathref="jwsc.class.path" >
+			<jws file="${jws.file}" explode="false">
+			</jws>
+		</jwsc>
+	</target>
+
+	<target name="ear" depends="server" >
+		<mkdir dir="${server.project.dir}/build/${server.stage.dir}/APP-INF"/>
+		<mkdir dir="${server.project.dir}/build/${server.stage.dir}/APP-INF/lib"/>
+		<copy todir="${server.project.dir}/build/${server.stage.dir}/APP-INF/lib">
+			<fileset file="${core.project.dir}/build/${core.jar}"/>
+			<fileset file="${buildrootdir}/FubarBMTEJBAppProject/build/FubarBMTEJBClientJ2SE.jar"/>
+		</copy>
+		<delete file="${server.project.dir}/build/${server.ear}"/>
+		<jar jarfile="${server.project.dir}/build/${server.ear}"
+			basedir="${server.project.dir}/build/${server.stage.dir}">
+			<manifest>
+				<attribute name="Weblogic-Application-Version" value="${ear.version}"/>
+			</manifest>
+	    </jar>
+	</target>
+	
+	<target name="client" depends="server" >
+		<delete dir="${server.project.dir}/build/${client.src.dir}"/>
+		<mkdir dir="${server.project.dir}/build/${client.src.dir}"/>
+		<path id="clientgen.class.path">
+			<pathelement path="${classpath}"/>
+		</path>
+		<clientgen
+			wsdl="jar:file:${server.project.dir}/build/${server.stage.dir}/${server.war}!/WEB-INF/${jws.name}.wsdl"
+			destDir="${server.project.dir}/build/${client.src.dir}"
+			classpathref="clientgen.class.path"
+			packageName="${client.package}" />
+		<delete dir="${server.project.dir}/build/${client.bin.dir}"/>
+		<mkdir dir="${server.project.dir}/build/${client.bin.dir}"/>
+		<javac srcdir="${server.project.dir}/build/${client.src.dir}"
+			destdir="${server.project.dir}/build/${client.bin.dir}">
+			<classpath>
+				<pathelement path="${classpath}"/>
+				<pathelement location="${beahomedir}/server/lib/weblogic.jar"/>
+    		</classpath>
+		</javac>
+		<copy todir="${server.project.dir}/build/${client.bin.dir}">
+			<fileset dir="${server.project.dir}/build/${client.src.dir}" includes="**/*.xml"/>
+			<fileset dir="${server.project.dir}/build/${client.src.dir}" includes="**/*.wsdl"/>
+		</copy>
+		<delete file="${server.project.dir}/build/${client.jar}"/>
+		<jar jarfile="${server.project.dir}/build/${client.jar}"
+			basedir="${server.project.dir}/build/${client.bin.dir}">
+	    </jar>
+	</target>
+
+</project>
+

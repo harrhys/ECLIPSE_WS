@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.4">
+  <description>FubarQueueMDBApp description goes here</description>
+  <display-name>FubarQueueMDBApp</display-name>
+  <module>
+    <ejb>FubarQueueMDB</ejb>
+  </module>
+</application>

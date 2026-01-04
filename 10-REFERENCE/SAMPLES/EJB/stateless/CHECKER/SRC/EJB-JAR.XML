@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="Cp1252"?>
+<!DOCTYPE ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN' 'http://java.sun.com/dtd/ejb-jar_2_0.dtd'>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<ejb-jar>
+  <display-name>CheckerJAR</display-name>
+  <enterprise-beans>
+    <session>
+      <display-name>CheckerBean</display-name>
+      <ejb-name>CheckerBean</ejb-name>
+      <home>samples.ejb.stateless.checker.ejb.CheckerHome</home>
+      <remote>samples.ejb.stateless.checker.ejb.Checker</remote>
+      <ejb-class>samples.ejb.stateless.checker.ejb.CheckerBean</ejb-class>
+      <session-type>Stateful</session-type>
+      <transaction-type>Container</transaction-type>
+      <env-entry>
+        <env-entry-name>Discount Level</env-entry-name>
+        <env-entry-type>java.lang.Double</env-entry-type>
+        <env-entry-value>1000.00</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>Discount Percent</env-entry-name>
+        <env-entry-type>java.lang.Double</env-entry-type>
+        <env-entry-value>.05</env-entry-value>
+      </env-entry>
+      <security-identity>
+        <description></description>
+        <use-caller-identity></use-caller-identity>
+      </security-identity>
+    </session>
+  </enterprise-beans>
+  <assembly-descriptor>
+    <container-transaction>
+      <method>
+        <ejb-name>CheckerBean</ejb-name>
+        <method-intf>Remote</method-intf>
+        <method-name>applyDiscount</method-name>
+        <method-params>
+          <method-param>double</method-param>
+        </method-params>
+      </method>
+      <trans-attribute>Required</trans-attribute>
+    </container-transaction>
+  </assembly-descriptor>
+</ejb-jar>
+

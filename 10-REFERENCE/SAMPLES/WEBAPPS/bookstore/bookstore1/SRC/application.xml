@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE application PUBLIC '-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN' 'http://java.sun.com/dtd/application_1_3.dtd'>
+
+<application>
+  <display-name>Bookstore1App</display-name>
+  <description>Application description</description>
+  <module>
+    <web>
+      <web-uri>bookstore1.war</web-uri>
+      <context-root>bookstore1</context-root>
+    </web>
+  </module>
+</application>
+

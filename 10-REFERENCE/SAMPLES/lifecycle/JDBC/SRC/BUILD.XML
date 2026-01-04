@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--  Copyright 2002 Sun Microsystems, Inc. All rights reserved.-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="lifecycle-jdbc" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="lifecycle-jdbc"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/lifecycle/jdbc"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="lifecycle-jdbc"/>
+  <property name="javadoc.pkgnames" value="samples.lifecycle.jdbc.*" />
+
+  <!-- ======================================================= -->
+  <!--			Deployment specific properties .       -->
+  <!-- ======================================================= -->
+  
+  <property name="deploy.file" value="samples.lifecycle.jdbc.LCLWithResourceAccess"/>
+
+  <!-- ======================================================= -->
+  <!--                  Pointbase properties .                                         -->
+  <!-- ======================================================= -->
+   <property name="db.user" value="lifecycle"/>
+   <property name="db.pwd" value="lifecycle"/>
+   <property name="db.file" value="sql/lifecycle-jdbc.sql"/>
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+
+
+  <!-- ======================================================= -->
+  <!--          Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+  <target name="create-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-connection-pool
+       --datasourceclassname com.pointbase.jdbc.jdbcDataSource
+       jdbc-lifecyclePool --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-connection-pool
+      jdbc-lifecyclePool --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="set-DatabaseName">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.jdbc-lifecyclePool.property.DatabaseName=jdbc:pointbase:server://localhost/sun-appserv-samples" />
+    </antcall>
+  </target>
+
+  <target name="set-User">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.jdbc-lifecyclePool.property.User=lifecycle" />
+    </antcall>
+  </target>
+
+  <target name="set-Password">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.jdbc-lifecyclePool.property.Password=lifecycle"/>
+    </antcall>
+  </target>
+
+  <target name="create-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-resource
+       --connectionpoolid jdbc-lifecyclePool
+       jdbc/lifecycle-jdbc --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-resource
+       jdbc/lifecycle-jdbc --instance ${sunone.instance}" />
+    </antcall>
+    </target>
+
+
+  <target name="reconfig">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="reconfig
+        ${sunone.instance}" />
+    </antcall>
+  </target>
+
+
+
+  <target name= "deploy_jdbc_resource" depends = "
+     create-jdbc-connection-pool, set-DatabaseName, set-User, set-Password, create-jdbc-resource,
+         reconfig"/>
+
+  
+
+  <target name= "undeploy_jdbc_resource" depends = "delete-jdbc-resource,delete-jdbc-connection-pool,
+     reconfig" />
+
+  
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="sql" depends="sql_common"/>
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common"/>
+  <target name="javadocs" depends="javadocs_common"/>
+  <target name="jar" depends="init, create_jar_common"/>
+  <target name="core" depends="compile, jar" />
+  <target name="deploy" depends="init, deploy_jdbc_resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-lifecycle-module --classname ${deploy.file} --classpath ${basedir}/../${jar} ${appname}" />
+    </antcall>
+    <antcall target="reconfig_common">
+    </antcall>
+  </target>
+  <target name="undeploy" depends="init, undeploy_jdbc_resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-lifecycle-module ${appname}" />
+    </antcall>
+    <antcall target="reconfig_common">
+    </antcall>
+  </target>
+  <target name="all" depends="core,javadocs,deploy"/>
+
+</project>

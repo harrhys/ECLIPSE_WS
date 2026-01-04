@@ -1,0 +1,146 @@
+<?xml version="1.0"?>
+
+<!--
+ Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ 
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions
+ are met:
+ 
+ - Redistributions of source code must retain the above copyright
+   notice, this list of conditions and the following disclaimer.
+ 
+ - Redistribution in binary form must reproduce the above copyright
+   notice, this list of conditions and the following disclaimer in
+   the documentation and/or other materials provided with the
+   distribution.
+ 
+ Neither the name of Sun Microsystems, Inc. or the names of
+ contributors may be used to endorse or promote products derived
+ from this software without specific prior written permission.
+ 
+ This software is provided "AS IS," without a warranty of any
+ kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY DAMAGES
+ SUFFERED BY LICENSEE AS A RESULT OF USING, MODIFYING OR
+ DISTRIBUTING THE SOFTWARE OR ITS DERIVATIVES. IN NO EVENT WILL SUN
+ OR ITS LICENSORS BE LIABLE FOR ANY LOST REVENUE, PROFIT OR DATA, OR
+ FOR DIRECT, INDIRECT, SPECIAL, CONSEQUENTIAL, INCIDENTAL OR
+ PUNITIVE DAMAGES, HOWEVER CAUSED AND REGARDLESS OF THE THEORY OF
+ LIABILITY, ARISING OUT OF THE USE OF OR INABILITY TO USE SOFTWARE,
+ EVEN IF SUN HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ 
+ You acknowledge that Software is not designed, licensed or intended
+ for use in the design, construction, operation or maintenance of
+ any nuclear facility.
+-->
+
+
+<!-- =================================================================== -->
+<!-- $Id: build.xml,v 1.1.2.6 2002/08/01 03:51:50 bhate Exp $               -->
+<!-- =================================================================== -->
+
+<project name="catalog" default="core" basedir=".">
+
+  <target name="init">
+    <!-- include top-level common properties -->
+    <property file="../../../build.properties"/>
+    
+    <property name="sunone.cpath" value="${com.sun.aas.installRoot}/lib/appserv-ext.jar"/>
+
+    <!-- The root directory of the workspace -->
+    <property name="catalog.home" value=".."/>
+
+    <!-- The destination directory for the build -->
+    <property name="catalog.build" value="${catalog.home}/build"/>
+
+    <property name="catalog.src" value="${catalog.home}/src"/>
+
+    <!-- The destination directory for all the compiled classes. -->
+    <property name="catalog.classbindir" value="${catalog.build}/classes"/>
+
+    <!-- The destination directory for all the javadocs. -->
+    <property name="catalog.javadocs.dir" value="${catalog.build}/docs/api"/>
+
+    <!-- The tracer util home directory of the workspace -->
+    <property name="catalog.util.home" value="../../util"/>
+    <property name="catalog.tracer.home" value="${catalog.util.home}/tracer"/>
+    <property name="catalog.tracer.client" value="${catalog.tracer.home}/build/tracer.jar"/>
+
+    <!-- The classpath used for building the workspace. -->
+    <property name="catalog.classpath" value="${catalog.tracer.client}:${catalog.classbindir}:${sunone.cpath}"/>
+
+    <property name="catalog.ejbjar" value="${catalog.build}/catalog-ejb.jar"/>
+    <property name="catalog.ejbclientjar" value="${catalog.build}/catalog-ejb-client.jar"/>
+  </target>
+
+  <target name="compile" depends="init">
+    <mkdir dir="${catalog.classbindir}"/>
+    <javac srcdir="${catalog.src}"
+           destdir="${catalog.classbindir}"
+	   classpath="${catalog.classpath}"
+	   includes="com/**" />
+  </target> 
+
+  <target name="ejbjar" depends="init, compile">
+    <property name="catalog.buildjardir" value="${catalog.home}/build/ejbjar"/>
+    <mkdir dir="${catalog.buildjardir}/META-INF"/>
+    <copy todir="${catalog.buildjardir}" >
+     <fileset dir="${catalog.classbindir}"/>
+    </copy>
+    <copy file="ejb-jar.xml" tofile="${catalog.buildjardir}/META-INF/ejb-jar.xml" />
+    <copy file="sun-ejb-jar.xml" tofile="${catalog.buildjardir}/META-INF/sun-ejb-jar.xml" />
+    <delete file="${catalog.ejbjar}"/>
+    <jar jarfile="${catalog.ejbjar}" basedir="${catalog.buildjardir}" manifest="ejb-jar-manifest.mf"/>
+    <delete dir="${catalog.buildjardir}"/>
+  </target>
+
+  <target name="ejbclientjar" depends="init">
+    <property name="catalog.buildjardir" value="${catalog.home}/build/ejbjar"/>
+    <copy todir="${catalog.buildjardir}">
+     <fileset dir="${catalog.classbindir}"/>
+    </copy>
+    <delete file="${catalog.buildjardir}/com/sun/j2ee/blueprints/catalog/ejb/CatalogEJB.class"/>
+    <delete file="${catalog.ejbclientjar}"/>
+    <jar jarfile="${catalog.ejbclientjar}" basedir="${catalog.buildjardir}"/>
+    <delete dir="${catalog.buildjardir}"/>
+  </target>
+
+  <target name="clean" depends="init">
+    <delete dir="${catalog.build}"/>
+    <ant dir="${catalog.tracer.home}/src" target="clean"/>
+  </target>
+
+  <target name="components" depends="init">
+    <ant dir="${catalog.tracer.home}/src" target="core"/>
+  </target>
+
+  <target name="javadocs" depends="init, core">
+    <mkdir dir="${catalog.javadocs.dir}"/>    
+    <javadoc packagenames="com.sun.j2ee.blueprints.*"
+             destdir="${catalog.javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="Catalog Component API"
+             doctitle="Catalog Component"
+             bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath path="${catalog.classpath}"/>
+      <sourcepath>
+        <pathelement path="${catalog.tracer.home}/src"/>
+        <pathelement path="${catalog.src}"/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="banner">
+      <echo>+---------------------------------------+</echo>
+      <echo>+    Building Catalog Component         +</echo>
+      <echo>+---------------------------------------+</echo>
+  </target>
+
+  <target name="core" depends="components, banner, compile, ejbjar, ejbclientjar" />
+  <target name="all" depends="core, javadocs" />
+
+</project>
+

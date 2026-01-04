@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!--
+   Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="blob" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../"/>
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="jdbc-blob"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="war.pkg" value="samples/jdbc/blob"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="jdbc-blob"/>
+  <property name="javadoc.pkgnames" value="samples.jdbc.blob.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="warDD" value="web.xml,sun-web.xml"/>
+
+  <!-- ======================================================= -->
+  <!--			Pointbase properties .					       -->
+  <!-- ======================================================= -->
+   <property name="db.user" value="jdbc"/> 
+   <property name="db.pwd" value="jdbc"/> 
+   <property name="db.file" value="sql/blob.sql"/> 
+ 
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+
+ 
+  &include;
+  
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+  <target name="create-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-connection-pool 
+       --datasourceclassname com.pointbase.jdbc.jdbcDataSource 
+       jdbc-blobPool --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-connection-pool 
+      jdbc-blobPool --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="set-DatabaseName">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.jdbc-blobPool.property.DatabaseName=jdbc:pointbase:server://localhost/sun-appserv-samples" />  
+    </antcall>
+  </target>
+
+  <target name="set-User">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.jdbc-blobPool.property.User=jdbc" />  
+    </antcall>
+  </target>
+
+  <target name="set-Password">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.jdbc-blobPool.property.Password=jdbc" />  
+    </antcall>
+  </target>
+
+  <target name="create-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-resource
+       --connectionpoolid jdbc-blobPool 
+       jdbc/jdbc-blob --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-resource
+       jdbc/jdbc-blob --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="reconfig" depends="reconfig_common"/>
+
+  <target name= "deploy_jdbc_resource" depends = "
+     create-jdbc-connection-pool, set-DatabaseName, set-User, set-Password, create-jdbc-resource,
+	 reconfig"/>
+
+  <target name= "undeploy_jdbc_resource" depends = "delete-jdbc-resource,delete-jdbc-connection-pool,
+     reconfig" />
+
+  <target name="sql" depends="sql_common"/>
+  <target name="sql_bin">
+  	<antcall target="sql_common">
+	   <param name="db.file" value="sql/bin.sql"/>
+	</antcall>
+  </target>
+
+  <target name="compile" depends="compile_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="javadocs" depends="javadocs_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="clean" depends="clean_common"/>
+  <target name="war" depends="init,create_war_common"/>
+  <target name="ear" depends="init,war,create_ear_common"/>
+  <target name="core" depends="compile,war, ear" />
+  <target name="deploy" depends="init, deploy_jdbc_resource, deploy_common"/>
+  <target name="all" depends="core,javadocs,verify, deploy"/>
+  <target name="undeploy" depends="init, undeploy_jdbc_resource, undeploy_common"/>
+
+
+
+</project>

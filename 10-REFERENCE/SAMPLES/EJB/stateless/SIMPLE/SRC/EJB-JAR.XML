@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 1.1//EN' 'http://java.sun.com/j2ee/dtds/ejb-jar_1_1.dtd'>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<ejb-jar>
+  <enterprise-beans>
+    <session>
+      <display-name>TheGreeter</display-name>
+      <ejb-name>TheGreeter</ejb-name>
+      <home>samples.ejb.stateless.simple.ejb.GreeterHome</home>
+      <remote>samples.ejb.stateless.simple.ejb.Greeter</remote>
+      <ejb-class>samples.ejb.stateless.simple.ejb.GreeterEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+    </session>
+  </enterprise-beans>
+</ejb-jar>
+

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="saaj-simple" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../../"/>
+
+  <!-- ======================================================= -->
+  <!--                   App name-dependent settings.          -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="saaj-simple"/>
+
+
+  <!-- ======================================================= -->
+  <!--       Package directory structures of interest.         -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/webservices/jaxm/saaj"/>
+  <property name="war.pkg" value="samples/webservices/jaxm/saaj"/>
+ 
+  <!-- ======================================================= -->
+  <!--          property need to build war deployment.         -->
+  <!-- ======================================================= -->
+
+  <property name="apptype"      value="web"/>
+  <property name="verify.file"  value="../${appname}.war"/>
+  <property name="deploy.file"  value="../${appname}.war"/>
+
+  <!-- ======================================================= -->
+  <!--                  Java Doc properties .                  -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="JAXM SAAJ Simple Sample"/>
+  <property name="javadoc.pkgnames" value="samples.webservices.jaxm.saaj.*" />
+
+  <!-- ======================================================= -->
+  <!--                  Xml files properties .                 -->
+  <!-- ======================================================= -->
+  
+  <property name="warDD" value="web.xml,sun-web.xml"/>
+ 
+  <!-- ======================================================= -->
+  <!--                          Include common.xml             -->
+  <!-- ======================================================= -->
+ 
+  &include;
+  
+  <!-- ======================================================= -->
+  <!--      Targets to build and deploy sample application     -->
+  <!-- ======================================================= -->
+  
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common"/>
+  <target name="javadocs" depends="javadocs_common"/>
+  <target name="war" depends="init,create_war_common"/>
+  <target name="sql" depends="sql_common"/>
+  <target name="core" depends="compile,war" />
+  <target name="deploy" depends="deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+</project>

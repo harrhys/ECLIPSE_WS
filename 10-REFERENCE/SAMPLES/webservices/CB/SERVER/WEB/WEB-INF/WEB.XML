@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN' 'http://java.sun.com/dtd/web-app_2_3.dtd'>
+
+<web-app>
+  <display-name>server</display-name>
+  <context-param>
+      <param-name>javax.servlet.jsp.jstl.fmt.localizationContext</param-name>
+      <param-value>com.sun.cb.messages.CBMessages</param-value>
+  </context-param>	
+  <servlet>
+    <servlet-name>Dispatcher</servlet-name>
+    <display-name>Dispatcher</display-name>
+    <servlet-class>com.sun.cb.Dispatcher</servlet-class>
+  </servlet>
+  <servlet>
+    <servlet-name>RetailPriceListServlet</servlet-name>
+    <display-name>RetailPriceListServlet</display-name>
+    <servlet-class>com.sun.cb.RetailPriceListServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Dispatcher</servlet-name>
+    <url-pattern>/orderForm</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Dispatcher</servlet-name>
+    <url-pattern>/checkoutForm</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>Dispatcher</servlet-name>
+    <url-pattern>/checkoutAck</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>RetailPriceListServlet</servlet-name>
+    <url-pattern>/loadPriceList</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
+  <taglib>
+    <taglib-uri>/tutorial-template</taglib-uri>
+    <taglib-location>/WEB-INF/tutorial-template.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>/jstl-fmt</taglib-uri>
+    <taglib-location>/WEB-INF/fmt.tld</taglib-location>
+  </taglib>
+  <taglib>
+    <taglib-uri>/jstl-c</taglib-uri>
+    <taglib-location>/WEB-INF/c.tld</taglib-location>
+  </taglib>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>WRCollection</web-resource-name>
+      <url-pattern>/loadpricelist</url-pattern>
+      <http-method>GET</http-method>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>admin</role-name>
+    </auth-constraint>
+    <user-data-constraint>
+      <transport-guarantee>NONE</transport-guarantee>
+    </user-data-constraint>
+  </security-constraint>
+  <login-config>
+    <auth-method>BASIC</auth-method>
+    <realm-name></realm-name>
+  </login-config>
+  <security-role>
+    <role-name>admin</role-name>
+  </security-role>
+</web-app>
+

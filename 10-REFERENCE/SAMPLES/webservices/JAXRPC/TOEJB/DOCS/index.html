@@ -1,0 +1,662 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/11/02 15:00:16">
+	<title> JAX-RPC toejb Application:  JAX-RPC toejb Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+             JAX-RPC toejb Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="8063"> </A>
+<A NAME="JAX-RPC toejb Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+JAX-RPC toejb Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15015"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the JAX-RPC toejb sample application in conjunction with the Sun ONE Application Server version 7. 
+</FONT>
+<P>
+
+<A NAME="14783"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections: 
+</FONT>
+<P>
+<ul>
+<A NAME="14785"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14793"  >Overview</A>
+</FONT>
+<P><A NAME="14786"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15800"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="14787"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15802"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="14788"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14937"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="14789"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14948"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14793"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14795"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this example, a stand-alone JAX-RPC client makes a remote call on a JAX-RPC service. The service locates a stateless session bean and invokes a method on the bean.
+</FONT>
+<P>
+
+<A NAME="14798"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can find source code for the sample application under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/toejb/src/samples/webservices/jaxrpc/toejb</FONT>
+</FONT>
+<P>
+
+<A NAME="15155"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">At runtime, the JAX-RPC client HelloClient makes a remote call to the sayHello method of the JAX-RPC Web service:
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="14803"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">System.out.println</FONT>(stub.sayHello("Buzz!"));
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="14805"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Next, the sayHello method of the HelloImpl class invokes the sayHey method of GreetingEJB:
+</FONT>
+<P>
+<dl>  <dl>
+     <DT> <A NAME="15710"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">public String sayHello(String name) {</FONT>
+</FONT>
+<P>     <DT> <A NAME="14808"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;String result = null;</FONT>
+</FONT>
+<P>     <DT> <A NAME="14809"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;try {</FONT>
+</FONT>
+<P>     <DT> <A NAME="14810"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Context initial = new InitialContext();</FONT>
+</FONT>
+<P>     <DT> <A NAME="14811"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Context myEnv =</FONT>
+</FONT>
+<P>     <DT> <A NAME="14812"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(Context)initial.lookup("java:comp/env");</FONT>
+</FONT>
+<P>     <DT> <A NAME="14813"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object objref = myEnv.lookup("ejb/SimpleGreeting");</FONT>
+</FONT>
+<P>     <DT> <A NAME="14814"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GreetingHome home =</FONT>
+</FONT>
+<P>     <DT> <A NAME="14815"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(GreetingHome)PortableRemoteObject.narrow</FONT>
+</FONT>
+<P>     <DT> <A NAME="14816"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(objref, GreetingHome.class);</FONT>
+</FONT>
+<P>     <DT> <A NAME="15210"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Greeting salutation = home.create();</FONT>
+</FONT>
+<P>     <DT> <A NAME="15211"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result = salutation.sayHey(name);</FONT>
+</FONT>
+<P>     <DT> <A NAME="15212"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;} catch (Exception ex) {</FONT>
+</FONT>
+<P>     <DT> <A NAME="15258"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;System.out.println("Exception in sayHello: " + ex.getMessage());</FONT>
+</FONT>
+<P>     <DT> <A NAME="15259"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;}</FONT>
+</FONT>
+<P>     <DT> <A NAME="15273"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">&nbsp;&nbsp;&nbsp;return result;</FONT>
+</FONT>
+<P>     <DT> <A NAME="15274"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">}</FONT>
+</FONT>
+<P>  </dl>
+</dl>
+<A NAME="14825"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To read more about invoking methods on EJBs using JAX-RPC, go to <A HREF="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXRPC7.html"><FONT FACE="courier, couriernew, monospaced size">http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXRPC7.html<A HREF=""></FONT>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15800"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15809"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To recompile, assemble, and deploy the application, see the <A HREF="../../../../docs/ant.html">Sample Application Build Facility</A> document for details on using a build facility to quickly perform these tasks.
+</FONT>
+<P>
+
+<A NAME="15811"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For example, to rebuild the entire application from scratch, perform the following steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15812"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble the J2EE Application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15813"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>command under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/toejb/src</FONT>
+</FONT>
+<P>     <DT> <A NAME="15814"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core is executed to rebuild the<FONT FACE="courier, couriernew, monospaced size"> .jar, </FONT><FONT FACE="courier, couriernew, monospaced size"> .war </FONT>and<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>files.
+</FONT>
+<P>  </dl>
+<A NAME="15815"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the Application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15818"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+After you have re-created the sample application from scratch, proceed to <A HREF="index.html#15802"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="15820"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the application project area.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15821"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant clean </FONT>command to clean the application area.
+</FONT>
+<P>  </dl>
+<A NAME="15822"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Undeploy the Application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15806"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant undeploy </FONT>command to undeploy the application.
+</FONT>
+<P>  </dl>
+<A NAME="15823"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Building Javadocs.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15808"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant javadocs </FONT>command to create java
+docs. 
+</FONT>
+<P>     <DT> <A NAME="15667"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Javadocs are created under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/webservices/jaxrpc/toejb/javadocs.</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="15802"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15837"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Pre-built <FONT FACE="courier, couriernew, monospaced size">jaxrpc-toejb.ear</FONT> and<FONT FACE="courier, couriernew, monospaced size"> GreetingApp.ear </FONT>files are supplied with the application server installation. The pre-built <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> files are the Enterprise Archive (<FONT FACE="courier, couriernew, monospaced size">.ear</FONT>) files of the application that contain<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>and <FONT FACE="courier, couriernew, monospaced size">ejb-jar</FONT> files. Within the<FONT FACE="courier, couriernew, monospaced size"> .war</FONT> and <FONT FACE="courier, couriernew, monospaced size">ejb-jar</FONT> files reside the XML deployment descriptor files, application class files, and other content required by the application. You can use the pre-built <FONT FACE="courier, couriernew, monospaced size">.ear </FONT>files to deploy the application. If you want to compile and assemble the application from scratch, follow the instructions in <A HREF="index.html#15800"  >Compiling and Assembling the Application</A>.
+</FONT>
+<P>
+
+<A NAME="15878"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy, the application administrative server needs to be running.
+</FONT>
+<P>
+
+<A NAME="15842"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To start the administrative server if it is not already started:
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="15843"> </A>
+<A NAME="For UNIX"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+For UNIX
+</B>
+</FONT>
+<BR>
+
+<A NAME="15844"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/domains/domain1/admin-server/startserv</FONT>
+</FONT>
+<P>
+<BR>
+<P>
+<A NAME="15845"> </A>
+<A NAME="For Windows"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+For Windows
+</B>
+</FONT>
+<BR>
+
+<A NAME="15846"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Start-&gt;Programs-&gt;Sun ONE Application Server 7-&gt;Start Application Server
+</FONT>
+<P>
+
+<A NAME="15847"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploy the application:
+</FONT>
+<P>
+<ul>
+<A NAME="15851"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15835"  >Command Line-Based Deployment</A> describes how to manually register the application using a Command Line Interface (CLI).
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15852"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This is the quickest means of deploying the application.
+</FONT>
+<P>  </dl>
+<A NAME="15908"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Web-Based Deployment describes how to use the web-based administration tool to deploy the sample application.
+</FONT>
+<P></ul>
+<P>
+<BR>
+<A NAME="15835"> </A>
+<A NAME="Command Line-Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Command Line-Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="15915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">While Command Line Interface is the quickest means of deploying the application, if you want to experience deploying through a GUI tool, follow the instructions under the <A HREF="index.html#16019"  >Web-Based Deployment</A> section.
+</FONT>
+<P>
+
+<A NAME="15919"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">CLI deployment of the application can be performed using either the<FONT FACE="courier, couriernew, monospaced size"> asant </FONT>script or the<FONT FACE="courier, couriernew, monospaced size"> asadmin </FONT>command.
+</FONT>
+<P>
+
+<A NAME="15920"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process includes deploying the application<FONT FACE="courier, couriernew, monospaced size"> .war </FONT>file to the Sun ONE application server.
+</FONT>
+<P>
+
+<A NAME="15921"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploy the application using the asant command:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15922"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/toejb/src </FONT>
+</FONT>
+<P><A NAME="15923"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant deploy </FONT>command.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15924"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+It is an interactive command that might prompt you to provide the admin-server host, admin-server port, admin user name, admin password, and appserv instance.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="15925"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Deploy the application file using asadmin command:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15926"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/toejb</FONT>
+</FONT>
+<P><A NAME="15927"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt; jaxrpc-toejb.ear</FONT> command.
+</FONT>
+<P><A NAME="16000"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt; GreetingApp.ear</FONT> command.
+</FONT>
+<P></ol>
+
+<A NAME="15928"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations:
+</FONT>
+<P>
+<ul>
+<A NAME="16129"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+It authenticates against the local application server's administrative server.
+</FONT>
+<P><A NAME="16130"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file is transferred to the administrative server.
+</FONT>
+<P><A NAME="16131"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process:
+</FONT>
+<P>  <ul>
+<A NAME="15932"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the<FONT FACE="courier, couriernew, monospaced size"> .ear </FONT>file.
+</FONT>
+<P><A NAME="15933"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into the repository.
+</FONT>
+<P><A NAME="16016"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application<I> jaxrpc-toejb </I>by updating the<FONT FACE="courier, couriernew, monospaced size"> server.xml </FONT>file.
+</FONT>
+<P>  </ul>
+</ul>
+
+<A NAME="16017"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Now you are ready to run the application (see <A HREF="index.html#14937"  >Running the Sample Application</A>).
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="16019"> </A>
+<A NAME="Web-Based Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Web-Based Deployment
+</FONT>
+<BR>
+<BR>
+
+
+<ol type="1">
+<A NAME="15945"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Log in to the web-based administration tool from the browser.
+</FONT>
+<P><A NAME="15946"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Navigate as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15947"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Application Server Instances --&gt; &lt;server instance&gt; --&gt; Applications --&gt; Enterprise Apps
+</FONT>
+<P>  </dl>
+<A NAME="15948"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Click Deploy.
+</FONT>
+<P><A NAME="15949"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Click Browse to locate the<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-toejb.ear </FONT>file. The file is located under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/toejb/</FONT>.
+</FONT>
+<P><A NAME="15950"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Click OK.
+</FONT>
+<P><A NAME="15951"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Enter<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-toejb </FONT>in the<I> Application Name </I>field.
+</FONT>
+<P><A NAME="15952"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Click OK.
+</FONT>
+<P><A NAME="15953"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Click the<FONT FACE="courier, couriernew, monospaced size"> jaxrpc-toejb </FONT>link to verify that the application is deployed.
+</FONT>
+<P><A NAME="16033"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="9"></B>
+Navigate as follows:
+</FONT>
+<P>  <dl>
+<A NAME="16037"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Application Server Instances --&gt;&lt;server instance&gt;--&gt;Applications--&gt;Enterprise Apps
+</FONT>
+<P>  </dl>
+<A NAME="16038"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="10"></B>
+Click Deploy.
+</FONT>
+<P>  </dl>
+<A NAME="16039"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="11"></B>
+Click Browse to locate the<FONT FACE="courier, couriernew, monospaced size"> GreetingApp.ear </FONT>file. The file is located under &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/toejb/</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="16040"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="12"></B>
+Click OK.
+</FONT>
+<P><A NAME="16041"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="13"></B>
+Enter<FONT FACE="courier, couriernew, monospaced size"> GreetingApp</FONT> in the<I> Application Name </I>field.
+</FONT>
+<P><A NAME="16042"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="14"></B>
+Click OK.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="16043"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click the<FONT FACE="courier, couriernew, monospaced size"> GreetingApp </FONT>link to verify that the application is deployed.
+</FONT>
+<P>  </dl>
+</ol>
+
+<A NAME="15942"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Now you are ready to run the application (see <A HREF="index.html#14937"  >Running the Sample Application</A>).
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14937"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="15977"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Perform the following steps to run the sample application:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="15978"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+&gt;<FONT FACE="courier, couriernew, monospaced size">cd </FONT>&lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/toejb/src</FONT>
+</FONT>
+<P><A NAME="15979"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the<FONT FACE="courier, couriernew, monospaced size"> asant run </FONT>command.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="15980"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The program should display the following line:
+</FONT>
+<P>     <DT> <A NAME="15975"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<I>Hey Buzz!</I>
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="14948"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<A NAME="14952"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you see a Connection refused error, when you do asant run, make certain that <I>soap:address location</I> in &lt;<I>install_dir</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/samples/webservices/jaxrpc/toejb/src/HelloWorld.wsdl</FONT> is set to <FONT FACE="courier, couriernew, monospaced size">http://</FONT>&lt;<I>hostname</I>&gt;<FONT FACE="courier, couriernew, monospaced size">:</FONT>&lt;<I>instance-port</I>&gt;<FONT FACE="courier, couriernew, monospaced size">/jaxrpc-toejb/toejb</FONT>. Please modify the file and execute <FONT FACE="courier, couriernew, monospaced size">asant core</FONT> before running the sample again.
+</FONT>
+
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 11, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

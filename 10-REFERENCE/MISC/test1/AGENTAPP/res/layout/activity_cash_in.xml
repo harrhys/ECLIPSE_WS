@@ -1,0 +1,84 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+		<TextView
+	        android:layout_width="match_parent"
+	        android:layout_height="@dimen/title_size"
+	        android:text="@string/title_cash_in"
+	        android:layout_marginBottom="20dp" 
+	        style="@style/TitleLabel"/>
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal">
+				<TextView 
+			       android:layout_width="wrap_content"
+			       android:layout_height="wrap_content"
+			       android:text="@string/registration_fees_text"
+			       android:textSize="18sp"
+			       android:width="200dp"
+			       android:layout_marginLeft="@dimen/padding_left"
+			       android:layout_marginRight="@dimen/padding_right" />
+			    
+			    <TextView 
+			       android:id="@+id/registration_fees_text_view_cash_in"
+			       android:layout_width="wrap_content"
+			       android:layout_height="wrap_content"
+			       android:text="@string/amount_text"
+			       android:textSize="18sp"
+			       android:layout_marginLeft="@dimen/padding_left"
+			       android:layout_marginRight="@dimen/padding_right" />
+		</LinearLayout>
+		<LinearLayout 
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal">
+				<TextView 
+			       android:layout_width="wrap_content"
+			       android:layout_height="wrap_content"
+			       android:text="@string/product"
+			       android:textSize="18sp"
+			       android:width="200dp"
+			       android:layout_marginLeft="@dimen/padding_left"
+			       android:layout_marginRight="@dimen/padding_right" />
+			    
+			    <TextView 
+			       android:id="@+id/product_text_view_cash_in"
+			       android:layout_width="wrap_content"
+			       android:layout_height="wrap_content"
+			       android:text="@string/amount_text"
+			       android:textSize="18sp"
+			       android:layout_marginLeft="@dimen/padding_left"
+			       android:layout_marginRight="@dimen/padding_right" />
+		</LinearLayout>
+	    <TextView 
+	       android:layout_width="match_parent"
+	       android:layout_height="wrap_content"
+	       android:text="@string/cash_in_amount_text"
+		   android:textSize="18sp"
+	       android:layout_marginTop="@dimen/padding_top"
+	       android:layout_marginLeft="@dimen/padding_left"
+	       android:layout_marginRight="@dimen/padding_right" />
+	    
+	    <EditText 
+	       android:id="@+id/amount_edit_text_cash_in"
+	       android:layout_width="match_parent"
+	       android:layout_height="40dp"
+	       android:hint="@string/enter_cash_in_amount" 
+	       android:layout_marginBottom="@dimen/padding_bottom"
+	       android:layout_marginLeft="@dimen/padding_left"
+	       android:layout_marginRight="@dimen/padding_right"
+	       android:inputType="numberDecimal"
+	       android:selectAllOnFocus="true"/>
+		
+	    <Button 
+		        android:id="@+id/submit_button_cash_in"
+		        android:layout_width="100dp"
+		        android:layout_height="50dp"
+		        android:text="@string/next" 
+		        android:layout_gravity="center"
+		        android:background="@drawable/submit_buttons"/>
+</LinearLayout>

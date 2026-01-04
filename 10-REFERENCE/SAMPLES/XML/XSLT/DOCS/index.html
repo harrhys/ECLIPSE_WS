@@ -1,0 +1,619 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+   <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+   <meta name="LastUpdated" content="07/12/02 13:52:30">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en]C-AOLNSCP  (Windows NT 5.0; U) [Netscape]">
+   <title>XML DOM Sample Application:  XML DOM Sample Application</title>
+</head>
+<body text="#000000" bgcolor="#FFFFFF" link="#594FBF" vlink="#1005FB" alink="#333366">
+<MAINCONTENT><NAVIGATIONCONTENT>
+<table BORDER=0 CELLSPACING=4 WIDTH="100%" >
+<tr>
+<td VALIGN=TOP><a href="http://wwws.sun.com/software"><img SRC="../../../docs/images/SunONE.jpg" ALT="Sun ONE logo" BORDER=0 valign="BOTTOM" height=40 width=120></a></td>
+</tr>
+
+<tr>
+<td ALIGN=RIGHT VALIGN=TOP BGCOLOR="#594FBF"><b><font face="Helvetica, Arial, sans-serif"><font color="#FFFFFF"><font size=-1>XML
+XSLT Sample Application</font></font></font></b></td>
+</tr>
+</table>
+
+<p></NAVIGATIONCONTENT><BOOKCONTENT>
+<blockquote>&nbsp;
+<p><a NAME="15913"></a><a NAME="XML DOM Sample Application"></a><b><font face="Helvetica, Arial, Sans-Serif"><font color="#000000"><font size=+1>XML
+XSLT Sample Application</font></font></font></b>
+<br>&nbsp;
+<p><a NAME="15115"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+document describes how to utilize the XML XSLT sample applications in conjunction
+with Sun ONE Application Server version 7.</font></font>
+<p><a NAME="15119"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>This
+sample application document contains the following sections:</font></font>
+<ul><a NAME="15123"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#14805">Overview</a></font></font></li>
+
+<br><a NAME="15153"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#14862">Compiling
+and Assembling the Application</a></font></font></li>
+
+<br><a NAME="15158"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#20001">Running
+the Sample Application</a></font></font></li>
+
+<br><a NAME="15139"></a>
+<li>
+<font face="Helvetica, Arial, sans-serif"><font size=-1><a href="index.html#20774">Troubleshooting</a></font></font></li>
+</ul>
+
+<p><br><a NAME="14805"></a><a NAME="Overview"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Overview</font></font>
+<hr SIZE="2" NOSHADE>
+<br><a NAME="19851"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>In
+this section, the XML XSLT sample applications are described.</font></font>
+<p><a NAME="20449"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>The
+XML Stylesheet Language for Transformations (XSLT) defines mechanisms for
+addressing XML data (XPath) and for specifying transformations on the data,
+in order to convert it into other forms. JAXP includes two implementations
+of XSLT, an interpreting version (Xalan) and a compiling version (XSLTC)
+that lets you save pre-compiled versions of desired transformations as
+translets, for the most efficient runtime processing later on. The following
+is the list of sample programs that will be covered in this document.</font></font>
+<ol type="1">
+<ol>
+<li>
+<a href="#1">Writing Out a DOM as an XML File.</a></li>
+
+<li>
+<a href="#2">Writing Out a Subtree of the DOM as an XML File</a></li>
+
+<li>
+<a href="#3">Generating XML from an Arbitrary Data Structure using Simple
+Parser.</a></li>
+
+<li>
+<a href="#4">Generating XML from an Arbitrary Data Structure Using Parser
+which could Generate SAX Events.</a></li>
+
+<li>
+<a href="#5">Transforming XML Data with XSLT A Basic Program</a></li>
+
+<li>
+<a href="#6">Transforming XML Data with XSLT A Program Trimming the Whitespace</a></li>
+
+<li>
+<a href="#7">Transforming XML Data with XSLT&nbsp; (Removing the newline
+characters and white space after the headings)</a></li>
+
+<li>
+<a href="#8">Transforming XML Data with XSLT&nbsp; (Processing the Remaining
+Structure Elements )</a></li>
+
+<li>
+<a href="#9">Transforming XML Data with XSLT&nbsp; (Process Inline (Content)
+Elements)</a></li>
+
+<li>
+<a href="#10">Transforming from the Command Line (Compiling a Translet)</a></li>
+
+<li>
+<a href="#11">Transforming from the Command Line (Running a Translet)</a></li>
+
+<li>
+<a href="#12">Filter Chain (Concatenation of XSLT transformations)</a></li>
+</ol>
+</ol>
+
+<p><br><a NAME="14862"></a><a NAME="Compiling and Assembling the Application"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Compiling
+and Assembling the Application</font></font>
+<hr SIZE="2" NOSHADE>
+<br><a NAME="20555"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>To
+build the entire application from scratch, follow these steps: .</font></font>
+<ol type="1"><a NAME="19415"></a>
+<li value="1">
+<font size=-1><font face="Helvetica, Arial, sans-serif">Go to</font><font face="courier, couriernew, monospaced size">
+&lt;APPSERV_INSTALL_DIR>/samples/xml/xslt/src</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19371"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+the command </font><font face="courier, couriernew, monospaced size">asant</font></font></dt>
+
+<dt>
+<a NAME="19369"></a><font size=-1><font face="Helvetica, Arial, sans-serif">The
+default target </font><font face="courier, couriernew, monospaced size">core</font><font face="Helvetica, Arial, sans-serif">
+will be executed to compile the application.</font></font></dt>
+</dl>
+<a NAME="14889"></a>
+<li value="2">
+<font face="Helvetica, Arial, sans-serif"><font size=-1>Clean the application
+project area (optional).</font></font></li>
+
+<dl>
+<dt>
+<a NAME="19998"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Execute
+the command </font><font face="courier, couriernew, monospaced size">asant
+clean</font><font face="Helvetica, Arial, sans-serif"> to remove the sample
+application assemble and build directories.</font></font></dt>
+
+<br>&nbsp;</dl>
+</ol>
+<a NAME="20001"></a><a NAME="Running the Sample Application"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Running
+the Sample Application</font></font>
+<hr SIZE="2" NOSHADE>
+<br><a NAME="19752"></a><font face="Helvetica, Arial, sans-serif"><font size=-1>To
+run the sample application, do the following:</font></font>
+<p><a NAME="19975"></a><font size=-1><font face="Helvetica, Arial, sans-serif">Go
+to </font><font face="courier, couriernew, monospaced size">&lt;APPSERV_INSTALL_DIR>/samples/xml/xslt/src
+</font><font face="Helvetica, Arial, sans-serif">and
+execute any one of the following commands.:</font></font>
+<br>&nbsp;
+<p><a NAME="1"></a><b>1.&nbsp; Writing Out a DOM as an XML File.</b>
+<p>Command : <font face="Courier New,Courier">asant run-TransformationApp02</font>
+<p>Output:
+<p><font face="Courier New,Courier">run-TransformationApp02:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.TransformationApp02 data/slideSample01.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;?xml
+version="1.0" encoding="UTF-8"?></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;!--&nbsp;
+A SAMPLE set of slides&nbsp; -->&lt;slideshow title="Sample Slide Show"
+date="Date of publication" author="Yours Truly"></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;!-- TITLE SLIDE --></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;slide type="all"></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;title>Wake up to WonderWidgets!&lt;/title></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/slide></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;!-- OVERVIEW --></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;slide type="all"></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;title>Overview&lt;/title></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;item>Why &lt;em>WonderWidgets&lt;/em> are great&lt;/item></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;item/></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;item>Who &lt;em>buys&lt;/em> WonderWidgets&lt;/item></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/slide></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/slideshow></font>
+<p><a NAME="2"></a><b>2.&nbsp; Writing Out a Subtree of the DOM as an XML
+File</b>
+<p>Command : <font face="Courier New,Courier">asant run-TransformationApp03</font>
+<p>Output :
+<p><font face="Courier New,Courier">run-TransformationApp03:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.TransformationApp03 data/slideSample01.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;?xml
+version="1.0" encoding="UTF-8"?></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;slide
+type="all"></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;title>Wake up to WonderWidgets!&lt;/title></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/slide></font>
+<br>&nbsp;
+<br>&nbsp;
+<p><a NAME="3"></a><b>3.&nbsp; Generating XML from an Arbitrary Data Structure
+using Simple Parser.</b>
+<p>Command : <font face="Courier New,Courier">asant run-AddressBookReader01</font>
+<p>Output:
+<p><font face="Courier New,Courier">run-AddressBookReader01:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.AddressBookReader01 data/PersonalAddressBook.ldif</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] nickname:
+Fred</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] email:
+fred@barneys.house</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] html:
+TRUE</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] firstname:
+Fred</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] lastname:
+Flinstone</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] work:
+999-Quarry</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] home:
+999-BedrockLane</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] fax:
+888-Squawk</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] pager:
+777-pager</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] cell:
+555-cell</font>
+<p><a NAME="4"></a><b>4. Generating XML from an Arbitrary Data Structure
+Using Parser which could Generate SAX Events.</b>
+<p>Command : <font face="Courier New,Courier">asant run-TransformationApp04</font>
+<p>Output:
+<p><font face="Courier New,Courier">run-TransformationApp04:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.TransformationApp04 data/PersonalAddressBook.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;?xml
+version="1.0" encoding="UTF-8"?></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;addressbook></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;nickname>Fred&lt;/nickname></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;email>fred@barneys.house&lt;/email></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;html>TRUE&lt;/html></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;firstname>Fred&lt;/firstname></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;lastname>Flinstone&lt;/lastname></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;work>999-Quarry&lt;/work></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;home>999-BedrockLane&lt;/home></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;fax>888-Squawk&lt;/fax></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;pager>777-pager&lt;/pager></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;cell>555-cell&lt;/cell></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/addressbook></font>
+<br>&nbsp;
+<p><a NAME="5"></a>5.&nbsp; <b>Transforming XML Data with XSLT (Basic Program)</b>
+<p>Command: <font face="Courier New,Courier">asant run-Stylizer-a</font>
+<p>Output :
+<p><font face="Courier New,Courier">run-Stylizer-a:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.Stylizer data/article1a.xsl data/article1.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;html></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1
+align="center">A Sample Article&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1>The
+First Major Section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;
+&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+section will introduce a subsection.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h2>The
+Subsection Heading</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h2></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+is the text of the subsection.</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/html></font>
+<br><font face="Courier New,Courier"></font>&nbsp;
+<p><a NAME="6"></a><b>6. Transforming XML Data with XSLT&nbsp; (Program
+Trimming the Whitespace)</b>
+<p>Command : <font face="Courier New,Courier">asant run-Stylizer-b</font>
+<p>Output:
+<p><font face="Courier New,Courier">run-Stylizer-b:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.Stylizer data/article1b.xsl data/article1.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;html></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1
+align="center">A Sample Article&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1>The
+First Major Section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+section will introduce a subsection.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h2>The
+Subsection Heading</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h2></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+is the text of the subsection.</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/html></font>
+<br>&nbsp;
+<br>&nbsp;
+<p><a NAME="7"></a><b>7.&nbsp;&nbsp; Transforming XML Data with XSLT (Removing
+the newline characters and white space after the headings)</b>
+<p>Command:&nbsp; <font face="Courier New,Courier">asant run-Stylizer-c</font>
+<p>Output:
+<p><font face="Courier New,Courier">run-Stylizer-c:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.Stylizer data/article1c.xsl data/article1.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;html></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1
+align="center">A Sample Article&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1>The
+First Major Section&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+section will introduce a subsection.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h2>The
+Subsection Heading&lt;/h2></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+is the text of the subsection.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/html></font>
+<p><a NAME="8"></a><b>8. Transforming XML Data with XSLT (Processing the
+Remaining Structure Elements )</b>
+<p>Command: <font face="Courier New,Courier">asant run-Stylizer-2</font>
+<p>Output:
+<p><font face="Courier New,Courier">run-Stylizer-2:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.Stylizer data/article2.xsl data/article2.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;html></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1
+align="center">A Sample Article&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1>The
+First Major Section&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+section will introduce a subsection.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h2>The
+Subsection Heading&lt;/h2></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+is the text of the subsection.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1>The
+Second Major Section&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+section adds a LIST and a NOTE.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>Here
+is the LIST:&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;ol></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;li>Pears&lt;/li></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;li>Grapes&lt;/li></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/ol></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>And
+here is the NOTE:&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;blockquote></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;b>Note:&lt;/b></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;br>Don't
+forget to go to the hardware store on your way to the grocery!&lt;/blockquote></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/html></font>
+<p><a NAME="9"></a><b>9. Transforming XML Data with XSLT (Process Inline
+(Content) Elements)</b>
+<p>Command:&nbsp;<font face="Courier New,Courier"> asant run-Stylizer-3</font>
+<p>Output:
+<p><font face="Courier New,Courier">run-Stylizer-3:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.Stylizer data/article3.xsl data/article3.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;html></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1
+align="center">A Sample Article&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1>The
+First Major Section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+section will introduce a subsection.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h2>The
+Subsection Heading</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h2></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+is the text of the subsection.</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1>The
+Second Major Section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>This
+section
+adds a LIST and a NOTE.</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>Here
+is the LIST:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;ol></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;li>Pears&lt;/li></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;li>Grapes&lt;/li></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/ol></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>And
+here is the NOTE:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;blockquote></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;b>Note:&lt;/b></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;br>Don't
+forget to go to the hardware store on your</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+way to the grocery!</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/blockquote></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;h1>The
+&lt;I>Third&lt;/I> Major Section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;p>In
+addition to the inline tag in the heading, this section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+defines the term &lt;i>inline&lt;/i>, which literally means</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"no line break". It also adds a simple link to the main page</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for the Java platform (&lt;a&nbsp; href="http://java.sun.com">http://java.sun.com&lt;/a>),</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+as well as a link to the</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;a href="http://java.sun.com/xml">XML&lt;/a> page.</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/html></font>
+<br>&nbsp;
+<p><a NAME="10"></a><b>10.&nbsp; Transforming from the Command Line (Compile
+a Translet):</b>
+<p>Command:&nbsp; <font face="Courier New,Courier">asant compile-translet</font>
+<p>Output:
+<p><font face="Courier New,Courier">compile-translet:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+org.apache.xalan.xsltc.cmdline.Compile data/article3.xsl</font>
+<br>&nbsp;
+<p><a NAME="11"></a><b>11. Transforming from the Command Line (Running
+a Translet)</b>
+<p>Command:&nbsp; <font face="Courier New,Courier">asant run-translet</font>
+<p>Output:
+<p><font face="Courier New,Courier">run-translet:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+org.apache.xalan.xsltc.cmdline.Transform data/article3.xsl samples.xml.xslt.article3</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;html></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;
+&lt;body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h1 align="center">A Sample Article&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h1>The First Major Section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p>This section will introduce a subsection.&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h2>The Subsection Heading</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h2></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p>This is the text of the subsection.</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h1>The Second Major Section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p>This section adds a LIST and a NOTE.</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p>Here is the LIST:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;ol></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;li>Pears&lt;/li></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;li>Grapes&lt;/li></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/ol></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p>And here is the NOTE:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;blockquote></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;b>Note:&lt;/b>&lt;br>Don't forget to go to the hardware store on your</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+way to the grocery!</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/blockquote></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;h1>The</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;I>Third&lt;/I> Major Section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/h1></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;p>In addition to the inline tag in the heading, this section</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+defines the term</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;i>inline&lt;/i>, which literally means</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+"no line break". It also adds a simple link to the main page</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+for the Java platform (</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;a href="http://java.sun.com">http://java.sun.com&lt;/a>),</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+as well as a link to the</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;a href="http://java.sun.com/xml">XML&lt;/a> page.</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;&nbsp;&nbsp;
+&lt;/p></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java]&nbsp;&nbsp;
+&lt;/body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/html></font>
+<br>&nbsp;
+<p><a NAME="12"></a><b>12.&nbsp; A filter chain -- Output of&nbsp; one
+transformation becomes the input of the next.</b>
+<p>Command:&nbsp; <font face="Courier New,Courier">asant run-FilterChain</font>
+<p>Output :
+<p><font face="Courier New,Courier">run-FilterChain:</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [echo] java
+samples.xml.xslt.FilterChain data/docbookToArticle.xsl data/article1c.xsl
+small-docbook-article.xml</font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;html></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;body>Title
+of my (Docbook) article Title of Section 1. This is a paragraph.&lt;/body></font>
+<br><font face="Courier New,Courier">&nbsp;&nbsp;&nbsp;&nbsp; [java] &lt;/html></font>
+<br>&nbsp;
+<p><a NAME="20774"></a><a NAME="Troubleshooting"></a><font face="Helvetica, Arial, sans-serif"><font size=+1>Troubleshooting</font></font>
+<hr SIZE="2" NOSHADE>
+<ul><a NAME="20414"></a>
+<li>
+<font size=-1><font face="Helvetica, Arial, sans-serif">If you re unable
+to compile the application, check whether you have </font><font face="courier, couriernew, monospaced size">asant</font><font face="Helvetica, Arial, sans-serif">
+in your PATH.</font></font></li>
+
+<br><a NAME="20415"></a>
+<li>
+<font size=-1><font face="Helvetica, Arial, sans-serif">If you don't receive
+the required results, or you receive an error, check whether you have xml
+data files under </font><font face="courier, couriernew, monospaced size">APPSERV_INSTALL_DIR/samples/xml/xslt/src/data</font><font face="Helvetica, Arial, sans-serif">
+directory.</font></font></li>
+</ul>
+</blockquote>
+</BOOKCONTENT><FOOTERCONTENT>
+<blockquote>&nbsp;
+<br>
+<hr NOSHADE SIZE="1"><!-- start copyright --><font face="Helvetica, Arial, sans-serif"><font size=-2>Copyright
+&copy; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> All rights
+reserved.</font></font><!--  end copyright  --></blockquote>
+
+<div align=right><font face="Helvetica, Arial, sans-serif"><font size=-2>Last
+Updated <b>July 12, 2002</b></font></font>
+<br></FOOTERCONTENT></MAINCONTENT></div>
+
+</body>
+</html>

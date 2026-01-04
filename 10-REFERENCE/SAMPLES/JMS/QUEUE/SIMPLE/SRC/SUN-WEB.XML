@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ ***************************************************************
+ * Copyright  2002 Sun Microsystems, Inc. All rights reserved. *
+ ***************************************************************
+-->
+
+<!DOCTYPE sun-web-app PUBLIC '-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 Servlet 2.3//EN' 'http://www.sun.com/software/sunone/appserver/dtds/sun-web-app_2_3-0.dtd'>
+
+<sun-web-app>
+  <resource-env-ref>
+    <resource-env-ref-name>jms/sampleQ</resource-env-ref-name>
+    <jndi-name>jms/sampleQ</jndi-name>
+  </resource-env-ref>
+  <resource-env-ref>
+    <resource-env-ref-name>jms/sampleQ1</resource-env-ref-name>
+    <jndi-name>jms/sampleQ1</jndi-name>
+  </resource-env-ref>
+  <resource-env-ref>
+    <resource-env-ref-name>jms/sampleQ2</resource-env-ref-name>
+    <jndi-name>jms/sampleQ2</jndi-name>
+  </resource-env-ref>
+  <resource-env-ref>
+    <resource-env-ref-name>jms/sampleQ3</resource-env-ref-name>
+    <jndi-name>jms/sampleQ3</jndi-name>
+  </resource-env-ref>
+  <resource-ref>
+    <res-ref-name>jms/sampleQCF</res-ref-name>
+    <jndi-name>jms/sampleQCF</jndi-name>
+    <default-resource-principal>
+      <name>guest</name>
+      <password>guest</password>
+    </default-resource-principal>
+  </resource-ref>
+  <resource-ref>
+    <res-ref-name>jms/sampleQCF1</res-ref-name>
+    <jndi-name>jms/sampleQCF1</jndi-name>
+    <default-resource-principal>
+      <name>guest</name>
+      <password>guest</password>
+    </default-resource-principal>
+  </resource-ref>
+  <resource-ref>
+    <res-ref-name>jms/sampleQCF2</res-ref-name>
+    <jndi-name>jms/sampleQCF2</jndi-name>
+    <default-resource-principal>
+      <name>guest</name>
+      <password>guest</password>
+    </default-resource-principal>
+  </resource-ref>
+  <resource-ref>
+    <res-ref-name>jms/sampleQCF3</res-ref-name>
+    <jndi-name>jms/sampleQCF3</jndi-name>
+    <default-resource-principal>
+      <name>guest</name>
+      <password>guest</password>
+    </default-resource-principal>
+  </resource-ref>
+</sun-web-app>
+

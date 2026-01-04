@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+   Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+ -->
+
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  SunOne Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="bookstore2" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--		App name-dependent settings.		       -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="bookstore2"/>
+  <property name="sample.home" value="../../../../"/>
+  <property name="sample.name" value="Bookstore2App"/>
+
+  <!-- ======================================================= -->
+  <!--		 Package directory structures of interest.     -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/webapps/bookstore/bookstore2"/>
+  <property name="war.pkg" value="samples/webapps/bookstore/bookstore2/web"/>
+  <property name="jar.pkg" value="samples/webapps/bookstore/bookstore2/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .		       -->
+  <!-- ======================================================= -->
+  <property name="sample.name" value="bookstore2"/>
+  <property name="javadoc.pkgnames" value="samples.webapps.bookstore.bookstore2.*" />
+
+  <!-- ======================================================= -->
+  <!--		database properties 			       -->
+  <!-- ======================================================= -->
+
+  <property name="bookstore.common" value="../../common"/>
+  <property name="db.user" value="BOOKSTORE"/> 
+  <property name="db.pwd" value="BOOKSTORE"/> 
+  <property name="db.file" value="${bookstore.common}/sql/bookstore.sql"/> 
+  <property name="conpool.name"       value="bookstore-pool" />
+  <property name="jdbc.resource.name" value="jdbc/BookDB" />
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml	       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+
+  <!-- ======================================================= -->
+  <!--                    For War File                         -->
+  <!-- ======================================================= -->
+  
+  <target name="create_war" 
+          depends="clean_war_common,check_warfile,copy_docroot,copy_warfiles,copy_plugin,copy_ejbjar_war">
+    <mkdir dir="${assemble.war}"/>
+    <copy todir="${assemble.war}/WEB-INF/">
+      <fileset dir="." includes="${warDD}"/>
+    </copy>
+    <jar jarfile="../${war}"
+       basedir="${assemble.war}" />
+    <move file="../${war}" todir="${assemble.war}"/>
+    <copy file="${assemble.war}/${war}" tofile="../${war}"/>
+    <property name="war.done" value="true"/>
+  </target>
+
+  <target name="copy_plugin" if="warfiles.present">
+    <copy todir="${assemble.war}/applet">
+      <fileset dir="${build.classesdir}/" includes="**/DigitalClock.class"/>
+    </copy>
+  </target>
+
+  <target name="setup_pb" depends="deploy_jdbc_resource_pb_common">
+  </target>
+ 
+  <target name="undeploy-sql" depends="delete-jdbc-resource_common, delete-jdbc-connection-pool_common, reconfig"/>
+ 
+  <target name="reconfig" depends="reconfig_common"/>
+  <target name="sql" depends="sql_common"/>
+
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application  -->
+  <!-- ======================================================= -->
+
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="deploy_common"/>
+  <target name="undeploy" depends="undeploy_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="war" depends="init,create_war"/>
+  <target name="ear" depends="init,jar,war,create_ear_common"/>
+  <target name="core" depends="compile,jar,war,ear" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+
+</project>

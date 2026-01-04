@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--  Copyright 2002 Sun Microsystems, Inc. All rights reserved.-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+  <!-- ======================================================= -->
+  <!--  Sun ONE Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="javamail-simple" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="javamail-simple"/>
+  <property name="sample.home" value="../../../"/>
+  <property name="sample.name" value="javamail-simple"/>
+
+  <!-- mail properties to be read from properties file -->
+  <property file="./mail.properties"/>
+
+  <target name="setup_mail_properties">
+    <propertyfile file="./mail.properties">
+      <entry key="mailhost" value="${mailhost}"/>
+      <entry key="fromaddress" value="${fromaddress}"/>
+      <entry key="mailuser" value="${mailuser}"/>
+      <entry key="debug" value="${debug}"/>
+      <entry key="enabled" value="${enabled}"/>
+    </propertyfile>
+  </target>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/javamail/simple/client"/>
+  <property name="jar.pkg" value="samples/javamail/simple/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  
+  <property name="javadoc.pkgnames" value="samples.javamail.simple.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+  <property name="jarDD" value="ejb-jar.xml,sun-ejb-jar.xml"/>
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml					       -->
+  <!-- ======================================================= -->
+ 
+  &include;
+	
+  <!-- ======================================================= -->
+  <!--		Tagets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+  <target name="create-javamail-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-javamail-resource
+       --mailhost ${mailhost} --mailuser ${mailuser}
+       --fromaddress ${fromaddress} --storeprotocol=imap 
+       --storeprotocolclass=com.sun.mail.imap.IMAPStore --transprotocol=smtp
+       --transprotocolclass=com.sun.mail.smtp.SMTPTransport 
+       --debug=false --enabled=true 
+       --instance ${sunone.instance} mail/MySession"
+      />
+    </antcall>
+  </target>
+
+  <target name="delete-javamail-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-javamail-resource
+      mail/MySession --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="clean" depends="clean_common"/>
+  <target name="jar" depends="init_common,create_ejbjar_common"/>
+  <target name="client" depends="init_common,clientjar_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="reconfig" depends="reconfig_common" />
+  <target name="ear" depends="init_common,clientjar_common,jar,create_ear_common"/>
+  <target name="core" depends="compile_common,client,jar,ear" />
+  <target name="deploy" depends="init_common,deploy_common,create-javamail-resource,reconfig"/>
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+  <target name="undeploy" depends="init_common,undeploy_common,delete-javamail-resource,reconfig"/>
+</project>

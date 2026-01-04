@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+<!DOCTYPE ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Enterprise JavaBeans 2.0//EN" "http://java.sun.com/dtd/ejb-jar_2_0.dtd">
+
+<ejb-jar>
+  <enterprise-beans>
+      <session>
+      <display-name>CorbaClientEJB</display-name>
+      <ejb-name>TheCorbaClient</ejb-name>
+      <home>samples.corba.ejbsample.ejb.CorbaClientHome</home>
+      <remote>samples.corba.ejbsample.ejb.CorbaClient</remote>
+      <ejb-class>samples.corba.ejbsample.ejb.CorbaClientEJB</ejb-class>
+      <session-type>Stateless</session-type>
+      <transaction-type>Bean</transaction-type>
+      <env-entry>
+        <env-entry-name>orbDomainName</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>my-domain</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>orbCfgDir</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>/etc/opt/iona/domains</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>simpleObjectIor1</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>/export2/iona/asp/5.1/demos/corba/orb/simple1.ior</env-entry-value>
+      </env-entry>
+      <env-entry>
+        <env-entry-name>simpleObjectIor2</env-entry-name>
+        <env-entry-type>java.lang.String</env-entry-type>
+        <env-entry-value>/export2/iona/asp/5.1/demos/corba/orb/simple2.ior</env-entry-value>
+      </env-entry>
+    </session>
+  </enterprise-beans>
+</ejb-jar>

@@ -1,0 +1,619 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/18/02 13:06:14">
+	<title>CCI Connector Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            CCI Connector Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="CCI Connector Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+CCI Connector Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the CCI Connector sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="15154"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#18467"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14931"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#18771"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="17788"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The CCI Connector sample application shows how to connect to a Resource Adapter using CCI API's of J2EE's Java Connector Architecture (JCA). 
+</FONT>
+<P>
+
+<A NAME="17793"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The CCI sample application connects to the PointBase database using the resource adapter (RA) from J2EE Reference Implementation (<FONT FACE="courier, couriernew, monospaced size">cciblackbox-tx.rar</FONT>). A session bean connects to the PointBase database using this resource adapter, then counts the number of rows in the Coffee table, inserts 3 rows, and then returns the new count.  The database is the EIS (Enterprise Information System) for this sample.
+</FONT>
+<P>
+
+<A NAME="18006"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment descriptor (<FONT FACE="courier, couriernew, monospaced size">ra.xml</FONT>) has been modified to point to the PointBase database, with <FONT FACE="courier, couriernew, monospaced size">sun-ra.xml</FONT> added. These can be found in <i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/samples/connectors/cci/src</font>
+</FONT>
+<P>
+
+<A NAME="18024"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">sun-ra.xml</FONT> contains the following nformation:
+</FONT>
+<P>
+<ul>
+<A NAME="18030"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+JNDI Name
+</FONT>
+<P><A NAME="18032"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Pooling configuration
+</FONT>
+<P><A NAME="18033"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Security role map.
+</FONT>
+<P></ul>
+
+<A NAME="18034"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For more information, please refer to <FONT FACE="courier, couriernew, monospaced size">sun-connector_1_0-0.dtd</FONT>  under <i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/lib/dtds</font> directory.
+</FONT>
+<P>
+
+<A NAME="18057"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The Directory Structure of the Sample Application is:
+</FONT>
+<P>
+
+<A NAME="18207"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">src - <i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/samples/connectors/cci/src</font>
+</FONT>
+<P>
+
+<A NAME="17808"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">It contains all the source code for sample applicaton. This directory has all the deployment descriptors. The directories which are located under this one are: 
+</FONT>
+<P>
+<ul>
+<A NAME="17811"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+samples
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18127"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Contains EJB and EJB client code; this is the client to the resource adapter.
+</FONT>
+<P>  </dl>
+<A NAME="17812"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+sql
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18133"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Sql files are used to create the tables and procedures. Please note that in the PointBase database, the procedure body is implemented in Java (<FONT FACE="courier, couriernew, monospaced size">SampleExternalMethods.java</FONT>).
+</FONT>
+<P>  </dl>
+</ul>
+
+<A NAME="17815"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The assemble directory (<i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/samples/connectors/cci/assemble</font>) </FONT>contains the following directories which are deployed as part of the this sample. The connector (CciBlackBoxLocalTx) is deployed as a standalone module. The ejb and client are deployed as an application (CoffeeApp).
+</FONT>
+<P>
+<ul>  <ul>
+<A NAME="18158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+client
+</FONT>
+<P><A NAME="18168"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+jar
+</FONT>
+<P><A NAME="18169"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+ear
+</FONT>
+<P><A NAME="18170"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+rar
+</FONT>
+<P>  </ul>
+</ul>
+<A NAME="18194"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample is picked up from J2EE Reference Implementation. Please refer to <A HREF="http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Connector.html">http://java.sun.com/j2ee/tutorial/1_3-fcs/doc/Connector.html</A> for more information.
+</FONT>
+<P>
+<P>
+<BR>
+<A NAME="14847"> </A>
+<A NAME="Setting up for Pointbase Database"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Setting up for Pointbase Database
+</FONT>
+<BR>
+<BR>
+
+<A NAME="15281"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In order to successfully deploy and run the CCI Connector sample application, the Pointbase database first needs to be configured.
+</FONT>
+<P>
+
+<A NAME="18351"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To configure the database, do the following:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18256"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the PointBase server directory. For example:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18273"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/pointbase/server</font>
+</FONT>
+<P>  </dl>
+<A NAME="18257"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Edit the file <FONT FACE="courier, couriernew, monospaced size">StartServer.sh</FONT>  and add the following to the classpath: 
+<i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/samples/connectors/cci/src/sql</font>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18288"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This step is necessary in order to make the stored procedures used in this sample available to PointBase. Please refer to <i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/pointbase/docs/pbdeveloper.pdf</font> for more details on PointBase procedures and functions.
+</FONT>
+<P>  </dl>
+<A NAME="18261"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Start the database server by running the following script:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18343"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">./StartServer.sh</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<P>
+<P>
+<BR>
+<A NAME="Setting up for Oracle Database"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Setting up for Oracle Database
+</FONT>
+<BR>
+<BR>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+If using Oracle, please do the following steps : <br>
+</FONT>
+<p>
+<ol>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+<b><li value="1"></b>
+Create user "CCI", password as "CCI". Instructions to create user account is mentioned in the document 
+<a href="../../../docs/oracle.html">Using oracle with samples </a>. Please note that this sample 
+connects to database directly using JDBC URL, and does not use the datasource and connection pool 
+resources of Sun ONE Application server. For this reason the steps of running this sample on Oracle 
+differs for that described in <a href="../../../docs/oracle.html">Using oracle with samples </a>.
+</li>
+<p>
+<b><li value="2"></b>
+Add oracle jdbc driver (eg. ojdbc14.jar) in your server instance's classpath. This can be done by going to the Administration 
+module, go the the server instance (eg server1), click on "JVM Settings", then "Path Settings", 
+add the oracle jdbc driver to CLASSPATH suffix, "Save", "Apply changes" and restart the server instance.
+</li>
+<p>
+<b><li value="3"></b>
+Edit your samples/connectors/cci/src/build.xml and change the following:
+<br> 
+<ul>
+  <li>  &lt;property name="db.file"  value="sql/cci-<b>ora</b>.sql"/&gt; 
+  </li>
+  <li>
+  &lt;property name="jdbc.drivers" value="<b>oracle.jdbc.driver.OracleDriver</b>" /&gt; 
+  </li>
+</ul>
+</li>
+<p>
+<b><li value="4"></b>
+Edit samples/connectors/cci/src/ra.xml and change the following:  <br>
+<ul>
+ <li>
+&lt;config-property-value&gt; <b>jdbc:oracle:thin:@oracle-host:oracle-port:oracle-sid </b> &lt;/config-property-value&gt;
+<br>
+ Substitute oracle-host, oracle-port (1521 is default) and oracle-sid with the correct values
+ </li>
+</ul>
+</li>
+</FONT>
+</ol>
+<p>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="18376"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the CCI Connector sample application. 
+</FONT>
+<P>
+
+<A NAME="18394"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To easily compile, assemble and deploy the application, see the <a href="../../../docs/ant.html"><I>Sample Application Build Facility</I></a> document for details on using asant facility to quickly perform these tasks.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18422"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+To rebuild the entire application from scratch, do the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="17353"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">"asant core"</FONT> under <FONT FACE="courier, couriernew, monospaced size">connectors/cci/src</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14889"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+To clean up the sample application project area, do the following:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18461"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">"asant clean".</FONT>
+</FONT>
+<P>     <DT> <A NAME="18465"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This will will delete the <FONT FACE="courier, couriernew, monospaced size">connectors/cci/assemble</FONT> and <FONT FACE="courier, couriernew, monospaced size">connectors/cci/build</FONT> directories.
+</FONT>
+<P>  </dl>
+</ol>
+
+<BR>
+<BR>
+
+<A NAME="18467"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14902"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to deploy the CCI Connector sample application. 
+</FONT>
+<P>
+
+<A NAME="18516"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, do the following:
+</FONT>
+<P>
+<ul>
+<A NAME="14904"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">"asant deploy"</FONT> under <FONT FACE="courier, couriernew, monospaced size">connectors/cci/src/</FONT>
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18494"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+It will be necessary to restart the application server.
+</FONT>
+<P>  </dl>
+</ul>
+
+<A NAME="18533"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To undeploy the application, do the following:
+</FONT>
+<P>
+<ul>
+<A NAME="18536"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Execute the command <FONT FACE="courier, couriernew, monospaced size">"asant undeploy"</FONT>
+</FONT>
+<P><dl>  
+       <DT> <A NAME="18544"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+This will undeploy both the connector and the sample application that tests connector.
+</FONT>
+<P>  
+</dl></ul>
+
+<A NAME="18554"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To undeploy the connector alone, do the following:
+</FONT>
+<P>
+<ul>
+<A NAME="18568"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Exceute <FONT FACE="courier, couriernew, monospaced size">"asant undeploy_connector"</FONT>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14931"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14934"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In order to run the sample application, you must first do the following:
+</FONT>
+<P>
+<ul>
+<A NAME="15769"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you are using PointBase, start your PointBase database server. You may refer to <A HREF="index.html#14847"  >Setting up the Database</A> if you have not already done so.
+</FONT>
+<P><A NAME="18591"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Compile, Assemble and Deploy the application as described in the previous sections <A HREF="index.html#14862"  >Compiling and Assembling the Application</A>, and <A HREF="index.html#18467"  >Deploying the Sample Application</A>. 
+</FONT>
+<P></ul>
+
+<A NAME="18608"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Now you are ready to run the sample application by doing the following.
+</FONT>
+<P>
+<ol type="1">
+<A NAME="18615"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to the directory <i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/domains/&lt;domain-name&gt;/&lt;server-instance&gt;/applications/j2ee-apps/cci_1</font> 
+</FONT>
+<P><A NAME="18683"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Run the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="18690"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">appclient  -client cciClient.jar -name CoffeeClient -textauth</FONT>
+</FONT>
+<P>     <DT> <A NAME="18620"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+You should see the following output lines displayed:
+</FONT>
+<P>     <DT> <A NAME="18622"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Coffee count = 0 </FONT>
+</FONT>
+<P>     <DT> <A NAME="18623"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Inserting 3 coffee entries... </FONT>
+</FONT>
+<P>     <DT> <A NAME="18694"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Coffee count = 3 </FONT>
+</FONT>
+<P>     <DT> <A NAME="18695"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Jul 16, 2002 12:13:18 PM com.iplanet.ias.appclient.Main &lt;init&gt;</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+<P>
+<BR>
+<A NAME="18706"> </A>
+<A NAME="Generating javadocs"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Generating javadocs
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="18715"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To better understand the sample application source code, you may refer to the related javadocs. 
+</FONT>
+<P>
+
+<A NAME="18744"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To generate javadocs, run one of the following commands:
+</FONT>
+<P>
+
+<ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<li>
+</FONT>
+<A NAME="18717"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">"asant javadocs" </FONT>
+</FONT>
+
+<A NAME="18747"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">or
+</FONT>
+
+<A NAME="18749"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size"> "asant all"</FONT>
+</FONT>
+<P>
+</li>
+</ul>
+
+<A NAME="18769"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After javadocs have been generated, you may access them at <i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/samples/connectors/cci/javadocs/index.html</font>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="18771"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="18776"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If you encounter problems when running the application, review the log files at <i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/domains/&lt;domain-name&gt;/&lt;server-instance&gt;/logs/server.log</font>
+to learn what exactly went wrong.
+</FONT>
+<P><A NAME="18778"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If the rar file gets deleted, then please download it from J2EE 1.3 web site at <A HREF="http://java.sun.com/j2ee/sdk_1.3/">http://java.sun.com/j2ee/sdk_1.3/</A>  and the download J2EETM Connector Architecture 1.0.1 Sample. Copy <FONT FACE="courier, couriernew, monospaced size">cciblackbox-tx.rar</FONT> to <i><font face="Courier New, Courier, mono">install_root</font></i><font face="Courier New, Courier, mono">/samples/connectors/cci</font> directory.
+</FONT>
+<P><A NAME="18780"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Check if the database is configured as described above.
+</FONT>
+<P><A NAME="18781"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+If the error in server.logs reads "<FONT FACE="courier, couriernew, monospaced size">No suitable driver found</FONT>", check your JVM options (server1-&gt;JVM Settings-&gt;JVM options).  If missing, add the property <FONT FACE="courier, couriernew, monospaced size">-Djdbc.drivers=com.pointbase.jdbc.jdbcUniversalDriver</FONT> (for PointBase). Restart server instance and test again.
+</FONT>
+<P><A NAME="15011"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+To reset your database, run the command <FONT FACE="courier, couriernew, monospaced size">"asant sql"</FONT>. 
+</FONT>
+<P><A NAME="15011"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+To redeploy the sample, please undeploy the sample first. Use the command <FONT FACE="courier, couriernew, monospaced size">"asant undeploy"</FONT>, <FONT FACE="courier, couriernew, monospaced size">"asant clean"</FONT> and then <FONT FACE="courier, couriernew, monospaced size">"asant all"</FONT>. 
+</FONT>
+<P><A NAME="15011"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+This sample may not work if you do have a pre Oracle 9 version of JDBC Driver. This is a known issue with Oracle. Please try with 9.0.1 driver.
+<p><li>The sample can not be deployed from the application server administration GUI, if <FONT FACE="courier, couriernew, monospaced size">Run verifier</FONT> option is selected. 
+Solution is, try deploying the application without <FONT FACE="courier, couriernew, monospaced size">Run verifier</FONT>, or deploy using <FONT FACE="courier, couriernew, monospaced size">asant</FONT>.
+<p><li>The sample can not be deployed using <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> with option <FONT FACE="courier, couriernew, monospaced size">--verify=true</FONT>.
+Solution is, try deploying the application without the option <FONT FACE="courier, couriernew, monospaced size">--verify=true</FONT>, or deploy using <FONT FACE="courier, couriernew, monospaced size">asant</FONT>.
+</FONT>
+</FONT>
+<P></ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>July 18, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

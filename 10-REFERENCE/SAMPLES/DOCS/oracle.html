@@ -1,0 +1,643 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Using Oracle with Samples</title>
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+
+<meta name="keywords" value="">
+
+<meta name="description" value="">
+
+<link rel="stylesheet" href="default.css"><!--stopindex--></head>
+
+
+
+
+
+
+
+
+
+
+
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" bgcolor="#ffffff">
+<a name="top"></a> <!-- SUN.COM TEMPLATE V4.2 --> <!-- BEGIN GLOBAL NAVIGATION TOOLBAR -->
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+  <tbody>
+
+  <tr>
+
+    <td width="49%"><span class="sp2"> </span></td>
+
+  </tr>
+
+  <form action="http://www.sun.com/search/index.cgi">
+
+  </form>
+
+  <tr>
+
+    <td width="49%" nowrap valign="middle">
+
+      <div class="sitelinks"> <a href="http://www.sun.com/">sun.com</a></div>
+
+    </td>
+
+    <td nowrap valign="middle" width="49%" colspan="3">
+
+      <div class="sitelinks">
+
+        <div align="right"><a href="http://www.sun.com/sales/index.html">How To
+
+          Buy</a>  |  <a href="http://mysun.sun.com/">My Sun</a>  |  <a href="http://www.sun.com/worldwide/">Worldwide
+
+          Sites</a></div>
+
+      </div>
+
+    </td>
+
+  </tr>
+
+  <tr>
+
+    <td width="49%"><span class="sp2"> </span></td>
+
+  </tr>
+
+  </tbody>
+
+</table>
+
+<!-- END GLOBAL NAVIGATION TOOLBAR -->
+
+<!-- BEGIN GENERIC MASTHEAD -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+<tbody><tr>
+
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+
+    <td class="sunblue" valign="top"><a href="http://www.sun.com/"><img src="images/logo_sun.gif" width="110" height="43" border="0" alt="Sun Microsystems Logo"></a><br>
+
+      <img src="images/a.gif" width="170" height="1" alt=""></td>
+
+<td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+
+    <td width="50%" class="sunyellow" valign="bottom" nowrap><br>
+
+      <span class="sp5"> </span></td>
+
+<td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+
+    <td width="50%" class="sunred" valign="bottom" nowrap><br>
+
+      <span class="sp5"> </span></td>
+
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+
+</tr>
+
+</tbody></table>
+
+<!-- END GENERIC MASTHEAD --> <!-- BEGIN BREADCRUMB --><br>
+
+<!-- END BREADCRUMB -->
+
+<!-- BEGIN PAGETITLE -->
+
+<div class="pagetitle2">Sun[tm] ONE Application Server 7 Samples</div>
+<div class="pagetitle">Using Oracle with the Samples</div>
+
+<!-- END PAGETITLE -->
+
+<!-- BEGIN WRAPPER TABLE, 3 COLUMN, LEFT/MAIN/RIGHT -->
+
+<table border="0" cellpadding="0" cellspacing="10" width="100%" height="739">
+  <tbody> 
+  <tr> 
+    <td valign="top"> <!-- BEGIN D2 PRIMARY NAVIGATION --> 
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+        <tbody> 
+        <tr> 
+          <td colspan="3"> 
+            <p> The sample applications included in the Sun ONE Application Server 
+              are configured to work with the bundled PointBase Network Server 
+              4.2. The PointBase database is&nbsp; prepopulated with data for 
+              the samples. More information on using PointBase with the samples 
+              can be found in the <a href="pointbase.html">Using PointBase with 
+              the Samples</a> document. The purpose of this document is to outline 
+              the steps needed to configure the samples environment to work with 
+              an Oracle RDBMS.
+            <p>This document contains instructions to configure the Oracle&nbsp; 
+              JDBC driver, an example using the <i>jdbc-simple</i> sample application 
+              to demonstrate steps involved in using Oracle instead of Pointbase 
+              and a list of samples that&nbsp;contain Oracle-specific instructions. 
+              The samples included in this<a href="#SAMPLES"> list </a>contain 
+              specific instructions for configuring the sample to work with an 
+              Oracle RDBMS.&nbsp; For other applications, use the <a href="#RUNNING">jdbc-simple 
+              example</a> as a template to set up Oracle as the database. This 
+              document also addresses <a href="#SPECIAL">special cases</a>.</p>
+            <p>To learn about basic operations with Oracle and the Sun ONE Application 
+              Server, read the following sections:</p>
+            <table width="100%">
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#CONFIGURATION"> 
+                  Configuration and Set Up Instructions</a></td>
+              </tr>
+              <tr> 
+                <td width="4%" height="19">&nbsp;</td>
+                <td width="94%" height="19"><span class="rightarrowblue">»</span> 
+                  <a href="#RUNNING"> Running the JDBC Simple Application with 
+                  Oracle</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#SAMPLES"> 
+                  Samples with Oracle instructions</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#SPECIAL"> 
+                  Special Considerations</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#TROUBLESHOOTING"> 
+                  Troubleshooting and Notes</a></td>
+              </tr>
+            </table>
+            <br>
+            <h2><b><a name="CONFIGURATION"></a>Configuration and Set Up Instructions</b></h2>
+            <p> </p>
+            <p><b>Configure Sun ONE Application Server with Oracle Type 4 JDBC 
+              Driver </b></p>
+            <p>You can add the Oracle JDBC driver to the application server classpath 
+              by either:</p>
+            <ul>
+              <li>Copying the driver library to the application server instance's 
+                <font face="Courier New, Courier, mono">lib/</font> directory 
+                which is <font face="Courier New, Courier, mono">&lt;domain_config_dir&gt;/domain1/server1/lib</font>. 
+                All the libraries in this directory are automatically added to 
+                the server's classpath during restart. Or,</li>
+              <li>Adding the driver's path to the <i>Classpath Suffix </i>setting 
+                under the application server instance's <i>JVM Settings -> Path 
+                Setting</i> area in the administrative console.</li>
+            </ul>
+            <p>In both cases, the application server must be restarted to update 
+              the classpath.</p>
+            <p>If you are using a Type 2 driver, you will also need to add <font face="Courier New, Courier, mono">&lt;oracle_home&gt;/lib</font> 
+              to the <i>Native Library Path Suffix</i> setting in the application 
+              server instance's <i>JVM Settings -&gt; Path Settings</i> area<font face="Courier New, Courier, mono">.</font></p>
+            <p>
+            <p> </p>
+            <p><b>Create the Database Users and Schemas for the Sample Application</b></p>
+            <p>The following steps assume that you have access to a running Oracle 
+              RDBMS. <b>Note that the user creation script will drop any existing 
+              users with the same name.</b> <font face="Courier New, Courier, mono"> 
+              </font></p>
+            <p>Use <font face="Courier New, Courier, mono"><font face="Courier New, Courier, mono">&lt;install_dir&gt;/samples/docs/cr_ora_user.sql</font></font> 
+              to create specific sample oracle user. This script will create the 
+              user on the specified tablespace.<br>
+              <font face="Courier New, Courier, mono"><br>
+              </font>Using <font face="Courier New, Courier, mono">sqlplus</font>, 
+              login as <font face="Courier New, Courier, mono">system/manager: 
+              <br>
+              <br>
+              <font face="Courier New, Courier, mono">&lt;SQL> @cr_ora_user.sql 
+              <i><a href="#USERNAME">user_name password </a> <a href="#TABLESPACENAME">tablespace_name</a></i></font> 
+              </font></p>
+            <ul>
+              <p><font face="Courier New, Courier, mono"><a name="USERNAME"></a><b>user_name:</b> 
+                <br>
+                </font>The following username and password are consistent with 
+                the naming convention used for PointBase. Generally, all samples 
+                in one category (e.g. ejb/bmp) will contain one Oracle user (bmp).
+              <p> 
+              <center>
+                <table BORDER WIDTH="75%" NOSAVE >
+                  <tr bgcolor="#CCCCCC"> 
+                    <td><a NAME="table1"></a><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      Sample</b></td>
+                    <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      User</b></td>
+                    <td><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Password</b></td>
+                  </tr>
+                  <tr> 
+                    <td ROWSPAN="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      Java Pet Store</td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; petstore</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; petstore</tt></td>
+                  </tr>
+                  <tr> 
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; opc</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; opc</tt></td>
+                  </tr>
+                  <tr> 
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; supplier</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; supplier</tt></td>
+                  </tr>
+                  <tr NOSAVE> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      JDBC samples</td>
+                    <td NOSAVE><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; jdbc</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; jdbc</tt></td>
+                  </tr>
+                  <tr> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      Lifecycle samples</td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; lifecycle</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; lifecycle</tt></td>
+                  </tr>
+                  <tr NOSAVE> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      EJB/CMP samples</td>
+                    <td NOSAVE><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cmp</tt></td>
+                    <td NOSAVE><tt>&nbsp;&nbsp;&nbsp;&nbsp; cmp</tt></td>
+                  </tr>
+                  <tr> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      EJB/BMP samples</td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bmp</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; bmp</tt></td>
+                  </tr>
+                  <tr> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      EJB/Subclassing samples</td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      <tt>subclass</tt></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+                      <tt>subclass</tt></td>
+                  </tr>
+                  <tr> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Transactions</td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transactions</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; transactions</tt></td>
+                  </tr>
+                  <tr> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Smart 
+                      Ticket </td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; smarticket</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; smarticket</tt></td>
+                  </tr>
+                  <tr> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Duke's 
+                      Bank</td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dukesbank</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; dukesbank</tt></td>
+                  </tr>
+                  <tr> 
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Webapps/BookStore 
+                      samples</td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bookstore</tt></td>
+                    <td><tt>&nbsp;&nbsp;&nbsp;&nbsp; bookstore</tt></td>
+                  </tr>
+                </table>
+              </center>
+              <p> <font face="Courier New, Courier, mono"><br>
+                <a name="TABLESPACENAME"></a><b>tablespace_name:</b> <br>
+                </font>If you want to create a separate tablespace for all samples, 
+                you can use the <font face="Courier New, Courier, mono">&lt;install_dir&gt;/samples/docs/cr_ora_tb.sql</font> 
+                script. If you don't want to create the new tablespace, you can 
+                use the sql command "<font face="Courier New, Courier, mono">select 
+                tablespace_name, status from DBA_TABLESPACES</font>" to see the 
+                available online tablespaces (run this sql command as system/manager).&nbsp; 
+            </ul>
+            <p>Use <font face="Courier New, Courier, mono">sqlplus</font> with 
+              the user created above and run the SQL script under <font face="Courier New, Courier, mono">&lt;sample_app_dir&gt;/sql</font> 
+              to load the database schema for this sample.</p>
+            <p> When there is only one .sql file, it works with both Oracle and 
+              PointBase.</p>
+            <font face="Courier New, Courier, mono"> 
+            <p> </p>
+            </font><b>Modify Sample's build.xml File </b> 
+            <ol>
+              <li><font face="Arial, Helvetica, sans-serif">Add one Ant target:</font><font face="Arial, Helvetica, sans-serif"></font><font face="Courier New, Courier, mono"><br>
+                <font face="Courier New, Courier, mono"> &lt;target name="setup_ora" 
+                depends="setup_env, deploy_jdbc_resource_ora_common, reconfig"/></font> 
+                </font></li>
+              <li>Add two properties, <font face="Courier New, Courier, mono">conpool.name</font> 
+                and<font face="Courier New, Courier, mono"> jdbc.resource.name</font>&nbsp;if 
+                they are not already defined in the <font face="Courier New, Courier, mono">build.xml</font> 
+                file. Refer to <a href="#CONNECTION">Table 2</a> to see which 
+                sample needs these two properties.</li>
+              <li>Remove the two properties, <font face="Courier New, Courier, mono">ds.class</font> 
+                and <font face="Courier New, Courier, mono">url.prop</font> if 
+                they are defined in the <font face="Courier New, Courier, mono">build.xml</font> 
+                file.<font face="Courier New, Courier, mono"> </font></li>
+            </ol>
+            <b>Compile and Deploy the Application </b> 
+            <p> If the application has been deployed previously with a PointBase 
+              configuration:</p>
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono"> asant undeploy <br>
+                asant setup_ora -Ddb.host=[db_hostname] -Ddb.port=[db_port] -Ddb.sid=[sid] 
+                <br>
+                asant deploy_common </font> </p>
+              <p>You need to restart the application server if the application 
+                ran previously with Pointbase. </p>
+            </blockquote>
+            <p>If this is the first time the application has been deployed:</p>
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono"> asant core <br>
+                asant setup_ora -Ddb.host=[db_hostname] -Ddb.port=[db_port] -Ddb.sid=[sid] 
+                <br>
+                asant deploy_common </font> </p>
+            </blockquote>
+            <p> 
+            <h2><a name="RUNNING"></a>Running the JDBC Simple Application with 
+              Oracle</h2>
+            Here are the detailed steps to configure the JDBC Simple sample application 
+            sample to work with Oracle: 
+            <p>1. Use <font face="Courier New, Courier, mono">sqplus</font> and 
+              login as system/manager to create oracle user jdbc/jdbc on the specified 
+              tablespace.</p>
+            <ul>
+              <font face="Courier New, Courier, mono"><br>
+              &lt;SQL> @cr_ora_user.sql jdbc <i><a href="#TABLESPACENAME">tablespace_name</a></i></font> 
+              <font face="Courier New, Courier, mono"><br>
+              </font> 
+            </ul>
+            <p><font face="Courier New, Courier, mono">2.</font> Using <font face="Courier New, Courier, mono">sqlplus</font>, 
+              using the user 'jdbc', load the schema using the <font face="Courier New, Courier, mono">jdbc-simple-ora.sql</font> 
+              file located in <font face="Courier New, Courier, mono">&lt;install_dir&gt;/samples/jdbc/simple/src/sql</font>. 
+              This step will load the schema for jdbc-simple application in Oracle</p>
+            <ul>
+              <font face="Courier New, Courier, mono"><br>
+              &lt;SQL> @jdbc-simple-ora.sql</font> <font face="Courier New, Courier, mono"><br>
+              </font> 
+            </ul>
+            <p>3. Go to <font face="Courier New, Courier, mono">&lt;install_dir&gt;/samples/jdbc/simple/src. 
+              </font>In the <font face="Courier New, Courier, mono">build.xml</font> 
+              file, ensure that the following properties and Ant target are defined:</p>
+            <ul>
+              <font face="Courier New, Courier, mono"><br>
+              &lt;property name="conpool.name"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+              value="jdbc-simple-pool" /> <br>
+              &lt;property name="jdbc.resource.name" value="jdbc/jdbc-simple" 
+              /> <br>
+              &lt;target name="setup_ora" depends="setup_env, deploy_jdbc_resource_ora_common, 
+              reconfig"/> </font> <font face="Courier New, Courier, mono"><br>
+              </font> 
+            </ul>
+            <p>4. Compile and Deploy (undeploy first, if it was deployed already 
+              )</p>
+            <ul>
+              <blockquote> <font face="Courier New, Courier, mono"> asant core 
+                <br>
+                asant undeploy (optional) <br>
+                asant setup_ora -Ddb.host=sx450.red.iplanet.com -Ddb.port=1521 
+                -Ddb.sid=bx3 <br>
+                asant deploy_common </font> </blockquote>
+            </ul>
+            <p>5. Run the application (refer to sample application's document)</p>
+            <font face="Courier New, Courier, mono"> 
+            <h2><a name="SAMPLES"></a>Samples with Oracle Instructions</h2>
+            </font>The following applications contain the necessary sql files 
+            and ant targets (build.xml) to work with Oracle.&nbsp; Refer to the 
+            sample documentation for Oracle specific instructions.<br>
+            <table width="100%">
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#CONFIGURATION"> 
+                  </a><a href="../petstore1.3_01/docs/index.html">Java Pet Store</a></td>
+              </tr>
+              <tr> 
+                <td width="4%" height="19">&nbsp;</td>
+                <td width="94%" height="19"><span class="rightarrowblue">»</span> 
+                  <a href="#RUNNING"> </a><a href="../smartticket1.1.1/docs/index.html">Smart 
+                  Ticket</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#SAMPLES"> 
+                  </a><a href="../dukesbank/docs/index.html">Duke's Bank</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#SPECIAL"> 
+                  </a><a href="../transactions/web/simple/docs/index.html">transactions/web/simple</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#TROUBLESHOOTING"> 
+                  </a><a href="../security/realms/rdbms/docs/index.html">security/realms/rdbms</a></td>
+              </tr>
+              <tr>
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#TROUBLESHOOTING"> 
+                  </a><a href="../ejb/cmp/simple/docs/index.html">ejb/cmp/simple</a></td>
+              </tr>
+            </table>
+            <br>
+            <h2><font face="Courier New, Courier, mono"><a name="SPECIAL"></a></font>Special 
+              Considerations</h2>
+            <p> ejb/cmp/roster application</p>
+            <ul>
+              <p>Ant target "setup_ora" has one more dependency. The target should 
+                resemble the following:</p>
+              <p><font face="Courier New, Courier, mono"> &lt;target name="setup_ora" 
+                depends="setup_env, deploy_jdbc_resource_ora_common, create-persistence-resource, 
+                reconfig"/></font> <font face="Courier New, Courier, mono"><br>
+                </font></p>
+            </ul>
+            <p>webapps/bookstore application</p>
+            <blockquote> 
+              <p> Both bookstore1 and bookstore2 share the same sql file and jdbc-resources. 
+                The sql script is:<br>
+              </p>
+              <p> <font face="Courier New, Courier, mono">&lt;install_dir&gt;/samples/webapps/bookstore/common/sql/bookstore.sql 
+                </font><font face="Courier New, Courier, mono"> </font></p>
+            </blockquote>
+            <p>lifecycle/jdbc application and lifecycle/multithreaded</p>
+            <ul>
+              <font face="Courier New, Courier, mono"> </font> 
+              <li>If the application has been deployed previously with PointBase: 
+                <blockquote> 
+                  <p><font face="Courier New, Courier, mono"> asant undeploy_jdbc_resource 
+                    <br>
+                    asant setup_ora -Ddb.host=[db_hostname] -Ddb.port=[db_port] 
+                    -Ddb.sid=[sid] </font> </p>
+                </blockquote>
+                <p><font face="Courier New, Courier, mono">You need to restart 
+                  the app server if the application was executed against PointBase. 
+                  </font> </p>
+              </li>
+              <li>If the sample had not been executed previously: 
+                <blockquote> 
+                  <p><font face="Courier New, Courier, mono"> asant deploy <br>
+                    asant undeploy_jdbc_resource <br>
+                    asant setup_ora -Ddb.host=[db_hostname] -Ddb.port=[db_port] 
+                    -Ddb.sid=[sid] </font> <font face="Courier New, Courier, mono"> 
+                    </font></p>
+                </blockquote>
+              </li>
+            </ul>
+            <p><font face="Courier New, Courier, mono"><a NAME="CONNECTION"></a></font>The 
+              following samples require you to define <font face="Courier New, Courier, mono">conpool.name 
+              </font>and<font face="Courier New, Courier, mono"> jdbc.resource.name 
+              </font>properties:<br>
+            </p>
+            <font face="Courier New, Courier, mono"> 
+            <ul>
+              <table BORDER COLS=3 WIDTH="100%" NOSAVE >
+                <tr bgcolor="#FFFFFF"> 
+                  <td> 
+                    <center>
+                      <b>Application Name</b> 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <b>Connection Pool Value</b> 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <b>JDBC Resource Value</b> 
+                    </center>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <center>
+                      JDBC/BLOB 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>jdbc-blobPool</tt> 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>jdbc/jdbc-blob</tt> 
+                    </center>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <center>
+                      JDBC/Transactions 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>jdbc-transactionsPool</tt> 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>jdbc/jdbc-transactions</tt> 
+                    </center>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <center>
+                      Lifecycle/JDBC 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      j<tt>dbc-lifecyclePool</tt> 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>jdbc/lifecycle-jdbc</tt> 
+                    </center>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <center>
+                      Transactions/EJB/teller 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>LocalPoolteller</tt> 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>jdbc/transactions-teller/TellerDB</tt> 
+                    </center>
+                  </td>
+                </tr>
+                <tr> 
+                  <td> 
+                    <center>
+                      Transactions/WEB/bank 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>LocalPoolbank</tt> 
+                    </center>
+                  </td>
+                  <td> 
+                    <center>
+                      <tt>jdbc/transactions-bank/BankDB</tt> 
+                    </center>
+                  </td>
+                </tr>
+              </table>
+            </ul>
+            <center>
+            </center>
+            <p> 
+            </font> 
+            <h2><font face="Courier New, Courier, mono"><a name="TROUBLESHOOTING"></a></font>Troubleshooting 
+              and Notes</h2>
+            <p> Connector/cci Sample: There is a known bug when attempting to 
+              use this sample with Oracle. See the release notes for details.<br>
+            </p>
+            <p> JDBC/Blob Sample:&nbsp; If the Type 4 JDBC driver is used as explained 
+              in this document, the uploaded file cannot exceed 5K. The workaround 
+              is to use Type 2 OCI driver. Here are the steps to setup the driver: 
+            </p>
+            <blockquote> 
+              <p>1. In the administrative console, modify the property for connection 
+                pool <i>jdbc-blobPool</i>. The value of <i>url</i> property should 
+                be: <font face="Courier New, Courier, mono">jdbc:oracle:oci8@<i>db_alias</i></font> 
+                (<i><font face="Courier New, Courier, mono">db_alias</font></i><font face="Courier New, Courier, mono"> 
+                </font>should be defined in TNS). </p>
+              <p>2. Either copy the Type 2 driver to the application server instance's 
+                <font face="Courier New, Courier, mono">lib/ </font>directory 
+                or add the path to the driver to the <i>Classpath Suffix</i> setting 
+                in the <i>JVM Settings -&gt; Path Settings</i> area of the administrative 
+                console.</p>
+              <p>3. Modify the <i>Native Library Path Suffix</i> setting in the 
+                application server instance's <i>JVM Settings -&gt; Path Settings</i> 
+                area to include the path <font face="Courier New, Courier, mono">&lt;oracle_home&gt;/lib.</font></p>
+              <p>4. Apply the changes and restart the application server.</p>
+            </blockquote>
+          </td>
+        </tr>
+        </tbody> 
+      </table>
+    </td>
+  </tr>
+  <tr> 
+    <td class="grey1"> </td>
+  </tr>
+  <!-- BEGIN SPACER ROW --> <!-- END SPACER ROW --> </tbody> 
+</table>
+
+<div class="sitelinks" align="center"> <a href="http://wwws.sun.com/company/">Company 
+  Info</a>   |   <a href="http://wwws.sun.com/contact/">Contact</a>   |  Copyright 
+  2002 Sun Microsystems <br>
+
+ 
+
+</div>
+
+<!-- END GLOBAL FOOTER -->
+
+</body></html>
+

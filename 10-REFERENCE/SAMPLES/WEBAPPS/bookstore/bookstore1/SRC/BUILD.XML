@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!--
+   Copyright 2002 Sun Microsystems, Inc. All rights reserved.
+-->
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../common.xml"> ]>
+
+<!-- ======================================================= -->
+<!-- Sun One Application Server Sample Application build xml -->
+<!-- ======================================================= -->
+
+<project name="bookstore1" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../../"/>
+  <property name="bookstore.common" value="../common"/>
+  <!-- ======================================================= -->
+  <!--          App name-dependent settings.                   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="bookstore1"/>
+
+  <!-- ======================================================= -->
+  <!--         Package directory structures of interest.       -->
+  <!-- ======================================================= -->
+
+  <property name="war.pkg" value="samples/webapps/bookstore/bookstore1"/>
+ 
+  <!-- ======================================================= -->
+  <!--            Java Doc properties .                        -->
+  <!-- ======================================================= -->
+  
+  <property name="sample.name" value="webapps-bookstore1"/>
+  <property name="javadoc.pkgnames" value="samples.webapps.bookstore.bookstore1.*" />
+
+  <!-- ======================================================= -->
+  <!--            Xml files properties .                       -->
+  <!-- ======================================================= -->
+  
+  <property name="warDD" value="web.xml,sun-web.xml"/>
+  <property name="jarDD" value="ejb-jar.xml,sun-ejb-jar.xml"/>
+
+  <!-- ======================================================= -->
+  <!--            Pointbase properties .                       -->
+  <!-- ======================================================= -->
+
+   <property name="db.user" value="BOOKSTORE"/> 
+   <property name="db.pwd" value="BOOKSTORE"/> 
+   <property name="db.file" value="${bookstore.common}/sql/bookstore.sql"/> 
+   <property name="conpool.name"       value="bookstore-pool" />
+   <property name="jdbc.resource.name" value="jdbc/BookDB" />
+ 
+  <!-- ======================================================= -->
+  <!--                Include common.xml                       -->
+  <!-- ======================================================= -->
+
+ 
+  &include;
+  
+
+  <target name="setup_pb" depends="deploy_jdbc_resource_pb_common">
+  </target>
+ 
+  <target name="undeploy-sql" depends="delete-jdbc-resource_common, delete-jdbc-connection-pool_common, reconfig"/>
+
+  <target name="reconfig" depends="reconfig_common"/>
+
+  <target name="sql" depends="sql_common"/>
+  <target name="compile" depends="compile_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="javadocs" depends="javadocs_common"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="clean" depends="clean_common"/>
+  <target name="war" depends="init,copy_files,create_war_common"/>
+  <target name="ear" depends="init,war,create_ear_common"/>
+  <target name="core" depends="compile,war,ear" />
+  <target name="deploy" depends="deploy_common, reconfig"/>
+  <target name="all" depends="core,javadocs,verify, deploy"/>
+  <target name="undeploy" depends="undeploy_common, reconfig"/>
+
+  <target name="copy_files" >
+     <mkdir dir="${assemble.war}" />
+     <copy file="docroot/duke.books.gif" todir="${assemble.war}" />
+     <copy file="docroot/errorpage.html" todir="${assemble.war}" />
+  </target>
+
+
+</project>

@@ -1,0 +1,2 @@
+#!/bin/csh
+setenv CLASSPATH /u/dinesh/ias/trials/j2eetutorial/tmp/newDukesBankApp/customer-ejb.jar:/u/dinesh/ias/trials/j2eetutorial/tmp/newDukesBankApp/account-ejb.jar:/u/dinesh/ias/trials/j2eetutorial/tmp/newDukesBankApp/app-client.jar:/u/dinesh/ias/trials/j2eetutorial/tmp/newDukesBankApp/tx-ejb.jar:/u/dinesh/ias/trials/j2eetutorial/tmp/newDukesBankApp/web-client.war:.:/share/builds/components/jdk/1.4.0beta3/SunOS:$CLASSPATH

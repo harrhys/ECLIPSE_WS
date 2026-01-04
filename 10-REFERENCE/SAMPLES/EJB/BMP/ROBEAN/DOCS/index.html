@@ -1,0 +1,683 @@
+<HTML lang="en">
+
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+        <META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+        <meta name="LastUpdated" content="08/12/02 15:29:49">
+        <title>SimpleBank BMP Robean Sample Application:  SimpleBank BMP Robean Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            SimpleBank BMP Robean Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="15913"> </A>
+<A NAME="SimpleBank BMP Robean Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+SimpleBank BMP Robean Sample Application
+</B>
+</FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="15115"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the SimpleBank BMP Robean sample application in conjunction with Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="15119"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="15123"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14805"  >Overview</A>
+</FONT>
+<P><A NAME="15153"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14862"  >Compiling and Assembling the Application</A>
+</FONT>
+<P><A NAME="15154"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14900"  >Deploying the Sample Application</A>
+</FONT>
+<P><A NAME="15158"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#14931"  >Running the Sample Application</A>
+</FONT>
+<P><A NAME="15139"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#15009"  >Troubleshooting</A>
+</FONT>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14805"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19038"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This sample demonstrates the support for Read Only Beans (ROBs) in the Sun ONE application server. ROBs are entity beans that are never modified by an EJB client. Entity beans can be declared as ROBs by specifying the <FONT FACE="courier, couriernew, monospaced size">is-read-only-bean</FONT> element in the <FONT FACE="courier, couriernew, monospaced size">sun-ejb-jar.xml</FONT>. The data that an ROB represents may be updated by external means. ROBs are useful when the data they represent does not change or the change is not frequent. In such cases the cost of <FONT FACE="courier, couriernew, monospaced size">ejbStore</FONT> can be avoided by the use of ROBs.
+</FONT>
+<P>
+
+<A NAME="19043"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">There are certain restrictions on ROBs. ROBs cannot start their own transactions, only container transactions are allowed. Container will not call <FONT FACE="courier, couriernew, monospaced size">ejbStore</FONT> on ROBs. The ejbLoads will be called only when a bean is created or when a transactional method is called or at refresh intervals. ROBs Home interface need not have <FONT FACE="courier, couriernew, monospaced size">ejbCreate</FONT> and <FONT FACE="courier, couriernew, monospaced size">ejbRemove</FONT> methods.
+</FONT>
+<P>
+
+<A NAME="19131"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The state of ROBs can be refreshed by different means:
+</FONT>
+<P>
+<ul>
+<A NAME="19146"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<B>Invoking a transactional method can refresh the state of ROB</B>. In the sample all the methods of CustomerTransactionalEJB are defined as transactional. To refresh the state of CustomerTransactionalEJB, servlet invokes getBalance method of CustomerTransactionalEJB which is transactional.
+</FONT>
+<P><A NAME="19150"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<B>The state of ROBs can be refreshed periodically by specifying the refresh-period-in-second in </B><FONT FACE="courier, couriernew, monospaced size">sun-ejb-jar.xml</FONT>. If the period specified is negative, the state of ROB will never be refreshed. If the period specified is '0', the state of ROB will always be refreshed. If the period specified is greater than zero, the state of ROB will be refreshed periodically at that rate. In the sample CustomerRefreshEJB has refresh period of 60 seconds, so the state of CustomerRefreshEJB is refreshed every minute.
+</FONT>
+<P><A NAME="19155"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<B>The state of ROBs can be refreshed programmatically</B>. The beans which update data used by the ROBs, need to notify the ROBs to refresh their state. The state of the ROB can be updated with the help of ReadOnlyBeanNotifier. The state of CustomerProgRefreshEJB in the sample is updated programmatically as follows:
+</FONT>
+<P><dl>    <dl>
+       <DT> <A NAME="19272"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+ReadOnlyBeanNotifier notifier = ReadOnlyBeanHelper.getReadOnlyBeanNotifier("java:comp/env/ejb/customerProgRefresh");
+</FONT>
+<P>       <DT> <A NAME="19132"> </A>
+<FONT FACE="courier, couriernew, monospaced size" SIZE="-1">
+notifier.refresh(new PKString1(SSN));
+</FONT>
+<P>    </dl>
+</dl></ul>
+
+<BR>
+<A NAME="19336"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In order to successfully deploy and run the SimpleBank BMP Robean sample application, Database resources (<A HREF="../../../../docs/pointbase.html">PointBase</A>) needs to be setup with the Application Server.
+</FONT>
+<P>
+<A NAME="19336"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you want to run this sample on Oracle Database, please refer to (<A HREF="../../../../docs/oracle.html">How to run sample applications with Oracle </A>) .
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14862"> </A>
+<A NAME="Compiling and Assembling the Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Compiling and Assembling the Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14865"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This section contains instructions to build and assemble the SimpleBank BMP Robean sample application using a Command Line Interface (CLI). Please refer to the <A HREF="../../../docs/ant.html"><I>Sample Application Build Facility</A></I> document for details on using a build facility.
+</FONT>
+<P>
+
+<A NAME="18079"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To rebuild the entire application from scratch, follow these steps:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="14877"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Compile and Assemble the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19321"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant</FONT> command under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/ejb/bmp/robean/src</FONT>. 
+</FONT>
+<P>     <DT> <A NAME="19332"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The default target core is executed to rebuild the <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> file.
+</FONT>
+<P>  </dl>
+<A NAME="19349"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Deploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19354"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+After you have re-created the sample application from scratch, proceed to <A HREF="index.html#14900"  ></A><A HREF="index.html#14900"  >Deploying the Sample Application</A>.
+</FONT>
+<P>  </dl>
+<A NAME="19365"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Clean the application project area.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19374"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant clean</FONT> to clean the application area.
+</FONT>
+<P>  </dl>
+<A NAME="19389"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Undeploy the application.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19394"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant undeploy</FONT> to undeploy the application.
+</FONT>
+<P>  </dl>
+<A NAME="19409"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Build Javadocs.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19418"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute the command <FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT> to create Javadocs.
+</FONT>
+<P>     <DT> <A NAME="19433"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The Javadocs are created under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/ejb/bmp/robean/javadocs.</FONT>
+</FONT>
+<P>  </dl>
+</ol>
+
+<P>
+
+<BR>
+<BR>
+
+<A NAME="14900"> </A>
+<A NAME="Deploying the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="18251"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">In this section, you will learn how to deploy the SimpleBank BMP Robean sample application.
+</FONT>
+<P>
+
+<A NAME="19450"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">A pre-built <FONT FACE="courier, couriernew, monospaced size">bmp-robean.ear</FONT> file is supplied with the application server installation. The pre-built <FONT FACE="courier, couriernew, monospaced size">bmp-robean.ear</FONT> file is the Enterprise Archive (<FONT FACE="courier, couriernew, monospaced size">.ear</FONT>) file of the application, which contain the ejb jar and war files. Within the ejb jar and war files reside the <FONT FACE="courier, couriernew, monospaced size">.xml </FONT>deployment descriptor files, application class files, and other content required by the application. You can use the pre-built <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> file to deploy the application. If you want to compile and assemble the application from scratch, follow the instructions under <A HREF="index.html#14862"  >Compiling and Assembling the Application</A>.
+</FONT>
+<P>
+
+<A NAME="19529"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, the administrative server needs to be running. 
+</FONT>
+<P>
+
+<A NAME="19531"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To start the administrative server if it is not already started: 
+</FONT>
+<P>
+<ul>
+<A NAME="19533"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+For UNIX:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19534"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Execute <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/domains/domain1/admin-server/startserv</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="19536"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+For Windows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19537"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Start-&gt;Programs-&gt;Sun ONE Application Server 7-&gt;Start Application Server</FONT>
+</FONT>
+<P>  </dl>
+</ul>
+
+<A NAME="18252"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Select one of the following approaches to deploying the application:
+</FONT>
+<P>
+<ul>
+<A NAME="18256"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#18177"  >Command Line-based Deployment</A> describes how to manually register the application in Sun ONE Application Server using a Command Line Interface (CLI). This is the fastest means of deploying the sample application.
+</FONT>
+<P><A NAME="18260"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+<A HREF="index.html#19986"  >GUI-based Deployment</A> describes how to use the Sun ONE Application Server Deployment Tool to import and deploy the sample application.
+</FONT>
+<P></ul>
+
+<b><A NAME="18177"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Command Line-based Deployment</b>
+</FONT>
+<P>
+
+<A NAME="19614"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Since a complete EAR file is supplied, the fastest means of setting up the application is to use the command line utilities as described in this section. The deployment process includes deploying the application <FONT FACE="courier, couriernew, monospaced size">.ear </FONT>file to the Sun ONE application server. CLI deployment of the application can be performed using either the <FONT FACE="courier, couriernew, monospaced size">asant</FONT> script or the <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> command. 
+</FONT>
+<P>
+
+<A NAME="19616"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application using the <FONT FACE="courier, couriernew, monospaced size">asant</FONT> command:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="19684"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/ejb/bmp/robean/src</FONT>
+</FONT>
+<P><A NAME="19678"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT> command.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19708"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+It is an interactive command that might prompt you to provide the admin-server host, admin-server port, admin user name, admin password and server instance name.
+</FONT>
+<P>  </dl>
+</ol>
+<A NAME="19803"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You are now ready to exercise the application by <A HREF="index.html#14931"  >Running the Sample Application</A>. 
+</FONT>
+<P>
+
+
+<A NAME="19679"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application file using the asadmin command: 
+</FONT>
+<P>
+<ol type="1">
+<A NAME="19739"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+<FONT FACE="courier, couriernew, monospaced size">&gt;cd &lt;install_dir&gt;/samples/ejb/bmp/robean</FONT>
+</FONT>
+<P><A NAME="19741"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Execute the following command:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="19779"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin deploy -u &lt;user-name&gt; -w &lt;password&gt; -H &lt;hostname&gt; -p &lt;admin server port&gt; --instance &lt;instance name&gt; bmp-robean.ear</FONT>.
+</FONT>
+<P>  </dl>
+<P>
+
+<B>  <li value="3"></B>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Now you 
+  need to register the resources to the Sun ONE application server. 
+  Proceed to <A HREF="index.html#14955"  >Registering Resources</A>.
+</FONT>
+</ol>
+
+<A NAME="19789"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">The deployment process involves the following operations: 
+</FONT>
+<P>
+<ul>
+<A NAME="19791"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+It authenticates against the local application server's administrative server
+</FONT>
+<P><A NAME="19793"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The <FONT FACE="courier, couriernew, monospaced size">.ear</FONT> file is transferred to the administrative server. 
+</FONT>
+<P><A NAME="19932"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+The administrative server begins the registration process: 
+</FONT>
+<P>  <ul>
+<A NAME="19933"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Parses the <FONT FACE="courier, couriernew, monospaced size">.ear </FONT>file
+</FONT>
+<P><A NAME="19934"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Explodes the bits into the repository
+</FONT>
+<P><A NAME="19801"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li></B>
+Registers the J2EE application <FONT FACE="courier, couriernew, monospaced size">bmp-robean</FONT> by updating the <FONT FACE="courier, couriernew, monospaced size">server.xml</FONT> file.
+</FONT>
+<P>  </ul>
+</ul>
+
+<b><A NAME="19986"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">GUI-based Deployment</b>
+</FONT>
+<P>
+<ol type="1">
+<A NAME="19996"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Log in to the web-based administration tool from the browser.
+</FONT>
+<P><A NAME="19998"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Navigate as follows:
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20067"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">Application Server Instances --&gt; &lt;server instance&gt; --&gt; Applications --&gt; Enterprise Apps</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="20001"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Click Deploy.
+</FONT>
+<P><A NAME="20003"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Click Browse to locate the <FONT FACE="courier, couriernew, monospaced size">bmp-robean.ear</FONT> file. 
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20074"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The file is located under <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/ejb/bmp/robean</FONT>. 
+</FONT>
+<P>  </dl>
+<A NAME="20005"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Click OK.
+</FONT>
+<P><A NAME="20007"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Enter <FONT FACE="courier, couriernew, monospaced size">bmp-robean</FONT> in the Application Name field.
+</FONT>
+<P><A NAME="20009"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="7"></B>
+Click OK.
+</FONT>
+<P><A NAME="19987"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="8"></B>
+Click the bmp-robean link to verify that the application is deployed.
+</FONT>
+<P>
+
+<B>  <li value="9"></B>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Now you 
+  need to register the resources to the Sun ONE application server. 
+  Proceed to <A HREF="index.html#14955"  >Registering Resources</A>.
+</FONT>
+<P></ol>
+
+<BR>  <P><A NAME="14955"> </A> <A NAME="Registering Resources"> </A> <FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1"> 
+    Registering Resources </FONT> <BR>
+  <P><A NAME="14957"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This 
+    section describes how to create resources required for running bmp-robean 
+    application. You do not need to register them separately when you deploy the 
+    application using the<FONT FACE="courier, couriernew, monospaced size"> asant 
+    deploy </FONT>command. However, the resources can be registered as follows: 
+    </FONT> 
+  <P>
+<ul>
+<A NAME="14960"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+JDBC Resource and its Associated Connection Pool
+</font>
+<P>  <dl>
+     <DT> <A NAME="14962"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin create-jdbc-connection-pool 
+--host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+--port </FONT>&lt;<I>admin port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+--user </FONT>&lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> 
+--password </FONT>&lt;<I>password</I>&gt;
+<FONT FACE="courier, couriernew, monospaced size"> --instance </FONT>&lt;<I>server instance name</I>&gt; 
+<FONT FACE="courier, couriernew, monospaced size"> --datasourceclassname </FONT>&lt;<I>datasource classname</I>&gt; 
+<FONT FACE="courier, couriernew, monospaced size"> --property User=bmp:Password=bmp:</FONT>&lt;<I>url-property</I>&gt;="&lt;<I>database jdbc url</I>&gt;" <FONT FACE="courier, couriernew, monospaced size">bmp-robean-pool</FONT>
+<p>
+In case of PointBase, please use <FONT FACE="courier, couriernew, monospaced size">DatabaseName</FONT> as &lt;<I>url-property</I>&gt;.
+In case of Oracle, please use &lt;<I>url-property</I>&gt;.
+You will need to escape <FONT FACE="courier, couriernew, monospaced size">":"</FONT> and <FONT FACE="courier, couriernew, monospaced size">"/"</FONT>, in  &lt;<I>database jdbc url</I>&gt;.
+An example of &lt;<I>database jdbc url</I>&gt; is <FONT FACE="courier, couriernew, monospaced size">"jdbc\:pointbase\:server\:\/\/localhost\:9092\/sun-appserv-samples"</FONT>.
+
+<P>     <DT> <A NAME="14966"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin create-jdbc-resource --host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --port </FONT>&lt;<I>admin port</I>&gt; <FONT FACE="courier, couriernew, monospaced size">--user</FONT> &lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --password </FONT>&lt;<I>password</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --instance </FONT>&lt;<I>server instance name</I>&gt; <FONT FACE="courier, couriernew, monospaced size">--connectionpoolid bmp-robean-pool jdbc/bmp-robean</FONT>
+</FONT>
+<P>  </dl>
+<A NAME="14974"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+Reconfiguring Server Instance
+</font>
+<P>  <dl>
+     <DT> <A NAME="14976"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<FONT FACE="courier, couriernew, monospaced size">asadmin reconfig --host </FONT>&lt;<I>admin host</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --port </FONT>&lt;<I>admin port</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --user </FONT>&lt;<I>user</I>&gt;<FONT FACE="courier, couriernew, monospaced size"> --password </FONT>&lt;<I>password</I>&gt; &lt;<I>server instance name</I>&gt;
+</FONT>
+          <P>  </dl>
+</ul>
+<BR>
+<BR>
+
+<A NAME="14931"> </A>
+<A NAME="Running the Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="20134"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Perform the following steps to run the sample application:
+</FONT>
+<P>
+<ol type="1">
+<A NAME="20136"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="1"></B>
+Go to <FONT FACE="courier, couriernew, monospaced size">http://&lt;hostname&gt;:&lt;port&gt;/SimpleBank/index.html</FONT>
+</FONT>
+<P><A NAME="20138"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="2"></B>
+Enter <FONT FACE="courier, couriernew, monospaced size"><B>123456789</B></FONT> as Customer Social Security Number.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20262"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Click <FONT FACE="courier, couriernew, monospaced size">Enter</FONT>.
+</FONT>
+<P>  </dl>
+<A NAME="20140"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="3"></B>
+Enter amount in $ text box and click <FONT FACE="courier, couriernew, monospaced size">Update</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20265"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Current Balance will be updated.
+</FONT>
+<P>  </dl>
+<A NAME="20144"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="4"></B>
+Click on <FONT FACE="courier, couriernew, monospaced size">Get Trans. Balance</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20268"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Transactional Refresh will be updated.
+</FONT>
+<P>  </dl>
+<A NAME="20148"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="5"></B>
+Click on <FONT FACE="courier, couriernew, monospaced size">Get Prog. Balance</FONT>.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20271"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+Programmatic Refresh will be updated.
+</FONT>
+<P>  </dl>
+<A NAME="20152"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>  <li value="6"></B>
+Wait for one minute.
+</FONT>
+<P>  <dl>
+     <DT> <A NAME="20274"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+The page will be refreshed and Time-based Refresh will be updated.
+</FONT>
+<P>  </dl>
+</ol>
+<P>
+<BR>
+<A NAME="18868"> </A>
+<A NAME="Generating javadocs"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Generating javadocs
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="18871"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To better understand sample application source code, you may refer to the related javadocs.
+</FONT>
+<P>
+
+<A NAME="18872"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To generate javadocs, run one of the following commands:
+</FONT>
+<P>
+
+<A NAME="18917"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">asant javadocs</FONT>
+</FONT>
+<P>
+
+<A NAME="18874"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">or
+</FONT>
+<P>
+
+<A NAME="18875"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">asant all</FONT>
+</FONT>
+<P>
+
+<A NAME="18877"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">After javadocs are generated, you may access them at <FONT FACE="courier, couriernew, monospaced size">&lt;install_dir&gt;/samples/ejb/bmp/robean/javadocs/index.html</FONT>.
+</FONT>
+<P>
+
+<BR>
+<BR>
+
+<A NAME="15009"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="18940"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-dir&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong. 
+</FONT>
+<P>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">
+   <P ALIGN="RIGHT">Last Updated <B>August 12, 2002</B>
+   </FONT>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

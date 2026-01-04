@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../../../common.xml"> ]>
+
+<!-- Copyright 2002 Sun Microsystems, Inc. All rights reserved. -->
+
+  <!-- ======================================================= -->
+  <!--  Sun One Application Server Sample Application build xml -->
+  <!-- ======================================================= -->
+
+  <project name="transactions-bank" default="core" basedir=".">
+
+  <!-- ======================================================= -->
+  <!--			 App name-dependent settings.				   -->
+  <!-- ======================================================= -->
+
+  <property name="appname" value="transactions-bank"/>
+  <property name="sample.home" value="../../../../../"/>
+  <property name="sample.name" value="transactions-bank"/>
+
+  <!-- ============================================================== -->
+  <!--           App specific DD settings.                            -->
+  <!-- ============================================================== -->
+
+  <property name="jarDD" value="ejb-jar.xml,sun-ejb-jar.xml,
+                           sun-cmp-mappings.xml"/>
+
+  <!-- ======================================================= -->
+  <!--			 Package directory structures of interest.	   -->
+  <!-- ======================================================= -->
+
+  <property name="app.pkg" value="samples/transactions/ejb/cmt/bank/client"/>
+  <property name="jar.pkg" value="samples/transactions/ejb/cmt/bank/ejb"/>
+ 
+  <!-- ======================================================= -->
+  <!--			Java Doc properties .					       -->
+  <!-- ======================================================= -->
+  <property name="sample.name" value="transactions-bank"/>
+  <property name="javadoc.pkgnames" value="samples.transactions.ejb.cmt.bank.*" />
+
+  <!-- ======================================================= -->
+  <!--			Xml files properties .					       -->
+  <!-- ======================================================= -->
+
+
+  <!-- ======================================================= -->
+  <!--				Include common.xml             -->
+  <!-- ======================================================= -->
+ 
+  &include;
+	
+
+  <!-- ======================================================= -->
+  <!--              Pointbase properties                       -->
+  <!-- ======================================================= -->
+
+   <property name="db.user" value="transactions"/>
+   <property name="db.pwd" value="transactions"/>
+   <property name="db.file" value="sql/bank.sql"/>
+
+<!-- ======================================================= -->
+  <!-- CleanUp Pointbase table Targets.                        -->
+  <!-- ======================================================= -->
+
+<!-- ======================================================= -->
+  <!--    1st datasource                                       -->
+  <!-- ======================================================= -->
+
+ <target name="create-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-connection-pool --datasourceclassname com.pointbase.jdbc.jdbcDataSource LocalPoolbank --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-connection-pool">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-connection-pool LocalPoolbank --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+ <target name="set-DatabaseName">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.LocalPoolbank.property.DatabaseName=jdbc:pointbase:server://localhost:9092/sun-appserv-samples" /> </antcall> </target>
+
+  <target name="set-User">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.LocalPoolbank.property.User=transactions" />
+    </antcall>
+  </target>
+
+  <target name="set-Password">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="set ${sunone.instance}.jdbc-connection-pool.LocalPoolbank.property.Password=transactions" />
+    </antcall>
+  </target>
+ <target name="create-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="create-jdbc-resource --connectionpoolid LocalPoolbank jdbc/transactions-bank/BankDB --instance ${sunone.instance}
+" />
+    </antcall>
+  </target>
+
+  <target name="delete-jdbc-resource">
+    <antcall target="admin_command_common">
+      <param name="admin.command" value="delete-jdbc-resource jdbc/transactions-bank/BankDB --instance ${sunone.instance}" />
+    </antcall>
+  </target>
+
+  <!-- ======================================================= -->
+  <!--		Targets to build and deploy sample application      -->
+  <!-- ======================================================= -->
+
+
+<target name= "deploy_jdbc_resource" depends = "create-jdbc-connection-pool, set-DatabaseName, set-User, set-Password, create-jdbc-resource, reconfig"/>
+
+  <target name= "undeploy_jdbc_resource" depends = "delete-jdbc-resource,delete-jdbc-connection-pool, reconfig" />
+
+  <target name="reconfig" depends="reconfig_common" />
+  <target name="clean" depends="clean_common"/>
+  <target name="init" depends="init_common"/>
+  <target name="compile" depends="compile_common" />
+  <target name="javadocs" depends="javadocs_common" />
+  <target name="deploy" depends="init_common, deploy_common, deploy_jdbc_resource, reconfig"/>
+  <target name="undeploy" depends="init_common, undeploy_common, undeploy_jdbc_resource, reconfig"/>
+  <target name="verify" depends="verify_common"/>
+  <target name="sql" depends="sql_common"/>
+
+  <target name="jar" depends="init,create_ejbjar_common"/>
+  <target name="clientjar" depends="init, clientjar_common"/>
+  <target name="ear" depends="init, jar, clientjar, create_ear_common"/>
+  <target name="core" depends="compile, jar, ear, clientjar" />
+  <target name="all" depends="core,javadocs,verify,deploy"/>
+
+</project>

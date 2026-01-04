@@ -1,0 +1,318 @@
+<HTML lang="en">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+        <meta name="keywords" content="electronic commerce, ecommerce, ebusiness, e-business, e-commerce, enterprise software, net economy, Sun Microsystems, Sun Open Network Environment, Sun ONE, internet software">
+        <meta name="description" content="Sun Microsystems, Inc., is delivering Sun ONE e-commerce software and enterprise solutions that enable companies to compete successfully in the Net Economy.">
+	<META NAME="templatebase" manual wdt 1.7.0 OAK
+
+rebranded for Sun ONE
+06-18-02">
+	<meta name="LastUpdated" content="07/12/02 17:56:07">
+	<title>
+ JAXM Messaging Provider Admin Sample Application:  JAXM Messaging Provider Admin Sample Application</title>
+</head>
+
+<body text="#000000" link="#594fbf" vlink="10% #594fbf" alink="#333366" bgcolor="#FFFFFF">
+
+<MAINCONTENT>
+
+<NAVIGATIONCONTENT>
+   <TABLE WIDTH="100%" BORDER="0" CELLSPACING="4">
+      <TR>
+         <td VALIGN="TOP">
+            <A HREF="http://wwws.sun.com/software">
+              <IMG SRC="../../../../docs/images/SunONE.jpg" alt="Sun ONE logo" 
+                valign="BOTTOM"
+                height="40" width="120" border="0"></A>
+             &nbsp;&nbsp;&nbsp;&nbsp;
+         </td>
+     </TR>
+
+      <TR>
+         <TD VALIGN="TOP" ALIGN="RIGHT" BGCOLOR="#594fbf">
+            <FONT FACE="Helvetica, Arial, sans-serif" COLOR="#ffffff" SIZE="-1"><B>
+            
+ JAXM Messaging Provider Admin Sample Application</B></FONT>
+         </TD>
+      </TR>
+
+   </TABLE>
+   <BR>
+</NAVIGATIONCONTENT>
+
+<BOOKCONTENT>
+   <BLOCKQUOTE>
+<BR>
+<BR>
+
+      <A NAME="14938"> </A>
+<A NAME="JAXM Messaging Provider Admin Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, Sans-Serif" SIZE="+1" COLOR="#000000">
+<B>
+JAXM Messaging Provider Admin Sample Application
+</B></FONT>
+<BR>
+<BR>
+<BR>
+
+<A NAME="14953"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This document describes how to utilize the JAXM Messaging Provider Admin Sample application in conjunction with the Sun ONE Application Server version 7.
+</FONT>
+<P>
+
+<A NAME="14785"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This application document contains the following sections:
+</FONT>
+<P>
+<ul>
+<A NAME="14787"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+<A HREF="#14795"  >Overview</A>
+</font>
+<P><A NAME="14789"> </A>
+
+
+  <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="#14900"  >Deploying the Admin Sample Application</A>
+</font>
+<P>
+
+  <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="#14931"  >Running the Admin Sample Application</A>
+</font>
+
+<P><A NAME="15139"> </A>
+
+  <li><FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1"><B></b>
+<A HREF="#15009"  >Troubleshooting</A>
+</font>
+<P></ul>
+
+<BR>
+<BR>
+
+<A NAME="14795"> </A>
+<A NAME="Overview"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Overview
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14797"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">
+The Provider Administration tool is a convenient means of configuring a messaging provider.
+A messaging provider, a third party service, handles the behind-the-scenes details of the
+routing and transmission of JAXM messages. The JAXM tutorial gives more information about
+messaging providers in the section 
+<A HREF="http://java.sun.com/webservices/docs/1.0/tutorial/doc/JAXM2.html#63991">Messaging Providers</A>. 
+<P>
+
+The Provider Administration tool is normally used by System Administrators, but others
+may use it as well. Exploring this tool gives you more of an idea of what a messaging
+provider needs to know. For example, a messaging provider maintains a list of the endpoints
+to which you can send messages. You can add a new endpoint to this list using the Provider
+Administration tool. If a message is not delivered successfully on the first try, a
+messaging provider will continue attempting to deliver it. You can specify the number of
+times the messaging provider should attempt delivery by supplying a retry limit. Setting
+this limit is another thing you can do with the Provider Administration tool. 
+<P>
+
+The following lists the ways you can use the tool to set a messaging provider's properties. 
+<P>
+<UL>
+<LI>To add, modify, or delete an endpoint 
+<LI>To change the number of retries (the number of times the provider will try to send a message) 
+<LI>To change the retry interval (the amount of time the provider will wait before trying to send a message again) 
+<LI>To change the directory where the provider logs messages 
+<LI>To set the number of messages per log file 
+</UL>
+
+</FONT>
+<P>
+
+<BR>
+
+<TABLE CELLPADDING="6" BORDER="1">
+<TR BGCOLOR="#FFFFFF">
+<TD>
+  <A NAME="14840"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><B>IMPORTANT:</B>
+  This admin sample application requires a messaging provider in order to run successfully.
+  The JAXM Messaging Provider Sample application is required to be deployed
+  prior to deploying the JAXM Messaging Provider Admin Sample application.  
+  To deploy the messaging provider,
+  see <A HREF="../../jaxm-provider/docs/index.html">Messaging Provider Sample 
+  Application</A> before proceeding further.
+
+  <P>
+
+  It must be emphasized that the Messaging Provider Sample application 
+  and Messaging Provider Admin Sample application is provided for sample purposes
+  only.  It is not production quality and not supported in any way.  These were originally
+  part of the Java Web Services Developer Pack and provided here as a convenience.
+</TD>
+</TR>
+</TABLE>
+
+<BR>
+
+<A NAME="14832"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">For more information on JAXM, go to <A HREF="http://java.sun.com/xml/jaxm/index.html"><FONT FACE="courier, couriernew, monospaced size">http://java.sun.com/xml/jaxm/index.html</font></A>.
+</FONT>
+<P>
+
+<BR>
+
+<A NAME="14900"> </A>
+<A NAME="Deploying the Admin Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Deploying the Admin Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="14902"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To deploy the application, do the following:
+</FONT>
+<P>
+
+<A NAME="14904"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute the command <FONT FACE="courier, couriernew, monospaced size">asant deploy</FONT> under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/webservices/jaxm/jaxm-provideradmin/src</FONT>
+</FONT>
+<P>
+
+<A NAME="14905"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">This will deploy the <FONT FACE="courier, couriernew, monospaced size">jaxm-provideradmin.war</FONT> file located under <FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/samples/webservices/jaxm/jaxm-provideradmin/
+<BR>
+<HR SIZE="1">
+<TABLE BORDER="0" CELLPADDING="5" WIDTH="75%">
+  <TR>
+    <TD VALIGN=TOP>
+<A NAME="17911"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">
+<B>
+Note
+</B>
+</FONT>
+
+</TD>
+    <TD VALIGN=TOP>
+<A NAME="17915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You must run <FONT FACE="courier, couriernew, monospaced size">asant undeploy</FONT> before redeploying this sample. This will ensure that all modules are undeployed and the resources are disabled.
+</FONT>
+<P>
+</TD>
+  </TR>
+</TABLE>
+
+<HR SIZE="1">
+<BR>
+</FONT>
+</FONT>
+<P>
+<P>
+<BR>
+
+
+<A NAME="14910"> </A>
+<A NAME="Verifying Deployment"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Verifying Deployment
+</FONT>
+<BR>
+<BR>
+
+
+
+<A NAME="14912"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">As an optional step, you can use the Sun ONE Application Server Administration Tool to verify that the application has been registered. Otherwise, proceed directly to <A HREF="#14931"  >Running the Admin Sample Application</A>.
+</FONT>
+<P>
+
+<A NAME="14915"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">To verify the registration of the application, do the following:
+</FONT>
+<P>
+
+<A NAME="15737"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Execute the command <FONT FACE="courier, couriernew, monospaced size">asadmin list-components</FONT> to look at applications deployed with a server instance. For example:
+</FONT>
+<P>
+
+<A NAME="14920"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">&lt;install_root&gt;/bin/asadmin list-components -u &lt;username&gt; -w &lt;password&gt; -H &lt;host&gt; -p &lt;port&gt; &lt;server instance name&gt;</FONT>
+</FONT>
+<P>
+
+<A NAME="17411"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You will see <FONT FACE="courier, couriernew, monospaced size">jaxm-provideradmin</FONT> listed.
+</FONT>
+<P>
+
+<BR>
+
+<A NAME="14931"> </A>
+<A NAME="Running the Admin Sample Application"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Running the Admin Sample Application
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+
+<A NAME="19766"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">You can run the application through the following URL:
+</FONT>
+<P>
+
+<A NAME="19752"> </A><FONT FACE="Helvetica, Arial, sans-serif" SIZE="2"><FONT FACE="courier, couriernew, monospaced size">http://&lt;hostname&gt;:&lt;port&gt;/jaxm-provideradmin</FONT>
+</FONT>
+<P>
+
+<BR>
+
+<A NAME="15009"> </A>
+<A NAME="Troubleshooting"> </A>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="+1">
+Troubleshooting
+<HR SIZE="2" NOSHADE>
+</FONT>
+<BR>
+
+<ul>
+<A NAME="15011"> </A>
+<li>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="-1">  <B></b>
+If you encounter problems when running the application, review the log files at <FONT FACE="courier, couriernew, monospaced size">&lt;install-root&gt;/domains/domain1/&lt;server-instance&gt;/logs/server.log</FONT> to learn what exactly went wrong.
+</font>
+<P></ul>
+<FONT FACE="Helvetica, Arial, sans-serif" SIZE="2">Some Known Issues
+<ul><p><li>The sample can not be deployed from the application server administration GUI, if <FONT FACE="courier, couriernew, monospaced size">Precompile JSPs</FONT> option is selected. 
+Solution is, try deploying the application without <FONT FACE="courier, couriernew, monospaced size">Precompile JSPs</FONT>, or deploy using <FONT FACE="courier, couriernew, monospaced size">asant</FONT>.
+<p><li>The sample can not be deployed using <FONT FACE="courier, couriernew, monospaced size">asadmin</FONT> with option <FONT FACE="courier, couriernew, monospaced size">--precompilejsp=true</FONT>.
+Solution is, try deploying the application without the option <FONT FACE="courier, couriernew, monospaced size">--precompilejsp=true</FONT>, or deploy using <FONT FACE="courier, couriernew, monospaced size">asant</FONT>.
+</ul>
+
+
+
+   </BLOCKQUOTE>
+</BOOKCONTENT>
+
+<FOOTERCONTENT>
+   <BLOCKQUOTE>
+ <BR>
+           
+        <HR NOSHADE SIZE="1">
+
+
+   
+<!-- start copyright -->
+<font face="Helvetica, Arial, sans-serif" size="-2">
+Copyright &#169; 2002 <a href="http://sun.com">Sun Microsystems, Inc.</a> 
+All rights reserved.
+</font>
+<!--  end copyright  -->
+   </BLOCKQUOTE>
+   <P ALIGN="RIGHT">
+   <FONT FACE="Helvetica, Arial, sans-serif" SIZE="-2">Last Updated <B>July 12, 2002</B>
+   </font>
+   <BR>
+
+</FOOTERCONTENT>
+
+</MAINCONTENT>
+
+</BODY>
+
+
+</HTML>

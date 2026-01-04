@@ -1,0 +1,768 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"><html><head><title>Using PointBase with the Samples</title>
+
+
+
+
+
+
+
+<meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+
+
+
+<meta name="keywords" value="">
+
+
+
+<meta name="description" value="">
+
+
+
+<link rel="stylesheet" href="default.css"><!--stopindex--></head>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body leftmargin="0" topmargin="0" marginheight="0" marginwidth="0" bgcolor="#ffffff">
+
+<a name="top"></a> <!-- SUN.COM TEMPLATE V4.2 --> <!-- BEGIN GLOBAL NAVIGATION TOOLBAR -->
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+
+
+  <tbody>
+
+
+
+  <tr>
+
+
+
+    <td width="49%"><span class="sp2"> </span></td>
+
+
+
+  </tr>
+
+
+
+  <form action="http://www.sun.com/search/index.cgi">
+
+
+
+  </form>
+
+
+
+  <tr>
+
+
+
+    <td width="49%" nowrap valign="middle">
+
+
+
+      <div class="sitelinks"> <a href="http://www.sun.com/">sun.com</a></div>
+
+
+
+    </td>
+
+
+
+    <td nowrap valign="middle" width="49%" colspan="3">
+
+
+
+      <div class="sitelinks">
+
+
+
+        <div align="right"><a href="http://www.sun.com/sales/index.html">How To
+
+
+
+          Buy</a>  |  <a href="http://mysun.sun.com/">My Sun</a>  |  <a href="http://www.sun.com/worldwide/">Worldwide
+
+
+
+          Sites</a></div>
+
+
+
+      </div>
+
+
+
+    </td>
+
+
+
+  </tr>
+
+
+
+  <tr>
+
+
+
+    <td width="49%"><span class="sp2"> </span></td>
+
+
+
+  </tr>
+
+
+
+  </tbody>
+
+
+
+</table>
+
+
+
+<!-- END GLOBAL NAVIGATION TOOLBAR -->
+
+
+
+<!-- BEGIN GENERIC MASTHEAD -->
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+
+
+<tbody><tr>
+
+
+
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+
+
+
+    <td class="sunblue" valign="top"><a href="http://www.sun.com/"><img src="images/logo_sun.gif" width="110" height="43" border="0" alt="Sun Microsystems Logo"></a><br>
+
+
+
+      <img src="images/a.gif" width="170" height="1" alt=""></td>
+
+
+
+<td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+
+
+
+    <td width="50%" class="sunyellow" valign="bottom" nowrap><br>
+
+
+
+      <span class="sp5"> </span></td>
+
+
+
+<td><img src="images/a.gif" width="10" height="1" border="0" alt=""></td>
+
+
+
+    <td width="50%" class="sunred" valign="bottom" nowrap><br>
+
+
+
+      <span class="sp5"> </span></td>
+
+
+
+    <td><img src="images/a.gif" width="10" height="8" border="0" alt=""></td>
+
+
+
+</tr>
+
+
+
+</tbody></table>
+
+
+
+<span class="sp5"> </span><br>
+
+
+
+<!-- END GENERIC MASTHEAD --> <!-- BEGIN BREADCRUMB --><br>
+
+
+
+<!-- END BREADCRUMB -->
+
+
+
+<!-- BEGIN PAGETITLE -->
+
+
+
+<div class="pagetitle2">Sun[tm] ONE Application Server 7 Samples</div>
+
+<div class="pagetitle">Using PointBase with the Samples</div>
+
+
+
+<!-- END PAGETITLE -->
+
+
+
+<!-- BEGIN WRAPPER TABLE, 3 COLUMN, LEFT/MAIN/RIGHT -->
+
+
+
+<table border="0" cellpadding="0" cellspacing="10" width="105%" height="739">
+  <tbody> 
+  <tr> 
+
+    <td valign="top"> <!-- BEGIN D2 PRIMARY NAVIGATION --> 
+
+      <table border="0" cellpadding="0" cellspacing="0" width="100%">
+
+        <tbody> 
+
+        <tr> 
+          <td colspan="3"> 
+            <p><br>
+              Sun ONE Application Server 7 includes the PointBase Network Server 
+              version 4.2 database as part of the installable components except 
+              when the application server is installed as part of a Solaris 9 
+              installation. </p>
+            <p>When PointBase is installed as part of an application server installation, 
+              a prepopulated database file containing tables and data for all 
+              of the database oriented sample applications is included in the 
+              installation. Additionally, the PointBase Type 4 JDBC[tm] driver 
+              is included in the application server environment. During installation 
+              of the application server, PointBase is installed in the following 
+              location:</p>
+            <blockquote> 
+              <p> <code><font face="Courier New, Courier, mono">&lt;appserver_install_dir&gt;/pointbase</font><font face="Courier New, Courier, mono">/</font></code></p>
+            </blockquote>
+            <p>The documentation for the database is available at:</p>
+            <blockquote> 
+              <p> <code><font face="Courier New, Courier, mono">&lt;appserver_install_dir&gt;/pointbase/docs/</font></code></p>
+            </blockquote>
+            <p>This document describes several aspects of working with the PointBase 
+              server and Sun ONE Application Server:</p>
+            <table width="100%">
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#INSTALL">Installing 
+                  and Configuring PointBase Server </a>(if not already installed)</td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#COPY">Creating 
+                  Your Own PointBase Runtime Environment </a>(optional)</td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#START">Starting 
+                  PointBase</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#STOP">Stopping 
+                  PointBase</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#EXECUTE">Executing 
+                  SQL Statements with PointBase</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="94%"><span class="rightarrowblue">»</span> <a href="#register">Registering 
+                  JDBC Resources and Defining Connection Pools</a></td>
+              </tr>
+            </table>
+            <BR>
+            <h2><b><a name="INSTALL"></a>Installing and Configuring PointBase 
+              Server (if not already installed)</b></h2>
+            <p>PointBase is not installed when either the application server is 
+              installed as part of a Solaris 9 installation or, during installation 
+              of the application server, the PointBase component was deselected 
+              as a component to be installed.</p>
+            <p> To determine if pointbase is installed and configured to work 
+              with sample applications, check your application server installation 
+              for the following directory:</p>
+            <blockquote> 
+              <blockquote> 
+                <p><code><font face="Courier New, Courier, mono">&lt;appserver_install_dir&gt;/pointbase/</font></code></p>
+              </blockquote>
+            </blockquote>
+            <p>If PointBase exists in your application server installation, see 
+              the Starting PointBase section for details on starting the database 
+              server.</p>
+            <p>To install and configure PointBase for use with the sample applications, 
+              follow these steps:</p>
+            <table width="100%">
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="96%"><font face="Arial, Helvetica, sans-serif">1. <a href="#run"></a><font face="Arial, Helvetica, sans-serif"><a href="#reassemble"></a></font><font face="Arial, Helvetica, sans-serif"><a href="#pb-download">Download 
+                  and Install PointBase Server and Client Products</a></font></font></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="96%"><font face="Arial, Helvetica, sans-serif">2. <a href="#pb-update-ant-files">Update 
+                  Sample Ant </a></font><a href="#define-jdbc-connection-pool"> 
+                  Files</a></td>
+              </tr>
+              <tr> 
+                <td width="4%">&nbsp;</td>
+                <td width="96%"><font face="Arial, Helvetica, sans-serif">3. <a href="#run"></a><font face="Arial, Helvetica, sans-serif"><a href="#reassemble"></a></font></font><font face="Arial, Helvetica, sans-serif"><a href="#pb-copy-db-files">Copy 
+                  Samples PointBase Database Files</a></font></td>
+              </tr>
+              <tr> 
+                <td width="4%" height="19">&nbsp;</td>
+                <td width="96%" height="19"><font face="Arial, Helvetica, sans-serif">4. 
+                  <a href="#run"></a><font face="Arial, Helvetica, sans-serif"><a href="#reassemble"></a></font></font><font face="Arial, Helvetica, sans-serif"><a href="#pb-set-classpath">Add 
+                  PointBase Type 4 JDBC[tm] Driver to Application Server's Classpath</a> 
+                  </font></td>
+              </tr>
+            </table>
+            <p><b><a name="pb-download"></a>1. Download and Install PointBase 
+              Server and Client Products</b></p>
+            <p>Download the PointBase evaluation software from <a href="http://www.pointbase.com">http://www.pointbase.com</a>. 
+            </p>
+            <p>Install at least the PointBase Server and Client products on your 
+              system. The Pointbase Client product includes the PointBase Type 
+              4 JDBC driver.</p>
+            <p><b><a name="pb-update-ant-files"></a>2. Update Sample Ant Files</b></p>
+            <p>2 a. Edit the <font face="Courier New, Courier, mono">common.properties</font> 
+              file under the <font face="Courier New, Courier, mono">&lt;appserver_install_dir&gt;/samples/</font> 
+              directory and set the <font face="Courier New, Courier, mono">com.sun.aas.pointbaseRoot</font> 
+              property to the PointBase installation directory.</p>
+            <p>2 b. Next, edit the<font face="Courier New, Courier, mono"> common.xml</font> 
+              file under the <font face="Courier New, Courier, mono">&lt;appserver_install_dir&gt;/samples/ 
+              </font>directory and modify the<font face="Courier New, Courier, mono"> 
+              db.classpath</font> property to specify the appropriate name and 
+              location of the PointBase tools and client JAR files. </p>
+            <p>In the following section of the <font face="Courier New, Courier, mono">common.xml</font> 
+              file, replace the <font face="Courier New, Courier, mono">client_tools/ 
+              </font>subdirectory with the name of the subdirectory under which 
+              the tools and client JAR files reside and modify the name of the 
+              JAR files as appropriate:</p>
+            <blockquote> 
+              <p> <font face="Courier New, Courier, mono">&lt;!-- pointbase properties 
+                --&gt;<br>
+                &lt;property name=&quot;db.driver&quot; value=&quot;com.pointbase.jdbc.jdbcUniversalDriver&quot;/&gt;<br>
+                &lt;property name=&quot;db.root&quot; value=&quot;${com.sun.aas.pointbaseRoot}&quot;/&gt;<br>
+                &lt;property name=&quot;db.url&quot; value=&quot;jdbc:pointbase:server://localhost/sun-appserv-samples&quot;/&gt;<br>
+                &lt;property name=&quot;db.classpath&quot; value=&quot;${db.root}/<b>client_tools/lib/pbtools42RE.jar</b>;${db.root}/<b>client_tools/lib/pbclient42RE.jar</b>&quot;/&gt;</font></p>
+            </blockquote>
+            <p>For example, these JAR file are located under the<font face="Courier New, Courier, mono"> 
+              lib/ </font>directory of a PointBase 4.3 installation.<property name="db.classpath" value="${db.root}/client_tools/lib/pbtools42RE.jar;${db.root}/client_tools/lib/pbclient42RE.jar"/> 
+            </p>
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">&lt;!-- pointbase properties 
+                --&gt;<br>
+                &lt;property name=&quot;db.driver&quot; value=&quot;com.pointbase.jdbc.jdbcUniversalDriver&quot;/&gt;<br>
+                &lt;property name=&quot;db.root&quot; value=&quot;${com.sun.aas.pointbaseRoot}&quot;/&gt;<br>
+                &lt;property name=&quot;db.url&quot; value=&quot;jdbc:pointbase:server://localhost/sun-appserv-samples&quot;/&gt;<br>
+                &lt;property name=&quot;db.classpath&quot; value=&quot;${db.root}<b>/lib/pbtools43.jar</b>;${db.root}<b>/lib/pbclient43.jar</b>&quot;/&gt;</font> 
+              </p>
+            </blockquote>
+            <p><b><a name="pb-copy-db-files"></a>3. Copy Samples PointBase Database 
+              Files</b></p>
+            <p>The samples component of Sun ONE Application Server 7 contains 
+              a prepopulated PointBase database file for the sample applications. 
+              If you do not intent to share your PointBase installation with other 
+              users, you must copy the prepopulated database files from the samples 
+              area to the PointBase product installation area.</p>
+            <p>If you intend to share the PointBase installation with other users, 
+              then you will learn how to create your own PointBase runtime environment 
+              in the next section. If this is the case, then proceed to the <a href="#pb-set-classpath">next 
+              step</a> to add the PointBase JDBC driver to your application server's 
+              classpath.</p>
+            <p>To copy the prepopulated database files to your PointBase installation, 
+              copy the files contained in the following directory:</p>
+            <blockquote> 
+              <p>&lt;<font face="Courier New, Courier, mono">appserver_install_dir&gt;/samples/pointbase/databases/*</font> 
+              </p>
+            </blockquote>
+            <p>to:</p>
+            <blockquote> 
+              <p> <font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;/databases/</font></p>
+            </blockquote>
+            <p>This operation will copy the files named <font face="Courier New, Courier, mono">sun-appserv-samples$1.wal 
+              </font>and <font face="Courier New, Courier, mono">sun-appserv-samples.dbn</font> 
+              to the PointBase installation area.</p>
+            <p><b><a name="pb-set-classpath"></a>4. Add PointBase Type 4 JDBC 
+              Driver to Server Application Server's Classpath</b></p>
+            <p>Copy the PointBase Type 4 JDBC driver library from the PointBase 
+              installation directory to the <font face="Courier New, Courier, mono">lib/ 
+              </font>directory of your application server instance. For example:</p>
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">.../domains/domain1/server1/lib/</font></p>
+            </blockquote>
+            <p>You can find the JDBC driver under <font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;/lib/</font>. 
+              The driver is named <font face="Courier New, Courier, mono">pbclient<i>nn</i>.jar 
+              </font>where <font face="Courier New, Courier, mono"><i>nn</i></font> 
+              represents the version of PointBase.</p>
+            <p>Restart the application server to make the server aware of the 
+              driver. </p>
+            <p>Alternatively, you can specify the location of the PointBase driver 
+              in the <i>Classpath Suffix</i> field in the application server's 
+              configuration. Start the administrative console and access the application 
+              server instance's <i>JVM Settings -&gt; Path Settings</i> area to 
+              make this change. </p>
+            <h2><b><a name="COPY"></a></b>Creating Your Own PointBase Runtime 
+              Environment (optional)</h2>
+            <p>If you are either sharing your application server installation 
+              with other users or your system user ID does not have write permissions 
+              to the area in which PointBase is installed (which is typically 
+              the case when the application server is installed by the root user 
+              on UNIX systems and you are using a non-root user ID), you should 
+              make a copy of the pre-built PointBase databases and the PointBase 
+              Server startup script.</p>
+            <p>You can create your own copy of the PointBase Server environment 
+              by following these steps:</p>
+            <p>1. Create a directory named <font face="Courier New, Courier, mono">pointbase/ 
+              </font>in your own area of the system.</p>
+            <p>2. Copy the prepopulated PointBase database files from the samples 
+              installation area to your own PointBase area. </p>
+            <p>To copy the prepopulated database files to your own PointBase installation, 
+              copy the files contained in the following directory:</p>
+            <blockquote> 
+              <p>&lt;<font face="Courier New, Courier, mono">appserver_install_dir&gt;/samples/pointbase/databases/*</font> 
+              </p>
+            </blockquote>
+            <p>to:</p>
+            <blockquote> 
+              <p> <font face="Courier New, Courier, mono">&lt;personal_pointbase_dir&gt;/pointbase/databases/</font></p>
+            </blockquote>
+            <p>This operation will copy the files named <font face="Courier New, Courier, mono">sun-appserv-samples$1.wal 
+              </font>and <font face="Courier New, Courier, mono">sun-appserv-samples.dbn</font> 
+              to the your own PointBase area.</p>
+            <p>3. Copy the the following files from the PointBase installation 
+              area to <font face="Courier New, Courier, mono">&lt;personal_pointbase_dir&gt;/pointbase/</font> 
+              directory:</p>
+            <table width="64%" border="1" height="64" cellpadding="3" align="center">
+              <tr bgcolor="#CCCCCC"> 
+                <td height="36" width="34%"><b>Files</b></td>
+                <td height="36" width="66%"><b>Comments</b></td>
+              </tr>
+              <tr> 
+                <td height="59" width="34%"> 
+                  <p><font face="Courier New, Courier, mono">StartServer.sh or 
+                    </font><font face="Courier New, Courier, mono">StartServer.bat</font></p>
+                </td>
+                <td height="59" width="66%">Start up script containing port number 
+                  on which the PointBase Server listens. Please edit the files, if you want to make any modifications.</td>
+              </tr>
+              <tr> 
+                <td height="53" width="34%"><font face="Courier New, Courier, mono">pointbase.ini</font></td>
+                <td height="53" width="66%">Initialization file specifying location 
+                  of database files. Please edit the file, if you want to make any modifications.</td>
+              </tr>
+            </table>
+            <p>If PointBase was installed as part of the application server installation, 
+              these files are located at:</p>
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">&lt;appserver_install_dir&gt;/pointbase/server/</font></p>
+            </blockquote>
+            <p>If you downloaded an installed the evaluation distribution of PointBase, 
+              these files are located at:</p>
+            <blockquote> 
+              <p><font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;/tools/server/</font></p>
+            </blockquote>
+            <p>4. Edit the <font face="Courier New, Courier, mono">StartServer.sh</font> 
+              or <font face="Courier New, Courier, mono">StartServer.bat</font> 
+              script to specify a port number that does not conflict with other 
+              running instances of the PointBase Server.</p>
+            <table width="85%" border="1" cellpadding="3" align="center">
+              <tr> 
+                <td height="207"> 
+                  <p><b><img src="images/warning_24.gif" width="24" height="24">Using 
+                    a Non-default Port Number: </b>If you change the port number 
+                    on which the PointBase Server listens from the default value 
+                    of 9092, you must modify the JDBC Connection Pool properties 
+                    to reflect the non-default port number. Otherwise the application 
+                    server will not be able to contact your copy of the PointBase 
+                    Server.</p>
+                  <p>The dataBaseName property specified for the JDBC Connection 
+                    Pool must be changed from:</p>
+                  <blockquote> 
+                    <p><font face="Courier New, Courier, mono">jdbc:pointbase:server://localhost/sun-appserv-samples</font></p>
+                  </blockquote>
+                  <p><font face="Courier New, Courier, mono">to:</font></p>
+                  <blockquote> 
+                    <p><font face="Courier New, Courier, mono">jdbc:pointbase:server://localhost<b>:&lt;port&gt;</b>/sun-appserv-samples</font></p>
+                  </blockquote>
+                  <p>Where <font face="Courier New, Courier, mono">&lt;port&gt;</font> 
+                    is the port number specified in the <font face="Courier New, Courier, mono">StartServer</font> 
+                    script. </p>
+                  <p>If you do not use the default port of 9092, then you should 
+                    modify the <font face="Courier New, Courier, mono">db.port</font> 
+                    property in the <font face="Courier New, Courier, mono">common.xml</font> 
+                    file.</p>
+                </td>
+              </tr>
+            </table>
+            <p>Now you are ready to start the PointBase Server from your own directory 
+              area.</p>
+            <h2><b><a name="START"></a>Starting PointBase</b></h2>
+            <p>The database server can be easily started by performing one of 
+              the following actions:</p>
+            <p>Windows Platforms:</p>
+            <blockquote>
+              <p>PointBase installed with the application server: <i>Start -&gt; 
+                Programs -&gt; Sun Microsystems -&gt; Sun ONE Application Server 
+                7 -&gt; Start PointBase</i></p>
+              <p>PointBase downloaded and installed separately:<i> </i><font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;/tools/server/startserver.bat</font></p>
+            </blockquote>
+            <p>UNIX Platforms:</p>
+            <blockquote>
+              <p>PointBase installed with the application server: <font face="Courier New, Courier, mono">&lt;appserver_install_dir&gt;/pointbase/server/StartServer.sh</font></p>
+              <p>PointBase downloaded and installed separately:<i> </i><font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;/tools/server/startserver.sh</font></p>
+            </blockquote>
+            <p>Alternatively, if you copied the PointBase Server files to your 
+              own directory, execute the <font face="Courier New, Courier, mono">StartServer</font> 
+              script from that location.</p>
+            <p>Once you execute the startup script, you will see the following 
+              text in either a command window or at the UNIX terminal prompt: 
+            </p>
+            <ol>
+              <blockquote> 
+                <p><font face="Courier New, Courier, mono">Server started, listening 
+                  on port 9092, display level: 0 ...<br>
+                  ></font></p>
+              </blockquote>
+            </ol>
+            <p>To stop the server, enter <font face="Courier New, Courier, mono">quit</font> 
+              at the <font face="Courier New, Courier, mono">&gt;</font> prompt.</p>
+            <table width="85%" border="1" height="64" cellpadding="3" align="center">
+              <tr> 
+                <td height="248"> 
+                  <p><b>Don't Need A Console Window?</b> On UNIX, if you want 
+                    to run the PointBase server in the background, you can edit 
+                    the <font face="Courier New, Courier, mono">StartServer.sh</font> 
+                    script and place the option &quot;<font face="Courier New, Courier, mono">/noconsole</font>&quot; 
+                    at the end of the command line. </p>
+                  <blockquote> 
+                    <p><font face="Courier New, Courier, mono">.../java -classpath 
+                      ./lib/pbserver42RE.jar com.pointbase.net.netServer /port:9092 
+                      <b>/noconsole</b></font></p>
+                  </blockquote>
+                  <p>The jar file <font face="Courier New, Courier, mono">pbserver42RE.jar</font> is for PointBase 4.2 installation. You may have to use different jar file depending upon your PointBase installation.
+                  <p>Use &quot;<font face="Courier New, Courier, mono">&amp;</font>&quot; 
+                    at the end of the <font face="Courier New, Courier, mono">StartServer.sh</font> 
+                    command to run the server in the background.</p>
+                  <blockquote> 
+                    <p><font face="Courier New, Courier, mono"> <b>./StartServer.sh 
+                      &amp;</b><br>
+                      [1] 26418 </font></p>
+                  </blockquote>
+                  <p>See the PointBase server documentation in the following location 
+                    for more information on starting and stopping the server:</p>
+                  <blockquote> 
+                    <p><font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;/docs/ 
+                      </font></p>
+                  </blockquote>
+                </td>
+              </tr>
+            </table>
+            <br>
+            <h2><a name="STOP"></a>Stopping PointBase</h2>
+            <p>To stop the server, enter <font face="Courier New, Courier, mono">quit</font> 
+              at the <font face="Courier New, Courier, mono">></font> prompt.</p>
+            <h2><a name="EXECUTE"></a>Executing SQL Statements with PointBase</h2>
+            <p>The PointBase database installed with the application server is 
+              prepopulated with data for all sample applications. In some of the 
+              samples, you may need to remove, recreate and repopulate tables. 
+              The easiest means of performing these tasks is to use the PointBase 
+              Console GUI to execute SQL statements found in the .sql files within 
+              the <font face="Courier New, Courier, mono">src/sql/</font> directory 
+              of each sample application.</p>
+            <p>To start the Console, follow these instructions:</p>
+            <p>Windows Platforms:</p>
+            <blockquote> 
+              <p>PointBase installed with the application server: <i></i>Execute 
+                <code><font face="Courier New, Courier, mono">&lt;appserver_install_dir&gt;\pointbase\</font>client_tools\PB_console.bat</code></p>
+              <p>PointBase downloaded and installed separately:<i> </i><font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;\tools\server\startconsole.bat</font></p>
+            </blockquote>
+            <p>UNIX Platforms:</p>
+            <blockquote> 
+              <p>PointBase installed with the application server: <i></i> Execute<font face="Courier New, Courier, mono"> 
+                &lt;appserver_install_dir&gt;/pointbase/</font><code>client_tools/PB_console.sh</code></p>
+              <p>PointBase downloaded and installed separately:<i> </i><font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;/tools/server/startconsole.sh</font></p>
+            </blockquote>
+            <p>The Console appears as follows: </p>
+            <table width="68%" border="0" align="center">
+              <tr> 
+                <td><img src="images/console.jpg" width="667" height="457"></td>
+              </tr>
+            </table>
+            <p>To connect to the database, select <i>DBA -&gt; Connect to Database<br>
+              </i></p>
+            <table width="53%" border="0" align="center">
+              <tr> 
+                <td><img src="images/console_connect.jpg" width="519" height="296"></td>
+              </tr>
+            </table>
+            <p>Enter the following information for the samples database installed 
+              with the application server:</p>
+            <ul>
+              <li><b>Driver</b>: use the default value as provided.</li>
+              <li> <b>URL</b>: <font face="Courier New, Courier, mono">jdbc:pointbase://localhost/sun-appserv-samples</font></li>
+              <li> <b>User</b> and <b>Password</b>: use values as appropriate 
+                for the sample of interest:</li>
+            </ul>
+            <table width="75%" border="1" cellpadding="3" align="center">
+              <tr bgcolor="#CCCCCC"> 
+                <td><b>Sample</b></td>
+                <td><b>User</b></td>
+                <td><b>Password</b></td>
+              </tr>
+              <tr> 
+                <td rowspan="3">Java Pet Store</td>
+                <td><code>petstore</code></td>
+                <td><code>petstore</code></td>
+              </tr>
+              <tr> 
+                <td><code>opc</code></td>
+                <td><code>opc</code></td>
+              </tr>
+              <tr> 
+                <td><code>supplier</code></td>
+                <td><code>supplier</code></td>
+              </tr>
+              <tr> 
+                <td>JDBC samples</td>
+                <td><code>jdbc</code></td>
+                <td><code>jdbc</code></td>
+              </tr>
+              <tr> 
+                <td>Lifecycle samples</td>
+                <td><code>lifecycle</code></td>
+                <td><code>lifecycle</code></td>
+              </tr>
+              <tr> 
+                <td>CMP samples</td>
+                <td><code>cmp</code></td>
+                <td><code>cmp</code></td>
+              </tr>
+              <tr> 
+                <td>Distributed transactions</td>
+                <td><code>transactions</code></td>
+                <td><code>transactions</code></td>
+              </tr>
+              <tr> 
+                <td>BMP samples</td>
+                <td><code>bmp</code></td>
+                <td><code>bmp</code></td>
+              </tr>
+              <tr> 
+                <td>Smartticket 1.1.1</td>
+                <td><code>smarticket</code></td>
+                <td><code>smarticket</code></td>
+              </tr>
+              <tr> 
+                <td>Duke's Bank</td>
+                <td><code>dukesbank</code></td>
+                <td><code>dukesbank</code></td>
+              </tr>
+              <tr> 
+                <td>Connectors</td>
+                <td><code>cci</code></td>
+                <td><code>cci</code></td>
+              </tr>
+            </table>
+            <p>Once connected to the database, you can enter SQL statements in 
+              the top portion of the window and the results can be viewed in the 
+              lower portion. SQL statements can be entered individually or as 
+              a sequence of statements from a file. </p>
+            <p>If a single statement has to be executed, then enter the SQL statement 
+              and select the menu option <i>SQL -&gt; Execute</i> to execute the 
+              statement.</p>
+            <p>If a sequence of statements is to be executed, use the menu option 
+              <i>SQL -&gt; Execute all</i>. </p>
+            <p>To use a .sql file, as provided with the sample applications, select 
+              <i>File -&gt; Open</i> and open the .sql file of interest. If the 
+              .sql file contains an exit; statement, you should remove this statement 
+              to avoid exiting from the Console when executing statements read 
+              from the .sql file.</p>
+            <p>Review the PointBase documentation for more information on the 
+              PointBase console. The documentation is available at <font face="Courier New, Courier, mono">&lt;pointbase_install_dir&gt;/docs/.</font></p>
+            <h2><a name="register"></a>Registering JDBC Resources and Defining 
+              Connection Pools</h2>
+            <p>Refer to the Getting Started Guide for details on defining JDBC 
+              Connecton Pools for PointBase through the application server's administrative 
+              console. </p>
+            <p>As an advanced topic, you can reveiw the samples <font face="Courier New, Courier, mono">common.xml</font> 
+              and <font face="Courier New, Courier, mono">build.xml</font> files 
+              to learn how to use the <font face="Courier New, Courier, mono">asadmin</font> 
+              command line interface (CLI) to define JDBC resources and connection 
+              pools.</p>
+          </td>
+
+        </tr>
+
+        </tbody> 
+
+      </table>
+
+    </td>
+
+  </tr>
+
+  <tr> 
+
+    <td class="grey1"> </td>
+
+  </tr>
+
+  <!-- BEGIN SPACER ROW --> <!-- END SPACER ROW --> </tbody> 
+
+</table>
+
+
+
+<div class="sitelinks" align="center"> <a href="http://wwws.sun.com/company/">Company 
+
+  Info</a>   |   <a href="http://wwws.sun.com/contact/">Contact</a>   |  Copyright 
+
+  2002 Sun Microsystems <br>
+
+
+
+ 
+
+
+
+</div>
+
+
+
+<!-- END GLOBAL FOOTER -->
+
+
+
+</body></html>
+

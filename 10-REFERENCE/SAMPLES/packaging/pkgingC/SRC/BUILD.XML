@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+<!-- ============================================================== -->
+<!-- Ant XML file for pkgingC sample application as deployed to     -->
+<!-- SunONE Application Server.                                    -->
+<!--                                                                -->
+<!-- Copyright (c) 2002 Sun Microsystems, Inc. All rights reserved. -->
+<!-- ============================================================== -->
+
+  <project name="pkgingC-sample" default="core" basedir=".">
+  <property name="sample.home" value="../../../"/>
+  
+  <!-- App name-dependent settings. -->
+  <property name="appname" value="pkgingCApp"/>
+  <property name="ejb-name" value="${appname}Ejb"/>
+  <property name="client-name" value="${appname}Client"/>
+  
+  <!-- Package directory structures of interest. -->
+  <property name="app.pkg" value="samples/packaging/pkgingC"/>
+  <property name="components.pkgprefix" value="samples/packaging/pkging"/>
+   
+  <!-- Destination directory for the build -->
+  <property name="build.components" value="../../components/build/classes"/>
+  <property name="classpath.suffix" value="../../components/build/classes"/>
+  <property name="javadoc.pkgnames" value="samples.packaging.pkgingC.*" />
+
+  <!-- ======================================================= -->
+  <!-- Done including common.xml                               -->
+  <!-- ======================================================= -->  
+  &include;
+
+  <!-- Destination directory for the assembly targets -->
+  <property name="assemble.ejbjar" value="${assemble}/jar"/>
+
+  <target name="componentsclean">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="clean" />
+  </target>
+
+  <target name="componentscompile" depends="componentsclean">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="compile" />
+  </target>
+
+  <target name="componentsjavadocs">
+      <ant antfile="../../components/src/build.xml" dir="../../components/src" target="javadocs" inheritAll="false"/>
+  </target>
+
+  <!-- ======================================================= -->
+  <!-- Assemble EJB Module (for module based registration)     -->
+  <!-- ======================================================= -->
+  <target name="ejbjar_local">
+    <mkdir dir="${assemble.ejbjar}"/>
+    <copy todir="${assemble.ejbjar}/${components.pkgprefix}">
+        <fileset dir="${build.components}/${components.pkgprefix}/">
+                <include name="**/ejb/*.class"/>
+                <include name="**/lib/Calculator.class"/>
+                <include name="**/ejb/*Module*.class"/>
+                <exclude name="**/ejb/*Interest*.class"/>
+        </fileset>
+    </copy>
+
+    <mkdir dir="${assemble.ejbjar}/META-INF"/>
+    <copy file="ejb-jar.xml"     tofile="${assemble.ejbjar}/META-INF/ejb-jar.xml"/>
+    <copy file="sun-ejb-jar.xml" tofile="${assemble.ejbjar}/META-INF/sun-ejb-jar.xml"/>
+    <jar jarfile="${assemble.ejbjar}/${ejbjar}"
+       basedir="${assemble.ejbjar}" excludes ="**/*.jar"/>
+       <property name="ejbjar.done" value="false" />
+  </target>
+
+  <target name="deploy-module" depends="setup_env">
+    <echo message="Deploying ${assemble.ejbjar}/${ejbjar}."/>
+    <sun-appserv-deploy
+      retrievestubs="${assemble.clientjar}" 
+      file="${assemble.ejbjar}/${ejbjar}"
+      name="${ejb-name}"
+      type="ejb"
+      force="true"
+      upload="true"
+      user="${admin.user}" 
+      password="${admin.password}" 
+      host="${admin.host}" 
+      port="${admin.port}" 
+      instance="${sunone.instance}" 
+      sunonehome="${com.sun.aas.installRoot}" />
+  </target>
+     
+  <target name="undeploy-module">
+    <antcall target="undeploy_common">
+      <param name="appname" value="${ejb-name}"/>
+      <param name="apptype" value="ejb"/>
+    </antcall>
+  </target>
+ 
+  <target name="init" depends="init_common"/>
+  <target name="clean" depends="clean_common,componentsclean"/>
+  <target name="compile" depends="init,componentscompile,compile_common"/>
+  <target name="javadocs" depends="componentsjavadocs, javadocs_common"/>
+  <target name="clientjar" depends="clientjar_common"/>
+  <target name="jar" depends="init,ejbjar_local"/>
+  <target name="core" depends="init,compile,clientjar,jar" />
+  <target name="deploy" depends="deploy-module"/>
+  <target name="undeploy" depends="undeploy-module"/>
+  <target name="all" depends="core,javadocs,deploy"/>
+</project>

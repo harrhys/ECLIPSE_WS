@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="iso-8859-1"?> 
+<!DOCTYPE project [ <!ENTITY include SYSTEM "../../../common.xml"> ]>
+
+ <!-- ============================================================== -->
+  <!-- Sun ONE Application Server Sample Application build xml         -->
+  <!--                                                                -->
+  <!-- Copyright (c) 2001 Sun Microsystems, Inc. All rights reserved. -->
+  <!-- ============================================================== -->
+
+
+<project name="SAXLocalNameCount" default="core" basedir=".">
+
+  <property name="sample.home" value="../../../" />
+  <!-- ======================================================= -->
+  <!--                  Java Doc properties .
+       -->
+  <!-- ======================================================= -->
+ 
+  <property name="javadoc.pkgnames" value="samples.xml.*" />
+
+<!-- ======================================================= -->
+  <!--                          Include common.xml
+               -->
+  <!-- ======================================================= -->
+
+  &include;
+
+
+  <path id="project-classpath">
+    <pathelement location="."/>
+    <pathelement location="${build.classesdir}"/>
+  </path>
+
+  
+  <target name="rundtd" depends="core">
+    <echo>java samples.xml.sax.SAXLocalNameCount -dtd ../../data/book-order.xml</echo>
+    <java classname="samples.xml.sax.SAXLocalNameCount" fork="yes">
+      <arg value="-dtd" />
+      <arg value="../../data/book-order.xml" />
+      <classpath refid="project-classpath" />
+    </java>
+  </target>
+
+  <target name="runnodtd" depends="core">
+
+    <echo>java samples.xml.sax.SAXLocalNameCount ../../data/namespace.xml</echo>
+    <java classname="samples.xml.sax.SAXLocalNameCount" fork="yes">
+      <arg value="../../data/namespace.xml" />
+      <classpath refid="project-classpath" />
+    </java>
+
+  </target>
+
+   
+
+  <target name="clean"      depends="clean_common"/>
+  <target name="init"       depends="init_common"/>
+  <target name="compile"    depends="compile_common" />
+  <target name="javadocs"   depends="javadocs_common" />
+
+  <target name="core" depends="init,compile" />
+  <target name="all" depends="core,javadocs" />
+  <target name="run" depends="rundtd,runnodtd" />
+
+</project>

@@ -1,0 +1,203 @@
+<!--
+ 
+ * Copyright 2002 Sun Microsystems, Inc. All Rights Reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or
+ * without modification, are permitted provided that the following
+ * conditions are met:
+ * 
+ * - Redistributions of source code must retain the above copyright
+ *   notice, this list of conditions and the following disclaimer.
+ * 
+ * - Redistribution in binary form must reproduce the above
+ *   copyright notice, this list of conditions and the following
+ *   disclaimer in the documentation and/or other materials
+ *   provided with the distribution.
+ * 
+ * Neither the name of Sun Microsystems, Inc. or the names of
+ * contributors may be used to endorse or promote products derived
+ * from this software without specific prior written permission.
+ * 
+ * This software is provided "AS IS," without a warranty of any
+ * kind. ALL EXPRESS OR IMPLIED CONDITIONS, REPRESENTATIONS AND
+ * WARRANTIES, INCLUDING ANY IMPLIED WARRANTY OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE OR NON-INFRINGEMENT, ARE HEREBY
+ * EXCLUDED. SUN AND ITS LICENSORS SHALL NOT BE LIABLE FOR ANY
+ * DAMAGES OR LIABILITIES SUFFERED BY LICENSEE AS A RESULT OF OR
+ * RELATING TO USE, MODIFICATION OR DISTRIBUTION OF THIS SOFTWARE OR
+ * ITS DERIVATIVES. IN NO EVENT WILL SUN OR ITS LICENSORS BE LIABLE
+ * FOR ANY LOST REVENUE, PROFIT OR DATA, OR FOR DIRECT, INDIRECT,
+ * SPECIAL, CONSEQUENTIAL, INCIDENTAL OR PUNITIVE DAMAGES, HOWEVER
+ * CAUSED AND REGARDLESS OF THE THEORY OF LIABILITY, ARISING OUT OF
+ * THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF SUN HAS
+ * BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+ * 
+ * You acknowledge that this software is not designed, licensed or
+ * intended for use in the design, construction, operation or
+ * maintenance of any nuclear facility.
+  
+-->
+
+<project name="Coffee Break Server" default="core" basedir=".">
+  <target name="init"> 
+      <tstamp/> 
+  </target> 
+
+  <property file="../../../common.properties"/>
+  <property file="${user.home}/build.properties"/>
+  <property file="../build.properties"/>
+  <property name="context-name" value="cbserver" />
+  <property name="context-path" value="server" />
+  <property name="build-path"   value="build" />
+  <property name="war-file" value="${context-name}.war" />
+  <property name="common" value="../common/build" />
+  <property name="server.javadocs.dir" value="build/docs/api"/>
+  <property name="srcdir" value="src/com/sun/cb"/>
+  <property name="query-string" value="Coffee"/>
+  <property name="build.compiler" value="modern" />
+  <target name="build_cbpath" unless="sunone.cpath">
+    <path id="cb_classpath">
+        <fileset dir="${com.sun.aas.installRoot}/lib" includes="*.jar" />
+        <fileset dir="${com.sun.aas.webServicesLib}" includes="*.jar"/>
+        <fileset dir="${com.sun.aas.javaRoot}/lib" includes="tools.jar" />
+      </path>
+    <property name="sunone.cpath" refid="cb_classpath"/>
+  </target>
+
+  <target name="prepare" depends="build_cbpath"
+   	description="Create build directories.">
+    <mkdir dir="${build-path}" />
+    <mkdir dir="${build-path}/WEB-INF" />
+    <mkdir dir="${build-path}/WEB-INF/classes" />
+    <mkdir dir="${build-path}/WEB-INF/lib" />		
+  </target>
+
+  <target name="core" depends="banner, prepare" 
+     description="Compile CB server Java files and copy DD and static files." >
+    <javac 
+      srcdir="src" 
+      destdir="${build-path}/WEB-INF/classes">
+    	<include name="**/*.java" />
+      <classpath>
+         <pathelement path="${sunone.cpath}"/>
+         <pathelement path="${common}"/>
+         <pathelement path="../jaxrpc-client.jar"/>
+         <pathelement path="../jaxm-client.jar" />
+      </classpath>
+    </javac>
+    <copy file="../jaxrpc/${srcdir}/CoffeeRegistry.properties" todir="${build-path}/WEB-INF/classes/com/sun/cb"/>
+    <copy todir="${build-path}/WEB-INF">
+      <fileset dir="web/WEB-INF"    >
+        <include name="web.xml" />
+        <include name="*.tld" />
+      </fileset>
+    </copy>
+    <copy todir="${build-path}/WEB-INF/lib">
+      <fileset dir="../" >				
+        <include name="jaxrpc-client.jar" />
+      </fileset>
+      <fileset dir="../" >				
+        <include name="jaxm-client.jar" />
+      </fileset>
+    </copy>
+    <copy todir="${build-path}">
+      <fileset dir="web">
+        <include name="*.html" />
+        <include name="*.jpg" />
+        <include name="*.jsp" />
+      </fileset>
+    </copy>
+  </target>
+
+  <target name="javadocs" depends="core">
+    <mkdir dir="${server.javadocs.dir}"/>
+    <javadoc packagenames="com.sun.cb.*"
+             destdir="${server.javadocs.dir}"
+             author="false" version="true" use="true"
+             windowtitle="Server, Coffee Break API"
+             doctitle="Server, Coffee Break"
+	     bottom="Copyright &#169; 2001 Sun Microsystems Inc. All Rights Reserved.">
+      <classpath>
+         <pathelement path="${sunone.cpath}"/>
+         <pathelement path="${build}/service-class"/>
+         <pathelement path="${build}/client"/>
+         <pathelement path="${common}" />
+      </classpath>
+      <sourcepath>
+        <pathelement path="src"/>
+      </sourcepath>
+    </javadoc>
+  </target>
+
+  <target name="run-query" depends="core"
+     description="Run JAXRQueryByName." >
+    <java classname="com.sun.cb.JAXRQueryByName" fork="yes">
+      <sysproperty key="proxySet" value="true"/>
+      <sysproperty key="http.proxyHost" value="webcache.sfbay.sun.com "/>
+      <sysproperty key="http.proxyPort" value="8080"/>
+      <arg line="${query-string}" />
+      <classpath>
+         <pathelement path="${sunone.cpath}"/>
+         <pathelement path="${build-path}/WEB-INF/classes" />
+         <pathelement path="../jaxrpc/build/client" />
+         <pathelement path="../jaxrpc/build/WEB-INF/classes" />
+         <pathelement path="../jaxm/build/client" />
+      </classpath>
+    </java>
+  </target>
+
+  <target name="package" depends="core"
+      description="Packages the WAR file">
+      <echo message="Packaging the WAR...."/>
+      <delete file="../${war-file}" />
+      <jar jarfile="../${war-file}" >
+        <fileset dir="${build-path}"/>
+      </jar>
+  </target>
+
+
+  <target name="clean" 
+     description="Removes the build and dist directories">
+    <delete dir="${build-path}" />
+  </target>
+
+  <target name="debug" >
+     <echo message="**Debug**" />
+     <echo message="  ${user.home}" />
+     <echo message="  ${username}" />
+     <echo message="  ${password}" />
+     <echo message="	${context-name}" />
+     <echo message="  ${context-path}" />
+     <echo message="  ${build-path}" />
+  </target>
+
+  <!-- ======================================================= -->
+  <!--          property need to build war deployment.         -->
+  <!-- ======================================================= -->
+
+  <property name="apptype"     value="web"/>
+  <property name="appname"     value="cbserver"/>
+  <property name="verify.file"  value="${war-file}"/>
+  <property name="deploy.file" value="${war-file}"/>
+
+  <target name="deploy" depends="">
+    <ant dir="../" target="deploy_common" inheritall="true"/>
+  </target>
+
+  <target name="undeploy" depends="">
+    <ant dir="../" target="undeploy_common" inheritall="true"/>
+  </target>
+
+  <target name="verify" depends="">
+    <ant dir="../" target="verify_common" inheritall="true"/>
+  </target>
+
+  <target name="banner">
+      <echo>+---------------------------------------+</echo>
+      <echo>+    Building Server, Coffee Break Application +</echo>
+      <echo>+---------------------------------------+</echo>
+  </target>
+
+  <target name="all" depends="core, javadocs" />
+
+</project>

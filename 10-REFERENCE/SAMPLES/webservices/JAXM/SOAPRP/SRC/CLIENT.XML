@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<!DOCTYPE ClientConfig
+    PUBLIC "-//Sun Microsystems, Inc.//DTD JAXM Client//EN"
+    "http://java.sun.com/xml/dtds/jaxm_client_1_0.dtd">
+<ClientConfig>
+    <Endpoint>
+      http://localhost:1024/jaxm-provider/receiver
+    </Endpoint>
+    <CallbackURL>
+       http://localhost:1024/jaxm-soaprp/receiver
+    </CallbackURL>
+    <Provider>
+      <URI>http://java.sun.com/xml/jaxm/provider</URI>
+      <URL>http://localhost:1024/jaxm-provider/sender</URL>
+    </Provider>
+</ClientConfig>

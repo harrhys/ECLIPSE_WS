@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/domain
+END
+Customer.java
+K 25
+svn:wc:ra_dav:version-url
+V 120
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/domain/Customer.java
+END
+CustomerVerification.java
+K 25
+svn:wc:ra_dav:version-url
+V 132
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/domain/CustomerVerification.java
+END
+Transaction.java
+K 25
+svn:wc:ra_dav:version-url
+V 123
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/domain/Transaction.java
+END
+CustomerDeposit.java
+K 25
+svn:wc:ra_dav:version-url
+V 127
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/domain/CustomerDeposit.java
+END
+CustomerRemittance.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/repos/BLRDelivery/!svn/ver/16165/AndroidMoneyAgent/branches/Alpha-Delhi/src/com/obopay/obopayagent/domain/CustomerRemittance.java
+END

@@ -1,0 +1,15 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="wrapper">
+<h1>Select Language</h1>
+<p>
+Select the customer's preferred language for communication. 
+To change the new customer registration details, click on 'Back' to go back to the previous page.
+</p>
+<p>
+Contact <%CUSTOMER_CARE%> if you need help.
+</p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright (c) 2002 Sun Microsystems, Inc. All rights reserved. -->
+<!DOCTYPE sun-ejb-jar PUBLIC '-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN' 'http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd'>
+
+<sun-ejb-jar>
+  <enterprise-beans>
+    <name>bmp-simpleEjb.jar</name>
+    <unique-id>0</unique-id>
+    <ejb>
+      <ejb-name>StorageBinEJB</ejb-name>
+      <jndi-name>ejb/MyStorageBin</jndi-name>
+      <resource-ref>
+        <res-ref-name>jdbc/bmp-simple</res-ref-name>
+        <jndi-name>jdbc/bmp-simple</jndi-name>
+      </resource-ref>
+      <bean-pool>
+ 	<steady-pool-size>0</steady-pool-size>		
+      </bean-pool>
+    </ejb>
+    <ejb>
+      <ejb-name>WidgetEJB</ejb-name>
+      <jndi-name>ejb/MyWidget</jndi-name>
+      <resource-ref>
+        <res-ref-name>jdbc/bmp-simple</res-ref-name>
+        <jndi-name>jdbc/bmp-simple</jndi-name>
+      </resource-ref>
+      <bean-pool>
+        <steady-pool-size>0</steady-pool-size>          
+      </bean-pool>
+    </ejb>
+  </enterprise-beans>
+</sun-ejb-jar>

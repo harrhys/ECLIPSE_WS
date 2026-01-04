@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sun-ejb-jar PUBLIC "-//Sun Microsystems, Inc.//DTD Sun ONE Application Server 7.0 EJB 2.0//EN" "http://www.sun.com/software/sunone/appserver/dtds/sun-ejb-jar_2_0-0.dtd">
+<sun-ejb-jar>
+<enterprise-beans>
+    <name>MailerJAR</name>
+    <ejb>
+      <ejb-name>MailerMDB</ejb-name>
+      <jndi-name>jms/queue/opc/MailQueue</jndi-name>
+      <resource-ref>
+        <res-ref-name>mail/MailSession</res-ref-name>
+        <jndi-name>mail/petstoreMail</jndi-name>
+        <default-resource-principal>
+          <name>admin</name>
+          <password>admin</password>
+        </default-resource-principal>
+      </resource-ref>
+      <resource-env-ref>
+        <resource-env-ref-name>jms/queue/MailQueue</resource-env-ref-name>
+        <jndi-name>jms/queue/opc/MailQueue</jndi-name>
+      </resource-env-ref>
+      <principal>
+        <name>admin</name>
+      </principal>
+      <mdb-connection-factory>
+        <jndi-name>jms/queue/opc/QueueConnectionFactory</jndi-name>
+        <default-resource-principal>
+          <name>admin</name>
+          <password>admin</password>
+        </default-resource-principal>
+      </mdb-connection-factory>
+      <bean-pool>
+        <steady-pool-size>0</steady-pool-size>
+        <resize-quantity>60</resize-quantity>
+        <max-pool-size>60</max-pool-size>
+        <pool-idle-timeout-in-seconds>900</pool-idle-timeout-in-seconds>
+      </bean-pool>
+    </ejb>
+  </enterprise-beans>
+</sun-ejb-jar>

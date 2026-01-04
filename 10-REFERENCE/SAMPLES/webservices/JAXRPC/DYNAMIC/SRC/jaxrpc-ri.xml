@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<webServices
+    xmlns="http://java.sun.com/xml/ns/jax-rpc/ri/dd"
+    version="1.0"
+    targetNamespaceBase="http://com.test/wsdl"
+    typeNamespaceBase="http://com.test/types"
+    urlPatternBase="/ws">
+
+    <endpoint
+        name="HelloWorld"
+        displayName="Hello Service"
+        description="A simple web service"
+        interface="samples.webservices.jaxrpc.dynamic.HelloIF"
+        implementation="samples.webservices.jaxrpc.dynamic.HelloImpl"/>
+
+    <endpointMapping
+        endpointName="HelloWorld"
+        urlPattern="/dynamic"/>
+
+</webServices>
+

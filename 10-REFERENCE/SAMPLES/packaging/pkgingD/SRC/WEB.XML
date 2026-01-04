@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+
+
+<web-app>
+  <display-name>pkgingDWAR</display-name>
+  <distributable></distributable>
+  <servlet>
+    <servlet-name>CompoundInterestServlet</servlet-name>
+    <servlet-class>samples.packaging.pkgingD.servlet.CompoundInterestServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>SimpleInterest_Out</servlet-name>
+    <jsp-file>SimpleInterest_Out.jsp</jsp-file>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>SimpleInterestServlet</servlet-name>
+    <servlet-class>samples.packaging.pkgingD.servlet.SimpleInterestServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>SimpleInterest_In</servlet-name>
+    <jsp-file>SimpleInterest_In.jsp</jsp-file>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>CompoundInterest_Out</servlet-name>
+    <jsp-file>CompoundInterest_Out.jsp</jsp-file>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet>
+    <servlet-name>CompoundInterest_In</servlet-name>
+    <jsp-file>CompoundInterest_In.jsp</jsp-file>
+    <load-on-startup>0</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>SimpleInterestServlet</servlet-name>
+      <url-pattern>/simple</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+      <servlet-name>CompoundInterestServlet</servlet-name>
+      <url-pattern>/compound</url-pattern>
+  </servlet-mapping>
+  <session-config>
+    <session-timeout>500</session-timeout>
+  </session-config>
+  <ejb-ref>
+    <ejb-ref-name>ejb/SunONE.pkging.pkgingEJB.SimpleInterest</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>samples.packaging.pkging.ejb.SimpleInterestHome</home>
+    <remote>samples.packaging.pkging.ejb.SimpleInterest</remote>
+    <ejb-link>SunONE.pkgingD.pkgingDEJB.SimpleInterest</ejb-link>
+  </ejb-ref>
+  <ejb-ref>
+    <ejb-ref-name>ejb/SunONE.pkging.pkgingEJB.CompoundInterest</ejb-ref-name>
+    <ejb-ref-type>Session</ejb-ref-type>
+    <home>samples.pkging.ejb.CompoundInterestHome</home>
+    <remote>samples.pkging.ejb.CompoundInterest</remote>
+    <ejb-link>SunONE.pkgingD.pkgingDEJB.CompoundInterest</ejb-link>
+  </ejb-ref>
+</web-app>
+

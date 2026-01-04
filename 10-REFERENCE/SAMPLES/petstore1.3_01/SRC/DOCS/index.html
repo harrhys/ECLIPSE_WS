@@ -1,0 +1,350 @@
+<!doctype html public "-//w3c//dtd html 4.0 transitional//en">
+<html>
+<head>
+   <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+   <meta name="GENERATOR" content="Mozilla/4.75 [en]C-AOLNSCP  (WinNT; U) [Netscape]">
+   <title>SunONE Application Server: Java Petstore 1.3.01 Sample Application</title>
+</head>
+<body bgcolor="#FFFFFF">
+
+<center>
+<h1>
+Petstore1.3_01 Sample Application</h1></center>
+<i>Updated June 10, 2002</i>
+<h2>
+
+<hr>Table of Contents</h2>
+This Sun ONE Application Server sample application document contains the
+following sections:
+<ul>
+<li>
+<b><a href="#over">Overview: Using the Petstore Sample Application</a></b></li>
+
+<li>
+<b><a href="#AppSetup">Application Setup</a></b></li>
+
+<li>
+<b><a href="#compile">Compiling and Assembling the Application</a></b></li>
+
+<li>
+<b><a href="#deploy_app">Deploying the Application</a></b></li>
+
+<li>
+<b><a href="#verify-registration">Verifying Deployment</a></b></li>
+
+<li>
+<b><a href="#run">Running the Application</a></b></li>
+
+<li>
+<b><a href="#trouble">Troubleshooting and Notes</a></b></li>
+</ul>
+
+<hr>
+<h2>
+<a NAME="over"></a>Overview: Using the Petstore Sample Application</h2>
+The Petstore1.3_01 sample application is from Java blueprints team and
+it demonstrates all the J2EE1.3.1 patterns.This application is more of
+a real world application and it has all the new patterns.Some of the new
+patterns in this version of Petstore are:
+<ul>
+<li>
+Servlet Filters</li>
+
+<li>
+MVC architecture for the UI</li>
+
+<li>
+CMP2.0</li>
+
+<li>
+MDB's (JMS Integration with EJB)</li>
+
+<li>
+Java Web Start for JFC/Swing clients deployment &amp; execution</li>
+
+<li>
+Java APIs for XML</li>
+
+<li>
+Component model &amp; i18N</li>
+</ul>
+The complete architecture of this application can be found at the
+<a href="http://java.sun.com/blueprints/code/jps11/archoverview.html">http://java.sun.com/blueprints/code/jps11/archoverview.html</a>
+<br>Please visit <a href="http://java.sun.com/blueprints/code/index.html#java_pet_store_demo">Java
+Petstore Official Website </a>for more information.
+<p>
+<hr>
+<h2>
+<a NAME="AppSetup"></a>Application Setup</h2>
+Petstore can be setup to run on either Point Base or Oracle Databases.&nbsp;
+Please follow the instructions specific to your needs.
+<h3>
+Point Base:</h3>
+1. Sun ONE Application Server Comes with Point Base Database pre populated
+with the data required to run Java Petstore Application.
+<br>2. Run "&lt;appserver-install-location&gt;/samples/petstore1.3._01/src/build.sh
+setup" (Unix) or "&lt;appserver-install-location&gt;samples/petstore1.3._01/src/build.bat
+setup" on Win2K to setup the Database related Resources for the Application
+Server.
+<h3>
+Oracle:</h3>
+1.&nbsp; Install Oracle 9i Client or Server Software in your machine, if
+you don't have the Oracle 9i server running in your local machine.
+<br>2.&nbsp; Configure the client software&nbsp; and your path environment
+variable so that you can talk to your database server.&nbsp; In other words,
+you should be able to run sqlplus from command line and be able to connect
+to your database server.
+<br>3.&nbsp; Change Directory to &lt;appserver-install-location&gt;/samples/petstore1.3._01/src/sql.
+<br>4.&nbsp; You need to edit&nbsp; <b>setupDB.sh, </b>for your oracle
+sid.&nbsp; Change &lt;vortex> to your &lt;ORACLE_SID>
+<br>5.&nbsp; Run this Script&nbsp; ./<b>setupDB.sh.&nbsp; </b>This script
+creates three oracle users&nbsp; <b>ias1/ias1</b>,<b>opc/opc
+</b>&amp;
+s<b>upplier/supplier</b>.
+<br>6.&nbsp; If you choose to create your own Database user then you have
+to change &lt;appserver-install-location&gt;/instances/&lt;your-instance&gt;/server.xml
+and default-resource-principal in the deployment descriptors found in &lt;appserver-install-location&gt;/samples/petstore1.3._01/src/apps
+directories.&nbsp; Also you need to populate these three users with with
+the Application Test Data.&nbsp; Use the following scripts to do that <b><i>petstoredb.sql,
+opcdb.sql&nbsp; &amp; supplierdb.sql.</i></b>
+<br><i>7.&nbsp; </i>Edit <i>classpath v</i>ariable in&nbsp; &lt;appserver-install-location&gt;/instances/&lt;your-instance&gt;/server.xml&nbsp;
+to have $ORACLE_HOME/jdbc/lib/classes12.jar.
+<br><i>8. </i>Execute<i>&nbsp; "</i>&lt;appserver-install-location&gt;/samples/petstore1.3._01/src/build.sh
+setup-oracle"&nbsp; (Unix) or <i>"</i>&lt;appserver-install-location&gt;/samples/petstore1.3._01/src/build.bat
+setup-oracle" on Win2K to setup Database related Resource for the Application
+Server.
+<br>&nbsp;
+<p><b><u>NOTE 1:</u></b>
+<p>After you are done with the Database setup (Either Point Base or Oracle),
+Execute&nbsp; "&lt;appserver-install-location&gt;/samples/petstore1.3._01/src/build.sh
+reconfig" (Unix) or <i>"</i>&lt;appserver-install-location&gt;/samples/petstore1.3._01/src/build.bat
+reconfig" on Win2K. This will apply your database configuration changes
+permanently to your Application Server Instance.
+<p><b><u>NOTE 2 :</u></b>
+<p><b>Sample Values (in bracket) to enter when executing build.sh or build.bat
+for the first time are given below</b>
+<p>admin.user=&lt;your admin user id> (<font color="#FF0000">admin</font>)
+<br>admin.password=&lt;your admin user password> (<font color="#FF0000">iasadmin</font>)
+<br>admin.host=&lt;hostname.domainname> (<font color="#FF0000">localmachine.sun.com</font>)
+<br>admin.port=&lt;Administrator port number> (<font color="#FF0000">4848</font>)
+<br>as.instance=&lt;your appserver Instance> (<font color="#FF0000">server1</font>)
+<br>db.host=&lt;Your Database Server Name> (<font color="#FF0000">dbserver.sun.com</font>)
+<br>db.port=&lt;Database Server Port> (<font color="#FF0000">9092</font>)
+<br>mail.host=&lt;The Mailserver name> (<font color="#FF0000">localhost</font>)
+<br>mail.username=&lt;user for mail server> (<font color="#FF0000">petstore@sun.com</font>)
+<br>mail.fromaddress=&lt;your email id> (<font color="#FF0000">petstore@sun.com</font>)
+<br>datasource.user=&lt;administrator password for database> (<font color="#FF0000">"system"
+for oracle and "pbpublic" for Point Base</font>)
+<br>datasource.password=&lt;the password for your database administrator>
+(<font color="#FF0000">"manager" for oracle and "pbpublic" for Point Base</font>)
+<br>db.SID=&lt;database server sid to which its listening> (<font color="#FF0000">sun-appserv-samples
+for Point Base</font>)
+<p><b><u>NOTE 3 :</u></b>
+<p>After you&nbsp; are done with setup and deploy, you have to modify &lt;appserver-install-location&gt;/instances/&lt;your-instance>/server.xml
+for the three Database Connection Pools that are getting created. This
+is the bug which will be addressed in the RTM Release.&nbsp; You need to
+add the res-type&nbsp; for the element of jdbc-connection-pool.
+<p>After the modification, it should look like:
+<p><i>&lt;jdbc-connection-pool steady-pool-size="8" max-pool-size="32"
+is-isolation-level-guaranteed="true" is-connection-validation-required="false"
+connection-validation-method="auto-commit" fail-all-connections="false"</i>
+<br><i>datasource-classname="com.pointbase.xa.xaDataSource" res-type="javax.sql.XADataSource"
+name="opcpool"></i>
+<br>&nbsp;
+<p>
+<hr>
+<h2>
+<a NAME="compile"></a>Compiling and Assembling the Application</h2>
+To build and assemble&nbsp; the complete application
+<br>&nbsp;
+<p><b>1. Compile and Assemble Web Application</b>
+<blockquote>
+<li>
+Change Directory to&lt;appserver-install-location&gt;/samples/petstore1.3._01/src</li>
+
+<li>
+Execute the ant target to compile all the java source by doing "./build.sh
+core" (Unix) or "build.bat core" (Win2K).</li>
+</blockquote>
+<b><u>Note:</u></b>
+<p>If you don't want to compile the application then you can skip this
+step and go to next one to deploy the ear's that comes with the Install.
+<br>&nbsp;
+<p>
+<hr width="100%" size="2">
+<br>&nbsp;
+<h2>
+<a NAME="deploy_app"></a>Deploying the Application</h2>
+
+<ul>
+<li>
+Change Directory to&lt;appserver-install-location&gt;/samples/petstore1.3._01/src</li>
+
+<li>
+Execute the ant target to deploy the Petstore application "./build.sh deploy"
+(Unix) or "build.bat deploy" (Win2K).</li>
+
+<li>
+This will Deploy the Four ".ear" files from petstore.ear, opc.ear, supplier.ear
+&amp; petstoreadmin.ear.&nbsp; These file are present in build directories
+of the respective application directories under &lt;appserver-install-location&gt;/samples/petstore1.3._01/src/apps</li>
+</ul>
+<b><u>Note 1 :</u></b>
+<p>Also you can execute <font face="Courier New, Courier, mono"><font size=-1>asadmin</font></font>
+to deploy application to the local application server instance:
+<p>The following is the command you can use to deploy your ".ear" files
+(petstore.ear, opc.ear, supplier.ear &amp; petstoreadmin.ear).
+<blockquote>&lt;appserver-install-location&gt;/bin/<font face="Courier New, Courier, mono"><font size=-1>asadmin
+deploy -u &lt;user-name> -w &lt;password> -H &lt;hostname> -p &lt;admin
+server port> --name petstore --instance &lt;instance name> petstore.ear</font></font></blockquote>
+<b><u>Note 2 :</u></b>
+<p>The deployment process involves the following operations:
+<blockquote>
+<li>
+Authenticates against the local application server's administrative server.</li>
+
+<li>
+The EAR file is transferred to the administrative server.</li>
+
+<li>
+The administrative server begins the registration process:</li>
+
+<blockquote>
+<li>
+parses the EAR file and embedded WAR file</li>
+
+<li>
+Explodes the bits into repository</li>
+
+<li>
+registers the J2EE application by updating &lt;appserver-install-location&gt;/&lt;your-instance>server.xml</li>
+</blockquote>
+</blockquote>
+
+<h3>
+
+<hr></h3>
+
+<h2>
+<a NAME="verify-registration"></a><b>Verifying Deployment</b></h2>
+As an optional step, you can use the Sun ONE Application Server Administration
+Tool to verify that the application has been registered. If you do not
+want to verify that the application has been registered, proceed directly
+to <a href="#run">Running the Application</a>.
+<p>To verify the registration of the application, execute <font size=-1>iasadmin
+</font>to
+look at applications deployed with a server instance:
+<blockquote>&lt;appserver-install-location&gt;/bin/<font face="Courier New, Courier, monospace"><font size=-1>asadmin
+list-components -u &lt;username> -w &lt;password> -H &lt;host> -p &lt;admin-port>
+&lt;server instance name></font></font></blockquote>
+You can see the four&nbsp; Java Petstore Applications (Admin, Petstore,
+OPC, Supplier) listed.
+<br>
+<hr>
+<h2>
+<a NAME="run"></a>Running the Sample Application</h2>
+To run the application, go to the application Launch Page
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <font face="Courier New, Courier, mono"><font size=-1>http://&lt;AppServer
+<i>hostname</i>>:&lt;<i>port</i>>/petstore/index.jsp
+(For Front end)</font></font>
+<p>or to the following&nbsp; three URLs depending on what you need to do:
+<blockquote><font face="Courier New, Courier, mono"><font size=-1>http://&lt;AppServer
+<i>hostname</i>>:&lt;<i>port</i>>/main.screen
+(For Front End)</font></font>
+<br><font face="Courier New, Courier, mono"><font size=-1>http://&lt;AppServer
+<i>hostname</i>>:&lt;<i>port</i>>/admin&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(For Admin)</font></font>
+<br><font face="Courier New, Courier, mono"><font size=-1>http://&lt;AppServer
+<i>hostname</i>>:&lt;<i>port</i>>/rcvr&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+(For Supplier)</font></font></blockquote>
+Enter enter the Front End URL to buy pets, add items to your cart and checkout.&nbsp;
+Enter the Supplier URL to manage the inventory.&nbsp; Enter the Admin URL
+approve the orders over&nbsp; $500.00.
+<p><b><u>Note:</u></b>
+<p>For Admin to work, you have to invoke http://&lt;AppServer hostname>:&lt;port>/admin
+from Netscape on Windows Machine.&nbsp; If you have already installed Application
+Server on PC, you don't need to do anything since Java Web Start is comes
+with Application Server.
+<p>If there is no Application Server installed on your PC, you need to
+download Java Web Start from http://java.sun.com/products/javawebstart.&nbsp;&nbsp;&nbsp;
+Java Web Start has to be configured to work with JRE 1.4 for the Petstore
+Application.&nbsp; You can go to&nbsp; http://java.sun.com/j2se/1.4/download.html
+to download JRE 1.4 for Windows.
+<br>There are two ways to configure Java Web Start 1.0.1 working with JRE
+1.4.
+<ul>
+<li>
+&nbsp;When install Java Web Start, you can specify the JRE you want to
+use</li>
+
+<li>
+&nbsp;After intall Java Web Start, you can configure it by Choosing File->Preferences->Java
+to change the path of&nbsp; javaw.exe.</li>
+</ul>
+
+<p><br>
+<hr>
+<h2>
+<a NAME="trouble"></a>Troubleshooting and Notes</h2>
+
+<ul>
+<li>
+Check your database. All the 3 databases should be created with sample
+data loaded in it</li>
+
+<li>
+If you are getting jdbc connection or jms connection problem, check the
+userid/passwd in the server.xml &amp; default-resource-principal in the
+deployment descriptors</li>
+
+<li>
+Try deploying petstore.ear alone and try submitting an order.This EAR can
+work without the other 3 EAR files.</li>
+
+<li>
+Check your IMQ is properly setup and the jms resources are created. Sometimes
+when the messages are not cleaned up in the queue correctly that could
+cause problem.</li>
+
+<li>
+Supplier URL goes to supplier database for information.</li>
+
+<li>
+There is NO URL for opc and admin goes to opc database</li>
+
+<li>
+The Java Web Start has to be installed correctly with JRE 1.4 version.</li>
+
+<li>
+After deployment, when you restart your instance make sure that the application
+is loaded correctly.</li>
+
+<li>
+If you encounter problems when running the application, review the log
+files at&nbsp;<i> </i>&lt;appserver-install-location&gt;/instances/&lt;your-instance>/logs/server.log<font face="Courier New, Courier, monospace"><font size=-1>
+for more information.</font></font></li>
+
+<li>
+<font face="Arial,Helvetica">Petstore requires to use XADatasource. Check
+if you are using XADatasource.</font></li>
+
+<li>
+<font face="Arial,Helvetica">Please Make sure you have the keyfile in the
+instance/config directory found in &lt;</font>appserver-install-location&gt;/samples/petstore1.3._01/src</li>
+
+<li>
+<font face="Arial,Helvetica">Try Setting &lt;jvm-options>-Dcom.sun.sunoneserver.runtime.useunboundedpoolcache=true
+&lt;/jvm-options></font></li>
+
+<li>
+<font face="Arial,Helvetica">To access the Admin URL in, you need to install
+Java Web Start in your local machine.&nbsp; Java Web Start should point&nbsp;
+to </font>JRE 1.4.</li>
+</ul>
+
+<p><br><font face="Verdana, Arial, Helvetica, sans-serif"><font size=-2>Copyright
+(c) 2002 Sun Microsystems, Inc. All rights reserved.</font></font>
+<br>
+<hr>
+</body>
+</html>
