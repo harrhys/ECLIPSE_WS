@@ -1,11 +1,10 @@
 **/.metadata/*
+**/node_modules/
+**/env*/
 *.class
 *.log
 *.index
 *.jar
 *.bak
 */classes
-/.metadata/
-**/node_modules/
-**/env*/
 *.ear
